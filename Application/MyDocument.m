@@ -92,6 +92,12 @@ static NSComparisonResult _SortFunction(Class class1, Class class2, void* contex
     return [name1 caseInsensitiveCompare:name2];
 }
 
+static void _FindUsedClasses(SourceNode* node, NSMutableSet* set) {
+	[set addObject:[node class]];
+    for(node in node.children)
+    	_FindUsedClasses(node, set);
+}
+
 - (void) windowControllerDidLoadNib:(NSWindowController*)controller {
 	[super windowControllerDidLoadNib:controller];
 
@@ -141,7 +147,6 @@ static NSComparisonResult _SortFunction(Class class1, Class class2, void* contex
 		}
 	}
     
-    
     scrollView = (NSScrollView*)[[[_coloringButton superview] superview] superview];
     NSData* data = [NSKeyedArchiver archivedDataWithRootObject:_coloringButton];
     [_coloringButton removeFromSuperview];
@@ -164,6 +169,13 @@ static NSComparisonResult _SortFunction(Class class1, Class class2, void* contex
         hue += 1.0 / (CGFloat)nodeClasses.count;
     }
     [[scrollView documentView] setFrameSize:NSMakeSize(offset, [scrollView contentView].frame.size.height)];
+    
+    NSMutableSet* usedClasses = [NSMutableSet set];
+    _FindUsedClasses(_sourceRoot, usedClasses);
+    for(NSButton* button in _buttons) {
+    	Class nodeClass = (Class)[button tag];
+        [button setEnabled:[usedClasses containsObject:nodeClass]];
+    }
     
     _textView.string = [_sourceRoot source];
     [self updateColoring:nil];

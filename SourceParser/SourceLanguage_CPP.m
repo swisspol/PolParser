@@ -43,10 +43,6 @@
 
 @implementation SourceNodeCommentCPP
 
-+ (BOOL) trimTrailingWhitespace {
-	return YES;
-}
-
 + (NSString*) tidyContent:(NSString*)content {
 	return _StripLineBrakes([super tidyContent:content]);
 }
@@ -56,7 +52,21 @@
 }
 
 + (NSUInteger) isMatchingSuffix:(const unichar*)string maxLength:(NSUInteger)maxLength {
-	return _IsRealLineBreak(string) ? 0 : NSNotFound;
+    while(maxLength) {
+        if(IsNewline(*string)) {
+            do {
+                --string;
+            } while(IsWhiteSpace(*string));
+            if(*string != '\\')
+                return 0;
+        }
+        if(!IsWhiteSpace(*string))
+            break;
+        ++string;
+        --maxLength;
+    }
+    
+    return NSNotFound;
 }
 
 @end

@@ -18,15 +18,6 @@
 
 #import "SourceParser_Internal.h"
 
-BOOL _IsRealLineBreak(const unichar* string) {
-	if(!IsNewline(*string))
-        return NO;
-    do {
-    	--string;
-    } while(IsWhiteSpaceOrNewline(*string));
-    return *string != '\\';
-}
-
 BOOL _EqualUnichars(const unichar* string1, const unichar* string2, NSUInteger length) {
 	while(length) {
     	if(*string1++ != *string2++)
@@ -125,8 +116,9 @@ static NSMutableSet* _languageCache = nil;
 	static NSMutableArray* classes = nil;
     if(classes == nil) {
         classes = [[NSMutableArray alloc] init];
-        [classes addObject:[SourceNodeIndenting class]]; //Must be first
-        [classes addObject:[SourceNodeWhitespace class]]; //Must be second
+        [classes addObject:[SourceNodeText class]]; //Must be #0
+        [classes addObject:[SourceNodeIndenting class]]; //Must be #1
+        [classes addObject:[SourceNodeWhitespace class]]; //Must be #2
         
         [classes addObject:[SourceNodeBraces class]];
         [classes addObject:[SourceNodeParenthesis class]];
@@ -171,7 +163,9 @@ static BOOL _ParseSource(SourceLanguage* language, NSString* source, const unich
         Class prefixClass;
         NSUInteger prefixLength;
         for(prefixClass in language.nodeClasses) {
-        	prefixLength = [prefixClass isMatchingPrefix:(buffer + range.location + rawLength) maxLength:(range.length - rawLength)];
+        	if(prefixClass == [SourceNodeText class])
+            	continue;
+            prefixLength = [prefixClass isMatchingPrefix:(buffer + range.location + rawLength) maxLength:(range.length - rawLength)];
             if(prefixLength != NSNotFound)
                 break;
         }
@@ -422,17 +416,7 @@ static void _AppendNodeDescription(SourceNode* node, NSMutableString* string, NS
     return NSNotFound;
 }
 
-+ (BOOL) trimTrailingWhitespace {
-	return NO;
-}
-
 + (NSString*) tidyContent:(NSString*)content {
-	if([self trimTrailingWhitespace]) {
-    	NSRange range = [content rangeOfCharacterFromSet:[[NSCharacterSet whitespaceAndNewlineCharacterSet] invertedSet] options:NSBackwardsSearch range:NSMakeRange(0, content.length)];
-        if((range.location != NSNotFound) && (range.location < content.length - 1))
-        	content = [content substringToIndex:(range.location + 1)];
-    }
-    
     return content;
 }
 

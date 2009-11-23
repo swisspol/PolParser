@@ -13,8 +13,16 @@
 //This is a \   
 multiline comment	
 
+#define IsWhiteSpaceOrNewline(C) ((C == ' ') || (C == '\t') || (C == '\n')) //Very cool!
+
 #define multiline(x, y) \  
 	(x + y)     
+
+#define IS_MATCHING_PREFIX_METHOD(__PREFIX__) \
++ (NSUInteger) isMatchingPrefix:(const unichar*)string maxLength:(NSUInteger)maxLength { \
+    IS_MATCHING(__PREFIX__, false, 0, string, maxLength) \
+    return _matching; \
+}
 
 const char* multiline = "foo\	
  b\\ar\  
@@ -47,6 +55,10 @@ static inline BOOL _IsRealLineBreak(const unichar* string) {
 #if 1
 
 - (BOOL) isValid {
+    int temp;
+    
+    ;
+    
     @try {
         @throw;
         NSBeep();

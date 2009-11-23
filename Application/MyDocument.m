@@ -86,6 +86,12 @@
 	return @"MyDocument";
 }
 
+static NSComparisonResult _SortFunction(Class class1, Class class2, void* context) {
+	NSString* name1 = [class1 name];
+    NSString* name2 = [class2 name];
+    return [name1 caseInsensitiveCompare:name2];
+}
+
 - (void) windowControllerDidLoadNib:(NSWindowController*)controller {
 	[super windowControllerDidLoadNib:controller];
 
@@ -136,14 +142,14 @@
 	}
     
     
-    CGFloat offset = _coloringButton.frame.origin.x;
     scrollView = (NSScrollView*)[[[_coloringButton superview] superview] superview];
     NSData* data = [NSKeyedArchiver archivedDataWithRootObject:_coloringButton];
     [_coloringButton removeFromSuperview];
     _buttons = [[NSMutableArray alloc] init];
     _colors = [[NSMutableDictionary alloc] init];
+    CGFloat offset = 10;
     CGFloat hue = 0.0;
-    NSArray* nodeClasses = [[_sourceRoot language] nodeClasses];
+    NSArray* nodeClasses = [[[_sourceRoot language] nodeClasses] sortedArrayUsingFunction:_SortFunction context:NULL];
     for(Class nodeClass in nodeClasses) {
     	NSButton* button = [NSKeyedUnarchiver unarchiveObjectWithData:data];
         [button setTag:(NSInteger)nodeClass];

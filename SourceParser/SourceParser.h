@@ -59,5 +59,5 @@
 @property(nonatomic, readonly) SourceLanguage* language;
 @end
 
-@interface SourceNodeText : SourceNode
+@interface SourceNodeText : SourceNode //Leaf
 @end

@@ -76,13 +76,17 @@
             	break;
         }
         ++index;
-        if((index < children.count - 1) && [[children objectAtIndex:index] isMemberOfClass:[SourceNodeWhitespace class]])
-            ++index;
-        if((index < children.count - 1) && [[children objectAtIndex:index] isMemberOfClass:[SourceNodeIndenting class]])
-            ++index;
-        for(NSUInteger i = index; i < children.count - 1; ++i)
-            [child addChild:[children objectAtIndex:i]];
-        [children removeObjectsInRange:NSMakeRange(index, children.count - 1 - index)];
+        for(; index < children.count - 1; ++index) {
+        	if(![[children objectAtIndex:index] isKindOfClass:[SourceNodeWhitespace class]])
+                break;
+        }
+        if(index < children.count - 1) {
+            for(NSUInteger i = index; i < children.count - 1; ++i)
+                [child addChild:[children objectAtIndex:i]];
+            NSRange range = ((SourceNode*)[children objectAtIndex:index]).range;
+            [children removeObjectsInRange:NSMakeRange(index, children.count - 1 - index)];
+            child.range = NSMakeRange(range.location, child.range.location + child.range.length - range.location);
+        }
     }
     
     [super didAddChildNodeToSourceTree:child];
@@ -121,7 +125,21 @@
 }
 
 + (NSUInteger) isMatchingSuffix:(const unichar*)string maxLength:(NSUInteger)maxLength {
-	return _IsRealLineBreak(string) || (*string == '#') || ((maxLength >= 2) && (string[0] == '/') && (string[1] == '/')) ? 0 : NSNotFound;
+    while(maxLength) {
+        if(IsNewline(*string) || (*string == '#') || ((maxLength >= 2) && (string[0] == '/') && (string[1] == '/'))) {
+            do {
+                --string;
+            } while(IsWhiteSpace(*string));
+            if(*string != '\\')
+                return 0;
+        }
+        if(!IsWhiteSpace(*string))
+            break;
+        ++string;
+        --maxLength;
+    }
+    
+    return NSNotFound;
 }
 
 @end

@@ -72,7 +72,6 @@
 #define IS_MATCHING_SUFFIX_METHOD_WITH_TRAILING_WHITESPACE_OR_NEWLINE(__SUFFIX__) \
 	IS_MATCHING_SUFFIX_METHOD_WITH_TRAILING_WHITESPACE_OR_NEWLINE_OR_CHARACTER(__SUFFIX__, 0)
     
-extern BOOL _IsRealLineBreak(const unichar* string);
 extern BOOL _EqualUnichars(const unichar* string1, const unichar* string2, NSUInteger length);
 extern NSString* _StripLineBrakes(NSString* content);
 
@@ -88,7 +87,6 @@ extern NSString* _StripLineBrakes(NSString* content);
 + (BOOL) isLeaf;
 + (NSUInteger) isMatchingPrefix:(const unichar*)string maxLength:(NSUInteger)maxLength;
 + (NSUInteger) isMatchingSuffix:(const unichar*)string maxLength:(NSUInteger)maxLength;
-+ (BOOL) trimTrailingWhitespace;
 + (NSString*) tidyContent:(NSString*)content;
 @end
 

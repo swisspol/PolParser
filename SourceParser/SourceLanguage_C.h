@@ -64,3 +64,72 @@
 
 @interface SourceNodeStringDoubleQuote : SourceNode //Leaf
 @end
+
+@interface SourceNodeConditionIf : SourceNode //Leaf
+@end
+
+@interface SourceNodeConditionElse : SourceNode //Leaf
+@end
+
+@interface SourceNodeFlowBreak : SourceNode //Leaf
+@end
+
+@interface SourceNodeFlowContinue : SourceNode //Leaf
+@end
+
+@interface SourceNodeFlowSwitch : SourceNode //Leaf
+@end
+
+@interface SourceNodeFlowCase : SourceNode //Leaf
+@end
+
+@interface SourceNodeFlowDefault : SourceNode //Leaf
+@end
+
+@interface SourceNodeFlowFor : SourceNode //Leaf
+@end
+
+@interface SourceNodeFlowDo : SourceNode //Leaf
+@end
+
+@interface SourceNodeFlowWhile : SourceNode //Leaf
+@end
+
+@interface SourceNodeFlowGoto : SourceNode //Leaf
+@end
+
+@interface SourceNodeFlowReturn : SourceNode //Leaf
+@end
+
+@interface SourceNodeTypedef : SourceNode //Leaf
+@end
+
+@interface SourceNodeTypeStruct : SourceNode //Leaf
+@end
+
+@interface SourceNodeTypeUnion : SourceNode //Leaf
+@end
+
+@interface SourceNodeTypeAuto : SourceNode //Leaf
+@end
+
+@interface SourceNodeTypeStatic : SourceNode //Leaf
+@end
+
+@interface SourceNodeTypeRegister : SourceNode //Leaf
+@end
+
+@interface SourceNodeTypeVolatile : SourceNode //Leaf
+@end
+
+@interface SourceNodeTypeConst : SourceNode //Leaf
+@end
+
+@interface SourceNodeTypeEnum : SourceNode //Leaf
+@end
+
+@interface SourceNodeTypeExtern : SourceNode //Leaf
+@end
+
+@interface SourceNodeTypeSizeOf : SourceNode //Leaf
+@end

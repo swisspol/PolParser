@@ -36,13 +36,13 @@
 @interface SourceNodeObjCPublic : SourceNode //Leaf
 @end
 
-@interface SourceNodeObjCProtected : SourceNodeObjCPublic //Leaf
+@interface SourceNodeObjCProtected : SourceNode //Leaf
 @end
 
-@interface SourceNodeObjCPrivate : SourceNodeObjCPublic //Leaf
+@interface SourceNodeObjCPrivate : SourceNode //Leaf
 @end
 
-@interface SourceNodeObjCProperty : SourceNode
+@interface SourceNodeObjCProperty : SourceNode //Leaf
 @end
 
 @interface SourceNodeObjCTry : SourceNode //Leaf
@@ -54,8 +54,8 @@
 @interface SourceNodeObjCFinally : SourceNode //Leaf
 @end
 
-@interface SourceNodeObjCThrow : SourceNode
+@interface SourceNodeObjCThrow : SourceNode //Leaf
 @end
 
-@interface SourceNodeObjCSynchronized : SourceNode
+@interface SourceNodeObjCSynchronized : SourceNode //Leaf
 @end

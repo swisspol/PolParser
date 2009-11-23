@@ -56,16 +56,6 @@
     return classes;
 }
 
-- (NSSet*) statementClasses {
-	static NSMutableSet* classes = nil;
-    if(classes == nil) {
-    	classes = [[NSMutableSet alloc] initWithSet:[super statementClasses]];
-        [classes addObject:[SourceNodeObjCProperty class]];
-        [classes addObject:[SourceNodeObjCThrow class]];
-    }
-    return classes;
-}
-
 @end
 
 @implementation SourceLanguageObjCPP
@@ -118,92 +108,25 @@ IS_MATCHING_PREFIX_METHOD_WITH_TRAILING_WHITESPACE_OR_NEWLINE(@"@protocol")
 
 @end
 
-@implementation SourceNodeObjCPublic
-
-IS_MATCHING_PREFIX_METHOD_WITH_TRAILING_WHITESPACE_OR_NEWLINE(@"@public")
-
-+ (NSUInteger) isMatchingSuffix:(const unichar*)string maxLength:(NSUInteger)maxLength {
-    return IsWhiteSpaceOrNewline(*string) ? 0 : NSNotFound;
-}
-
+#define IMPLEMENTATION(__NAME__, ...) \
+@implementation SourceNodeObjC##__NAME__ \
+\
+IS_MATCHING_PREFIX_METHOD_WITH_TRAILING_WHITESPACE_OR_NEWLINE_OR_CHARACTER(__VA_ARGS__); \
+\
++ (NSUInteger) isMatchingSuffix:(const unichar*)string maxLength:(NSUInteger)maxLength { \
+	return 0; \
+} \
+\
 @end
 
-@implementation SourceNodeObjCProtected
+IMPLEMENTATION(Public, @"@public", 0)
+IMPLEMENTATION(Protected, @"@protected", 0)
+IMPLEMENTATION(Private, @"@private", 0)
+IMPLEMENTATION(Try, @"@try", '{')
+IMPLEMENTATION(Catch, @"@catch", '(')
+IMPLEMENTATION(Finally, @"@finally", '{')
+IMPLEMENTATION(Throw, @"@throw", 0)
+IMPLEMENTATION(Synchronized, @"@synchronized", '(')
+IMPLEMENTATION(Property, @"@property", '(')
 
-IS_MATCHING_PREFIX_METHOD_WITH_TRAILING_WHITESPACE_OR_NEWLINE(@"@protected")
-
-@end
-
-@implementation SourceNodeObjCPrivate
-
-IS_MATCHING_PREFIX_METHOD_WITH_TRAILING_WHITESPACE_OR_NEWLINE(@"@private")
-
-@end
-
-@implementation SourceNodeObjCProperty
-
-+ (BOOL) isLeaf {
-	return NO;
-}
-
-IS_MATCHING_PREFIX_METHOD(@"@property")
-
-+ (NSUInteger) isMatchingSuffix:(const unichar*)string maxLength:(NSUInteger)maxLength {
-    return *string == ';' ? 0 : NSNotFound;
-}
-
-@end
-
-@implementation SourceNodeObjCTry
-
-IS_MATCHING_PREFIX_METHOD(@"@try")
-
-+ (NSUInteger) isMatchingSuffix:(const unichar*)string maxLength:(NSUInteger)maxLength {
-    return 0;
-}
-
-@end
-
-@implementation SourceNodeObjCCatch
-
-IS_MATCHING_PREFIX_METHOD(@"@catch")
-
-+ (NSUInteger) isMatchingSuffix:(const unichar*)string maxLength:(NSUInteger)maxLength {
-    return 0;
-}
-
-@end
-
-@implementation SourceNodeObjCFinally
-
-IS_MATCHING_PREFIX_METHOD(@"@finally")
-
-+ (NSUInteger) isMatchingSuffix:(const unichar*)string maxLength:(NSUInteger)maxLength {
-    return 0;
-}
-
-@end
-
-@implementation SourceNodeObjCThrow
-
-+ (BOOL) isLeaf {
-	return NO;
-}
-
-IS_MATCHING_PREFIX_METHOD_WITH_TRAILING_WHITESPACE_OR_NEWLINE_OR_CHARACTER(@"@throw", ';')
-
-+ (NSUInteger) isMatchingSuffix:(const unichar*)string maxLength:(NSUInteger)maxLength {
-    return *string == ';' ? 0 : NSNotFound;
-}
-
-@end
-
-@implementation SourceNodeObjCSynchronized
-
-IS_MATCHING_PREFIX_METHOD(@"@synchronized")
-
-+ (NSUInteger) isMatchingSuffix:(const unichar*)string maxLength:(NSUInteger)maxLength {
-    return 0;
-}
-
-@end
+#undef IMPLEMENTATION

@@ -104,7 +104,6 @@ static inline BOOL _EqualUnichars(const unichar* string1, const unichar* string2
 @end
 
 @interface SourceLanguageC : SourceLanguage
-- (NSSet*) statementClasses;
 @end
 
 @interface SourceLanguageCPP : SourceLanguageC

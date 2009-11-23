@@ -47,21 +47,29 @@
         [classes addObject:[SourceNodeStatementSeparator class]];
         [classes addObject:[SourceNodeStringSingleQuote class]];
         [classes addObject:[SourceNodeStringDoubleQuote class]];
-    }
-    return classes;
-}
-
-- (NSSet*) statementClasses {
-	static NSMutableSet* classes = nil;
-    if(classes == nil) {
-    	classes = [[NSMutableSet alloc] init];
-        [classes addObject:[SourceNodeWhitespace class]];
-        [classes addObject:[SourceNodeIndenting class]];
-        [classes addObject:[SourceNodeText class]];
-        [classes addObject:[SourceNodeParenthesis class]];
-        [classes addObject:[SourceNodeBrackets class]];
-        [classes addObject:[SourceNodeStringSingleQuote class]];
-        [classes addObject:[SourceNodeStringDoubleQuote class]];
+        [classes addObject:[SourceNodeConditionIf class]];
+        [classes addObject:[SourceNodeConditionElse class]];
+        [classes addObject:[SourceNodeFlowBreak class]];
+        [classes addObject:[SourceNodeFlowContinue class]];
+        [classes addObject:[SourceNodeFlowSwitch class]];
+        [classes addObject:[SourceNodeFlowCase class]];
+        [classes addObject:[SourceNodeFlowDefault class]];
+        [classes addObject:[SourceNodeFlowFor class]];
+        [classes addObject:[SourceNodeFlowDo class]];
+        [classes addObject:[SourceNodeFlowWhile class]];
+        [classes addObject:[SourceNodeFlowGoto class]];
+        [classes addObject:[SourceNodeFlowReturn class]];
+        [classes addObject:[SourceNodeTypedef class]];
+        [classes addObject:[SourceNodeTypeStruct class]];
+        [classes addObject:[SourceNodeTypeUnion class]];
+        [classes addObject:[SourceNodeTypeAuto class]];
+        [classes addObject:[SourceNodeTypeStatic class]];
+        [classes addObject:[SourceNodeTypeRegister class]];
+        [classes addObject:[SourceNodeTypeVolatile class]];
+        [classes addObject:[SourceNodeTypeConst class]];
+        [classes addObject:[SourceNodeTypeEnum class]];
+        [classes addObject:[SourceNodeTypeExtern class]];
+        [classes addObject:[SourceNodeTypeSizeOf class]];
     }
     return classes;
 }
@@ -146,59 +154,24 @@
 
 @end
 
-@implementation SourceNodePreprocessorConditionIf
-
-IS_MATCHING_PREFIX_METHOD_WITH_TRAILING_WHITESPACE_OR_NEWLINE_OR_CHARACTER(@"#if", '(');
-
+#define IMPLEMENTATION(__NAME__, ...) \
+@implementation SourceNode##__NAME__ \
+\
+IS_MATCHING_PREFIX_METHOD_WITH_TRAILING_WHITESPACE_OR_NEWLINE_OR_CHARACTER(__VA_ARGS__); \
+\
 @end
 
-@implementation SourceNodePreprocessorConditionIfdef
+IMPLEMENTATION(PreprocessorConditionIf, @"#if", '(')
+IMPLEMENTATION(PreprocessorConditionIfdef, @"#ifdef", '(')
+IMPLEMENTATION(PreprocessorConditionIfndef, @"#ifndef", '(')
+IMPLEMENTATION(PreprocessorConditionElse, @"#else", 0)
+IMPLEMENTATION(PreprocessorConditionElseif, @"#elseif", '(')
+IMPLEMENTATION(PreprocessorDefine, @"#define", 0)
+IMPLEMENTATION(PreprocessorUndefine, @"#undef", 0)
+IMPLEMENTATION(PreprocessorPragma, @"#pragma", 0)
+IMPLEMENTATION(PreprocessorInclude, @"#include", 0)
 
-IS_MATCHING_PREFIX_METHOD_WITH_TRAILING_WHITESPACE_OR_NEWLINE_OR_CHARACTER(@"#ifdef", '(');
-
-@end
-
-@implementation SourceNodePreprocessorConditionIfndef
-
-IS_MATCHING_PREFIX_METHOD_WITH_TRAILING_WHITESPACE_OR_NEWLINE_OR_CHARACTER(@"#ifndef", '(');
-
-@end
-
-@implementation SourceNodePreprocessorConditionElse
-
-IS_MATCHING_PREFIX_METHOD_WITH_TRAILING_WHITESPACE_OR_NEWLINE(@"#else");
-
-@end
-
-@implementation SourceNodePreprocessorConditionElseif
-
-IS_MATCHING_PREFIX_METHOD_WITH_TRAILING_WHITESPACE_OR_NEWLINE_OR_CHARACTER(@"#elseif", '(');
-
-@end
-
-@implementation SourceNodePreprocessorDefine
-
-IS_MATCHING_PREFIX_METHOD_WITH_TRAILING_WHITESPACE_OR_NEWLINE(@"#define")
-
-@end
-
-@implementation SourceNodePreprocessorUndefine
-
-IS_MATCHING_PREFIX_METHOD_WITH_TRAILING_WHITESPACE_OR_NEWLINE(@"#undef")
-
-@end
-
-@implementation SourceNodePreprocessorPragma
-
-IS_MATCHING_PREFIX_METHOD_WITH_TRAILING_WHITESPACE_OR_NEWLINE(@"#pragma")
-
-@end
-
-@implementation SourceNodePreprocessorInclude
-
-IS_MATCHING_PREFIX_METHOD_WITH_TRAILING_WHITESPACE_OR_NEWLINE(@"#include")
-
-@end
+#undef IMPLEMENTATION
 
 @implementation SourceNodeStatementSeparator
 
@@ -235,3 +208,40 @@ IS_MATCHING_PREFIX_METHOD_WITH_TRAILING_WHITESPACE_OR_NEWLINE(@"#include")
 }
 
 @end
+
+#define IMPLEMENTATION(__NAME__, ...) \
+@implementation SourceNode##__NAME__ \
+\
+IS_MATCHING_PREFIX_METHOD_WITH_TRAILING_WHITESPACE_OR_NEWLINE_OR_CHARACTER(__VA_ARGS__); \
+\
++ (NSUInteger) isMatchingSuffix:(const unichar*)string maxLength:(NSUInteger)maxLength { \
+	return 0; \
+} \
+\
+@end
+
+IMPLEMENTATION(ConditionIf, @"if", '(')
+IMPLEMENTATION(ConditionElse, @"else", '{')
+IMPLEMENTATION(FlowBreak, @"break", 0)
+IMPLEMENTATION(FlowContinue, @"continue", 0)
+IMPLEMENTATION(FlowSwitch, @"switch", '(')
+IMPLEMENTATION(FlowCase, @"case", ':')
+IMPLEMENTATION(FlowDefault, @"default", ':')
+IMPLEMENTATION(FlowFor, @"for", '(')
+IMPLEMENTATION(FlowDo, @"do", '{')
+IMPLEMENTATION(FlowWhile, @"while", '(')
+IMPLEMENTATION(FlowGoto, @"goto", 0)
+IMPLEMENTATION(FlowReturn, @"return", '(')
+IMPLEMENTATION(Typedef, @"typedef", 0)
+IMPLEMENTATION(TypeStruct, @"struct", '{')
+IMPLEMENTATION(TypeUnion, @"union", '{')
+IMPLEMENTATION(TypeAuto, @"auto", 0)
+IMPLEMENTATION(TypeStatic, @"static", 0)
+IMPLEMENTATION(TypeRegister, @"register", 0)
+IMPLEMENTATION(TypeVolatile, @"volatile", 0)
+IMPLEMENTATION(TypeConst, @"const", 0)
+IMPLEMENTATION(TypeEnum, @"enum", '{')
+IMPLEMENTATION(TypeExtern, @"extern", 0)
+IMPLEMENTATION(TypeSizeOf, @"sizeof", '(')
+
+#undef IMPLEMENTATION

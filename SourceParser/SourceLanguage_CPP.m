@@ -35,6 +35,7 @@
         [classes addObjectsFromArray:[super nodeClasses]];
         
         [classes addObject:[SourceNodeCommentCPP class]];
+        [classes addObject:[SourceNodeScopeOperator class]];
     }
     return classes;
 }
@@ -67,3 +68,14 @@
 
 @end
 
+@implementation SourceNodeScopeOperator
+
++ (NSUInteger) isMatchingPrefix:(const unichar*)string maxLength:(NSUInteger)maxLength {
+    return (maxLength >= 2) && (string[0] == ':') && (string[1] == ':') ? 2 : NSNotFound;
+}
+
++ (NSUInteger) isMatchingSuffix:(const unichar*)string maxLength:(NSUInteger)maxLength {
+	return 0;
+}
+
+@end

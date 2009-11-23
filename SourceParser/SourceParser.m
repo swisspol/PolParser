@@ -445,11 +445,6 @@ static void _AppendNodeDescription(SourceNode* node, NSMutableString* string, NS
 	return NO;
 }
 
-- (id) initWithSource:(NSString*)source range:(NSRange)range {
-	[self doesNotRecognizeSelector:_cmd];
-    return nil;
-}
-
 - (id) initWithSource:(NSString*)source language:(SourceLanguage*)language {
 	if((self = [super initWithSource:source range:NSMakeRange(0, source.length)]))
     	_language = [language retain];
@@ -461,6 +456,25 @@ static void _AppendNodeDescription(SourceNode* node, NSMutableString* string, NS
 	[_language release];
     
 	[super dealloc];
+}
+
+static void _GenerateSource(SourceNode* node, NSMutableString* string) {
+	for(node in node.children) {
+    	if(node.children)
+        	_GenerateSource(node, string);
+        else
+        	[string appendString:node.content];
+    }
+}
+
+- (NSString*) generateSourceFromTree {
+	NSMutableString* string = [NSMutableString stringWithCapacity:self.range.length];
+    _GenerateSource(self, string);
+    return string;
+}
+
+- (BOOL) writeSourceFromTreeToFile:(NSString*)path {
+	return [[self generateSourceFromTree] writeToFile:path atomically:YES encoding:NSUTF8StringEncoding error:NULL]; //FIXME: Don't assume UTF8
 }
 
 @end

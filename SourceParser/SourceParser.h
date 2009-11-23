@@ -58,6 +58,8 @@
 	SourceLanguage* _language;
 }
 @property(nonatomic, readonly) SourceLanguage* language;
+- (NSString*) generateSourceFromTree;
+- (BOOL) writeSourceFromTreeToFile:(NSString*)path;
 @end
 
 @interface SourceNodeText : SourceNode //Leaf

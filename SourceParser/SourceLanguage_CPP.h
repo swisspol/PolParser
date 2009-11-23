@@ -20,3 +20,6 @@
 
 @interface SourceNodeCommentCPP : SourceNode //Leaf
 @end
+
+@interface SourceNodeScopeOperator : SourceNode //Leaf
+@end

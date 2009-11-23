@@ -56,7 +56,7 @@
 @interface SourceNodePreprocessorInclude : SourceNodePreprocessor
 @end
 
-@interface SourceNodeSemiColumn : SourceNode //Leaf
+@interface SourceNodeSemicolon : SourceNode //Leaf
 @end
 
 @interface SourceNodeStringSingleQuote : SourceNode //Leaf

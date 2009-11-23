@@ -36,15 +36,14 @@
 @private
 	NSString* _source;
     NSRange _range;
-    NSRange _lineNumbers;
-    NSString* _content;
+    NSRange _lines;
     SourceNode* _parent;
     NSMutableArray* _children;
 }
 + (NSString*) name;
 @property(nonatomic, readonly) NSString* source;
 @property(nonatomic, readonly) NSRange range;
-@property(nonatomic, readonly) NSRange lineNumbers;
+@property(nonatomic, readonly) NSRange lines;
 @property(nonatomic, readonly) NSString* content;
 @property(nonatomic, readonly) SourceNode* parent;
 @property(nonatomic, readonly) NSArray* children;

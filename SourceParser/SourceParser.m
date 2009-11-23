@@ -18,40 +18,6 @@
 
 #import "SourceParser_Internal.h"
 
-BOOL _EqualUnichars(const unichar* string1, const unichar* string2, NSUInteger length) {
-	while(length) {
-    	if(*string1++ != *string2++)
-        return NO;
-        --length;
-    }
-    return YES;
-}
-
-NSString* _StripLineBrakes(NSString* content) {
-	NSMutableString* string = [NSMutableString stringWithString:content];
-    NSUInteger offset = 0;
-    while(offset < string.length) {
-        NSRange range1 = [string rangeOfString:@"\\" options:0 range:NSMakeRange(offset, string.length - offset)];
-        if(range1.location != NSNotFound) {
-            NSRange range2 = [string rangeOfString:@"\\" options:NSAnchoredSearch range:NSMakeRange(range1.location + 1, string.length - range1.location - 1)];
-            if(range2.location == NSNotFound) {
-                NSRange range3 = [string rangeOfString:@"\n" options:0 range:NSMakeRange(range1.location + 1, string.length - range1.location - 1)];
-                if(range3.location == NSNotFound) {
-                    range3.location = string.length;
-                    range3.length = 0;
-                }
-                [string replaceCharactersInRange:NSMakeRange(range1.location, range3.location - range1.location + range3.length) withString:@""];
-            } else {
-                range1.location = range2.location + range2.length;
-            }
-        } else {
-            range1.location = string.length;
-        }
-        offset = range1.location;
-    }
-    return string;
-}
-
 @implementation SourceLanguage
 
 static NSMutableSet* _languageCache = nil;
@@ -127,13 +93,39 @@ static NSMutableSet* _languageCache = nil;
     return classes;
 }
 
-static BOOL _ParseSource(SourceLanguage* language, NSString* source, const unichar* buffer, NSRange range, SourceNode* parentNode) {
+static BOOL _CheckTreeConsistency(SourceNode* node, NSMutableArray* stack) {
+    NSRange range = node.range;
+    for(SourceNode* subnode in node.children) {
+        if(subnode.children) {
+            if(!_CheckTreeConsistency(subnode, stack)) {
+            	[stack addObject:subnode];
+                return NO;
+            }
+        }
+        else {
+        	if(subnode.range.location != range.location) {
+        	    [stack addObject:subnode];
+                return NO;
+            }
+        }
+        range.location += subnode.range.length;
+        range.length -= subnode.range.length;
+    }
+    if(range.length) {
+        [stack addObject:node];
+        return NO;
+    }
+    
+    return YES;
+}
+
+static BOOL _ParseSource(SourceLanguage* language, NSString* source, const unichar* buffer, NSRange range, SourceNode* rootNode) {
 	NSMutableArray* stack = [NSMutableArray array];
-    [stack addObject:parentNode];
+    [stack addObject:rootNode];
     NSUInteger rawLength = 0;
     while(range.length) {
         if(stack.count > 1) {
-        	parentNode = [stack lastObject];
+        	SourceNode* parentNode = [stack lastObject];
             NSUInteger suffixLength;
         	suffixLength = [[parentNode class] isMatchingSuffix:(buffer + range.location + rawLength) maxLength:(range.length - rawLength)];
             if(suffixLength != NSNotFound) {
@@ -150,6 +142,12 @@ static BOOL _ParseSource(SourceLanguage* language, NSString* source, const unich
                 }
                 
                 parentNode.range = NSMakeRange(parentNode.range.location, range.location + suffixLength - parentNode.range.location);
+                
+                if(suffixLength > 0) {
+                	SourceNode* node = [[SourceNodeText alloc] initWithSource:source range:NSMakeRange(parentNode.range.location + parentNode.range.length - suffixLength, suffixLength)];
+                    [parentNode addChild:node];
+                    [node release];
+                }
                 
                 [language didAddChildNodeToSourceTree:parentNode];
                 
@@ -210,6 +208,10 @@ static BOOL _ParseSource(SourceLanguage* language, NSString* source, const unich
                 [stack addObject:node];
                 [node release];
                 
+                node = [[SourceNodeText alloc] initWithSource:source range:NSMakeRange(range.location, prefixLength)];
+                [(SourceNode*)[stack lastObject] addChild:node];
+                [node release];
+                
                 range.location += prefixLength;
                 range.length -= prefixLength;
             }
@@ -228,11 +230,16 @@ static BOOL _ParseSource(SourceLanguage* language, NSString* source, const unich
         }
     }
     
-    if(stack.count > 1) {
-    	[stack removeObjectAtIndex:0];
-        NSLog(@"\"%@\" parser failed because some non-leaf nodes are still opened at the end of the file:", [language name]);
+    [stack removeObjectAtIndex:0];
+    if(stack.count > 0) {
+    	NSLog(@"\"%@\" parser failed because some branch nodes are still opened at the end of the source:", [language name]);
         for(SourceNode* node in stack)
         	NSLog(@"\t%@", node);
+        return NO;
+    }
+    
+    if(!_CheckTreeConsistency(rootNode, stack)) {
+    	NSLog(@"\"%@\" parser failed because resulting tree is not consistent:\n%@", [language name], stack);
         return NO;
     }
     
@@ -296,7 +303,6 @@ static BOOL _ParseSource(SourceLanguage* language, NSString* source, const unich
     	node.parent = nil;
     [_children release];
     
-    [_content release];
     [_source release];
     
     [super dealloc];
@@ -328,18 +334,15 @@ static NSRange _LineNumbersForRange(NSString* string, NSRange range) {
     return lines;
 }
 
-- (NSRange) lineNumbers {
-	if(_lineNumbers.location == 0)
-    	_lineNumbers = _LineNumbersForRange(_source, _range);
+- (NSRange) lines {
+	if(_lines.location == 0)
+    	_lines = _LineNumbersForRange(_source, _range);
         
-    return _lineNumbers;
+    return _lines;
 }
 
 - (NSString*) content {
-	if(_content == nil)
-    	_content = [[[self class] tidyContent:[_source substringWithRange:_range]] retain];
-    
-    return _content;
+	return [_source substringWithRange:_range];
 }
 
 - (void) addChild:(SourceNode*)node {
@@ -397,7 +400,7 @@ static void _AppendNodeDescription(SourceNode* node, NSMutableString* string, NS
 }
 
 - (NSString*) description {
-	return [NSString stringWithFormat:@"<%@ = %p | characters = [%i, %i] | lines = [%i, %i]>\n%@", [self class], self, self.range.location, self.range.length, self.lineNumbers.location, self.lineNumbers.length, [self isKindOfClass:[SourceNodeRoot class]] ? self.fullDescription : self.miniDescription];
+	return [NSString stringWithFormat:@"<%@ = %p | characters = [%i, %i] | lines = [%i, %i]>\n%@", [self class], self, self.range.location, self.range.length, self.lines.location, self.lines.length, [self isKindOfClass:[SourceNodeRoot class]] ? self.fullDescription : self.miniDescription];
 }
 
 @end
@@ -414,10 +417,6 @@ static void _AppendNodeDescription(SourceNode* node, NSMutableString* string, NS
 
 + (NSUInteger) isMatchingSuffix:(const unichar*)string maxLength:(NSUInteger)maxLength {
     return NSNotFound;
-}
-
-+ (NSString*) tidyContent:(NSString*)content {
-    return content;
 }
 
 @end

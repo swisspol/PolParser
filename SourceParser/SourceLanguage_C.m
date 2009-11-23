@@ -86,6 +86,10 @@
             NSRange range = ((SourceNode*)[children objectAtIndex:index]).range;
             [children removeObjectsInRange:NSMakeRange(index, children.count - 1 - index)];
             child.range = NSMakeRange(range.location, child.range.location + child.range.length - range.location);
+            
+            SourceNode* node = [[SourceNodeText alloc] initWithSource:child.source range:NSMakeRange(child.range.location + child.range.length - 1, 1)];
+            [child addChild:node];
+            [node release];
         }
     }
     
@@ -118,10 +122,6 @@
 
 + (BOOL) isLeaf {
 	return NO;
-}
-
-+ (NSString*) tidyContent:(NSString*)content {
-	return _StripLineBrakes([super tidyContent:content]);
 }
 
 + (NSUInteger) isMatchingSuffix:(const unichar*)string maxLength:(NSUInteger)maxLength {
@@ -232,10 +232,6 @@ IS_MATCHING_PREFIX_METHOD_WITH_TRAILING_WHITESPACE_OR_NEWLINE(@"#include")
 
 @implementation SourceNodeStatement
 
-+ (BOOL) isLeaf {
-	return NO;
-}
-
 + (NSUInteger) isMatchingPrefix:(const unichar*)string maxLength:(NSUInteger)maxLength {
     return *string == ';' ? 1 : NSNotFound;
 }
@@ -256,10 +252,6 @@ IS_MATCHING_PREFIX_METHOD_WITH_TRAILING_WHITESPACE_OR_NEWLINE(@"#include")
 	return (*string == '\'') && !((*(string - 1) == '\\') && (*(string - 2) != '\\')) ? 1 : NSNotFound;
 }
 
-+ (NSString*) tidyContent:(NSString*)content {
-	return _StripLineBrakes([super tidyContent:content]);
-}
-
 @end
 
 @implementation SourceNodeStringDoubleQuote
@@ -270,10 +262,6 @@ IS_MATCHING_PREFIX_METHOD_WITH_TRAILING_WHITESPACE_OR_NEWLINE(@"#include")
 
 + (NSUInteger) isMatchingSuffix:(const unichar*)string maxLength:(NSUInteger)maxLength {
 	return (*string == '"') && !((*(string - 1) == '\\') && (*(string - 2) != '\\')) ? 1 : NSNotFound;
-}
-
-+ (NSString*) tidyContent:(NSString*)content {
-	return _StripLineBrakes([super tidyContent:content]);
 }
 
 @end

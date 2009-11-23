@@ -72,8 +72,14 @@
 #define IS_MATCHING_SUFFIX_METHOD_WITH_TRAILING_WHITESPACE_OR_NEWLINE(__SUFFIX__) \
 	IS_MATCHING_SUFFIX_METHOD_WITH_TRAILING_WHITESPACE_OR_NEWLINE_OR_CHARACTER(__SUFFIX__, 0)
     
-extern BOOL _EqualUnichars(const unichar* string1, const unichar* string2, NSUInteger length);
-extern NSString* _StripLineBrakes(NSString* content);
+static inline BOOL _EqualUnichars(const unichar* string1, const unichar* string2, NSUInteger length) {
+	while(length) {
+    	if(*string1++ != *string2++)
+        return NO;
+        --length;
+    }
+    return YES;
+}
 
 @interface SourceNode ()
 - (id) initWithSource:(NSString*)source range:(NSRange)range;
@@ -87,7 +93,6 @@ extern NSString* _StripLineBrakes(NSString* content);
 + (BOOL) isLeaf;
 + (NSUInteger) isMatchingPrefix:(const unichar*)string maxLength:(NSUInteger)maxLength;
 + (NSUInteger) isMatchingSuffix:(const unichar*)string maxLength:(NSUInteger)maxLength;
-+ (NSString*) tidyContent:(NSString*)content;
 @end
 
 @interface SourceNodeRoot ()

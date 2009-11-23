@@ -43,10 +43,6 @@
 
 @implementation SourceNodeCommentCPP
 
-+ (NSString*) tidyContent:(NSString*)content {
-	return _StripLineBrakes([super tidyContent:content]);
-}
-
 + (NSUInteger) isMatchingPrefix:(const unichar*)string maxLength:(NSUInteger)maxLength {
     return (maxLength >= 2) && (string[0] == '/') && (string[1] == '/') ? 2 : NSNotFound;
 }

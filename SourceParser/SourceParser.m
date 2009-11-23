@@ -345,12 +345,28 @@ static NSRange _LineNumbersForRange(NSString* string, NSRange range) {
 	return [_source substringWithRange:_range];
 }
 
-- (void) addChild:(SourceNode*)node {
-	if(_children == nil)
+- (void) insertChild:(SourceNode*)child atIndex:(NSUInteger)index {
+	if(child.parent)
+    	[NSException raise:NSInternalInconsistencyException format:@""];
+    
+    if(_children == nil)
     	_children = [[NSMutableArray alloc] init];
     
-    [_children addObject:node];
-    node.parent = self;
+    [_children insertObject:child atIndex:index];
+    child.parent = self;
+}
+
+- (void) removeChildAtIndex:(NSUInteger)index {
+	[[_children objectAtIndex:index] setParent:nil];
+    [_children removeObjectAtIndex:index];
+    if(!_children.count) {
+    	[_children release];
+        _children = nil;
+    }
+}
+
+- (void) addChild:(SourceNode*)child {
+	[self insertChild:child atIndex:_children.count];
 }
 
 static NSString* _FormatString(NSString* string) {
@@ -450,4 +466,9 @@ static void _AppendNodeDescription(SourceNode* node, NSMutableString* string, NS
 @end
 
 @implementation SourceNodeText
+
+- (id) initWithText:(NSString*)text {
+	return [self initWithSource:text range:NSMakeRange(0, text.length)];
+}
+
 @end

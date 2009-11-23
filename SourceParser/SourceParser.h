@@ -25,10 +25,10 @@
 + (NSSet*) allLanguages;
 + (SourceLanguage*) languageForName:(NSString*)name;
 + (SourceNodeRoot*) parseSourceFile:(NSString*)path;
-- (SourceNodeRoot*) parseSourceString:(NSString*)source;
 @property(nonatomic, readonly) NSString* name;
 @property(nonatomic, readonly) NSSet* fileExtensions;
 @property(nonatomic, readonly) NSArray* nodeClasses;
+- (SourceNodeRoot*) parseSourceString:(NSString*)source;
 @end
 
 /* Abstract class: do not instantiate */
@@ -49,6 +49,8 @@
 @property(nonatomic, readonly) NSArray* children;
 @property(nonatomic, readonly) NSString* miniDescription;
 @property(nonatomic, readonly) NSString* fullDescription;
+- (void) insertChild:(SourceNode*)node atIndex:(NSUInteger)index;
+- (void) removeChildAtIndex:(NSUInteger)index;
 @end
 
 @interface SourceNodeRoot : SourceNode {
@@ -59,4 +61,5 @@
 @end
 
 @interface SourceNodeText : SourceNode //Leaf
+- (id) initWithText:(NSString*)text;
 @end

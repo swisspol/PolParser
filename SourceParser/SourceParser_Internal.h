@@ -82,11 +82,11 @@ static inline BOOL _EqualUnichars(const unichar* string1, const unichar* string2
 }
 
 @interface SourceNode ()
-- (id) initWithSource:(NSString*)source range:(NSRange)range;
-- (void) addChild:(SourceNode*)node;
 @property(nonatomic) NSRange range;
 @property(nonatomic, assign) SourceNode* parent;
 @property(nonatomic, readonly) NSMutableArray* mutableChildren;
+- (id) initWithSource:(NSString*)source range:(NSRange)range;
+- (void) addChild:(SourceNode*)child;
 @end
 
 @interface SourceNode (Parsing)

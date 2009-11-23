@@ -21,5 +21,5 @@
 @interface SourceNodeCommentCPP : SourceNode //Leaf
 @end
 
-@interface SourceNodeScopeOperator : SourceNode //Leaf
+@interface SourceNodeDoubleSemicolon : SourceNode //Leaf
 @end

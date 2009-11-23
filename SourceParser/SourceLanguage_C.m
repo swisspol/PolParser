@@ -44,7 +44,14 @@
         [classes addObject:[SourceNodePreprocessorUndefine class]];
         [classes addObject:[SourceNodePreprocessorPragma class]];
         [classes addObject:[SourceNodePreprocessorInclude class]];
-        [classes addObject:[SourceNodeStatementSeparator class]];
+        [classes addObject:[SourceNodeColon class]];
+        [classes addObject:[SourceNodeSemicolon class]];
+        [classes addObject:[SourceNodeQuestionMark class]];
+        [classes addObject:[SourceNodeExclamationMark class]];
+        [classes addObject:[SourceNodeTilda class]];
+        [classes addObject:[SourceNodeCaret class]];
+        [classes addObject:[SourceNodeAmpersand class]];
+        [classes addObject:[SourceNodeAsterisk class]];
         [classes addObject:[SourceNodeStringSingleQuote class]];
         [classes addObject:[SourceNodeStringDoubleQuote class]];
         [classes addObject:[SourceNodeConditionIf class]];
@@ -173,17 +180,29 @@ IMPLEMENTATION(PreprocessorInclude, @"#include", 0)
 
 #undef IMPLEMENTATION
 
-@implementation SourceNodeStatementSeparator
-
-+ (NSUInteger) isMatchingPrefix:(const unichar*)string maxLength:(NSUInteger)maxLength {
-    return *string == ';' ? 1 : NSNotFound;
-}
-
-+ (NSUInteger) isMatchingSuffix:(const unichar*)string maxLength:(NSUInteger)maxLength {
-	return 0;
-}
-
+#define IMPLEMENTATION(__NAME__, __CHARACTER__) \
+@implementation SourceNode##__NAME__ \
+\
++ (NSUInteger) isMatchingPrefix:(const unichar*)string maxLength:(NSUInteger)maxLength { \
+    return *string == __CHARACTER__ ? 1 : NSNotFound; \
+} \
+\
++ (NSUInteger) isMatchingSuffix:(const unichar*)string maxLength:(NSUInteger)maxLength { \
+	return 0; \
+} \
+\
 @end
+
+IMPLEMENTATION(Colon, ':')
+IMPLEMENTATION(Semicolon, ';')
+IMPLEMENTATION(QuestionMark, '?')
+IMPLEMENTATION(ExclamationMark, '!')
+IMPLEMENTATION(Tilda, '~')
+IMPLEMENTATION(Caret, '^')
+IMPLEMENTATION(Ampersand, '&')
+IMPLEMENTATION(Asterisk, '*')
+
+#undef IMPLEMENTATION
 
 @implementation SourceNodeStringSingleQuote
 

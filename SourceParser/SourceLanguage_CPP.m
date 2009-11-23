@@ -35,7 +35,7 @@
         [classes addObjectsFromArray:[super nodeClasses]];
         
         [classes addObject:[SourceNodeCommentCPP class]];
-        [classes addObject:[SourceNodeScopeOperator class]];
+        [classes addObject:[SourceNodeDoubleSemicolon class]];
     }
     return classes;
 }
@@ -68,7 +68,7 @@
 
 @end
 
-@implementation SourceNodeScopeOperator
+@implementation SourceNodeDoubleSemicolon
 
 + (NSUInteger) isMatchingPrefix:(const unichar*)string maxLength:(NSUInteger)maxLength {
     return (maxLength >= 2) && (string[0] == ':') && (string[1] == ':') ? 2 : NSNotFound;

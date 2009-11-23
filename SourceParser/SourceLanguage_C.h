@@ -56,7 +56,28 @@
 @interface SourceNodePreprocessorInclude : SourceNodePreprocessor
 @end
 
-@interface SourceNodeStatementSeparator : SourceNode //Leaf
+@interface SourceNodeColon : SourceNode //Leaf
+@end
+
+@interface SourceNodeSemicolon : SourceNode //Leaf
+@end
+
+@interface SourceNodeQuestionMark : SourceNode //Leaf
+@end
+
+@interface SourceNodeExclamationMark : SourceNode //Leaf
+@end
+
+@interface SourceNodeTilda : SourceNode //Leaf
+@end
+
+@interface SourceNodeCaret : SourceNode //Leaf
+@end
+
+@interface SourceNodeAmpersand : SourceNode //Leaf
+@end
+
+@interface SourceNodeAsterisk : SourceNode //Leaf
 @end
 
 @interface SourceNodeStringSingleQuote : SourceNode //Leaf

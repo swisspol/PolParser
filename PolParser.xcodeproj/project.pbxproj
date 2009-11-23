@@ -1,0 +1,429 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 45;
+	objects = {
+
+/* Begin PBXAggregateTarget section */
+		E2B637DB10BA539F00BF43E7 /* Build All */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = E2B637F310BA53BA00BF43E7 /* Build configuration list for PBXAggregateTarget "Build All" */;
+			buildPhases = (
+			);
+			dependencies = (
+				E2B637DF10BA53A900BF43E7 /* PBXTargetDependency */,
+				E2B637E110BA53AA00BF43E7 /* PBXTargetDependency */,
+			);
+			name = "Build All";
+			productName = "Build All";
+		};
+/* End PBXAggregateTarget section */
+
+/* Begin PBXBuildFile section */
+		8DD76F9C0486AA7600D96B5E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08FB779EFE84155DC02AAC07 /* Foundation.framework */; };
+		E2B6368D10BA46C800BF43E7 /* SourceLanguage_C.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B6368310BA46C800BF43E7 /* SourceLanguage_C.m */; };
+		E2B6368E10BA46C800BF43E7 /* SourceLanguage_CPP.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B6368510BA46C800BF43E7 /* SourceLanguage_CPP.m */; };
+		E2B6368F10BA46C800BF43E7 /* SourceLanguage_ObjC.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B6368710BA46C800BF43E7 /* SourceLanguage_ObjC.m */; };
+		E2B6369010BA46C800BF43E7 /* SourceNodes.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B6368910BA46C800BF43E7 /* SourceNodes.m */; };
+		E2B6369110BA46C800BF43E7 /* SourceParser.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B6368B10BA46C800BF43E7 /* SourceParser.m */; };
+		E2B6372410BA539100BF43E7 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2B6372310BA539100BF43E7 /* Cocoa.framework */; };
+		E2B637FC10BA540800BF43E7 /* PolParser.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B637FB10BA540800BF43E7 /* PolParser.m */; };
+		E2B637FD10BA541A00BF43E7 /* SourceLanguage_ObjC.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B6368710BA46C800BF43E7 /* SourceLanguage_ObjC.m */; };
+		E2B637FE10BA541A00BF43E7 /* SourceLanguage_CPP.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B6368510BA46C800BF43E7 /* SourceLanguage_CPP.m */; };
+		E2B637FF10BA541B00BF43E7 /* SourceLanguage_C.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B6368310BA46C800BF43E7 /* SourceLanguage_C.m */; };
+		E2B6380010BA541B00BF43E7 /* SourceNodes.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B6368910BA46C800BF43E7 /* SourceNodes.m */; };
+		E2B6380110BA541C00BF43E7 /* SourceParser.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B6368B10BA46C800BF43E7 /* SourceParser.m */; };
+		E2B6380C10BA547D00BF43E7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B6380B10BA547D00BF43E7 /* main.m */; };
+		E2B6381410BA549800BF43E7 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2B6381210BA549800BF43E7 /* MainMenu.xib */; };
+		E2B6383610BA554000BF43E7 /* MyDocument.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2B6383410BA554000BF43E7 /* MyDocument.xib */; };
+		E2B6383910BA55AB00BF43E7 /* MyDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B6383810BA55AB00BF43E7 /* MyDocument.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		E2B637DE10BA53A900BF43E7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 08FB7793FE84155DC02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8DD76F960486AA7600D96B5E;
+			remoteInfo = "PolParser [Tool]";
+		};
+		E2B637E010BA53AA00BF43E7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 08FB7793FE84155DC02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E2B6371810BA536D00BF43E7;
+			remoteInfo = PolParser;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		08FB779EFE84155DC02AAC07 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
+		32A70AAB03705E1F00C91783 /* Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Prefix.pch; sourceTree = "<group>"; };
+		8DD76FA10486AA7600D96B5E /* PolParser */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = PolParser; sourceTree = BUILT_PRODUCTS_DIR; };
+		E2B6368210BA46C800BF43E7 /* SourceLanguage_C.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SourceLanguage_C.h; sourceTree = "<group>"; };
+		E2B6368310BA46C800BF43E7 /* SourceLanguage_C.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SourceLanguage_C.m; sourceTree = "<group>"; };
+		E2B6368410BA46C800BF43E7 /* SourceLanguage_CPP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SourceLanguage_CPP.h; sourceTree = "<group>"; };
+		E2B6368510BA46C800BF43E7 /* SourceLanguage_CPP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SourceLanguage_CPP.m; sourceTree = "<group>"; };
+		E2B6368610BA46C800BF43E7 /* SourceLanguage_ObjC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SourceLanguage_ObjC.h; sourceTree = "<group>"; };
+		E2B6368710BA46C800BF43E7 /* SourceLanguage_ObjC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SourceLanguage_ObjC.m; sourceTree = "<group>"; };
+		E2B6368810BA46C800BF43E7 /* SourceNodes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SourceNodes.h; sourceTree = "<group>"; };
+		E2B6368910BA46C800BF43E7 /* SourceNodes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SourceNodes.m; sourceTree = "<group>"; };
+		E2B6368A10BA46C800BF43E7 /* SourceParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SourceParser.h; sourceTree = "<group>"; };
+		E2B6368B10BA46C800BF43E7 /* SourceParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SourceParser.m; sourceTree = "<group>"; };
+		E2B6368C10BA46C800BF43E7 /* SourceParser_Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SourceParser_Internal.h; sourceTree = "<group>"; };
+		E2B6371910BA536D00BF43E7 /* PolParser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PolParser.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E2B6372310BA539100BF43E7 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		E2B637F510BA53CB00BF43E7 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E2B637FB10BA540800BF43E7 /* PolParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PolParser.m; sourceTree = "<group>"; };
+		E2B6380B10BA547D00BF43E7 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		E2B6381310BA549800BF43E7 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		E2B6383510BA554000BF43E7 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/MyDocument.xib; sourceTree = "<group>"; };
+		E2B6383710BA55AB00BF43E7 /* MyDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyDocument.h; sourceTree = "<group>"; };
+		E2B6383810BA55AB00BF43E7 /* MyDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyDocument.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8DD76F9B0486AA7600D96B5E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8DD76F9C0486AA7600D96B5E /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E2B6371710BA536D00BF43E7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E2B6372410BA539100BF43E7 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		08FB7794FE84155DC02AAC07 /* Untitled */ = {
+			isa = PBXGroup;
+			children = (
+				32A70AAB03705E1F00C91783 /* Prefix.pch */,
+				E2B6368110BA46C800BF43E7 /* SourceParser */,
+				E2B637F410BA53CB00BF43E7 /* Application */,
+				E2B637FA10BA540800BF43E7 /* Tool */,
+				08FB779DFE84155DC02AAC07 /* External Frameworks and Libraries */,
+				1AB674ADFE9D54B511CA2CBB /* Products */,
+			);
+			name = Untitled;
+			sourceTree = "<group>";
+		};
+		08FB779DFE84155DC02AAC07 /* External Frameworks and Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				08FB779EFE84155DC02AAC07 /* Foundation.framework */,
+				E2B6372310BA539100BF43E7 /* Cocoa.framework */,
+			);
+			name = "External Frameworks and Libraries";
+			sourceTree = "<group>";
+		};
+		1AB674ADFE9D54B511CA2CBB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8DD76FA10486AA7600D96B5E /* PolParser */,
+				E2B6371910BA536D00BF43E7 /* PolParser.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E2B6368110BA46C800BF43E7 /* SourceParser */ = {
+			isa = PBXGroup;
+			children = (
+				E2B6368C10BA46C800BF43E7 /* SourceParser_Internal.h */,
+				E2B6368A10BA46C800BF43E7 /* SourceParser.h */,
+				E2B6368B10BA46C800BF43E7 /* SourceParser.m */,
+				E2B6368810BA46C800BF43E7 /* SourceNodes.h */,
+				E2B6368910BA46C800BF43E7 /* SourceNodes.m */,
+				E2B6368210BA46C800BF43E7 /* SourceLanguage_C.h */,
+				E2B6368310BA46C800BF43E7 /* SourceLanguage_C.m */,
+				E2B6368410BA46C800BF43E7 /* SourceLanguage_CPP.h */,
+				E2B6368510BA46C800BF43E7 /* SourceLanguage_CPP.m */,
+				E2B6368610BA46C800BF43E7 /* SourceLanguage_ObjC.h */,
+				E2B6368710BA46C800BF43E7 /* SourceLanguage_ObjC.m */,
+			);
+			path = SourceParser;
+			sourceTree = "<group>";
+		};
+		E2B637F410BA53CB00BF43E7 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				E2B6383710BA55AB00BF43E7 /* MyDocument.h */,
+				E2B6383810BA55AB00BF43E7 /* MyDocument.m */,
+				E2B6380B10BA547D00BF43E7 /* main.m */,
+				E2B637F510BA53CB00BF43E7 /* Info.plist */,
+				E2B6381210BA549800BF43E7 /* MainMenu.xib */,
+				E2B6383410BA554000BF43E7 /* MyDocument.xib */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		E2B637FA10BA540800BF43E7 /* Tool */ = {
+			isa = PBXGroup;
+			children = (
+				E2B637FB10BA540800BF43E7 /* PolParser.m */,
+			);
+			path = Tool;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8DD76F960486AA7600D96B5E /* PolParser [Tool] */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1DEB927408733DD40010E9CD /* Build configuration list for PBXNativeTarget "PolParser [Tool]" */;
+			buildPhases = (
+				8DD76F990486AA7600D96B5E /* Sources */,
+				8DD76F9B0486AA7600D96B5E /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "PolParser [Tool]";
+			productInstallPath = "$(HOME)/bin";
+			productName = Untitled;
+			productReference = 8DD76FA10486AA7600D96B5E /* PolParser */;
+			productType = "com.apple.product-type.tool";
+		};
+		E2B6371810BA536D00BF43E7 /* PolParser [Application] */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E2B6371E10BA536E00BF43E7 /* Build configuration list for PBXNativeTarget "PolParser [Application]" */;
+			buildPhases = (
+				E2B6371510BA536D00BF43E7 /* Resources */,
+				E2B6371610BA536D00BF43E7 /* Sources */,
+				E2B6371710BA536D00BF43E7 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "PolParser [Application]";
+			productName = PolParser;
+			productReference = E2B6371910BA536D00BF43E7 /* PolParser.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		08FB7793FE84155DC02AAC07 /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = 1DEB927808733DD40010E9CD /* Build configuration list for PBXProject "PolParser" */;
+			compatibilityVersion = "Xcode 3.1";
+			hasScannedForEncodings = 1;
+			mainGroup = 08FB7794FE84155DC02AAC07 /* Untitled */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				E2B637DB10BA539F00BF43E7 /* Build All */,
+				8DD76F960486AA7600D96B5E /* PolParser [Tool] */,
+				E2B6371810BA536D00BF43E7 /* PolParser [Application] */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		E2B6371510BA536D00BF43E7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E2B6381410BA549800BF43E7 /* MainMenu.xib in Resources */,
+				E2B6383610BA554000BF43E7 /* MyDocument.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8DD76F990486AA7600D96B5E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E2B6368D10BA46C800BF43E7 /* SourceLanguage_C.m in Sources */,
+				E2B6368E10BA46C800BF43E7 /* SourceLanguage_CPP.m in Sources */,
+				E2B6368F10BA46C800BF43E7 /* SourceLanguage_ObjC.m in Sources */,
+				E2B6369010BA46C800BF43E7 /* SourceNodes.m in Sources */,
+				E2B6369110BA46C800BF43E7 /* SourceParser.m in Sources */,
+				E2B637FC10BA540800BF43E7 /* PolParser.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E2B6371610BA536D00BF43E7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E2B637FD10BA541A00BF43E7 /* SourceLanguage_ObjC.m in Sources */,
+				E2B637FE10BA541A00BF43E7 /* SourceLanguage_CPP.m in Sources */,
+				E2B637FF10BA541B00BF43E7 /* SourceLanguage_C.m in Sources */,
+				E2B6380010BA541B00BF43E7 /* SourceNodes.m in Sources */,
+				E2B6380110BA541C00BF43E7 /* SourceParser.m in Sources */,
+				E2B6380C10BA547D00BF43E7 /* main.m in Sources */,
+				E2B6383910BA55AB00BF43E7 /* MyDocument.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		E2B637DF10BA53A900BF43E7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8DD76F960486AA7600D96B5E /* PolParser [Tool] */;
+			targetProxy = E2B637DE10BA53A900BF43E7 /* PBXContainerItemProxy */;
+		};
+		E2B637E110BA53AA00BF43E7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E2B6371810BA536D00BF43E7 /* PolParser [Application] */;
+			targetProxy = E2B637E010BA53AA00BF43E7 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		E2B6381210BA549800BF43E7 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E2B6381310BA549800BF43E7 /* English */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+		E2B6383410BA554000BF43E7 /* MyDocument.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E2B6383510BA554000BF43E7 /* English */,
+			);
+			name = MyDocument.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		1DEB927508733DD40010E9CD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Prefix.pch;
+				PRODUCT_NAME = PolParser;
+			};
+			name = Debug;
+		};
+		1DEB927608733DD40010E9CD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Prefix.pch;
+				PRODUCT_NAME = PolParser;
+			};
+			name = Release;
+		};
+		1DEB927908733DD40010E9CD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx10.5;
+				WARNING_CFLAGS = "-Wall";
+			};
+			name = Debug;
+		};
+		1DEB927A08733DD40010E9CD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_MODEL_TUNING = G5;
+				SDKROOT = macosx10.5;
+				WARNING_CFLAGS = "-Wall";
+			};
+			name = Release;
+		};
+		E2B6371C10BA536E00BF43E7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Prefix.pch;
+				INFOPLIST_FILE = Application/Info.plist;
+				PRODUCT_NAME = PolParser;
+			};
+			name = Debug;
+		};
+		E2B6371D10BA536E00BF43E7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Prefix.pch;
+				INFOPLIST_FILE = Application/Info.plist;
+				PRODUCT_NAME = PolParser;
+			};
+			name = Release;
+		};
+		E2B637DC10BA539F00BF43E7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "Build All";
+			};
+			name = Debug;
+		};
+		E2B637DD10BA539F00BF43E7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "Build All";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1DEB927408733DD40010E9CD /* Build configuration list for PBXNativeTarget "PolParser [Tool]" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1DEB927508733DD40010E9CD /* Debug */,
+				1DEB927608733DD40010E9CD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1DEB927808733DD40010E9CD /* Build configuration list for PBXProject "PolParser" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1DEB927908733DD40010E9CD /* Debug */,
+				1DEB927A08733DD40010E9CD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E2B6371E10BA536E00BF43E7 /* Build configuration list for PBXNativeTarget "PolParser [Application]" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E2B6371C10BA536E00BF43E7 /* Debug */,
+				E2B6371D10BA536E00BF43E7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E2B637F310BA53BA00BF43E7 /* Build configuration list for PBXAggregateTarget "Build All" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E2B637DC10BA539F00BF43E7 /* Debug */,
+				E2B637DD10BA539F00BF43E7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 08FB7793FE84155DC02AAC07 /* Project object */;
+}

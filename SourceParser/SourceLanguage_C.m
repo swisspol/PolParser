@@ -44,7 +44,7 @@
         [classes addObject:[SourceNodePreprocessorUndefine class]];
         [classes addObject:[SourceNodePreprocessorPragma class]];
         [classes addObject:[SourceNodePreprocessorInclude class]];
-        [classes addObject:[SourceNodeSemicolon class]];
+        [classes addObject:[SourceNodeStatementSeparator class]];
         [classes addObject:[SourceNodeStringSingleQuote class]];
         [classes addObject:[SourceNodeStringDoubleQuote class]];
     }
@@ -200,7 +200,7 @@ IS_MATCHING_PREFIX_METHOD_WITH_TRAILING_WHITESPACE_OR_NEWLINE(@"#include")
 
 @end
 
-@implementation SourceNodeSemicolon
+@implementation SourceNodeStatementSeparator
 
 + (NSUInteger) isMatchingPrefix:(const unichar*)string maxLength:(NSUInteger)maxLength {
     return *string == ';' ? 1 : NSNotFound;

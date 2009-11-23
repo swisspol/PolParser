@@ -44,7 +44,7 @@
         [classes addObject:[SourceNodePreprocessorUndefine class]];
         [classes addObject:[SourceNodePreprocessorPragma class]];
         [classes addObject:[SourceNodePreprocessorInclude class]];
-        [classes addObject:[SourceNodeStatement class]];
+        [classes addObject:[SourceNodeSemiColumn class]];
         [classes addObject:[SourceNodeStringSingleQuote class]];
         [classes addObject:[SourceNodeStringDoubleQuote class]];
     }
@@ -64,36 +64,6 @@
         [classes addObject:[SourceNodeStringDoubleQuote class]];
     }
     return classes;
-}
-
-- (void) didAddChildNodeToSourceTree:(SourceNode*)child {
-	if([child isKindOfClass:[SourceNodeStatement class]]) {
-    	NSMutableArray* children = child.parent.mutableChildren;
-        NSInteger index;
-        for(index = children.count - 2; index >= 0; --index) {
-        	SourceNode* node = [children objectAtIndex:index];
-        	if(![[self statementClasses] containsObject:[node class]])
-            	break;
-        }
-        ++index;
-        for(; index < children.count - 1; ++index) {
-        	if(![[children objectAtIndex:index] isKindOfClass:[SourceNodeWhitespace class]])
-                break;
-        }
-        if(index < children.count - 1) {
-            for(NSUInteger i = index; i < children.count - 1; ++i)
-                [child addChild:[children objectAtIndex:i]];
-            NSRange range = ((SourceNode*)[children objectAtIndex:index]).range;
-            [children removeObjectsInRange:NSMakeRange(index, children.count - 1 - index)];
-            child.range = NSMakeRange(range.location, child.range.location + child.range.length - range.location);
-            
-            SourceNode* node = [[SourceNodeText alloc] initWithSource:child.source range:NSMakeRange(child.range.location + child.range.length - 1, 1)];
-            [child addChild:node];
-            [node release];
-        }
-    }
-    
-    [super didAddChildNodeToSourceTree:child];
 }
 
 @end
@@ -230,7 +200,7 @@ IS_MATCHING_PREFIX_METHOD_WITH_TRAILING_WHITESPACE_OR_NEWLINE(@"#include")
 
 @end
 
-@implementation SourceNodeStatement
+@implementation SourceNodeSemiColumn
 
 + (NSUInteger) isMatchingPrefix:(const unichar*)string maxLength:(NSUInteger)maxLength {
     return *string == ';' ? 1 : NSNotFound;

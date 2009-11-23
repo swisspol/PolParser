@@ -268,7 +268,7 @@ static BOOL _ParseSource(SourceLanguage* language, NSString* source, const unich
 }
 
 - (void) didAddChildNodeToSourceTree:(SourceNode*)child {
-	;
+	//FIXME: Override this point to perform language dependent tree operations as nodes are inserted
 }
 
 @end

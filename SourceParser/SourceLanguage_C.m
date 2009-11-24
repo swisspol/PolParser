@@ -134,8 +134,7 @@
             _RearrangeNodesAsChildren(node, bracesNode);
         else if(semicolonNode && (!bracesNode || ([node.parent indexOfChild:semicolonNode] < [node.parent indexOfChild:bracesNode])))
             _RearrangeNodesAsChildren(node, semicolonNode.previousSibling); //FIXME: Strip trailing whitespace?
-        #warning moving the following nodes down one level may have them be refactored twice because they are still in the cache of children of current parents \
-        and will be evaluated again as children of "else"
+        
     } else if([node isKindOfClass:[SourceNodeCFlowIf class]] || [node isKindOfClass:[SourceNodeCFlowFor class]] || [node isKindOfClass:[SourceNodeCFlowSwitch class]]) {
         
         // "if()" "for()" "switch()"
@@ -207,7 +206,6 @@
                 _RearrangeNodesAsChildren(newNode, [nextNode isKindOfClass:[SourceNodeBraces class]] ? nextNode : nextNode.previousSibling); //FIXME: Strip trailing whitespace?
             }
             
-            #warning nodes after "node" will never be refactored!
         }
         
     }

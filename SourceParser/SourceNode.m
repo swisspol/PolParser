@@ -20,7 +20,7 @@
 
 @implementation SourceNode
 
-@synthesize source=_source, range=_range, parent=_parent, children=_children;
+@synthesize source=_source, range=_range, parent=_parent, children=_children, revision=_revision;
 
 + (id) allocWithZone:(NSZone*)zone
 {
@@ -241,9 +241,9 @@ static void _MergeChildrenContent(SourceNode* node, NSMutableString* string) {
 }
 
 #if NS_BLOCKS_AVAILABLE
-static void _ApplyBlock(SourceNode* node, BOOL recursive, void (^block)(SourceNode* node))
+static void _ApplyBlock(SourceNode* node, NSUInteger revision, BOOL recursive, void (^block)(SourceNode* node))
 #else
-static void _ApplyFunction(SourceNode* node, SourceNodeApplierFunction function, void* context, BOOL recursive)
+static void _ApplyFunction(SourceNode* node, NSUInteger revision, BOOL recursive, SourceNodeApplierFunction function, void* context)
 #endif
 {
     NSUInteger count = node.children.count;
@@ -251,25 +251,30 @@ static void _ApplyFunction(SourceNode* node, SourceNodeApplierFunction function,
     [node.children getObjects:nodes];
     
     for(NSUInteger i = 0; i < count; ++i) {
-        if(nodes[i].parent == node) {
+        if(nodes[i].parent) {
+        	if(nodes[i].revision != revision) {
 #if NS_BLOCKS_AVAILABLE
-            block(nodes[i]);
+                block(nodes[i]);
 #else
-			(*function)(nodes[i], context);
+                (*function)(nodes[i], context);
 #endif
-            if((nodes[i].parent == node) && nodes[i].children && recursive)
+				nodes[i].revision = revision;
+            }
+            if(recursive && nodes[i].parent && nodes[i].children)
 #if NS_BLOCKS_AVAILABLE
-				_ApplyBlock(nodes[i], recursive, block);
+				_ApplyBlock(nodes[i], revision, recursive, block);
 #else
-                _ApplyFunction(nodes[i], function, context, recursive);        
+                _ApplyFunction(nodes[i], revision, recursive, function, context);        
 #endif
         }
     }
 }
 
+static NSUInteger _globalRevision = 0;
+
 - (void) applyFunctionOnChildren:(SourceNodeApplierFunction)function context:(void*)context recursively:(BOOL)recursively {
     NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
-    _ApplyFunction(self, function, context, recursively);
+    _ApplyFunction(self, ++_globalRevision, recursively, function, context);
     [pool drain];
 }
 
@@ -277,7 +282,7 @@ static void _ApplyFunction(SourceNode* node, SourceNodeApplierFunction function,
 
 - (void) enumerateChildrenRecursively:(BOOL)recursively usingBlock:(void (^)(SourceNode* node))block {
     NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
-    _ApplyBlock(self, recursively, block);
+    _ApplyBlock(self, ++_globalRevision, recursively, block);
     [pool drain];
 }
 

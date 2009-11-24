@@ -86,6 +86,7 @@ void _RearrangeNodesAsChildren(SourceNode* startNode, SourceNode* endNode);
 @property(nonatomic) NSRange range;
 @property(nonatomic, assign) SourceNode* parent;
 @property(nonatomic, readonly) NSMutableArray* mutableChildren;
+@property(nonatomic) NSUInteger revision;
 - (id) initWithSource:(NSString*)source range:(NSRange)range;
 @end
 

@@ -30,6 +30,7 @@ typedef void (*SourceNodeApplierFunction)(SourceNode* node, void* context);
     NSRange _lines;
     SourceNode* _parent;
     NSMutableArray* _children;
+    NSUInteger _revision;
 }
 + (NSString*) name;
 

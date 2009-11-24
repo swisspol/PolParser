@@ -51,7 +51,7 @@
 @interface SourceNodeObjCOptional : SourceNode //Leaf
 @end
 
-@interface SourceNodeObjCProperty : SourceNode //Leaf
+@interface SourceNodeObjCProperty : SourceNode
 @end
 
 @interface SourceNodeObjCTry : SourceNode
@@ -63,7 +63,7 @@
 @interface SourceNodeObjCFinally : SourceNode
 @end
 
-@interface SourceNodeObjCThrow : SourceNode //Leaf
+@interface SourceNodeObjCThrow : SourceNode
 @end
 
 @interface SourceNodeObjCSynchronized : SourceNode

@@ -87,6 +87,15 @@
         if([nextNode isKindOfClass:[SourceNodeParenthesis class]])
         	_RearrangeNodesAsChildren(node, nextNode);
         
+    } else if([node isKindOfClass:[SourceNodeObjCProperty class]] || [node isKindOfClass:[SourceNodeObjCThrow class]]) {
+    	
+        // "@property" "@property()" "@throw"
+        SourceNode* semicolonNode = [node findNextSiblingOfClass:[SourceNodeSemicolon class]];
+        if(semicolonNode) {
+            SourceNode* previousNode = semicolonNode.previousSibling;
+            if(node != previousNode)
+                _RearrangeNodesAsChildren(node, previousNode);
+        }
     }
 }
 

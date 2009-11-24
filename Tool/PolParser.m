@@ -53,7 +53,7 @@ int main(int argc, const char* argv[]) {
         }
         
         NSString* path = [[NSString stringWithUTF8String:argv[offset]] stringByStandardizingPath];
-        SourceNodeRoot* root = [SourceLanguage parseSourceFile:path];
+        SourceNodeRoot* root = [SourceLanguage parseSourceFile:path encoding:NSUTF8StringEncoding];
     	if(root) {
             if(optionClean)
 #if NS_BLOCKS_AVAILABLE
@@ -68,7 +68,7 @@ int main(int argc, const char* argv[]) {
             
             if(argc >= 3) {
             	NSString* newPath = [[NSString stringWithUTF8String:argv[offset + 1]] stringByStandardizingPath];
-                if([root writeContentToFile:newPath] && optionDiff) {
+                if([root writeContentToFile:newPath encoding:NSUTF8StringEncoding] && optionDiff) {
                 	NSTask* task = [[NSTask alloc] init];
                     [task setLaunchPath:@"/usr/bin/opendiff"];
                     [task setArguments:[NSArray arrayWithObjects:path, newPath, nil]];

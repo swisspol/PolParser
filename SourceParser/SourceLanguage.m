@@ -55,8 +55,8 @@ static NSMutableSet* _languageCache = nil;
     return nil;
 }
 
-+ (SourceNodeRoot*) parseSourceFile:(NSString*)path {
-	NSString* source = [[NSString alloc] initWithContentsOfFile:path encoding:NSUTF8StringEncoding error:NULL]; //FIXME: Don't assume UTF8
++ (SourceNodeRoot*) parseSourceFile:(NSString*)path encoding:(NSStringEncoding)encoding {
+	NSString* source = [[NSString alloc] initWithContentsOfFile:path encoding:encoding error:NULL];
     if(source == nil)
     	return nil;
 	
@@ -300,8 +300,8 @@ static BOOL _ParseSource(SourceLanguage* language, NSString* source, const unich
 	[super dealloc];
 }
 
-- (BOOL) writeContentToFile:(NSString*)path {
-	return [[self content] writeToFile:path atomically:YES encoding:NSUTF8StringEncoding error:NULL]; //FIXME: Don't assume UTF8
+- (BOOL) writeContentToFile:(NSString*)path encoding:(NSStringEncoding)encoding {
+	return [[self content] writeToFile:path atomically:YES encoding:encoding error:NULL];
 }
 
 @end

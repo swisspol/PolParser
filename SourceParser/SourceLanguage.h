@@ -24,7 +24,7 @@
 @interface SourceLanguage : NSObject
 + (NSSet*) allLanguages;
 + (SourceLanguage*) languageForName:(NSString*)name;
-+ (SourceNodeRoot*) parseSourceFile:(NSString*)path;
++ (SourceNodeRoot*) parseSourceFile:(NSString*)path encoding:(NSStringEncoding)encoding;
 
 @property(nonatomic, readonly) NSString* name;
 @property(nonatomic, readonly) NSSet* fileExtensions;
@@ -39,7 +39,7 @@
 }
 @property(nonatomic, readonly) SourceLanguage* language;
 
-- (BOOL) writeContentToFile:(NSString*)path;
+- (BOOL) writeContentToFile:(NSString*)path encoding:(NSStringEncoding)encoding;
 @end
 
 @interface SourceNodeText : SourceNode //Leaf

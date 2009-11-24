@@ -1,38 +1,3 @@
-/*
-	This file is part of the PolParser library.
-	Copyright (C) 2009 Pierre-Olivier Latour <info@pol-online.net>
-*/
-
-#import <Foundation/Foundation.h>	
-#import <AppKit/AppKit.h> //  FIXME: Don't include this	
-
-#if OBJC_EXPORT
-#include "Foobar.h"	
-#endif
-
-//This is a \   
-multiline comment	
-
-#define IsWhiteSpaceOrNewline(C) ((C == ' ') || (C == '\t') || (C == '\n')) //Very cool!
-
-#define multiline(x, y) \  
-	(x + y)     
-
-#define IS_MATCHING_PREFIX_METHOD(__PREFIX__) \
-+ (NSUInteger) isMatchingPrefix:(const unichar*)string maxLength:(NSUInteger)maxLength { \
-    IS_MATCHING(__PREFIX__, false, 0, string, maxLength) \
-    return _matching; \
-}
-
-typedef void (*SourceNodeApplierFunction)(SourceNode* node, void* context);
-
-extern int main(int argc, char* argv[]);
-extern Bar();
-
-const char* multiline = "foo\	
- b\\ar\  
-  boom";
-
 static inline BOOL _IsRealLineBreak(const unichar* string) {
 	if(!IsNewline(*string) > 0)
         return NO  ;
@@ -93,12 +58,15 @@ Bar() {
 }
 
 #if 1
+#warning Foobar
 
 - (BOOL) isValid {
     int temp1 = sizeof(long);
     SEL temp2 = @selector(foo:);
     
     ;
+    
+    goto Temp;
     
     if(1) {
     	foo();
@@ -133,6 +101,8 @@ Bar() {
 }
 
 #else
+
+#error Foobar
 
 - (BOOL) isValid
 {

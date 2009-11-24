@@ -47,13 +47,21 @@ static void _ProcessNode(SourceNode* node) {
         }
     }
     
-    //Ensure open braces are never preceded by a new line
+    //Reformat open braces as "... {" - FIXME: This may miss some matches because of the previous step that replaced "SourceNodeIndenting" nodes
     if([node isKindOfClass:[SourceNodeBraces class]]) {
-    	if([node.previousSibling isKindOfClass:[SourceNodeWhitespace class]])
-        	[node.previousSibling removeFromParent];
-        if([node.previousSibling isKindOfClass:[SourceNodeNewline class]])
-        	[node.previousSibling removeFromParent];
-        [node insertPreviousSibling:[SourceNodeText sourceNodeWithText:@" "]];
+    	if([node.parent isKindOfClass:[SourceNodeCFlowFor class]] || [node.parent isKindOfClass:[SourceNodeCFlowDoWhile class]] || [node.parent isKindOfClass:[SourceNodeCFlowWhile class]]
+        	|| [node.parent isKindOfClass:[SourceNodeCFlowIf class]] || [node.parent isKindOfClass:[SourceNodeCFlowElse class]] || [node.parent isKindOfClass:[SourceNodeCFunctionDefinition class]]
+            || [node.parent isKindOfClass:[SourceNodeObjCInterface class]] || [node.parent isKindOfClass:[SourceNodeObjCTry class]] || [node.parent isKindOfClass:[SourceNodeObjCCatch class]]
+            || [node.parent isKindOfClass:[SourceNodeObjCFinally class]] || [node.parent isKindOfClass:[SourceNodeObjCSynchronized class]] || [node.parent isKindOfClass:[SourceNodeObjCMethodImplementation class]]) {
+            
+            SourceNode* subnode = [node findPreviousSiblingIgnoringWhitespaceAndNewline];
+            if(subnode) {
+            	while([subnode.nextSibling isKindOfClass:[SourceNodeWhitespace class]] || [subnode.nextSibling isKindOfClass:[SourceNodeNewline class]]) {
+                	[subnode.nextSibling removeFromParent];
+                }
+                [node insertPreviousSibling:[SourceNodeText sourceNodeWithText:@" "]];
+            }
+        }
     }
 }
 

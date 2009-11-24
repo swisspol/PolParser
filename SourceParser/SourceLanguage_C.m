@@ -43,6 +43,8 @@
         [classes addObject:[SourceNodeCPreprocessorDefine class]];
         [classes addObject:[SourceNodeCPreprocessorUndefine class]];
         [classes addObject:[SourceNodeCPreprocessorPragma class]];
+        [classes addObject:[SourceNodeCPreprocessorWarning class]];
+        [classes addObject:[SourceNodeCPreprocessorError class]];
         [classes addObject:[SourceNodeCPreprocessorInclude class]];
         [classes addObject:[SourceNodeColon class]];
         [classes addObject:[SourceNodeSemicolon class]];
@@ -143,6 +145,13 @@
             if(semicolonNode && (!bracesNode || ([node.parent indexOfChild:semicolonNode] < [node.parent indexOfChild:bracesNode])))
                 _RearrangeNodesAsChildren(node, semicolonNode.previousSibling);
         }
+        
+    } else if([node isKindOfClass:[SourceNodeCFlowGoto class]]) {
+    	
+        // "goto foo"
+        SourceNode* semicolonNode = [node findNextSiblingOfClass:[SourceNodeSemicolon class]];
+        if(semicolonNode)
+        	_RearrangeNodesAsChildren(node, semicolonNode.previousSibling);
         
     } else if([node isKindOfClass:[SourceNodeCTypeStruct class]] || [node isKindOfClass:[SourceNodeCTypeUnion class]]) {
     	
@@ -319,6 +328,8 @@ IMPLEMENTATION(PreprocessorConditionElseif, @"#elseif", '(')
 IMPLEMENTATION(PreprocessorDefine, @"#define", 0)
 IMPLEMENTATION(PreprocessorUndefine, @"#undef", 0)
 IMPLEMENTATION(PreprocessorPragma, @"#pragma", 0)
+IMPLEMENTATION(PreprocessorWarning, @"#warning", 0)
+IMPLEMENTATION(PreprocessorError, @"#error", 0)
 IMPLEMENTATION(PreprocessorInclude, @"#include", 0)
 
 #undef IMPLEMENTATION

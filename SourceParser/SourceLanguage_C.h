@@ -77,6 +77,12 @@
 @interface SourceNodeCPreprocessorPragma : SourceNodeCPreprocessor
 @end
 
+@interface SourceNodeCPreprocessorWarning : SourceNodeCPreprocessor
+@end
+
+@interface SourceNodeCPreprocessorError : SourceNodeCPreprocessor
+@end
+
 @interface SourceNodeCPreprocessorInclude : SourceNodeCPreprocessor
 @end
 
@@ -110,13 +116,13 @@
 @interface SourceNodeCFlowFor : SourceNode
 @end
 
-@interface SourceNodeCFlowDoWhile : SourceNode //Leaf
+@interface SourceNodeCFlowDoWhile : SourceNode
 @end
 
-@interface SourceNodeCFlowWhile : SourceNode //Leaf
+@interface SourceNodeCFlowWhile : SourceNode
 @end
 
-@interface SourceNodeCFlowGoto : SourceNode //Leaf
+@interface SourceNodeCFlowGoto : SourceNode
 @end
 
 @interface SourceNodeCFlowReturn : SourceNode //Leaf

@@ -110,7 +110,7 @@
 @interface SourceNodeFlowFor : SourceNode
 @end
 
-@interface SourceNodeFlowDo : SourceNode //Leaf
+@interface SourceNodeFlowDoWhile : SourceNode //Leaf
 @end
 
 @interface SourceNodeFlowWhile : SourceNode //Leaf

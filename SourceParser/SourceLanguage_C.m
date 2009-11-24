@@ -62,7 +62,7 @@
         [classes addObject:[SourceNodeFlowCase class]];
         [classes addObject:[SourceNodeFlowDefault class]];
         [classes addObject:[SourceNodeFlowFor class]];
-        [classes addObject:[SourceNodeFlowDo class]];
+        [classes addObject:[SourceNodeFlowDoWhile class]];
         [classes addObject:[SourceNodeFlowWhile class]];
         [classes addObject:[SourceNodeFlowGoto class]];
         [classes addObject:[SourceNodeFlowReturn class]];
@@ -81,90 +81,73 @@
     return classes;
 }
 
-- (void) didAddChildNodeToSourceTree:(SourceNode*)child {
-	if([child isKindOfClass:[SourceNodeBraces class]]) {
-    	SourceNode* node = [child findPreviousSiblingIgnoringWhitespaceAndNewline];
+- (void) refactorSourceNode:(SourceNode*)node {
+	[super refactorSourceNode:node];
+    
+	if([node isKindOfClass:[SourceNodeBraces class]]) {
+    	SourceNode* previousNode = [node findPreviousSiblingIgnoringWhitespaceAndNewline];
         
         // "if() {}" "for() {}" "switch() {}" "while() {}"
-        if([node isKindOfClass:[SourceNodeParenthesis class]]) {
-        	node = [node findPreviousSiblingIgnoringWhitespaceAndNewline];
-            if([node isKindOfClass:[SourceNodeConditionIf class]] || [node isKindOfClass:[SourceNodeFlowFor class]] || [node isKindOfClass:[SourceNodeFlowSwitch class]] || [node isKindOfClass:[SourceNodeFlowWhile class]])
-            	_RearrangeNodesAsChildren(node, child);
+        if([previousNode isKindOfClass:[SourceNodeParenthesis class]]) {
+        	previousNode = [previousNode findPreviousSiblingIgnoringWhitespaceAndNewline];
+            if([previousNode isKindOfClass:[SourceNodeConditionIf class]] || [previousNode isKindOfClass:[SourceNodeFlowFor class]] || [previousNode isKindOfClass:[SourceNodeFlowSwitch class]] || [previousNode isKindOfClass:[SourceNodeFlowWhile class]])
+            	_RearrangeNodesAsChildren(previousNode, node);
         }
-        
-        // "else {}"
-        else if([node isKindOfClass:[SourceNodeConditionElse class]]) {
-            _RearrangeNodesAsChildren(node, child);
-        }
-        
-    } else if([child isKindOfClass:[SourceNodeParenthesis class]]) {
-    	SourceNode* node = [child findPreviousSiblingIgnoringWhitespaceAndNewline];
         
         // "do {} while()"
-        if([node isKindOfClass:[SourceNodeFlowWhile class]]) {
-        	node = [node findPreviousSiblingIgnoringWhitespaceAndNewline];
-            if([node isKindOfClass:[SourceNodeBraces class]]) {
-            	node = [node findPreviousSiblingIgnoringWhitespaceAndNewline];
-                if([node isKindOfClass:[SourceNodeFlowDo class]]) {
-                	_RearrangeNodesAsChildren(node, child);
+        else if([previousNode isKindOfClass:[SourceNodeFlowDoWhile class]]) {
+            SourceNode* nextNode = [node findNextSiblingIgnoringWhitespaceAndNewline];
+            if([nextNode isKindOfClass:[SourceNodeFlowWhile class]]) {
+            	SourceNode* nextNextNode = [nextNode findNextSiblingIgnoringWhitespaceAndNewline];
+                if([nextNextNode isKindOfClass:[SourceNodeParenthesis class]]) {
+                	_RearrangeNodesAsChildren(previousNode, nextNextNode);
                     
-                    node = [child findPreviousSiblingIgnoringWhitespaceAndNewline];
-                    SourceNode* newWhile = [[SourceNodeText alloc] initWithSource:node.source range:node.range];
-                    [node replaceWithNode:newWhile];
+                    SourceNode* newWhile = [[SourceNodeText alloc] initWithSource:nextNode.source range:nextNode.range];
+                    [nextNode replaceWithNode:newWhile];
                     [newWhile release];
                 }
             }
         }
         
-        // "sizeof()"
-        else if([node isKindOfClass:[SourceNodeTypeSizeOf class]]) {
-        	_RearrangeNodesAsChildren(node, child);
+    } else if([node isKindOfClass:[SourceNodeConditionElse class]]) {
+    	
+        // "else {}"
+        SourceNode* bracesNode = [node findNextSiblingOfClass:[SourceNodeBraces class]];
+        SourceNode* semicolonNode = [node findNextSiblingOfClass:[SourceNodeSemicolon class]];
+        if(bracesNode && (!semicolonNode || ([node.parent indexOfChild:bracesNode] < [node.parent indexOfChild:semicolonNode])))
+            _RearrangeNodesAsChildren(node, bracesNode);
+        else if(semicolonNode && (!bracesNode || ([node.parent indexOfChild:semicolonNode] < [node.parent indexOfChild:bracesNode])))
+            _RearrangeNodesAsChildren(node, semicolonNode.previousSibling);
+        
+    } else if([node isKindOfClass:[SourceNodeConditionIf class]] || [node isKindOfClass:[SourceNodeFlowFor class]] || [node isKindOfClass:[SourceNodeFlowSwitch class]]) {
+    	
+        // "if()" "for()" "switch()"
+        SourceNode* nextNode = [node findNextSiblingIgnoringWhitespaceAndNewline];
+        if([nextNode isKindOfClass:[SourceNodeParenthesis class]]) {
+        	SourceNode* bracesNode = [nextNode findNextSiblingOfClass:[SourceNodeBraces class]];
+            SourceNode* semicolonNode = [nextNode findNextSiblingOfClass:[SourceNodeSemicolon class]];
+            if(semicolonNode && (!bracesNode || ([node.parent indexOfChild:semicolonNode] < [node.parent indexOfChild:bracesNode])))
+                _RearrangeNodesAsChildren(node, semicolonNode.previousSibling);
         }
         
+    } else if([node isKindOfClass:[SourceNodeTypeStruct class]] || [node isKindOfClass:[SourceNodeTypeUnion class]]) {
+    	
+        // "struct {}" "union {}"
+        SourceNode* bracesNode = [node findNextSiblingOfClass:[SourceNodeBraces class]];
+        if(bracesNode) {
+        	SourceNode* semicolonNode = [bracesNode findNextSiblingOfClass:[SourceNodeSemicolon class]];
+            if(semicolonNode)
+            	_RearrangeNodesAsChildren(node, semicolonNode.previousSibling);
+        }
+        
+    } else if([node isKindOfClass:[SourceNodeTypeSizeOf class]]) {
+    	
+        // "sizeof()"
+        SourceNode* nextNode = [node findNextSiblingIgnoringWhitespaceAndNewline];
+        if([nextNode isKindOfClass:[SourceNodeParenthesis class]])
+        	_RearrangeNodesAsChildren(node, nextNode);
+        
     }
-    
-    /*else if([child isKindOfClass:[SourceNodeSemicolon class]]) {
-    	// "else"
-        SourceNode* node = [child findPreviousSiblingOfClass:[SourceNodeConditionElse class]];
-        if(node)
-        	_RearrangeNodesAsChildren(node, child.previousSibling);
-        
-        NSLog(@"%@", node.fullDescription);
-        
-        // "if()" "for()" "switch()"
-        SourceNode* node = [child findPreviousSiblingOfClass:[SourceNodeParenthesis class]];
-        node = [node findPreviousSiblingIgnoringWhitespaceAndNewline];
-        if([node isKindOfClass:[SourceNodeConditionIf class]] || [node isKindOfClass:[SourceNodeFlowFor class]] || [node isKindOfClass:[SourceNodeFlowSwitch class]])
-        	_RearrangeNodesAsChildren(node, child.previousSibling);
-        
-        SourceNode* node = [child findPreviousSiblingOfClass:[SourceNodeConditionIf class]];
-        if(node)
-        	_RearrangeNodesAsChildren(node, child.previousSibling);
-        
-        NSLog(@"%@", node.fullDescription);
-    }*/
-    
-    [super didAddChildNodeToSourceTree:child];
-    
-    /*
-    
-    struct temp {
-    
-    };
-    
-    struct {
-    
-    } temp;
-    
-    union temp {
-    
-    };
-    
-    union {
-    
-    } temp;
-    
-    */
 }
 
 @end
@@ -333,7 +316,7 @@ IMPLEMENTATION(FlowSwitch, @"switch", '(')
 IMPLEMENTATION(FlowCase, @"case", ':')
 IMPLEMENTATION(FlowDefault, @"default", ':')
 IMPLEMENTATION(FlowFor, @"for", '(')
-IMPLEMENTATION(FlowDo, @"do", '{')
+IMPLEMENTATION(FlowDoWhile, @"do", '{')
 IMPLEMENTATION(FlowWhile, @"while", '(')
 IMPLEMENTATION(FlowGoto, @"goto", 0)
 IMPLEMENTATION(FlowReturn, @"return", '(')

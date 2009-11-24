@@ -56,25 +56,25 @@
     return classes;
 }
 
-- (void) didAddChildNodeToSourceTree:(SourceNode*)child {
-	if([child isKindOfClass:[SourceNodeBraces class]]) {
-    	SourceNode* node = [child findPreviousSiblingIgnoringWhitespaceAndNewline];
+- (void) refactorSourceNode:(SourceNode*)node {
+	[super refactorSourceNode:node];
+    
+    if([node isKindOfClass:[SourceNodeBraces class]]) {
+    	SourceNode* previousNode = [node findPreviousSiblingIgnoringWhitespaceAndNewline];
         
         // "@catch() {}" "@synchronized() {}"
-        if([node isKindOfClass:[SourceNodeParenthesis class]]) {
-        	node = [node findPreviousSiblingIgnoringWhitespaceAndNewline];
-            if([node isKindOfClass:[SourceNodeObjCCatch class]] || [node isKindOfClass:[SourceNodeObjCSynchronized class]])
-            	_RearrangeNodesAsChildren(node, child);
+        if([previousNode isKindOfClass:[SourceNodeParenthesis class]]) {
+        	previousNode = [previousNode findPreviousSiblingIgnoringWhitespaceAndNewline];
+            if([previousNode isKindOfClass:[SourceNodeObjCCatch class]] || [previousNode isKindOfClass:[SourceNodeObjCSynchronized class]])
+            	_RearrangeNodesAsChildren(previousNode, node);
         }
         
         // "@try {}" "@finally {}"
-        else if([node isKindOfClass:[SourceNodeObjCTry class]] || [node isKindOfClass:[SourceNodeObjCFinally class]]) {
-            _RearrangeNodesAsChildren(node, child);
+        else if([previousNode isKindOfClass:[SourceNodeObjCTry class]] || [previousNode isKindOfClass:[SourceNodeObjCFinally class]]) {
+            _RearrangeNodesAsChildren(previousNode, node);
         }
         
     }
-    
-    [super didAddChildNodeToSourceTree:child];
 }
 
 @end
@@ -141,7 +141,7 @@ IMPLEMENTATION(Private, @"@private", 0)
 IMPLEMENTATION(Try, @"@try", '{')
 IMPLEMENTATION(Catch, @"@catch", '(')
 IMPLEMENTATION(Finally, @"@finally", '{')
-IMPLEMENTATION(Throw, @"@throw", 0)
+IMPLEMENTATION(Throw, @"@throw", ';')
 IMPLEMENTATION(Synchronized, @"@synchronized", '(')
 IMPLEMENTATION(Property, @"@property", '(')
 IMPLEMENTATION(Self, @"self", 0)

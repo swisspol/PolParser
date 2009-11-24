@@ -137,6 +137,10 @@ static BOOL _CheckTreeConsistency(SourceNode* node, NSMutableArray* stack) {
     return YES;
 }
 
+static void _ApplierFunction(SourceNode* node, void* context) {
+	[(SourceLanguage*)context refactorSourceNode:node];
+}
+
 static BOOL _ParseSource(SourceLanguage* language, NSString* source, const unichar* buffer, NSRange range, SourceNode* rootNode) {
 	NSMutableArray* stack = [NSMutableArray array];
     [stack addObject:rootNode];
@@ -152,8 +156,6 @@ static BOOL _ParseSource(SourceLanguage* language, NSString* source, const unich
                     [parentNode addChild:node];
                     [node release];
                     
-                    [language didAddChildNodeToSourceTree:node];
-                    
                     range.location += rawLength;
                     range.length -= rawLength;
                     rawLength = 0;
@@ -167,9 +169,7 @@ static BOOL _ParseSource(SourceLanguage* language, NSString* source, const unich
                     [node release];
                 }
                 
-                [language didAddChildNodeToSourceTree:parentNode];
-                
-				[stack removeLastObject];
+                [stack removeLastObject];
                 range.location += suffixLength;
                 range.length -= suffixLength;
                 continue;
@@ -190,8 +190,6 @@ static BOOL _ParseSource(SourceLanguage* language, NSString* source, const unich
                 SourceNode* node = [[SourceNodeText alloc] initWithSource:source range:NSMakeRange(range.location, rawLength)];
                 [(SourceNode*)[stack lastObject] addChild:node];
                 [node release];
-                
-                [language didAddChildNodeToSourceTree:node];
                 
                 range.location += rawLength;
                 range.length -= rawLength;
@@ -218,8 +216,6 @@ static BOOL _ParseSource(SourceLanguage* language, NSString* source, const unich
                 [(SourceNode*)[stack lastObject] addChild:node];
                 [node release];
                 
-                [language didAddChildNodeToSourceTree:node];
-                
                 range.location += length;
                 range.length -= length;
             } else {
@@ -244,8 +240,6 @@ static BOOL _ParseSource(SourceLanguage* language, NSString* source, const unich
             [(SourceNode*)[stack lastObject] addChild:node];
             [node release];
             
-            [language didAddChildNodeToSourceTree:node];
-            
             break;
         }
     }
@@ -257,6 +251,9 @@ static BOOL _ParseSource(SourceLanguage* language, NSString* source, const unich
         	NSLog(@"\t%@", node);
         return NO;
     }
+    
+    [language refactorSourceNode:rootNode];
+    [rootNode applyFunctionOnChildren:_ApplierFunction context:language recursively:YES];
     
     if(!_CheckTreeConsistency(rootNode, stack)) {
     	NSLog(@"\"%@\" parser failed because resulting tree is not consistent:\n%@", [language name], stack);
@@ -287,7 +284,7 @@ static BOOL _ParseSource(SourceLanguage* language, NSString* source, const unich
     return [root autorelease];
 }
 
-- (void) didAddChildNodeToSourceTree:(SourceNode*)child {
+- (void) refactorSourceNode:(SourceNode*)node {
 	;
 }
 

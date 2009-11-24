@@ -94,7 +94,7 @@ void _RearrangeNodesAsChildren(SourceNode* startNode, SourceNode* endNode);
 @end
 
 @interface SourceLanguage ()
-- (void) didAddChildNodeToSourceTree:(SourceNode*)child; //Override point to perform language dependent tree operations as nodes are inserted
+- (void) refactorSourceNode:(SourceNode*)node; //Override point to perform language dependent source tree refactoring after parsing
 @end
 
 @interface SourceLanguageBase : SourceLanguage

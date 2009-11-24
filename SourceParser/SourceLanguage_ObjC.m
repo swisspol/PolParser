@@ -1,19 +1,19 @@
 /*
-	This file is part of the PolParser library.
-	Copyright (C) 2009 Pierre-Olivier Latour <info@pol-online.net>
-	
-	This program is free software: you can redistribute it and/or modify
-	it under the terms of the GNU General Public License as published by
-	the Free Software Foundation, either version 3 of the License, or
-	(at your option) any later version.
-	
-	This program is distributed in the hope that it will be useful,
-	but WITHOUT ANY WARRANTY; without even the implied warranty of
-	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-	GNU General Public License for more details.
-	
-	You should have received a copy of the GNU General Public License
-	along with this program.  If not, see <http://www.gnu.org/licenses/>.
+    This file is part of the PolParser library.
+    Copyright (C) 2009 Pierre-Olivier Latour <info@pol-online.net>
+    
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+    
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+    
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #import "SourceParser_Internal.h"
@@ -21,15 +21,15 @@
 @implementation SourceLanguageObjC
 
 - (NSString*) name {
-	return @"Obj-C";
+    return @"Obj-C";
 }
 
 - (NSSet*) fileExtensions {
-	return [NSSet setWithObject:@"m"];
+    return [NSSet setWithObject:@"m"];
 }
 
 - (NSArray*) nodeClasses {
-	static NSMutableArray* classes = nil;
+    static NSMutableArray* classes = nil;
     if(classes == nil) {
         classes = [[NSMutableArray alloc] init];
         [classes addObjectsFromArray:[super nodeClasses]];
@@ -66,41 +66,41 @@
 }
 
 static BOOL _HasInterfaceOrProtocolParent(SourceNode* node) {
-	if([node.parent isKindOfClass:[SourceNodeObjCInterface class]] || [node.parent isKindOfClass:[SourceNodeObjCProtocol class]])
+    if([node.parent isKindOfClass:[SourceNodeObjCInterface class]] || [node.parent isKindOfClass:[SourceNodeObjCProtocol class]])
         return YES;
     
     return [node.parent isKindOfClass:[SourceNodeCPreprocessorCondition class]] ? _HasInterfaceOrProtocolParent(node.parent) : NO;
 }
 
 static BOOL _HasImplementationParent(SourceNode* node) {
-	if([node.parent isKindOfClass:[SourceNodeObjCImplementation class]])
+    if([node.parent isKindOfClass:[SourceNodeObjCImplementation class]])
         return YES;
     
     return [node.parent isKindOfClass:[SourceNodeCPreprocessorCondition class]] ? _HasImplementationParent(node.parent) : NO;
 }
 
 - (BOOL) nodeIsStatementDelimiter:(SourceNode*)node {
-	return [super nodeIsStatementDelimiter:node] || [node isKindOfClass:[SourceNodeCPPComment class]];
+    return [super nodeIsStatementDelimiter:node] || [node isKindOfClass:[SourceNodeCPPComment class]];
 }
 
 - (BOOL) nodeHasRootParent:(SourceNode*)node {
-	if(node.parent && (node.parent.parent == nil))
+    if(node.parent && (node.parent.parent == nil))
         return YES;
     
     return [node.parent isKindOfClass:[SourceNodeCPreprocessorCondition class]] || [node.parent isKindOfClass:[SourceNodeObjCInterface class]] || [node.parent isKindOfClass:[SourceNodeObjCImplementation class]] ? [self nodeHasRootParent:node.parent] : NO;
 }
 
 - (void) refactorSourceNode:(SourceNode*)node {
-	[super refactorSourceNode:node];
+    [super refactorSourceNode:node];
     
     if([node isKindOfClass:[SourceNodeBraces class]]) {
-    	SourceNode* previousNode = [node findPreviousSiblingIgnoringWhitespaceAndNewline];
+        SourceNode* previousNode = [node findPreviousSiblingIgnoringWhitespaceAndNewline];
         
         // "@catch() {}" "@synchronized() {}"
         if([previousNode isKindOfClass:[SourceNodeParenthesis class]]) {
-        	previousNode = [previousNode findPreviousSiblingIgnoringWhitespaceAndNewline];
+            previousNode = [previousNode findPreviousSiblingIgnoringWhitespaceAndNewline];
             if([previousNode isKindOfClass:[SourceNodeObjCCatch class]] || [previousNode isKindOfClass:[SourceNodeObjCSynchronized class]])
-            	_RearrangeNodesAsChildren(previousNode, node);
+                _RearrangeNodesAsChildren(previousNode, node);
         }
         
         // "@try {}" "@finally {}"
@@ -109,14 +109,14 @@ static BOOL _HasImplementationParent(SourceNode* node) {
         }
         
     } else if([node isKindOfClass:[SourceNodeObjCSelector class]] || [node isKindOfClass:[SourceNodeObjCEncode class]]) {
-    	
+        
         // "@selector()" "@encode()"
         SourceNode* nextNode = [node findNextSiblingIgnoringWhitespaceAndNewline];
         if([nextNode isKindOfClass:[SourceNodeParenthesis class]])
-        	_RearrangeNodesAsChildren(node, nextNode);
+            _RearrangeNodesAsChildren(node, nextNode);
         
     } else if([node isKindOfClass:[SourceNodeObjCProperty class]] || [node isKindOfClass:[SourceNodeObjCThrow class]]) {
-    	
+        
         // "@property" "@property()" "@throw"
         SourceNode* semicolonNode = [node findNextSiblingOfClass:[SourceNodeSemicolon class]];
         if(semicolonNode) {
@@ -126,11 +126,11 @@ static BOOL _HasImplementationParent(SourceNode* node) {
         }
         
     } else if([node isKindOfClass:[SourceNodeText class]] && _HasInterfaceOrProtocolParent(node)) {
-    	
+        
         // "-(foo)bar" "+(foo)bar" "-bar" "+bar"
         NSString* content = node.content;
         if([content isEqualToString:@"-"] || [content isEqualToString:@"+"]) {
-        	SourceNode* nextNode = [node findNextSiblingOfClass:[SourceNodeSemicolon class]];
+            SourceNode* nextNode = [node findNextSiblingOfClass:[SourceNodeSemicolon class]];
             if(nextNode) {
                 SourceNode* newNode = [[SourceNodeObjCMethodDeclaration alloc] initWithSource:node.source range:NSMakeRange(node.range.location, 0)];
                 [node insertPreviousSibling:newNode];
@@ -140,11 +140,11 @@ static BOOL _HasImplementationParent(SourceNode* node) {
         }
         
     } else if([node isKindOfClass:[SourceNodeText class]] && _HasImplementationParent(node)) {
-    	
+        
         // "-(foo)bar" "+(foo)bar" "-bar" "+bar"
         NSString* content = node.content;
         if([content isEqualToString:@"-"] || [content isEqualToString:@"+"]) {
-        	SourceNode* nextNode = [node findNextSiblingOfClass:[SourceNodeBraces class]];
+            SourceNode* nextNode = [node findNextSiblingOfClass:[SourceNodeBraces class]];
             if(nextNode) {
                 SourceNode* newNode = [[SourceNodeObjCMethodImplementation alloc] initWithSource:node.source range:NSMakeRange(node.range.location, 0)];
                 [node insertPreviousSibling:newNode];
@@ -161,15 +161,15 @@ static BOOL _HasImplementationParent(SourceNode* node) {
 @implementation SourceLanguageObjCPP
 
 - (NSString*) name {
-	return @"Obj-C++";
+    return @"Obj-C++";
 }
 
 - (NSSet*) fileExtensions {
-	return [NSSet setWithObject:@"mm"];
+    return [NSSet setWithObject:@"mm"];
 }
 
 - (SourceNodeRoot*) parseSourceString:(NSString*)source {
-	NSLog(@"%@ parsing is not fully implemented", self.name);
+    NSLog(@"%@ parsing is not fully implemented", self.name);
     
     return [super parseSourceString:source];
 }
@@ -194,7 +194,7 @@ IS_MATCHING_PREFIX_METHOD_WITH_TRAILING_WHITESPACE_OR_NEWLINE(@"#import")
 @implementation SourceNodeObjC##__NAME__ \
 \
 + (BOOL) isAtomic { \
-	return NO; \
+    return NO; \
 } \
 \
 IS_MATCHING_PREFIX_METHOD_WITH_TRAILING_WHITESPACE_OR_NEWLINE(__TOKEN__) \
@@ -215,7 +215,7 @@ IMPLEMENTATION(Protocol, @"@protocol")
 IS_MATCHING_PREFIX_METHOD_WITH_TRAILING_WHITESPACE_OR_NEWLINE_OR_CHARACTER(__VA_ARGS__); \
 \
 + (NSUInteger) isMatchingSuffix:(const unichar*)string maxLength:(NSUInteger)maxLength { \
-	return 0; \
+    return 0; \
 } \
 \
 @end

@@ -1,25 +1,25 @@
 #import "SourceParser.h"
 
 static void _ProcessNode(SourceNode* node) {
-	//Replace indenting spaces by tabs
-    if([node isKindOfClass:[SourceNodeIndenting class]]) {
-    	NSString* text = node.content;
+    //Replace indenting spaces by tabs - FIXME: This affects open-braces reformatting since it replaces some "SourceNodeIndenting" nodes
+    /*if([node isKindOfClass:[SourceNodeIndenting class]]) {
+        NSString* text = node.content;
         text = [text stringByReplacingOccurrencesOfString:@"    " withString:@"\t"];
         [node replaceWithText:text];
-    }
+    }*/
     
     //Delete whitespace at end of lines & remove multiple newlines
     if([node isKindOfClass:[SourceNodeNewline class]]) {
         if([node.previousSibling isKindOfClass:[SourceNodeWhitespace class]]) //FIXME: This is affected by the above operation
-        	[node.previousSibling removeFromParent];
+            [node.previousSibling removeFromParent];
         if([node.nextSibling isKindOfClass:[SourceNodeNewline class]] && [node.nextSibling.nextSibling isKindOfClass:[SourceNodeNewline class]])
-        	[node.nextSibling removeFromParent];
+            [node.nextSibling removeFromParent];
     }
     
     //Delete empty C++ comments and reformat the others as "  // Comment"
     if([node isKindOfClass:[SourceNodeCPPComment class]]) {
         if([node.previousSibling isKindOfClass:[SourceNodeWhitespace class]])
-        	[node.previousSibling removeFromParent];
+            [node.previousSibling removeFromParent];
         NSString* text = node.content;
         NSRange range = [node.content rangeOfCharacterFromSet:[[NSCharacterSet whitespaceCharacterSet] invertedSet] options:0 range:NSMakeRange(2, text.length - 2)];
         if(range.location != NSNotFound)
@@ -47,17 +47,17 @@ static void _ProcessNode(SourceNode* node) {
         }
     }
     
-    //Reformat open braces as "... {" - FIXME: This may miss some matches because of the previous step that replaced "SourceNodeIndenting" nodes
+    //Reformat open-braces as "... {"
     if([node isKindOfClass:[SourceNodeBraces class]]) {
-    	if([node.parent isKindOfClass:[SourceNodeCFlowFor class]] || [node.parent isKindOfClass:[SourceNodeCFlowDoWhile class]] || [node.parent isKindOfClass:[SourceNodeCFlowWhile class]]
-        	|| [node.parent isKindOfClass:[SourceNodeCFlowIf class]] || [node.parent isKindOfClass:[SourceNodeCFlowElse class]] || [node.parent isKindOfClass:[SourceNodeCFunctionDefinition class]]
+        if([node.parent isKindOfClass:[SourceNodeCFlowFor class]] || [node.parent isKindOfClass:[SourceNodeCFlowDoWhile class]] || [node.parent isKindOfClass:[SourceNodeCFlowWhile class]]
+            || [node.parent isKindOfClass:[SourceNodeCFlowIf class]] || [node.parent isKindOfClass:[SourceNodeCFlowElse class]] || [node.parent isKindOfClass:[SourceNodeCFunctionDefinition class]]
             || [node.parent isKindOfClass:[SourceNodeObjCInterface class]] || [node.parent isKindOfClass:[SourceNodeObjCTry class]] || [node.parent isKindOfClass:[SourceNodeObjCCatch class]]
             || [node.parent isKindOfClass:[SourceNodeObjCFinally class]] || [node.parent isKindOfClass:[SourceNodeObjCSynchronized class]] || [node.parent isKindOfClass:[SourceNodeObjCMethodImplementation class]]) {
             
             SourceNode* subnode = [node findPreviousSiblingIgnoringWhitespaceAndNewline];
             if(subnode) {
-            	while([subnode.nextSibling isKindOfClass:[SourceNodeWhitespace class]] || [subnode.nextSibling isKindOfClass:[SourceNodeNewline class]]) {
-                	[subnode.nextSibling removeFromParent];
+                while([subnode.nextSibling isKindOfClass:[SourceNodeWhitespace class]] || [subnode.nextSibling isKindOfClass:[SourceNodeNewline class]]) {
+                    [subnode.nextSibling removeFromParent];
                 }
                 [node insertPreviousSibling:[SourceNodeText sourceNodeWithText:@" "]];
             }
@@ -68,52 +68,52 @@ static void _ProcessNode(SourceNode* node) {
 #if !NS_BLOCKS_AVAILABLE
 
 static void _ApplierFunction(SourceNode* node, void* context) {
-	_ProcessNode(node);
+    _ProcessNode(node);
 }
 
 #endif
 
 int main(int argc, const char* argv[]) {
     NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
-	
+    
     if(argc >= 2) {
-    	BOOL optionClean = NO;
+        BOOL optionClean = NO;
         BOOL optionDiff = NO;
         
         int offset = 1;
         while(argv[offset][0] == '-') {
-        	if(strcmp(argv[offset], "-clean") == 0)
-            	optionClean = YES;
+            if(strcmp(argv[offset], "-clean") == 0)
+                optionClean = YES;
             else if(strcmp(argv[offset], "-diff") == 0)
-            	optionDiff = YES;
+                optionDiff = YES;
             ++offset;
         }
         
         NSString* path = [[NSString stringWithUTF8String:argv[offset]] stringByStandardizingPath];
         SourceNodeRoot* root = [SourceLanguage parseSourceFile:path encoding:NSUTF8StringEncoding];
-    	if(root) {
+        if(root) {
             if(optionClean)
 #if NS_BLOCKS_AVAILABLE
-				[root enumerateChildrenRecursively:YES usingBlock:^(SourceNode* node) {
-                	_ProcessNode(node);
+                [root enumerateChildrenRecursively:YES usingBlock:^(SourceNode* node) {
+                    _ProcessNode(node);
                 }];
 #else
-            	[root applyFunctionOnChildren:_ApplierFunction context:NULL recursively:YES];
+                [root applyFunctionOnChildren:_ApplierFunction context:NULL recursively:YES];
 #endif
             
             printf("%s\n", [[root fullDescription] UTF8String]);
             
             if(argc >= 3) {
-            	NSString* newPath = [[NSString stringWithUTF8String:argv[offset + 1]] stringByStandardizingPath];
+                NSString* newPath = [[NSString stringWithUTF8String:argv[offset + 1]] stringByStandardizingPath];
                 if([root writeContentToFile:newPath encoding:NSUTF8StringEncoding] && optionDiff) {
-                	NSTask* task = [[NSTask alloc] init];
+                    NSTask* task = [[NSTask alloc] init];
                     [task setLaunchPath:@"/usr/bin/opendiff"];
                     [task setArguments:[NSArray arrayWithObjects:path, newPath, nil]];
                     @try {
-                    	[task launch];
+                        [task launch];
                     }
                     @catch(NSException* exception) {
-                    	;
+                        ;
                     }
                     [task waitUntilExit];
                     [task release];
@@ -122,6 +122,6 @@ int main(int argc, const char* argv[]) {
         }
     }
     
-	[pool drain];
+    [pool drain];
     return 0;
 }

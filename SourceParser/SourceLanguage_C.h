@@ -18,44 +18,6 @@
 
 #import "SourceLanguage_Base.h"
 
-@interface SourceNodeCommentC : SourceNode //Leaf
-@end
-
-/* Abstract class: do not instantiate */
-@interface SourceNodePreprocessor : SourceNode
-@end
-
-/* Abstract class: do not instantiate */
-@interface SourceNodePreprocessorCondition : SourceNodePreprocessor
-@end
-
-@interface SourceNodePreprocessorConditionIf : SourceNodePreprocessorCondition
-@end
-
-@interface SourceNodePreprocessorConditionIfdef : SourceNodePreprocessorCondition
-@end
-
-@interface SourceNodePreprocessorConditionIfndef : SourceNodePreprocessorCondition
-@end
-
-@interface SourceNodePreprocessorConditionElse : SourceNodePreprocessorCondition
-@end
-
-@interface SourceNodePreprocessorConditionElseif : SourceNodePreprocessorCondition
-@end
-
-@interface SourceNodePreprocessorDefine : SourceNodePreprocessor
-@end
-
-@interface SourceNodePreprocessorUndefine : SourceNodePreprocessor
-@end
-
-@interface SourceNodePreprocessorPragma : SourceNodePreprocessor
-@end
-
-@interface SourceNodePreprocessorInclude : SourceNodePreprocessor
-@end
-
 @interface SourceNodeColon : SourceNode //Leaf
 @end
 
@@ -80,77 +42,121 @@
 @interface SourceNodeAsterisk : SourceNode //Leaf
 @end
 
-@interface SourceNodeStringSingleQuote : SourceNode //Leaf
+@interface SourceNodeCComment : SourceNode //Leaf
 @end
 
-@interface SourceNodeStringDoubleQuote : SourceNode //Leaf
+/* Abstract class: do not instantiate */
+@interface SourceNodeCPreprocessor : SourceNode
 @end
 
-@interface SourceNodeConditionIf : SourceNode
+/* Abstract class: do not instantiate */
+@interface SourceNodeCPreprocessorCondition : SourceNodeCPreprocessor
 @end
 
-@interface SourceNodeConditionElse : SourceNode
+@interface SourceNodeCPreprocessorConditionIf : SourceNodeCPreprocessorCondition
 @end
 
-@interface SourceNodeFlowBreak : SourceNode //Leaf
+@interface SourceNodeCPreprocessorConditionIfdef : SourceNodeCPreprocessorCondition
 @end
 
-@interface SourceNodeFlowContinue : SourceNode //Leaf
+@interface SourceNodeCPreprocessorConditionIfndef : SourceNodeCPreprocessorCondition
 @end
 
-@interface SourceNodeFlowSwitch : SourceNode
+@interface SourceNodeCPreprocessorConditionElse : SourceNodeCPreprocessorCondition
 @end
 
-@interface SourceNodeFlowCase : SourceNode //Leaf
+@interface SourceNodeCPreprocessorConditionElseif : SourceNodeCPreprocessorCondition
 @end
 
-@interface SourceNodeFlowDefault : SourceNode //Leaf
+@interface SourceNodeCPreprocessorDefine : SourceNodeCPreprocessor
 @end
 
-@interface SourceNodeFlowFor : SourceNode
+@interface SourceNodeCPreprocessorUndefine : SourceNodeCPreprocessor
 @end
 
-@interface SourceNodeFlowDoWhile : SourceNode //Leaf
+@interface SourceNodeCPreprocessorPragma : SourceNodeCPreprocessor
 @end
 
-@interface SourceNodeFlowWhile : SourceNode //Leaf
+@interface SourceNodeCPreprocessorInclude : SourceNodeCPreprocessor
 @end
 
-@interface SourceNodeFlowGoto : SourceNode //Leaf
+@interface SourceNodeCStringSingleQuote : SourceNode //Leaf
 @end
 
-@interface SourceNodeFlowReturn : SourceNode //Leaf
+@interface SourceNodeCStringDoubleQuote : SourceNode //Leaf
 @end
 
-@interface SourceNodeTypedef : SourceNode //Leaf
+@interface SourceNodeCFlowIf : SourceNode
 @end
 
-@interface SourceNodeTypeStruct : SourceNode
+@interface SourceNodeCFlowElse : SourceNode
 @end
 
-@interface SourceNodeTypeUnion : SourceNode
+@interface SourceNodeCFlowBreak : SourceNode //Leaf
 @end
 
-@interface SourceNodeTypeAuto : SourceNode //Leaf
+@interface SourceNodeCFlowContinue : SourceNode //Leaf
 @end
 
-@interface SourceNodeTypeStatic : SourceNode //Leaf
+@interface SourceNodeCFlowSwitch : SourceNode
 @end
 
-@interface SourceNodeTypeRegister : SourceNode //Leaf
+@interface SourceNodeCFlowCase : SourceNode //Leaf
 @end
 
-@interface SourceNodeTypeVolatile : SourceNode //Leaf
+@interface SourceNodeCFlowDefault : SourceNode //Leaf
 @end
 
-@interface SourceNodeTypeConst : SourceNode //Leaf
+@interface SourceNodeCFlowFor : SourceNode
 @end
 
-@interface SourceNodeTypeEnum : SourceNode //Leaf
+@interface SourceNodeCFlowDoWhile : SourceNode //Leaf
 @end
 
-@interface SourceNodeTypeExtern : SourceNode //Leaf
+@interface SourceNodeCFlowWhile : SourceNode //Leaf
 @end
 
-@interface SourceNodeTypeSizeOf : SourceNode
+@interface SourceNodeCFlowGoto : SourceNode //Leaf
+@end
+
+@interface SourceNodeCFlowReturn : SourceNode //Leaf
+@end
+
+@interface SourceNodeCTypedef : SourceNode //Leaf
+@end
+
+@interface SourceNodeCTypeStruct : SourceNode
+@end
+
+@interface SourceNodeCTypeUnion : SourceNode
+@end
+
+@interface SourceNodeCTypeAuto : SourceNode //Leaf
+@end
+
+@interface SourceNodeCTypeStatic : SourceNode //Leaf
+@end
+
+@interface SourceNodeCTypeRegister : SourceNode //Leaf
+@end
+
+@interface SourceNodeCTypeVolatile : SourceNode //Leaf
+@end
+
+@interface SourceNodeCTypeConst : SourceNode //Leaf
+@end
+
+@interface SourceNodeCTypeEnum : SourceNode //Leaf
+@end
+
+@interface SourceNodeCTypeExtern : SourceNode //Leaf
+@end
+
+@interface SourceNodeCTypeSizeOf : SourceNode
+@end
+
+@interface SourceNodeCFunctionPrototype : SourceNode
+@end
+
+@interface SourceNodeCFunctionDefinition : SourceNode
 @end

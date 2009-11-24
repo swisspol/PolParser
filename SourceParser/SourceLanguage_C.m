@@ -34,16 +34,16 @@
         classes = [[NSMutableArray alloc] init];
         [classes addObjectsFromArray:[super nodeClasses]];
         
-        [classes addObject:[SourceNodeCommentC class]];
-        [classes addObject:[SourceNodePreprocessorConditionIf class]];
-        [classes addObject:[SourceNodePreprocessorConditionIfdef class]];
-        [classes addObject:[SourceNodePreprocessorConditionIfndef class]];
-        [classes addObject:[SourceNodePreprocessorConditionElse class]];
-        [classes addObject:[SourceNodePreprocessorConditionElseif class]];
-        [classes addObject:[SourceNodePreprocessorDefine class]];
-        [classes addObject:[SourceNodePreprocessorUndefine class]];
-        [classes addObject:[SourceNodePreprocessorPragma class]];
-        [classes addObject:[SourceNodePreprocessorInclude class]];
+        [classes addObject:[SourceNodeCComment class]];
+        [classes addObject:[SourceNodeCPreprocessorConditionIf class]];
+        [classes addObject:[SourceNodeCPreprocessorConditionIfdef class]];
+        [classes addObject:[SourceNodeCPreprocessorConditionIfndef class]];
+        [classes addObject:[SourceNodeCPreprocessorConditionElse class]];
+        [classes addObject:[SourceNodeCPreprocessorConditionElseif class]];
+        [classes addObject:[SourceNodeCPreprocessorDefine class]];
+        [classes addObject:[SourceNodeCPreprocessorUndefine class]];
+        [classes addObject:[SourceNodeCPreprocessorPragma class]];
+        [classes addObject:[SourceNodeCPreprocessorInclude class]];
         [classes addObject:[SourceNodeColon class]];
         [classes addObject:[SourceNodeSemicolon class]];
         [classes addObject:[SourceNodeQuestionMark class]];
@@ -52,52 +52,66 @@
         [classes addObject:[SourceNodeCaret class]];
         [classes addObject:[SourceNodeAmpersand class]];
         [classes addObject:[SourceNodeAsterisk class]];
-        [classes addObject:[SourceNodeStringSingleQuote class]];
-        [classes addObject:[SourceNodeStringDoubleQuote class]];
-        [classes addObject:[SourceNodeConditionIf class]];
-        [classes addObject:[SourceNodeConditionElse class]];
-        [classes addObject:[SourceNodeFlowBreak class]];
-        [classes addObject:[SourceNodeFlowContinue class]];
-        [classes addObject:[SourceNodeFlowSwitch class]];
-        [classes addObject:[SourceNodeFlowCase class]];
-        [classes addObject:[SourceNodeFlowDefault class]];
-        [classes addObject:[SourceNodeFlowFor class]];
-        [classes addObject:[SourceNodeFlowDoWhile class]];
-        [classes addObject:[SourceNodeFlowWhile class]];
-        [classes addObject:[SourceNodeFlowGoto class]];
-        [classes addObject:[SourceNodeFlowReturn class]];
-        [classes addObject:[SourceNodeTypedef class]];
-        [classes addObject:[SourceNodeTypeStruct class]];
-        [classes addObject:[SourceNodeTypeUnion class]];
-        [classes addObject:[SourceNodeTypeAuto class]];
-        [classes addObject:[SourceNodeTypeStatic class]];
-        [classes addObject:[SourceNodeTypeRegister class]];
-        [classes addObject:[SourceNodeTypeVolatile class]];
-        [classes addObject:[SourceNodeTypeConst class]];
-        [classes addObject:[SourceNodeTypeEnum class]];
-        [classes addObject:[SourceNodeTypeExtern class]];
-        [classes addObject:[SourceNodeTypeSizeOf class]];
+        [classes addObject:[SourceNodeCStringSingleQuote class]];
+        [classes addObject:[SourceNodeCStringDoubleQuote class]];
+        [classes addObject:[SourceNodeCFlowIf class]];
+        [classes addObject:[SourceNodeCFlowElse class]];
+        [classes addObject:[SourceNodeCFlowBreak class]];
+        [classes addObject:[SourceNodeCFlowContinue class]];
+        [classes addObject:[SourceNodeCFlowSwitch class]];
+        [classes addObject:[SourceNodeCFlowCase class]];
+        [classes addObject:[SourceNodeCFlowDefault class]];
+        [classes addObject:[SourceNodeCFlowFor class]];
+        [classes addObject:[SourceNodeCFlowDoWhile class]];
+        [classes addObject:[SourceNodeCFlowWhile class]];
+        [classes addObject:[SourceNodeCFlowGoto class]];
+        [classes addObject:[SourceNodeCFlowReturn class]];
+        [classes addObject:[SourceNodeCTypedef class]];
+        [classes addObject:[SourceNodeCTypeStruct class]];
+        [classes addObject:[SourceNodeCTypeUnion class]];
+        [classes addObject:[SourceNodeCTypeAuto class]];
+        [classes addObject:[SourceNodeCTypeStatic class]];
+        [classes addObject:[SourceNodeCTypeRegister class]];
+        [classes addObject:[SourceNodeCTypeVolatile class]];
+        [classes addObject:[SourceNodeCTypeConst class]];
+        [classes addObject:[SourceNodeCTypeEnum class]];
+        [classes addObject:[SourceNodeCTypeExtern class]];
+        [classes addObject:[SourceNodeCTypeSizeOf class]];
+        
+        [classes addObject:[SourceNodeCFunctionPrototype class]];
+        [classes addObject:[SourceNodeCFunctionDefinition class]];
     }
     return classes;
+}
+
+- (BOOL) nodeHasRootParent:(SourceNode*)node {
+	if(node.parent && (node.parent.parent == nil))
+        return YES;
+    
+    return [node.parent isKindOfClass:[SourceNodeCPreprocessorCondition class]] ? [self nodeHasRootParent:node.parent] : NO;
+}
+
+- (BOOL) nodeIsStatementDelimiter:(SourceNode*)node {
+	return node.children.count || [node isKindOfClass:[SourceNodeSemicolon class]] || [node isKindOfClass:[SourceNodeCComment class]];
 }
 
 - (void) refactorSourceNode:(SourceNode*)node {
 	[super refactorSourceNode:node];
     
-	if([node isKindOfClass:[SourceNodeBraces class]]) {
+    if([node isKindOfClass:[SourceNodeBraces class]]) {
     	SourceNode* previousNode = [node findPreviousSiblingIgnoringWhitespaceAndNewline];
         
         // "if() {}" "for() {}" "switch() {}" "while() {}"
         if([previousNode isKindOfClass:[SourceNodeParenthesis class]]) {
         	previousNode = [previousNode findPreviousSiblingIgnoringWhitespaceAndNewline];
-            if([previousNode isKindOfClass:[SourceNodeConditionIf class]] || [previousNode isKindOfClass:[SourceNodeFlowFor class]] || [previousNode isKindOfClass:[SourceNodeFlowSwitch class]] || [previousNode isKindOfClass:[SourceNodeFlowWhile class]])
+            if([previousNode isKindOfClass:[SourceNodeCFlowIf class]] || [previousNode isKindOfClass:[SourceNodeCFlowFor class]] || [previousNode isKindOfClass:[SourceNodeCFlowSwitch class]] || [previousNode isKindOfClass:[SourceNodeCFlowWhile class]])
             	_RearrangeNodesAsChildren(previousNode, node);
         }
         
         // "do {} while()"
-        else if([previousNode isKindOfClass:[SourceNodeFlowDoWhile class]]) {
+        else if([previousNode isKindOfClass:[SourceNodeCFlowDoWhile class]]) {
             SourceNode* nextNode = [node findNextSiblingIgnoringWhitespaceAndNewline];
-            if([nextNode isKindOfClass:[SourceNodeFlowWhile class]]) {
+            if([nextNode isKindOfClass:[SourceNodeCFlowWhile class]]) {
             	SourceNode* nextNextNode = [nextNode findNextSiblingIgnoringWhitespaceAndNewline];
                 if([nextNextNode isKindOfClass:[SourceNodeParenthesis class]]) {
                 	_RearrangeNodesAsChildren(previousNode, nextNextNode);
@@ -109,7 +123,7 @@
             }
         }
         
-    } else if([node isKindOfClass:[SourceNodeConditionElse class]]) {
+    } else if([node isKindOfClass:[SourceNodeCFlowElse class]]) {
     	
         // "else {}"
         SourceNode* bracesNode = [node findNextSiblingOfClass:[SourceNodeBraces class]];
@@ -119,7 +133,7 @@
         else if(semicolonNode && (!bracesNode || ([node.parent indexOfChild:semicolonNode] < [node.parent indexOfChild:bracesNode])))
             _RearrangeNodesAsChildren(node, semicolonNode.previousSibling);
         
-    } else if([node isKindOfClass:[SourceNodeConditionIf class]] || [node isKindOfClass:[SourceNodeFlowFor class]] || [node isKindOfClass:[SourceNodeFlowSwitch class]]) {
+    } else if([node isKindOfClass:[SourceNodeCFlowIf class]] || [node isKindOfClass:[SourceNodeCFlowFor class]] || [node isKindOfClass:[SourceNodeCFlowSwitch class]]) {
     	
         // "if()" "for()" "switch()"
         SourceNode* nextNode = [node findNextSiblingIgnoringWhitespaceAndNewline];
@@ -130,7 +144,7 @@
                 _RearrangeNodesAsChildren(node, semicolonNode.previousSibling);
         }
         
-    } else if([node isKindOfClass:[SourceNodeTypeStruct class]] || [node isKindOfClass:[SourceNodeTypeUnion class]]) {
+    } else if([node isKindOfClass:[SourceNodeCTypeStruct class]] || [node isKindOfClass:[SourceNodeCTypeUnion class]]) {
     	
         // "struct {}" "union {}"
         SourceNode* bracesNode = [node findNextSiblingOfClass:[SourceNodeBraces class]];
@@ -140,19 +154,70 @@
             	_RearrangeNodesAsChildren(node, semicolonNode.previousSibling);
         }
         
-    } else if([node isKindOfClass:[SourceNodeTypeSizeOf class]]) {
+    } else if([node isKindOfClass:[SourceNodeCTypeSizeOf class]]) {
     	
         // "sizeof()"
         SourceNode* nextNode = [node findNextSiblingIgnoringWhitespaceAndNewline];
         if([nextNode isKindOfClass:[SourceNodeParenthesis class]])
         	_RearrangeNodesAsChildren(node, nextNode);
         
+    } else if([node isKindOfClass:[SourceNodeParenthesis class]] && [self nodeHasRootParent:node]) {
+    	
+        // "foo bar()" "foo bar() {}"
+        SourceNode* nextNode = [node findNextSiblingIgnoringWhitespaceAndNewline];
+        if([nextNode isKindOfClass:[SourceNodeSemicolon class]] || [nextNode isKindOfClass:[SourceNodeBraces class]]) {
+        	SourceNode* previousNode = [node findPreviousSiblingIgnoringWhitespaceAndNewline];
+        	if([previousNode isKindOfClass:[SourceNodeText class]]) {
+                previousNode = previousNode.previousSibling;
+                while(previousNode && ![self nodeIsStatementDelimiter:previousNode]) {
+                	previousNode = previousNode.previousSibling;
+                }
+                if(previousNode == nil) {
+                	previousNode = [node.parent.children objectAtIndex:0];
+                    if([previousNode isKindOfClass:[SourceNodeWhitespace class]] || [previousNode isKindOfClass:[SourceNodeNewline class]])
+                    	previousNode = [previousNode findNextSiblingIgnoringWhitespaceAndNewline];
+                }
+                else {
+                	previousNode = [previousNode findNextSiblingIgnoringWhitespaceAndNewline];
+                }
+                
+                SourceNode* newNode = [([nextNode isKindOfClass:[SourceNodeBraces class]] ? [SourceNodeCFunctionDefinition alloc] : [SourceNodeCFunctionPrototype alloc]) initWithSource:previousNode.source range:NSMakeRange(previousNode.range.location, 0)];
+                [previousNode insertPreviousSibling:newNode];
+                [newNode release];
+                _RearrangeNodesAsChildren(newNode, [nextNode isKindOfClass:[SourceNodeBraces class]] ? nextNode : nextNode.previousSibling);
+            }
+        }
+        
     }
 }
 
 @end
 
-@implementation SourceNodeCommentC
+#define IMPLEMENTATION(__NAME__, __CHARACTER__) \
+@implementation SourceNode##__NAME__ \
+\
++ (NSUInteger) isMatchingPrefix:(const unichar*)string maxLength:(NSUInteger)maxLength { \
+    return *string == __CHARACTER__ ? 1 : NSNotFound; \
+} \
+\
++ (NSUInteger) isMatchingSuffix:(const unichar*)string maxLength:(NSUInteger)maxLength { \
+	return 0; \
+} \
+\
+@end
+
+IMPLEMENTATION(Colon, ':')
+IMPLEMENTATION(Semicolon, ';')
+IMPLEMENTATION(QuestionMark, '?')
+IMPLEMENTATION(ExclamationMark, '!')
+IMPLEMENTATION(Tilda, '~')
+IMPLEMENTATION(Caret, '^')
+IMPLEMENTATION(Ampersand, '&')
+IMPLEMENTATION(Asterisk, '*')
+
+#undef IMPLEMENTATION
+
+@implementation SourceNodeCComment
 
 + (NSUInteger) isMatchingPrefix:(const unichar*)string maxLength:(NSUInteger)maxLength {
     return (maxLength >= 2) && (string[0] == '/') && (string[1] == '*') ? 2 : NSNotFound;
@@ -164,12 +229,12 @@
 
 @end
 
-@implementation SourceNodePreprocessor
+@implementation SourceNodeCPreprocessor
 
 + (id) allocWithZone:(NSZone*)zone
 {
-	if(self == [SourceNodePreprocessor class])
-        [NSException raise:NSInternalInconsistencyException format:@"SourceNodePreprocessor is an abstract class"];
+	if(self == [SourceNodeCPreprocessor class])
+        [NSException raise:NSInternalInconsistencyException format:@"SourceNodeCPreprocessor is an abstract class"];
 	
 	return [super allocWithZone:zone];
 }
@@ -198,12 +263,12 @@
 
 @end
 
-@implementation SourceNodePreprocessorCondition
+@implementation SourceNodeCPreprocessorCondition
 
 + (id) allocWithZone:(NSZone*)zone
 {
-	if(self == [SourceNodePreprocessorCondition class])
-        [NSException raise:NSInternalInconsistencyException format:@"SourceNodePreprocessorCondition is an abstract class"];
+	if(self == [SourceNodeCPreprocessorCondition class])
+        [NSException raise:NSInternalInconsistencyException format:@"SourceNodeCPreprocessorCondition is an abstract class"];
 	
 	return [super allocWithZone:zone];
 }
@@ -231,7 +296,7 @@
 @end
 
 #define IMPLEMENTATION(__NAME__, ...) \
-@implementation SourceNode##__NAME__ \
+@implementation SourceNodeC##__NAME__ \
 \
 IS_MATCHING_PREFIX_METHOD_WITH_TRAILING_WHITESPACE_OR_NEWLINE_OR_CHARACTER(__VA_ARGS__); \
 \
@@ -249,31 +314,7 @@ IMPLEMENTATION(PreprocessorInclude, @"#include", 0)
 
 #undef IMPLEMENTATION
 
-#define IMPLEMENTATION(__NAME__, __CHARACTER__) \
-@implementation SourceNode##__NAME__ \
-\
-+ (NSUInteger) isMatchingPrefix:(const unichar*)string maxLength:(NSUInteger)maxLength { \
-    return *string == __CHARACTER__ ? 1 : NSNotFound; \
-} \
-\
-+ (NSUInteger) isMatchingSuffix:(const unichar*)string maxLength:(NSUInteger)maxLength { \
-	return 0; \
-} \
-\
-@end
-
-IMPLEMENTATION(Colon, ':')
-IMPLEMENTATION(Semicolon, ';')
-IMPLEMENTATION(QuestionMark, '?')
-IMPLEMENTATION(ExclamationMark, '!')
-IMPLEMENTATION(Tilda, '~')
-IMPLEMENTATION(Caret, '^')
-IMPLEMENTATION(Ampersand, '&')
-IMPLEMENTATION(Asterisk, '*')
-
-#undef IMPLEMENTATION
-
-@implementation SourceNodeStringSingleQuote
+@implementation SourceNodeCStringSingleQuote
 
 + (NSUInteger) isMatchingPrefix:(const unichar*)string maxLength:(NSUInteger)maxLength {
     return (*string == '\'') ? 1 : NSNotFound;
@@ -285,7 +326,7 @@ IMPLEMENTATION(Asterisk, '*')
 
 @end
 
-@implementation SourceNodeStringDoubleQuote
+@implementation SourceNodeCStringDoubleQuote
 
 + (NSUInteger) isMatchingPrefix:(const unichar*)string maxLength:(NSUInteger)maxLength {
     return (*string == '"') ? 1 : NSNotFound;
@@ -298,7 +339,7 @@ IMPLEMENTATION(Asterisk, '*')
 @end
 
 #define IMPLEMENTATION(__NAME__, ...) \
-@implementation SourceNode##__NAME__ \
+@implementation SourceNodeC##__NAME__ \
 \
 IS_MATCHING_PREFIX_METHOD_WITH_TRAILING_WHITESPACE_OR_NEWLINE_OR_CHARACTER(__VA_ARGS__); \
 \
@@ -308,8 +349,8 @@ IS_MATCHING_PREFIX_METHOD_WITH_TRAILING_WHITESPACE_OR_NEWLINE_OR_CHARACTER(__VA_
 \
 @end
 
-IMPLEMENTATION(ConditionIf, @"if", '(')
-IMPLEMENTATION(ConditionElse, @"else", '{')
+IMPLEMENTATION(FlowIf, @"if", '(')
+IMPLEMENTATION(FlowElse, @"else", '{')
 IMPLEMENTATION(FlowBreak, @"break", 0)
 IMPLEMENTATION(FlowContinue, @"continue", 0)
 IMPLEMENTATION(FlowSwitch, @"switch", '(')
@@ -333,3 +374,9 @@ IMPLEMENTATION(TypeExtern, @"extern", 0)
 IMPLEMENTATION(TypeSizeOf, @"sizeof", '(')
 
 #undef IMPLEMENTATION
+
+@implementation SourceNodeCFunctionPrototype
+@end
+
+@implementation SourceNodeCFunctionDefinition
+@end

@@ -25,6 +25,7 @@ multiline comment
 }
 
 extern int main(int argc, char* argv[]);
+extern Bar();
 
 const char* multiline = "foo\	
  b\\ar\  
@@ -39,6 +40,12 @@ static inline BOOL _IsRealLineBreak(const unichar* string) {
     return *string != '\\';
 }
 
+@protocol Temp
++ (void) temp2;
+- (void) temp1;
+@end
+
+
 #define FOO 1	
 #undef FOO
 
@@ -52,6 +59,7 @@ static inline BOOL _IsRealLineBreak(const unichar* string) {
 	+ (id) sharedInstance;
 - (void) run; //  
 - (BOOL) test:(int)foo bar:(int)bar;
+- foo:(id)arg;
 @end
 
 struct temp {
@@ -63,6 +71,18 @@ struct temp {
 	
 - (BOOL) test:(int)foo bar:(int)bar {
 	return NO;
+}
+
+static void Foo() {
+	printf("hello");
+}
+
+Bar() {
+	return 0;
+}
+
+- test {
+	return nil;
 }
 
 #if 1

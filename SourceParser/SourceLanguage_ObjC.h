@@ -18,10 +18,10 @@
 
 #import "SourceLanguage_C.h"
 
-@interface SourceNodePreprocessorImport : SourceNodePreprocessor
+@interface SourceNodeObjCPreprocessorImport : SourceNodeCPreprocessor
 @end
 
-@interface SourceNodeObjCString : SourceNodeStringDoubleQuote //Leaf
+@interface SourceNodeObjCString : SourceNodeCStringDoubleQuote //Leaf
 @end
 
 @interface SourceNodeObjCInterface : SourceNode

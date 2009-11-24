@@ -34,11 +34,11 @@
         classes = [[NSMutableArray alloc] init];
         [classes addObjectsFromArray:[super nodeClasses]];
         
-        [classes addObject:[SourceNodeCommentCPP class]];
+        [classes addObject:[SourceNodeCPPComment class]]; //From C++ language
         
-        [classes insertObject:[SourceNodeObjCString class] atIndex:[classes indexOfObject:[SourceNodeStringSingleQuote class]]]; //Must be before single and double quote strings
+        [classes insertObject:[SourceNodeObjCString class] atIndex:[classes indexOfObject:[SourceNodeCStringSingleQuote class]]]; //Must be before single and double quote strings
         
-        [classes addObject:[SourceNodePreprocessorImport class]];
+        [classes addObject:[SourceNodeObjCPreprocessorImport class]];
         [classes addObject:[SourceNodeObjCInterface class]];
         [classes addObject:[SourceNodeObjCImplementation class]];
         [classes addObject:[SourceNodeObjCProtocol class]];
@@ -65,18 +65,29 @@
     return classes;
 }
 
-static BOOL _HasInterfaceParent(SourceNode* node) {
-	if([node.parent isKindOfClass:[SourceNodeObjCInterface class]])
+static BOOL _HasInterfaceOrProtocolParent(SourceNode* node) {
+	if([node.parent isKindOfClass:[SourceNodeObjCInterface class]] || [node.parent isKindOfClass:[SourceNodeObjCProtocol class]])
         return YES;
     
-    return [node.parent isKindOfClass:[SourceNodePreprocessorCondition class]] ? _HasInterfaceParent(node.parent) : NO;
+    return [node.parent isKindOfClass:[SourceNodeCPreprocessorCondition class]] ? _HasInterfaceOrProtocolParent(node.parent) : NO;
 }
 
 static BOOL _HasImplementationParent(SourceNode* node) {
 	if([node.parent isKindOfClass:[SourceNodeObjCImplementation class]])
         return YES;
     
-    return [node.parent isKindOfClass:[SourceNodePreprocessorCondition class]] ? _HasImplementationParent(node.parent) : NO;
+    return [node.parent isKindOfClass:[SourceNodeCPreprocessorCondition class]] ? _HasImplementationParent(node.parent) : NO;
+}
+
+- (BOOL) nodeIsStatementDelimiter:(SourceNode*)node {
+	return [super nodeIsStatementDelimiter:node] || [node isKindOfClass:[SourceNodeCPPComment class]];
+}
+
+- (BOOL) nodeHasRootParent:(SourceNode*)node {
+	if(node.parent && (node.parent.parent == nil))
+        return YES;
+    
+    return [node.parent isKindOfClass:[SourceNodeCPreprocessorCondition class]] || [node.parent isKindOfClass:[SourceNodeObjCInterface class]] || [node.parent isKindOfClass:[SourceNodeObjCImplementation class]] ? [self nodeHasRootParent:node.parent] : NO;
 }
 
 - (void) refactorSourceNode:(SourceNode*)node {
@@ -114,37 +125,31 @@ static BOOL _HasImplementationParent(SourceNode* node) {
                 _RearrangeNodesAsChildren(node, previousNode);
         }
         
-    } else if([node isKindOfClass:[SourceNodeText class]] && _HasInterfaceParent(node)) {
+    } else if([node isKindOfClass:[SourceNodeText class]] && _HasInterfaceOrProtocolParent(node)) {
     	
-        // "-(foo)bar" "+(foo)bar"
+        // "-(foo)bar" "+(foo)bar" "-bar" "+bar"
         NSString* content = node.content;
         if([content isEqualToString:@"-"] || [content isEqualToString:@"+"]) {
-        	SourceNode* nextNode = [node findNextSiblingIgnoringWhitespaceAndNewline];
-            if([nextNode isKindOfClass:[SourceNodeParenthesis class]]) {
-            	nextNode = [nextNode findNextSiblingOfClass:[SourceNodeSemicolon class]];
-                if(nextNode) {
-                	SourceNode* method = [[SourceNodeObjCMethodDeclaration alloc] initWithSource:node.source range:NSMakeRange(node.range.location, 0)];
-                    [node insertPreviousSibling:method];
-                    [method release];
-                	_RearrangeNodesAsChildren(method, nextNode.previousSibling);
-                }
+        	SourceNode* nextNode = [node findNextSiblingOfClass:[SourceNodeSemicolon class]];
+            if(nextNode) {
+                SourceNode* newNode = [[SourceNodeObjCMethodDeclaration alloc] initWithSource:node.source range:NSMakeRange(node.range.location, 0)];
+                [node insertPreviousSibling:newNode];
+                [newNode release];
+                _RearrangeNodesAsChildren(newNode, nextNode.previousSibling);
             }
         }
         
     } else if([node isKindOfClass:[SourceNodeText class]] && _HasImplementationParent(node)) {
     	
-        // "-(foo)bar" "+(foo)bar"
+        // "-(foo)bar" "+(foo)bar" "-bar" "+bar"
         NSString* content = node.content;
         if([content isEqualToString:@"-"] || [content isEqualToString:@"+"]) {
-        	SourceNode* nextNode = [node findNextSiblingIgnoringWhitespaceAndNewline];
-            if([nextNode isKindOfClass:[SourceNodeParenthesis class]]) {
-            	nextNode = [nextNode findNextSiblingOfClass:[SourceNodeBraces class]];
-                if(nextNode) {
-                	SourceNode* method = [[SourceNodeObjCMethodImplementation alloc] initWithSource:node.source range:NSMakeRange(node.range.location, 0)];
-                    [node insertPreviousSibling:method];
-                    [method release];
-                	_RearrangeNodesAsChildren(method, nextNode);
-                }
+        	SourceNode* nextNode = [node findNextSiblingOfClass:[SourceNodeBraces class]];
+            if(nextNode) {
+                SourceNode* newNode = [[SourceNodeObjCMethodImplementation alloc] initWithSource:node.source range:NSMakeRange(node.range.location, 0)];
+                [node insertPreviousSibling:newNode];
+                [newNode release];
+                _RearrangeNodesAsChildren(newNode, nextNode);
             }
         }
         
@@ -171,7 +176,7 @@ static BOOL _HasImplementationParent(SourceNode* node) {
 
 @end
 
-@implementation SourceNodePreprocessorImport
+@implementation SourceNodeObjCPreprocessorImport
 
 IS_MATCHING_PREFIX_METHOD_WITH_TRAILING_WHITESPACE_OR_NEWLINE(@"#import")
 

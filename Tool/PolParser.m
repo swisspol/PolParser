@@ -17,7 +17,7 @@ static void _ProcessNode(SourceNode* node) {
     }
     
     //Delete empty C++ comments and reformat the others as "  // Comment"
-    if([node isKindOfClass:[SourceNodeCommentCPP class]]) {
+    if([node isKindOfClass:[SourceNodeCPPComment class]]) {
         if([node.previousSibling isKindOfClass:[SourceNodeWhitespace class]])
         	[node.previousSibling removeFromParent];
         NSString* text = node.content;
@@ -30,7 +30,7 @@ static void _ProcessNode(SourceNode* node) {
     }
     
     //Reformat if(), for() and while() as "if ()", "for ()" and "while ()"
-    if([node isKindOfClass:[SourceNodeConditionIf class]] || [node isKindOfClass:[SourceNodeFlowFor class]] || [node isKindOfClass:[SourceNodeFlowWhile class]]) {
+    if([node isKindOfClass:[SourceNodeCFlowIf class]] || [node isKindOfClass:[SourceNodeCFlowFor class]] || [node isKindOfClass:[SourceNodeCFlowWhile class]]) {
     	while([node.nextSibling isKindOfClass:[SourceNodeWhitespace class]] || [node.nextSibling isKindOfClass:[SourceNodeNewline class]])
         	[node.nextSibling removeFromParent];
         [node insertNextSibling:[SourceNodeText sourceNodeWithText:@" "]];

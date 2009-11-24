@@ -34,8 +34,8 @@
         classes = [[NSMutableArray alloc] init];
         [classes addObjectsFromArray:[super nodeClasses]];
         
-        [classes addObject:[SourceNodeCommentCPP class]];
-        [classes addObject:[SourceNodeDoubleSemicolon class]];
+        [classes addObject:[SourceNodeCPPComment class]];
+        [classes addObject:[SourceNodeCPPScopeOperator class]];
     }
     return classes;
 }
@@ -46,9 +46,13 @@
     return [super parseSourceString:source];
 }
 
+- (BOOL) nodeIsStatementDelimiter:(SourceNode*)node {
+	return [super nodeIsStatementDelimiter:node] || [node isKindOfClass:[SourceNodeCPPComment class]];
+}
+
 @end
 
-@implementation SourceNodeCommentCPP
+@implementation SourceNodeCPPComment
 
 + (NSUInteger) isMatchingPrefix:(const unichar*)string maxLength:(NSUInteger)maxLength {
     return (maxLength >= 2) && (string[0] == '/') && (string[1] == '/') ? 2 : NSNotFound;
@@ -74,7 +78,7 @@
 
 @end
 
-@implementation SourceNodeDoubleSemicolon
+@implementation SourceNodeCPPScopeOperator
 
 + (NSUInteger) isMatchingPrefix:(const unichar*)string maxLength:(NSUInteger)maxLength {
     return (maxLength >= 2) && (string[0] == ':') && (string[1] == ':') ? 2 : NSNotFound;

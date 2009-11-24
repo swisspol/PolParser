@@ -101,6 +101,8 @@ void _RearrangeNodesAsChildren(SourceNode* startNode, SourceNode* endNode);
 @end
 
 @interface SourceLanguageC : SourceLanguageBase
+- (BOOL) nodeHasRootParent:(SourceNode*)node;
+- (BOOL) nodeIsStatementDelimiter:(SourceNode*)node;
 @end
 
 @interface SourceLanguageCPP : SourceLanguageC

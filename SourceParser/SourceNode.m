@@ -239,7 +239,7 @@ static void _ApplyFunction(SourceNode* node, SourceNodeApplierFunction function,
     [node.children getObjects:nodes];
     
     for(NSUInteger i = 0; i < count; ++i) {
-        if(nodes[i].parent == node) {
+        if(nodes[i].parent) {
             (*function)(nodes[i], context);
             if(nodes[i].parent && nodes[i].children && recursive)
                 _ApplyFunction(nodes[i], function, context, recursive);        

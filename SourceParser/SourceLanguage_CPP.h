@@ -18,8 +18,8 @@
 
 #import "SourceLanguage_C.h"
 
-@interface SourceNodeCommentCPP : SourceNode //Leaf
+@interface SourceNodeCPPComment : SourceNode //Leaf
 @end
 
-@interface SourceNodeDoubleSemicolon : SourceNode //Leaf
+@interface SourceNodeCPPScopeOperator : SourceNode //Leaf
 @end

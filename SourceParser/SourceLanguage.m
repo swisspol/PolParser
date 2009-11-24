@@ -19,9 +19,12 @@
 #import "SourceParser_Internal.h"
 
 void _RearrangeNodesAsChildren(SourceNode* startNode, SourceNode* endNode) {
-	SourceNode* node = [[SourceNodeText alloc] initWithSource:startNode.source range:startNode.range];
-    [startNode addChild:node];
-    [node release];
+	SourceNode* node;
+    if(startNode.range.length) {
+        node = [[SourceNodeText alloc] initWithSource:startNode.source range:startNode.range];
+        [startNode addChild:node];
+        [node release];
+    }
     node = startNode.nextSibling;
     do {
         SourceNode* sibling = node.nextSibling; //This will not be available afterwards

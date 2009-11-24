@@ -191,6 +191,31 @@ static void _ApplyFunction(SourceNode* node, SourceNodeApplierFunction function,
     [pool drain];
 }
 
+#if NS_BLOCKS_AVAILABLE
+
+static void _ApplyBlock(SourceNode* node, BOOL recursive, void (^block)(SourceNode* node)) {
+	NSUInteger count = node.children.count;
+    SourceNode* nodes[count];
+    [node.children getObjects:nodes];
+    
+    for(NSUInteger i = 0; i < count; ++i) {
+        block(nodes[i]);
+    	if(nodes[i].children && recursive)
+        	_ApplyBlock(nodes[i], recursive, block);        
+    }
+}
+
+- (void) enumerateChildrenRecursively:(BOOL)recursively usingBlock:(void (^)(SourceNode* node))block {
+	if([[self class] isLeaf])
+    	[NSException raise:NSInternalInconsistencyException format:@"%@ is a leaf node", self];
+    
+    NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+    _ApplyBlock(self, recursively, block);
+    [pool drain];
+}
+
+#endif
+
 static NSString* _FormatString(NSString* string) {
 	static NSString* spaceString = nil;
     if(spaceString == nil) {

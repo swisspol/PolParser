@@ -1,6 +1,6 @@
 #import "SourceParser.h"
 
-static void _ApplierFunction(SourceNode* node, void* context) {
+static void _ProcessNode(SourceNode* node) {
 	//Replace indenting spaces by tabs
     if([node isMemberOfClass:[SourceNodeIndenting class]]) {
     	NSString* text = node.content;
@@ -28,6 +28,14 @@ static void _ApplierFunction(SourceNode* node, void* context) {
     }
 }
 
+#if !NS_BLOCKS_AVAILABLE
+
+static void _ApplierFunction(SourceNode* node, void* context) {
+	_ProcessNode(node);
+}
+
+#endif
+
 int main(int argc, const char* argv[]) {
     NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
 	
@@ -48,7 +56,13 @@ int main(int argc, const char* argv[]) {
         SourceNodeRoot* root = [SourceLanguage parseSourceFile:path];
     	if(root) {
             if(optionClean)
+#if NS_BLOCKS_AVAILABLE
+				[root enumerateChildrenRecursively:YES usingBlock:^(SourceNode* node) {
+                	_ProcessNode(node);
+                }];
+#else
             	[root applyFunctionOnChildren:_ApplierFunction context:NULL recursively:YES];
+#endif
             
             printf("%s\n", [[root fullDescription] UTF8String]);
             

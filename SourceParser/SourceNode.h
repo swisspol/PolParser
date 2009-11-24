@@ -53,4 +53,7 @@ typedef void (*SourceNodeApplierFunction)(SourceNode* node, void* context);
 - (void) removeChildAtIndex:(NSUInteger)index;
 
 - (void) applyFunctionOnChildren:(SourceNodeApplierFunction)function context:(void*)context recursively:(BOOL)recursively;
+#if NS_BLOCKS_AVAILABLE
+- (void) enumerateChildrenRecursively:(BOOL)recursively usingBlock:(void (^)(SourceNode* node))block;
+#endif
 @end

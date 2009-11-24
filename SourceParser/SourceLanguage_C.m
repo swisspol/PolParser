@@ -182,12 +182,30 @@
             }
         }
         
+    } else if([node isKindOfClass:[SourceNodeCFlowReturn class]]) {
+        
+        // "return" "return foo"
+        SourceNode* semicolonNode = [node findNextSiblingOfClass:[SourceNodeSemicolon class]];
+        if(semicolonNode) {
+        	if(semicolonNode.previousSibling != node)
+                _RearrangeNodesAsChildren(node, SEMICOLON_PREVIOUS_SIBLING(semicolonNode));
+        } else {
+            if([node.parent isKindOfClass:[SourceNodeCFlowIf class]] || [node.parent isKindOfClass:[SourceNodeCFlowElse class]] || [node.parent isKindOfClass:[SourceNodeCFlowElseIf class]]
+            	|| [node.parent isKindOfClass:[SourceNodeCFlowFor class]] || [node.parent isKindOfClass:[SourceNodeCFlowWhile class]])
+            	_RearrangeNodesAsChildren(node, node.parent.lastChild);
+        }
+        
     } else if([node isKindOfClass:[SourceNodeCFlowGoto class]]) {
         
         // "goto foo"
         SourceNode* semicolonNode = [node findNextSiblingOfClass:[SourceNodeSemicolon class]];
-        if(semicolonNode)
+        if(semicolonNode) {
             _RearrangeNodesAsChildren(node, SEMICOLON_PREVIOUS_SIBLING(semicolonNode));
+        } else {
+            if([node.parent isKindOfClass:[SourceNodeCFlowIf class]] || [node.parent isKindOfClass:[SourceNodeCFlowElse class]] || [node.parent isKindOfClass:[SourceNodeCFlowElseIf class]]
+            	|| [node.parent isKindOfClass:[SourceNodeCFlowFor class]] || [node.parent isKindOfClass:[SourceNodeCFlowWhile class]])
+            	_RearrangeNodesAsChildren(node, node.parent.lastChild);
+        }
         
     } else if([node isKindOfClass:[SourceNodeCTypeStruct class]] || [node isKindOfClass:[SourceNodeCTypeUnion class]]) {
         
@@ -418,7 +436,7 @@ IMPLEMENTATION(FlowFor, @"for", '(')
 IMPLEMENTATION(FlowDoWhile, @"do", '{')
 IMPLEMENTATION(FlowWhile, @"while", '(')
 IMPLEMENTATION(FlowGoto, @"goto", 0)
-IMPLEMENTATION(FlowReturn, @"return", '(')
+IMPLEMENTATION(FlowReturn, @"return", ';') //FIXME: Next character can also be '('
 IMPLEMENTATION(Typedef, @"typedef", 0)
 IMPLEMENTATION(TypeStruct, @"struct", '{')
 IMPLEMENTATION(TypeUnion, @"union", '{')

@@ -115,14 +115,25 @@ static BOOL _HasImplementationParent(SourceNode* node) {
         if([nextNode isKindOfClass:[SourceNodeParenthesis class]])
             _RearrangeNodesAsChildren(node, nextNode);
         
-    } else if([node isKindOfClass:[SourceNodeObjCProperty class]] || [node isKindOfClass:[SourceNodeObjCThrow class]]) {
+    } else if([node isKindOfClass:[SourceNodeObjCThrow class]]) {
         
-        // "@property" "@property()" "@throw" "@throw foo"
+        // "@throw" "@throw foo"
         SourceNode* semicolonNode = [node findNextSiblingOfClass:[SourceNodeSemicolon class]];
         if(semicolonNode) {
-            if(semicolonNode.previousSibling != node)
+        	if(semicolonNode.previousSibling != node)
                 _RearrangeNodesAsChildren(node, SEMICOLON_PREVIOUS_SIBLING(semicolonNode));
+        } else {
+            if([node.parent isKindOfClass:[SourceNodeCFlowIf class]] || [node.parent isKindOfClass:[SourceNodeCFlowElse class]] || [node.parent isKindOfClass:[SourceNodeCFlowElseIf class]]
+            	|| [node.parent isKindOfClass:[SourceNodeCFlowFor class]] || [node.parent isKindOfClass:[SourceNodeCFlowWhile class]])
+            	_RearrangeNodesAsChildren(node, node.parent.lastChild);
         }
+        
+    } else if([node isKindOfClass:[SourceNodeObjCProperty class]] && _HasInterfaceOrProtocolParent(node)) {
+        
+        // "@property" "@property()"
+        SourceNode* semicolonNode = [node findNextSiblingOfClass:[SourceNodeSemicolon class]];
+        if(semicolonNode)
+            _RearrangeNodesAsChildren(node, SEMICOLON_PREVIOUS_SIBLING(semicolonNode));
         
     } else if([node isKindOfClass:[SourceNodeText class]] && _HasInterfaceOrProtocolParent(node)) {
         

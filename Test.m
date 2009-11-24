@@ -16,6 +16,8 @@ extern int main(int argc, char* argv[])		;
 
 const struct sockaddr*		address;
 
+typedef void (*SourceNodeApplierFunction)(SourceNode* node, void* context);
+
 #define FOO 1	
 #undef FOO
 
@@ -87,6 +89,8 @@ Bar() {
     
     goto Temp;
     
+    if(0) goto Temp;
+    
     if(1) {
     	foo();
     } else if(2) {
@@ -114,7 +118,8 @@ Bar() {
     @try {
         @throw;
         NSBeep();
-        @throw exception;
+        @throw foo;
+        if(0) @throw bar	;
     }
     @catch (NSException * e)
     {
@@ -152,7 +157,9 @@ Bar() {
 #endif
 
 - (void) run {
-	NSLog(@"Running!");
+	return;
+    NSLog(@"Running!");
+    return  ;
 }
 
 @end

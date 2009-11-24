@@ -46,7 +46,8 @@ typedef void (*SourceNodeApplierFunction)(SourceNode* node, void* context);
 @property(nonatomic, readonly) SourceNode* previousSibling;
 @property(nonatomic, readonly) SourceNode* nextSibling;
 
-@property(nonatomic, readonly) NSString* miniDescription;
+@property(nonatomic, readonly) NSString* contentDescription;
+@property(nonatomic, readonly) NSString* compactDescription;
 @property(nonatomic, readonly) NSString* fullDescription;
 
 - (void) addChild:(SourceNode*)child;

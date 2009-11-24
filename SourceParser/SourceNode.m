@@ -312,30 +312,54 @@ static NSString* _FormatString(NSString* string) {
     return string;
 }
 
-- (NSString*) miniDescription {
+- (NSString*) contentDescription {
     return _FormatString(self.content);
 }
 
-static void _AppendNodeDescription(SourceNode* node, NSMutableString* string, NSString* prefix) {
+static void _AppendChildrenCompactDescription(SourceNode* node, NSMutableString* string, NSString* prefix) {
+    prefix = [prefix stringByAppendingString:@"  "];
+    [string appendFormat:@"<%@>\n%@|", [[node class] name], prefix];
+    for(node in node.children) {
+    	[string appendFormat:@"%@|", _FormatString(node.content)];
+        if(node.children) {
+        	[string appendFormat:@"\n%@", prefix];
+            _AppendChildrenCompactDescription(node, string, prefix);
+            [string appendFormat:@"\n%@|", prefix];
+        }
+    }
+}
+
+- (NSString*) compactDescription {
+	if(_children == nil)
+    	return [self contentDescription];
+    
+    NSMutableString* string = [NSMutableString string];
+    _AppendChildrenCompactDescription(self, string, @"");
+    return string;
+}
+
+static void _AppendNodeFullDescription(SourceNode* node, NSMutableString* string, NSString* prefix) {
     NSString* content = (node.children ? nil : _FormatString(node.content));
     if(content.length)
         [string appendFormat:@"%@[%i:%i] <%@> = |%@|\n", prefix, node.lines.location + 1, node.lines.location + node.lines.length, [[node class] name], content];
     else
         [string appendFormat:@"%@[%i:%i] <%@>\n", prefix, node.lines.location + 1, node.lines.location + node.lines.length, [[node class] name]];
     
-    prefix = [prefix stringByAppendingString:@"\t"];
-    for(node in [node children])
-        _AppendNodeDescription(node, string, prefix);
+    if(node.children) {
+        prefix = [prefix stringByAppendingString:@"|    "];
+        for(node in node.children)
+            _AppendNodeFullDescription(node, string, prefix);
+    }
 }
 
 - (NSString*) fullDescription {
-    NSMutableString*    string = [NSMutableString string];
-    _AppendNodeDescription(self, string, @"");
+    NSMutableString* string = [NSMutableString string];
+    _AppendNodeFullDescription(self, string, @"");
     return string;
 }
 
 - (NSString*) description {
-    return [NSString stringWithFormat:@"<%@ = %p | characters = [%i, %i] | lines = [%i:%i]>\n%@", [self class], self, self.range.location, self.range.length, self.lines.location + 1, self.lines.location + self.lines.length, [self isKindOfClass:[SourceNodeRoot class]] ? self.fullDescription : self.miniDescription];
+    return [NSString stringWithFormat:@"<%@ = %p | characters = [%i, %i] | lines = [%i:%i]>\n%@", [self class], self, self.range.location, self.range.length, self.lines.location + 1, self.lines.location + self.lines.length, [self isKindOfClass:[SourceNodeRoot class]] ? self.fullDescription : self.contentDescription];
 }
 
 @end

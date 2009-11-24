@@ -19,6 +19,9 @@
 #import "SourceParser_Internal.h"
 
 void _RearrangeNodesAsChildren(SourceNode* startNode, SourceNode* endNode) {
+    if(startNode == endNode)
+    	return;
+    
     SourceNode* node;
     if(startNode.range.length) {
         node = [[SourceNodeText alloc] initWithSource:startNode.source range:startNode.range];

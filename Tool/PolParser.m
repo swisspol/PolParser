@@ -31,7 +31,7 @@ static void _ProcessNode(SourceNode* node) {
     
     //Reformat "if()", "for()" and "while()" as "if ()", "for ()" and "while ()"
     if(([node isKindOfClass:[SourceNodeCFlowIf class]] || [node isKindOfClass:[SourceNodeCFlowFor class]] || [node isKindOfClass:[SourceNodeCFlowWhile class]]) && node.children.count) {
-        SourceNode* subnode = [node.children objectAtIndex:0];
+        SourceNode* subnode = node.firstChild;
         while([subnode.nextSibling isKindOfClass:[SourceNodeWhitespace class]] || [subnode.nextSibling isKindOfClass:[SourceNodeNewline class]])
             [subnode.nextSibling removeFromParent];
         [subnode insertNextSibling:[SourceNodeText sourceNodeWithText:@" "]];
@@ -39,7 +39,7 @@ static void _ProcessNode(SourceNode* node) {
     
     //Reformat "do {} while()" as "do {} while ()"
     if([node isKindOfClass:[SourceNodeCFlowDoWhile class]] && node.children.count) {
-        SourceNode* subnode = [node.children objectAtIndex:(node.children.count - 1)];
+        SourceNode* subnode = node.lastChild;
         if([subnode isKindOfClass:[SourceNodeParenthesis class]]) {
             while([subnode.previousSibling isKindOfClass:[SourceNodeWhitespace class]] || [subnode.previousSibling isKindOfClass:[SourceNodeNewline class]])
                 [subnode.previousSibling removeFromParent];

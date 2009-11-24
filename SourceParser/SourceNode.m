@@ -98,6 +98,14 @@ static NSRange _LineNumbersForRange(NSString* string, NSRange range) {
 	return _children;
 }
 
+- (SourceNode*) firstChild {
+	return [_children objectAtIndex:0];
+}
+
+- (SourceNode*) lastChild {
+	return [_children objectAtIndex:(_children.count - 1)];
+}
+
 - (SourceNode*) previousSibling {
 	if(_parent == nil)
     	[NSException raise:NSInternalInconsistencyException format:@"%@ has no parent", self];

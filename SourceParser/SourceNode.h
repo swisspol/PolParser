@@ -40,6 +40,8 @@ typedef void (*SourceNodeApplierFunction)(SourceNode* node, void* context);
 
 @property(nonatomic, readonly) SourceNode* parent;
 @property(nonatomic, readonly) NSArray* children;
+@property(nonatomic, readonly) SourceNode* firstChild;
+@property(nonatomic, readonly) SourceNode* lastChild;
 @property(nonatomic, readonly) SourceNode* previousSibling;
 @property(nonatomic, readonly) SourceNode* nextSibling;
 

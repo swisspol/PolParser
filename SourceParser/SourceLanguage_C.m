@@ -150,9 +150,18 @@
         SourceNode* bracesNode = [node findNextSiblingOfClass:[SourceNodeBraces class]];
         if(bracesNode) {
         	SourceNode* semicolonNode = [bracesNode findNextSiblingOfClass:[SourceNodeSemicolon class]];
-            if(semicolonNode)
+            if(!semicolonNode && [bracesNode.parent isKindOfClass:[SourceNodeCTypedef class]])
+            	_RearrangeNodesAsChildren(node, bracesNode.parent.lastChild);
+            else if(semicolonNode)
             	_RearrangeNodesAsChildren(node, semicolonNode.previousSibling);
         }
+        
+    } else if([node isKindOfClass:[SourceNodeCTypedef class]]) {
+    	
+        // "typedef foo"
+        SourceNode* semicolonNode = [node findNextSiblingOfClass:[SourceNodeSemicolon class]];
+        if(semicolonNode)
+        	_RearrangeNodesAsChildren(node, semicolonNode.previousSibling);
         
     } else if([node isKindOfClass:[SourceNodeCTypeSizeOf class]]) {
     	
@@ -173,7 +182,7 @@
                 	previousNode = previousNode.previousSibling;
                 }
                 if(previousNode == nil) {
-                	previousNode = [node.parent.children objectAtIndex:0];
+                	previousNode = node.parent.firstChild;
                     if([previousNode isKindOfClass:[SourceNodeWhitespace class]] || [previousNode isKindOfClass:[SourceNodeNewline class]])
                     	previousNode = [previousNode findNextSiblingIgnoringWhitespaceAndNewline];
                 }

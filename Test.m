@@ -24,6 +24,8 @@ multiline comment
     return _matching; \
 }
 
+typedef void (*SourceNodeApplierFunction)(SourceNode* node, void* context);
+
 extern int main(int argc, char* argv[]);
 extern Bar();
 
@@ -66,6 +68,11 @@ struct temp {
     int foo;
     int bar;
 };
+
+typedef union {
+	int temp1;
+    long temp2;
+} boom;
 
 @implementation Demo//First pass
 	
@@ -129,10 +136,18 @@ Bar() {
 
 - (BOOL) isValid
 {
-	for(int i = 2; i < 10; ++i) {
+	{
+    	subblock();
+    }
+    
+    for(int i = 2; i < 10; ++i)
+    
+    
+    
+    {
     	NSLog("PING");
     }
-    @synchronized ([self class]) {
+    @synchronized ([self class]){
     	self + 2;
     }
     return YES;

@@ -12,6 +12,8 @@ static inline BOOL _IsRealLineBreak(const unichar* string) {
 - (void) temp1;
 @end
 
+extern int main(int argc, char* argv[])		;
+
 const struct sockaddr*		address;
 
 #define FOO 1	
@@ -61,7 +63,8 @@ Bar() {
         else if(4) {
             ;
         }
-        break;
+        else
+            break;
     }
     else {
         ;
@@ -96,6 +99,13 @@ Bar() {
     	foo();
     else
     	bar();
+    
+    if(1)
+    	foo();
+    else if(2)
+    	bar();
+    else
+    	temp();
     
     while  (true) {
         ;

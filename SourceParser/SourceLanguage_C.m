@@ -58,6 +58,7 @@
         [classes addObject:[SourceNodeCStringDoubleQuote class]];
         [classes addObject:[SourceNodeCFlowIf class]];
         [classes addObject:[SourceNodeCFlowElse class]];
+        [classes addObject:[SourceNodeCFlowElseIf class]];
         [classes addObject:[SourceNodeCFlowBreak class]];
         [classes addObject:[SourceNodeCFlowContinue class]];
         [classes addObject:[SourceNodeCFlowSwitch class]];
@@ -103,11 +104,27 @@
     if([node isKindOfClass:[SourceNodeBraces class]]) {
         SourceNode* previousNode = [node findPreviousSiblingIgnoringWhitespaceAndNewline];
         
-        // "if() {}" "for() {}" "switch() {}" "while() {}"
+        // "if() {}" "for() {}" "switch() {}" "while() {}" "else if() {}"
         if([previousNode isKindOfClass:[SourceNodeParenthesis class]]) {
             previousNode = [previousNode findPreviousSiblingIgnoringWhitespaceAndNewline];
-            if([previousNode isKindOfClass:[SourceNodeCFlowIf class]] || [previousNode isKindOfClass:[SourceNodeCFlowFor class]] || [previousNode isKindOfClass:[SourceNodeCFlowSwitch class]] || [previousNode isKindOfClass:[SourceNodeCFlowWhile class]])
-                _RearrangeNodesAsChildren(previousNode, node);
+            if([previousNode isKindOfClass:[SourceNodeCFlowIf class]] || [previousNode isKindOfClass:[SourceNodeCFlowFor class]] || [previousNode isKindOfClass:[SourceNodeCFlowSwitch class]] || [previousNode isKindOfClass:[SourceNodeCFlowWhile class]]) {
+                SourceNode* elseNode = [previousNode isKindOfClass:[SourceNodeCFlowIf class]] ? [previousNode findPreviousSiblingIgnoringWhitespaceAndNewline] : nil;
+                if([elseNode isKindOfClass:[SourceNodeCFlowElse class]] && !elseNode.children) {
+                	SourceNode* newNode = [[SourceNodeCFlowElseIf alloc] initWithSource:elseNode.source range:NSMakeRange(elseNode.range.location, previousNode.range.location + previousNode.range.length - elseNode.range.location)];
+                    [elseNode insertPreviousSibling:newNode];
+                    [newNode release];
+                    while(1) {
+                    	SourceNode* nextNode = elseNode.nextSibling;
+                        [elseNode removeFromParent];
+                        if(elseNode == previousNode)
+                        	break;
+                        elseNode = nextNode;
+                    }
+                    _RearrangeNodesAsChildren(newNode, node);
+                } else {
+                	_RearrangeNodesAsChildren(previousNode, node);
+                }
+            }
         }
         
         // "do {} while()"
@@ -127,23 +144,42 @@
         
     } else if([node isKindOfClass:[SourceNodeCFlowElse class]]) {
         
-        // "else {}"
-        SourceNode* bracesNode = [node findNextSiblingOfClass:[SourceNodeBraces class]];
-        SourceNode* semicolonNode = [node findNextSiblingOfClass:[SourceNodeSemicolon class]];
-        if(bracesNode && (!semicolonNode || ([node.parent indexOfChild:bracesNode] < [node.parent indexOfChild:semicolonNode])))
-            _RearrangeNodesAsChildren(node, bracesNode);
-        else if(semicolonNode && (!bracesNode || ([node.parent indexOfChild:semicolonNode] < [node.parent indexOfChild:bracesNode])))
-            _RearrangeNodesAsChildren(node, semicolonNode.previousSibling); //FIXME: Strip trailing whitespace?
+        // "else {}" "else"
+        SourceNode* nextNode = [node findNextSiblingIgnoringWhitespaceAndNewline];
+        if(![nextNode isKindOfClass:[SourceNodeCFlowIf class]]) {
+            SourceNode* bracesNode = [node findNextSiblingOfClass:[SourceNodeBraces class]];
+            SourceNode* semicolonNode = [node findNextSiblingOfClass:[SourceNodeSemicolon class]];
+            if(bracesNode && (!semicolonNode || ([node.parent indexOfChild:bracesNode] < [node.parent indexOfChild:semicolonNode])))
+                _RearrangeNodesAsChildren(node, bracesNode);
+            else if(semicolonNode && (!bracesNode || ([node.parent indexOfChild:semicolonNode] < [node.parent indexOfChild:bracesNode])))
+                _RearrangeNodesAsChildren(node, SEMICOLON_PREVIOUS_SIBLING(semicolonNode));
+        }
         
     } else if([node isKindOfClass:[SourceNodeCFlowIf class]] || [node isKindOfClass:[SourceNodeCFlowFor class]] || [node isKindOfClass:[SourceNodeCFlowSwitch class]]) {
         
-        // "if()" "for()" "switch()"
+        // "if()" "for()" "switch()" "else if()"
         SourceNode* nextNode = [node findNextSiblingIgnoringWhitespaceAndNewline];
         if([nextNode isKindOfClass:[SourceNodeParenthesis class]]) {
             SourceNode* bracesNode = [nextNode findNextSiblingOfClass:[SourceNodeBraces class]];
             SourceNode* semicolonNode = [nextNode findNextSiblingOfClass:[SourceNodeSemicolon class]];
-            if(semicolonNode && (!bracesNode || ([node.parent indexOfChild:semicolonNode] < [node.parent indexOfChild:bracesNode])))
-                _RearrangeNodesAsChildren(node, semicolonNode.previousSibling); //FIXME: Strip trailing whitespace?
+            if(semicolonNode && (!bracesNode || ([node.parent indexOfChild:semicolonNode] < [node.parent indexOfChild:bracesNode]))) {
+                SourceNode* elseNode = [node isKindOfClass:[SourceNodeCFlowIf class]] ? [node findPreviousSiblingIgnoringWhitespaceAndNewline] : nil;
+                if([elseNode isKindOfClass:[SourceNodeCFlowElse class]] && !elseNode.children) {
+                	SourceNode* newNode = [[SourceNodeCFlowElseIf alloc] initWithSource:elseNode.source range:NSMakeRange(elseNode.range.location, node.range.location + node.range.length - elseNode.range.location)];
+                    [elseNode insertPreviousSibling:newNode];
+                    [newNode release];
+                    while(1) {
+                    	SourceNode* nextNode = elseNode.nextSibling;
+                        [elseNode removeFromParent];
+                        if(elseNode == node)
+                        	break;
+                        elseNode = nextNode;
+                    }
+                    _RearrangeNodesAsChildren(newNode, SEMICOLON_PREVIOUS_SIBLING(semicolonNode));
+                } else {
+                    _RearrangeNodesAsChildren(node, SEMICOLON_PREVIOUS_SIBLING(semicolonNode));
+                }
+            }
         }
         
     } else if([node isKindOfClass:[SourceNodeCFlowGoto class]]) {
@@ -151,7 +187,7 @@
         // "goto foo"
         SourceNode* semicolonNode = [node findNextSiblingOfClass:[SourceNodeSemicolon class]];
         if(semicolonNode)
-            _RearrangeNodesAsChildren(node, semicolonNode.previousSibling); //FIXME: Strip trailing whitespace?
+            _RearrangeNodesAsChildren(node, SEMICOLON_PREVIOUS_SIBLING(semicolonNode));
         
     } else if([node isKindOfClass:[SourceNodeCTypeStruct class]] || [node isKindOfClass:[SourceNodeCTypeUnion class]]) {
         
@@ -163,7 +199,7 @@
             if(!semicolonNode && [bracesNode.parent isKindOfClass:[SourceNodeCTypedef class]])
                 _RearrangeNodesAsChildren(node, bracesNode.parent.lastChild);
             else if(semicolonNode)
-                _RearrangeNodesAsChildren(node, semicolonNode.previousSibling); //FIXME: Strip trailing whitespace?
+                _RearrangeNodesAsChildren(node, SEMICOLON_PREVIOUS_SIBLING(semicolonNode));
         }
         
     } else if([node isKindOfClass:[SourceNodeCTypedef class]]) {
@@ -171,7 +207,7 @@
         // "typedef foo"
         SourceNode* semicolonNode = [node findNextSiblingOfClass:[SourceNodeSemicolon class]];
         if(semicolonNode)
-            _RearrangeNodesAsChildren(node, semicolonNode.previousSibling); //FIXME: Strip trailing whitespace?
+            _RearrangeNodesAsChildren(node, SEMICOLON_PREVIOUS_SIBLING(semicolonNode));
         
     } else if([node isKindOfClass:[SourceNodeCTypeSizeOf class]]) {
         
@@ -203,7 +239,7 @@
                 SourceNode* newNode = [([nextNode isKindOfClass:[SourceNodeBraces class]] ? [SourceNodeCFunctionDefinition alloc] : [SourceNodeCFunctionPrototype alloc]) initWithSource:previousNode.source range:NSMakeRange(previousNode.range.location, 0)];
                 [previousNode insertPreviousSibling:newNode];
                 [newNode release];
-                _RearrangeNodesAsChildren(newNode, [nextNode isKindOfClass:[SourceNodeBraces class]] ? nextNode : nextNode.previousSibling); //FIXME: Strip trailing whitespace?
+                _RearrangeNodesAsChildren(newNode, [nextNode isKindOfClass:[SourceNodeBraces class]] ? nextNode : SEMICOLON_PREVIOUS_SIBLING(nextNode));
             }
             
         }
@@ -373,8 +409,8 @@ IS_MATCHING_PREFIX_METHOD_WITH_TRAILING_WHITESPACE_OR_NEWLINE_OR_CHARACTER(__VA_
 
 IMPLEMENTATION(FlowIf, @"if", '(')
 IMPLEMENTATION(FlowElse, @"else", '{')
-IMPLEMENTATION(FlowBreak, @"break", 0)
-IMPLEMENTATION(FlowContinue, @"continue", 0)
+IMPLEMENTATION(FlowBreak, @"break", ';')
+IMPLEMENTATION(FlowContinue, @"continue", ';')
 IMPLEMENTATION(FlowSwitch, @"switch", '(')
 IMPLEMENTATION(FlowCase, @"case", ':')
 IMPLEMENTATION(FlowDefault, @"default", ':')
@@ -396,6 +432,9 @@ IMPLEMENTATION(TypeExtern, @"extern", 0)
 IMPLEMENTATION(TypeSizeOf, @"sizeof", '(')
 
 #undef IMPLEMENTATION
+
+@implementation SourceNodeCFlowElseIf
+@end
 
 @implementation SourceNodeCFunctionPrototype
 @end

@@ -29,8 +29,8 @@ static void _ProcessNode(SourceNode* node) {
         [node replaceWithText:text];
     }
     
-    //Reformat "if()", "for()" and "while()" as "if ()", "for ()" and "while ()"
-    if(([node isKindOfClass:[SourceNodeCFlowIf class]] || [node isKindOfClass:[SourceNodeCFlowFor class]] || [node isKindOfClass:[SourceNodeCFlowWhile class]]) && node.children.count) {
+    //Reformat "if...", "else if...", "for..." and "while..." as "if ...", "else if ...", "for ..." and "while ..."
+    if(([node isKindOfClass:[SourceNodeCFlowIf class]] || [node isKindOfClass:[SourceNodeCFlowElseIf class]] || [node isKindOfClass:[SourceNodeCFlowFor class]] || [node isKindOfClass:[SourceNodeCFlowWhile class]]) && node.children.count) {
         SourceNode* subnode = node.firstChild;
         while([subnode.nextSibling isKindOfClass:[SourceNodeWhitespace class]] || [subnode.nextSibling isKindOfClass:[SourceNodeNewline class]])
             [subnode.nextSibling removeFromParent];
@@ -52,7 +52,8 @@ static void _ProcessNode(SourceNode* node) {
         if([node.parent isKindOfClass:[SourceNodeCFlowFor class]] || [node.parent isKindOfClass:[SourceNodeCFlowDoWhile class]] || [node.parent isKindOfClass:[SourceNodeCFlowWhile class]]
             || [node.parent isKindOfClass:[SourceNodeCFlowIf class]] || [node.parent isKindOfClass:[SourceNodeCFlowElse class]] || [node.parent isKindOfClass:[SourceNodeCFunctionDefinition class]]
             || [node.parent isKindOfClass:[SourceNodeObjCInterface class]] || [node.parent isKindOfClass:[SourceNodeObjCTry class]] || [node.parent isKindOfClass:[SourceNodeObjCCatch class]]
-            || [node.parent isKindOfClass:[SourceNodeObjCFinally class]] || [node.parent isKindOfClass:[SourceNodeObjCSynchronized class]] || [node.parent isKindOfClass:[SourceNodeObjCMethodImplementation class]]) {
+            || [node.parent isKindOfClass:[SourceNodeObjCFinally class]] || [node.parent isKindOfClass:[SourceNodeObjCSynchronized class]] || [node.parent isKindOfClass:[SourceNodeObjCMethodImplementation class]]
+            || [node.parent isKindOfClass:[SourceNodeCFlowElseIf class]]) {
             
             SourceNode* subnode = [node findPreviousSiblingIgnoringWhitespaceAndNewline];
             if(subnode) {

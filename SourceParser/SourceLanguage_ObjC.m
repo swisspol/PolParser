@@ -120,9 +120,8 @@ static BOOL _HasImplementationParent(SourceNode* node) {
         // "@property" "@property()" "@throw" "@throw foo"
         SourceNode* semicolonNode = [node findNextSiblingOfClass:[SourceNodeSemicolon class]];
         if(semicolonNode) {
-            SourceNode* previousNode = semicolonNode.previousSibling;
-            if(node != previousNode)
-                _RearrangeNodesAsChildren(node, previousNode); //FIXME: Strip trailing whitespace?
+            if(semicolonNode.previousSibling != node)
+                _RearrangeNodesAsChildren(node, SEMICOLON_PREVIOUS_SIBLING(semicolonNode));
         }
         
     } else if([node isKindOfClass:[SourceNodeText class]] && _HasInterfaceOrProtocolParent(node)) {
@@ -130,12 +129,12 @@ static BOOL _HasImplementationParent(SourceNode* node) {
         // "-(foo)bar" "+(foo)bar" "-bar" "+bar"
         NSString* content = node.content;
         if([content isEqualToString:@"-"] || [content isEqualToString:@"+"]) {
-            SourceNode* nextNode = [node findNextSiblingOfClass:[SourceNodeSemicolon class]];
-            if(nextNode) {
+            SourceNode* semicolonNode = [node findNextSiblingOfClass:[SourceNodeSemicolon class]];
+            if(semicolonNode) {
                 SourceNode* newNode = [[SourceNodeObjCMethodDeclaration alloc] initWithSource:node.source range:NSMakeRange(node.range.location, 0)];
                 [node insertPreviousSibling:newNode];
                 [newNode release];
-                _RearrangeNodesAsChildren(newNode, nextNode.previousSibling); //FIXME: Strip trailing whitespace?
+                _RearrangeNodesAsChildren(newNode, SEMICOLON_PREVIOUS_SIBLING(semicolonNode));
             }
         }
         

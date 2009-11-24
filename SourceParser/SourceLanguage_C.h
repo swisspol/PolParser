@@ -98,6 +98,9 @@
 @interface SourceNodeCFlowElse : SourceNode
 @end
 
+@interface SourceNodeCFlowElseIf : SourceNode
+@end
+
 @interface SourceNodeCFlowBreak : SourceNode //Leaf
 @end
 

@@ -308,6 +308,10 @@ static BOOL _ParseSource(SourceLanguage* language, NSString* source, const unich
 
 @implementation SourceNodeText
 
++ (SourceNodeText*) sourceNodeWithText:(NSString*)text {
+	return [[[self alloc] initWithText:text] autorelease];
+}
+
 - (id) initWithText:(NSString*)text {
 	return [self initWithSource:text range:NSMakeRange(0, text.length)];
 }

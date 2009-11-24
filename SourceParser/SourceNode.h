@@ -51,6 +51,8 @@ typedef void (*SourceNodeApplierFunction)(SourceNode* node, void* context);
 - (NSUInteger) indexOfChild:(SourceNode*)child;
 - (void) insertChild:(SourceNode*)child atIndex:(NSUInteger)index;
 - (void) removeChildAtIndex:(NSUInteger)index;
+- (void) insertPreviousSibling:(SourceNode*)sibling;
+- (void) insertNextSibling:(SourceNode*)sibling;
 
 - (void) applyFunctionOnChildren:(SourceNodeApplierFunction)function context:(void*)context recursively:(BOOL)recursively;
 #if NS_BLOCKS_AVAILABLE

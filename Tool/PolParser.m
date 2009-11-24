@@ -8,10 +8,12 @@ static void _ProcessNode(SourceNode* node) {
         [node replaceWithText:text];
     }
     
-    //Delete whitespace at end of lines
+    //Delete whitespace at end of lines & remove multiple newlines
     else if([node isMemberOfClass:[SourceNodeNewline class]]) {
         if([node.previousSibling isMemberOfClass:[SourceNodeWhitespace class]])
         	[node.previousSibling removeFromParent];
+        if([node.nextSibling isMemberOfClass:[SourceNodeNewline class]] && [node.nextSibling.nextSibling isMemberOfClass:[SourceNodeNewline class]])
+        	[node.nextSibling removeFromParent];
     }
     
     //Delete empty C++ comments and reformat the others as "  // Comment"
@@ -25,6 +27,13 @@ static void _ProcessNode(SourceNode* node) {
         else
             text = nil;
         [node replaceWithText:text];
+    }
+    
+    //Reformat if(), for() and while() as "if ()", "for ()" and "while ()"
+    else if([node isMemberOfClass:[SourceNodeConditionIf class]] || [node isMemberOfClass:[SourceNodeFlowFor class]] || [node isMemberOfClass:[SourceNodeFlowWhile class]]) {
+    	while([node.nextSibling isMemberOfClass:[SourceNodeWhitespace class]] || [node.nextSibling isMemberOfClass:[SourceNodeNewline class]])
+        	[node.nextSibling removeFromParent];
+        [node insertNextSibling:[SourceNodeText sourceNodeWithText:@" "]];
     }
 }
 

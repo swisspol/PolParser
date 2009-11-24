@@ -43,6 +43,7 @@
 @end
 
 @interface SourceNodeText : SourceNode //Leaf
++ (SourceNodeText*) sourceNodeWithText:(NSString*)text;
 - (id) initWithText:(NSString*)text;
 @end
 

@@ -131,7 +131,7 @@ static void _MergeChildrenContent(SourceNode* node, NSMutableString* string) {
 	if(_parent == nil)
     	[NSException raise:NSInternalInconsistencyException format:@"%@ has no parent", self];
     
-    [_parent removeChildAtIndex:[_parent indexOfChild:self]]; //FIXME: Should we retain/autorelease?
+    [_parent removeChildAtIndex:[_parent indexOfChild:self]];
 }
 
 - (NSUInteger) indexOfChild:(SourceNode*)child {
@@ -162,12 +162,30 @@ static void _MergeChildrenContent(SourceNode* node, NSMutableString* string) {
 	if([[self class] isLeaf])
     	[NSException raise:NSInternalInconsistencyException format:@"%@ is a leaf node", self];
     
-    [[_children objectAtIndex:index] setParent:nil];
+    SourceNode* node = [_children objectAtIndex:index];
+    [node retain];
+    node.parent = nil;
     [_children removeObjectAtIndex:index];
+    [node autorelease];
+    
     if(!_children.count) {
     	[_children release];
         _children = nil;
     }
+}
+
+- (void) insertPreviousSibling:(SourceNode*)sibling {
+	if(_parent == nil)
+    	[NSException raise:NSInternalInconsistencyException format:@"%@ has no parent", self];
+    
+    [_parent insertChild:sibling atIndex:[_parent indexOfChild:self]];
+}
+
+- (void) insertNextSibling:(SourceNode*)sibling {
+	if(_parent == nil)
+    	[NSException raise:NSInternalInconsistencyException format:@"%@ has no parent", self];
+    
+    [_parent insertChild:sibling atIndex:([_parent indexOfChild:self] + 1)];
 }
 
 static void _ApplyFunction(SourceNode* node, SourceNodeApplierFunction function, void* context, BOOL recursive) {
@@ -176,9 +194,11 @@ static void _ApplyFunction(SourceNode* node, SourceNodeApplierFunction function,
     [node.children getObjects:nodes];
     
     for(NSUInteger i = 0; i < count; ++i) {
-        (*function)(nodes[i], context);
-    	if(nodes[i].children && recursive)
-        	_ApplyFunction(nodes[i], function, context, recursive);        
+        if(nodes[i].parent == node) {
+            (*function)(nodes[i], context);
+            if(nodes[i].children && recursive)
+                _ApplyFunction(nodes[i], function, context, recursive);        
+        }
     }
 }
 
@@ -199,9 +219,11 @@ static void _ApplyBlock(SourceNode* node, BOOL recursive, void (^block)(SourceNo
     [node.children getObjects:nodes];
     
     for(NSUInteger i = 0; i < count; ++i) {
-        block(nodes[i]);
-    	if(nodes[i].children && recursive)
-        	_ApplyBlock(nodes[i], recursive, block);        
+        if(nodes[i].parent == node) {
+            block(nodes[i]);
+            if(nodes[i].children && recursive)
+                _ApplyBlock(nodes[i], recursive, block);
+        }
     }
 }
 

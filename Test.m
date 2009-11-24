@@ -33,7 +33,7 @@ static inline BOOL _IsRealLineBreak(const unichar* string) {
         return NO;
     do {
     	--string;
-    } while(IsWhiteSpaceOrNewline(*string));
+    } while  (IsWhiteSpaceOrNewline(*string));
     return *string != '\\';
 }
 

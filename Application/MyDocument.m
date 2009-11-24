@@ -186,7 +186,7 @@ static void _FindUsedClasses(SourceNode* node, NSMutableSet* set) {
 }
 
 - (void) mouseEntered:(NSEvent*)theEvent {
-	[_pathControl setObjectValue:@""];
+	[_pathControl setObjectValue:@"/"];
 }
 
 static void _NodeApplierFunction(SourceNode* node, void* context) {
@@ -199,12 +199,17 @@ static void _NodeApplierFunction(SourceNode* node, void* context) {
 }
 
 - (void) mouseMoved:(NSEvent*)theEvent {
-	void* params[2];
+	NSMutableAttributedString* storage = [[_textView layoutManager] textStorage];
+    [storage beginEditing];
+    [storage addAttribute:NSForegroundColorAttributeName value:[NSColor darkGrayColor] range:_lastRange];
+    
+    void* params[2];
     NSUInteger index = [_textView characterIndexForInsertionAtPoint:[_textView convertPoint:theEvent.locationInWindow fromView:nil]];
     SourceNode* node = _sourceRoot;
     params[0] = (void*)index;
     params[1] = &node;
     [_sourceRoot applyFunctionOnChildren:_NodeApplierFunction context:params recursively:YES];
+    _lastRange = node.range;
     NSMutableString* path = [NSMutableString string];
     while(node) {
     	[path insertString:[[node class] name] atIndex:0];
@@ -212,10 +217,13 @@ static void _NodeApplierFunction(SourceNode* node, void* context) {
         node = node.parent;
     }
     [_pathControl setObjectValue:path];
+    
+    [storage addAttribute:NSForegroundColorAttributeName value:[NSColor redColor] range:_lastRange];
+    [storage endEditing];
 }
 
 - (void) mouseExited:(NSEvent*)theEvent {
-	[_pathControl setObjectValue:@""];
+	[_pathControl setObjectValue:@"/"];
 }
 
 - (void) _colorizeSource:(SourceNode*)node attributes:(NSDictionary*)attributes {

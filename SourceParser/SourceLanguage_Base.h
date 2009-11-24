@@ -16,12 +16,15 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#import "SourceParser.h"
+#import "SourceLanguage.h"
 
 @interface SourceNodeWhitespace : SourceNode //Leaf
 @end
 
 @interface SourceNodeIndenting : SourceNodeWhitespace //Leaf
+@end
+
+@interface SourceNodeNewline : SourceNode //Leaf
 @end
 
 @interface SourceNodeBraces : SourceNode

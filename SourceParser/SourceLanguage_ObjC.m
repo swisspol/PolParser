@@ -51,7 +51,6 @@
         [classes addObject:[SourceNodeObjCFinally class]];
         [classes addObject:[SourceNodeObjCThrow class]];
         [classes addObject:[SourceNodeObjCSynchronized class]];
-        
     }
     return classes;
 }

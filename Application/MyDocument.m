@@ -17,7 +17,6 @@
 */
 
 #import "MyDocument.h"
-#import "SourceNodes.h"
 
 #define kTabWidth 4
 

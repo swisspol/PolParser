@@ -16,7 +16,7 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#import "SourceParser.h"
+#import "SourceLanguage_Base.h"
 
 @interface SourceNodeCommentC : SourceNode //Leaf
 @end

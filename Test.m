@@ -46,11 +46,11 @@ static inline BOOL _IsRealLineBreak(const unichar* string) {
 @public
 	int _bar;
 }
-@property(nonatomic, readonly, getter=isValid) BOOL valid;
-- (void) run;
+@property(nonatomic, readonly, getter=isValid) BOOL valid;//
+- (void) run; //  
 @end
 
-@implementation Demo
+@implementation Demo//First pass
 
 #if 1
 

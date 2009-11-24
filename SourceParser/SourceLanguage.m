@@ -25,7 +25,7 @@ static NSMutableSet* _languageCache = nil;
 + (void) initialize {
 	if(_languageCache == nil) {
     	_languageCache = [[NSMutableSet alloc] init];
-        [_languageCache addObject:[[[SourceLanguage alloc] init] autorelease]];
+        [_languageCache addObject:[[[SourceLanguageBase alloc] init] autorelease]];
         [_languageCache addObject:[[[SourceLanguageC alloc] init] autorelease]];
         [_languageCache addObject:[[[SourceLanguageCPP alloc] init] autorelease]];
         [_languageCache addObject:[[[SourceLanguageObjC alloc] init] autorelease]];
@@ -33,6 +33,14 @@ static NSMutableSet* _languageCache = nil;
     }
     
     [super initialize];
+}
+
++ (id) allocWithZone:(NSZone*)zone
+{
+	if(self == [SourceLanguage class])
+        [NSException raise:NSInternalInconsistencyException format:@"SourceNode is an abstract class"];
+	
+	return [super allocWithZone:zone];
 }
 
 + (NSSet*) allLanguages {
@@ -59,9 +67,9 @@ static NSMutableSet* _languageCache = nil;
         	break;
     }
     if(language == nil) {
-    	language = [SourceLanguage languageForName:nil];
+    	language = [SourceLanguage languageForName:nil]; //FIXME: Find a cleaner way to retrieve Base language
         if(language == nil)
-        	[NSException raise:NSInternalInconsistencyException format:@""];
+        	[NSException raise:NSInternalInconsistencyException format:@"No language found for \"%@\"", path];
     }
     
     SourceNodeRoot* root = [language parseSourceString:source];
@@ -71,24 +79,20 @@ static NSMutableSet* _languageCache = nil;
 }
 
 - (NSString*) name {
-	return nil;
+	[self doesNotRecognizeSelector:_cmd];
+    return nil;
 }
 
 - (NSSet*) fileExtensions {
-	return nil;
+	[self doesNotRecognizeSelector:_cmd];
+    return nil;
 }
 
 - (NSArray*) nodeClasses {
 	static NSMutableArray* classes = nil;
     if(classes == nil) {
         classes = [[NSMutableArray alloc] init];
-        [classes addObject:[SourceNodeText class]]; //Must be #0
-        [classes addObject:[SourceNodeIndenting class]]; //Must be #1
-        [classes addObject:[SourceNodeWhitespace class]]; //Must be #2
-        
-        [classes addObject:[SourceNodeBraces class]];
-        [classes addObject:[SourceNodeParenthesis class]];
-        [classes addObject:[SourceNodeBrackets class]];
+        [classes addObject:[SourceNodeText class]]; //Special-cased by parser
     }
     return classes;
 }
@@ -182,9 +186,11 @@ static BOOL _ParseSource(SourceLanguage* language, NSString* source, const unich
             if([prefixClass isLeaf]) {
             	NSUInteger length = prefixLength;
                 NSUInteger suffixLength = NSNotFound;
-                while(length < range.length) {
+                while(1) {
                     suffixLength = [prefixClass isMatchingSuffix:(buffer + range.location + length) maxLength:(range.length - length)];
                     if(suffixLength != NSNotFound)
+                    	break;
+                    if(length == range.length)
                     	break;
                     ++length;
                 }
@@ -273,170 +279,6 @@ static BOOL _ParseSource(SourceLanguage* language, NSString* source, const unich
 
 @end
 
-@implementation SourceNode
-
-@synthesize source=_source, range=_range, parent=_parent, children=_children;
-
-+ (id) allocWithZone:(NSZone*)zone
-{
-	if(self == [SourceNode class])
-        [[NSException exceptionWithName:NSInternalInconsistencyException reason:@"SourceNode is an abstract class" userInfo:nil] raise];
-	
-	return [super allocWithZone:zone];
-}
-
-+ (NSString*) name {
-	return [NSStringFromClass(self) substringFromIndex:[@"SourceNode" length]];
-}
-
-- (id) initWithSource:(NSString*)source range:(NSRange)range {
-	if((self = [super init])) {
-    	_source = [source copy];
-        _range = range;
-    }
-    
-    return self;
-}
-
-- (void) dealloc {
-	for(SourceNode* node in _children)
-    	node.parent = nil;
-    [_children release];
-    
-    [_source release];
-    
-    [super dealloc];
-}
-
-- (NSMutableArray*) mutableChildren {
-	return _children;
-}
-
-static NSRange _LineNumbersForRange(NSString* string, NSRange range) {
-	NSRange lines = NSMakeRange(1, 1);
-    NSRange subrange = NSMakeRange(0, 0);
-    while(1) {
-    	subrange = [string rangeOfString:@"\n" options:0 range:NSMakeRange(subrange.location, string.length - subrange.location)];
-        if(subrange.location == NSNotFound)
-        	break;
-        if(subrange.location < range.location) {
-        	lines.location += 1;
-        }
-        else {
-            if(subrange.location < range.location + range.length)
-                lines.length += 1;
-            else
-            	break;
-        }
-        subrange.location += subrange.length;
-    }
-    
-    return lines;
-}
-
-- (NSRange) lines {
-	if(_lines.location == 0)
-    	_lines = _LineNumbersForRange(_source, _range);
-        
-    return _lines;
-}
-
-- (NSString*) content {
-	return [_source substringWithRange:_range];
-}
-
-- (void) insertChild:(SourceNode*)child atIndex:(NSUInteger)index {
-	if(child.parent)
-    	[NSException raise:NSInternalInconsistencyException format:@""];
-    
-    if(_children == nil)
-    	_children = [[NSMutableArray alloc] init];
-    
-    [_children insertObject:child atIndex:index];
-    child.parent = self;
-}
-
-- (void) removeChildAtIndex:(NSUInteger)index {
-	[[_children objectAtIndex:index] setParent:nil];
-    [_children removeObjectAtIndex:index];
-    if(!_children.count) {
-    	[_children release];
-        _children = nil;
-    }
-}
-
-- (void) addChild:(SourceNode*)child {
-	[self insertChild:child atIndex:_children.count];
-}
-
-static NSString* _FormatString(NSString* string) {
-	static NSString* spaceString = nil;
-    if(spaceString == nil) {
-    	const unichar aChar = 0x2022;
-        spaceString = [[NSString alloc] initWithCharacters:&aChar length:1];
-    }
-    static NSString* tabString = nil;
-    if(tabString == nil) {
-    	const unichar aChar = 0x2192;
-        tabString = [[NSString alloc] initWithCharacters:&aChar length:1];
-    }
-    static NSString* newlineString = nil;
-    if(newlineString == nil) {
-    	const unichar aChar = 0x00B6; //0x21A9
-        newlineString = [[NSString alloc] initWithCharacters:&aChar length:1];
-    }
-    
-    string = [NSMutableString stringWithString:string];
-    [(NSMutableString*)string replaceOccurrencesOfString:@" " withString:spaceString options:0 range:NSMakeRange(0, string.length)];
-    [(NSMutableString*)string replaceOccurrencesOfString:@"\t" withString:tabString options:0 range:NSMakeRange(0, string.length)];
-    [(NSMutableString*)string replaceOccurrencesOfString:@"\n" withString:newlineString options:0 range:NSMakeRange(0, string.length)];
-    return string;
-}
-
-- (NSString*) miniDescription {
-	return _FormatString(self.content);
-}
-
-static void _AppendNodeDescription(SourceNode* node, NSMutableString* string, NSString* prefix) {
-	NSString* content = (node.children ? nil : _FormatString(node.content));
-    if(content.length)
-        [string appendFormat:@"%@[%@] = |%@|\n", prefix, [[node class] name], content];
-    else
-    	[string appendFormat:@"%@[%@]\n", prefix, [[node class] name]];
-    
-    prefix = [prefix stringByAppendingString:@"\t"];
-    for(node in [node children])
-        _AppendNodeDescription(node, string, prefix);
-}
-
-- (NSString*) fullDescription {
-	NSMutableString*	string = [NSMutableString string];
-	_AppendNodeDescription(self, string, @"");
-	return string;
-}
-
-- (NSString*) description {
-	return [NSString stringWithFormat:@"<%@ = %p | characters = [%i, %i] | lines = [%i, %i]>\n%@", [self class], self, self.range.location, self.range.length, self.lines.location, self.lines.length, [self isKindOfClass:[SourceNodeRoot class]] ? self.fullDescription : self.miniDescription];
-}
-
-@end
-
-@implementation SourceNode (Parsing)
-
-+ (BOOL) isLeaf {
-	return YES;
-}
-
-+ (NSUInteger) isMatchingPrefix:(const unichar*)string maxLength:(NSUInteger)maxLength {
-    return NSNotFound;
-}
-
-+ (NSUInteger) isMatchingSuffix:(const unichar*)string maxLength:(NSUInteger)maxLength {
-    return NSNotFound;
-}
-
-@end
-
 @implementation SourceNodeRoot
 
 @synthesize language=_language;
@@ -458,23 +300,8 @@ static void _AppendNodeDescription(SourceNode* node, NSMutableString* string, NS
 	[super dealloc];
 }
 
-static void _GenerateSource(SourceNode* node, NSMutableString* string) {
-	for(node in node.children) {
-    	if(node.children)
-        	_GenerateSource(node, string);
-        else
-        	[string appendString:node.content];
-    }
-}
-
-- (NSString*) generateSourceFromTree {
-	NSMutableString* string = [NSMutableString stringWithCapacity:self.range.length];
-    _GenerateSource(self, string);
-    return string;
-}
-
-- (BOOL) writeSourceFromTreeToFile:(NSString*)path {
-	return [[self generateSourceFromTree] writeToFile:path atomically:YES encoding:NSUTF8StringEncoding error:NULL]; //FIXME: Don't assume UTF8
+- (BOOL) writeContentToFile:(NSString*)path {
+	return [[self content] writeToFile:path atomically:YES encoding:NSUTF8StringEncoding error:NULL]; //FIXME: Don't assume UTF8
 }
 
 @end
@@ -483,6 +310,24 @@ static void _GenerateSource(SourceNode* node, NSMutableString* string) {
 
 - (id) initWithText:(NSString*)text {
 	return [self initWithSource:text range:NSMakeRange(0, text.length)];
+}
+
+@end
+
+@implementation SourceNode (SourceNodeTextExtensions)
+
+- (void) replaceWithText:(NSString*)text {
+    SourceNode* parent = _parent;
+    if(parent == nil)
+    	[NSException raise:NSInternalInconsistencyException format:@"%@ has no parent", self];
+    
+    NSUInteger index = [parent indexOfChild:self];
+    [parent removeChildAtIndex:index];
+    if(text.length) {
+    	SourceNodeText* node = [[SourceNodeText alloc] initWithText:text];
+    	[parent insertChild:node atIndex:index];
+        [node release];
+    }
 }
 
 @end

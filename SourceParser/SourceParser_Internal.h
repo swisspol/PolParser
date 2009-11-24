@@ -17,10 +17,6 @@
 */
 
 #import "SourceParser.h"
-#import "SourceNodes.h"
-#import "SourceLanguage_C.h"
-#import "SourceLanguage_CPP.h"
-#import "SourceLanguage_ObjC.h"
 
 #define IsNewline(C) (C == '\n')
 #define IsWhiteSpace(C) ((C == ' ') || (C == '\t'))
@@ -86,13 +82,12 @@ static inline BOOL _EqualUnichars(const unichar* string1, const unichar* string2
 @property(nonatomic, assign) SourceNode* parent;
 @property(nonatomic, readonly) NSMutableArray* mutableChildren;
 - (id) initWithSource:(NSString*)source range:(NSRange)range;
-- (void) addChild:(SourceNode*)child;
 @end
 
 @interface SourceNode (Parsing)
 + (BOOL) isLeaf;
-+ (NSUInteger) isMatchingPrefix:(const unichar*)string maxLength:(NSUInteger)maxLength;
-+ (NSUInteger) isMatchingSuffix:(const unichar*)string maxLength:(NSUInteger)maxLength;
++ (NSUInteger) isMatchingPrefix:(const unichar*)string maxLength:(NSUInteger)maxLength; //"maxLength" is guaranteed to be at least 1
++ (NSUInteger) isMatchingSuffix:(const unichar*)string maxLength:(NSUInteger)maxLength; //"maxLength" may be 0 for leaf classes
 @end
 
 @interface SourceNodeRoot ()
@@ -103,7 +98,10 @@ static inline BOOL _EqualUnichars(const unichar* string1, const unichar* string2
 - (void) didAddChildNodeToSourceTree:(SourceNode*)child;
 @end
 
-@interface SourceLanguageC : SourceLanguage
+@interface SourceLanguageBase : SourceLanguage
+@end
+
+@interface SourceLanguageC : SourceLanguageBase
 @end
 
 @interface SourceLanguageCPP : SourceLanguageC

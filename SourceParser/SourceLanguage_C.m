@@ -100,7 +100,7 @@
 + (id) allocWithZone:(NSZone*)zone
 {
 	if(self == [SourceNodePreprocessor class])
-        [[NSException exceptionWithName:NSInternalInconsistencyException reason:@"SourceNodePreprocessor is an abstract class" userInfo:nil] raise];
+        [NSException raise:NSInternalInconsistencyException format:@"SourceNodePreprocessor is an abstract class"];
 	
 	return [super allocWithZone:zone];
 }
@@ -134,7 +134,7 @@
 + (id) allocWithZone:(NSZone*)zone
 {
 	if(self == [SourceNodePreprocessorCondition class])
-        [[NSException exceptionWithName:NSInternalInconsistencyException reason:@"SourceNodePreprocessorCondition is an abstract class" userInfo:nil] raise];
+        [NSException raise:NSInternalInconsistencyException format:@"SourceNodePreprocessorCondition is an abstract class"];
 	
 	return [super allocWithZone:zone];
 }
@@ -211,7 +211,7 @@ IMPLEMENTATION(Asterisk, '*')
 }
 
 + (NSUInteger) isMatchingSuffix:(const unichar*)string maxLength:(NSUInteger)maxLength {
-	return (*string == '\'') && !((*(string - 1) == '\\') && (*(string - 2) != '\\')) ? 1 : NSNotFound;
+	return maxLength && (*string == '\'') && !((*(string - 1) == '\\') && (*(string - 2) != '\\')) ? 1 : NSNotFound;
 }
 
 @end
@@ -223,7 +223,7 @@ IMPLEMENTATION(Asterisk, '*')
 }
 
 + (NSUInteger) isMatchingSuffix:(const unichar*)string maxLength:(NSUInteger)maxLength {
-	return (*string == '"') && !((*(string - 1) == '\\') && (*(string - 2) != '\\')) ? 1 : NSNotFound;
+	return maxLength && (*string == '"') && !((*(string - 1) == '\\') && (*(string - 2) != '\\')) ? 1 : NSNotFound;
 }
 
 @end

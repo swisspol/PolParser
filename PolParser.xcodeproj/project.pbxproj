@@ -26,19 +26,21 @@
 		E2B6368D10BA46C800BF43E7 /* SourceLanguage_C.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B6368310BA46C800BF43E7 /* SourceLanguage_C.m */; };
 		E2B6368E10BA46C800BF43E7 /* SourceLanguage_CPP.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B6368510BA46C800BF43E7 /* SourceLanguage_CPP.m */; };
 		E2B6368F10BA46C800BF43E7 /* SourceLanguage_ObjC.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B6368710BA46C800BF43E7 /* SourceLanguage_ObjC.m */; };
-		E2B6369010BA46C800BF43E7 /* SourceNodes.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B6368910BA46C800BF43E7 /* SourceNodes.m */; };
-		E2B6369110BA46C800BF43E7 /* SourceParser.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B6368B10BA46C800BF43E7 /* SourceParser.m */; };
+		E2B6369010BA46C800BF43E7 /* SourceLanguage.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B6368910BA46C800BF43E7 /* SourceLanguage.m */; };
+		E2B6369110BA46C800BF43E7 /* SourceNode.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B6368B10BA46C800BF43E7 /* SourceNode.m */; };
 		E2B6372410BA539100BF43E7 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2B6372310BA539100BF43E7 /* Cocoa.framework */; };
 		E2B637FC10BA540800BF43E7 /* PolParser.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B637FB10BA540800BF43E7 /* PolParser.m */; };
 		E2B637FD10BA541A00BF43E7 /* SourceLanguage_ObjC.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B6368710BA46C800BF43E7 /* SourceLanguage_ObjC.m */; };
 		E2B637FE10BA541A00BF43E7 /* SourceLanguage_CPP.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B6368510BA46C800BF43E7 /* SourceLanguage_CPP.m */; };
 		E2B637FF10BA541B00BF43E7 /* SourceLanguage_C.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B6368310BA46C800BF43E7 /* SourceLanguage_C.m */; };
-		E2B6380010BA541B00BF43E7 /* SourceNodes.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B6368910BA46C800BF43E7 /* SourceNodes.m */; };
-		E2B6380110BA541C00BF43E7 /* SourceParser.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B6368B10BA46C800BF43E7 /* SourceParser.m */; };
+		E2B6380010BA541B00BF43E7 /* SourceLanguage.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B6368910BA46C800BF43E7 /* SourceLanguage.m */; };
+		E2B6380110BA541C00BF43E7 /* SourceNode.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B6368B10BA46C800BF43E7 /* SourceNode.m */; };
 		E2B6380C10BA547D00BF43E7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B6380B10BA547D00BF43E7 /* main.m */; };
 		E2B6381410BA549800BF43E7 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2B6381210BA549800BF43E7 /* MainMenu.xib */; };
 		E2B6383610BA554000BF43E7 /* MyDocument.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2B6383410BA554000BF43E7 /* MyDocument.xib */; };
 		E2B6383910BA55AB00BF43E7 /* MyDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B6383810BA55AB00BF43E7 /* MyDocument.m */; };
+		E2E5BC0E10BB986B004E3745 /* SourceLanguage_Base.m in Sources */ = {isa = PBXBuildFile; fileRef = E2E5BC0D10BB986B004E3745 /* SourceLanguage_Base.m */; };
+		E2E5BC0F10BB986B004E3745 /* SourceLanguage_Base.m in Sources */ = {isa = PBXBuildFile; fileRef = E2E5BC0D10BB986B004E3745 /* SourceLanguage_Base.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,10 +70,10 @@
 		E2B6368510BA46C800BF43E7 /* SourceLanguage_CPP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SourceLanguage_CPP.m; sourceTree = "<group>"; };
 		E2B6368610BA46C800BF43E7 /* SourceLanguage_ObjC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SourceLanguage_ObjC.h; sourceTree = "<group>"; };
 		E2B6368710BA46C800BF43E7 /* SourceLanguage_ObjC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SourceLanguage_ObjC.m; sourceTree = "<group>"; };
-		E2B6368810BA46C800BF43E7 /* SourceNodes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SourceNodes.h; sourceTree = "<group>"; };
-		E2B6368910BA46C800BF43E7 /* SourceNodes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SourceNodes.m; sourceTree = "<group>"; };
-		E2B6368A10BA46C800BF43E7 /* SourceParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SourceParser.h; sourceTree = "<group>"; };
-		E2B6368B10BA46C800BF43E7 /* SourceParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SourceParser.m; sourceTree = "<group>"; };
+		E2B6368810BA46C800BF43E7 /* SourceLanguage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SourceLanguage.h; sourceTree = "<group>"; };
+		E2B6368910BA46C800BF43E7 /* SourceLanguage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SourceLanguage.m; sourceTree = "<group>"; };
+		E2B6368A10BA46C800BF43E7 /* SourceNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SourceNode.h; sourceTree = "<group>"; };
+		E2B6368B10BA46C800BF43E7 /* SourceNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SourceNode.m; sourceTree = "<group>"; };
 		E2B6368C10BA46C800BF43E7 /* SourceParser_Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SourceParser_Internal.h; sourceTree = "<group>"; };
 		E2B6371910BA536D00BF43E7 /* PolParser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PolParser.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2B6372310BA539100BF43E7 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
@@ -82,6 +84,9 @@
 		E2B6383510BA554000BF43E7 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/MyDocument.xib; sourceTree = "<group>"; };
 		E2B6383710BA55AB00BF43E7 /* MyDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyDocument.h; sourceTree = "<group>"; };
 		E2B6383810BA55AB00BF43E7 /* MyDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyDocument.m; sourceTree = "<group>"; };
+		E2E5BBED10BB9778004E3745 /* SourceParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SourceParser.h; sourceTree = "<group>"; };
+		E2E5BC0C10BB986B004E3745 /* SourceLanguage_Base.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SourceLanguage_Base.h; sourceTree = "<group>"; };
+		E2E5BC0D10BB986B004E3745 /* SourceLanguage_Base.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SourceLanguage_Base.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,10 +144,13 @@
 			isa = PBXGroup;
 			children = (
 				E2B6368C10BA46C800BF43E7 /* SourceParser_Internal.h */,
-				E2B6368A10BA46C800BF43E7 /* SourceParser.h */,
-				E2B6368B10BA46C800BF43E7 /* SourceParser.m */,
-				E2B6368810BA46C800BF43E7 /* SourceNodes.h */,
-				E2B6368910BA46C800BF43E7 /* SourceNodes.m */,
+				E2E5BBED10BB9778004E3745 /* SourceParser.h */,
+				E2B6368A10BA46C800BF43E7 /* SourceNode.h */,
+				E2B6368B10BA46C800BF43E7 /* SourceNode.m */,
+				E2B6368810BA46C800BF43E7 /* SourceLanguage.h */,
+				E2B6368910BA46C800BF43E7 /* SourceLanguage.m */,
+				E2E5BC0C10BB986B004E3745 /* SourceLanguage_Base.h */,
+				E2E5BC0D10BB986B004E3745 /* SourceLanguage_Base.m */,
 				E2B6368210BA46C800BF43E7 /* SourceLanguage_C.h */,
 				E2B6368310BA46C800BF43E7 /* SourceLanguage_C.m */,
 				E2B6368410BA46C800BF43E7 /* SourceLanguage_CPP.h */,
@@ -250,9 +258,10 @@
 				E2B6368D10BA46C800BF43E7 /* SourceLanguage_C.m in Sources */,
 				E2B6368E10BA46C800BF43E7 /* SourceLanguage_CPP.m in Sources */,
 				E2B6368F10BA46C800BF43E7 /* SourceLanguage_ObjC.m in Sources */,
-				E2B6369010BA46C800BF43E7 /* SourceNodes.m in Sources */,
-				E2B6369110BA46C800BF43E7 /* SourceParser.m in Sources */,
+				E2B6369010BA46C800BF43E7 /* SourceLanguage.m in Sources */,
+				E2B6369110BA46C800BF43E7 /* SourceNode.m in Sources */,
 				E2B637FC10BA540800BF43E7 /* PolParser.m in Sources */,
+				E2E5BC0F10BB986B004E3745 /* SourceLanguage_Base.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -263,10 +272,11 @@
 				E2B637FD10BA541A00BF43E7 /* SourceLanguage_ObjC.m in Sources */,
 				E2B637FE10BA541A00BF43E7 /* SourceLanguage_CPP.m in Sources */,
 				E2B637FF10BA541B00BF43E7 /* SourceLanguage_C.m in Sources */,
-				E2B6380010BA541B00BF43E7 /* SourceNodes.m in Sources */,
-				E2B6380110BA541C00BF43E7 /* SourceParser.m in Sources */,
+				E2B6380010BA541B00BF43E7 /* SourceLanguage.m in Sources */,
+				E2B6380110BA541C00BF43E7 /* SourceNode.m in Sources */,
 				E2B6380C10BA547D00BF43E7 /* main.m in Sources */,
 				E2B6383910BA55AB00BF43E7 /* MyDocument.m in Sources */,
+				E2E5BC0E10BB986B004E3745 /* SourceLanguage_Base.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

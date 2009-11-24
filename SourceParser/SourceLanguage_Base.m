@@ -18,17 +18,42 @@
 
 #import "SourceParser_Internal.h"
 
+@implementation SourceLanguageBase
+
+- (NSString*) name {
+	return @"Base";
+}
+
+- (NSSet*) fileExtensions {
+	return nil;
+}
+
+- (NSArray*) nodeClasses {
+	static NSMutableArray* classes = nil;
+    if(classes == nil) {
+        classes = [[NSMutableArray alloc] init];
+        [classes addObjectsFromArray:[super nodeClasses]];
+        
+        [classes addObject:[SourceNodeNewline class]];
+        [classes addObject:[SourceNodeIndenting class]]; //Must be before SourceNodeWhitespace
+        [classes addObject:[SourceNodeWhitespace class]];
+        [classes addObject:[SourceNodeBraces class]];
+        [classes addObject:[SourceNodeParenthesis class]];
+        [classes addObject:[SourceNodeBrackets class]];
+    }
+    return classes;
+}
+
+@end
+
 @implementation SourceNodeWhitespace
 
 + (NSUInteger) isMatchingPrefix:(const unichar*)string maxLength:(NSUInteger)maxLength {
-    return IsWhiteSpaceOrNewline(*string) ? 1 : NSNotFound;
+    return IsWhiteSpace(*string) ? 1 : NSNotFound;
 }
 
 + (NSUInteger) isMatchingSuffix:(const unichar*)string maxLength:(NSUInteger)maxLength {
-	if(IsWhiteSpace(*string) && IsNewline(*(string - 1)))
-    	return 0;
-    
-    return !IsWhiteSpaceOrNewline(*string) ? 0 : NSNotFound;
+	return maxLength && !IsWhiteSpace(*string) ? 0 : NSNotFound;
 }
 
 @end
@@ -40,7 +65,19 @@
 }
 
 + (NSUInteger) isMatchingSuffix:(const unichar*)string maxLength:(NSUInteger)maxLength {
-	return !IsWhiteSpace(*string) ? 0 : NSNotFound;
+	return maxLength && !IsWhiteSpace(*string) ? 0 : NSNotFound;
+}
+
+@end
+
+@implementation SourceNodeNewline
+
++ (NSUInteger) isMatchingPrefix:(const unichar*)string maxLength:(NSUInteger)maxLength {
+    return IsNewline(*string) ? 1 : NSNotFound;
+}
+
++ (NSUInteger) isMatchingSuffix:(const unichar*)string maxLength:(NSUInteger)maxLength {
+	return 0;
 }
 
 @end

@@ -66,7 +66,7 @@ static NSMutableSet* _languageCache = nil;
 
 + (SourceLanguage*) languageForName:(NSString*)name {
     for(SourceLanguage* language in _languageCache) {
-        if(([language name] == name) || ([[language name] caseInsensitiveCompare:name] == NSOrderedSame))
+        if([[language name] caseInsensitiveCompare:name] == NSOrderedSame)
             return language;
     }
     return nil;
@@ -84,7 +84,7 @@ static NSMutableSet* _languageCache = nil;
             break;
     }
     if(language == nil) {
-        language = [SourceLanguage languageForName:nil]; //FIXME: Find a cleaner way to retrieve Base language
+        language = [SourceLanguage languageForName:@"Base"];
         if(language == nil)
             [NSException raise:NSInternalInconsistencyException format:@"No language found for \"%@\"", path];
     }
@@ -259,7 +259,7 @@ static BOOL _ParseSource(SourceLanguage* language, NSString* source, const unich
     [rootNode applyFunctionOnChildren:_ApplierFunction context:language recursively:YES];
     
     if(!_CheckTreeConsistency(rootNode, stack)) {
-        NSLog(@"\"%@\" parser failed because resulting tree is not consistent:\n%@", [language name], stack);
+        NSLog(@"\"%@\" parser failed because resulting tree is not consistent:\n%@\n%@", [language name], [[stack objectAtIndex:0] fullDescription], stack);
         return NO;
     }
     

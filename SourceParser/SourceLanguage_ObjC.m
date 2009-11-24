@@ -165,7 +165,7 @@ static BOOL _HasImplementationParent(SourceNode* node) {
 }
 
 - (NSSet*) fileExtensions {
-    return [NSSet setWithObject:@"mm"];
+    return [NSSet setWithObjects:@"h", @"mm", nil];
 }
 
 - (SourceNodeRoot*) parseSourceString:(NSString*)source {

@@ -63,7 +63,7 @@
 										<object class="NSTextView" id="777519405">
 											<reference key="NSNextResponder" ref="158363410"/>
 											<int key="NSvFlags">2322</int>
-											<string key="NSFrameSize">{785, 130}</string>
+											<string key="NSFrameSize">{785, 0}</string>
 											<reference key="NSSuperview" ref="158363410"/>
 											<object class="NSTextContainer" key="NSTextContainer" id="1052835497">
 												<object class="NSLayoutManager" key="NSLayoutManager">
@@ -151,7 +151,7 @@
 											<nil key="NSDelegate"/>
 										</object>
 									</object>
-									<string key="NSFrameSize">{785, 531}</string>
+									<string key="NSFrameSize">{785, 516}</string>
 									<reference key="NSSuperview" ref="175864121"/>
 									<reference key="NSNextKeyView" ref="777519405"/>
 									<reference key="NSDocView" ref="777519405"/>
@@ -165,7 +165,7 @@
 								<object class="NSScroller" id="970652066">
 									<reference key="NSNextResponder" ref="175864121"/>
 									<int key="NSvFlags">256</int>
-									<string key="NSFrame">{{785, 0}, {15, 531}}</string>
+									<string key="NSFrame">{{785, 0}, {15, 516}}</string>
 									<reference key="NSSuperview" ref="175864121"/>
 									<reference key="NSTarget" ref="175864121"/>
 									<string key="NSAction">_doScroller:</string>
@@ -174,8 +174,8 @@
 								</object>
 								<object class="NSScroller" id="123647729">
 									<reference key="NSNextResponder" ref="175864121"/>
-									<int key="NSvFlags">-2147483392</int>
-									<string key="NSFrame">{{-100, -100}, {87, 18}}</string>
+									<int key="NSvFlags">256</int>
+									<string key="NSFrame">{{0, 516}, {785, 15}}</string>
 									<reference key="NSSuperview" ref="175864121"/>
 									<int key="NSsFlags">1</int>
 									<reference key="NSTarget" ref="175864121"/>
@@ -187,7 +187,7 @@
 							<string key="NSFrame">{{0, 20}, {800, 531}}</string>
 							<reference key="NSSuperview" ref="568628114"/>
 							<reference key="NSNextKeyView" ref="158363410"/>
-							<int key="NSsFlags">16</int>
+							<int key="NSsFlags">48</int>
 							<reference key="NSVScroller" ref="970652066"/>
 							<reference key="NSHScroller" ref="123647729"/>
 							<reference key="NSContentView" ref="158363410"/>

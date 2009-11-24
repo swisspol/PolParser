@@ -51,7 +51,7 @@ static inline BOOL _IsRealLineBreak(const unichar* string) {
 @end
 
 @implementation Demo//First pass
-
+	
 #if 1
 
 - (BOOL) isValid {
@@ -64,7 +64,8 @@ static inline BOOL _IsRealLineBreak(const unichar* string) {
         NSBeep();
         @throw exception;
     }
-    @catch (NSException * e) {
+    @catch (NSException * e)
+    {
         NSLog(@"%@", e);
     }
     @finally {
@@ -75,7 +76,8 @@ static inline BOOL _IsRealLineBreak(const unichar* string) {
 
 #else
 
-- (BOOL) isValid {
+- (BOOL) isValid
+{
 	@synchronized ([self class]) {
     	self + 2;
     }
@@ -93,7 +95,7 @@ static inline BOOL _IsRealLineBreak(const unichar* string) {
 #pragma mark Label
 
 
-//The main function	
+	//The main function	
 int main(int argc, char* argv[])
 {
 	return NSApplicationMain(argc, (const char**)argv); //Call this thing

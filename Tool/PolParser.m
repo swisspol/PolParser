@@ -2,38 +2,47 @@
 
 static void _ProcessNode(SourceNode* node) {
 	//Replace indenting spaces by tabs
-    if([node isMemberOfClass:[SourceNodeIndenting class]]) {
+    if([node isKindOfClass:[SourceNodeIndenting class]]) {
     	NSString* text = node.content;
         text = [text stringByReplacingOccurrencesOfString:@"    " withString:@"\t"];
         [node replaceWithText:text];
     }
     
     //Delete whitespace at end of lines & remove multiple newlines
-    else if([node isMemberOfClass:[SourceNodeNewline class]]) {
-        if([node.previousSibling isMemberOfClass:[SourceNodeWhitespace class]])
+    if([node isKindOfClass:[SourceNodeNewline class]]) {
+        if([node.previousSibling isKindOfClass:[SourceNodeWhitespace class]]) //FIXME: This is affected by the above operation
         	[node.previousSibling removeFromParent];
-        if([node.nextSibling isMemberOfClass:[SourceNodeNewline class]] && [node.nextSibling.nextSibling isMemberOfClass:[SourceNodeNewline class]])
+        if([node.nextSibling isKindOfClass:[SourceNodeNewline class]] && [node.nextSibling.nextSibling isKindOfClass:[SourceNodeNewline class]])
         	[node.nextSibling removeFromParent];
     }
     
     //Delete empty C++ comments and reformat the others as "  // Comment"
-    else if([node isMemberOfClass:[SourceNodeCommentCPP class]]) {
-        if([node.previousSibling isMemberOfClass:[SourceNodeWhitespace class]])
+    if([node isKindOfClass:[SourceNodeCommentCPP class]]) {
+        if([node.previousSibling isKindOfClass:[SourceNodeWhitespace class]])
         	[node.previousSibling removeFromParent];
         NSString* text = node.content;
         NSRange range = [node.content rangeOfCharacterFromSet:[[NSCharacterSet whitespaceCharacterSet] invertedSet] options:0 range:NSMakeRange(2, text.length - 2)];
         if(range.location != NSNotFound)
-            text = [NSString stringWithFormat:@"%@// %@", [node.previousSibling isMemberOfClass:[SourceNodeNewline class]] ? @"": @"  ", [text substringFromIndex:range.location]];
+            text = [NSString stringWithFormat:@"%@// %@", [node.previousSibling isKindOfClass:[SourceNodeNewline class]] ? @"": @"  ", [text substringFromIndex:range.location]];
         else
             text = nil;
         [node replaceWithText:text];
     }
     
     //Reformat if(), for() and while() as "if ()", "for ()" and "while ()"
-    else if([node isMemberOfClass:[SourceNodeConditionIf class]] || [node isMemberOfClass:[SourceNodeFlowFor class]] || [node isMemberOfClass:[SourceNodeFlowWhile class]]) {
-    	while([node.nextSibling isMemberOfClass:[SourceNodeWhitespace class]] || [node.nextSibling isMemberOfClass:[SourceNodeNewline class]])
+    if([node isKindOfClass:[SourceNodeConditionIf class]] || [node isKindOfClass:[SourceNodeFlowFor class]] || [node isKindOfClass:[SourceNodeFlowWhile class]]) {
+    	while([node.nextSibling isKindOfClass:[SourceNodeWhitespace class]] || [node.nextSibling isKindOfClass:[SourceNodeNewline class]])
         	[node.nextSibling removeFromParent];
         [node insertNextSibling:[SourceNodeText sourceNodeWithText:@" "]];
+    }
+    
+    //Ensure open braces are never preceded by a new line
+    if([node isKindOfClass:[SourceNodeBraces class]]) {
+    	if([node.previousSibling isKindOfClass:[SourceNodeWhitespace class]])
+        	[node.previousSibling removeFromParent];
+        if([node.previousSibling isKindOfClass:[SourceNodeNewline class]])
+        	[node.previousSibling removeFromParent];
+        [node insertPreviousSibling:[SourceNodeText sourceNodeWithText:@" "]];
     }
 }
 

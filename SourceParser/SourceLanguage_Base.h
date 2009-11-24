@@ -19,8 +19,6 @@
 #import "SourceLanguage.h"
 
 @interface SourceNode (SourceLanguageExtensions)
-- (SourceNode*) findPreviousSiblingOfClass:(Class)class;
-- (SourceNode*) findNextSiblingOfClass:(Class)class;
 - (SourceNode*) findPreviousSiblingIgnoringWhitespaceAndNewline;
 - (SourceNode*) findNextSiblingIgnoringWhitespaceAndNewline;
 @end

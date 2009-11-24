@@ -55,6 +55,10 @@ typedef void (*SourceNodeApplierFunction)(SourceNode* node, void* context);
 - (void) insertNextSibling:(SourceNode*)sibling;
 - (void) replaceWithNode:(SourceNode*)node; //Replaces self by "node" (passing nil just removes the node from the tree)
 
+- (BOOL) hasParentOfClass:(Class)class;
+- (SourceNode*) findPreviousSiblingOfClass:(Class)class;
+- (SourceNode*) findNextSiblingOfClass:(Class)class;
+
 - (void) applyFunctionOnChildren:(SourceNodeApplierFunction)function context:(void*)context recursively:(BOOL)recursively;
 #if NS_BLOCKS_AVAILABLE
 - (void) enumerateChildrenRecursively:(BOOL)recursively usingBlock:(void (^)(SourceNode* node))block;

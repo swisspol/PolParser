@@ -80,3 +80,9 @@
 
 @interface SourceNodeObjCSuper : SourceNode //Leaf
 @end
+
+@interface SourceNodeObjCMethodDeclaration : SourceNode
+@end
+
+@interface SourceNodeObjCMethodImplementation : SourceNode
+@end

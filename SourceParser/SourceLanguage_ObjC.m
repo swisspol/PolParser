@@ -58,8 +58,25 @@
         [classes addObject:[SourceNodeObjCEncode class]];
         [classes addObject:[SourceNodeObjCSelf class]];
         [classes addObject:[SourceNodeObjCSuper class]];
+        
+        [classes addObject:[SourceNodeObjCMethodDeclaration class]];
+        [classes addObject:[SourceNodeObjCMethodImplementation class]];
     }
     return classes;
+}
+
+static BOOL _HasInterfaceParent(SourceNode* node) {
+	if([node.parent isKindOfClass:[SourceNodeObjCInterface class]])
+        return YES;
+    
+    return [node.parent isKindOfClass:[SourceNodePreprocessorCondition class]] ? _HasInterfaceParent(node.parent) : NO;
+}
+
+static BOOL _HasImplementationParent(SourceNode* node) {
+	if([node.parent isKindOfClass:[SourceNodeObjCImplementation class]])
+        return YES;
+    
+    return [node.parent isKindOfClass:[SourceNodePreprocessorCondition class]] ? _HasImplementationParent(node.parent) : NO;
 }
 
 - (void) refactorSourceNode:(SourceNode*)node {
@@ -96,6 +113,41 @@
             if(node != previousNode)
                 _RearrangeNodesAsChildren(node, previousNode);
         }
+        
+    } else if([node isKindOfClass:[SourceNodeText class]] && _HasInterfaceParent(node)) {
+    	
+        // "-(foo)bar" "+(foo)bar"
+        NSString* content = node.content;
+        if([content isEqualToString:@"-"] || [content isEqualToString:@"+"]) {
+        	SourceNode* nextNode = [node findNextSiblingIgnoringWhitespaceAndNewline];
+            if([nextNode isKindOfClass:[SourceNodeParenthesis class]]) {
+            	nextNode = [nextNode findNextSiblingOfClass:[SourceNodeSemicolon class]];
+                if(nextNode) {
+                	SourceNode* method = [[SourceNodeObjCMethodDeclaration alloc] initWithSource:node.source range:NSMakeRange(node.range.location, 0)];
+                    [node insertPreviousSibling:method];
+                    [method release];
+                	_RearrangeNodesAsChildren(method, nextNode.previousSibling);
+                }
+            }
+        }
+        
+    } else if([node isKindOfClass:[SourceNodeText class]] && _HasImplementationParent(node)) {
+    	
+        // "-(foo)bar" "+(foo)bar"
+        NSString* content = node.content;
+        if([content isEqualToString:@"-"] || [content isEqualToString:@"+"]) {
+        	SourceNode* nextNode = [node findNextSiblingIgnoringWhitespaceAndNewline];
+            if([nextNode isKindOfClass:[SourceNodeParenthesis class]]) {
+            	nextNode = [nextNode findNextSiblingOfClass:[SourceNodeBraces class]];
+                if(nextNode) {
+                	SourceNode* method = [[SourceNodeObjCMethodImplementation alloc] initWithSource:node.source range:NSMakeRange(node.range.location, 0)];
+                    [node insertPreviousSibling:method];
+                    [method release];
+                	_RearrangeNodesAsChildren(method, nextNode);
+                }
+            }
+        }
+        
     }
 }
 
@@ -109,6 +161,12 @@
 
 - (NSSet*) fileExtensions {
 	return [NSSet setWithObject:@"mm"];
+}
+
+- (SourceNodeRoot*) parseSourceString:(NSString*)source {
+	NSLog(@"%@ parsing is not fully implemented", self.name);
+    
+    return [super parseSourceString:source];
 }
 
 @end
@@ -175,3 +233,9 @@ IMPLEMENTATION(Self, @"self", ';')
 IMPLEMENTATION(Super, @"super", ';')
 
 #undef IMPLEMENTATION
+
+@implementation SourceNodeObjCMethodDeclaration
+@end
+
+@implementation SourceNodeObjCMethodImplementation
+@end

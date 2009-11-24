@@ -48,26 +48,6 @@
 
 @implementation SourceNode (SourceLanguageExtensions)
 
-- (SourceNode*) findPreviousSiblingOfClass:(Class)class {
-	SourceNode* node = self.previousSibling;
-    while(node) {
-    	if([node isKindOfClass:class])
-        	return node;
-        node = node.previousSibling;
-    }
-    return nil;
-}
-
-- (SourceNode*) findNextSiblingOfClass:(Class)class {
-	SourceNode* node = self.nextSibling;
-    while(node) {
-    	if([node isKindOfClass:class])
-        	return node;
-        node = node.nextSibling;
-    }
-    return nil;
-}
-
 - (SourceNode*) findPreviousSiblingIgnoringWhitespaceAndNewline {
 	SourceNode* node = self.previousSibling;
     while(node) {

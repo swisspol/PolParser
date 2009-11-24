@@ -24,6 +24,8 @@ multiline comment
     return _matching; \
 }
 
+extern int main(int argc, char* argv[]);
+
 const char* multiline = "foo\	
  b\\ar\  
   boom";
@@ -47,7 +49,9 @@ static inline BOOL _IsRealLineBreak(const unichar* string) {
 	int _bar;
 }
 @property(nonatomic, readonly, getter=isValid) BOOL valid;//
+	+ (id) sharedInstance;
 - (void) run; //  
+- (BOOL) test:(int)foo bar:(int)bar;
 @end
 
 struct temp {
@@ -57,6 +61,10 @@ struct temp {
 
 @implementation Demo//First pass
 	
+- (BOOL) test:(int)foo bar:(int)bar {
+	return NO;
+}
+
 #if 1
 
 - (BOOL) isValid {

@@ -40,6 +40,12 @@
     return classes;
 }
 
+- (SourceNodeRoot*) parseSourceString:(NSString*)source {
+	NSLog(@"%@ parsing is not fully implemented", self.name);
+    
+    return [super parseSourceString:source];
+}
+
 @end
 
 @implementation SourceNodeCommentCPP

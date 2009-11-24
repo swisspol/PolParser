@@ -202,6 +202,36 @@ static void _MergeChildrenContent(SourceNode* node, NSMutableString* string) {
     	[parent insertChild:node atIndex:index];
 }
 
+- (BOOL) hasParentOfClass:(Class)class {
+	SourceNode* node = _parent;
+    while(node) {
+    	if([node isKindOfClass:class])
+        	return YES;
+        node = node.parent;
+    }
+    return NO;
+}
+
+- (SourceNode*) findPreviousSiblingOfClass:(Class)class {
+	SourceNode* node = self.previousSibling;
+    while(node) {
+    	if([node isKindOfClass:class])
+        	return node;
+        node = node.previousSibling;
+    }
+    return nil;
+}
+
+- (SourceNode*) findNextSiblingOfClass:(Class)class {
+	SourceNode* node = self.nextSibling;
+    while(node) {
+    	if([node isKindOfClass:class])
+        	return node;
+        node = node.nextSibling;
+    }
+    return nil;
+}
+
 /* Keep in sync with _ApplyBlock() */
 static void _ApplyFunction(SourceNode* node, SourceNodeApplierFunction function, void* context, BOOL recursive) {
 	NSUInteger count = node.children.count;

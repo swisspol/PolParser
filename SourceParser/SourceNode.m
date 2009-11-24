@@ -240,17 +240,29 @@ static void _MergeChildrenContent(SourceNode* node, NSMutableString* string) {
     return nil;
 }
 
-/* Keep in sync with _ApplyBlock() */
-static void _ApplyFunction(SourceNode* node, SourceNodeApplierFunction function, void* context, BOOL recursive) {
+#if NS_BLOCKS_AVAILABLE
+static void _ApplyBlock(SourceNode* node, BOOL recursive, void (^block)(SourceNode* node))
+#else
+static void _ApplyFunction(SourceNode* node, SourceNodeApplierFunction function, void* context, BOOL recursive)
+#endif
+{
     NSUInteger count = node.children.count;
     SourceNode* nodes[count];
     [node.children getObjects:nodes];
     
     for(NSUInteger i = 0; i < count; ++i) {
-        if(nodes[i].parent) {
-            (*function)(nodes[i], context);
-            if(nodes[i].parent && nodes[i].children && recursive)
+        if(nodes[i].parent == node) {
+#if NS_BLOCKS_AVAILABLE
+            block(nodes[i]);
+#else
+			(*function)(nodes[i], context);
+#endif
+            if((nodes[i].parent == node) && nodes[i].children && recursive)
+#if NS_BLOCKS_AVAILABLE
+				_ApplyBlock(nodes[i], recursive, block);
+#else
                 _ApplyFunction(nodes[i], function, context, recursive);        
+#endif
         }
     }
 }
@@ -262,21 +274,6 @@ static void _ApplyFunction(SourceNode* node, SourceNodeApplierFunction function,
 }
 
 #if NS_BLOCKS_AVAILABLE
-
-/* Keep in sync with _ApplyFunction() */
-static void _ApplyBlock(SourceNode* node, BOOL recursive, void (^block)(SourceNode* node)) {
-    NSUInteger count = node.children.count;
-    SourceNode* nodes[count];
-    [node.children getObjects:nodes];
-    
-    for(NSUInteger i = 0; i < count; ++i) {
-        if(nodes[i].parent == node) {
-            block(nodes[i]);
-            if(nodes[i].parent && nodes[i].children && recursive)
-                _ApplyBlock(nodes[i], recursive, block);
-        }
-    }
-}
 
 - (void) enumerateChildrenRecursively:(BOOL)recursively usingBlock:(void (^)(SourceNode* node))block {
     NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];

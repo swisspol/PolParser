@@ -117,12 +117,12 @@ static BOOL _HasImplementationParent(SourceNode* node) {
         
     } else if([node isKindOfClass:[SourceNodeObjCProperty class]] || [node isKindOfClass:[SourceNodeObjCThrow class]]) {
         
-        // "@property" "@property()" "@throw"
+        // "@property" "@property()" "@throw" "@throw foo"
         SourceNode* semicolonNode = [node findNextSiblingOfClass:[SourceNodeSemicolon class]];
         if(semicolonNode) {
             SourceNode* previousNode = semicolonNode.previousSibling;
             if(node != previousNode)
-                _RearrangeNodesAsChildren(node, previousNode);
+                _RearrangeNodesAsChildren(node, previousNode); //FIXME: Strip trailing whitespace?
         }
         
     } else if([node isKindOfClass:[SourceNodeText class]] && _HasInterfaceOrProtocolParent(node)) {
@@ -135,7 +135,7 @@ static BOOL _HasImplementationParent(SourceNode* node) {
                 SourceNode* newNode = [[SourceNodeObjCMethodDeclaration alloc] initWithSource:node.source range:NSMakeRange(node.range.location, 0)];
                 [node insertPreviousSibling:newNode];
                 [newNode release];
-                _RearrangeNodesAsChildren(newNode, nextNode.previousSibling);
+                _RearrangeNodesAsChildren(newNode, nextNode.previousSibling); //FIXME: Strip trailing whitespace?
             }
         }
         

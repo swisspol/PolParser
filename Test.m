@@ -12,6 +12,7 @@ static inline BOOL _IsRealLineBreak(const unichar* string) {
 - (void) temp1;
 @end
 
+const struct sockaddr*		address;
 
 #define FOO 1	
 #undef FOO
@@ -50,7 +51,22 @@ static void Foo() {
 }
 
 Bar() {
-	return 0;
+	if(1) {
+        ;
+    }
+    else if(2) {
+        if(3) {
+            ;
+        }
+        else if(4) {
+            ;
+        }
+        break;
+    }
+    else {
+        ;
+    }
+    return 0;
 }
 
 - test {

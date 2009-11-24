@@ -29,7 +29,7 @@
     SourceNodeRoot* _sourceRoot;
     NSMutableArray* _buttons;
     NSMutableDictionary* _colors;
-    NSRange _lastRange;
+    //NSRange _lastRange;
 }
 @property(nonatomic, assign) IBOutlet NSTextView* textView;
 @property(nonatomic, assign) IBOutlet NSPathControl* pathControl;

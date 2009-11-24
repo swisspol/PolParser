@@ -133,8 +133,9 @@
         if(bracesNode && (!semicolonNode || ([node.parent indexOfChild:bracesNode] < [node.parent indexOfChild:semicolonNode])))
             _RearrangeNodesAsChildren(node, bracesNode);
         else if(semicolonNode && (!bracesNode || ([node.parent indexOfChild:semicolonNode] < [node.parent indexOfChild:bracesNode])))
-            _RearrangeNodesAsChildren(node, semicolonNode.previousSibling);
-        
+            _RearrangeNodesAsChildren(node, semicolonNode.previousSibling); //FIXME: Strip trailing whitespace?
+        #warning moving the following nodes down one level may have them be refactored twice because they are still in the cache of children of current parents \
+        and will be evaluated again as children of "else"
     } else if([node isKindOfClass:[SourceNodeCFlowIf class]] || [node isKindOfClass:[SourceNodeCFlowFor class]] || [node isKindOfClass:[SourceNodeCFlowSwitch class]]) {
         
         // "if()" "for()" "switch()"
@@ -143,7 +144,7 @@
             SourceNode* bracesNode = [nextNode findNextSiblingOfClass:[SourceNodeBraces class]];
             SourceNode* semicolonNode = [nextNode findNextSiblingOfClass:[SourceNodeSemicolon class]];
             if(semicolonNode && (!bracesNode || ([node.parent indexOfChild:semicolonNode] < [node.parent indexOfChild:bracesNode])))
-                _RearrangeNodesAsChildren(node, semicolonNode.previousSibling);
+                _RearrangeNodesAsChildren(node, semicolonNode.previousSibling); //FIXME: Strip trailing whitespace?
         }
         
     } else if([node isKindOfClass:[SourceNodeCFlowGoto class]]) {
@@ -151,18 +152,19 @@
         // "goto foo"
         SourceNode* semicolonNode = [node findNextSiblingOfClass:[SourceNodeSemicolon class]];
         if(semicolonNode)
-            _RearrangeNodesAsChildren(node, semicolonNode.previousSibling);
+            _RearrangeNodesAsChildren(node, semicolonNode.previousSibling); //FIXME: Strip trailing whitespace?
         
     } else if([node isKindOfClass:[SourceNodeCTypeStruct class]] || [node isKindOfClass:[SourceNodeCTypeUnion class]]) {
         
         // "struct {}" "union {}"
         SourceNode* bracesNode = [node findNextSiblingOfClass:[SourceNodeBraces class]];
-        if(bracesNode) {
-            SourceNode* semicolonNode = [bracesNode findNextSiblingOfClass:[SourceNodeSemicolon class]];
+        SourceNode* semicolonNode = [node findNextSiblingOfClass:[SourceNodeSemicolon class]];
+        if(bracesNode && (!semicolonNode || ([node.parent indexOfChild:semicolonNode] > [node.parent indexOfChild:bracesNode]))) {
+            semicolonNode = [bracesNode findNextSiblingOfClass:[SourceNodeSemicolon class]];
             if(!semicolonNode && [bracesNode.parent isKindOfClass:[SourceNodeCTypedef class]])
                 _RearrangeNodesAsChildren(node, bracesNode.parent.lastChild);
             else if(semicolonNode)
-                _RearrangeNodesAsChildren(node, semicolonNode.previousSibling);
+                _RearrangeNodesAsChildren(node, semicolonNode.previousSibling); //FIXME: Strip trailing whitespace?
         }
         
     } else if([node isKindOfClass:[SourceNodeCTypedef class]]) {
@@ -170,7 +172,7 @@
         // "typedef foo"
         SourceNode* semicolonNode = [node findNextSiblingOfClass:[SourceNodeSemicolon class]];
         if(semicolonNode)
-            _RearrangeNodesAsChildren(node, semicolonNode.previousSibling);
+            _RearrangeNodesAsChildren(node, semicolonNode.previousSibling); //FIXME: Strip trailing whitespace?
         
     } else if([node isKindOfClass:[SourceNodeCTypeSizeOf class]]) {
         
@@ -202,8 +204,10 @@
                 SourceNode* newNode = [([nextNode isKindOfClass:[SourceNodeBraces class]] ? [SourceNodeCFunctionDefinition alloc] : [SourceNodeCFunctionPrototype alloc]) initWithSource:previousNode.source range:NSMakeRange(previousNode.range.location, 0)];
                 [previousNode insertPreviousSibling:newNode];
                 [newNode release];
-                _RearrangeNodesAsChildren(newNode, [nextNode isKindOfClass:[SourceNodeBraces class]] ? nextNode : nextNode.previousSibling);
+                _RearrangeNodesAsChildren(newNode, [nextNode isKindOfClass:[SourceNodeBraces class]] ? nextNode : nextNode.previousSibling); //FIXME: Strip trailing whitespace?
             }
+            
+            #warning nodes after "node" will never be refactored!
         }
         
     }

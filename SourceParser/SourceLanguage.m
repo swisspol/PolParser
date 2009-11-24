@@ -259,7 +259,7 @@ static BOOL _ParseSource(SourceLanguage* language, NSString* source, const unich
     [rootNode applyFunctionOnChildren:_ApplierFunction context:language recursively:YES];
     
     if(!_CheckTreeConsistency(rootNode, stack)) {
-        NSLog(@"\"%@\" parser failed because resulting tree is not consistent:\n%@\n%@", [language name], [[stack objectAtIndex:0] fullDescription], stack);
+        NSLog(@"\"%@\" parser failed because resulting tree is not consistent:\n%@\n%@", [language name], [[(SourceNode*)[stack objectAtIndex:0] parent] fullDescription], stack);
         return NO;
     }
     

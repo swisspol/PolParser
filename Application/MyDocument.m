@@ -30,28 +30,25 @@
 
 @synthesize textView=_textView;
 
-- (CGFloat) requiredThickness
-{
-    return 30;
+- (CGFloat) requiredThickness {
+    return 36;
 }
 
-- (void) drawRect:(NSRect)aRect
-{
-    static NSDictionary*            attributes = nil;
-    static NSColor*                    backColor = nil;
-    static NSColor*                    lineColor = nil;
-    NSRect                            bounds = [self bounds];
-    unsigned                        start,
-                                    i;
-    NSPoint                            point;
-    float                            offset;
+- (void) drawRect:(NSRect)aRect {
+    static NSDictionary* attributes = nil;
+    static NSColor* backColor = nil;
+    static NSColor* lineColor = nil;
+    NSRect bounds = [self bounds];
+    unsigned start, i;
+    NSPoint point;
+    float offset;
     
     if(backColor == nil)
-    backColor = [[NSColor colorWithDeviceRed:0.90 green:0.90 blue:0.90 alpha:1.0] retain];
+    	backColor = [[NSColor colorWithDeviceRed:0.90 green:0.90 blue:0.90 alpha:1.0] retain];
     if(lineColor == nil)
-    lineColor = [[NSColor grayColor] retain];
+    	lineColor = [[NSColor grayColor] retain];
     if(attributes == nil)
-    attributes = [[NSDictionary alloc] initWithObjectsAndKeys:[NSColor darkGrayColor], NSForegroundColorAttributeName, [NSFont systemFontOfSize:10], NSFontAttributeName, nil];
+    	attributes = [[NSDictionary alloc] initWithObjectsAndKeys:[NSColor darkGrayColor], NSForegroundColorAttributeName, [NSFont systemFontOfSize:10], NSFontAttributeName, nil];
     
     [backColor set];
     NSRectFill(aRect);
@@ -61,7 +58,7 @@
     start = ([_textView visibleRect].origin.y + aRect.origin.y) / 14 + 1;
     offset = fmodf([_textView visibleRect].origin.y + aRect.origin.y, 14);
     for(i = 0; i < aRect.size.height / 14 + 1; ++i) {
-        point.x = (start + i < 10 ? bounds.origin.x + 17 : (start + i < 100 ? bounds.origin.x + 11 : bounds.origin.x + 5));
+        point.x = (start + i < 10 ? bounds.origin.x + 23 : (start + i < 100 ? bounds.origin.x + 17 : (start + i < 1000 ? bounds.origin.x + 11 : bounds.origin.x + 5)));
         point.y = (aRect.origin.y / 14 + i) * 14 - offset;
         [[NSString stringWithFormat:@"%i", start + i] drawAtPoint:point withAttributes:attributes];
     }
@@ -124,7 +121,7 @@ static void _FindUsedClasses(SourceNode* node, NSMutableSet* set) {
         [NSScrollView setRulerViewClass:rulerClass];
         RulerView* rulerView = (RulerView*)[scrollView verticalRulerView];
         [rulerView setTextView:_textView];
-        [rulerView setRuleThickness:30];
+        [rulerView setRuleThickness:36];
         [scrollView setLineScroll:14];
         [container setWidthTracksTextView:NO];
         [container setHeightTracksTextView:NO];
@@ -199,9 +196,10 @@ static void _NodeApplierFunction(SourceNode* node, void* context) {
 }
 
 - (void) mouseMoved:(NSEvent*)theEvent {
-    NSMutableAttributedString* storage = [[_textView layoutManager] textStorage];
-    [storage beginEditing];
-    [storage addAttribute:NSForegroundColorAttributeName value:[NSColor darkGrayColor] range:_lastRange];
+    //FIXME: This creates some scrolling issues
+    //NSMutableAttributedString* storage = [[_textView layoutManager] textStorage];
+    //[storage beginEditing];
+    //[storage addAttribute:NSForegroundColorAttributeName value:[NSColor darkGrayColor] range:_lastRange];
     
     void* params[2];
     NSUInteger index = [_textView characterIndexForInsertionAtPoint:[_textView convertPoint:theEvent.locationInWindow fromView:nil]];
@@ -209,7 +207,7 @@ static void _NodeApplierFunction(SourceNode* node, void* context) {
     params[0] = (void*)index;
     params[1] = &node;
     [_sourceRoot applyFunctionOnChildren:_NodeApplierFunction context:params recursively:YES];
-    _lastRange = node.range;
+    //_lastRange = node.range;
     NSMutableString* path = [NSMutableString string];
     while(node) {
         [path insertString:[[node class] name] atIndex:0];
@@ -218,8 +216,8 @@ static void _NodeApplierFunction(SourceNode* node, void* context) {
     }
     [_pathControl setObjectValue:path];
     
-    [storage addAttribute:NSForegroundColorAttributeName value:[NSColor redColor] range:_lastRange];
-    [storage endEditing];
+    //[storage addAttribute:NSForegroundColorAttributeName value:[NSColor redColor] range:_lastRange];
+    //[storage endEditing];
 }
 
 - (void) mouseExited:(NSEvent*)theEvent {

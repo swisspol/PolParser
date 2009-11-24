@@ -71,7 +71,7 @@
 
 @implementation MyDocument
 
-@synthesize textView=_textView, coloringButton=_coloringButton;
+@synthesize textView=_textView, pathControl=_pathControl, coloringButton=_coloringButton;
 
 - (void) dealloc {
 	[_sourceRoot release];
@@ -117,33 +117,19 @@ static void _FindUsedClasses(SourceNode* node, NSMutableSet* set) {
     NSScrollView* scrollView = (NSScrollView*)[[_textView superview] superview];
 	if([scrollView isKindOfClass:[NSScrollView class]]) {
 		NSTextContainer* container = [[[_textView layoutManager] textContainers] objectAtIndex:0];
-		if(1) {
-			Class rulerClass = [NSScrollView rulerViewClass];
-			[NSScrollView setRulerViewClass:[RulerView class]];
-			[scrollView setHasVerticalRuler:YES];
-			[scrollView setRulersVisible:YES];
-			[NSScrollView setRulerViewClass:rulerClass];
-			RulerView* rulerView = (RulerView*)[scrollView verticalRulerView];
-			[rulerView setTextView:_textView];
-			[rulerView setRuleThickness:30];
-			
-			[scrollView setHasHorizontalScroller:YES];
-			[container setWidthTracksTextView:NO];
-			[container setHeightTracksTextView:NO];
-			[container setContainerSize:NSMakeSize(10000000, 10000000)]; //NOTE: This forces a refresh
-			[_textView setHorizontallyResizable:YES];
-            
-            [scrollView setLineScroll:14];
-		}
-		else {
-			[scrollView setHasVerticalRuler:NO];
-			
-			[scrollView setHasHorizontalScroller:NO];
-			[container setWidthTracksTextView:YES];
-			[container setHeightTracksTextView:NO];
-			[container setContainerSize:NSMakeSize(10, 10000000)]; //NOTE: This forces a refresh
-			[_textView setHorizontallyResizable:NO];
-		}
+        Class rulerClass = [NSScrollView rulerViewClass];
+        [NSScrollView setRulerViewClass:[RulerView class]];
+        [scrollView setHasVerticalRuler:YES];
+        [scrollView setRulersVisible:YES];
+        [NSScrollView setRulerViewClass:rulerClass];
+        RulerView* rulerView = (RulerView*)[scrollView verticalRulerView];
+        [rulerView setTextView:_textView];
+        [rulerView setRuleThickness:30];
+        [scrollView setLineScroll:14];
+        [container setWidthTracksTextView:NO];
+        [container setHeightTracksTextView:NO];
+        [container setContainerSize:NSMakeSize(10000000, 10000000)]; //NOTE: This forces a refresh
+        [_textView setHorizontallyResizable:YES];
 	}
     
     scrollView = (NSScrollView*)[[[_coloringButton superview] superview] superview];
@@ -178,6 +164,11 @@ static void _FindUsedClasses(SourceNode* node, NSMutableSet* set) {
     
     _textView.string = [_sourceRoot source];
     [self updateColoring:nil];
+    
+    NSTrackingArea* area = [[NSTrackingArea alloc] initWithRect:NSZeroRect options:(NSTrackingMouseEnteredAndExited | NSTrackingMouseMoved | NSTrackingActiveAlways | NSTrackingInVisibleRect) owner:self userInfo:nil];
+    [_textView addTrackingArea:area];
+    [area release];
+    [_pathControl setObjectValue:@"/"];
 }
 
 - (BOOL) readFromURL:(NSURL*)absoluteURL ofType:(NSString*)typeName error:(NSError**)outError {
@@ -192,6 +183,39 @@ static void _FindUsedClasses(SourceNode* node, NSMutableSet* set) {
     }
     
     return YES;
+}
+
+- (void) mouseEntered:(NSEvent*)theEvent {
+	[_pathControl setObjectValue:@""];
+}
+
+static void _NodeApplierFunction(SourceNode* node, void* context) {
+	void** params = (void**)context;
+    NSUInteger index = (NSUInteger)params[0];
+    if((index >= node.range.location) && (index < node.range.location + node.range.length)) {
+    	SourceNode** nodePtr = params[1];
+        *nodePtr = node;
+    }
+}
+
+- (void) mouseMoved:(NSEvent*)theEvent {
+	void* params[2];
+    NSUInteger index = [_textView characterIndexForInsertionAtPoint:[_textView convertPoint:theEvent.locationInWindow fromView:nil]];
+    SourceNode* node = _sourceRoot;
+    params[0] = (void*)index;
+    params[1] = &node;
+    [_sourceRoot applyFunctionOnChildren:_NodeApplierFunction context:params recursively:YES];
+    NSMutableString* path = [NSMutableString string];
+    while(node) {
+    	[path insertString:[[node class] name] atIndex:0];
+    	[path insertString:@"/" atIndex:0];
+        node = node.parent;
+    }
+    [_pathControl setObjectValue:path];
+}
+
+- (void) mouseExited:(NSEvent*)theEvent {
+	[_pathControl setObjectValue:@""];
 }
 
 - (void) _colorizeSource:(SourceNode*)node attributes:(NSDictionary*)attributes {

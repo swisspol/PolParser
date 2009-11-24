@@ -23,6 +23,7 @@
 @interface MyDocument : NSDocument
 {
 	NSTextView* _textView;
+    NSPathControl* _pathControl;
     NSButton* _coloringButton;
     
     SourceNodeRoot* _sourceRoot;
@@ -30,6 +31,7 @@
     NSMutableDictionary* _colors;
 }
 @property(nonatomic, assign) IBOutlet NSTextView* textView;
+@property(nonatomic, assign) IBOutlet NSPathControl* pathControl;
 @property(nonatomic, assign) IBOutlet NSButton* coloringButton;
 - (IBAction) updateColoring:(id)sender;
 @end

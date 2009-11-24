@@ -29,11 +29,22 @@ static void _ProcessNode(SourceNode* node) {
         [node replaceWithText:text];
     }
     
-    //Reformat if(), for() and while() as "if ()", "for ()" and "while ()"
-    if([node isKindOfClass:[SourceNodeCFlowIf class]] || [node isKindOfClass:[SourceNodeCFlowFor class]] || [node isKindOfClass:[SourceNodeCFlowWhile class]]) {
-    	while([node.nextSibling isKindOfClass:[SourceNodeWhitespace class]] || [node.nextSibling isKindOfClass:[SourceNodeNewline class]])
-        	[node.nextSibling removeFromParent];
-        [node insertNextSibling:[SourceNodeText sourceNodeWithText:@" "]];
+    //Reformat "if()", "for()" and "while()" as "if ()", "for ()" and "while ()"
+    if(([node isKindOfClass:[SourceNodeCFlowIf class]] || [node isKindOfClass:[SourceNodeCFlowFor class]] || [node isKindOfClass:[SourceNodeCFlowWhile class]]) && node.children.count) {
+        SourceNode* subnode = [node.children objectAtIndex:0];
+        while([subnode.nextSibling isKindOfClass:[SourceNodeWhitespace class]] || [subnode.nextSibling isKindOfClass:[SourceNodeNewline class]])
+            [subnode.nextSibling removeFromParent];
+        [subnode insertNextSibling:[SourceNodeText sourceNodeWithText:@" "]];
+    }
+    
+    //Reformat "do {} while()" as "do {} while ()"
+    if([node isKindOfClass:[SourceNodeCFlowDoWhile class]] && node.children.count) {
+        SourceNode* subnode = [node.children objectAtIndex:(node.children.count - 1)];
+        if([subnode isKindOfClass:[SourceNodeParenthesis class]]) {
+            while([subnode.previousSibling isKindOfClass:[SourceNodeWhitespace class]] || [subnode.previousSibling isKindOfClass:[SourceNodeNewline class]])
+                [subnode.previousSibling removeFromParent];
+            [subnode insertPreviousSibling:[SourceNodeText sourceNodeWithText:@" "]];
+        }
     }
     
     //Ensure open braces are never preceded by a new line

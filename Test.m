@@ -30,7 +30,7 @@ const char* multiline = "foo\
 
 static inline BOOL _IsRealLineBreak(const unichar* string) {
 	if(!IsNewline(*string) > 0)
-        return NO;
+        return NO  ;
     do {
     	--string;
     } while  (IsWhiteSpaceOrNewline(*string));
@@ -50,14 +50,36 @@ static inline BOOL _IsRealLineBreak(const unichar* string) {
 - (void) run; //  
 @end
 
+struct temp {
+    int foo;
+    int bar;
+};
+
 @implementation Demo//First pass
 	
 #if 1
 
 - (BOOL) isValid {
-    int temp;
+    int temp = sizeof(long);
     
     ;
+    
+    if(1) {
+    	foo();
+    } else if(2) {
+    	bar();
+    } else {
+    	temp();
+    }
+    
+    if(1)
+    	foo();
+    else
+    	bar();
+    
+    while (true) {
+        ;
+    }
     
     @try {
         @throw;
@@ -78,7 +100,10 @@ static inline BOOL _IsRealLineBreak(const unichar* string) {
 
 - (BOOL) isValid
 {
-	@synchronized ([self class]) {
+	for(int i = 2; i < 10; ++i) {
+    	NSLog("PING");
+    }
+    @synchronized ([self class]) {
     	self + 2;
     }
     return YES;

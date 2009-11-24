@@ -48,5 +48,5 @@
 @end
 
 @interface SourceNode (SourceNodeTextExtensions)
-- (void) replaceWithText:(NSString*)text; //Replaces self by a SourceNodeText instance with the given text (passing an empty text just deletes the node)
+- (void) replaceWithText:(NSString*)text; //Replaces self by a SourceNodeText instance with the given text (passing an empty text just removes the node from the tree)
 @end

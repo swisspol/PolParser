@@ -53,6 +53,7 @@ typedef void (*SourceNodeApplierFunction)(SourceNode* node, void* context);
 - (void) removeChildAtIndex:(NSUInteger)index;
 - (void) insertPreviousSibling:(SourceNode*)sibling;
 - (void) insertNextSibling:(SourceNode*)sibling;
+- (void) replaceWithNode:(SourceNode*)node; //Replaces self by "node" (passing nil just removes the node from the tree)
 
 - (void) applyFunctionOnChildren:(SourceNodeApplierFunction)function context:(void*)context recursively:(BOOL)recursively;
 #if NS_BLOCKS_AVAILABLE

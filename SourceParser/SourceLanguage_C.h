@@ -86,10 +86,10 @@
 @interface SourceNodeStringDoubleQuote : SourceNode //Leaf
 @end
 
-@interface SourceNodeConditionIf : SourceNode //Leaf
+@interface SourceNodeConditionIf : SourceNode
 @end
 
-@interface SourceNodeConditionElse : SourceNode //Leaf
+@interface SourceNodeConditionElse : SourceNode
 @end
 
 @interface SourceNodeFlowBreak : SourceNode //Leaf
@@ -98,7 +98,7 @@
 @interface SourceNodeFlowContinue : SourceNode //Leaf
 @end
 
-@interface SourceNodeFlowSwitch : SourceNode //Leaf
+@interface SourceNodeFlowSwitch : SourceNode
 @end
 
 @interface SourceNodeFlowCase : SourceNode //Leaf
@@ -107,7 +107,7 @@
 @interface SourceNodeFlowDefault : SourceNode //Leaf
 @end
 
-@interface SourceNodeFlowFor : SourceNode //Leaf
+@interface SourceNodeFlowFor : SourceNode
 @end
 
 @interface SourceNodeFlowDo : SourceNode //Leaf
@@ -125,10 +125,10 @@
 @interface SourceNodeTypedef : SourceNode //Leaf
 @end
 
-@interface SourceNodeTypeStruct : SourceNode //Leaf
+@interface SourceNodeTypeStruct : SourceNode
 @end
 
-@interface SourceNodeTypeUnion : SourceNode //Leaf
+@interface SourceNodeTypeUnion : SourceNode
 @end
 
 @interface SourceNodeTypeAuto : SourceNode //Leaf
@@ -152,5 +152,5 @@
 @interface SourceNodeTypeExtern : SourceNode //Leaf
 @end
 
-@interface SourceNodeTypeSizeOf : SourceNode //Leaf
+@interface SourceNodeTypeSizeOf : SourceNode
 @end

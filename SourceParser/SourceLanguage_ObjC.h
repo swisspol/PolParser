@@ -27,10 +27,10 @@
 @interface SourceNodeObjCInterface : SourceNode
 @end
 
-@interface SourceNodeObjCImplementation : SourceNodeObjCInterface
+@interface SourceNodeObjCImplementation : SourceNode
 @end
 
-@interface SourceNodeObjCProtocol : SourceNodeObjCInterface
+@interface SourceNodeObjCProtocol : SourceNode
 @end
 
 @interface SourceNodeObjCPublic : SourceNode //Leaf
@@ -45,17 +45,20 @@
 @interface SourceNodeObjCProperty : SourceNode //Leaf
 @end
 
-@interface SourceNodeObjCTry : SourceNode //Leaf
+@interface SourceNodeObjCTry : SourceNode
 @end
 
-@interface SourceNodeObjCCatch : SourceNode //Leaf
+@interface SourceNodeObjCCatch : SourceNode
 @end
 
-@interface SourceNodeObjCFinally : SourceNode //Leaf
+@interface SourceNodeObjCFinally : SourceNode
 @end
 
 @interface SourceNodeObjCThrow : SourceNode //Leaf
 @end
 
-@interface SourceNodeObjCSynchronized : SourceNode //Leaf
+@interface SourceNodeObjCSynchronized : SourceNode
+@end
+
+@interface SourceNodeObjCSelf : SourceNode //Leaf
 @end

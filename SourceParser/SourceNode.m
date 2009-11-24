@@ -30,6 +30,18 @@
 	return [super allocWithZone:zone];
 }
 
++ (BOOL) isAtomic {
+	return YES;
+}
+
++ (NSUInteger) isMatchingPrefix:(const unichar*)string maxLength:(NSUInteger)maxLength {
+    return NSNotFound;
+}
+
++ (NSUInteger) isMatchingSuffix:(const unichar*)string maxLength:(NSUInteger)maxLength {
+    return NSNotFound;
+}
+
 + (NSString*) name {
 	return [NSStringFromClass(self) substringFromIndex:[@"SourceNode" length]];
 }
@@ -54,7 +66,7 @@
 }
 
 static NSRange _LineNumbersForRange(NSString* string, NSRange range) {
-	NSRange lines = NSMakeRange(1, 1);
+	NSRange lines = NSMakeRange(0, 1);
     NSRange subrange = NSMakeRange(0, 0);
     while(1) {
     	subrange = [string rangeOfString:@"\n" options:0 range:NSMakeRange(subrange.location, string.length - subrange.location)];
@@ -76,7 +88,7 @@ static NSRange _LineNumbersForRange(NSString* string, NSRange range) {
 }
 
 - (NSRange) lines {
-	if(_lines.location == 0)
+	if(_lines.length == 0)
     	_lines = _LineNumbersForRange(_source, _range);
         
     return _lines;
@@ -135,20 +147,14 @@ static void _MergeChildrenContent(SourceNode* node, NSMutableString* string) {
 }
 
 - (NSUInteger) indexOfChild:(SourceNode*)child {
-	if([[self class] isLeaf])
-    	[NSException raise:NSInternalInconsistencyException format:@"%@ is a leaf node", self];
-    
-    if(child.parent != self)
+	if(child.parent != self)
     	[NSException raise:NSInternalInconsistencyException format:@"%@ is not a child of %@", child, self];
     
     return [_children indexOfObject:child];
 }
 
 - (void) insertChild:(SourceNode*)child atIndex:(NSUInteger)index {
-	if([[self class] isLeaf])
-    	[NSException raise:NSInternalInconsistencyException format:@"%@ is a leaf node", self];
-        
-    if(child.parent)
+	if(child.parent)
     	[NSException raise:NSInternalInconsistencyException format:@"%@ already has a parent", child];
     
     if(_children == nil)
@@ -159,10 +165,7 @@ static void _MergeChildrenContent(SourceNode* node, NSMutableString* string) {
 }
 
 - (void) removeChildAtIndex:(NSUInteger)index {
-	if([[self class] isLeaf])
-    	[NSException raise:NSInternalInconsistencyException format:@"%@ is a leaf node", self];
-    
-    SourceNode* node = [_children objectAtIndex:index];
+	SourceNode* node = [_children objectAtIndex:index];
     [node retain];
     node.parent = nil;
     [_children removeObjectAtIndex:index];
@@ -188,6 +191,18 @@ static void _MergeChildrenContent(SourceNode* node, NSMutableString* string) {
     [_parent insertChild:sibling atIndex:([_parent indexOfChild:self] + 1)];
 }
 
+- (void) replaceWithNode:(SourceNode*)node {
+    if(_parent == nil)
+    	[NSException raise:NSInternalInconsistencyException format:@"%@ has no parent", self];
+    
+    SourceNode* parent = _parent;
+    NSUInteger index = [parent indexOfChild:self];
+    [parent removeChildAtIndex:index];
+    if(node)
+    	[parent insertChild:node atIndex:index];
+}
+
+/* Keep in sync with _ApplyBlock() */
 static void _ApplyFunction(SourceNode* node, SourceNodeApplierFunction function, void* context, BOOL recursive) {
 	NSUInteger count = node.children.count;
     SourceNode* nodes[count];
@@ -196,23 +211,21 @@ static void _ApplyFunction(SourceNode* node, SourceNodeApplierFunction function,
     for(NSUInteger i = 0; i < count; ++i) {
         if(nodes[i].parent == node) {
             (*function)(nodes[i], context);
-            if(nodes[i].children && recursive)
+            if(nodes[i].parent && nodes[i].children && recursive)
                 _ApplyFunction(nodes[i], function, context, recursive);        
         }
     }
 }
 
 - (void) applyFunctionOnChildren:(SourceNodeApplierFunction)function context:(void*)context recursively:(BOOL)recursively {
-	if([[self class] isLeaf])
-    	[NSException raise:NSInternalInconsistencyException format:@"%@ is a leaf node", self];
-    
-    NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+	NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
     _ApplyFunction(self, function, context, recursively);
     [pool drain];
 }
 
 #if NS_BLOCKS_AVAILABLE
 
+/* Keep in sync with _ApplyFunction() */
 static void _ApplyBlock(SourceNode* node, BOOL recursive, void (^block)(SourceNode* node)) {
 	NSUInteger count = node.children.count;
     SourceNode* nodes[count];
@@ -221,17 +234,14 @@ static void _ApplyBlock(SourceNode* node, BOOL recursive, void (^block)(SourceNo
     for(NSUInteger i = 0; i < count; ++i) {
         if(nodes[i].parent == node) {
             block(nodes[i]);
-            if(nodes[i].children && recursive)
+            if(nodes[i].parent && nodes[i].children && recursive)
                 _ApplyBlock(nodes[i], recursive, block);
         }
     }
 }
 
 - (void) enumerateChildrenRecursively:(BOOL)recursively usingBlock:(void (^)(SourceNode* node))block {
-	if([[self class] isLeaf])
-    	[NSException raise:NSInternalInconsistencyException format:@"%@ is a leaf node", self];
-    
-    NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+	NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
     _ApplyBlock(self, recursively, block);
     [pool drain];
 }
@@ -267,11 +277,11 @@ static NSString* _FormatString(NSString* string) {
 }
 
 static void _AppendNodeDescription(SourceNode* node, NSMutableString* string, NSString* prefix) {
-	NSString* content = (node.children ? nil : _FormatString(node.content));
+    NSString* content = (node.children ? nil : _FormatString(node.content));
     if(content.length)
-        [string appendFormat:@"%@[%@] = |%@|\n", prefix, [[node class] name], content];
+        [string appendFormat:@"%@[%i:%i] <%@> = |%@|\n", prefix, node.lines.location + 1, node.lines.location + node.lines.length, [[node class] name], content];
     else
-    	[string appendFormat:@"%@[%@]\n", prefix, [[node class] name]];
+    	[string appendFormat:@"%@[%i:%i] <%@>\n", prefix, node.lines.location + 1, node.lines.location + node.lines.length, [[node class] name]];
     
     prefix = [prefix stringByAppendingString:@"\t"];
     for(node in [node children])
@@ -285,23 +295,7 @@ static void _AppendNodeDescription(SourceNode* node, NSMutableString* string, NS
 }
 
 - (NSString*) description {
-	return [NSString stringWithFormat:@"<%@ = %p | characters = [%i, %i] | lines = [%i, %i]>\n%@", [self class], self, self.range.location, self.range.length, self.lines.location, self.lines.length, [self isKindOfClass:[SourceNodeRoot class]] ? self.fullDescription : self.miniDescription];
-}
-
-@end
-
-@implementation SourceNode (Parsing)
-
-+ (BOOL) isLeaf {
-	return YES;
-}
-
-+ (NSUInteger) isMatchingPrefix:(const unichar*)string maxLength:(NSUInteger)maxLength {
-    return NSNotFound;
-}
-
-+ (NSUInteger) isMatchingSuffix:(const unichar*)string maxLength:(NSUInteger)maxLength {
-    return NSNotFound;
+    return [NSString stringWithFormat:@"<%@ = %p | characters = [%i, %i] | lines = [%i:%i]>\n%@", [self class], self, self.range.location, self.range.length, self.lines.location + 1, self.lines.location + self.lines.length, [self isKindOfClass:[SourceNodeRoot class]] ? self.fullDescription : self.miniDescription];
 }
 
 @end

@@ -81,6 +81,92 @@
     return classes;
 }
 
+- (void) didAddChildNodeToSourceTree:(SourceNode*)child {
+	if([child isKindOfClass:[SourceNodeBraces class]]) {
+    	SourceNode* node = [child findPreviousSiblingIgnoringWhitespaceAndNewline];
+        
+        // "if() {}" "for() {}" "switch() {}" "while() {}"
+        if([node isKindOfClass:[SourceNodeParenthesis class]]) {
+        	node = [node findPreviousSiblingIgnoringWhitespaceAndNewline];
+            if([node isKindOfClass:[SourceNodeConditionIf class]] || [node isKindOfClass:[SourceNodeFlowFor class]] || [node isKindOfClass:[SourceNodeFlowSwitch class]] || [node isKindOfClass:[SourceNodeFlowWhile class]])
+            	_RearrangeNodesAsChildren(node, child);
+        }
+        
+        // "else {}"
+        else if([node isKindOfClass:[SourceNodeConditionElse class]]) {
+            _RearrangeNodesAsChildren(node, child);
+        }
+        
+    } else if([child isKindOfClass:[SourceNodeParenthesis class]]) {
+    	SourceNode* node = [child findPreviousSiblingIgnoringWhitespaceAndNewline];
+        
+        // "do {} while()"
+        if([node isKindOfClass:[SourceNodeFlowWhile class]]) {
+        	node = [node findPreviousSiblingIgnoringWhitespaceAndNewline];
+            if([node isKindOfClass:[SourceNodeBraces class]]) {
+            	node = [node findPreviousSiblingIgnoringWhitespaceAndNewline];
+                if([node isKindOfClass:[SourceNodeFlowDo class]]) {
+                	_RearrangeNodesAsChildren(node, child);
+                    
+                    node = [child findPreviousSiblingIgnoringWhitespaceAndNewline];
+                    SourceNode* newWhile = [[SourceNodeText alloc] initWithSource:node.source range:node.range];
+                    [node replaceWithNode:newWhile];
+                    [newWhile release];
+                }
+            }
+        }
+        
+        // "sizeof()"
+        else if([node isKindOfClass:[SourceNodeTypeSizeOf class]]) {
+        	_RearrangeNodesAsChildren(node, child);
+        }
+        
+    }
+    
+    /*else if([child isKindOfClass:[SourceNodeSemicolon class]]) {
+    	// "else"
+        SourceNode* node = [child findPreviousSiblingOfClass:[SourceNodeConditionElse class]];
+        if(node)
+        	_RearrangeNodesAsChildren(node, child.previousSibling);
+        
+        NSLog(@"%@", node.fullDescription);
+        
+        // "if()" "for()" "switch()"
+        SourceNode* node = [child findPreviousSiblingOfClass:[SourceNodeParenthesis class]];
+        node = [node findPreviousSiblingIgnoringWhitespaceAndNewline];
+        if([node isKindOfClass:[SourceNodeConditionIf class]] || [node isKindOfClass:[SourceNodeFlowFor class]] || [node isKindOfClass:[SourceNodeFlowSwitch class]])
+        	_RearrangeNodesAsChildren(node, child.previousSibling);
+        
+        SourceNode* node = [child findPreviousSiblingOfClass:[SourceNodeConditionIf class]];
+        if(node)
+        	_RearrangeNodesAsChildren(node, child.previousSibling);
+        
+        NSLog(@"%@", node.fullDescription);
+    }*/
+    
+    [super didAddChildNodeToSourceTree:child];
+    
+    /*
+    
+    struct temp {
+    
+    };
+    
+    struct {
+    
+    } temp;
+    
+    union temp {
+    
+    };
+    
+    union {
+    
+    } temp;
+    
+    */
+}
+
 @end
 
 @implementation SourceNodeCommentC
@@ -105,7 +191,7 @@
 	return [super allocWithZone:zone];
 }
 
-+ (BOOL) isLeaf {
++ (BOOL) isAtomic {
 	return NO;
 }
 

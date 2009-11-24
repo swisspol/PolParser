@@ -77,17 +77,16 @@ static inline BOOL _EqualUnichars(const unichar* string1, const unichar* string2
     return YES;
 }
 
+void _RearrangeNodesAsChildren(SourceNode* startNode, SourceNode* endNode);
+
 @interface SourceNode ()
++ (BOOL) isAtomic;
++ (NSUInteger) isMatchingPrefix:(const unichar*)string maxLength:(NSUInteger)maxLength; //"maxLength" is guaranteed to be at least 1
++ (NSUInteger) isMatchingSuffix:(const unichar*)string maxLength:(NSUInteger)maxLength; //"maxLength" may be 0 for atomic classes
 @property(nonatomic) NSRange range;
 @property(nonatomic, assign) SourceNode* parent;
 @property(nonatomic, readonly) NSMutableArray* mutableChildren;
 - (id) initWithSource:(NSString*)source range:(NSRange)range;
-@end
-
-@interface SourceNode (Parsing)
-+ (BOOL) isLeaf;
-+ (NSUInteger) isMatchingPrefix:(const unichar*)string maxLength:(NSUInteger)maxLength; //"maxLength" is guaranteed to be at least 1
-+ (NSUInteger) isMatchingSuffix:(const unichar*)string maxLength:(NSUInteger)maxLength; //"maxLength" may be 0 for leaf classes
 @end
 
 @interface SourceNodeRoot ()
@@ -95,7 +94,7 @@ static inline BOOL _EqualUnichars(const unichar* string1, const unichar* string2
 @end
 
 @interface SourceLanguage ()
-- (void) didAddChildNodeToSourceTree:(SourceNode*)child;
+- (void) didAddChildNodeToSourceTree:(SourceNode*)child; //Override point to perform language dependent tree operations as nodes are inserted
 @end
 
 @interface SourceLanguageBase : SourceLanguage

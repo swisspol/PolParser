@@ -18,6 +18,20 @@
 
 #import "SourceParser_Internal.h"
 
+void _RearrangeNodesAsChildren(SourceNode* startNode, SourceNode* endNode) {
+	SourceNode* node = [[SourceNodeText alloc] initWithSource:startNode.source range:startNode.range];
+    [startNode addChild:node];
+    [node release];
+    node = startNode.nextSibling;
+    do {
+        SourceNode* sibling = node.nextSibling; //This will not be available afterwards
+        [node removeFromParent];
+        [startNode addChild:node];
+        node = (node == endNode ? nil : sibling);
+    } while(node);
+    startNode.range = NSMakeRange(startNode.range.location, endNode.range.location + endNode.range.length - startNode.range.location);
+}
+
 @implementation SourceLanguage
 
 static NSMutableSet* _languageCache = nil;
@@ -183,7 +197,7 @@ static BOOL _ParseSource(SourceLanguage* language, NSString* source, const unich
                 range.length -= rawLength;
                 rawLength = 0;
             }
-            if([prefixClass isLeaf]) {
+            if([prefixClass isAtomic]) {
             	NSUInteger length = prefixLength;
                 NSUInteger suffixLength = NSNotFound;
                 while(1) {
@@ -274,7 +288,7 @@ static BOOL _ParseSource(SourceLanguage* language, NSString* source, const unich
 }
 
 - (void) didAddChildNodeToSourceTree:(SourceNode*)child {
-	//FIXME: Override this point to perform language dependent tree operations as nodes are inserted
+	;
 }
 
 @end
@@ -283,7 +297,7 @@ static BOOL _ParseSource(SourceLanguage* language, NSString* source, const unich
 
 @synthesize language=_language;
 
-+ (BOOL) isLeaf {
++ (BOOL) isAtomic {
 	return NO;
 }
 
@@ -313,7 +327,14 @@ static BOOL _ParseSource(SourceLanguage* language, NSString* source, const unich
 }
 
 - (id) initWithText:(NSString*)text {
-	return [self initWithSource:text range:NSMakeRange(0, text.length)];
+	if(text.length == 0)
+    	[NSException raise:NSInternalInconsistencyException format:@"Text cannot be empty"];
+    
+    return [self initWithSource:text range:NSMakeRange(0, text.length)];
+}
+
+- (void) insertChild:(SourceNode*)child atIndex:(NSUInteger)index {
+	[self doesNotRecognizeSelector:_cmd];
 }
 
 @end
@@ -321,17 +342,9 @@ static BOOL _ParseSource(SourceLanguage* language, NSString* source, const unich
 @implementation SourceNode (SourceNodeTextExtensions)
 
 - (void) replaceWithText:(NSString*)text {
-    SourceNode* parent = _parent;
-    if(parent == nil)
-    	[NSException raise:NSInternalInconsistencyException format:@"%@ has no parent", self];
-    
-    NSUInteger index = [parent indexOfChild:self];
-    [parent removeChildAtIndex:index];
-    if(text.length) {
-    	SourceNodeText* node = [[SourceNodeText alloc] initWithText:text];
-    	[parent insertChild:node atIndex:index];
-        [node release];
-    }
+    SourceNodeText* node = text.length ? [[SourceNodeText alloc] initWithText:text] : nil;
+    [self replaceWithNode:node];
+    [node release];
 }
 
 @end

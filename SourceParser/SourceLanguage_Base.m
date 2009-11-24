@@ -46,6 +46,50 @@
 
 @end
 
+@implementation SourceNode (SourceLanguageExtensions)
+
+- (SourceNode*) findPreviousSiblingOfClass:(Class)class {
+	SourceNode* node = self.previousSibling;
+    while(node) {
+    	if([node isKindOfClass:class])
+        	return node;
+        node = node.previousSibling;
+    }
+    return nil;
+}
+
+- (SourceNode*) findNextSiblingOfClass:(Class)class {
+	SourceNode* node = self.nextSibling;
+    while(node) {
+    	if([node isKindOfClass:class])
+        	return node;
+        node = node.nextSibling;
+    }
+    return nil;
+}
+
+- (SourceNode*) findPreviousSiblingIgnoringWhitespaceAndNewline {
+	SourceNode* node = self.previousSibling;
+    while(node) {
+    	if(![node isKindOfClass:[SourceNodeWhitespace class]] && ![node isKindOfClass:[SourceNodeNewline class]])
+        	return node;
+        node = node.previousSibling;
+    }
+    return nil;
+}
+
+- (SourceNode*) findNextSiblingIgnoringWhitespaceAndNewline {
+	SourceNode* node = self.nextSibling;
+    while(node) {
+    	if(![node isKindOfClass:[SourceNodeWhitespace class]] && ![node isKindOfClass:[SourceNodeNewline class]])
+        	return node;
+        node = node.nextSibling;
+    }
+    return nil;
+}
+
+@end
+
 @implementation SourceNodeWhitespace
 
 + (NSUInteger) isMatchingPrefix:(const unichar*)string maxLength:(NSUInteger)maxLength {
@@ -54,6 +98,10 @@
 
 + (NSUInteger) isMatchingSuffix:(const unichar*)string maxLength:(NSUInteger)maxLength {
 	return maxLength && !IsWhiteSpace(*string) ? 0 : NSNotFound;
+}
+
+- (void) insertChild:(SourceNode*)child atIndex:(NSUInteger)index {
+	[self doesNotRecognizeSelector:_cmd];
 }
 
 @end
@@ -68,6 +116,10 @@
 	return maxLength && !IsWhiteSpace(*string) ? 0 : NSNotFound;
 }
 
+- (void) insertChild:(SourceNode*)child atIndex:(NSUInteger)index {
+	[self doesNotRecognizeSelector:_cmd];
+}
+
 @end
 
 @implementation SourceNodeNewline
@@ -80,52 +132,31 @@
 	return 0;
 }
 
-@end
-
-@implementation SourceNodeBraces
-
-+ (BOOL) isLeaf {
-	return NO;
-}
-
-+ (NSUInteger) isMatchingPrefix:(const unichar*)string maxLength:(NSUInteger)maxLength {
-    return *string == '{' ? 1 : NSNotFound;
-}
-
-+ (NSUInteger) isMatchingSuffix:(const unichar*)string maxLength:(NSUInteger)maxLength {
-	return *string == '}' ? 1 : NSNotFound;
+- (void) insertChild:(SourceNode*)child atIndex:(NSUInteger)index {
+	[self doesNotRecognizeSelector:_cmd];
 }
 
 @end
 
-@implementation SourceNodeParenthesis
-
-+ (BOOL) isLeaf {
-	return NO;
-}
-
-+ (NSUInteger) isMatchingPrefix:(const unichar*)string maxLength:(NSUInteger)maxLength {
-    return *string == '(' ? 1 : NSNotFound;
-}
-
-+ (NSUInteger) isMatchingSuffix:(const unichar*)string maxLength:(NSUInteger)maxLength {
-	return *string == ')' ? 1 : NSNotFound;
-}
-
+#define IMPLEMENTATION(__NAME__, __OPEN__, __CLOSE__) \
+@implementation SourceNode##__NAME__ \
+\
++ (BOOL) isAtomic { \
+	return NO; \
+} \
+\
++ (NSUInteger) isMatchingPrefix:(const unichar*)string maxLength:(NSUInteger)maxLength { \
+    return *string == __OPEN__ ? 1 : NSNotFound; \
+} \
+\
++ (NSUInteger) isMatchingSuffix:(const unichar*)string maxLength:(NSUInteger)maxLength { \
+	return *string == __CLOSE__ ? 1 : NSNotFound; \
+} \
+\
 @end
 
-@implementation SourceNodeBrackets
+IMPLEMENTATION(Braces, '{', '}')
+IMPLEMENTATION(Parenthesis, '(', ')')
+IMPLEMENTATION(Brackets, '[', ']')
 
-+ (BOOL) isLeaf {
-	return NO;
-}
-
-+ (NSUInteger) isMatchingPrefix:(const unichar*)string maxLength:(NSUInteger)maxLength {
-    return *string == '[' ? 1 : NSNotFound;
-}
-
-+ (NSUInteger) isMatchingSuffix:(const unichar*)string maxLength:(NSUInteger)maxLength {
-	return *string == ']' ? 1 : NSNotFound;
-}
-
-@end
+#undef IMPLEMENTATION

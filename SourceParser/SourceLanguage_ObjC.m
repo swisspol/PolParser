@@ -51,8 +51,30 @@
         [classes addObject:[SourceNodeObjCFinally class]];
         [classes addObject:[SourceNodeObjCThrow class]];
         [classes addObject:[SourceNodeObjCSynchronized class]];
+        [classes addObject:[SourceNodeObjCSelf class]];
     }
     return classes;
+}
+
+- (void) didAddChildNodeToSourceTree:(SourceNode*)child {
+	if([child isKindOfClass:[SourceNodeBraces class]]) {
+    	SourceNode* node = [child findPreviousSiblingIgnoringWhitespaceAndNewline];
+        
+        // "@catch() {}" "@synchronized() {}"
+        if([node isKindOfClass:[SourceNodeParenthesis class]]) {
+        	node = [node findPreviousSiblingIgnoringWhitespaceAndNewline];
+            if([node isKindOfClass:[SourceNodeObjCCatch class]] || [node isKindOfClass:[SourceNodeObjCSynchronized class]])
+            	_RearrangeNodesAsChildren(node, child);
+        }
+        
+        // "@try {}" "@finally {}"
+        else if([node isKindOfClass:[SourceNodeObjCTry class]] || [node isKindOfClass:[SourceNodeObjCFinally class]]) {
+            _RearrangeNodesAsChildren(node, child);
+        }
+        
+    }
+    
+    [super didAddChildNodeToSourceTree:child];
 }
 
 @end
@@ -83,29 +105,24 @@ IS_MATCHING_PREFIX_METHOD_WITH_TRAILING_WHITESPACE_OR_NEWLINE(@"#import")
 
 @end
 
-@implementation SourceNodeObjCInterface
-
-+ (BOOL) isLeaf {
-	return NO;
-}
-
-IS_MATCHING_PREFIX_METHOD_WITH_TRAILING_WHITESPACE_OR_NEWLINE(@"@interface")
-
-IS_MATCHING_SUFFIX_METHOD_WITH_TRAILING_WHITESPACE_OR_NEWLINE(@"@end")
-
+#define IMPLEMENTATION(__NAME__, __TOKEN__) \
+@implementation SourceNodeObjC##__NAME__ \
+\
++ (BOOL) isAtomic { \
+	return NO; \
+} \
+\
+IS_MATCHING_PREFIX_METHOD_WITH_TRAILING_WHITESPACE_OR_NEWLINE(__TOKEN__) \
+\
+IS_MATCHING_SUFFIX_METHOD_WITH_TRAILING_WHITESPACE_OR_NEWLINE(@"@end") \
+\
 @end
 
-@implementation SourceNodeObjCImplementation
+IMPLEMENTATION(Interface, @"@interface")
+IMPLEMENTATION(Implementation, @"@implementation")
+IMPLEMENTATION(Protocol, @"@protocol")
 
-IS_MATCHING_PREFIX_METHOD_WITH_TRAILING_WHITESPACE_OR_NEWLINE(@"@implementation")
-
-@end
-
-@implementation SourceNodeObjCProtocol
-
-IS_MATCHING_PREFIX_METHOD_WITH_TRAILING_WHITESPACE_OR_NEWLINE(@"@protocol")
-
-@end
+#undef IMPLEMENTATION
 
 #define IMPLEMENTATION(__NAME__, ...) \
 @implementation SourceNodeObjC##__NAME__ \
@@ -127,5 +144,6 @@ IMPLEMENTATION(Finally, @"@finally", '{')
 IMPLEMENTATION(Throw, @"@throw", 0)
 IMPLEMENTATION(Synchronized, @"@synchronized", '(')
 IMPLEMENTATION(Property, @"@property", '(')
+IMPLEMENTATION(Self, @"self", 0)
 
 #undef IMPLEMENTATION

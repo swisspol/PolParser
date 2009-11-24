@@ -349,17 +349,17 @@ IMPLEMENTATION(Asterisk, '*')
 
 + (NSUInteger) isMatchingSuffix:(const unichar*)string maxLength:(NSUInteger)maxLength {
     {
-        IS_MATCHING(@"#else", true, 0, string, maxLength);
+        IS_MATCHING(@"#else", true, false, 0, string, maxLength);
         if(_matching != NSNotFound)
             return 0;
     }
     {
-        IS_MATCHING(@"#elseif", true, '(', string, maxLength);
+        IS_MATCHING(@"#elseif", true, false, '(', string, maxLength);
         if(_matching != NSNotFound)
             return 0;
     }
     {
-        IS_MATCHING(@"#endif", true, 0, string, maxLength);
+        IS_MATCHING(@"#endif", true, false, 0, string, maxLength);
         if(_matching != NSNotFound)
             return _matching;
     }
@@ -372,21 +372,21 @@ IMPLEMENTATION(Asterisk, '*')
 #define IMPLEMENTATION(__NAME__, ...) \
 @implementation SourceNodeC##__NAME__ \
 \
-IS_MATCHING_PREFIX_METHOD_WITH_TRAILING_WHITESPACE_OR_NEWLINE_OR_CHARACTER(__VA_ARGS__); \
+IS_MATCHING_PREFIX_METHOD_WITH_TRAILING_WHITESPACE_OR_NEWLINE_OR_SEMICOLON_OR_CHARACTER(__VA_ARGS__); \
 \
 @end
 
-IMPLEMENTATION(PreprocessorConditionIf, @"#if", '(')
-IMPLEMENTATION(PreprocessorConditionIfdef, @"#ifdef", '(')
-IMPLEMENTATION(PreprocessorConditionIfndef, @"#ifndef", '(')
-IMPLEMENTATION(PreprocessorConditionElse, @"#else", 0)
-IMPLEMENTATION(PreprocessorConditionElseif, @"#elseif", '(')
-IMPLEMENTATION(PreprocessorDefine, @"#define", 0)
-IMPLEMENTATION(PreprocessorUndefine, @"#undef", 0)
-IMPLEMENTATION(PreprocessorPragma, @"#pragma", 0)
-IMPLEMENTATION(PreprocessorWarning, @"#warning", 0)
-IMPLEMENTATION(PreprocessorError, @"#error", 0)
-IMPLEMENTATION(PreprocessorInclude, @"#include", 0)
+IMPLEMENTATION(PreprocessorConditionIf, @"#if", false, '(')
+IMPLEMENTATION(PreprocessorConditionIfdef, @"#ifdef", false, '(')
+IMPLEMENTATION(PreprocessorConditionIfndef, @"#ifndef", false, '(')
+IMPLEMENTATION(PreprocessorConditionElse, @"#else", false, 0)
+IMPLEMENTATION(PreprocessorConditionElseif, @"#elseif", false, '(')
+IMPLEMENTATION(PreprocessorDefine, @"#define", false, 0)
+IMPLEMENTATION(PreprocessorUndefine, @"#undef", false, 0)
+IMPLEMENTATION(PreprocessorPragma, @"#pragma", false, 0)
+IMPLEMENTATION(PreprocessorWarning, @"#warning", false, 0)
+IMPLEMENTATION(PreprocessorError, @"#error", false, 0)
+IMPLEMENTATION(PreprocessorInclude, @"#include", false, 0)
 
 #undef IMPLEMENTATION
 
@@ -417,7 +417,7 @@ IMPLEMENTATION(PreprocessorInclude, @"#include", 0)
 #define IMPLEMENTATION(__NAME__, ...) \
 @implementation SourceNodeC##__NAME__ \
 \
-IS_MATCHING_PREFIX_METHOD_WITH_TRAILING_WHITESPACE_OR_NEWLINE_OR_CHARACTER(__VA_ARGS__); \
+IS_MATCHING_PREFIX_METHOD_WITH_TRAILING_WHITESPACE_OR_NEWLINE_OR_SEMICOLON_OR_CHARACTER(__VA_ARGS__); \
 \
 + (NSUInteger) isMatchingSuffix:(const unichar*)string maxLength:(NSUInteger)maxLength { \
     return 0; \
@@ -425,29 +425,29 @@ IS_MATCHING_PREFIX_METHOD_WITH_TRAILING_WHITESPACE_OR_NEWLINE_OR_CHARACTER(__VA_
 \
 @end
 
-IMPLEMENTATION(FlowIf, @"if", '(')
-IMPLEMENTATION(FlowElse, @"else", '{')
-IMPLEMENTATION(FlowBreak, @"break", ';')
-IMPLEMENTATION(FlowContinue, @"continue", ';')
-IMPLEMENTATION(FlowSwitch, @"switch", '(')
-IMPLEMENTATION(FlowCase, @"case", ':')
-IMPLEMENTATION(FlowDefault, @"default", ':')
-IMPLEMENTATION(FlowFor, @"for", '(')
-IMPLEMENTATION(FlowDoWhile, @"do", '{')
-IMPLEMENTATION(FlowWhile, @"while", '(')
-IMPLEMENTATION(FlowGoto, @"goto", 0)
-IMPLEMENTATION(FlowReturn, @"return", ';') //FIXME: Next character can also be '('
-IMPLEMENTATION(Typedef, @"typedef", 0)
-IMPLEMENTATION(TypeStruct, @"struct", '{')
-IMPLEMENTATION(TypeUnion, @"union", '{')
-IMPLEMENTATION(TypeAuto, @"auto", 0)
-IMPLEMENTATION(TypeStatic, @"static", 0)
-IMPLEMENTATION(TypeRegister, @"register", 0)
-IMPLEMENTATION(TypeVolatile, @"volatile", 0)
-IMPLEMENTATION(TypeConst, @"const", 0)
-IMPLEMENTATION(TypeEnum, @"enum", '{')
-IMPLEMENTATION(TypeExtern, @"extern", 0)
-IMPLEMENTATION(TypeSizeOf, @"sizeof", '(')
+IMPLEMENTATION(FlowIf, @"if", false, '(')
+IMPLEMENTATION(FlowElse, @"else", false, '{')
+IMPLEMENTATION(FlowBreak, @"break", true, 0)
+IMPLEMENTATION(FlowContinue, @"continue", true, 0)
+IMPLEMENTATION(FlowSwitch, @"switch", false, '(')
+IMPLEMENTATION(FlowCase, @"case", false, ':')
+IMPLEMENTATION(FlowDefault, @"default", false, ':')
+IMPLEMENTATION(FlowFor, @"for", false, '(')
+IMPLEMENTATION(FlowDoWhile, @"do", false, '{')
+IMPLEMENTATION(FlowWhile, @"while", false, '(')
+IMPLEMENTATION(FlowGoto, @"goto", false, 0)
+IMPLEMENTATION(FlowReturn, @"return", true, '(')
+IMPLEMENTATION(Typedef, @"typedef", false, 0)
+IMPLEMENTATION(TypeStruct, @"struct", false, '{')
+IMPLEMENTATION(TypeUnion, @"union", false, '{')
+IMPLEMENTATION(TypeAuto, @"auto", false, 0)
+IMPLEMENTATION(TypeStatic, @"static", false, 0)
+IMPLEMENTATION(TypeRegister, @"register", false, 0)
+IMPLEMENTATION(TypeVolatile, @"volatile", false, 0)
+IMPLEMENTATION(TypeConst, @"const", false, 0)
+IMPLEMENTATION(TypeEnum, @"enum", false, '{')
+IMPLEMENTATION(TypeExtern, @"extern", false, 0)
+IMPLEMENTATION(TypeSizeOf, @"sizeof", false, '(')
 
 #undef IMPLEMENTATION
 

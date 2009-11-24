@@ -22,7 +22,7 @@
 #define IsWhiteSpace(C) ((C == ' ') || (C == '\t'))
 #define IsWhiteSpaceOrNewline(C) ((C == ' ') || (C == '\t') || (C == '\n'))
 
-#define IS_MATCHING(__MATCH__, __TRAILING_WHITESPACE_OR_NEWLINE__, __CHARACTER__, __STRING__, __MAXLENGTH__) \
+#define IS_MATCHING(__MATCH__, __TRAILING_WHITESPACE_OR_NEWLINE__, __SEMICOLON__, __CHARACTER__, __STRING__, __MAXLENGTH__) \
     NSUInteger _matching; \
     static unichar* __match = NULL; \
     static NSUInteger __length; \
@@ -32,41 +32,25 @@
         __match = malloc(__length * sizeof(unichar)); \
         [string getCharacters:__match]; \
     } \
-    if(__TRAILING_WHITESPACE_OR_NEWLINE__) { \
+    if(__TRAILING_WHITESPACE_OR_NEWLINE__ && __SEMICOLON__) { \
+        _matching = (__MAXLENGTH__ > __length) && _EqualUnichars(string, __match, __length) && (IsWhiteSpaceOrNewline(string[__length]) || (string[__length] == ';') || (__CHARACTER__ && (string[__length] == __CHARACTER__))) ? __length : NSNotFound; \
+    } else if(__TRAILING_WHITESPACE_OR_NEWLINE__) { \
         _matching = (__MAXLENGTH__ > __length) && _EqualUnichars(string, __match, __length) && (IsWhiteSpaceOrNewline(string[__length]) || (__CHARACTER__ && (string[__length] == __CHARACTER__))) ? __length : NSNotFound; \
     } else { \
         _matching = (__MAXLENGTH__ >= __length) && _EqualUnichars(string, __match, __length) ? __length : NSNotFound; \
     }
 
-#define IS_MATCHING_PREFIX_METHOD(__PREFIX__) \
+#define IS_MATCHING_PREFIX_METHOD_WITH_TRAILING_WHITESPACE_OR_NEWLINE_OR_SEMICOLON_OR_CHARACTER(__PREFIX__, __SEMICOLON__, __CHARACTER__) \
 + (NSUInteger) isMatchingPrefix:(const unichar*)string maxLength:(NSUInteger)maxLength { \
-    IS_MATCHING(__PREFIX__, false, 0, string, maxLength) \
+    IS_MATCHING(__PREFIX__, true, __SEMICOLON__, __CHARACTER__, string, maxLength) \
     return _matching; \
 }
 
-#define IS_MATCHING_SUFFIX_METHOD(__SUFFIX__) \
-+ (NSUInteger) isMatchingPrefix:(const unichar*)string maxLength:(NSUInteger)maxLength { \
-    IS_MATCHING(__SUFFIX__, false, 0, string, maxLength) \
-    return _matching; \
-}
-
-#define IS_MATCHING_PREFIX_METHOD_WITH_TRAILING_WHITESPACE_OR_NEWLINE_OR_CHARACTER(__PREFIX__, __CHARACTER__) \
-+ (NSUInteger) isMatchingPrefix:(const unichar*)string maxLength:(NSUInteger)maxLength { \
-    IS_MATCHING(__PREFIX__, true, __CHARACTER__, string, maxLength) \
-    return _matching; \
-}
-
-#define IS_MATCHING_SUFFIX_METHOD_WITH_TRAILING_WHITESPACE_OR_NEWLINE_OR_CHARACTER(__SUFFIX__, __CHARACTER__) \
+#define IS_MATCHING_SUFFIX_METHOD_WITH_TRAILING_WHITESPACE_OR_NEWLINE_OR_SEMICOLON_OR_CHARACTER(__SUFFIX__, __SEMICOLON__, __CHARACTER__) \
 + (NSUInteger) isMatchingSuffix:(const unichar*)string maxLength:(NSUInteger)maxLength { \
-    IS_MATCHING(__SUFFIX__, true, __CHARACTER__, string, maxLength) \
+    IS_MATCHING(__SUFFIX__, true, __SEMICOLON__, __CHARACTER__, string, maxLength) \
     return _matching; \
 }
-
-#define IS_MATCHING_PREFIX_METHOD_WITH_TRAILING_WHITESPACE_OR_NEWLINE(__PREFIX__) \
-    IS_MATCHING_PREFIX_METHOD_WITH_TRAILING_WHITESPACE_OR_NEWLINE_OR_CHARACTER(__PREFIX__, 0)
-
-#define IS_MATCHING_SUFFIX_METHOD_WITH_TRAILING_WHITESPACE_OR_NEWLINE(__SUFFIX__) \
-    IS_MATCHING_SUFFIX_METHOD_WITH_TRAILING_WHITESPACE_OR_NEWLINE_OR_CHARACTER(__SUFFIX__, 0)
 
 #if 1
 #define SEMICOLON_PREVIOUS_SIBLING(__NODE__) [__NODE__ findPreviousSiblingIgnoringWhitespaceAndNewline]

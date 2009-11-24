@@ -60,7 +60,8 @@ struct temp {
 #if 1
 
 - (BOOL) isValid {
-    int temp = sizeof(long);
+    int temp1 = sizeof(long);
+    SEL temp2 = @selector(foo:);
     
     ;
     
@@ -93,7 +94,7 @@ struct temp {
     @finally {
         NSLog(@"Done");
     }
-	return NO;
+	return [super isValid];
 }
 
 #else

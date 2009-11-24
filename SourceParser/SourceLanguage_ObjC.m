@@ -42,16 +42,22 @@
         [classes addObject:[SourceNodeObjCInterface class]];
         [classes addObject:[SourceNodeObjCImplementation class]];
         [classes addObject:[SourceNodeObjCProtocol class]];
+        [classes addObject:[SourceNodeObjCClass class]];
         [classes addObject:[SourceNodeObjCPublic class]];
         [classes addObject:[SourceNodeObjCProtected class]];
         [classes addObject:[SourceNodeObjCPrivate class]];
+        [classes addObject:[SourceNodeObjCOptional class]];
+        [classes addObject:[SourceNodeObjCRequired class]];
         [classes addObject:[SourceNodeObjCProperty class]];
         [classes addObject:[SourceNodeObjCTry class]];
         [classes addObject:[SourceNodeObjCCatch class]];
         [classes addObject:[SourceNodeObjCFinally class]];
         [classes addObject:[SourceNodeObjCThrow class]];
         [classes addObject:[SourceNodeObjCSynchronized class]];
+        [classes addObject:[SourceNodeObjCSelector class]];
+        [classes addObject:[SourceNodeObjCEncode class]];
         [classes addObject:[SourceNodeObjCSelf class]];
+        [classes addObject:[SourceNodeObjCSuper class]];
     }
     return classes;
 }
@@ -73,6 +79,13 @@
         else if([previousNode isKindOfClass:[SourceNodeObjCTry class]] || [previousNode isKindOfClass:[SourceNodeObjCFinally class]]) {
             _RearrangeNodesAsChildren(previousNode, node);
         }
+        
+    } else if([node isKindOfClass:[SourceNodeObjCSelector class]] || [node isKindOfClass:[SourceNodeObjCEncode class]]) {
+    	
+        // "@selector()" "@encode()"
+        SourceNode* nextNode = [node findNextSiblingIgnoringWhitespaceAndNewline];
+        if([nextNode isKindOfClass:[SourceNodeParenthesis class]])
+        	_RearrangeNodesAsChildren(node, nextNode);
         
     }
 }
@@ -135,15 +148,21 @@ IS_MATCHING_PREFIX_METHOD_WITH_TRAILING_WHITESPACE_OR_NEWLINE_OR_CHARACTER(__VA_
 \
 @end
 
+IMPLEMENTATION(Class, @"@class", 0)
 IMPLEMENTATION(Public, @"@public", 0)
 IMPLEMENTATION(Protected, @"@protected", 0)
 IMPLEMENTATION(Private, @"@private", 0)
+IMPLEMENTATION(Required, @"@required", 0)
+IMPLEMENTATION(Optional, @"@optional", 0)
 IMPLEMENTATION(Try, @"@try", '{')
 IMPLEMENTATION(Catch, @"@catch", '(')
 IMPLEMENTATION(Finally, @"@finally", '{')
 IMPLEMENTATION(Throw, @"@throw", ';')
 IMPLEMENTATION(Synchronized, @"@synchronized", '(')
 IMPLEMENTATION(Property, @"@property", '(')
-IMPLEMENTATION(Self, @"self", 0)
+IMPLEMENTATION(Selector, @"@selector", '(')
+IMPLEMENTATION(Encode, @"@encode", '(')
+IMPLEMENTATION(Self, @"self", ';')
+IMPLEMENTATION(Super, @"super", ';')
 
 #undef IMPLEMENTATION

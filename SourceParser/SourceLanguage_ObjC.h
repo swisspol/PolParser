@@ -33,6 +33,9 @@
 @interface SourceNodeObjCProtocol : SourceNode
 @end
 
+@interface SourceNodeObjCClass : SourceNode //Leaf
+@end
+
 @interface SourceNodeObjCPublic : SourceNode //Leaf
 @end
 
@@ -40,6 +43,12 @@
 @end
 
 @interface SourceNodeObjCPrivate : SourceNode //Leaf
+@end
+
+@interface SourceNodeObjCRequired : SourceNode //Leaf
+@end
+
+@interface SourceNodeObjCOptional : SourceNode //Leaf
 @end
 
 @interface SourceNodeObjCProperty : SourceNode //Leaf
@@ -60,5 +69,14 @@
 @interface SourceNodeObjCSynchronized : SourceNode
 @end
 
+@interface SourceNodeObjCSelector : SourceNode
+@end
+
+@interface SourceNodeObjCEncode : SourceNode
+@end
+
 @interface SourceNodeObjCSelf : SourceNode //Leaf
+@end
+
+@interface SourceNodeObjCSuper : SourceNode //Leaf
 @end

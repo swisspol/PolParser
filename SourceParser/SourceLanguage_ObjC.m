@@ -90,8 +90,8 @@ static BOOL _HasImplementationParent(SourceNode* node) {
     return [node.parent isKindOfClass:[SourceNodeCPreprocessorCondition class]] || [node.parent isKindOfClass:[SourceNodeObjCInterface class]] || [node.parent isKindOfClass:[SourceNodeObjCImplementation class]] ? [self nodeHasRootParent:node.parent] : NO;
 }
 
-- (void) refactorSourceNode:(SourceNode*)node {
-    [super refactorSourceNode:node];
+- (void) performSyntaxAnalysisForNode:(SourceNode*)node {
+    [super performSyntaxAnalysisForNode:node];
     
     if([node isKindOfClass:[SourceNodeBraces class]]) {
         SourceNode* previousNode = [node findPreviousSiblingIgnoringWhitespaceAndNewline];

@@ -144,7 +144,7 @@ static BOOL _CheckTreeConsistency(SourceNode* node, NSMutableArray* stack) {
 }
 
 static void _ApplierFunction(SourceNode* node, void* context) {
-    [(SourceLanguage*)context refactorSourceNode:node];
+    [(SourceLanguage*)context performSyntaxAnalysisForNode:node];
 }
 
 - (SourceNodeRoot*) parseSourceString:(NSString*)source range:(NSRange)range buffer:(const unichar*)buffer syntaxAnalysis:(BOOL)syntaxAnalysis {
@@ -262,8 +262,10 @@ static void _ApplierFunction(SourceNode* node, void* context) {
         return nil;
     }
     
-    [self refactorSourceNode:rootNode];
-    [rootNode applyFunctionOnChildren:_ApplierFunction context:self recursively:YES];
+    if(syntaxAnalysis) {
+    	[self performSyntaxAnalysisForNode:rootNode];
+        [rootNode applyFunctionOnChildren:_ApplierFunction context:self recursively:YES];
+    }
     
     if(!_CheckTreeConsistency(rootNode, stack)) {
         NSLog(@"\"%@\" parser failed because resulting tree is not consistent:\n%@\n%@", self.name, [[(SourceNode*)[stack objectAtIndex:0] parent] fullDescription], stack);
@@ -290,7 +292,7 @@ static void _ApplierFunction(SourceNode* node, void* context) {
     return [root autorelease];
 }
 
-- (void) refactorSourceNode:(SourceNode*)node {
+- (void) performSyntaxAnalysisForNode:(SourceNode*)node {
     ;
 }
 

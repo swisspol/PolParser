@@ -86,7 +86,7 @@ void _RearrangeNodesAsChildren(SourceNode* startNode, SourceNode* endNode);
 
 @interface SourceLanguage ()
 - (SourceNodeRoot*) parseSourceString:(NSString*)source range:(NSRange)range buffer:(const unichar*)buffer syntaxAnalysis:(BOOL)syntaxAnalysis;
-- (void) refactorSourceNode:(SourceNode*)node; //Override point to perform language dependent source tree refactoring after parsing
+- (void) performSyntaxAnalysisForNode:(SourceNode*)node; //Override point to perform language dependent source tree refactoring after parsing
 @end
 
 @interface SourceLanguageBase : SourceLanguage

@@ -98,8 +98,8 @@
     return node.children.count || [node isKindOfClass:[SourceNodeSemicolon class]] || [node isKindOfClass:[SourceNodeCComment class]];
 }
 
-- (void) refactorSourceNode:(SourceNode*)node {
-    [super refactorSourceNode:node];
+- (void) performSyntaxAnalysisForNode:(SourceNode*)node {
+    [super performSyntaxAnalysisForNode:node];
     
     if([node isKindOfClass:[SourceNodeBraces class]]) {
         SourceNode* previousNode = [node findPreviousSiblingIgnoringWhitespaceAndNewline];

@@ -8,6 +8,11 @@ static void _ProcessNode(SourceNode* node) {
         [node replaceWithText:text];
     }*/
     
+    //Strip multiple whitespace (but not indenting)
+    if([node isMemberOfClass:[SourceNodeWhitespace class]]) {
+    	[node replaceWithText:@" "];
+    }
+    
     //Strip whitespace at end of lines & multiple newlines
     if([node isKindOfClass:[SourceNodeNewline class]]) {
         if([node.previousSibling isKindOfClass:[SourceNodeWhitespace class]]) //FIXME: This is affected by the above operation
@@ -79,6 +84,8 @@ static void _ProcessNode(SourceNode* node) {
             }
         }
     }
+    
+    //FIXME: Remove all indenting and re-intend according to braces
 }
 
 #if !NS_BLOCKS_AVAILABLE

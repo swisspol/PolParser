@@ -27,7 +27,7 @@ typedef void (*SourceNodeApplierFunction)(SourceNode* node, void* context);
 @public
 	int _bar;
 }
-@property(nonatomic, readonly, getter=isValid) BOOL valid;//
+@property(nonatomic, readonly, getter=isValid)  BOOL valid;//
 	+ (id) sharedInstance;
 - (void) run; //  
 - (BOOL) test:(int)foo bar:(int)bar;
@@ -36,13 +36,13 @@ typedef void (*SourceNodeApplierFunction)(SourceNode* node, void* context);
 ;
 ;
 struct temp {
-    int foo;
+    int   foo;
     int bar;
 };
 
 typedef union {
 	int temp1;
-    long temp2;
+    long    temp2;
 } boom;
 
 @implementation Demo//First pass

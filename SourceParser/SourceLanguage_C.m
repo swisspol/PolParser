@@ -110,16 +110,20 @@
             if([previousNode isKindOfClass:[SourceNodeCFlowIf class]] || [previousNode isKindOfClass:[SourceNodeCFlowFor class]] || [previousNode isKindOfClass:[SourceNodeCFlowSwitch class]] || [previousNode isKindOfClass:[SourceNodeCFlowWhile class]]) {
                 SourceNode* elseNode = [previousNode isKindOfClass:[SourceNodeCFlowIf class]] ? [previousNode findPreviousSiblingIgnoringWhitespaceAndNewline] : nil;
                 if([elseNode isKindOfClass:[SourceNodeCFlowElse class]] && !elseNode.children) {
-                	SourceNode* newNode = [[SourceNodeCFlowElseIf alloc] initWithSource:elseNode.source range:NSMakeRange(elseNode.range.location, previousNode.range.location + previousNode.range.length - elseNode.range.location)];
+                	SourceNode* newNode = [[SourceNodeCFlowElseIf alloc] initWithSource:elseNode.source range:NSMakeRange(elseNode.range.location, 0)];
                     [elseNode insertPreviousSibling:newNode];
                     [newNode release];
-                    while(1) {
-                    	SourceNode* nextNode = elseNode.nextSibling;
-                        [elseNode removeFromParent];
-                        if(elseNode == previousNode)
-                        	break;
-                        elseNode = nextNode;
-                    }
+                    
+                    SourceNode* textNode = [[SourceNodeText alloc] initWithSource:elseNode.source range:elseNode.range];
+                    [elseNode insertPreviousSibling:textNode];
+                    [textNode release];
+                    [elseNode removeFromParent];
+                    
+                    textNode = [[SourceNodeText alloc] initWithSource:previousNode.source range:previousNode.range];
+                    [previousNode insertPreviousSibling:textNode];
+                    [textNode release];
+                    [previousNode removeFromParent];
+                    
                     _RearrangeNodesAsChildren(newNode, node);
                 } else {
                 	_RearrangeNodesAsChildren(previousNode, node);
@@ -165,16 +169,20 @@
             if(semicolonNode && (!bracesNode || ([node.parent indexOfChild:semicolonNode] < [node.parent indexOfChild:bracesNode]))) {
                 SourceNode* elseNode = [node isKindOfClass:[SourceNodeCFlowIf class]] ? [node findPreviousSiblingIgnoringWhitespaceAndNewline] : nil;
                 if([elseNode isKindOfClass:[SourceNodeCFlowElse class]] && !elseNode.children) {
-                	SourceNode* newNode = [[SourceNodeCFlowElseIf alloc] initWithSource:elseNode.source range:NSMakeRange(elseNode.range.location, node.range.location + node.range.length - elseNode.range.location)];
+                	SourceNode* newNode = [[SourceNodeCFlowElseIf alloc] initWithSource:elseNode.source range:NSMakeRange(elseNode.range.location, 0)];
                     [elseNode insertPreviousSibling:newNode];
                     [newNode release];
-                    while(1) {
-                    	SourceNode* nextNode = elseNode.nextSibling;
-                        [elseNode removeFromParent];
-                        if(elseNode == node)
-                        	break;
-                        elseNode = nextNode;
-                    }
+                    
+                    SourceNode* textNode = [[SourceNodeText alloc] initWithSource:elseNode.source range:elseNode.range];
+                    [elseNode insertPreviousSibling:textNode];
+                    [textNode release];
+                    [elseNode removeFromParent];
+                    
+                    textNode = [[SourceNodeText alloc] initWithSource:node.source range:node.range];
+                    [node insertPreviousSibling:textNode];
+                    [textNode release];
+                    [node removeFromParent];
+                    
                     _RearrangeNodesAsChildren(newNode, SEMICOLON_PREVIOUS_SIBLING(semicolonNode));
                 } else {
                     _RearrangeNodesAsChildren(node, SEMICOLON_PREVIOUS_SIBLING(semicolonNode));

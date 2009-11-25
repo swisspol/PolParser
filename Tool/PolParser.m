@@ -91,7 +91,7 @@ int main(int argc, const char* argv[]) {
         }
         
         NSString* path = [[NSString stringWithUTF8String:argv[offset]] stringByStandardizingPath];
-        SourceNodeRoot* root = [SourceLanguage parseSourceFile:path encoding:NSUTF8StringEncoding];
+        SourceNodeRoot* root = [SourceLanguage parseSourceFile:path encoding:NSUTF8StringEncoding syntaxAnalysis:YES];
         if(root) {
             if(optionClean)
 #if NS_BLOCKS_AVAILABLE

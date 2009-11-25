@@ -289,22 +289,9 @@ static NSUInteger _globalRevision = 0;
 #endif
 
 static NSString* _FormatString(NSString* string) {
-    static NSString* spaceString = nil;
-    if(spaceString == nil) {
-        const unichar aChar = 0x2022;
-        spaceString = [[NSString alloc] initWithCharacters:&aChar length:1];
-    }
-    static NSString* tabString = nil;
-    if(tabString == nil) {
-        const unichar aChar = 0x2192;
-        tabString = [[NSString alloc] initWithCharacters:&aChar length:1];
-    }
-    static NSString* newlineString = nil;
-    if(newlineString == nil) {
-        const unichar aChar = 0x00B6; //0x21A9
-        newlineString = [[NSString alloc] initWithCharacters:&aChar length:1];
-    }
-    
+    static NSString* spaceString = @"•"; //0x2022
+    static NSString* tabString = @"→"; //0x2192
+    static NSString* newlineString = @"¶"; //0x00B6
     string = [NSMutableString stringWithString:string];
     [(NSMutableString*)string replaceOccurrencesOfString:@" " withString:spaceString options:0 range:NSMakeRange(0, string.length)];
     [(NSMutableString*)string replaceOccurrencesOfString:@"\t" withString:tabString options:0 range:NSMakeRange(0, string.length)];
@@ -317,14 +304,24 @@ static NSString* _FormatString(NSString* string) {
 }
 
 static void _AppendChildrenCompactDescription(SourceNode* node, NSMutableString* string, NSString* prefix) {
-    prefix = [prefix stringByAppendingString:@"  "];
-    [string appendFormat:@"<%@>\n%@|", [[node class] name], prefix];
+    static NSString* separator = @"♢"; //0x2662
+    prefix = [prefix stringByAppendingString:@"·  "]; //0x00B7
+    [string appendFormat:@"<%@>\n", [[node class] name]];
+    SourceNode* firstNode = node.firstChild;
+    SourceNode* lastNode = node.lastChild;
     for(node in node.children) {
-    	[string appendFormat:@"%@|", _FormatString(node.content)];
-        if(node.children) {
-        	[string appendFormat:@"\n%@", prefix];
+    	if(node.children) {
+        	if(node == firstNode)
+            	[string appendString:prefix];
+            else
+            	[string appendFormat:@"\n%@", prefix];
             _AppendChildrenCompactDescription(node, string, prefix);
-            [string appendFormat:@"\n%@|", prefix];
+            if(node != lastNode)
+            	[string appendFormat:@"\n%@%@", prefix, separator];
+        } else {
+        	if(node == firstNode)
+            	[string appendFormat:@"%@%@", prefix, separator];
+            [string appendFormat:@"%@%@", _FormatString(node.content), separator];
         }
     }
 }
@@ -339,9 +336,10 @@ static void _AppendChildrenCompactDescription(SourceNode* node, NSMutableString*
 }
 
 static void _AppendNodeFullDescription(SourceNode* node, NSMutableString* string, NSString* prefix) {
+    static NSString* separator = @"♢"; //0x2662
     NSString* content = (node.children ? nil : _FormatString(node.content));
     if(content.length)
-        [string appendFormat:@"%@[%i:%i] <%@> = |%@|\n", prefix, node.lines.location + 1, node.lines.location + node.lines.length, [[node class] name], content];
+        [string appendFormat:@"%@[%i:%i] <%@> = %@%@%@\n", prefix, node.lines.location + 1, node.lines.location + node.lines.length, [[node class] name], separator, content, separator];
     else
         [string appendFormat:@"%@[%i:%i] <%@>\n", prefix, node.lines.location + 1, node.lines.location + node.lines.length, [[node class] name]];
     

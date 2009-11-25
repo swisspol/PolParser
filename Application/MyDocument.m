@@ -172,7 +172,7 @@ static void _FindUsedClasses(SourceNode* node, NSMutableSet* set) {
     if(![absoluteURL isFileURL])
         return NO;
     
-    _sourceRoot = [[SourceLanguage parseSourceFile:[absoluteURL path] encoding:NSUTF8StringEncoding] retain];
+    _sourceRoot = [[SourceLanguage parseSourceFile:[absoluteURL path] encoding:NSUTF8StringEncoding syntaxAnalysis:YES] retain];
     if(_sourceRoot == nil) {
         if(outError)
             *outError = nil;

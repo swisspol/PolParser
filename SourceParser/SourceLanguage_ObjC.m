@@ -178,10 +178,10 @@ static BOOL _HasImplementationParent(SourceNode* node) {
     return [NSSet setWithObjects:@"h", @"mm", nil];
 }
 
-- (SourceNodeRoot*) parseSourceString:(NSString*)source {
+- (SourceNodeRoot*) parseSourceString:(NSString*)source range:(NSRange)range buffer:(const unichar*)buffer syntaxAnalysis:(BOOL)syntaxAnalysis {
     NSLog(@"%@ parsing is not fully implemented", self.name);
     
-    return [super parseSourceString:source];
+    return [super parseSourceString:source range:range buffer:buffer syntaxAnalysis:syntaxAnalysis];
 }
 
 @end

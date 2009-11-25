@@ -24,13 +24,13 @@
 @interface SourceLanguage : NSObject
 + (NSSet*) allLanguages;
 + (SourceLanguage*) languageForName:(NSString*)name;
-+ (SourceNodeRoot*) parseSourceFile:(NSString*)path encoding:(NSStringEncoding)encoding;
++ (SourceNodeRoot*) parseSourceFile:(NSString*)path encoding:(NSStringEncoding)encoding syntaxAnalysis:(BOOL)syntaxAnalysis;
 
 @property(nonatomic, readonly) NSString* name;
 @property(nonatomic, readonly) NSSet* fileExtensions;
 @property(nonatomic, readonly) NSArray* nodeClasses;
 
-- (SourceNodeRoot*) parseSourceString:(NSString*)source; //Expects Unix line-endings
+- (SourceNodeRoot*) parseSourceString:(NSString*)source syntaxAnalysis:(BOOL)syntaxAnalysis; //Expects Unix line-endings
 @end
 
 @interface SourceNodeRoot : SourceNode {

@@ -75,7 +75,7 @@ static NSMutableSet* _languageCache = nil;
     return nil;
 }
 
-+ (SourceNodeRoot*) parseSourceFile:(NSString*)path encoding:(NSStringEncoding)encoding {
++ (SourceNodeRoot*) parseSourceFile:(NSString*)path encoding:(NSStringEncoding)encoding syntaxAnalysis:(BOOL)syntaxAnalysis {
     NSString* source = [[NSString alloc] initWithContentsOfFile:path encoding:encoding error:NULL];
     if(source == nil)
         return nil;
@@ -92,7 +92,7 @@ static NSMutableSet* _languageCache = nil;
             [NSException raise:NSInternalInconsistencyException format:@"No language found for \"%@\"", path];
     }
     
-    SourceNodeRoot* root = [language parseSourceString:source];
+    SourceNodeRoot* root = [language parseSourceString:source syntaxAnalysis:syntaxAnalysis];
     [source release];
     
     return root;
@@ -147,7 +147,11 @@ static void _ApplierFunction(SourceNode* node, void* context) {
     [(SourceLanguage*)context refactorSourceNode:node];
 }
 
-static BOOL _ParseSource(SourceLanguage* language, NSString* source, const unichar* buffer, NSRange range, SourceNode* rootNode) {
+- (SourceNodeRoot*) parseSourceString:(NSString*)source range:(NSRange)range buffer:(const unichar*)buffer syntaxAnalysis:(BOOL)syntaxAnalysis {
+    SourceNodeRoot* rootNode = [[[SourceNodeRoot alloc] initWithSource:source language:self] autorelease];
+    if(rootNode == nil)
+    	return nil;
+    
     NSMutableArray* stack = [NSMutableArray array];
     [stack addObject:rootNode];
     NSUInteger rawLength = 0;
@@ -184,7 +188,7 @@ static BOOL _ParseSource(SourceLanguage* language, NSString* source, const unich
         
         Class prefixClass;
         NSUInteger prefixLength;
-        for(prefixClass in language.nodeClasses) {
+        for(prefixClass in self.nodeClasses) {
             if(prefixClass == [SourceNodeText class])
                 continue;
             prefixLength = [prefixClass isMatchingPrefix:(buffer + range.location + rawLength) maxLength:(range.length - rawLength)];
@@ -252,24 +256,24 @@ static BOOL _ParseSource(SourceLanguage* language, NSString* source, const unich
     
     [stack removeObjectAtIndex:0];
     if(stack.count > 0) {
-        NSLog(@"\"%@\" parser failed because some branch nodes are still opened at the end of the source:", [language name]);
+        NSLog(@"\"%@\" parser failed because some branch nodes are still opened at the end of the source:", self.name);
         for(SourceNode* node in stack)
             NSLog(@"\t%@", node);
-        return NO;
+        return nil;
     }
     
-    [language refactorSourceNode:rootNode];
-    [rootNode applyFunctionOnChildren:_ApplierFunction context:language recursively:YES];
+    [self refactorSourceNode:rootNode];
+    [rootNode applyFunctionOnChildren:_ApplierFunction context:self recursively:YES];
     
     if(!_CheckTreeConsistency(rootNode, stack)) {
-        NSLog(@"\"%@\" parser failed because resulting tree is not consistent:\n%@\n%@", [language name], [[(SourceNode*)[stack objectAtIndex:0] parent] fullDescription], stack);
-        return NO;
+        NSLog(@"\"%@\" parser failed because resulting tree is not consistent:\n%@\n%@", self.name, [[(SourceNode*)[stack objectAtIndex:0] parent] fullDescription], stack);
+        return nil;
     }
     
-    return YES;
+    return rootNode;
 }
 
-- (SourceNodeRoot*) parseSourceString:(NSString*)source {
+- (SourceNodeRoot*) parseSourceString:(NSString*)source syntaxAnalysis:(BOOL)syntaxAnalysis {
     NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
     source = [source copy];
     NSRange range = NSMakeRange(0, source.length);
@@ -277,11 +281,7 @@ static BOOL _ParseSource(SourceLanguage* language, NSString* source, const unich
     buffer[0] = 0xFFFF; //We need one-character padding at the start since some nodes look at buffer[index - 1]
     [source getCharacters:(buffer + 1) range:range];
     
-    SourceNodeRoot* root = [[SourceNodeRoot alloc] initWithSource:source language:self];
-    if(!_ParseSource(self, source, buffer + 1, range, root)) {
-        [root release];
-        root = nil;
-    }
+    SourceNodeRoot* root = [[self parseSourceString:source range:range buffer:buffer + 1 syntaxAnalysis:syntaxAnalysis] retain];
     
     free(buffer);
     [source release];

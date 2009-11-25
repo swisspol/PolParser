@@ -4,3 +4,4 @@
 #import "SourceLanguage_C.h"
 #import "SourceLanguage_CPP.h"
 #import "SourceLanguage_ObjC.h"
+#import "SourceLanguage_ObjCPP.h"

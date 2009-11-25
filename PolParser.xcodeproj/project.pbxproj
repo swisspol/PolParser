@@ -23,6 +23,8 @@
 
 /* Begin PBXBuildFile section */
 		8DD76F9C0486AA7600D96B5E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08FB779EFE84155DC02AAC07 /* Foundation.framework */; };
+		E213417F10BCF9B800023F41 /* SourceLanguage_ObjCPP.m in Sources */ = {isa = PBXBuildFile; fileRef = E213417E10BCF9B800023F41 /* SourceLanguage_ObjCPP.m */; };
+		E213418010BCF9B800023F41 /* SourceLanguage_ObjCPP.m in Sources */ = {isa = PBXBuildFile; fileRef = E213417E10BCF9B800023F41 /* SourceLanguage_ObjCPP.m */; };
 		E2B6368D10BA46C800BF43E7 /* SourceLanguage_C.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B6368310BA46C800BF43E7 /* SourceLanguage_C.m */; };
 		E2B6368E10BA46C800BF43E7 /* SourceLanguage_CPP.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B6368510BA46C800BF43E7 /* SourceLanguage_CPP.m */; };
 		E2B6368F10BA46C800BF43E7 /* SourceLanguage_ObjC.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B6368710BA46C800BF43E7 /* SourceLanguage_ObjC.m */; };
@@ -64,6 +66,8 @@
 		08FB779EFE84155DC02AAC07 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		32A70AAB03705E1F00C91783 /* Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Prefix.pch; sourceTree = "<group>"; };
 		8DD76FA10486AA7600D96B5E /* PolParser */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = PolParser; sourceTree = BUILT_PRODUCTS_DIR; };
+		E213417D10BCF9B800023F41 /* SourceLanguage_ObjCPP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SourceLanguage_ObjCPP.h; sourceTree = "<group>"; };
+		E213417E10BCF9B800023F41 /* SourceLanguage_ObjCPP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SourceLanguage_ObjCPP.m; sourceTree = "<group>"; };
 		E2B6368210BA46C800BF43E7 /* SourceLanguage_C.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SourceLanguage_C.h; sourceTree = "<group>"; };
 		E2B6368310BA46C800BF43E7 /* SourceLanguage_C.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SourceLanguage_C.m; sourceTree = "<group>"; };
 		E2B6368410BA46C800BF43E7 /* SourceLanguage_CPP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SourceLanguage_CPP.h; sourceTree = "<group>"; };
@@ -157,6 +161,8 @@
 				E2B6368510BA46C800BF43E7 /* SourceLanguage_CPP.m */,
 				E2B6368610BA46C800BF43E7 /* SourceLanguage_ObjC.h */,
 				E2B6368710BA46C800BF43E7 /* SourceLanguage_ObjC.m */,
+				E213417D10BCF9B800023F41 /* SourceLanguage_ObjCPP.h */,
+				E213417E10BCF9B800023F41 /* SourceLanguage_ObjCPP.m */,
 			);
 			path = SourceParser;
 			sourceTree = "<group>";
@@ -262,6 +268,7 @@
 				E2B6369110BA46C800BF43E7 /* SourceNode.m in Sources */,
 				E2B637FC10BA540800BF43E7 /* PolParser.m in Sources */,
 				E2E5BC0F10BB986B004E3745 /* SourceLanguage_Base.m in Sources */,
+				E213417F10BCF9B800023F41 /* SourceLanguage_ObjCPP.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -277,6 +284,7 @@
 				E2B6380C10BA547D00BF43E7 /* main.m in Sources */,
 				E2B6383910BA55AB00BF43E7 /* MyDocument.m in Sources */,
 				E2E5BC0E10BB986B004E3745 /* SourceLanguage_Base.m in Sources */,
+				E213418010BCF9B800023F41 /* SourceLanguage_ObjCPP.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

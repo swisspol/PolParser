@@ -168,24 +168,6 @@ static BOOL _HasImplementationParent(SourceNode* node) {
 
 @end
 
-@implementation SourceLanguageObjCPP
-
-- (NSString*) name {
-    return @"Obj-C++";
-}
-
-- (NSSet*) fileExtensions {
-    return [NSSet setWithObjects:@"h", @"mm", nil];
-}
-
-- (SourceNodeRoot*) parseSourceString:(NSString*)source range:(NSRange)range buffer:(const unichar*)buffer syntaxAnalysis:(BOOL)syntaxAnalysis {
-    NSLog(@"%@ parsing is not fully implemented", self.name);
-    
-    return [super parseSourceString:source range:range buffer:buffer syntaxAnalysis:syntaxAnalysis];
-}
-
-@end
-
 @implementation SourceNodeObjCPreprocessorImport
 
 IS_MATCHING_PREFIX_METHOD_WITH_TRAILING_WHITESPACE_OR_NEWLINE_OR_SEMICOLON_OR_CHARACTER(@"#import", false, 0)

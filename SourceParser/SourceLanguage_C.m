@@ -156,7 +156,7 @@
             if(bracesNode && (!semicolonNode || ([node.parent indexOfChild:bracesNode] < [node.parent indexOfChild:semicolonNode])))
                 _RearrangeNodesAsChildren(node, bracesNode);
             else if(semicolonNode && (!bracesNode || ([node.parent indexOfChild:semicolonNode] < [node.parent indexOfChild:bracesNode])))
-                _RearrangeNodesAsChildren(node, SEMICOLON_PREVIOUS_SIBLING(semicolonNode));
+                _RearrangeNodesAsChildren(node, semicolonNode);
         }
         
     } else if([node isKindOfClass:[SourceNodeCFlowIf class]] || [node isKindOfClass:[SourceNodeCFlowFor class]] || [node isKindOfClass:[SourceNodeCFlowSwitch class]]) {
@@ -183,12 +183,30 @@
                     [textNode release];
                     [node removeFromParent];
                     
-                    _RearrangeNodesAsChildren(newNode, SEMICOLON_PREVIOUS_SIBLING(semicolonNode));
+                    _RearrangeNodesAsChildren(newNode, semicolonNode);
                 } else {
-                    _RearrangeNodesAsChildren(node, SEMICOLON_PREVIOUS_SIBLING(semicolonNode));
+                    _RearrangeNodesAsChildren(node, semicolonNode);
                 }
             }
         }
+        
+    } else if([node isKindOfClass:[SourceNodeCFlowCase class]] || [node isKindOfClass:[SourceNodeCFlowDefault class]]) {
+        
+        // "case:" "case: break" "default:" "default: break"
+        SourceNode* endNode = [node.parent lastChild];
+        if([endNode isKindOfClass:[SourceNodeWhitespace class]] || [endNode isKindOfClass:[SourceNodeNewline class]])
+        	endNode = [endNode findPreviousSiblingIgnoringWhitespaceAndNewline];
+        SourceNode* breakNode = [node findNextSiblingOfClass:[SourceNodeCFlowBreak class]];
+        if(breakNode && (breakNode.range.location < endNode.range.location))
+        	endNode = [breakNode findNextSiblingOfClass:[SourceNodeSemicolon class]];
+        SourceNode* caseNode = [node findNextSiblingOfClass:[SourceNodeCFlowCase class]];
+        if(caseNode && (caseNode.range.location < endNode.range.location))
+        	endNode = caseNode.previousSibling;
+        SourceNode* defaultNode = [node findNextSiblingOfClass:[SourceNodeCFlowDefault class]];
+        if(defaultNode && (defaultNode.range.location < endNode.range.location))
+        	endNode = defaultNode.previousSibling;
+        
+        _RearrangeNodesAsChildren(node, endNode);
         
     } else if([node isKindOfClass:[SourceNodeCFlowReturn class]]) {
         
@@ -196,7 +214,7 @@
         SourceNode* semicolonNode = [node findNextSiblingOfClass:[SourceNodeSemicolon class]];
         if(semicolonNode) {
         	if(semicolonNode.previousSibling != node)
-                _RearrangeNodesAsChildren(node, SEMICOLON_PREVIOUS_SIBLING(semicolonNode));
+                _RearrangeNodesAsChildren(node, semicolonNode);
         } else {
             if([node.parent isKindOfClass:[SourceNodeCFlowIf class]] || [node.parent isKindOfClass:[SourceNodeCFlowElse class]] || [node.parent isKindOfClass:[SourceNodeCFlowElseIf class]]
             	|| [node.parent isKindOfClass:[SourceNodeCFlowFor class]] || [node.parent isKindOfClass:[SourceNodeCFlowWhile class]])
@@ -208,7 +226,7 @@
         // "goto foo"
         SourceNode* semicolonNode = [node findNextSiblingOfClass:[SourceNodeSemicolon class]];
         if(semicolonNode) {
-            _RearrangeNodesAsChildren(node, SEMICOLON_PREVIOUS_SIBLING(semicolonNode));
+            _RearrangeNodesAsChildren(node, semicolonNode);
         } else {
             if([node.parent isKindOfClass:[SourceNodeCFlowIf class]] || [node.parent isKindOfClass:[SourceNodeCFlowElse class]] || [node.parent isKindOfClass:[SourceNodeCFlowElseIf class]]
             	|| [node.parent isKindOfClass:[SourceNodeCFlowFor class]] || [node.parent isKindOfClass:[SourceNodeCFlowWhile class]])
@@ -225,7 +243,7 @@
             if(!semicolonNode && [bracesNode.parent isKindOfClass:[SourceNodeCTypedef class]])
                 _RearrangeNodesAsChildren(node, bracesNode.parent.lastChild);
             else if(semicolonNode)
-                _RearrangeNodesAsChildren(node, SEMICOLON_PREVIOUS_SIBLING(semicolonNode));
+                _RearrangeNodesAsChildren(node, semicolonNode);
         }
         
     } else if([node isKindOfClass:[SourceNodeCTypedef class]]) {
@@ -233,7 +251,7 @@
         // "typedef foo"
         SourceNode* semicolonNode = [node findNextSiblingOfClass:[SourceNodeSemicolon class]];
         if(semicolonNode)
-            _RearrangeNodesAsChildren(node, SEMICOLON_PREVIOUS_SIBLING(semicolonNode));
+            _RearrangeNodesAsChildren(node, semicolonNode);
         
     } else if([node isKindOfClass:[SourceNodeCTypeSizeOf class]]) {
         
@@ -265,7 +283,7 @@
                 SourceNode* newNode = [([nextNode isKindOfClass:[SourceNodeBraces class]] ? [SourceNodeCFunctionDefinition alloc] : [SourceNodeCFunctionPrototype alloc]) initWithSource:previousNode.source range:NSMakeRange(previousNode.range.location, 0)];
                 [previousNode insertPreviousSibling:newNode];
                 [newNode release];
-                _RearrangeNodesAsChildren(newNode, [nextNode isKindOfClass:[SourceNodeBraces class]] ? nextNode : SEMICOLON_PREVIOUS_SIBLING(nextNode));
+                _RearrangeNodesAsChildren(newNode, nextNode);
             }
             
         }

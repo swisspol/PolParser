@@ -50,8 +50,26 @@ typedef union {
 	return NO;
 }
 
-static void Foo() {
-	printf("hello");
+static void Foo(int arg) {
+	switch (arg) {
+        case 1:
+            printf("1");
+            break;
+        case 2:
+        case 3:
+            printf("2-3");
+            break;
+        case 4:
+            printf("4");
+            break;
+        case 5:
+        	printf("5");
+        default:
+        	printf("0");
+            break;
+    }
+    
+    printf("hello");
 }
 
 Bar() {

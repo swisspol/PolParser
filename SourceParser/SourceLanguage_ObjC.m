@@ -121,7 +121,7 @@ static BOOL _HasImplementationParent(SourceNode* node) {
         SourceNode* semicolonNode = [node findNextSiblingOfClass:[SourceNodeSemicolon class]];
         if(semicolonNode) {
         	if(semicolonNode.previousSibling != node)
-                _RearrangeNodesAsChildren(node, SEMICOLON_PREVIOUS_SIBLING(semicolonNode));
+                _RearrangeNodesAsChildren(node, semicolonNode);
         } else {
             if([node.parent isKindOfClass:[SourceNodeCFlowIf class]] || [node.parent isKindOfClass:[SourceNodeCFlowElse class]] || [node.parent isKindOfClass:[SourceNodeCFlowElseIf class]]
             	|| [node.parent isKindOfClass:[SourceNodeCFlowFor class]] || [node.parent isKindOfClass:[SourceNodeCFlowWhile class]])
@@ -133,7 +133,7 @@ static BOOL _HasImplementationParent(SourceNode* node) {
         // "@property" "@property()"
         SourceNode* semicolonNode = [node findNextSiblingOfClass:[SourceNodeSemicolon class]];
         if(semicolonNode)
-            _RearrangeNodesAsChildren(node, SEMICOLON_PREVIOUS_SIBLING(semicolonNode));
+            _RearrangeNodesAsChildren(node, semicolonNode);
         
     } else if([node isKindOfClass:[SourceNodeText class]] && _HasInterfaceOrProtocolParent(node)) {
         
@@ -145,7 +145,7 @@ static BOOL _HasImplementationParent(SourceNode* node) {
                 SourceNode* newNode = [[SourceNodeObjCMethodDeclaration alloc] initWithSource:node.source range:NSMakeRange(node.range.location, 0)];
                 [node insertPreviousSibling:newNode];
                 [newNode release];
-                _RearrangeNodesAsChildren(newNode, SEMICOLON_PREVIOUS_SIBLING(semicolonNode));
+                _RearrangeNodesAsChildren(newNode, semicolonNode);
             }
         }
         

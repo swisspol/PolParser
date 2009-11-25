@@ -110,10 +110,10 @@
 @interface SourceNodeCFlowSwitch : SourceNode
 @end
 
-@interface SourceNodeCFlowCase : SourceNode //Leaf
+@interface SourceNodeCFlowCase : SourceNode
 @end
 
-@interface SourceNodeCFlowDefault : SourceNode //Leaf
+@interface SourceNodeCFlowDefault : SourceNode
 @end
 
 @interface SourceNodeCFlowFor : SourceNode

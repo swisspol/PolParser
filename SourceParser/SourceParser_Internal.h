@@ -52,12 +52,6 @@
     return _matching; \
 }
 
-#if 1
-#define SEMICOLON_PREVIOUS_SIBLING(__NODE__) [__NODE__ findPreviousSiblingIgnoringWhitespaceAndNewline]
-#else
-#define SEMICOLON_PREVIOUS_SIBLING(__NODE__) __NODE__.previousSibling
-#endif
-
 static inline BOOL _EqualUnichars(const unichar* string1, const unichar* string2, NSUInteger length) {
     while(length) {
         if(*string1++ != *string2++)

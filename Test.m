@@ -14,7 +14,7 @@ static inline BOOL _IsRealLineBreak(const unichar* string) {
 
 extern int main(int argc, char* argv[])		;
 
-const struct sockaddr*		address;
+const struct sockaddr*		address;;
 
 typedef void (*SourceNodeApplierFunction)(SourceNode* node, void* context);
 
@@ -33,7 +33,8 @@ typedef void (*SourceNodeApplierFunction)(SourceNode* node, void* context);
 - (BOOL) test:(int)foo bar:(int)bar;
 - foo:(id)arg;
 @end
-
+;
+;
 struct temp {
     int foo;
     int bar;
@@ -47,14 +48,18 @@ typedef union {
 @implementation Demo//First pass
 	
 - (BOOL) test:(int)foo bar:(int)bar {
-	return NO;
+	for(int i = foo; i < bar; ++i)
+    	printf("%i", i);
+    for(;; ++i)
+    	printf("%i", i);
+    return NO;
 }
 
 static void Foo(int arg) {
 	switch (arg) {
         case 1:
             printf("1");
-            break;
+            ;break;
         case 2:
         case 3:
             printf("2-3");

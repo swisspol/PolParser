@@ -16,6 +16,16 @@ static void _ProcessNode(SourceNode* node) {
             [node.nextSibling removeFromParent];
     }
     
+    //Remove multiple semicolons (except in for() loops)
+    if([node isKindOfClass:[SourceNodeSemicolon class]] && ![node.parent.parent isKindOfClass:[SourceNodeCFlowFor class]]) {
+    	SourceNode* nextNode = [node findNextSiblingIgnoringWhitespaceAndNewline];
+        while([nextNode isKindOfClass:[SourceNodeSemicolon class]]) {
+        	SourceNode* tempNode = [nextNode findNextSiblingIgnoringWhitespaceAndNewline];
+            [nextNode removeFromParent];
+            nextNode = tempNode;
+        }
+    }
+    
     //Delete empty C++ comments and reformat the others as "  // Comment"
     if([node isKindOfClass:[SourceNodeCPPComment class]]) {
         if([node.previousSibling isKindOfClass:[SourceNodeWhitespace class]])

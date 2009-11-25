@@ -108,6 +108,9 @@ Bar() {
     int temp1 = sizeof(long);
     SEL temp2 = @selector(foo:);
     
+    int result = foo ? temp1 : temp2;
+    int result = foo ? (bar ? temp1 : temp3) : temp2;
+    
     ;
     
     goto Temp;
@@ -122,6 +125,7 @@ Bar() {
     	temp();
     }
     
+Temp:
     if(1)
     	foo();
     else

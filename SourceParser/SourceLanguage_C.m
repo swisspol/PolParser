@@ -68,6 +68,7 @@
         [classes addObject:[SourceNodeCFlowDoWhile class]];
         [classes addObject:[SourceNodeCFlowWhile class]];
         [classes addObject:[SourceNodeCFlowGoto class]];
+        [classes addObject:[SourceNodeCFlowLabel class]];
         [classes addObject:[SourceNodeCFlowReturn class]];
         [classes addObject:[SourceNodeCTypedef class]];
         [classes addObject:[SourceNodeCTypeStruct class]];
@@ -231,6 +232,21 @@
             if([node.parent isKindOfClass:[SourceNodeCFlowIf class]] || [node.parent isKindOfClass:[SourceNodeCFlowElse class]] || [node.parent isKindOfClass:[SourceNodeCFlowElseIf class]]
             	|| [node.parent isKindOfClass:[SourceNodeCFlowFor class]] || [node.parent isKindOfClass:[SourceNodeCFlowWhile class]])
             	_RearrangeNodesAsChildren(node, node.parent.lastChild);
+        }
+        
+    } else if([node isKindOfClass:[SourceNodeColon class]] && [node.parent isKindOfClass:[SourceNodeBraces class]]) {
+        
+        // "foo:"
+        SourceNode* labelNode = [node findPreviousSiblingIgnoringWhitespaceAndNewline];
+        if([labelNode isKindOfClass:[SourceNodeText class]]) {
+        	SourceNode* previousNode = [labelNode findPreviousSiblingIgnoringWhitespaceAndNewline];
+            if(![previousNode isKindOfClass:[SourceNodeQuestionMark class]]) {
+            	SourceNode* newNode = [[SourceNodeCFlowLabel alloc] initWithSource:labelNode.source range:NSMakeRange(labelNode.range.location, 0)];
+                [labelNode insertPreviousSibling:newNode];
+                [newNode release];
+                
+                _RearrangeNodesAsChildren(newNode, node);
+            }
         }
         
     } else if([node isKindOfClass:[SourceNodeCTypeStruct class]] || [node isKindOfClass:[SourceNodeCTypeUnion class]]) {
@@ -480,6 +496,9 @@ IMPLEMENTATION(TypeSizeOf, @"sizeof", false, '(')
 #undef IMPLEMENTATION
 
 @implementation SourceNodeCFlowElseIf
+@end
+
+@implementation SourceNodeCFlowLabel
 @end
 
 @implementation SourceNodeCFunctionPrototype

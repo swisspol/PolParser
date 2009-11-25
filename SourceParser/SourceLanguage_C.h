@@ -128,6 +128,9 @@
 @interface SourceNodeCFlowGoto : SourceNode
 @end
 
+@interface SourceNodeCFlowLabel : SourceNode
+@end
+
 @interface SourceNodeCFlowReturn : SourceNode //Leaf
 @end
 

@@ -92,13 +92,16 @@
 @interface SourceNodeCStringDoubleQuote : SourceNode //Leaf
 @end
 
-@interface SourceNodeCFlowIf : SourceNode
+@interface SourceNodeCConditionalOperator : SourceNode
 @end
 
-@interface SourceNodeCFlowElse : SourceNode
+@interface SourceNodeCConditionIf : SourceNode
 @end
 
-@interface SourceNodeCFlowElseIf : SourceNode
+@interface SourceNodeCConditionElse : SourceNode
+@end
+
+@interface SourceNodeCConditionElseIf : SourceNode
 @end
 
 @interface SourceNodeCFlowBreak : SourceNode //Leaf

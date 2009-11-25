@@ -56,9 +56,10 @@
         [classes addObject:[SourceNodeAsterisk class]];
         [classes addObject:[SourceNodeCStringSingleQuote class]];
         [classes addObject:[SourceNodeCStringDoubleQuote class]];
-        [classes addObject:[SourceNodeCFlowIf class]];
-        [classes addObject:[SourceNodeCFlowElse class]];
-        [classes addObject:[SourceNodeCFlowElseIf class]];
+        [classes addObject:[SourceNodeCConditionalOperator class]];
+        [classes addObject:[SourceNodeCConditionIf class]];
+        [classes addObject:[SourceNodeCConditionElse class]];
+        [classes addObject:[SourceNodeCConditionElseIf class]];
         [classes addObject:[SourceNodeCFlowBreak class]];
         [classes addObject:[SourceNodeCFlowContinue class]];
         [classes addObject:[SourceNodeCFlowSwitch class]];
@@ -108,10 +109,10 @@
         // "if() {}" "for() {}" "switch() {}" "while() {}" "else if() {}"
         if([previousNode isKindOfClass:[SourceNodeParenthesis class]]) {
             previousNode = [previousNode findPreviousSiblingIgnoringWhitespaceAndNewline];
-            if([previousNode isKindOfClass:[SourceNodeCFlowIf class]] || [previousNode isKindOfClass:[SourceNodeCFlowFor class]] || [previousNode isKindOfClass:[SourceNodeCFlowSwitch class]] || [previousNode isKindOfClass:[SourceNodeCFlowWhile class]]) {
-                SourceNode* elseNode = [previousNode isKindOfClass:[SourceNodeCFlowIf class]] ? [previousNode findPreviousSiblingIgnoringWhitespaceAndNewline] : nil;
-                if([elseNode isKindOfClass:[SourceNodeCFlowElse class]] && !elseNode.children) {
-                	SourceNode* newNode = [[SourceNodeCFlowElseIf alloc] initWithSource:elseNode.source range:NSMakeRange(elseNode.range.location, 0)];
+            if([previousNode isKindOfClass:[SourceNodeCConditionIf class]] || [previousNode isKindOfClass:[SourceNodeCFlowFor class]] || [previousNode isKindOfClass:[SourceNodeCFlowSwitch class]] || [previousNode isKindOfClass:[SourceNodeCFlowWhile class]]) {
+                SourceNode* elseNode = [previousNode isKindOfClass:[SourceNodeCConditionIf class]] ? [previousNode findPreviousSiblingIgnoringWhitespaceAndNewline] : nil;
+                if([elseNode isKindOfClass:[SourceNodeCConditionElse class]] && !elseNode.children) {
+                	SourceNode* newNode = [[SourceNodeCConditionElseIf alloc] initWithSource:elseNode.source range:NSMakeRange(elseNode.range.location, 0)];
                     [elseNode insertPreviousSibling:newNode];
                     [newNode release];
                     
@@ -147,11 +148,11 @@
             }
         }
         
-    } else if([node isKindOfClass:[SourceNodeCFlowElse class]]) {
+    } else if([node isKindOfClass:[SourceNodeCConditionElse class]]) {
         
         // "else {}" "else"
         SourceNode* nextNode = [node findNextSiblingIgnoringWhitespaceAndNewline];
-        if(![nextNode isKindOfClass:[SourceNodeCFlowIf class]]) {
+        if(![nextNode isKindOfClass:[SourceNodeCConditionIf class]]) {
             SourceNode* bracesNode = [node findNextSiblingOfClass:[SourceNodeBraces class]];
             SourceNode* semicolonNode = [node findNextSiblingOfClass:[SourceNodeSemicolon class]];
             if(bracesNode && (!semicolonNode || ([node.parent indexOfChild:bracesNode] < [node.parent indexOfChild:semicolonNode])))
@@ -160,7 +161,7 @@
                 _RearrangeNodesAsChildren(node, semicolonNode);
         }
         
-    } else if([node isKindOfClass:[SourceNodeCFlowIf class]] || [node isKindOfClass:[SourceNodeCFlowFor class]] || [node isKindOfClass:[SourceNodeCFlowSwitch class]]) {
+    } else if([node isKindOfClass:[SourceNodeCConditionIf class]] || [node isKindOfClass:[SourceNodeCFlowFor class]] || [node isKindOfClass:[SourceNodeCFlowSwitch class]]) {
         
         // "if()" "for()" "switch()" "else if()"
         SourceNode* nextNode = [node findNextSiblingIgnoringWhitespaceAndNewline];
@@ -168,9 +169,9 @@
             SourceNode* bracesNode = [nextNode findNextSiblingOfClass:[SourceNodeBraces class]];
             SourceNode* semicolonNode = [nextNode findNextSiblingOfClass:[SourceNodeSemicolon class]];
             if(semicolonNode && (!bracesNode || ([node.parent indexOfChild:semicolonNode] < [node.parent indexOfChild:bracesNode]))) {
-                SourceNode* elseNode = [node isKindOfClass:[SourceNodeCFlowIf class]] ? [node findPreviousSiblingIgnoringWhitespaceAndNewline] : nil;
-                if([elseNode isKindOfClass:[SourceNodeCFlowElse class]] && !elseNode.children) {
-                	SourceNode* newNode = [[SourceNodeCFlowElseIf alloc] initWithSource:elseNode.source range:NSMakeRange(elseNode.range.location, 0)];
+                SourceNode* elseNode = [node isKindOfClass:[SourceNodeCConditionIf class]] ? [node findPreviousSiblingIgnoringWhitespaceAndNewline] : nil;
+                if([elseNode isKindOfClass:[SourceNodeCConditionElse class]] && !elseNode.children) {
+                	SourceNode* newNode = [[SourceNodeCConditionElseIf alloc] initWithSource:elseNode.source range:NSMakeRange(elseNode.range.location, 0)];
                     [elseNode insertPreviousSibling:newNode];
                     [newNode release];
                     
@@ -217,7 +218,7 @@
         	if(semicolonNode.previousSibling != node)
                 _RearrangeNodesAsChildren(node, semicolonNode);
         } else {
-            if([node.parent isKindOfClass:[SourceNodeCFlowIf class]] || [node.parent isKindOfClass:[SourceNodeCFlowElse class]] || [node.parent isKindOfClass:[SourceNodeCFlowElseIf class]]
+            if([node.parent isKindOfClass:[SourceNodeCConditionIf class]] || [node.parent isKindOfClass:[SourceNodeCConditionElse class]] || [node.parent isKindOfClass:[SourceNodeCConditionElseIf class]]
             	|| [node.parent isKindOfClass:[SourceNodeCFlowFor class]] || [node.parent isKindOfClass:[SourceNodeCFlowWhile class]])
             	_RearrangeNodesAsChildren(node, node.parent.lastChild);
         }
@@ -229,7 +230,7 @@
         if(semicolonNode) {
             _RearrangeNodesAsChildren(node, semicolonNode);
         } else {
-            if([node.parent isKindOfClass:[SourceNodeCFlowIf class]] || [node.parent isKindOfClass:[SourceNodeCFlowElse class]] || [node.parent isKindOfClass:[SourceNodeCFlowElseIf class]]
+            if([node.parent isKindOfClass:[SourceNodeCConditionIf class]] || [node.parent isKindOfClass:[SourceNodeCConditionElse class]] || [node.parent isKindOfClass:[SourceNodeCConditionElseIf class]]
             	|| [node.parent isKindOfClass:[SourceNodeCFlowFor class]] || [node.parent isKindOfClass:[SourceNodeCFlowWhile class]])
             	_RearrangeNodesAsChildren(node, node.parent.lastChild);
         }
@@ -246,6 +247,27 @@
                 [newNode release];
                 
                 _RearrangeNodesAsChildren(newNode, node);
+            }
+        }
+        
+    } else if([node isKindOfClass:[SourceNodeQuestionMark class]]) {
+        
+        // "foo ? bar : baz" "(foo) ? (bar) : (baz)"
+        SourceNode* startNode = [node findPreviousSiblingIgnoringWhitespaceAndNewline];
+        if([startNode isKindOfClass:[SourceNodeText class]] || [startNode isKindOfClass:[SourceNodeParenthesis class]]) {
+        	SourceNode* middleNode = [node findNextSiblingIgnoringWhitespaceAndNewline];
+            if([middleNode isKindOfClass:[SourceNodeText class]] || [middleNode isKindOfClass:[SourceNodeParenthesis class]]) {
+                SourceNode* colonNode = [middleNode findNextSiblingIgnoringWhitespaceAndNewline];
+                if([colonNode isKindOfClass:[SourceNodeColon class]]) {
+                    SourceNode* endNode = [colonNode findNextSiblingIgnoringWhitespaceAndNewline];
+                    if([endNode isKindOfClass:[SourceNodeText class]] || [endNode isKindOfClass:[SourceNodeParenthesis class]]) {
+                        SourceNode* newNode = [[SourceNodeCConditionalOperator alloc] initWithSource:startNode.source range:NSMakeRange(startNode.range.location, 0)];
+                        [startNode insertPreviousSibling:newNode];
+                        [newNode release];
+                        
+                        _RearrangeNodesAsChildren(newNode, endNode);
+                    }
+                }
             }
         }
         
@@ -306,6 +328,7 @@
         
     }
     
+    //FIXME: Add support for function calls
     //FIXME: Add support for blocks
 }
 
@@ -469,8 +492,8 @@ IS_MATCHING_PREFIX_METHOD_WITH_TRAILING_WHITESPACE_OR_NEWLINE_OR_SEMICOLON_OR_CH
 \
 @end
 
-IMPLEMENTATION(FlowIf, @"if", false, '(')
-IMPLEMENTATION(FlowElse, @"else", false, '{')
+IMPLEMENTATION(ConditionIf, @"if", false, '(')
+IMPLEMENTATION(ConditionElse, @"else", false, '{')
 IMPLEMENTATION(FlowBreak, @"break", true, 0)
 IMPLEMENTATION(FlowContinue, @"continue", true, 0)
 IMPLEMENTATION(FlowSwitch, @"switch", false, '(')
@@ -495,7 +518,10 @@ IMPLEMENTATION(TypeSizeOf, @"sizeof", false, '(')
 
 #undef IMPLEMENTATION
 
-@implementation SourceNodeCFlowElseIf
+@implementation SourceNodeCConditionElseIf
+@end
+
+@implementation SourceNodeCConditionalOperator
 @end
 
 @implementation SourceNodeCFlowLabel

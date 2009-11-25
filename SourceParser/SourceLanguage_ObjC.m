@@ -123,7 +123,7 @@ static BOOL _HasImplementationParent(SourceNode* node) {
         	if(semicolonNode.previousSibling != node)
                 _RearrangeNodesAsChildren(node, semicolonNode);
         } else {
-            if([node.parent isKindOfClass:[SourceNodeCFlowIf class]] || [node.parent isKindOfClass:[SourceNodeCFlowElse class]] || [node.parent isKindOfClass:[SourceNodeCFlowElseIf class]]
+            if([node.parent isKindOfClass:[SourceNodeCConditionIf class]] || [node.parent isKindOfClass:[SourceNodeCConditionElse class]] || [node.parent isKindOfClass:[SourceNodeCConditionElseIf class]]
             	|| [node.parent isKindOfClass:[SourceNodeCFlowFor class]] || [node.parent isKindOfClass:[SourceNodeCFlowWhile class]])
             	_RearrangeNodesAsChildren(node, node.parent.lastChild);
         }
@@ -164,6 +164,8 @@ static BOOL _HasImplementationParent(SourceNode* node) {
         }
         
     }
+    
+    //FIXME: Add support for method calls
 }
 
 @end

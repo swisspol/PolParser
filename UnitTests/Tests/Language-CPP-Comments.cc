@@ -19,7 +19,7 @@ int main(int argc, char *argv[]) {
 ·  ·  ·  ♢)♢
 ·  ·  ♢•♢
 ·  ·  <Braces>
-·  ·  ·  ♢{♢¶♢••••♢//♢•♢Return♢•♢the♢•♢result♢¶♢••••♢
+·  ·  ·  ♢{♢¶♢••••♢|//•Return•the•result|♢¶♢••••♢
 ·  ·  ·  <CFlowReturn>
 ·  ·  ·  ·  ♢return♢•♢Run♢
 ·  ·  ·  ·  <Parenthesis>
@@ -28,5 +28,5 @@ int main(int argc, char *argv[]) {
 ·  ·  ·  ·  ·  ·  ♢(♢|const|♢•♢char♢|*|♢|*|♢)♢
 ·  ·  ·  ·  ·  ♢argv♢)♢
 ·  ·  ·  ·  ♢|;|♢
-·  ·  ·  ♢•♢//argc♢•♢is♢•♢always♢•♢>♢•♢1♢¶♢}♢
+·  ·  ·  ♢•♢|//argc•is•always•>•1|♢¶♢}♢
 ·  ♢¶♢¶♢

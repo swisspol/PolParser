@@ -2,9 +2,23 @@
 
 int main(int argc, const char* argv[]) {
     NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+    BOOL optionPrintRoot = NO;
     
     NSString* basePath = @"Tests";
-    NSArray* testFiles = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:basePath error:NULL];
+    NSArray* testFiles;
+    if(argc > 1) {
+    	testFiles = [NSMutableArray array];
+        for(int i = 1; i < argc; ++i) {
+        	if(argv[i][0] == '-') {
+            	if(strcmp(argv[i], "-print") == 0)
+                	optionPrintRoot = YES;
+            } else {
+                [(NSMutableArray*)testFiles addObject:[NSString stringWithUTF8String:argv[i]]];
+            }
+        }
+    } else {
+    	testFiles = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:basePath error:NULL];
+    }
     for(NSString* path in testFiles) {
     	if([path hasPrefix:@"."])
         	continue;
@@ -25,6 +39,9 @@ int main(int argc, const char* argv[]) {
                     if(root == nil) {
                         NSLog(@"<FAILED PARSING SOURCE FROM \"%@\">", path);
                     } else {
+                        if(optionPrintRoot)
+                        	printf("<%s>\n%s\n", [path UTF8String], [root.fullDescription UTF8String]);
+                        
                         NSMutableString* expected = [NSMutableString stringWithString:[parts objectAtIndex:1]];
                         [expected replaceOccurrencesOfString:@"\n" withString:@"" options:NSAnchoredSearch range:NSMakeRange(0, expected.length)];
                         [expected replaceOccurrencesOfString:@"\n" withString:@"" options:(NSBackwardsSearch | NSAnchoredSearch) range:NSMakeRange(0, expected.length)];

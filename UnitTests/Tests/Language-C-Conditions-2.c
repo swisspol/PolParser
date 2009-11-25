@@ -22,13 +22,13 @@ if(0) return NULL;
 ·  ·  ♢¶♢••••♢foo♢
 ·  ·  <Parenthesis>
 ·  ·  ·  ♢(♢)♢
-·  ·  ♢;♢
+·  ·  ♢|;|♢
 ·  ♢¶♢
 ·  <CConditionElse>
 ·  ·  ♢else♢¶♢••••♢bar♢
 ·  ·  <Parenthesis>
 ·  ·  ·  ♢(♢)♢
-·  ·  ♢;♢
+·  ·  ♢|;|♢
 ·  ♢¶♢¶♢
 ·  <CConditionIf>
 ·  ·  ♢if♢
@@ -37,7 +37,7 @@ if(0) return NULL;
 ·  ·  ♢¶♢••••♢foo♢
 ·  ·  <Parenthesis>
 ·  ·  ·  ♢(♢)♢
-·  ·  ♢;♢
+·  ·  ♢|;|♢
 ·  ♢¶♢
 ·  <CConditionElseIf>
 ·  ·  ♢else♢•♢if♢
@@ -46,13 +46,13 @@ if(0) return NULL;
 ·  ·  ♢¶♢••••♢bar♢
 ·  ·  <Parenthesis>
 ·  ·  ·  ♢(♢)♢
-·  ·  ♢;♢
+·  ·  ♢|;|♢
 ·  ♢¶♢
 ·  <CConditionElse>
 ·  ·  ♢else♢¶♢••••♢temp♢
 ·  ·  <Parenthesis>
 ·  ·  ·  ♢(♢)♢
-·  ·  ♢;♢
+·  ·  ♢|;|♢
 ·  ♢¶♢¶♢
 ·  <CConditionIf>
 ·  ·  ♢if♢
@@ -60,5 +60,5 @@ if(0) return NULL;
 ·  ·  ·  ♢(♢0♢)♢
 ·  ·  ♢•♢
 ·  ·  <CFlowReturn>
-·  ·  ·  ♢return♢•♢NULL♢;♢
+·  ·  ·  ♢return♢•♢|NULL|♢|;|♢
 ·  ♢¶♢¶♢

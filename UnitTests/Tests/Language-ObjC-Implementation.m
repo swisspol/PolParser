@@ -27,20 +27,20 @@
 ·  ·  ·  ·  <ObjCSelector>
 ·  ·  ·  ·  ·  ♢@selector♢
 ·  ·  ·  ·  ·  <Parenthesis>
-·  ·  ·  ·  ·  ·  ♢(♢test♢:♢bar♢:♢)♢
-·  ·  ·  ·  ♢;♢¶♢••••♢¶♢••••♢
+·  ·  ·  ·  ·  ·  ♢(♢test♢|:|♢bar♢|:|♢)♢
+·  ·  ·  ·  ♢|;|♢¶♢••••♢¶♢••••♢
 ·  ·  ·  ·  <CFlowReturn>
-·  ·  ·  ·  ·  ♢return♢•♢nil♢;♢
+·  ·  ·  ·  ·  ♢return♢•♢|nil|♢|;|♢
 ·  ·  ·  ·  ♢¶♢}♢
 ·  ·  ♢¶♢¶♢
 ·  ·  <ObjCMethodImplementation>
 ·  ·  ·  ♢-♢•♢
 ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ♢(♢BOOL♢)♢
-·  ·  ·  ♢•♢test♢:♢
+·  ·  ·  ♢•♢test♢|:|♢
 ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ♢(♢int♢)♢
-·  ·  ·  ♢foo♢•♢bar♢:♢
+·  ·  ·  ♢foo♢•♢bar♢|:|♢
 ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ♢(♢int♢)♢
 ·  ·  ·  ♢bar♢•♢
@@ -51,17 +51,17 @@
 ·  ·  ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ·  ·  ♢(♢
 ·  ·  ·  ·  ·  ·  <Brackets>
-·  ·  ·  ·  ·  ·  ·  ♢[♢self♢•♢class♢]♢
+·  ·  ·  ·  ·  ·  ·  ♢[♢|self|♢•♢class♢]♢
 ·  ·  ·  ·  ·  ·  ♢)♢
 ·  ·  ·  ·  ·  ♢•♢
 ·  ·  ·  ·  ·  <Braces>
-·  ·  ·  ·  ·  ·  ♢{♢¶♢••••→♢self♢•♢+♢•♢2♢;♢¶♢••••♢}♢
+·  ·  ·  ·  ·  ·  ♢{♢¶♢••••→♢|self|♢•♢+♢•♢2♢|;|♢¶♢••••♢}♢
 ·  ·  ·  ·  ♢¶♢••••♢
 ·  ·  ·  ·  <CFlowReturn>
 ·  ·  ·  ·  ·  ♢return♢•♢
 ·  ·  ·  ·  ·  <Brackets>
-·  ·  ·  ·  ·  ·  ♢[♢super♢•♢test♢:♢foo♢•♢bar♢:♢bar♢]♢
-·  ·  ·  ·  ·  ♢;♢
+·  ·  ·  ·  ·  ·  ♢[♢|super|♢•♢test♢|:|♢foo♢•♢bar♢|:|♢bar♢]♢
+·  ·  ·  ·  ·  ♢|;|♢
 ·  ·  ·  ·  ♢¶♢}♢
 ·  ·  ♢¶♢¶♢@end♢
 ·  ♢¶♢¶♢

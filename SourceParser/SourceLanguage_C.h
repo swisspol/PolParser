@@ -45,6 +45,9 @@
 @interface SourceNodeCNULL : SourceNode //Leaf
 @end
 
+@interface SourceNodeCVoid : SourceNode //Leaf
+@end
+
 @interface SourceNodeCComment : SourceNode //Leaf
 @end
 

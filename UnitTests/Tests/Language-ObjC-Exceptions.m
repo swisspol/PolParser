@@ -19,12 +19,12 @@
 ·  <ObjCTry>
 ·  ·  ♢@try♢•♢
 ·  ·  <Braces>
-·  ·  ·  ♢{♢¶♢••••♢@throw♢;♢¶♢••••♢NSBeep♢
+·  ·  ·  ♢{♢¶♢••••♢|@throw|♢|;|♢¶♢••••♢NSBeep♢
 ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ♢(♢)♢
-·  ·  ·  ♢;♢¶♢••••♢
+·  ·  ·  ♢|;|♢¶♢••••♢
 ·  ·  ·  <ObjCThrow>
-·  ·  ·  ·  ♢@throw♢•♢foo♢;♢
+·  ·  ·  ·  ♢@throw♢•♢foo♢|;|♢
 ·  ·  ·  ♢¶♢••••♢¶♢••••♢
 ·  ·  ·  <CConditionIf>
 ·  ·  ·  ·  ♢if♢
@@ -32,25 +32,25 @@
 ·  ·  ·  ·  ·  ♢(♢0♢)♢
 ·  ·  ·  ·  ♢•♢
 ·  ·  ·  ·  <ObjCThrow>
-·  ·  ·  ·  ·  ♢@throw♢•♢bar♢;♢
+·  ·  ·  ·  ·  ♢@throw♢•♢bar♢|;|♢
 ·  ·  ·  ♢¶♢}♢
 ·  ♢¶♢
 ·  <ObjCCatch>
 ·  ·  ♢@catch♢•♢
 ·  ·  <Parenthesis>
-·  ·  ·  ♢(♢NSException♢•♢*♢•♢e♢)♢
+·  ·  ·  ♢(♢NSException♢•♢|*|♢•♢e♢)♢
 ·  ·  ♢¶♢
 ·  ·  <Braces>
 ·  ·  ·  ♢{♢¶♢••••♢NSLog♢
 ·  ·  ·  <Parenthesis>
-·  ·  ·  ·  ♢(♢@"%@"♢,♢•♢e♢)♢
-·  ·  ·  ♢;♢¶♢}♢
+·  ·  ·  ·  ♢(♢|@"%@"|♢,♢•♢e♢)♢
+·  ·  ·  ♢|;|♢¶♢}♢
 ·  ♢¶♢
 ·  <ObjCFinally>
 ·  ·  ♢@finally♢•♢
 ·  ·  <Braces>
 ·  ·  ·  ♢{♢¶♢••••♢NSLog♢
 ·  ·  ·  <Parenthesis>
-·  ·  ·  ·  ♢(♢@"Done"♢)♢
-·  ·  ·  ♢;♢¶♢}♢
+·  ·  ·  ·  ♢(♢|@"Done"|♢)♢
+·  ·  ·  ♢|;|♢¶♢}♢
 ·  ♢¶♢¶♢

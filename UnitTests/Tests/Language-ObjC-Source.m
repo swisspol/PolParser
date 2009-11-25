@@ -12,14 +12,14 @@ int main(int argc, char *argv[]) {
 -----
 
 <Root>
-·  ♢/*¶••••This•file•is•part•of•the•PolParser•library.¶••••Copyright•(C)•2009•Pierre-Olivier•Latour•<info@pol-online.net>¶*/♢¶♢¶♢
+·  ♢|/*¶••••This•file•is•part•of•the•PolParser•library.¶••••Copyright•(C)•2009•Pierre-Olivier•Latour•<info@pol-online.net>¶*/|♢¶♢¶♢
 ·  <ObjCPreprocessorImport>
 ·  ·  ♢#import♢•♢<Cocoa/Cocoa.h>♢
 ·  ♢¶♢¶♢
 ·  <CFunctionDefinition>
 ·  ·  ♢int♢•♢main♢
 ·  ·  <Parenthesis>
-·  ·  ·  ♢(♢int♢•♢argc,♢•♢char♢•♢*♢argv♢
+·  ·  ·  ♢(♢int♢•♢argc,♢•♢char♢•♢|*|♢argv♢
 ·  ·  ·  <Brackets>
 ·  ·  ·  ·  ♢[♢]♢
 ·  ·  ·  ♢)♢
@@ -31,8 +31,8 @@ int main(int argc, char *argv[]) {
 ·  ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ·  ♢(♢argc,♢•♢
 ·  ·  ·  ·  ·  <Parenthesis>
-·  ·  ·  ·  ·  ·  ♢(♢const♢•♢char♢*♢*♢)♢
+·  ·  ·  ·  ·  ·  ♢(♢|const|♢•♢char♢|*|♢|*|♢)♢
 ·  ·  ·  ·  ·  ♢argv♢)♢
-·  ·  ·  ·  ♢;♢
+·  ·  ·  ·  ♢|;|♢
 ·  ·  ·  ♢¶♢}♢
 ·  ♢¶♢¶♢

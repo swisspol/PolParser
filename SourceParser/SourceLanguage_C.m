@@ -55,6 +55,7 @@
         [classes addObject:[SourceNodeAmpersand class]];
         [classes addObject:[SourceNodeAsterisk class]];
         [classes addObject:[SourceNodeCNULL class]];
+        [classes addObject:[SourceNodeCVoid class]];
         [classes addObject:[SourceNodeCStringSingleQuote class]];
         [classes addObject:[SourceNodeCStringDoubleQuote class]];
         [classes addObject:[SourceNodeCConditionalOperator class]];
@@ -494,6 +495,7 @@ IS_MATCHING_PREFIX_METHOD_WITH_TRAILING_WHITESPACE_OR_NEWLINE_OR_SEMICOLON_OR_CH
 @end
 
 IMPLEMENTATION(NULL, @"NULL", false, false, 0)
+IMPLEMENTATION(Void, @"void", false, false, 0)
 IMPLEMENTATION(ConditionIf, @"if", true, false, '(')
 IMPLEMENTATION(ConditionElse, @"else", true, false, '{')
 IMPLEMENTATION(FlowBreak, @"break", true, true, 0)

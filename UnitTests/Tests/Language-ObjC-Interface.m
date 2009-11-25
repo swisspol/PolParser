@@ -24,45 +24,45 @@
 ·  ·  ·  ♢-♢•♢
 ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ♢(♢BOOL♢)♢
-·  ·  ·  ♢•♢test♢:♢
+·  ·  ·  ♢•♢test♢|:|♢
 ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ♢(♢int♢)♢
-·  ·  ·  ♢foo♢•♢bar♢:♢
+·  ·  ·  ♢foo♢•♢bar♢|:|♢
 ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ♢(♢int♢)♢
-·  ·  ·  ♢bar♢;♢
+·  ·  ·  ♢bar♢|;|♢
 ·  ·  ♢¶♢@end♢
 ·  ♢¶♢¶♢
 ·  <ObjCInterface>
-·  ·  ♢@interface♢•♢Demo♢•♢:♢•♢NSObject♢•♢<Cocoa>♢•♢
+·  ·  ♢@interface♢•♢Demo♢•♢|:|♢•♢NSObject♢•♢<Cocoa>♢•♢
 ·  ·  <Braces>
-·  ·  ·  ♢{♢¶♢@private♢¶♢→♢int♢•♢foo♢;♢¶♢@public♢¶♢→♢int♢•♢_bar♢;♢¶♢}♢
+·  ·  ·  ♢{♢¶♢|@private|♢¶♢→♢int♢•♢foo♢|;|♢¶♢|@public|♢¶♢→♢int♢•♢_bar♢|;|♢¶♢}♢
 ·  ·  ♢¶♢
 ·  ·  <ObjCProperty>
 ·  ·  ·  ♢@property♢
 ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ♢(♢nonatomic,♢•♢readonly,♢•♢getter=isValid♢)♢
-·  ·  ·  ♢••♢BOOL♢•♢valid♢;♢
+·  ·  ·  ♢••♢BOOL♢•♢valid♢|;|♢
 ·  ·  ♢¶♢
 ·  ·  <ObjCMethodDeclaration>
 ·  ·  ·  ♢+♢•♢
 ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ♢(♢id♢)♢
-·  ·  ·  ♢•♢sharedInstance♢;♢
+·  ·  ·  ♢•♢sharedInstance♢|;|♢
 ·  ·  ♢¶♢
 ·  ·  <ObjCMethodDeclaration>
 ·  ·  ·  ♢-♢•♢
 ·  ·  ·  <Parenthesis>
-·  ·  ·  ·  ♢(♢void♢)♢
-·  ·  ·  ♢•♢run♢;♢
+·  ·  ·  ·  ♢(♢|void|♢)♢
+·  ·  ·  ♢•♢run♢|;|♢
 ·  ·  ♢¶♢
 ·  ·  <ObjCMethodDeclaration>
-·  ·  ·  ♢-♢•♢foo♢:♢
+·  ·  ·  ♢-♢•♢foo♢|:|♢
 ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ♢(♢id♢)♢
-·  ·  ·  ♢arg♢;♢
+·  ·  ·  ♢arg♢|;|♢
 ·  ·  ♢¶♢
 ·  ·  <ObjCMethodDeclaration>
-·  ·  ·  ♢-♢•♢bar♢;♢
+·  ·  ·  ♢-♢•♢bar♢|;|♢
 ·  ·  ♢¶♢@end♢
 ·  ♢¶♢¶♢

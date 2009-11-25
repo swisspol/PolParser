@@ -320,7 +320,10 @@ static void _AppendChildrenCompactDescription(SourceNode* node, NSMutableString*
         } else {
         	if(node == firstNode)
             	[string appendFormat:@"%@%@", prefix, separator];
-            [string appendFormat:@"%@%@", _FormatString(node.content), separator];
+            if([node isKindOfClass:[SourceNodeWhitespace class]] || [node isKindOfClass:[SourceNodeNewline class]] || [node isKindOfClass:[SourceNodeText class]])
+                [string appendFormat:@"%@%@", _FormatString(node.content), separator];
+            else
+            	[string appendFormat:@"|%@|%@", _FormatString(node.content), separator];
         }
     }
 }

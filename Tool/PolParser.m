@@ -8,7 +8,7 @@ static void _ProcessNode(SourceNode* node) {
         [node replaceWithText:text];
     }*/
     
-    //Delete whitespace at end of lines & remove multiple newlines
+    //Strip whitespace at end of lines & multiple newlines
     if([node isKindOfClass:[SourceNodeNewline class]]) {
         if([node.previousSibling isKindOfClass:[SourceNodeWhitespace class]]) //FIXME: This is affected by the above operation
             [node.previousSibling removeFromParent];
@@ -16,17 +16,22 @@ static void _ProcessNode(SourceNode* node) {
             [node.nextSibling removeFromParent];
     }
     
-    //Remove multiple semicolons (except in for() loops)
-    if([node isKindOfClass:[SourceNodeSemicolon class]] && ![node.parent.parent isKindOfClass:[SourceNodeCFlowFor class]]) {
-    	SourceNode* nextNode = [node findNextSiblingIgnoringWhitespaceAndNewline];
-        while([nextNode isKindOfClass:[SourceNodeSemicolon class]]) {
-        	SourceNode* tempNode = [nextNode findNextSiblingIgnoringWhitespaceAndNewline];
-            [nextNode removeFromParent];
-            nextNode = tempNode;
+    //Strip multiple semicolons (except in for() loops) and whitespace before the remaining ones
+    if([node isKindOfClass:[SourceNodeSemicolon class]]) {
+    	while([node.previousSibling isKindOfClass:[SourceNodeWhitespace class]] || [node.previousSibling isKindOfClass:[SourceNodeNewline class]]) {
+        	[node.previousSibling removeFromParent];
+        }
+        if(![node.parent.parent isKindOfClass:[SourceNodeCFlowFor class]]) {
+            SourceNode* nextNode = [node findNextSiblingIgnoringWhitespaceAndNewline];
+            while([nextNode isKindOfClass:[SourceNodeSemicolon class]]) {
+                SourceNode* tempNode = [nextNode findNextSiblingIgnoringWhitespaceAndNewline];
+                [nextNode removeFromParent];
+                nextNode = tempNode;
+            }
         }
     }
     
-    //Delete empty C++ comments and reformat the others as "  // Comment"
+    //Delete empty C++ comments and reformat the remaining ones as "  // Comment"
     if([node isKindOfClass:[SourceNodeCPPComment class]]) {
         if([node.previousSibling isKindOfClass:[SourceNodeWhitespace class]])
             [node.previousSibling removeFromParent];

@@ -42,6 +42,9 @@
 @interface SourceNodeAsterisk : SourceNode //Leaf
 @end
 
+@interface SourceNodeCNULL : SourceNode //Leaf
+@end
+
 @interface SourceNodeCComment : SourceNode //Leaf
 @end
 

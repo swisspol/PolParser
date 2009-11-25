@@ -21,6 +21,9 @@
 @interface SourceNodeObjCPreprocessorImport : SourceNodeCPreprocessor
 @end
 
+@interface SourceNodeObjCNil : SourceNode //Leaf
+@end
+
 @interface SourceNodeObjCString : SourceNodeCStringDoubleQuote //Leaf
 @end
 

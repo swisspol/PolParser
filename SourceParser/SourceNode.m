@@ -298,7 +298,6 @@ static NSString* _FormatString(NSString* string) {
     [(NSMutableString*)string replaceOccurrencesOfString:@"\n" withString:newlineString options:0 range:NSMakeRange(0, string.length)];
     return string;
 }
-
 - (NSString*) contentDescription {
     return _FormatString(self.content);
 }

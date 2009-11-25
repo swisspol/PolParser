@@ -1,11 +1,11 @@
-if(1) {
+if (1) {
     printf("1");
 }
-else if(2) {
-    if(3) {
+else if (2) {
+    if (3) {
         printf("3");
     }
-    else if(4) {
+    else if (4) {
         printf("4");
     }
     else
@@ -19,7 +19,7 @@ else {
 
 <Root>
 ·  <CConditionIf>
-·  ·  ♢if♢
+·  ·  ♢if♢•♢
 ·  ·  <Parenthesis>
 ·  ·  ·  ♢(♢1♢)♢
 ·  ·  ♢•♢
@@ -30,14 +30,14 @@ else {
 ·  ·  ·  ♢;♢¶♢}♢
 ·  ♢¶♢
 ·  <CConditionElseIf>
-·  ·  ♢else♢•♢if♢
+·  ·  ♢else♢•♢if♢•♢
 ·  ·  <Parenthesis>
 ·  ·  ·  ♢(♢2♢)♢
 ·  ·  ♢•♢
 ·  ·  <Braces>
 ·  ·  ·  ♢{♢¶♢••••♢
 ·  ·  ·  <CConditionIf>
-·  ·  ·  ·  ♢if♢
+·  ·  ·  ·  ♢if♢•♢
 ·  ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ·  ♢(♢3♢)♢
 ·  ·  ·  ·  ♢•♢
@@ -48,7 +48,7 @@ else {
 ·  ·  ·  ·  ·  ♢;♢¶♢••••♢}♢
 ·  ·  ·  ♢¶♢••••♢
 ·  ·  ·  <CConditionElseIf>
-·  ·  ·  ·  ♢else♢•♢if♢
+·  ·  ·  ·  ♢else♢•♢if♢•♢
 ·  ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ·  ♢(♢4♢)♢
 ·  ·  ·  ·  ♢•♢

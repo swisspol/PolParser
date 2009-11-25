@@ -54,6 +54,7 @@
         [classes addObject:[SourceNodeCaret class]];
         [classes addObject:[SourceNodeAmpersand class]];
         [classes addObject:[SourceNodeAsterisk class]];
+        [classes addObject:[SourceNodeCNULL class]];
         [classes addObject:[SourceNodeCStringSingleQuote class]];
         [classes addObject:[SourceNodeCStringDoubleQuote class]];
         [classes addObject:[SourceNodeCConditionalOperator class]];
@@ -443,17 +444,17 @@ IS_MATCHING_PREFIX_METHOD_WITH_TRAILING_WHITESPACE_OR_NEWLINE_OR_SEMICOLON_OR_CH
 \
 @end
 
-IMPLEMENTATION(PreprocessorConditionIf, @"#if", false, '(')
-IMPLEMENTATION(PreprocessorConditionIfdef, @"#ifdef", false, '(')
-IMPLEMENTATION(PreprocessorConditionIfndef, @"#ifndef", false, '(')
-IMPLEMENTATION(PreprocessorConditionElse, @"#else", false, 0)
-IMPLEMENTATION(PreprocessorConditionElseif, @"#elseif", false, '(')
-IMPLEMENTATION(PreprocessorDefine, @"#define", false, 0)
-IMPLEMENTATION(PreprocessorUndefine, @"#undef", false, 0)
-IMPLEMENTATION(PreprocessorPragma, @"#pragma", false, 0)
-IMPLEMENTATION(PreprocessorWarning, @"#warning", false, 0)
-IMPLEMENTATION(PreprocessorError, @"#error", false, 0)
-IMPLEMENTATION(PreprocessorInclude, @"#include", false, 0)
+IMPLEMENTATION(PreprocessorConditionIf, @"#if", true, false, '(')
+IMPLEMENTATION(PreprocessorConditionIfdef, @"#ifdef", true, false, '(')
+IMPLEMENTATION(PreprocessorConditionIfndef, @"#ifndef", true, false, '(')
+IMPLEMENTATION(PreprocessorConditionElse, @"#else", true, false, '(')
+IMPLEMENTATION(PreprocessorConditionElseif, @"#elseif", true, false, '(')
+IMPLEMENTATION(PreprocessorDefine, @"#define", true, false, 0)
+IMPLEMENTATION(PreprocessorUndefine, @"#undef", true, false, 0)
+IMPLEMENTATION(PreprocessorPragma, @"#pragma", true, false, '(')
+IMPLEMENTATION(PreprocessorWarning, @"#warning", true, false, '(')
+IMPLEMENTATION(PreprocessorError, @"#error", true, false, '(')
+IMPLEMENTATION(PreprocessorInclude, @"#include", false, false, 0)
 
 #undef IMPLEMENTATION
 
@@ -492,29 +493,30 @@ IS_MATCHING_PREFIX_METHOD_WITH_TRAILING_WHITESPACE_OR_NEWLINE_OR_SEMICOLON_OR_CH
 \
 @end
 
-IMPLEMENTATION(ConditionIf, @"if", false, '(')
-IMPLEMENTATION(ConditionElse, @"else", false, '{')
-IMPLEMENTATION(FlowBreak, @"break", true, 0)
-IMPLEMENTATION(FlowContinue, @"continue", true, 0)
-IMPLEMENTATION(FlowSwitch, @"switch", false, '(')
-IMPLEMENTATION(FlowCase, @"case", false, ':')
-IMPLEMENTATION(FlowDefault, @"default", false, ':')
-IMPLEMENTATION(FlowFor, @"for", false, '(')
-IMPLEMENTATION(FlowDoWhile, @"do", false, '{')
-IMPLEMENTATION(FlowWhile, @"while", false, '(')
-IMPLEMENTATION(FlowGoto, @"goto", false, 0)
-IMPLEMENTATION(FlowReturn, @"return", true, '(')
-IMPLEMENTATION(Typedef, @"typedef", false, 0)
-IMPLEMENTATION(TypeStruct, @"struct", false, '{')
-IMPLEMENTATION(TypeUnion, @"union", false, '{')
-IMPLEMENTATION(TypeAuto, @"auto", false, 0)
-IMPLEMENTATION(TypeStatic, @"static", false, 0)
-IMPLEMENTATION(TypeRegister, @"register", false, 0)
-IMPLEMENTATION(TypeVolatile, @"volatile", false, 0)
-IMPLEMENTATION(TypeConst, @"const", false, 0)
-IMPLEMENTATION(TypeEnum, @"enum", false, '{')
-IMPLEMENTATION(TypeExtern, @"extern", false, 0)
-IMPLEMENTATION(TypeSizeOf, @"sizeof", false, '(')
+IMPLEMENTATION(NULL, @"NULL", false, false, 0)
+IMPLEMENTATION(ConditionIf, @"if", true, false, '(')
+IMPLEMENTATION(ConditionElse, @"else", true, false, '{')
+IMPLEMENTATION(FlowBreak, @"break", true, true, 0)
+IMPLEMENTATION(FlowContinue, @"continue", true, true, 0)
+IMPLEMENTATION(FlowSwitch, @"switch", true, false, '(')
+IMPLEMENTATION(FlowCase, @"case", true, false, 0)
+IMPLEMENTATION(FlowDefault, @"default", true, false, ':')
+IMPLEMENTATION(FlowFor, @"for", true, false, '(')
+IMPLEMENTATION(FlowDoWhile, @"do", true, false, '{')
+IMPLEMENTATION(FlowWhile, @"while", true, false, '(')
+IMPLEMENTATION(FlowGoto, @"goto", true, false, 0)
+IMPLEMENTATION(FlowReturn, @"return", true, true, '(')
+IMPLEMENTATION(Typedef, @"typedef", true, false, 0)
+IMPLEMENTATION(TypeStruct, @"struct", true, false, '{')
+IMPLEMENTATION(TypeUnion, @"union", true, false, '{')
+IMPLEMENTATION(TypeAuto, @"auto", true, false, 0)
+IMPLEMENTATION(TypeStatic, @"static", true, false, 0)
+IMPLEMENTATION(TypeRegister, @"register", true, false, 0)
+IMPLEMENTATION(TypeVolatile, @"volatile", true, false, 0)
+IMPLEMENTATION(TypeConst, @"const", true, false, 0)
+IMPLEMENTATION(TypeEnum, @"enum", true, false, '{')
+IMPLEMENTATION(TypeExtern, @"extern", true, false, 0)
+IMPLEMENTATION(TypeSizeOf, @"sizeof", true, false, '(')
 
 #undef IMPLEMENTATION
 

@@ -33,12 +33,10 @@ int main(int argc, const char* argv[]) {
                         if(![result isEqualToString:expected]) {
                         	printf("%s: FAILED\n", [path UTF8String]);
                             
-                            NSString* suffix = [[NSCalendarDate date] descriptionWithCalendarFormat:@"%Y-%m-%d-%I%M%S%F"];
-                            
-                            NSString* expectedPath = [NSTemporaryDirectory() stringByAppendingPathComponent:[NSString stringWithFormat:@"Expected-%@.out", suffix]];
+                            NSString* expectedPath = [NSTemporaryDirectory() stringByAppendingPathComponent:[NSString stringWithFormat:@"%@ [Expected].out", path]];
                             [expected writeToFile:expectedPath atomically:YES encoding:NSUTF8StringEncoding error:NULL];
                             
-                            NSString* resultPath = [NSTemporaryDirectory() stringByAppendingPathComponent:[NSString stringWithFormat:@"Result-%@.out", suffix]];
+                            NSString* resultPath = [NSTemporaryDirectory() stringByAppendingPathComponent:[NSString stringWithFormat:@"%@ [Result].out", path]];
                             [result writeToFile:resultPath atomically:YES encoding:NSUTF8StringEncoding error:NULL];
                             
                             NSTask* task = [[NSTask alloc] init];
@@ -50,6 +48,7 @@ int main(int argc, const char* argv[]) {
                             @catch(NSException* exception) {
                                 NSLog(@"<FAILED LAUNCHING OPENDIFF: \"%@\">", [exception reason]);
                             }
+                            [task waitUntilExit];
                             [task release];
                         } else {
                             printf("%s: ok\n", [path UTF8String]);

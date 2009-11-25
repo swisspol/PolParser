@@ -40,15 +40,15 @@
         _matching = (__MAXLENGTH__ >= __length) && _EqualUnichars(string, __match, __length) ? __length : NSNotFound; \
     }
 
-#define IS_MATCHING_PREFIX_METHOD_WITH_TRAILING_WHITESPACE_OR_NEWLINE_OR_SEMICOLON_OR_CHARACTER(__PREFIX__, __SEMICOLON__, __CHARACTER__) \
+#define IS_MATCHING_PREFIX_METHOD_WITH_TRAILING_WHITESPACE_OR_NEWLINE_OR_SEMICOLON_OR_CHARACTER(__PREFIX__, __TRAILING_WHITESPACE_OR_NEWLINE__, __SEMICOLON__, __CHARACTER__) \
 + (NSUInteger) isMatchingPrefix:(const unichar*)string maxLength:(NSUInteger)maxLength { \
-    IS_MATCHING(__PREFIX__, true, __SEMICOLON__, __CHARACTER__, string, maxLength) \
+    IS_MATCHING(__PREFIX__, __TRAILING_WHITESPACE_OR_NEWLINE__, __SEMICOLON__, __CHARACTER__, string, maxLength) \
     return _matching; \
 }
 
-#define IS_MATCHING_SUFFIX_METHOD_WITH_TRAILING_WHITESPACE_OR_NEWLINE_OR_SEMICOLON_OR_CHARACTER(__SUFFIX__, __SEMICOLON__, __CHARACTER__) \
+#define IS_MATCHING_SUFFIX_METHOD_WITH_TRAILING_WHITESPACE_OR_NEWLINE_OR_SEMICOLON_OR_CHARACTER(__SUFFIX__, __TRAILING_WHITESPACE_OR_NEWLINE__, __SEMICOLON__, __CHARACTER__) \
 + (NSUInteger) isMatchingSuffix:(const unichar*)string maxLength:(NSUInteger)maxLength { \
-    IS_MATCHING(__SUFFIX__, true, __SEMICOLON__, __CHARACTER__, string, maxLength) \
+    IS_MATCHING(__SUFFIX__, __TRAILING_WHITESPACE_OR_NEWLINE__, __SEMICOLON__, __CHARACTER__, string, maxLength) \
     return _matching; \
 }
 

@@ -58,6 +58,7 @@
         [classes addObject:[SourceNodeObjCEncode class]];
         [classes addObject:[SourceNodeObjCSelf class]];
         [classes addObject:[SourceNodeObjCSuper class]];
+        [classes addObject:[SourceNodeObjCNil class]];
         
         [classes addObject:[SourceNodeObjCMethodDeclaration class]];
         [classes addObject:[SourceNodeObjCMethodImplementation class]];
@@ -172,7 +173,7 @@ static BOOL _HasImplementationParent(SourceNode* node) {
 
 @implementation SourceNodeObjCPreprocessorImport
 
-IS_MATCHING_PREFIX_METHOD_WITH_TRAILING_WHITESPACE_OR_NEWLINE_OR_SEMICOLON_OR_CHARACTER(@"#import", false, 0)
+IS_MATCHING_PREFIX_METHOD_WITH_TRAILING_WHITESPACE_OR_NEWLINE_OR_SEMICOLON_OR_CHARACTER(@"#import", false, false, 0)
 
 @end
 
@@ -191,9 +192,9 @@ IS_MATCHING_PREFIX_METHOD_WITH_TRAILING_WHITESPACE_OR_NEWLINE_OR_SEMICOLON_OR_CH
     return NO; \
 } \
 \
-IS_MATCHING_PREFIX_METHOD_WITH_TRAILING_WHITESPACE_OR_NEWLINE_OR_SEMICOLON_OR_CHARACTER(__TOKEN__, false, 0) \
+IS_MATCHING_PREFIX_METHOD_WITH_TRAILING_WHITESPACE_OR_NEWLINE_OR_SEMICOLON_OR_CHARACTER(__TOKEN__, true, false, 0) \
 \
-IS_MATCHING_SUFFIX_METHOD_WITH_TRAILING_WHITESPACE_OR_NEWLINE_OR_SEMICOLON_OR_CHARACTER(@"@end", false, 0) \
+IS_MATCHING_SUFFIX_METHOD_WITH_TRAILING_WHITESPACE_OR_NEWLINE_OR_SEMICOLON_OR_CHARACTER(@"@end", true, false, 0) \
 \
 @end
 
@@ -214,22 +215,23 @@ IS_MATCHING_PREFIX_METHOD_WITH_TRAILING_WHITESPACE_OR_NEWLINE_OR_SEMICOLON_OR_CH
 \
 @end
 
-IMPLEMENTATION(Class, @"@class", false, 0)
-IMPLEMENTATION(Public, @"@public", false, 0)
-IMPLEMENTATION(Protected, @"@protected", false, 0)
-IMPLEMENTATION(Private, @"@private", false, 0)
-IMPLEMENTATION(Required, @"@required", false, 0)
-IMPLEMENTATION(Optional, @"@optional", false, 0)
-IMPLEMENTATION(Try, @"@try", false, '{')
-IMPLEMENTATION(Catch, @"@catch", false, '(')
-IMPLEMENTATION(Finally, @"@finally", false, '{')
-IMPLEMENTATION(Throw, @"@throw", true, 0)
-IMPLEMENTATION(Synchronized, @"@synchronized", false, '(')
-IMPLEMENTATION(Property, @"@property", false, '(')
-IMPLEMENTATION(Selector, @"@selector", false, '(')
-IMPLEMENTATION(Encode, @"@encode", false, '(')
-IMPLEMENTATION(Self, @"self", true, 0)
-IMPLEMENTATION(Super, @"super", true, 0)
+IMPLEMENTATION(Class, @"@class", true, false, 0)
+IMPLEMENTATION(Public, @"@public", true, false, 0)
+IMPLEMENTATION(Protected, @"@protected", true, false, 0)
+IMPLEMENTATION(Private, @"@private", true, false, 0)
+IMPLEMENTATION(Required, @"@required", true, false, 0)
+IMPLEMENTATION(Optional, @"@optional", true, false, 0)
+IMPLEMENTATION(Try, @"@try", true, false, '{')
+IMPLEMENTATION(Catch, @"@catch", true, false, '(')
+IMPLEMENTATION(Finally, @"@finally", true, false, '{')
+IMPLEMENTATION(Throw, @"@throw", false, false, 0)
+IMPLEMENTATION(Synchronized, @"@synchronized", true, false, '(')
+IMPLEMENTATION(Property, @"@property", true, false, '(')
+IMPLEMENTATION(Selector, @"@selector", true, false, '(')
+IMPLEMENTATION(Encode, @"@encode", true, false, '(')
+IMPLEMENTATION(Self, @"self", false, false, 0)
+IMPLEMENTATION(Super, @"super", false, false, 0)
+IMPLEMENTATION(Nil, @"nil", false, false, 0)
 
 #undef IMPLEMENTATION
 

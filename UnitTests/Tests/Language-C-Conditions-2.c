@@ -10,6 +10,8 @@ else if(2)
 else
     temp();
 
+if(0) return NULL;
+
 -----
 
 <Root>
@@ -51,4 +53,12 @@ else
 ·  ·  <Parenthesis>
 ·  ·  ·  ♢(♢)♢
 ·  ·  ♢;♢
+·  ♢¶♢¶♢
+·  <CConditionIf>
+·  ·  ♢if♢
+·  ·  <Parenthesis>
+·  ·  ·  ♢(♢0♢)♢
+·  ·  ♢•♢
+·  ·  <CFlowReturn>
+·  ·  ·  ♢return♢•♢NULL♢;♢
 ·  ♢¶♢¶♢

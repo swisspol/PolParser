@@ -24,6 +24,7 @@
 @interface SourceLanguage : NSObject
 + (NSSet*) allLanguages;
 + (SourceLanguage*) languageForName:(NSString*)name;
++ (SourceLanguage*) defaultLanguageForFileExtension:(NSString*)extension;
 + (SourceNodeRoot*) parseSourceFile:(NSString*)path encoding:(NSStringEncoding)encoding syntaxAnalysis:(BOOL)syntaxAnalysis;
 
 @property(nonatomic, readonly) NSString* name;

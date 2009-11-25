@@ -75,12 +75,8 @@ static NSMutableSet* _languageCache = nil;
     return nil;
 }
 
-+ (SourceNodeRoot*) parseSourceFile:(NSString*)path encoding:(NSStringEncoding)encoding syntaxAnalysis:(BOOL)syntaxAnalysis {
-    NSString* source = [[NSString alloc] initWithContentsOfFile:path encoding:encoding error:NULL];
-    if(source == nil)
-        return nil;
-    
-    NSString* extension = [[path pathExtension] lowercaseString];
++ (SourceLanguage*) defaultLanguageForFileExtension:(NSString*)extension {
+	extension = [extension lowercaseString];
     SourceLanguage* language = nil;
     for(language in [SourceLanguage allLanguages]) {
         if([[language fileExtensions] containsObject:extension])
@@ -89,12 +85,17 @@ static NSMutableSet* _languageCache = nil;
     if(language == nil) {
         language = [SourceLanguage languageForName:@"Base"];
         if(language == nil)
-            [NSException raise:NSInternalInconsistencyException format:@"No language found for \"%@\"", path];
+            [NSException raise:NSInternalInconsistencyException format:@"No language found for file extension \"%@\"", extension];
     }
-    
-    SourceNodeRoot* root = [language parseSourceString:source syntaxAnalysis:syntaxAnalysis];
+    return language;
+}
+
++ (SourceNodeRoot*) parseSourceFile:(NSString*)path encoding:(NSStringEncoding)encoding syntaxAnalysis:(BOOL)syntaxAnalysis {
+    NSString* source = [[NSString alloc] initWithContentsOfFile:path encoding:encoding error:NULL];
+    if(source == nil)
+        return nil;
+    SourceNodeRoot* root = [[self defaultLanguageForFileExtension:[path pathExtension]] parseSourceString:source syntaxAnalysis:syntaxAnalysis];
     [source release];
-    
     return root;
 }
 

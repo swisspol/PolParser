@@ -13,22 +13,22 @@ int main(int argc, char *argv[]) {
 ·  <CFunctionDefinition>
 ·  ·  ♢int♢•♢main♢
 ·  ·  <Parenthesis>
-·  ·  ·  ♢(♢int♢•♢argc,♢•♢char♢•♢|*|♢argv♢
+·  ·  ·  ♢|(|♢int♢•♢argc,♢•♢char♢•♢|*|♢argv♢
 ·  ·  ·  <Brackets>
-·  ·  ·  ·  ♢[♢]♢
-·  ·  ·  ♢)♢
+·  ·  ·  ·  ♢|[|♢|]|♢
+·  ·  ·  ♢|)|♢
 ·  ·  ♢•♢
 ·  ·  <Braces>
-·  ·  ·  ♢{♢¶♢|••••|♢|//•Return•the•result|♢¶♢|••••|♢
+·  ·  ·  ♢|{|♢¶♢|••••|♢|//•Return•the•result|♢¶♢|••••|♢
 ·  ·  ·  <CFlowReturn>
 ·  ·  ·  ·  ♢return♢•♢
 ·  ·  ·  ·  <CFunctionCall>
 ·  ·  ·  ·  ·  ♢Run♢
 ·  ·  ·  ·  ·  <Parenthesis>
-·  ·  ·  ·  ·  ·  ♢(♢argc,♢•♢
+·  ·  ·  ·  ·  ·  ♢|(|♢argc,♢•♢
 ·  ·  ·  ·  ·  ·  <Parenthesis>
-·  ·  ·  ·  ·  ·  ·  ♢(♢|const|♢•♢char♢|*|♢|*|♢)♢
-·  ·  ·  ·  ·  ·  ♢argv♢)♢
+·  ·  ·  ·  ·  ·  ·  ♢|(|♢|const|♢•♢char♢|*|♢|*|♢|)|♢
+·  ·  ·  ·  ·  ·  ♢argv♢|)|♢
 ·  ·  ·  ·  ♢|;|♢
-·  ·  ·  ♢•♢|//argc•is•always•>•1|♢¶♢}♢
+·  ·  ·  ♢•♢|//argc•is•always•>•1|♢¶♢|}|♢
 ·  ♢¶♢¶♢

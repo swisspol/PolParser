@@ -59,6 +59,12 @@
 - (id) initWithText:(NSString*)text;
 @end
 
+@interface SourceNodePrefix : SourceNodeText //Leaf
+@end
+
+@interface SourceNodeSuffix : SourceNodeText //Leaf
+@end
+
 @interface SourceNode (SourceNodeTextExtensions)
 - (void) replaceWithText:(NSString*)text; //Replaces self by a SourceNodeText instance with the given text (passing an empty text just removes the node from the tree)
 @end

@@ -27,70 +27,70 @@ int main() { return 2; }
 
 <Root>
 ·  <CPreprocessorInclude>
-·  ·  ♢#include♢•♢<stdlib.h>♢
+·  ·  ♢|#include|♢•♢<stdlib.h>♢
 ·  ♢¶♢¶♢
 ·  <CPreprocessorPragma>
-·  ·  ♢#pragma♢•♢mark♢•♢Label♢
+·  ·  ♢|#pragma|♢•♢mark♢•♢Label♢
 ·  ♢¶♢¶♢
 ·  <CPreprocessorDefine>
-·  ·  ♢#define♢•♢FOO♢•♢1♢
+·  ·  ♢|#define|♢•♢FOO♢•♢1♢
 ·  ♢→♢¶♢¶♢
 ·  <CPreprocessorConditionIf>
-·  ·  ♢#if♢•♢1♢¶♢
+·  ·  ♢|#if|♢•♢1♢¶♢
 ·  ·  <CPreprocessorWarning>
-·  ·  ·  ♢#warning♢•♢Foobar♢
+·  ·  ·  ♢|#warning|♢•♢Foobar♢
 ·  ·  ♢¶♢¶♢
 ·  ·  <CFunctionDefinition>
 ·  ·  ·  ♢int♢•♢main♢
 ·  ·  ·  <Parenthesis>
-·  ·  ·  ·  ♢(♢)♢
+·  ·  ·  ·  ♢|(|♢|)|♢
 ·  ·  ·  ♢•♢
 ·  ·  ·  <Braces>
-·  ·  ·  ·  ♢{♢•♢
+·  ·  ·  ·  ♢|{|♢•♢
 ·  ·  ·  ·  <CFlowReturn>
 ·  ·  ·  ·  ·  ♢return♢•♢0♢|;|♢
-·  ·  ·  ·  ♢•♢}♢
+·  ·  ·  ·  ♢•♢|}|♢
 ·  ·  ♢¶♢¶♢
 ·  ♢
 ·  <CPreprocessorConditionElseif>
-·  ·  ♢#elseif♢•♢2♢¶♢¶♢
+·  ·  ♢|#elseif|♢•♢2♢¶♢¶♢
 ·  ·  <CFunctionDefinition>
 ·  ·  ·  ♢int♢•♢main♢
 ·  ·  ·  <Parenthesis>
-·  ·  ·  ·  ♢(♢)♢
+·  ·  ·  ·  ♢|(|♢|)|♢
 ·  ·  ·  ♢•♢
 ·  ·  ·  <Braces>
-·  ·  ·  ·  ♢{♢•♢
+·  ·  ·  ·  ♢|{|♢•♢
 ·  ·  ·  ·  <CFlowReturn>
 ·  ·  ·  ·  ·  ♢return♢•♢1♢|;|♢
-·  ·  ·  ·  ♢•♢}♢
+·  ·  ·  ·  ♢•♢|}|♢
 ·  ·  ♢¶♢¶♢
 ·  ♢
 ·  <CPreprocessorConditionElse>
-·  ·  ♢#else♢¶♢¶♢
+·  ·  ♢|#else|♢¶♢¶♢
 ·  ·  <CFunctionDefinition>
 ·  ·  ·  ♢int♢•♢main♢
 ·  ·  ·  <Parenthesis>
-·  ·  ·  ·  ♢(♢)♢
+·  ·  ·  ·  ♢|(|♢|)|♢
 ·  ·  ·  ♢•♢
 ·  ·  ·  <Braces>
-·  ·  ·  ·  ♢{♢•♢
+·  ·  ·  ·  ♢|{|♢•♢
 ·  ·  ·  ·  <CFlowReturn>
 ·  ·  ·  ·  ·  ♢return♢•♢2♢|;|♢
-·  ·  ·  ·  ♢•♢}♢
-·  ·  ♢¶♢¶♢#endif♢
+·  ·  ·  ·  ♢•♢|}|♢
+·  ·  ♢¶♢¶♢|#endif|♢
 ·  ♢¶♢¶♢
 ·  <CPreprocessorUndefine>
-·  ·  ♢#undef♢•♢FOO♢
+·  ·  ♢|#undef|♢•♢FOO♢
 ·  ♢¶♢¶♢
 ·  <CPreprocessorDefine>
-·  ·  ♢#define♢•♢TEST_FUNCTION♢
+·  ·  ♢|#define|♢•♢TEST_FUNCTION♢
 ·  ·  <Parenthesis>
-·  ·  ·  ♢(♢arg♢)♢
+·  ·  ·  ♢|(|♢arg♢|)|♢
 ·  ·  ♢•♢CHECK♢
 ·  ·  <Parenthesis>
-·  ·  ·  ♢(♢
+·  ·  ·  ♢|(|♢
 ·  ·  ·  <Parenthesis>
-·  ·  ·  ·  ♢(♢arg♢)♢
-·  ·  ·  ♢•♢==♢•♢true♢)♢
+·  ·  ·  ·  ♢|(|♢arg♢|)|♢
+·  ·  ·  ♢•♢==♢•♢true♢|)|♢
 ·  ♢¶♢¶♢

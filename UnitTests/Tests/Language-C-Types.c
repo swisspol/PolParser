@@ -20,16 +20,16 @@ static int foo = sizeof(long);
 ·  <CTypedef>
 ·  ·  ♢typedef♢•♢|void|♢•♢
 ·  ·  <Parenthesis>
-·  ·  ·  ♢(♢|*|♢SourceNodeApplierFunction♢)♢
+·  ·  ·  ♢|(|♢|*|♢SourceNodeApplierFunction♢|)|♢
 ·  ·  ♢
 ·  ·  <Parenthesis>
-·  ·  ·  ♢(♢SourceNode♢|*|♢•♢node,♢•♢|void|♢|*|♢•♢context♢)♢
+·  ·  ·  ♢|(|♢SourceNode♢|*|♢•♢node,♢•♢|void|♢|*|♢•♢context♢|)|♢
 ·  ·  ♢|;|♢
 ·  ♢¶♢¶♢|const|♢•♢|struct|♢•♢sockaddr♢|*|♢•♢address♢|;|♢¶♢¶♢
 ·  <CTypeStruct>
 ·  ·  ♢struct♢•♢temp♢•♢
 ·  ·  <Braces>
-·  ·  ·  ♢{♢¶♢|••••|♢int♢•••♢foo♢|;|♢¶♢|••••|♢int♢•♢bar♢|;|♢¶♢}♢
+·  ·  ·  ♢|{|♢¶♢|••••|♢int♢•••♢foo♢|;|♢¶♢|••••|♢int♢•♢bar♢|;|♢¶♢|}|♢
 ·  ·  ♢|;|♢
 ·  ♢¶♢¶♢
 ·  <CTypedef>
@@ -37,11 +37,11 @@ static int foo = sizeof(long);
 ·  ·  <CTypeUnion>
 ·  ·  ·  ♢union♢•♢
 ·  ·  ·  <Braces>
-·  ·  ·  ·  ♢{♢¶♢|→|♢int♢•♢temp1♢|;|♢¶♢|••••|♢long♢•♢temp2♢|;|♢¶♢}♢
+·  ·  ·  ·  ♢|{|♢¶♢|→|♢int♢•♢temp1♢|;|♢¶♢|••••|♢long♢•♢temp2♢|;|♢¶♢|}|♢
 ·  ·  ·  ♢•♢boom♢|;|♢
 ·  ♢¶♢¶♢|static|♢•♢int♢•♢foo♢•♢=♢•♢
 ·  <CSizeOf>
 ·  ·  ♢sizeof♢
 ·  ·  <Parenthesis>
-·  ·  ·  ♢(♢long♢)♢
+·  ·  ·  ♢|(|♢long♢|)|♢
 ·  ♢|;|♢¶♢¶♢

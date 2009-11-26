@@ -19,54 +19,54 @@ int* Bar() {
 ·  <CFunctionPrototype>
 ·  ·  ♢someType♢•♢Foo♢
 ·  ·  <Parenthesis>
-·  ·  ·  ♢(♢int♢•♢arg1,♢•♢int♢•♢arg2♢)♢
+·  ·  ·  ♢|(|♢int♢•♢arg1,♢•♢int♢•♢arg2♢|)|♢
 ·  ·  ♢|;|♢
 ·  ♢¶♢¶♢
 ·  <CFunctionPrototype>
 ·  ·  ♢|extern|♢•♢int♢•♢Bar♢
 ·  ·  <Parenthesis>
-·  ·  ·  ♢(♢)♢
+·  ·  ·  ♢|(|♢|)|♢
 ·  ·  ♢|;|♢
 ·  ♢¶♢¶♢
 ·  <CFunctionDefinition>
 ·  ·  ♢|static|♢•♢|inline|♢•♢|void|♢•♢Foo♢
 ·  ·  <Parenthesis>
-·  ·  ·  ♢(♢int♢•♢arg1,♢•♢int♢•♢arg2♢)♢
+·  ·  ·  ♢|(|♢int♢•♢arg1,♢•♢int♢•♢arg2♢|)|♢
 ·  ·  ♢•♢
 ·  ·  <Braces>
-·  ·  ·  ♢{♢¶♢|••••|♢int♢•♢foo♢•♢=♢•♢
+·  ·  ·  ♢|{|♢¶♢|••••|♢int♢•♢foo♢•♢=♢•♢
 ·  ·  ·  <Parenthesis>
-·  ·  ·  ·  ♢(♢arg1♢•♢+♢•♢
+·  ·  ·  ·  ♢|(|♢arg1♢•♢+♢•♢
 ·  ·  ·  ·  <CFunctionCall>
 ·  ·  ·  ·  ·  ♢Bar♢
 ·  ·  ·  ·  ·  <Parenthesis>
-·  ·  ·  ·  ·  ·  ♢(♢)♢
-·  ·  ·  ·  ♢•♢+♢•♢arg2♢)♢
+·  ·  ·  ·  ·  ·  ♢|(|♢|)|♢
+·  ·  ·  ·  ♢•♢+♢•♢arg2♢|)|♢
 ·  ·  ·  ♢|;|♢¶♢|••••|♢|void|♢|*|♢•♢ptr♢•♢=♢•♢
 ·  ·  ·  <CFunctionCall>
 ·  ·  ·  ·  ♢realloc♢
 ·  ·  ·  ·  <Parenthesis>
-·  ·  ·  ·  ·  ♢(♢
+·  ·  ·  ·  ·  ♢|(|♢
 ·  ·  ·  ·  ·  <CFunctionCall>
 ·  ·  ·  ·  ·  ·  ♢malloc♢
 ·  ·  ·  ·  ·  ·  <Parenthesis>
-·  ·  ·  ·  ·  ·  ·  ♢(♢1024♢)♢
-·  ·  ·  ·  ·  ♢,♢•♢2048♢)♢
+·  ·  ·  ·  ·  ·  ·  ♢|(|♢1024♢|)|♢
+·  ·  ·  ·  ·  ♢,♢•♢2048♢|)|♢
 ·  ·  ·  ♢|;|♢¶♢|••••|♢
 ·  ·  ·  <CFunctionCall>
 ·  ·  ·  ·  ♢free♢
 ·  ·  ·  ·  <Parenthesis>
-·  ·  ·  ·  ·  ♢(♢ptr♢)♢
-·  ·  ·  ♢|;|♢¶♢}♢
+·  ·  ·  ·  ·  ♢|(|♢ptr♢|)|♢
+·  ·  ·  ♢|;|♢¶♢|}|♢
 ·  ♢¶♢¶♢
 ·  <CFunctionDefinition>
 ·  ·  ♢int♢|*|♢•♢Bar♢
 ·  ·  <Parenthesis>
-·  ·  ·  ♢(♢)♢
+·  ·  ·  ♢|(|♢|)|♢
 ·  ·  ♢•♢
 ·  ·  <Braces>
-·  ·  ·  ♢{♢¶♢|→|♢
+·  ·  ·  ♢|{|♢¶♢|→|♢
 ·  ·  ·  <CFlowReturn>
 ·  ·  ·  ·  ♢return♢•♢0♢|;|♢
-·  ·  ·  ♢¶♢}♢
+·  ·  ·  ♢¶♢|}|♢
 ·  ♢¶♢¶♢

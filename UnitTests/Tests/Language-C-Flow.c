@@ -15,10 +15,10 @@ Temp:
 ·  <CFunctionDefinition>
 ·  ·  ♢|static|♢•♢|void|♢•♢Foo♢
 ·  ·  <Parenthesis>
-·  ·  ·  ♢(♢int♢•♢arg♢)♢
+·  ·  ·  ♢|(|♢int♢•♢arg♢|)|♢
 ·  ·  ♢•♢
 ·  ·  <Braces>
-·  ·  ·  ♢{♢¶♢|••••|♢
+·  ·  ·  ♢|{|♢¶♢|••••|♢
 ·  ·  ·  <CFlowGoto>
 ·  ·  ·  ·  ♢goto♢•♢Temp♢|;|♢
 ·  ·  ·  ♢¶♢|••••|♢¶♢
@@ -28,10 +28,10 @@ Temp:
 ·  ·  ·  <CFlowReturn>
 ·  ·  ·  ·  ♢return♢
 ·  ·  ·  ·  <Parenthesis>
-·  ·  ·  ·  ·  ♢(♢|NULL|♢)♢
+·  ·  ·  ·  ·  ♢|(|♢|NULL|♢|)|♢
 ·  ·  ·  ·  ♢|;|♢
 ·  ·  ·  ♢¶♢|••••|♢¶♢|••••|♢
 ·  ·  ·  <CFlowReturn>
 ·  ·  ·  ·  ♢return♢•♢|*|♢string♢•♢|!|♢=♢•♢|'\\'|♢|;|♢
-·  ·  ·  ♢¶♢}♢
+·  ·  ·  ♢¶♢|}|♢
 ·  ♢¶♢¶♢

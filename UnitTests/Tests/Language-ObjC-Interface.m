@@ -23,50 +23,50 @@ static void LocalFunction(int arg);
 
 <Root>
 ·  <ObjCPreprocessorImport>
-·  ·  ♢#import♢•♢<Foundation/Foundation.h>♢
+·  ·  ♢|#import|♢•♢<Foundation/Foundation.h>♢
 ·  ♢¶♢¶♢
 ·  <ObjCProtocol>
-·  ·  ♢@protocol♢•♢Cocoa♢¶♢|@optional|♢¶♢
+·  ·  ♢|@protocol|♢•♢Cocoa♢¶♢|@optional|♢¶♢
 ·  ·  <ObjCMethodDeclaration>
 ·  ·  ·  ♢-♢•♢
 ·  ·  ·  <Parenthesis>
-·  ·  ·  ·  ♢(♢BOOL♢)♢
+·  ·  ·  ·  ♢|(|♢BOOL♢|)|♢
 ·  ·  ·  ♢•♢test♢|:|♢
 ·  ·  ·  <Parenthesis>
-·  ·  ·  ·  ♢(♢int♢)♢
+·  ·  ·  ·  ♢|(|♢int♢|)|♢
 ·  ·  ·  ♢foo♢•♢bar♢|:|♢
 ·  ·  ·  <Parenthesis>
-·  ·  ·  ·  ♢(♢int♢)♢
+·  ·  ·  ·  ♢|(|♢int♢|)|♢
 ·  ·  ·  ♢bar♢|;|♢
-·  ·  ♢¶♢@end♢
+·  ·  ♢¶♢|@end|♢
 ·  ♢¶♢¶♢
 ·  <ObjCInterface>
-·  ·  ♢@interface♢•♢Demo♢•♢|:|♢•♢NSObject♢•♢<Cocoa>♢•♢
+·  ·  ♢|@interface|♢•♢Demo♢•♢|:|♢•♢NSObject♢•♢<Cocoa>♢•♢
 ·  ·  <Braces>
-·  ·  ·  ♢{♢¶♢|@private|♢¶♢|→|♢int♢•♢foo♢|;|♢¶♢|@public|♢¶♢|→|♢int♢•♢_bar♢|;|♢¶♢}♢
+·  ·  ·  ♢|{|♢¶♢|@private|♢¶♢|→|♢int♢•♢foo♢|;|♢¶♢|@public|♢¶♢|→|♢int♢•♢_bar♢|;|♢¶♢|}|♢
 ·  ·  ♢¶♢
 ·  ·  <ObjCProperty>
 ·  ·  ·  ♢@property♢
 ·  ·  ·  <Parenthesis>
-·  ·  ·  ·  ♢(♢nonatomic,♢•♢readonly,♢•♢getter=isValid♢)♢
+·  ·  ·  ·  ♢|(|♢nonatomic,♢•♢readonly,♢•♢getter=isValid♢|)|♢
 ·  ·  ·  ♢••♢BOOL♢•♢valid♢|;|♢
 ·  ·  ♢¶♢
 ·  ·  <ObjCMethodDeclaration>
 ·  ·  ·  ♢+♢•♢
 ·  ·  ·  <Parenthesis>
-·  ·  ·  ·  ♢(♢id♢)♢
+·  ·  ·  ·  ♢|(|♢id♢|)|♢
 ·  ·  ·  ♢•♢sharedInstance♢|;|♢
 ·  ·  ♢¶♢
 ·  ·  <ObjCMethodDeclaration>
 ·  ·  ·  ♢-♢•♢
 ·  ·  ·  <Parenthesis>
-·  ·  ·  ·  ♢(♢|void|♢)♢
+·  ·  ·  ·  ♢|(|♢|void|♢|)|♢
 ·  ·  ·  ♢•♢run♢|;|♢
 ·  ·  ♢¶♢
 ·  ·  <ObjCMethodDeclaration>
 ·  ·  ·  ♢-♢•♢foo♢|:|♢
 ·  ·  ·  <Parenthesis>
-·  ·  ·  ·  ♢(♢id♢)♢
+·  ·  ·  ·  ♢|(|♢id♢|)|♢
 ·  ·  ·  ♢arg♢|;|♢
 ·  ·  ♢¶♢
 ·  ·  <ObjCMethodDeclaration>
@@ -75,7 +75,7 @@ static void LocalFunction(int arg);
 ·  ·  <CFunctionPrototype>
 ·  ·  ·  ♢|static|♢•♢|void|♢•♢LocalFunction♢
 ·  ·  ·  <Parenthesis>
-·  ·  ·  ·  ♢(♢int♢•♢arg♢)♢
+·  ·  ·  ·  ♢|(|♢int♢•♢arg♢|)|♢
 ·  ·  ·  ♢|;|♢
-·  ·  ♢¶♢@end♢
+·  ·  ♢¶♢|@end|♢
 ·  ♢¶♢¶♢

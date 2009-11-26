@@ -108,7 +108,7 @@ static NSMutableSet* _languageCache = nil;
 }
 
 + (NSArray*) languageNodeClasses {
-	return [NSArray arrayWithObject:[SourceNodeText class]]; //Special-cased by parser
+	return [NSArray arrayWithObjects:[SourceNodeText class], [SourceNodePrefix class], [SourceNodeSuffix class], nil]; //Special-cased by parser
 }
 
 + (NSSet*) languageTopLevelNodeClasses {
@@ -242,7 +242,7 @@ static SourceNode* _ApplierFunction(SourceNode* node, void* context) {
                 parentNode.range = NSMakeRange(parentNode.range.location, range.location + suffixLength - parentNode.range.location);
                 
                 if(suffixLength > 0) {
-                    SourceNode* node = [[SourceNodeText alloc] initWithSource:source range:NSMakeRange(parentNode.range.location + parentNode.range.length - suffixLength, suffixLength)];
+                    SourceNode* node = [[SourceNodeSuffix alloc] initWithSource:source range:NSMakeRange(parentNode.range.location + parentNode.range.length - suffixLength, suffixLength)];
                     [parentNode addChild:node];
                     [node release];
                 }
@@ -257,7 +257,7 @@ static SourceNode* _ApplierFunction(SourceNode* node, void* context) {
         Class prefixClass;
         NSUInteger prefixLength;
         for(prefixClass in self.nodeClasses) {
-            if(prefixClass == [SourceNodeText class])
+            if((prefixClass == [SourceNodeText class]) || (prefixClass == [SourceNodePrefix class]) || (prefixClass == [SourceNodeSuffix class]))
                 continue;
             prefixLength = [prefixClass isMatchingPrefix:(buffer + range.location + rawLength) maxLength:(range.length - rawLength)];
             if(prefixLength != NSNotFound)
@@ -302,7 +302,7 @@ static SourceNode* _ApplierFunction(SourceNode* node, void* context) {
                 [stack addObject:node];
                 [node release];
                 
-                node = [[SourceNodeText alloc] initWithSource:source range:NSMakeRange(range.location, prefixLength)];
+                node = [[SourceNodePrefix alloc] initWithSource:source range:NSMakeRange(range.location, prefixLength)];
                 [(SourceNode*)[stack lastObject] addChild:node];
                 [node release];
                 
@@ -422,6 +422,12 @@ static SourceNode* _ApplierFunction(SourceNode* node, void* context) {
     [self doesNotRecognizeSelector:_cmd];
 }
 
+@end
+
+@implementation SourceNodePrefix
+@end
+
+@implementation SourceNodeSuffix
 @end
 
 @implementation SourceNode (SourceNodeTextExtensions)

@@ -11,9 +11,9 @@ int result = foo ? (bar ? temp1 : temp3) : temp2;
 ·  <CConditionalOperator>
 ·  ·  ♢foo♢•♢|?|♢•♢
 ·  ·  <Parenthesis>
-·  ·  ·  ♢(♢
+·  ·  ·  ♢|(|♢
 ·  ·  ·  <CConditionalOperator>
 ·  ·  ·  ·  ♢bar♢•♢|?|♢•♢temp1♢•♢|:|♢•♢temp3♢
-·  ·  ·  ♢)♢
+·  ·  ·  ♢|)|♢
 ·  ·  ♢•♢|:|♢•♢temp2♢
 ·  ♢|;|♢¶♢¶♢

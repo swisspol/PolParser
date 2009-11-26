@@ -25,62 +25,62 @@ static void LocalFunction(int arg) {
 
 <Root>
 ·  <ObjCImplementation>
-·  ·  ♢@implementation♢•♢Demo♢¶♢|→|♢¶♢
+·  ·  ♢|@implementation|♢•♢Demo♢¶♢|→|♢¶♢
 ·  ·  <ObjCMethodImplementation>
 ·  ·  ·  ♢+♢•♢
 ·  ·  ·  <Parenthesis>
-·  ·  ·  ·  ♢(♢id♢)♢
+·  ·  ·  ·  ♢|(|♢id♢|)|♢
 ·  ·  ·  ♢•♢uniqueID♢•♢
 ·  ·  ·  <Braces>
-·  ·  ·  ·  ♢{♢¶♢|→|♢
+·  ·  ·  ·  ♢|{|♢¶♢|→|♢
 ·  ·  ·  ·  <ObjCSynchronized>
 ·  ·  ·  ·  ·  ♢@synchronized♢•♢
 ·  ·  ·  ·  ·  <Parenthesis>
-·  ·  ·  ·  ·  ·  ♢(♢|self|♢)♢
+·  ·  ·  ·  ·  ·  ♢|(|♢|self|♢|)|♢
 ·  ·  ·  ·  ·  ♢•♢
 ·  ·  ·  ·  ·  <Braces>
-·  ·  ·  ·  ·  ·  ♢{♢¶♢|••••→|♢|;|♢¶♢|••••|♢}♢
+·  ·  ·  ·  ·  ·  ♢|{|♢¶♢|••••→|♢|;|♢¶♢|••••|♢|}|♢
 ·  ·  ·  ·  ♢¶♢|••••|♢
 ·  ·  ·  ·  <CFlowReturn>
 ·  ·  ·  ·  ·  ♢return♢•♢|nil|♢|;|♢
-·  ·  ·  ·  ♢¶♢}♢
+·  ·  ·  ·  ♢¶♢|}|♢
 ·  ·  ♢¶♢¶♢
 ·  ·  <ObjCMethodImplementation>
 ·  ·  ·  ♢-♢•♢bar♢•♢
 ·  ·  ·  <Braces>
-·  ·  ·  ·  ♢{♢¶♢|→|♢
+·  ·  ·  ·  ♢|{|♢¶♢|→|♢
 ·  ·  ·  ·  <CFlowReturn>
 ·  ·  ·  ·  ·  ♢return♢•♢|nil|♢|;|♢
-·  ·  ·  ·  ♢¶♢}♢
+·  ·  ·  ·  ♢¶♢|}|♢
 ·  ·  ♢¶♢¶♢
 ·  ·  <ObjCMethodImplementation>
 ·  ·  ·  ♢-♢•♢
 ·  ·  ·  <Parenthesis>
-·  ·  ·  ·  ♢(♢BOOL♢)♢
+·  ·  ·  ·  ♢|(|♢BOOL♢|)|♢
 ·  ·  ·  ♢•♢test♢|:|♢
 ·  ·  ·  <Parenthesis>
-·  ·  ·  ·  ♢(♢int♢)♢
+·  ·  ·  ·  ♢|(|♢int♢|)|♢
 ·  ·  ·  ♢foo♢•♢bar♢|:|♢
 ·  ·  ·  <Parenthesis>
-·  ·  ·  ·  ♢(♢int♢)♢
+·  ·  ·  ·  ♢|(|♢int♢|)|♢
 ·  ·  ·  ♢bar♢•♢
 ·  ·  ·  <Braces>
-·  ·  ·  ·  ♢{♢¶♢|→|♢
+·  ·  ·  ·  ♢|{|♢¶♢|→|♢
 ·  ·  ·  ·  <CFlowReturn>
 ·  ·  ·  ·  ·  ♢return♢•♢NO♢|;|♢
-·  ·  ·  ·  ♢¶♢}♢
+·  ·  ·  ·  ♢¶♢|}|♢
 ·  ·  ♢¶♢¶♢
 ·  ·  <CFunctionDefinition>
 ·  ·  ·  ♢|static|♢•♢|void|♢•♢LocalFunction♢
 ·  ·  ·  <Parenthesis>
-·  ·  ·  ·  ♢(♢int♢•♢arg♢)♢
+·  ·  ·  ·  ♢|(|♢int♢•♢arg♢|)|♢
 ·  ·  ·  ♢•♢
 ·  ·  ·  <Braces>
-·  ·  ·  ·  ♢{♢¶♢|→|♢
+·  ·  ·  ·  ♢|{|♢¶♢|→|♢
 ·  ·  ·  ·  <CFunctionCall>
 ·  ·  ·  ·  ·  ♢sleep♢
 ·  ·  ·  ·  ·  <Parenthesis>
-·  ·  ·  ·  ·  ·  ♢(♢arg♢)♢
-·  ·  ·  ·  ♢|;|♢¶♢}♢
-·  ·  ♢¶♢¶♢@end♢
+·  ·  ·  ·  ·  ·  ♢|(|♢arg♢|)|♢
+·  ·  ·  ·  ♢|;|♢¶♢|}|♢
+·  ·  ♢¶♢¶♢|@end|♢
 ·  ♢¶♢¶♢

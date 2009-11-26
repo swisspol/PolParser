@@ -19,42 +19,42 @@ NSDictionary* dictionary = [[NSProcessInfo processInfo] environment];
 ·  <ObjCSelector>
 ·  ·  ♢@selector♢
 ·  ·  <Parenthesis>
-·  ·  ·  ♢(♢test♢|:|♢bar♢|:|♢)♢
+·  ·  ·  ♢|(|♢test♢|:|♢bar♢|:|♢|)|♢
 ·  ♢|;|♢¶♢¶♢NSString♢|*|♢•♢string1♢•♢=♢•♢
 ·  <ObjCMethodCall>
-·  ·  ♢[♢NSString♢•♢stringWithFormat♢|:|♢|@"%@-%@"|♢,♢•♢|@"foo"|♢,♢•♢|@"bar"|♢]♢
+·  ·  ♢|[|♢NSString♢•♢stringWithFormat♢|:|♢|@"%@-%@"|♢,♢•♢|@"foo"|♢,♢•♢|@"bar"|♢|]|♢
 ·  ♢|;|♢¶♢¶♢NSString♢|*|♢•♢string2♢•♢=♢•♢
 ·  <ObjCMethodCall>
-·  ·  ♢[♢NSString♢•♢stringWithContentsOfFile♢|:|♢
+·  ·  ♢|[|♢NSString♢•♢stringWithContentsOfFile♢|:|♢
 ·  ·  <ObjCMethodCall>
-·  ·  ·  ♢[♢|@"~/foo.bar"|♢•♢stringByExpandingTildeInPath♢]♢
+·  ·  ·  ♢|[|♢|@"~/foo.bar"|♢•♢stringByExpandingTildeInPath♢|]|♢
 ·  ·  ♢•♢encoding♢|:|♢NSUTF8StringEncoding♢•♢error♢|:|♢
 ·  ·  <CFunctionCall>
 ·  ·  ·  ♢GetDefaultEncoding♢
 ·  ·  ·  <Parenthesis>
-·  ·  ·  ·  ♢(♢)♢
-·  ·  ♢]♢
+·  ·  ·  ·  ♢|(|♢|)|♢
+·  ·  ♢|]|♢
 ·  ♢|;|♢¶♢¶♢NSString♢|*|♢•♢string3♢•♢=♢•♢
 ·  <ObjCMethodCall>
-·  ·  ♢[♢
+·  ·  ♢|[|♢
 ·  ·  <CFunctionCall>
 ·  ·  ·  ♢NSUserName♢
 ·  ·  ·  <Parenthesis>
-·  ·  ·  ·  ♢(♢)♢
-·  ·  ♢•♢lowercaseString♢]♢
+·  ·  ·  ·  ♢|(|♢|)|♢
+·  ·  ♢•♢lowercaseString♢|]|♢
 ·  ♢|;|♢¶♢¶♢NSString♢|*|♢•♢string4♢•♢=♢•♢
 ·  <ObjCMethodCall>
-·  ·  ♢[♢
+·  ·  ♢|[|♢
 ·  ·  <ObjCMethodCall>
-·  ·  ·  ♢[♢|@"~/foo.bar"|♢•♢stringByExpandingTildeInPath♢]♢
-·  ·  ♢•♢stringByDeletingLastPathComponent♢]♢
+·  ·  ·  ♢|[|♢|@"~/foo.bar"|♢•♢stringByExpandingTildeInPath♢|]|♢
+·  ·  ♢•♢stringByDeletingLastPathComponent♢|]|♢
 ·  ♢|;|♢¶♢¶♢NSDictionary♢|*|♢•♢dictionary♢•♢=♢•♢
 ·  <ObjCMethodCall>
-·  ·  ♢[♢
+·  ·  ♢|[|♢
 ·  ·  <ObjCMethodCall>
-·  ·  ·  ♢[♢NSProcessInfo♢•♢processInfo♢]♢
-·  ·  ♢•♢environment♢]♢
+·  ·  ·  ♢|[|♢NSProcessInfo♢•♢processInfo♢|]|♢
+·  ·  ♢•♢environment♢|]|♢
 ·  ♢|;|♢¶♢¶♢
 ·  <ObjCMethodCall>
-·  ·  ♢[♢|super|♢•♢test♢|:|♢foo♢•♢bar♢|:|♢bar♢]♢
+·  ·  ♢|[|♢|super|♢•♢test♢|:|♢foo♢•♢bar♢|:|♢bar♢|]|♢
 ·  ♢|;|♢¶♢¶♢

@@ -1,9 +1,9 @@
-static void Foo(int arg1, int arg2);
+someMacro someType Foo(int arg1, int arg2);
 
 extern int Bar();
 
 static inline void Foo(int arg1, int arg2) {
-    int foo = (1 + Bar() + 2);
+    int foo = (arg1 + Bar() + arg2);
     void* ptr = realloc(malloc(1024), 2048);
     free(ptr);
 }
@@ -15,8 +15,9 @@ int* Bar() {
 -----
 
 <Root>
+·  ♢someMacro♢•♢
 ·  <CFunctionPrototype>
-·  ·  ♢|static|♢•♢|void|♢•♢Foo♢
+·  ·  ♢someType♢•♢Foo♢
 ·  ·  <Parenthesis>
 ·  ·  ·  ♢(♢int♢•♢arg1,♢•♢int♢•♢arg2♢)♢
 ·  ·  ♢|;|♢
@@ -35,12 +36,12 @@ int* Bar() {
 ·  ·  <Braces>
 ·  ·  ·  ♢{♢¶♢|••••|♢int♢•♢foo♢•♢=♢•♢
 ·  ·  ·  <Parenthesis>
-·  ·  ·  ·  ♢(♢1♢•♢+♢•♢
+·  ·  ·  ·  ♢(♢arg1♢•♢+♢•♢
 ·  ·  ·  ·  <CFunctionCall>
 ·  ·  ·  ·  ·  ♢Bar♢
 ·  ·  ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ·  ·  ♢(♢)♢
-·  ·  ·  ·  ♢•♢+♢•♢2♢)♢
+·  ·  ·  ·  ♢•♢+♢•♢arg2♢)♢
 ·  ·  ·  ♢|;|♢¶♢|••••|♢|void|♢|*|♢•♢ptr♢•♢=♢•♢
 ·  ·  ·  <CFunctionCall>
 ·  ·  ·  ·  ♢realloc♢

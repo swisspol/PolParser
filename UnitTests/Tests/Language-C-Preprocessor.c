@@ -9,9 +9,13 @@
 
 int main() { return 0; }
 
-#else
+#elseif 2
 
 int main() { return 1; }
+
+#else
+
+int main() { return 2; }
 
 #endif
 
@@ -48,6 +52,20 @@ int main() { return 1; }
 ·  ·  ·  ·  ♢•♢}♢
 ·  ·  ♢¶♢¶♢
 ·  ♢
+·  <CPreprocessorConditionElseif>
+·  ·  ♢#elseif♢•♢2♢¶♢¶♢
+·  ·  <CFunctionDefinition>
+·  ·  ·  ♢int♢•♢main♢
+·  ·  ·  <Parenthesis>
+·  ·  ·  ·  ♢(♢)♢
+·  ·  ·  ♢•♢
+·  ·  ·  <Braces>
+·  ·  ·  ·  ♢{♢•♢
+·  ·  ·  ·  <CFlowReturn>
+·  ·  ·  ·  ·  ♢return♢•♢1♢|;|♢
+·  ·  ·  ·  ♢•♢}♢
+·  ·  ♢¶♢¶♢
+·  ♢
 ·  <CPreprocessorConditionElse>
 ·  ·  ♢#else♢¶♢¶♢
 ·  ·  <CFunctionDefinition>
@@ -58,7 +76,7 @@ int main() { return 1; }
 ·  ·  ·  <Braces>
 ·  ·  ·  ·  ♢{♢•♢
 ·  ·  ·  ·  <CFlowReturn>
-·  ·  ·  ·  ·  ♢return♢•♢1♢|;|♢
+·  ·  ·  ·  ·  ♢return♢•♢2♢|;|♢
 ·  ·  ·  ·  ♢•♢}♢
 ·  ·  ♢¶♢¶♢#endif♢
 ·  ♢¶♢¶♢

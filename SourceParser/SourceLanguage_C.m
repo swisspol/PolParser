@@ -341,7 +341,7 @@ static inline BOOL _IsNodeAtTopLevel(SourceNode* node, NSSet* topLevelClasses) {
             SourceNode* nextNode = [node findNextSiblingIgnoringWhitespaceAndNewline];
             if([nextNode isKindOfClass:[SourceNodeSemicolon class]] || [nextNode isKindOfClass:[SourceNodeBraces class]]) {
                 SourceNode* previousNode = [node findPreviousSiblingIgnoringWhitespaceAndNewline];
-                if([previousNode isKindOfClass:[SourceNodeText class]] && ![[self reservedKeywords] containsObject:[previousNode.source substringWithRange:previousNode.range]]) {
+                if([previousNode isKindOfClass:[SourceNodeText class]] && ![self.reservedKeywords containsObject:[previousNode.source substringWithRange:previousNode.range]]) {
                     NSUInteger count = 0;
                     while(1) {
                     	SourceNode* siblingNode = [previousNode findPreviousSiblingIgnoringWhitespaceAndNewline];
@@ -363,7 +363,7 @@ static inline BOOL _IsNodeAtTopLevel(SourceNode* node, NSSet* topLevelClasses) {
         
         else if(![node.parent isKindOfClass:[SourceNodeCFunctionDefinition class]] && ![node.parent isKindOfClass:[SourceNodeCFunctionCall class]] && ![node.parent isKindOfClass:[SourceNodeCPreprocessorDefine class]] && _IsNodeInBlock(node)) {
             SourceNode* previousNode = [node findPreviousSiblingIgnoringWhitespaceAndNewline];
-            if([previousNode isKindOfClass:[SourceNodeText class]] && _IsIdentifier(sourceBuffer + previousNode.range.location, previousNode.range.length) && ![[self reservedKeywords] containsObject:[previousNode.source substringWithRange:previousNode.range]]) {
+            if([previousNode isKindOfClass:[SourceNodeText class]] && _IsIdentifier(sourceBuffer + previousNode.range.location, previousNode.range.length) && ![self.reservedKeywords containsObject:[previousNode.source substringWithRange:previousNode.range]]) {
             	SourceNode* newNode = [[SourceNodeCFunctionCall alloc] initWithSource:previousNode.source range:NSMakeRange(previousNode.range.location, 0)];
                 [previousNode insertPreviousSibling:newNode];
                 [newNode release];

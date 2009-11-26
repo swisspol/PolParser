@@ -21,7 +21,7 @@
 @implementation SourceLanguageObjCPP
 
 + (NSArray*) languageDependencies {
-	return [NSArray arrayWithObjects:@"Base", @"C", @"C++", @"ObjC", nil];
+	return [NSArray arrayWithObjects:@"Base", @"C", @"C++", @"Obj-C", nil];
 }
 
 - (NSString*) name {

@@ -33,17 +33,17 @@ static void LocalFunction(int arg);
 ·  ·  ·  ·  ♢|(|♢BOOL♢|)|♢
 ·  ·  ·  ♢•♢test♢|:|♢
 ·  ·  ·  <Parenthesis>
-·  ·  ·  ·  ♢|(|♢int♢|)|♢
+·  ·  ·  ·  ♢|(|♢|int|♢|)|♢
 ·  ·  ·  ♢foo♢•♢bar♢|:|♢
 ·  ·  ·  <Parenthesis>
-·  ·  ·  ·  ♢|(|♢int♢|)|♢
+·  ·  ·  ·  ♢|(|♢|int|♢|)|♢
 ·  ·  ·  ♢bar♢|;|♢
 ·  ·  ♢¶♢|@end|♢
 ·  ♢¶♢¶♢
 ·  <ObjCInterface>
 ·  ·  ♢|@interface|♢•♢Demo♢•♢|:|♢•♢NSObject♢•♢<Cocoa>♢•♢
 ·  ·  <Braces>
-·  ·  ·  ♢|{|♢¶♢|@private|♢¶♢|→|♢int♢•♢foo♢|;|♢¶♢|@public|♢¶♢|→|♢int♢•♢_bar♢|;|♢¶♢|}|♢
+·  ·  ·  ♢|{|♢¶♢|@private|♢¶♢|→|♢|int|♢•♢foo♢|;|♢¶♢|@public|♢¶♢|→|♢|int|♢•♢_bar♢|;|♢¶♢|}|♢
 ·  ·  ♢¶♢
 ·  ·  <ObjCProperty>
 ·  ·  ·  ♢|@property|♢
@@ -75,7 +75,7 @@ static void LocalFunction(int arg);
 ·  ·  <CFunctionPrototype>
 ·  ·  ·  ♢|static|♢•♢|void|♢•♢LocalFunction♢
 ·  ·  ·  <Parenthesis>
-·  ·  ·  ·  ♢|(|♢int♢•♢arg♢|)|♢
+·  ·  ·  ·  ♢|(|♢|int|♢•♢arg♢|)|♢
 ·  ·  ·  ♢|;|♢
 ·  ·  ♢¶♢|@end|♢
 ·  ♢¶♢¶♢

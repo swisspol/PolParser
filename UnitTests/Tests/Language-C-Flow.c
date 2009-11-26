@@ -15,7 +15,7 @@ Temp:
 ·  <CFunctionDefinition>
 ·  ·  ♢|static|♢•♢|void|♢•♢Foo♢
 ·  ·  <Parenthesis>
-·  ·  ·  ♢|(|♢int♢•♢arg♢|)|♢
+·  ·  ·  ♢|(|♢|int|♢•♢arg♢|)|♢
 ·  ·  ♢•♢
 ·  ·  <Braces>
 ·  ·  ·  ♢|{|♢¶♢|••••|♢

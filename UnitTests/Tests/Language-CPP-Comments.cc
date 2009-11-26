@@ -11,9 +11,9 @@ int main(int argc, char *argv[]) {
 <Root>
 ·  ♢|/*¶*•The•main•function¶*/|♢¶♢
 ·  <CFunctionDefinition>
-·  ·  ♢int♢•♢main♢
+·  ·  ♢|int|♢•♢main♢
 ·  ·  <Parenthesis>
-·  ·  ·  ♢|(|♢int♢•♢argc,♢•♢char♢•♢|*|♢argv♢
+·  ·  ·  ♢|(|♢|int|♢•♢argc,♢•♢|char|♢•♢|*|♢argv♢
 ·  ·  ·  <Brackets>
 ·  ·  ·  ·  ♢|[|♢|]|♢
 ·  ·  ·  ♢|)|♢
@@ -27,7 +27,7 @@ int main(int argc, char *argv[]) {
 ·  ·  ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ·  ·  ♢|(|♢argc,♢•♢
 ·  ·  ·  ·  ·  ·  <Parenthesis>
-·  ·  ·  ·  ·  ·  ·  ♢|(|♢|const|♢•♢char♢|*|♢|*|♢|)|♢
+·  ·  ·  ·  ·  ·  ·  ♢|(|♢|const|♢•♢|char|♢|*|♢|*|♢|)|♢
 ·  ·  ·  ·  ·  ·  ♢argv♢|)|♢
 ·  ·  ·  ·  ♢|;|♢
 ·  ·  ·  ♢•♢|//argc•is•always•>•1|♢¶♢|}|♢

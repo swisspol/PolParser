@@ -15,15 +15,14 @@ int* Bar() {
 -----
 
 <Root>
-·  ♢someMacro♢•♢
 ·  <CFunctionPrototype>
-·  ·  ♢someType♢•♢Foo♢
+·  ·  ♢someMacro♢•♢someType♢•♢Foo♢
 ·  ·  <Parenthesis>
-·  ·  ·  ♢|(|♢int♢•♢arg1,♢•♢int♢•♢arg2♢|)|♢
+·  ·  ·  ♢|(|♢|int|♢•♢arg1,♢•♢|int|♢•♢arg2♢|)|♢
 ·  ·  ♢|;|♢
 ·  ♢¶♢¶♢
 ·  <CFunctionPrototype>
-·  ·  ♢|extern|♢•♢int♢•♢Bar♢
+·  ·  ♢|extern|♢•♢|int|♢•♢Bar♢
 ·  ·  <Parenthesis>
 ·  ·  ·  ♢|(|♢|)|♢
 ·  ·  ♢|;|♢
@@ -31,10 +30,10 @@ int* Bar() {
 ·  <CFunctionDefinition>
 ·  ·  ♢|static|♢•♢|inline|♢•♢|void|♢•♢Foo♢
 ·  ·  <Parenthesis>
-·  ·  ·  ♢|(|♢int♢•♢arg1,♢•♢int♢•♢arg2♢|)|♢
+·  ·  ·  ♢|(|♢|int|♢•♢arg1,♢•♢|int|♢•♢arg2♢|)|♢
 ·  ·  ♢•♢
 ·  ·  <Braces>
-·  ·  ·  ♢|{|♢¶♢|••••|♢int♢•♢foo♢•♢=♢•♢
+·  ·  ·  ♢|{|♢¶♢|••••|♢|int|♢•♢foo♢•♢=♢•♢
 ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ♢|(|♢arg1♢•♢+♢•♢
 ·  ·  ·  ·  <CFunctionCall>
@@ -60,7 +59,7 @@ int* Bar() {
 ·  ·  ·  ♢|;|♢¶♢|}|♢
 ·  ♢¶♢¶♢
 ·  <CFunctionDefinition>
-·  ·  ♢int♢|*|♢•♢Bar♢
+·  ·  ♢|int|♢|*|♢•♢Bar♢
 ·  ·  <Parenthesis>
 ·  ·  ·  ♢|(|♢|)|♢
 ·  ·  ♢•♢

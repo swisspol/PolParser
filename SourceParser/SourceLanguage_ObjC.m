@@ -149,7 +149,7 @@ static SourceNode* _ApplierFunction(SourceNode* node, void* context) {
         if(semicolonNode)
             _RearrangeNodesAsChildren(node, semicolonNode);
         
-    } else if([node isKindOfClass:[SourceNodeText class]] && _HasInterfaceOrProtocolParent(node)) {
+    } else if([node isMemberOfClass:[SourceNodeText class]] && _HasInterfaceOrProtocolParent(node)) {
         
         // "-(foo)bar" "+(foo)bar" "-bar" "+bar"
         NSString* content = node.content;
@@ -163,7 +163,7 @@ static SourceNode* _ApplierFunction(SourceNode* node, void* context) {
             }
         }
         
-    } else if([node isKindOfClass:[SourceNodeText class]] && _HasImplementationParent(node)) {
+    } else if([node isMemberOfClass:[SourceNodeText class]] && _HasImplementationParent(node)) {
         
         // "-(foo)bar" "+(foo)bar" "-bar" "+bar"
         NSString* content = node.content;
@@ -182,11 +182,11 @@ static SourceNode* _ApplierFunction(SourceNode* node, void* context) {
         
         // "[foo bar:baz]"
         SourceNode* target = [node.firstChild findNextSiblingIgnoringWhitespaceAndNewline];
-        if([target isKindOfClass:[SourceNodeText class]] || [target isKindOfClass:[SourceNodeObjCSelf class]] || [target isKindOfClass:[SourceNodeObjCSuper class]]
+        if([target isMemberOfClass:[SourceNodeText class]] || [target isKindOfClass:[SourceNodeObjCSelf class]] || [target isKindOfClass:[SourceNodeObjCSuper class]]
         	|| [target isKindOfClass:[SourceNodeBrackets class]] || [target isKindOfClass:[SourceNodeCFunctionCall class]] || [target isKindOfClass:[SourceNodeObjCString class]]) {
         	if([target.nextSibling isKindOfClass:[SourceNodeWhitespace class]] || [target.nextSibling isKindOfClass:[SourceNodeNewline class]]) {
                 SourceNode* nextNode = [target findNextSiblingIgnoringWhitespaceAndNewline];
-                if([nextNode isKindOfClass:[SourceNodeText class]]) {
+                if([nextNode isMemberOfClass:[SourceNodeText class]]) {
                 	SourceNode* newNode = [[SourceNodeObjCMethodCall alloc] initWithSource:node.source range:node.range];
                     [node applyFunctionOnChildren:_ApplierFunction context:newNode];
                     [node replaceWithNode:newNode];

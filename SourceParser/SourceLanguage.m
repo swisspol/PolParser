@@ -108,7 +108,7 @@ static NSMutableSet* _languageCache = nil;
 }
 
 + (NSArray*) languageNodeClasses {
-	return [NSArray arrayWithObjects:[SourceNodeText class], [SourceNodePrefix class], [SourceNodeSuffix class], nil]; //Special-cased by parser
+	return [NSArray arrayWithObjects:[SourceNodeText class], [SourceNodeKeyword class], [SourceNodePrefix class], [SourceNodeSuffix class], nil]; //Special-cased by parser
 }
 
 + (NSSet*) languageTopLevelNodeClasses {
@@ -215,10 +215,30 @@ static SourceNode* _ApplierFunction(SourceNode* node, void* context) {
     return [language performSyntaxAnalysisForNode:node sourceBuffer:buffer topLevelNodeClasses:nodeClasses];
 }
 
+static inline BOOL _IsKeyword(const unichar* buffer, NSUInteger length, NSUInteger keywordCount, unichar** keywordBuffers, NSUInteger* keywordLengths) {
+	for(NSUInteger i = 0; i < keywordCount; ++i) {
+    	if((length == keywordLengths[i]) && (memcmp(buffer, keywordBuffers[i], length * sizeof(unichar)) == 0))
+        	return YES;
+    }
+    
+    return NO;
+}
+
 - (SourceNodeRoot*) parseSourceString:(NSString*)source range:(NSRange)range buffer:(const unichar*)buffer syntaxAnalysis:(BOOL)syntaxAnalysis {
     SourceNodeRoot* rootNode = [[[SourceNodeRoot alloc] initWithSource:source language:self] autorelease];
     if(rootNode == nil)
     	return nil;
+    
+    NSUInteger keywordCount = self.reservedKeywords.count;
+    NSUInteger* keywordLengths = malloc(keywordCount * sizeof(NSUInteger));
+    unichar** keywordBuffers = malloc(keywordCount * sizeof(unichar*));
+    NSUInteger index = 0;
+    for(NSString* keyword in self.reservedKeywords) {
+    	keywordLengths[index] = keyword.length;
+        keywordBuffers[index] = malloc(keywordLengths[index] * sizeof(unichar));
+        [keyword getCharacters:keywordBuffers[index]];
+        ++index;
+    }
     
     NSMutableArray* stack = [NSMutableArray array];
     [stack addObject:rootNode];
@@ -230,7 +250,7 @@ static SourceNode* _ApplierFunction(SourceNode* node, void* context) {
             suffixLength = [[parentNode class] isMatchingSuffix:(buffer + range.location + rawLength) maxLength:(range.length - rawLength)];
             if(suffixLength != NSNotFound) {
                 if(rawLength > 0) {
-                    SourceNode* node = [[SourceNodeText alloc] initWithSource:source range:NSMakeRange(range.location, rawLength)];
+                    SourceNode* node = [(_IsKeyword(buffer + range.location, rawLength, keywordCount, keywordBuffers, keywordLengths) ? [SourceNodeKeyword alloc] : [SourceNodeText alloc]) initWithSource:source range:NSMakeRange(range.location, rawLength)];
                     [parentNode addChild:node];
                     [node release];
                     
@@ -257,7 +277,7 @@ static SourceNode* _ApplierFunction(SourceNode* node, void* context) {
         Class prefixClass;
         NSUInteger prefixLength;
         for(prefixClass in self.nodeClasses) {
-            if((prefixClass == [SourceNodeText class]) || (prefixClass == [SourceNodePrefix class]) || (prefixClass == [SourceNodeSuffix class]))
+            if((prefixClass == [SourceNodeText class]) || (prefixClass == [SourceNodePrefix class]) || (prefixClass == [SourceNodeSuffix class]) || (prefixClass == [SourceNodeKeyword class]))
                 continue;
             prefixLength = [prefixClass isMatchingPrefix:(buffer + range.location + rawLength) maxLength:(range.length - rawLength)];
             if(prefixLength != NSNotFound)
@@ -265,7 +285,7 @@ static SourceNode* _ApplierFunction(SourceNode* node, void* context) {
         }
         if(prefixClass) {
             if(rawLength > 0) {
-                SourceNode* node = [[SourceNodeText alloc] initWithSource:source range:NSMakeRange(range.location, rawLength)];
+                SourceNode* node = [(_IsKeyword(buffer + range.location, rawLength, keywordCount, keywordBuffers, keywordLengths) ? [SourceNodeKeyword alloc] : [SourceNodeText alloc]) initWithSource:source range:NSMakeRange(range.location, rawLength)];
                 [(SourceNode*)[stack lastObject] addChild:node];
                 [node release];
                 
@@ -314,13 +334,18 @@ static SourceNode* _ApplierFunction(SourceNode* node, void* context) {
         
         ++rawLength;
         if(rawLength == range.length) {
-            SourceNode* node = [[SourceNodeText alloc] initWithSource:source range:range];
+            SourceNode* node = [(_IsKeyword(buffer + range.location, range.length, keywordCount, keywordBuffers, keywordLengths) ? [SourceNodeKeyword alloc] : [SourceNodeText alloc]) initWithSource:source range:range];
             [(SourceNode*)[stack lastObject] addChild:node];
             [node release];
             
             break;
         }
     }
+    
+    for(NSUInteger i = 0; i < keywordCount; ++i)
+    	free(keywordBuffers[i]);
+    free(keywordBuffers);
+    free(keywordLengths);
     
     [stack removeObjectAtIndex:0];
     if(stack.count > 0) {
@@ -361,7 +386,7 @@ static SourceNode* _ApplierFunction(SourceNode* node, void* context) {
     NSRange range = NSMakeRange(0, source.length);
     unichar* buffer = malloc((range.length + 1) * sizeof(unichar));
     buffer[0] = 0x0000; //We need one-character padding at the start since some nodes look at buffer[index - 1]
-    [source getCharacters:(buffer + 1) range:range];
+    [source getCharacters:(buffer + 1)];
     
     SourceNodeRoot* root = [[self parseSourceString:source range:range buffer:buffer + 1 syntaxAnalysis:syntaxAnalysis] retain];
     
@@ -428,6 +453,9 @@ static SourceNode* _ApplierFunction(SourceNode* node, void* context) {
 @end
 
 @implementation SourceNodeSuffix
+@end
+
+@implementation SourceNodeKeyword
 @end
 
 @implementation SourceNode (SourceNodeTextExtensions)

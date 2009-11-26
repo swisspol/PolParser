@@ -29,7 +29,7 @@ static int foo = sizeof(long);
 ·  <CTypeStruct>
 ·  ·  ♢|struct|♢•♢temp♢•♢
 ·  ·  <Braces>
-·  ·  ·  ♢|{|♢¶♢|••••|♢int♢•••♢foo♢|;|♢¶♢|••••|♢int♢•♢bar♢|;|♢¶♢|}|♢
+·  ·  ·  ♢|{|♢¶♢|••••|♢|int|♢•••♢foo♢|;|♢¶♢|••••|♢|int|♢•♢bar♢|;|♢¶♢|}|♢
 ·  ·  ♢|;|♢
 ·  ♢¶♢¶♢
 ·  <CTypedef>
@@ -37,11 +37,11 @@ static int foo = sizeof(long);
 ·  ·  <CTypeUnion>
 ·  ·  ·  ♢|union|♢•♢
 ·  ·  ·  <Braces>
-·  ·  ·  ·  ♢|{|♢¶♢|→|♢int♢•♢temp1♢|;|♢¶♢|••••|♢long♢•♢temp2♢|;|♢¶♢|}|♢
+·  ·  ·  ·  ♢|{|♢¶♢|→|♢|int|♢•♢temp1♢|;|♢¶♢|••••|♢|long|♢•♢temp2♢|;|♢¶♢|}|♢
 ·  ·  ·  ♢•♢boom♢|;|♢
-·  ♢¶♢¶♢|static|♢•♢int♢•♢foo♢•♢=♢•♢
+·  ♢¶♢¶♢|static|♢•♢|int|♢•♢foo♢•♢=♢•♢
 ·  <CSizeOf>
 ·  ·  ♢|sizeof|♢
 ·  ·  <Parenthesis>
-·  ·  ·  ♢|(|♢long♢|)|♢
+·  ·  ·  ♢|(|♢|long|♢|)|♢
 ·  ♢|;|♢¶♢¶♢

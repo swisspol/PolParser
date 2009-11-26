@@ -20,7 +20,7 @@ do {
 ·  <CFlowFor>
 ·  ·  ♢|for|♢
 ·  ·  <Parenthesis>
-·  ·  ·  ♢|(|♢int♢•♢i♢•♢=♢•♢foo♢|;|♢•♢i♢•♢<♢•♢bar♢|;|♢•♢++i♢|)|♢
+·  ·  ·  ♢|(|♢|int|♢•♢i♢•♢=♢•♢foo♢|;|♢•♢i♢•♢<♢•♢bar♢|;|♢•♢++i♢|)|♢
 ·  ·  ♢¶♢|••••|♢
 ·  ·  <CFunctionCall>
 ·  ·  ·  ♢printf♢

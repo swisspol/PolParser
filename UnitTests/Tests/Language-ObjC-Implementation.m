@@ -64,10 +64,10 @@ static void LocalFunction(int arg) {
 ·  ·  ·  ·  ♢|(|♢BOOL♢|)|♢
 ·  ·  ·  ♢•♢test♢|:|♢
 ·  ·  ·  <Parenthesis>
-·  ·  ·  ·  ♢|(|♢int♢|)|♢
+·  ·  ·  ·  ♢|(|♢|int|♢|)|♢
 ·  ·  ·  ♢foo♢•♢bar♢|:|♢
 ·  ·  ·  <Parenthesis>
-·  ·  ·  ·  ♢|(|♢int♢|)|♢
+·  ·  ·  ·  ♢|(|♢|int|♢|)|♢
 ·  ·  ·  ♢bar♢•♢
 ·  ·  ·  <Braces>
 ·  ·  ·  ·  ♢|{|♢¶♢|→|♢
@@ -78,7 +78,7 @@ static void LocalFunction(int arg) {
 ·  ·  <CFunctionDefinition>
 ·  ·  ·  ♢|static|♢•♢|void|♢•♢LocalFunction♢
 ·  ·  ·  <Parenthesis>
-·  ·  ·  ·  ♢|(|♢int♢•♢arg♢|)|♢
+·  ·  ·  ·  ♢|(|♢|int|♢•♢arg♢|)|♢
 ·  ·  ·  ♢•♢
 ·  ·  ·  <Braces>
 ·  ·  ·  ·  ♢|{|♢¶♢|→|♢

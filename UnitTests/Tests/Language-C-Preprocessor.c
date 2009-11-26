@@ -19,9 +19,10 @@ int main() { return 2; }
 
 #endif
 
-#undef FOO
+#undef FOO /* We're done */
 
-#define TEST_FUNCTION(arg) CHECK((arg) == true)
+#define TEST_FUNCTION(arg) \
+	CHECK((arg) == true)
 
 -----
 
@@ -36,12 +37,12 @@ int main() { return 2; }
 ·  ·  ♢|#define|♢•♢FOO♢•♢1♢
 ·  ♢→♢¶♢¶♢
 ·  <CPreprocessorConditionIf>
-·  ·  ♢|#if|♢•♢1♢¶♢
+·  ·  ♢|#if•1|♢¶♢
 ·  ·  <CPreprocessorWarning>
 ·  ·  ·  ♢|#warning|♢•♢Foobar♢
 ·  ·  ♢¶♢¶♢
 ·  ·  <CFunctionDefinition>
-·  ·  ·  ♢int♢•♢main♢
+·  ·  ·  ♢|int|♢•♢main♢
 ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ♢|(|♢|)|♢
 ·  ·  ·  ♢•♢
@@ -53,9 +54,9 @@ int main() { return 2; }
 ·  ·  ♢¶♢¶♢
 ·  ♢
 ·  <CPreprocessorConditionElseif>
-·  ·  ♢|#elseif|♢•♢2♢¶♢¶♢
+·  ·  ♢|#elseif•2|♢¶♢¶♢
 ·  ·  <CFunctionDefinition>
-·  ·  ·  ♢int♢•♢main♢
+·  ·  ·  ♢|int|♢•♢main♢
 ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ♢|(|♢|)|♢
 ·  ·  ·  ♢•♢
@@ -69,7 +70,7 @@ int main() { return 2; }
 ·  <CPreprocessorConditionElse>
 ·  ·  ♢|#else|♢¶♢¶♢
 ·  ·  <CFunctionDefinition>
-·  ·  ·  ♢int♢•♢main♢
+·  ·  ·  ♢|int|♢•♢main♢
 ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ♢|(|♢|)|♢
 ·  ·  ·  ♢•♢
@@ -82,12 +83,12 @@ int main() { return 2; }
 ·  ♢¶♢¶♢
 ·  <CPreprocessorUndefine>
 ·  ·  ♢|#undef|♢•♢FOO♢
-·  ♢¶♢¶♢
+·  ♢•♢|/*•We're•done•*/|♢¶♢¶♢
 ·  <CPreprocessorDefine>
 ·  ·  ♢|#define|♢•♢TEST_FUNCTION♢
 ·  ·  <Parenthesis>
 ·  ·  ·  ♢|(|♢arg♢|)|♢
-·  ·  ♢•♢CHECK♢
+·  ·  ♢•♢\♢¶♢|→|♢CHECK♢
 ·  ·  <Parenthesis>
 ·  ·  ·  ♢|(|♢
 ·  ·  ·  <Parenthesis>

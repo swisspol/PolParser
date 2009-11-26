@@ -59,6 +59,9 @@
 - (id) initWithText:(NSString*)text;
 @end
 
+@interface SourceNodeKeyword : SourceNodeText //Leaf
+@end
+
 @interface SourceNodePrefix : SourceNodeText //Leaf
 @end
 

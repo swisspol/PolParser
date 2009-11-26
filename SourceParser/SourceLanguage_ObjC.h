@@ -57,6 +57,9 @@
 @interface SourceNodeObjCProperty : SourceNode
 @end
 
+@interface SourceNodeObjCSynthesize : SourceNode
+@end
+
 @interface SourceNodeObjCTry : SourceNode
 @end
 

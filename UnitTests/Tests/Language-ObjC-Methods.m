@@ -17,7 +17,7 @@ NSDictionary* dictionary = [[NSProcessInfo processInfo] environment];
 <Root>
 ·  ♢SEL♢•♢temp♢•♢=♢•♢
 ·  <ObjCSelector>
-·  ·  ♢@selector♢
+·  ·  ♢|@selector|♢
 ·  ·  <Parenthesis>
 ·  ·  ·  ♢|(|♢test♢|:|♢bar♢|:|♢|)|♢
 ·  ♢|;|♢¶♢¶♢NSString♢|*|♢•♢string1♢•♢=♢•♢

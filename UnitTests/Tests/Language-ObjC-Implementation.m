@@ -1,5 +1,7 @@
 @implementation Demo
 	
+@synthesize foo, bar=_bar;
+
 + (id) uniqueID {
 	@synchronized (self) {
     	;
@@ -26,6 +28,9 @@ static void LocalFunction(int arg) {
 <Root>
 ·  <ObjCImplementation>
 ·  ·  ♢|@implementation|♢•♢Demo♢¶♢|→|♢¶♢
+·  ·  <ObjCSynthesize>
+·  ·  ·  ♢|@synthesize|♢•♢foo,♢•♢bar=_bar♢|;|♢
+·  ·  ♢¶♢¶♢
 ·  ·  <ObjCMethodImplementation>
 ·  ·  ·  ♢+♢•♢
 ·  ·  ·  <Parenthesis>
@@ -34,7 +39,7 @@ static void LocalFunction(int arg) {
 ·  ·  ·  <Braces>
 ·  ·  ·  ·  ♢|{|♢¶♢|→|♢
 ·  ·  ·  ·  <ObjCSynchronized>
-·  ·  ·  ·  ·  ♢@synchronized♢•♢
+·  ·  ·  ·  ·  ♢|@synchronized|♢•♢
 ·  ·  ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ·  ·  ♢|(|♢|self|♢|)|♢
 ·  ·  ·  ·  ·  ♢•♢
@@ -42,7 +47,7 @@ static void LocalFunction(int arg) {
 ·  ·  ·  ·  ·  ·  ♢|{|♢¶♢|••••→|♢|;|♢¶♢|••••|♢|}|♢
 ·  ·  ·  ·  ♢¶♢|••••|♢
 ·  ·  ·  ·  <CFlowReturn>
-·  ·  ·  ·  ·  ♢return♢•♢|nil|♢|;|♢
+·  ·  ·  ·  ·  ♢|return|♢•♢|nil|♢|;|♢
 ·  ·  ·  ·  ♢¶♢|}|♢
 ·  ·  ♢¶♢¶♢
 ·  ·  <ObjCMethodImplementation>
@@ -50,7 +55,7 @@ static void LocalFunction(int arg) {
 ·  ·  ·  <Braces>
 ·  ·  ·  ·  ♢|{|♢¶♢|→|♢
 ·  ·  ·  ·  <CFlowReturn>
-·  ·  ·  ·  ·  ♢return♢•♢|nil|♢|;|♢
+·  ·  ·  ·  ·  ♢|return|♢•♢|nil|♢|;|♢
 ·  ·  ·  ·  ♢¶♢|}|♢
 ·  ·  ♢¶♢¶♢
 ·  ·  <ObjCMethodImplementation>
@@ -67,7 +72,7 @@ static void LocalFunction(int arg) {
 ·  ·  ·  <Braces>
 ·  ·  ·  ·  ♢|{|♢¶♢|→|♢
 ·  ·  ·  ·  <CFlowReturn>
-·  ·  ·  ·  ·  ♢return♢•♢NO♢|;|♢
+·  ·  ·  ·  ·  ♢|return|♢•♢NO♢|;|♢
 ·  ·  ·  ·  ♢¶♢|}|♢
 ·  ·  ♢¶♢¶♢
 ·  ·  <CFunctionDefinition>

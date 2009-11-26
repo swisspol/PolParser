@@ -18,7 +18,7 @@ static int foo = sizeof(long);
 
 <Root>
 ·  <CTypedef>
-·  ·  ♢typedef♢•♢|void|♢•♢
+·  ·  ♢|typedef|♢•♢|void|♢•♢
 ·  ·  <Parenthesis>
 ·  ·  ·  ♢|(|♢|*|♢SourceNodeApplierFunction♢|)|♢
 ·  ·  ♢
@@ -27,21 +27,21 @@ static int foo = sizeof(long);
 ·  ·  ♢|;|♢
 ·  ♢¶♢¶♢|const|♢•♢|struct|♢•♢sockaddr♢|*|♢•♢address♢|;|♢¶♢¶♢
 ·  <CTypeStruct>
-·  ·  ♢struct♢•♢temp♢•♢
+·  ·  ♢|struct|♢•♢temp♢•♢
 ·  ·  <Braces>
 ·  ·  ·  ♢|{|♢¶♢|••••|♢int♢•••♢foo♢|;|♢¶♢|••••|♢int♢•♢bar♢|;|♢¶♢|}|♢
 ·  ·  ♢|;|♢
 ·  ♢¶♢¶♢
 ·  <CTypedef>
-·  ·  ♢typedef♢•♢
+·  ·  ♢|typedef|♢•♢
 ·  ·  <CTypeUnion>
-·  ·  ·  ♢union♢•♢
+·  ·  ·  ♢|union|♢•♢
 ·  ·  ·  <Braces>
 ·  ·  ·  ·  ♢|{|♢¶♢|→|♢int♢•♢temp1♢|;|♢¶♢|••••|♢long♢•♢temp2♢|;|♢¶♢|}|♢
 ·  ·  ·  ♢•♢boom♢|;|♢
 ·  ♢¶♢¶♢|static|♢•♢int♢•♢foo♢•♢=♢•♢
 ·  <CSizeOf>
-·  ·  ♢sizeof♢
+·  ·  ♢|sizeof|♢
 ·  ·  <Parenthesis>
 ·  ·  ·  ♢|(|♢long♢|)|♢
 ·  ♢|;|♢¶♢¶♢

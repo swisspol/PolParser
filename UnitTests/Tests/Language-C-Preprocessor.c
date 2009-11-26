@@ -48,7 +48,7 @@ int main() { return 2; }
 ·  ·  ·  <Braces>
 ·  ·  ·  ·  ♢|{|♢•♢
 ·  ·  ·  ·  <CFlowReturn>
-·  ·  ·  ·  ·  ♢return♢•♢0♢|;|♢
+·  ·  ·  ·  ·  ♢|return|♢•♢0♢|;|♢
 ·  ·  ·  ·  ♢•♢|}|♢
 ·  ·  ♢¶♢¶♢
 ·  ♢
@@ -62,7 +62,7 @@ int main() { return 2; }
 ·  ·  ·  <Braces>
 ·  ·  ·  ·  ♢|{|♢•♢
 ·  ·  ·  ·  <CFlowReturn>
-·  ·  ·  ·  ·  ♢return♢•♢1♢|;|♢
+·  ·  ·  ·  ·  ♢|return|♢•♢1♢|;|♢
 ·  ·  ·  ·  ♢•♢|}|♢
 ·  ·  ♢¶♢¶♢
 ·  ♢
@@ -76,7 +76,7 @@ int main() { return 2; }
 ·  ·  ·  <Braces>
 ·  ·  ·  ·  ♢|{|♢•♢
 ·  ·  ·  ·  <CFlowReturn>
-·  ·  ·  ·  ·  ♢return♢•♢2♢|;|♢
+·  ·  ·  ·  ·  ♢|return|♢•♢2♢|;|♢
 ·  ·  ·  ·  ♢•♢|}|♢
 ·  ·  ♢¶♢¶♢|#endif|♢
 ·  ♢¶♢¶♢

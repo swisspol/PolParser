@@ -21,7 +21,7 @@ int main(int argc, char *argv[]) {
 ·  ·  <Braces>
 ·  ·  ·  ♢|{|♢¶♢|••••|♢|//•Return•the•result|♢¶♢|••••|♢
 ·  ·  ·  <CFlowReturn>
-·  ·  ·  ·  ♢return♢•♢
+·  ·  ·  ·  ♢|return|♢•♢
 ·  ·  ·  ·  <CFunctionCall>
 ·  ·  ·  ·  ·  ♢Run♢
 ·  ·  ·  ·  ·  <Parenthesis>

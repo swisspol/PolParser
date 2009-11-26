@@ -24,7 +24,7 @@ void _RearrangeNodesAsChildren(SourceNode* startNode, SourceNode* endNode) {
     
     SourceNode* node;
     if(startNode.range.length) {
-        node = [[SourceNodeText alloc] initWithSource:startNode.source range:startNode.range];
+        node = [[SourceNodePrefix alloc] initWithSource:startNode.source range:startNode.range];
         [startNode addChild:node];
         [node release];
     }

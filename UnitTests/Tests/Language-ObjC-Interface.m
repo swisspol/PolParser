@@ -46,7 +46,7 @@ static void LocalFunction(int arg);
 ·  ·  ·  ♢|{|♢¶♢|@private|♢¶♢|→|♢int♢•♢foo♢|;|♢¶♢|@public|♢¶♢|→|♢int♢•♢_bar♢|;|♢¶♢|}|♢
 ·  ·  ♢¶♢
 ·  ·  <ObjCProperty>
-·  ·  ·  ♢@property♢
+·  ·  ·  ♢|@property|♢
 ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ♢|(|♢nonatomic,♢•♢readonly,♢•♢getter=isValid♢|)|♢
 ·  ·  ·  ♢••♢BOOL♢•♢valid♢|;|♢

@@ -26,8 +26,8 @@
 
 + (NSSet*) languageReservedKeywords {
 	return [NSSet setWithObjects:@"in", @"out", @"inout", @"bycopy", @"byref", @"oneway", @"@class", @"@selector", @"@protocol",
-    	@"@encode", @"@synchronized", @"@required", @"@optional", @"@property", @"@try", @"@throw", @"@catch", @"@finally",
-        @"@private", @"@protected", @"@public", @"@interface", @"@implementation", @"@protocol", @"@end", nil];
+    	@"@encode", @"@synchronized", @"@required", @"@optional", @"@property", @"`", @"@try", @"@throw", @"@catch",
+        @"@finally", @"@private", @"@protected", @"@public", @"@interface", @"@implementation", @"@protocol", @"@end", nil];
 }
 
 + (NSArray*) languageNodeClasses {
@@ -47,6 +47,7 @@
     [classes addObject:[SourceNodeObjCOptional class]];
     [classes addObject:[SourceNodeObjCRequired class]];
     [classes addObject:[SourceNodeObjCProperty class]];
+    [classes addObject:[SourceNodeObjCSynthesize class]];
     [classes addObject:[SourceNodeObjCTry class]];
     [classes addObject:[SourceNodeObjCCatch class]];
     [classes addObject:[SourceNodeObjCFinally class]];
@@ -137,6 +138,13 @@ static SourceNode* _ApplierFunction(SourceNode* node, void* context) {
     } else if([node isKindOfClass:[SourceNodeObjCProperty class]] && _HasInterfaceOrProtocolParent(node)) {
         
         // "@property" "@property()"
+        SourceNode* semicolonNode = [node findNextSiblingOfClass:[SourceNodeSemicolon class]];
+        if(semicolonNode)
+            _RearrangeNodesAsChildren(node, semicolonNode);
+        
+    } else if([node isKindOfClass:[SourceNodeObjCSynthesize class]] && _HasImplementationParent(node)) {
+        
+        // "@synthesize"
         SourceNode* semicolonNode = [node findNextSiblingOfClass:[SourceNodeSemicolon class]];
         if(semicolonNode)
             _RearrangeNodesAsChildren(node, semicolonNode);
@@ -256,6 +264,7 @@ IMPLEMENTATION(Finally, @"@finally", true, false, '{')
 IMPLEMENTATION(Throw, @"@throw", false, false, 0)
 IMPLEMENTATION(Synchronized, @"@synchronized", true, false, '(')
 IMPLEMENTATION(Property, @"@property", true, false, '(')
+IMPLEMENTATION(Synthesize, @"@synthesize", true, false, '(')
 IMPLEMENTATION(Selector, @"@selector", true, false, '(')
 IMPLEMENTATION(Encode, @"@encode", true, false, '(')
 IMPLEMENTATION(Self, @"self", false, false, 0)

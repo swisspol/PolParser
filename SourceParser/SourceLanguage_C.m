@@ -149,18 +149,18 @@ static inline BOOL _IsNodeAtTopLevel(SourceNode* node, NSSet* topLevelClasses) {
                 SourceNode* elseNode = [previousNode isKindOfClass:[SourceNodeCConditionIf class]] ? [previousNode findPreviousSiblingIgnoringWhitespaceAndNewline] : nil;
                 if([elseNode isKindOfClass:[SourceNodeCConditionElse class]] && !elseNode.children) {
                 	SourceNode* newNode = [[SourceNodeCConditionElseIf alloc] initWithSource:elseNode.source range:NSMakeRange(elseNode.range.location, 0)];
-                    [elseNode insertPreviousSibling:newNode];
+                    [previousNode insertNextSibling:newNode];
                     [newNode release];
                     
-                    SourceNode* textNode = [[SourceNodeText alloc] initWithSource:elseNode.source range:elseNode.range];
-                    [elseNode insertPreviousSibling:textNode];
-                    [textNode release];
-                    [elseNode removeFromParent];
+                    SourceNode* prefixNode = [[SourceNodePrefix alloc] initWithSource:node.source range:NSMakeRange(elseNode.range.location, previousNode.range.location + previousNode.range.length - elseNode.range.location)];
+                    [newNode insertNextSibling:prefixNode];
+                    [prefixNode release];
                     
-                    textNode = [[SourceNodeText alloc] initWithSource:previousNode.source range:previousNode.range];
-                    [previousNode insertPreviousSibling:textNode];
-                    [textNode release];
-                    [previousNode removeFromParent];
+                    while(elseNode != newNode) {
+                    	SourceNode* siblingNode = elseNode.nextSibling;
+                        [elseNode removeFromParent];
+                        elseNode = siblingNode;
+                    }
                     
                     _RearrangeNodesAsChildren(newNode, node);
                 } else {
@@ -177,7 +177,7 @@ static inline BOOL _IsNodeAtTopLevel(SourceNode* node, NSSet* topLevelClasses) {
                 if([nextNextNode isKindOfClass:[SourceNodeParenthesis class]]) {
                     _RearrangeNodesAsChildren(previousNode, nextNextNode);
                     
-                    SourceNode* newWhile = [[SourceNodeText alloc] initWithSource:nextNode.source range:nextNode.range];
+                    SourceNode* newWhile = [[SourceNodeSuffix alloc] initWithSource:nextNode.source range:nextNode.range];
                     [nextNode replaceWithNode:newWhile];
                     [newWhile release];
                 }
@@ -208,18 +208,18 @@ static inline BOOL _IsNodeAtTopLevel(SourceNode* node, NSSet* topLevelClasses) {
                 SourceNode* elseNode = [node isKindOfClass:[SourceNodeCConditionIf class]] ? [node findPreviousSiblingIgnoringWhitespaceAndNewline] : nil;
                 if([elseNode isKindOfClass:[SourceNodeCConditionElse class]] && !elseNode.children) {
                 	SourceNode* newNode = [[SourceNodeCConditionElseIf alloc] initWithSource:elseNode.source range:NSMakeRange(elseNode.range.location, 0)];
-                    [elseNode insertPreviousSibling:newNode];
+                    [node insertNextSibling:newNode];
                     [newNode release];
                     
-                    SourceNode* textNode = [[SourceNodeText alloc] initWithSource:elseNode.source range:elseNode.range];
-                    [elseNode insertPreviousSibling:textNode];
-                    [textNode release];
-                    [elseNode removeFromParent];
+                    SourceNode* prefixNode = [[SourceNodePrefix alloc] initWithSource:node.source range:NSMakeRange(elseNode.range.location, node.range.location + node.range.length - elseNode.range.location)];
+                    [newNode insertNextSibling:prefixNode];
+                    [prefixNode release];
                     
-                    textNode = [[SourceNodeText alloc] initWithSource:node.source range:node.range];
-                    [node insertPreviousSibling:textNode];
-                    [textNode release];
-                    [node removeFromParent];
+                    while(elseNode != newNode) {
+                    	SourceNode* siblingNode = elseNode.nextSibling;
+                        [elseNode removeFromParent];
+                        elseNode = siblingNode;
+                    }
                     
                     _RearrangeNodesAsChildren(newNode, semicolonNode);
                 } else {
@@ -452,14 +452,6 @@ IMPLEMENTATION(Asterisk, '*')
 @end
 
 @implementation SourceNodeCPreprocessorCondition
-
-+ (id) allocWithZone:(NSZone*)zone
-{
-    if(self == [SourceNodeCPreprocessorCondition class])
-        [NSException raise:NSInternalInconsistencyException format:@"SourceNodeCPreprocessorCondition is an abstract class"];
-    
-    return [super allocWithZone:zone];
-}
 
 + (NSUInteger) isMatchingSuffix:(const unichar*)string maxLength:(NSUInteger)maxLength {
     {

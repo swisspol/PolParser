@@ -53,31 +53,38 @@ int main(int argc, const char* argv[]) {
         
         SourceNodeRoot* root = [SourceLanguage parseSourceFile:inFile encoding:NSUTF8StringEncoding syntaxAnalysis:YES];
         if(root) {
-            if(!optionScript || RunJavaScriptOnRootNode(optionScript, root))
-            	result = 0;
-            
-            if(outFile) {
-                NSString* newPath = [[NSString stringWithUTF8String:argv[offset + 1]] stringByStandardizingPath];
-                if([root writeContentToFile:outFile encoding:NSUTF8StringEncoding]) {
-                    if(optionDiff) {
-                        NSTask* task = [[NSTask alloc] init];
-                        [task setLaunchPath:@"/usr/bin/opendiff"];
-                        [task setArguments:[NSArray arrayWithObjects:inFile, newPath, nil]];
-                        @try {
-                            [task launch];
+            if(optionScript) {
+            	if(RunJavaScriptOnRootNode(optionScript, root))
+                    result = 0;
+                else
+                	printf("Failed executing JavaScript\n");
+            } else {
+                result = 0;
+            }
+			
+            if(result == 0) {
+                if(outFile) {
+                    NSString* newPath = [[NSString stringWithUTF8String:argv[offset + 1]] stringByStandardizingPath];
+                    if([root writeContentToFile:outFile encoding:NSUTF8StringEncoding]) {
+                        if(optionDiff) {
+                            NSTask* task = [[NSTask alloc] init];
+                            [task setLaunchPath:@"/usr/bin/opendiff"];
+                            [task setArguments:[NSArray arrayWithObjects:inFile, newPath, nil]];
+                            @try {
+                                [task launch];
+                            }
+                            @catch(NSException* exception) {
+                                printf("Failed running %s\n", [[task launchPath] UTF8String]);
+                            }
+                            [task waitUntilExit];
+                            [task release];
                         }
-                        @catch(NSException* exception) {
-                            printf("Failed running %s\n", [[task launchPath] UTF8String]);
-                        }
-                        [task waitUntilExit];
-                        [task release];
+                    } else {
+                        printf("Failed writing source file to \"%s\"\n", [outFile UTF8String]);
                     }
                 } else {
-                	printf("Failed writing source file to \"%s\"\n", [outFile UTF8String]);
-                    result = 1;
+                    printf("%s\n", [[root fullDescription] UTF8String]);
                 }
-            } else {
-                printf("%s\n", [[root fullDescription] UTF8String]);
             }
         } else {
             printf("Failed parsing source file from \"%s\"\n", [inFile UTF8String]);

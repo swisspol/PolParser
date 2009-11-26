@@ -20,7 +20,23 @@
 
 #import "SourceParser_Internal.h"
 
-#define UNPROTECT_VALUES 1
+#define __MAIN_FUNCTION__ 1
+#define __UNPROTECT_VALUES__ 0
+
+#if __MAIN_FUNCTION__
+
+static NSString* _wrapperScript = @"\
+function __wrapper() {\
+	try {\
+		%@\
+    }\
+    catch(e) {\
+    	Log(\"[===== WARNING: JavaScript Exception while processing node =====]\");\
+        Log(this.description);\
+    }\
+}";
+
+#endif
 
 static JSClassRef _class = NULL;
 
@@ -57,7 +73,7 @@ static NSString* _ExceptionToString(JSContextRef context, JSValueRef exception) 
     return string;
 }
 
-#if UNPROTECT_VALUES
+#if __UNPROTECT_VALUES__
 
 static SourceNode* _NodeApplierFunction(SourceNode* node, void* context) {
     if(node.jsObject) {
@@ -136,6 +152,14 @@ static JSValueRef _GetPropertyNextSibling(JSContextRef ctx, JSObjectRef object, 
     return _JSObjectFromNode(node.lastChild, ctx);
 }
 
+static JSValueRef _GetPropertyDescription(JSContextRef ctx, JSObjectRef object, JSStringRef propertyName, JSValueRef* exception) {
+	SourceNode* node = JSObjectGetPrivate(object);
+    JSStringRef string = JSStringCreateWithCFString((CFStringRef)node.description);
+    JSValueRef value = JSValueMakeString(ctx, string);
+    JSStringRelease(string);
+    return value;
+}
+
 static JSStaticValue _staticValues[] = {
 	{"name", _GetPropertyName, NULL, kJSPropertyAttributeReadOnly | kJSPropertyAttributeDontDelete | kJSPropertyAttributeDontEnum},
     {"type", _GetPropertyType, NULL, kJSPropertyAttributeReadOnly | kJSPropertyAttributeDontDelete | kJSPropertyAttributeDontEnum},
@@ -146,6 +170,7 @@ static JSStaticValue _staticValues[] = {
     {"lastChild", _GetPropertyLastChild, NULL, kJSPropertyAttributeReadOnly | kJSPropertyAttributeDontDelete | kJSPropertyAttributeDontEnum},
     {"previousSibling", _GetPropertyPreviousSibling, NULL, kJSPropertyAttributeReadOnly | kJSPropertyAttributeDontDelete | kJSPropertyAttributeDontEnum},
     {"nextSibling", _GetPropertyNextSibling, NULL, kJSPropertyAttributeReadOnly | kJSPropertyAttributeDontDelete | kJSPropertyAttributeDontEnum},
+    {"description", _GetPropertyDescription, NULL, kJSPropertyAttributeReadOnly | kJSPropertyAttributeDontDelete | kJSPropertyAttributeDontEnum},
     {NULL, NULL, NULL, 0}
 };
 
@@ -166,7 +191,7 @@ static JSValueRef _CallFunctionRemoveFromParent(JSContextRef ctx, JSObjectRef fu
 	if(argumentCount == 0) {
     	SourceNode* node = JSObjectGetPrivate(thisObject);
         if(node.parent) {
-#if UNPROTECT_VALUES
+#if __UNPROTECT_VALUES__
             _NodeApplierFunction(node, (void*)ctx);
             [node applyFunctionOnChildren:_NodeApplierFunction context:(void*)ctx];
 #endif
@@ -208,7 +233,7 @@ static JSValueRef _CallFunctionRemoveChild(JSContextRef ctx, JSObjectRef functio
     	SourceNode* node = JSObjectGetPrivate(thisObject);
         NSUInteger index = JSValueToNumber(ctx, arguments[0], NULL);
         if(index < node.children.count) {
-#if UNPROTECT_VALUES
+#if __UNPROTECT_VALUES__
             _NodeApplierFunction([node.children objectAtIndex:index], (void*)ctx);
             [node applyFunctionOnChildren:_NodeApplierFunction context:(void*)ctx];
 #endif
@@ -251,7 +276,7 @@ static JSValueRef _CallFunctionReplaceWithNode(JSContextRef ctx, JSObjectRef fun
     	SourceNode* node = JSObjectGetPrivate(thisObject);
         if(node.parent) {
         	SourceNode* child = JSObjectGetPrivate(JSValueToObject(ctx, arguments[0], NULL));
-#if UNPROTECT_VALUES
+#if __UNPROTECT_VALUES__
         	_NodeApplierFunction(node, (void*)ctx);
         	[node applyFunctionOnChildren:_NodeApplierFunction context:(void*)ctx];
 #endif
@@ -294,10 +319,14 @@ static SourceNode* _JavaScriptFunctionApplier(SourceNode* node, void* context) {
     void* recursive = params[2];
     JSValueRef exception = NULL;
     JSObjectCallAsFunction(ctx, object, _JSObjectFromNode(node, ctx), 0, NULL, &exception);
+#if !__MAIN_FUNCTION__
     if(exception)
     	printf("<JavaScript Exception: %s>\n", [_ExceptionToString(context, exception) UTF8String]);
+#endif
     return recursive ? node : nil;
 }
+
+#if !__MAIN_FUNCTION__
 
 static JSValueRef _CallFunctionApplyFunctionOnChildren(JSContextRef ctx, JSObjectRef function, JSObjectRef thisObject, size_t argumentCount, const JSValueRef arguments[], JSValueRef* exception) {
 	if(((argumentCount == 1) || (argumentCount == 2)) && JSValueIsObject(ctx, arguments[0]) && ((argumentCount == 1) || JSValueIsBoolean(ctx, arguments[1]))) {
@@ -305,13 +334,15 @@ static JSValueRef _CallFunctionApplyFunctionOnChildren(JSContextRef ctx, JSObjec
         void* params[3];
         params[0] = (void*)ctx;
         params[1] = (void*)arguments[0];
-        params[2] = (argumentCount == 2) && !JSValueToBoolean(ctx, arguments[1]) ? NULL : (void*)ctx;
+        params[2] = (argumentCount == 2) && JSValueToBoolean(ctx, arguments[1]) ? (void*)ctx : NULL;
         [node applyFunctionOnChildren:_JavaScriptFunctionApplier context:params];
         return JSValueMakeUndefined(ctx);
     }
     *exception = _MakeException(ctx, @"Invalid argument(s)");
     return NULL;
 }
+
+#endif
 
 static JSStaticFunction _staticFunctions[] = {
 	{"addChild", _CallFunctionAddChild, kJSPropertyAttributeReadOnly | kJSPropertyAttributeDontDelete | kJSPropertyAttributeDontEnum},
@@ -324,7 +355,9 @@ static JSStaticFunction _staticFunctions[] = {
     {"replaceWithNode", _CallFunctionReplaceWithNode, kJSPropertyAttributeReadOnly | kJSPropertyAttributeDontDelete | kJSPropertyAttributeDontEnum},
     {"findPreviousSibling", _CallFunctionFindPreviousSibling, kJSPropertyAttributeReadOnly | kJSPropertyAttributeDontDelete | kJSPropertyAttributeDontEnum},
     {"findNextSibling", _CallFunctionFindNextSibling, kJSPropertyAttributeReadOnly | kJSPropertyAttributeDontDelete | kJSPropertyAttributeDontEnum},
+#if !__MAIN_FUNCTION__
     {"applyFunctionOnChildren", _CallFunctionApplyFunctionOnChildren, kJSPropertyAttributeReadOnly | kJSPropertyAttributeDontDelete | kJSPropertyAttributeDontEnum},
+#endif
     {NULL, NULL, 0}
 };
 
@@ -417,7 +450,7 @@ BOOL RunJavaScriptOnRootNode(NSString* script, SourceNode* root) {
         if(_class) {
             JSGlobalContextRef context = JSGlobalContextCreate(NULL);
             if(context) {
-                JSStringRef jsScript = JSStringCreateWithCFString((CFStringRef)script);
+                JSStringRef jsScript = JSStringCreateWithCFString((CFStringRef)[NSString stringWithFormat:_wrapperScript, script]);
                 if(jsScript) {
                     JSStringRef jsString;
                     
@@ -425,18 +458,21 @@ BOOL RunJavaScriptOnRootNode(NSString* script, SourceNode* root) {
                     JSObjectSetProperty(context, JSContextGetGlobalObject(context), jsString, JSObjectMakeFunctionWithCallback(context, NULL, _LogFunction), kJSPropertyAttributeReadOnly | kJSPropertyAttributeDontDelete, NULL);
                     JSStringRelease(jsString);
                     
+                    JSObjectRef jsNode = JSObjectMakeConstructor(context, _class, _CallAsConstructorCallback);
 					jsString = JSStringCreateWithCFString(CFSTR("Node"));
-                    JSObjectSetProperty(context, JSContextGetGlobalObject(context), jsString, JSObjectMakeConstructor(context, _class, _CallAsConstructorCallback), kJSPropertyAttributeReadOnly | kJSPropertyAttributeDontDelete, NULL);
+                    JSObjectSetProperty(context, JSContextGetGlobalObject(context), jsString, jsNode, kJSPropertyAttributeReadOnly | kJSPropertyAttributeDontDelete, NULL);
                     JSStringRelease(jsString);
                     
+#if !__MAIN_FUNCTION__
                     jsString = JSStringCreateWithCFString(CFSTR("_root"));
                     JSObjectSetProperty(context, JSContextGetGlobalObject(context), jsString, _JSObjectFromNode(root, context), kJSPropertyAttributeReadOnly | kJSPropertyAttributeDontDelete, NULL);
                     JSStringRelease(jsString);
+#endif
                     
                     for(SourceLanguage* language in [SourceLanguage allLanguages]) {
                     	for(Class nodeClass in language.nodeClasses) {
-                        	jsString = JSStringCreateWithCFString((CFStringRef)[NSString stringWithFormat:@"kType%@", [nodeClass name]]);
-                            JSObjectSetProperty(context, JSContextGetGlobalObject(context), jsString, JSValueMakeNumber(context, (double)(long)nodeClass), kJSPropertyAttributeReadOnly | kJSPropertyAttributeDontDelete, NULL);
+                        	jsString = JSStringCreateWithCFString((CFStringRef)[NSString stringWithFormat:@"TYPE_%@", [[nodeClass name] uppercaseString]]);
+                            JSObjectSetProperty(context, jsNode, jsString, JSValueMakeNumber(context, (double)(long)nodeClass), kJSPropertyAttributeReadOnly | kJSPropertyAttributeDontDelete, NULL);
                             JSStringRelease(jsString);
                         }
                     }
@@ -448,7 +484,25 @@ BOOL RunJavaScriptOnRootNode(NSString* script, SourceNode* root) {
                     else
                     	success = YES;
                     
-#if UNPROTECT_VALUES
+#if __MAIN_FUNCTION__
+					if(success) {
+                    	jsString = JSStringCreateWithCFString(CFSTR("__wrapper"));
+                        JSObjectRef function = JSValueToObject(context, JSObjectGetProperty(context, JSContextGetGlobalObject(context), jsString, NULL), NULL);
+                        JSStringRelease(jsString);
+                        if(function && JSValueIsObject(context, function)) {
+                            void* params[3];
+                            params[0] = (void*)context;
+                            params[1] = (void*)function;
+                            params[2] = (void*)context;
+                            _JavaScriptFunctionApplier(root, params);
+                            [root applyFunctionOnChildren:_JavaScriptFunctionApplier context:params];
+                        } else {
+                        	success = NO;
+                        }
+                    }
+#endif
+                    
+#if __UNPROTECT_VALUES__
                     _NodeApplierFunction(root, (void*)context);
                     [root applyFunctionOnChildren:_NodeApplierFunction context:(void*)context];
 #endif

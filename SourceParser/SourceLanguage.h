@@ -18,20 +18,31 @@
 
 #import "SourceNode.h"
 
+/* IMPORTANT REQUIREMENTS:
+- The source must have Unix line-endings
+- The source is assumed to compile
+*/
+
 @class SourceNodeRoot;
 
 /* Abstract class: do not instantiate */
-@interface SourceLanguage : NSObject
+@interface SourceLanguage : NSObject {
+@private
+	NSMutableSet* _keywords;
+	NSMutableArray* _nodeClasses;
+    NSMutableSet* _topLevelClasses;
+}
 + (NSSet*) allLanguages;
-+ (SourceLanguage*) languageForName:(NSString*)name;
++ (SourceLanguage*) languageWithName:(NSString*)name;
 + (SourceLanguage*) defaultLanguageForFileExtension:(NSString*)extension;
 + (SourceNodeRoot*) parseSourceFile:(NSString*)path encoding:(NSStringEncoding)encoding syntaxAnalysis:(BOOL)syntaxAnalysis;
 
 @property(nonatomic, readonly) NSString* name;
 @property(nonatomic, readonly) NSSet* fileExtensions;
+@property(nonatomic, readonly) NSSet* reservedKeywords;
 @property(nonatomic, readonly) NSArray* nodeClasses;
 
-- (SourceNodeRoot*) parseSourceString:(NSString*)source syntaxAnalysis:(BOOL)syntaxAnalysis; //Expects Unix line-endings
+- (SourceNodeRoot*) parseSourceString:(NSString*)source syntaxAnalysis:(BOOL)syntaxAnalysis;
 @end
 
 @interface SourceNodeRoot : SourceNode {

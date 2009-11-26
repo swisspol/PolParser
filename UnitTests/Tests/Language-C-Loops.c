@@ -1,5 +1,5 @@
 for(int i = foo; i < bar; ++i)
-    printf("%i", i);
+    printf("Counter = \"%i\"", i);
 
 for(;; ++i) {
     printf("%i", i);
@@ -21,9 +21,11 @@ do {
 ·  ·  ♢for♢
 ·  ·  <Parenthesis>
 ·  ·  ·  ♢(♢int♢•♢i♢•♢=♢•♢foo♢|;|♢•♢i♢•♢<♢•♢bar♢|;|♢•♢++i♢)♢
-·  ·  ♢¶♢••••♢printf♢
-·  ·  <Parenthesis>
-·  ·  ·  ♢(♢|"%i"|♢,♢•♢i♢)♢
+·  ·  ♢¶♢••••♢
+·  ·  <CFunctionCall>
+·  ·  ·  ♢printf♢
+·  ·  ·  <Parenthesis>
+·  ·  ·  ·  ♢(♢|"Counter•=•\"%i\""|♢,♢•♢i♢)♢
 ·  ·  ♢|;|♢
 ·  ♢¶♢¶♢
 ·  <CFlowFor>
@@ -32,9 +34,11 @@ do {
 ·  ·  ·  ♢(♢|;|♢|;|♢•♢++i♢)♢
 ·  ·  ♢•♢
 ·  ·  <Braces>
-·  ·  ·  ♢{♢¶♢••••♢printf♢
-·  ·  ·  <Parenthesis>
-·  ·  ·  ·  ♢(♢|"%i"|♢,♢•♢i♢)♢
+·  ·  ·  ♢{♢¶♢••••♢
+·  ·  ·  <CFunctionCall>
+·  ·  ·  ·  ♢printf♢
+·  ·  ·  ·  <Parenthesis>
+·  ·  ·  ·  ·  ♢(♢|"%i"|♢,♢•♢i♢)♢
 ·  ·  ·  ♢|;|♢¶♢••••♢|continue|♢|;|♢¶♢}♢
 ·  ♢¶♢¶♢
 ·  <CFlowWhile>

@@ -16,7 +16,7 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#import "SourceLanguage_C.h"
+#import "SourceLanguage.h"
 
 @interface SourceNodeCPPComment : SourceNode //Leaf
 @end

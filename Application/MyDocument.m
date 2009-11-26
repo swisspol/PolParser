@@ -186,13 +186,14 @@ static void _FindUsedClasses(SourceNode* node, NSMutableSet* set) {
     [_pathControl setObjectValue:@"/"];
 }
 
-static void _NodeApplierFunction(SourceNode* node, void* context) {
+static SourceNode* _NodeApplierFunction(SourceNode* node, void* context) {
     void** params = (void**)context;
     NSUInteger index = (NSUInteger)params[0];
     if((index >= node.range.location) && (index < node.range.location + node.range.length)) {
         SourceNode** nodePtr = params[1];
         *nodePtr = node;
     }
+    return node;
 }
 
 - (void) mouseMoved:(NSEvent*)theEvent {
@@ -206,7 +207,7 @@ static void _NodeApplierFunction(SourceNode* node, void* context) {
     SourceNode* node = _sourceRoot;
     params[0] = (void*)index;
     params[1] = &node;
-    [_sourceRoot applyFunctionOnChildren:_NodeApplierFunction context:params recursively:YES];
+    [_sourceRoot applyFunctionOnChildren:_NodeApplierFunction context:params];
     //_lastRange = node.range;
     NSMutableString* path = [NSMutableString string];
     while(node) {

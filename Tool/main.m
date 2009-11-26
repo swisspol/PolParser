@@ -90,8 +90,9 @@ static void _ProcessNode(SourceNode* node) {
 
 #if !NS_BLOCKS_AVAILABLE
 
-static void _ApplierFunction(SourceNode* node, void* context) {
+static SourceNode* _ApplierFunction(SourceNode* node, void* context) {
     _ProcessNode(node);
+    return node;
 }
 
 #endif
@@ -119,9 +120,10 @@ int main(int argc, const char* argv[]) {
 #if NS_BLOCKS_AVAILABLE
                 [root enumerateChildrenRecursively:YES usingBlock:^(SourceNode* node) {
                     _ProcessNode(node);
+                    return node;
                 }];
 #else
-                [root applyFunctionOnChildren:_ApplierFunction context:NULL recursively:YES];
+                [root applyFunctionOnChildren:_ApplierFunction context:NULL];
 #endif
             
             printf("%s\n", [[root fullDescription] UTF8String]);

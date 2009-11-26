@@ -16,7 +16,7 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#import "SourceLanguage_Base.h"
+#import "SourceLanguage.h"
 
 @interface SourceNodeColon : SourceNode //Leaf
 @end
@@ -173,11 +173,20 @@
 @interface SourceNodeCTypeExtern : SourceNode //Leaf
 @end
 
-@interface SourceNodeCTypeSizeOf : SourceNode
+@interface SourceNodeCTypeInline : SourceNode //Leaf
+@end
+
+@interface SourceNodeCSizeOf : SourceNode
+@end
+
+@interface SourceNodeCTypeOf : SourceNode
 @end
 
 @interface SourceNodeCFunctionPrototype : SourceNode
 @end
 
 @interface SourceNodeCFunctionDefinition : SourceNode
+@end
+
+@interface SourceNodeCFunctionCall : SourceNode
 @end

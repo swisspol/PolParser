@@ -20,6 +20,84 @@
 
 @implementation SourceLanguageC
 
++ (NSArray*) languageDependencies {
+	return [NSArray arrayWithObject:@"Base"];
+}
+
++ (NSSet*) languageReservedKeywords {
+	return [NSSet setWithObjects:@"auto", @"break", @"case", @"char", @"const", @"continue", @"default", @"do", @"double",
+    	@"else", @"enum", @"extern", @"float", @"for", @"goto", @"if", @"int", @"long", @"register", @"return", @"short", @"signed",
+        @"sizeof", @"static", @"struct", @"switch", @"typedef", @"union", @"unsigned", @"void", @"volatile", @"while", nil];
+}
+
++ (NSArray*) languageNodeClasses {
+	NSMutableArray* classes = [NSMutableArray array];
+    
+    [classes addObject:[SourceNodeCComment class]];
+    [classes addObject:[SourceNodeCPreprocessorConditionIf class]];
+    [classes addObject:[SourceNodeCPreprocessorConditionIfdef class]];
+    [classes addObject:[SourceNodeCPreprocessorConditionIfndef class]];
+    [classes addObject:[SourceNodeCPreprocessorConditionElse class]];
+    [classes addObject:[SourceNodeCPreprocessorConditionElseif class]];
+    [classes addObject:[SourceNodeCPreprocessorDefine class]];
+    [classes addObject:[SourceNodeCPreprocessorUndefine class]];
+    [classes addObject:[SourceNodeCPreprocessorPragma class]];
+    [classes addObject:[SourceNodeCPreprocessorWarning class]];
+    [classes addObject:[SourceNodeCPreprocessorError class]];
+    [classes addObject:[SourceNodeCPreprocessorInclude class]];
+    [classes addObject:[SourceNodeColon class]];
+    [classes addObject:[SourceNodeSemicolon class]];
+    [classes addObject:[SourceNodeQuestionMark class]];
+    [classes addObject:[SourceNodeExclamationMark class]];
+    [classes addObject:[SourceNodeTilda class]];
+    [classes addObject:[SourceNodeCaret class]];
+    [classes addObject:[SourceNodeAmpersand class]];
+    [classes addObject:[SourceNodeAsterisk class]];
+    [classes addObject:[SourceNodeCNULL class]];
+    [classes addObject:[SourceNodeCVoid class]];
+    [classes addObject:[SourceNodeCStringSingleQuote class]];
+    [classes addObject:[SourceNodeCStringDoubleQuote class]];
+    [classes addObject:[SourceNodeCConditionalOperator class]];
+    [classes addObject:[SourceNodeCConditionIf class]];
+    [classes addObject:[SourceNodeCConditionElse class]];
+    [classes addObject:[SourceNodeCConditionElseIf class]];
+    [classes addObject:[SourceNodeCFlowBreak class]];
+    [classes addObject:[SourceNodeCFlowContinue class]];
+    [classes addObject:[SourceNodeCFlowSwitch class]];
+    [classes addObject:[SourceNodeCFlowCase class]];
+    [classes addObject:[SourceNodeCFlowDefault class]];
+    [classes addObject:[SourceNodeCFlowFor class]];
+    [classes addObject:[SourceNodeCFlowDoWhile class]];
+    [classes addObject:[SourceNodeCFlowWhile class]];
+    [classes addObject:[SourceNodeCFlowGoto class]];
+    [classes addObject:[SourceNodeCFlowLabel class]];
+    [classes addObject:[SourceNodeCFlowReturn class]];
+    [classes addObject:[SourceNodeCTypedef class]];
+    [classes addObject:[SourceNodeCTypeStruct class]];
+    [classes addObject:[SourceNodeCTypeUnion class]];
+    [classes addObject:[SourceNodeCTypeAuto class]];
+    [classes addObject:[SourceNodeCTypeStatic class]];
+    [classes addObject:[SourceNodeCTypeRegister class]];
+    [classes addObject:[SourceNodeCTypeVolatile class]];
+    [classes addObject:[SourceNodeCTypeConst class]];
+    [classes addObject:[SourceNodeCTypeEnum class]];
+    [classes addObject:[SourceNodeCTypeExtern class]];
+    [classes addObject:[SourceNodeCTypeInline class]];
+    [classes addObject:[SourceNodeCSizeOf class]];
+    [classes addObject:[SourceNodeCTypeOf class]];
+    
+    [classes addObject:[SourceNodeCFunctionPrototype class]];
+    [classes addObject:[SourceNodeCFunctionDefinition class]];
+    [classes addObject:[SourceNodeCFunctionCall class]];
+    
+    return classes;
+}
+
++ (NSSet*) languageTopLevelNodeClasses {
+	return [NSSet setWithObjects:[SourceNodeCPreprocessorConditionIf class], [SourceNodeCPreprocessorConditionIfdef class],
+    	[SourceNodeCPreprocessorConditionIfndef class], [SourceNodeCPreprocessorConditionElse class], [SourceNodeCPreprocessorConditionElseif class], nil];
+}
+
 - (NSString*) name {
     return @"C";
 }
@@ -28,82 +106,38 @@
     return [NSSet setWithObject:@"c"];
 }
 
-- (NSArray*) nodeClasses {
-    static NSMutableArray* classes = nil;
-    if(classes == nil) {
-        classes = [[NSMutableArray alloc] init];
-        [classes addObjectsFromArray:[super nodeClasses]];
-        
-        [classes addObject:[SourceNodeCComment class]];
-        [classes addObject:[SourceNodeCPreprocessorConditionIf class]];
-        [classes addObject:[SourceNodeCPreprocessorConditionIfdef class]];
-        [classes addObject:[SourceNodeCPreprocessorConditionIfndef class]];
-        [classes addObject:[SourceNodeCPreprocessorConditionElse class]];
-        [classes addObject:[SourceNodeCPreprocessorConditionElseif class]];
-        [classes addObject:[SourceNodeCPreprocessorDefine class]];
-        [classes addObject:[SourceNodeCPreprocessorUndefine class]];
-        [classes addObject:[SourceNodeCPreprocessorPragma class]];
-        [classes addObject:[SourceNodeCPreprocessorWarning class]];
-        [classes addObject:[SourceNodeCPreprocessorError class]];
-        [classes addObject:[SourceNodeCPreprocessorInclude class]];
-        [classes addObject:[SourceNodeColon class]];
-        [classes addObject:[SourceNodeSemicolon class]];
-        [classes addObject:[SourceNodeQuestionMark class]];
-        [classes addObject:[SourceNodeExclamationMark class]];
-        [classes addObject:[SourceNodeTilda class]];
-        [classes addObject:[SourceNodeCaret class]];
-        [classes addObject:[SourceNodeAmpersand class]];
-        [classes addObject:[SourceNodeAsterisk class]];
-        [classes addObject:[SourceNodeCNULL class]];
-        [classes addObject:[SourceNodeCVoid class]];
-        [classes addObject:[SourceNodeCStringSingleQuote class]];
-        [classes addObject:[SourceNodeCStringDoubleQuote class]];
-        [classes addObject:[SourceNodeCConditionalOperator class]];
-        [classes addObject:[SourceNodeCConditionIf class]];
-        [classes addObject:[SourceNodeCConditionElse class]];
-        [classes addObject:[SourceNodeCConditionElseIf class]];
-        [classes addObject:[SourceNodeCFlowBreak class]];
-        [classes addObject:[SourceNodeCFlowContinue class]];
-        [classes addObject:[SourceNodeCFlowSwitch class]];
-        [classes addObject:[SourceNodeCFlowCase class]];
-        [classes addObject:[SourceNodeCFlowDefault class]];
-        [classes addObject:[SourceNodeCFlowFor class]];
-        [classes addObject:[SourceNodeCFlowDoWhile class]];
-        [classes addObject:[SourceNodeCFlowWhile class]];
-        [classes addObject:[SourceNodeCFlowGoto class]];
-        [classes addObject:[SourceNodeCFlowLabel class]];
-        [classes addObject:[SourceNodeCFlowReturn class]];
-        [classes addObject:[SourceNodeCTypedef class]];
-        [classes addObject:[SourceNodeCTypeStruct class]];
-        [classes addObject:[SourceNodeCTypeUnion class]];
-        [classes addObject:[SourceNodeCTypeAuto class]];
-        [classes addObject:[SourceNodeCTypeStatic class]];
-        [classes addObject:[SourceNodeCTypeRegister class]];
-        [classes addObject:[SourceNodeCTypeVolatile class]];
-        [classes addObject:[SourceNodeCTypeConst class]];
-        [classes addObject:[SourceNodeCTypeEnum class]];
-        [classes addObject:[SourceNodeCTypeExtern class]];
-        [classes addObject:[SourceNodeCTypeSizeOf class]];
-        
-        [classes addObject:[SourceNodeCFunctionPrototype class]];
-        [classes addObject:[SourceNodeCFunctionDefinition class]];
+static inline BOOL _IsNodeInBlock(SourceNode* node) {
+    while(node.parent) {
+    	if([node isKindOfClass:[SourceNodeParenthesis class]] || [node isKindOfClass:[SourceNodeBrackets class]] || [node isKindOfClass:[SourceNodeBraces class]])
+        	return YES;
+    	node = node.parent;
     }
-    return classes;
-}
-
-- (BOOL) nodeHasRootParent:(SourceNode*)node {
-    if(node.parent && (node.parent.parent == nil))
-        return YES;
     
-    return [node.parent isKindOfClass:[SourceNodeCPreprocessorCondition class]] ? [self nodeHasRootParent:node.parent] : NO;
+    return NO;
 }
 
-- (BOOL) nodeIsStatementDelimiter:(SourceNode*)node {
-    return node.children.count || [node isKindOfClass:[SourceNodeSemicolon class]] || [node isKindOfClass:[SourceNodeCComment class]];
+static inline BOOL _IsIdentifier(const unichar* buffer, NSUInteger length) {
+	for(NSUInteger i = 0; i < length; ++i) {
+    	if(!((buffer[i] >= 'a') && (buffer[i] <= 'z'))
+        	&& !((buffer[i] >= 'A') && (buffer[i] <= 'Z'))
+            && !(i && (buffer[i] >= '0') && (buffer[i] <= '9'))
+        	&& (buffer[i] != '_'))
+        	return NO;
+    }
+    return YES;
 }
 
-- (void) performSyntaxAnalysisForNode:(SourceNode*)node {
-    [super performSyntaxAnalysisForNode:node];
+static inline BOOL _IsNodeAtTopLevel(SourceNode* node, NSSet* topLevelClasses) {
+	while(node.parent) {
+    	if(![topLevelClasses containsObject:[node.parent class]])
+        	return NO;
+    	node = node.parent;
+    }
+    
+    return YES;
+}
+
+- (SourceNode*) performSyntaxAnalysisForNode:(SourceNode*)node sourceBuffer:(const unichar*)sourceBuffer topLevelNodeClasses:(NSSet*)nodeClasses {
     
     if([node isKindOfClass:[SourceNodeBraces class]]) {
         SourceNode* previousNode = [node findPreviousSiblingIgnoringWhitespaceAndNewline];
@@ -293,45 +327,56 @@
         if(semicolonNode)
             _RearrangeNodesAsChildren(node, semicolonNode);
         
-    } else if([node isKindOfClass:[SourceNodeCTypeSizeOf class]]) {
+    } else if([node isKindOfClass:[SourceNodeCSizeOf class]] || [node isKindOfClass:[SourceNodeCTypeOf class]]) {
         
-        // "sizeof()"
+        // "sizeof()" "typeof()"
         SourceNode* nextNode = [node findNextSiblingIgnoringWhitespaceAndNewline];
         if([nextNode isKindOfClass:[SourceNodeParenthesis class]])
             _RearrangeNodesAsChildren(node, nextNode);
         
-    } else if([node isKindOfClass:[SourceNodeParenthesis class]] && [self nodeHasRootParent:node]) {
+    } else if([node isKindOfClass:[SourceNodeParenthesis class]]) {
         
         // "foo bar()" "foo bar() {}"
-        SourceNode* nextNode = [node findNextSiblingIgnoringWhitespaceAndNewline];
-        if([nextNode isKindOfClass:[SourceNodeSemicolon class]] || [nextNode isKindOfClass:[SourceNodeBraces class]]) {
-            SourceNode* previousNode = [node findPreviousSiblingIgnoringWhitespaceAndNewline];
-            if([previousNode isKindOfClass:[SourceNodeText class]]) {
-                previousNode = previousNode.previousSibling;
-                while(previousNode && ![self nodeIsStatementDelimiter:previousNode]) {
-                    previousNode = previousNode.previousSibling;
-                }
-                if(previousNode == nil) {
-                    previousNode = node.parent.firstChild;
-                    if([previousNode isKindOfClass:[SourceNodeWhitespace class]] || [previousNode isKindOfClass:[SourceNodeNewline class]])
-                        previousNode = [previousNode findNextSiblingIgnoringWhitespaceAndNewline];
-                }
-                else {
-                    previousNode = [previousNode findNextSiblingIgnoringWhitespaceAndNewline];
+        if(_IsNodeAtTopLevel(node, nodeClasses)) {
+            SourceNode* nextNode = [node findNextSiblingIgnoringWhitespaceAndNewline];
+            if([nextNode isKindOfClass:[SourceNodeSemicolon class]] || [nextNode isKindOfClass:[SourceNodeBraces class]]) {
+                SourceNode* previousNode = [node findPreviousSiblingIgnoringWhitespaceAndNewline];
+                if([previousNode isKindOfClass:[SourceNodeText class]] && ![[self reservedKeywords] containsObject:[previousNode.source substringWithRange:previousNode.range]]) {
+                    NSUInteger count = 0;
+                    while(1) {
+                    	SourceNode* siblingNode = [previousNode findPreviousSiblingIgnoringWhitespaceAndNewline];
+                        if(!((count == 0) && [siblingNode isKindOfClass:[SourceNodeText class]]) && ![siblingNode isKindOfClass:[SourceNodeAsterisk class]] && ![siblingNode isKindOfClass:[SourceNodeCVoid class]]
+                        	&& ![siblingNode isKindOfClass:[SourceNodeCTypeStatic class]] && ![siblingNode isKindOfClass:[SourceNodeCTypeExtern class]] && ![siblingNode isKindOfClass:[SourceNodeCTypeInline class]])
+                        	break;
+                        if(![siblingNode isKindOfClass:[SourceNodeAsterisk class]])
+                        	++count;
+                        previousNode = siblingNode;
+                    }
+                    SourceNode* newNode = [([nextNode isKindOfClass:[SourceNodeBraces class]] ? [SourceNodeCFunctionDefinition alloc] : [SourceNodeCFunctionPrototype alloc]) initWithSource:previousNode.source range:NSMakeRange(previousNode.range.location, 0)];
+                    [previousNode insertPreviousSibling:newNode];
+                    [newNode release];
+                    _RearrangeNodesAsChildren(newNode, nextNode);
                 }
                 
-                SourceNode* newNode = [([nextNode isKindOfClass:[SourceNodeBraces class]] ? [SourceNodeCFunctionDefinition alloc] : [SourceNodeCFunctionPrototype alloc]) initWithSource:previousNode.source range:NSMakeRange(previousNode.range.location, 0)];
+            }
+        }
+        
+        else if(![node.parent isKindOfClass:[SourceNodeCFunctionDefinition class]] && ![node.parent isKindOfClass:[SourceNodeCFunctionCall class]] && ![node.parent isKindOfClass:[SourceNodeCPreprocessorDefine class]] && _IsNodeInBlock(node)) {
+            SourceNode* previousNode = [node findPreviousSiblingIgnoringWhitespaceAndNewline];
+            if([previousNode isKindOfClass:[SourceNodeText class]] && _IsIdentifier(sourceBuffer + previousNode.range.location, previousNode.range.length) && ![[self reservedKeywords] containsObject:[previousNode.source substringWithRange:previousNode.range]]) {
+            	SourceNode* newNode = [[SourceNodeCFunctionCall alloc] initWithSource:previousNode.source range:NSMakeRange(previousNode.range.location, 0)];
                 [previousNode insertPreviousSibling:newNode];
                 [newNode release];
-                _RearrangeNodesAsChildren(newNode, nextNode);
+                _RearrangeNodesAsChildren(newNode, node);
             }
             
         }
         
     }
     
-    //FIXME: Add support for function calls
     //FIXME: Add support for blocks
+    
+    return node;
 }
 
 @end
@@ -518,7 +563,9 @@ IMPLEMENTATION(TypeVolatile, @"volatile", true, false, 0)
 IMPLEMENTATION(TypeConst, @"const", true, false, 0)
 IMPLEMENTATION(TypeEnum, @"enum", true, false, '{')
 IMPLEMENTATION(TypeExtern, @"extern", true, false, 0)
-IMPLEMENTATION(TypeSizeOf, @"sizeof", true, false, '(')
+IMPLEMENTATION(TypeInline, @"inline", true, false, 0)
+IMPLEMENTATION(SizeOf, @"sizeof", true, false, '(')
+IMPLEMENTATION(TypeOf, @"sizeof", true, false, '(')
 
 #undef IMPLEMENTATION
 
@@ -535,4 +582,7 @@ IMPLEMENTATION(TypeSizeOf, @"sizeof", true, false, '(')
 @end
 
 @implementation SourceNodeCFunctionDefinition
+@end
+
+@implementation SourceNodeCFunctionCall
 @end

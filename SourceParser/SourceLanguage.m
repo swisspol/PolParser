@@ -67,7 +67,7 @@ static NSMutableSet* _languageCache = nil;
     return _languageCache;
 }
 
-+ (SourceLanguage*) languageForName:(NSString*)name {
++ (SourceLanguage*) languageWithName:(NSString*)name {
     for(SourceLanguage* language in _languageCache) {
         if([[language name] caseInsensitiveCompare:name] == NSOrderedSame)
             return language;
@@ -83,7 +83,7 @@ static NSMutableSet* _languageCache = nil;
             break;
     }
     if(language == nil) {
-        language = [SourceLanguage languageForName:@"Base"];
+        language = [SourceLanguage languageWithName:@"Base"];
         if(language == nil)
             [NSException raise:NSInternalInconsistencyException format:@"No language found for file extension \"%@\"", extension];
     }
@@ -99,6 +99,30 @@ static NSMutableSet* _languageCache = nil;
     return root;
 }
 
++ (NSArray*) languageDependencies {
+	return nil;
+}
+
++ (NSSet*) languageReservedKeywords {
+	return nil;
+}
+
++ (NSArray*) languageNodeClasses {
+	return [NSArray arrayWithObject:[SourceNodeText class]]; //Special-cased by parser
+}
+
++ (NSSet*) languageTopLevelNodeClasses {
+	return [NSSet setWithObject:[SourceNodeRoot class]]; //Special case
+}
+
+- (void) dealloc {
+	[_keywords release];
+    [_nodeClasses release];
+    [_topLevelClasses release];
+    
+	[super dealloc];
+}
+
 - (NSString*) name {
     [self doesNotRecognizeSelector:_cmd];
     return nil;
@@ -109,13 +133,52 @@ static NSMutableSet* _languageCache = nil;
     return nil;
 }
 
-- (NSArray*) nodeClasses {
-    static NSMutableArray* classes = nil;
-    if(classes == nil) {
-        classes = [[NSMutableArray alloc] init];
-        [classes addObject:[SourceNodeText class]]; //Special-cased by parser
+- (NSArray*) _allLanguageDependencies {
+	NSMutableArray* array = [NSMutableArray array];
+    for(NSString* name in [[self class] languageDependencies])
+        [array addObject:[SourceLanguage languageWithName:name]];
+    [array addObject:self];
+    return array;
+}
+
+- (NSSet*) reservedKeywords {
+	if(_keywords == nil) {
+    	_keywords = [[NSMutableSet alloc] init];
+        for(SourceLanguage* language in [self _allLanguageDependencies]) {
+            [_keywords unionSet:[[language class] languageReservedKeywords]];
+        }
     }
-    return classes;
+    return _keywords;
+}
+
+- (NSArray*) nodeClasses {
+    if(_nodeClasses == nil) {
+        _nodeClasses = [[NSMutableArray alloc] init];
+        for(SourceLanguage* language in [self _allLanguageDependencies]) {
+            for(Class class in [[language class] languageNodeClasses]) {
+            	if(![_nodeClasses containsObject:class]) {
+                	NSUInteger index = _nodeClasses.count;
+                    for(Class patchedClass in [class patchedClasses]) {
+                    	NSUInteger patchedIndex = [_nodeClasses indexOfObject:patchedClass];
+                        if((patchedIndex != NSNotFound) && (patchedIndex < index))
+                        	index = patchedIndex;
+                    }
+                    [_nodeClasses insertObject:class atIndex:index];
+                }
+            }
+        }
+    }
+    return _nodeClasses;
+}
+
+- (NSSet*) topLevelNodeClasses {
+	if(_topLevelClasses == nil) {
+    	_topLevelClasses = [[NSMutableSet alloc] init];
+        for(SourceLanguage* language in [self _allLanguageDependencies]) {
+            [_topLevelClasses unionSet:[[language class] languageTopLevelNodeClasses]];
+        }
+    }
+    return _topLevelClasses;
 }
 
 static BOOL _CheckTreeConsistency(SourceNode* node, NSMutableArray* stack) {
@@ -144,8 +207,12 @@ static BOOL _CheckTreeConsistency(SourceNode* node, NSMutableArray* stack) {
     return YES;
 }
 
-static void _ApplierFunction(SourceNode* node, void* context) {
-    [(SourceLanguage*)context performSyntaxAnalysisForNode:node];
+static SourceNode* _ApplierFunction(SourceNode* node, void* context) {
+    void** params = (void**)context;
+    SourceLanguage* language = params[0];
+    const unichar* buffer = params[1];
+    NSSet* nodeClasses = params[2];
+    return [language performSyntaxAnalysisForNode:node sourceBuffer:buffer topLevelNodeClasses:nodeClasses];
 }
 
 - (SourceNodeRoot*) parseSourceString:(NSString*)source range:(NSRange)range buffer:(const unichar*)buffer syntaxAnalysis:(BOOL)syntaxAnalysis {
@@ -264,8 +331,20 @@ static void _ApplierFunction(SourceNode* node, void* context) {
     }
     
     if(syntaxAnalysis) {
-    	[self performSyntaxAnalysisForNode:rootNode];
-        [rootNode applyFunctionOnChildren:_ApplierFunction context:self recursively:YES];
+    	NSMutableArray* array = [NSMutableArray array];
+        for(NSString* name in [[self class] languageDependencies])
+            [array addObject:[SourceLanguage languageWithName:name]];
+        [array addObject:self];
+        for(SourceLanguage* language in array) {
+        	SourceNode* node = [language performSyntaxAnalysisForNode:rootNode sourceBuffer:buffer topLevelNodeClasses:self.topLevelNodeClasses];
+        	if(node) {
+                void* params[3];
+                params[0] = language;
+                params[1] = (void*)buffer;
+                params[2] = self.topLevelNodeClasses;
+                [node applyFunctionOnChildren:_ApplierFunction context:params];
+            }
+        }
     }
     
     if(!_CheckTreeConsistency(rootNode, stack)) {
@@ -293,8 +372,8 @@ static void _ApplierFunction(SourceNode* node, void* context) {
     return [root autorelease];
 }
 
-- (void) performSyntaxAnalysisForNode:(SourceNode*)node {
-    ;
+- (SourceNode*) performSyntaxAnalysisForNode:(SourceNode*)node sourceBuffer:(const unichar*)sourceBuffer topLevelNodeClasses:(NSSet*)nodeClasses {
+    return nil;
 }
 
 @end

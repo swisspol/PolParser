@@ -19,39 +19,49 @@ if(0) return NULL;
 ·  ·  ♢if♢
 ·  ·  <Parenthesis>
 ·  ·  ·  ♢(♢1♢)♢
-·  ·  ♢¶♢••••♢foo♢
-·  ·  <Parenthesis>
-·  ·  ·  ♢(♢)♢
+·  ·  ♢¶♢••••♢
+·  ·  <CFunctionCall>
+·  ·  ·  ♢foo♢
+·  ·  ·  <Parenthesis>
+·  ·  ·  ·  ♢(♢)♢
 ·  ·  ♢|;|♢
 ·  ♢¶♢
 ·  <CConditionElse>
-·  ·  ♢else♢¶♢••••♢bar♢
-·  ·  <Parenthesis>
-·  ·  ·  ♢(♢)♢
+·  ·  ♢else♢¶♢••••♢
+·  ·  <CFunctionCall>
+·  ·  ·  ♢bar♢
+·  ·  ·  <Parenthesis>
+·  ·  ·  ·  ♢(♢)♢
 ·  ·  ♢|;|♢
 ·  ♢¶♢¶♢
 ·  <CConditionIf>
 ·  ·  ♢if♢
 ·  ·  <Parenthesis>
 ·  ·  ·  ♢(♢1♢)♢
-·  ·  ♢¶♢••••♢foo♢
-·  ·  <Parenthesis>
-·  ·  ·  ♢(♢)♢
+·  ·  ♢¶♢••••♢
+·  ·  <CFunctionCall>
+·  ·  ·  ♢foo♢
+·  ·  ·  <Parenthesis>
+·  ·  ·  ·  ♢(♢)♢
 ·  ·  ♢|;|♢
 ·  ♢¶♢
 ·  <CConditionElseIf>
 ·  ·  ♢else♢•♢if♢
 ·  ·  <Parenthesis>
 ·  ·  ·  ♢(♢2♢)♢
-·  ·  ♢¶♢••••♢bar♢
-·  ·  <Parenthesis>
-·  ·  ·  ♢(♢)♢
+·  ·  ♢¶♢••••♢
+·  ·  <CFunctionCall>
+·  ·  ·  ♢bar♢
+·  ·  ·  <Parenthesis>
+·  ·  ·  ·  ♢(♢)♢
 ·  ·  ♢|;|♢
 ·  ♢¶♢
 ·  <CConditionElse>
-·  ·  ♢else♢¶♢••••♢temp♢
-·  ·  <Parenthesis>
-·  ·  ·  ♢(♢)♢
+·  ·  ♢else♢¶♢••••♢
+·  ·  <CFunctionCall>
+·  ·  ·  ♢temp♢
+·  ·  ·  <Parenthesis>
+·  ·  ·  ·  ♢(♢)♢
 ·  ·  ♢|;|♢
 ·  ♢¶♢¶♢
 ·  <CConditionIf>

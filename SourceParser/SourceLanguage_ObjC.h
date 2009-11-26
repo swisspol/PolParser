@@ -16,7 +16,7 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#import "SourceLanguage_C.h"
+#import "SourceLanguage.h"
 
 @interface SourceNodeObjCPreprocessorImport : SourceNodeCPreprocessor
 @end
@@ -88,4 +88,7 @@
 @end
 
 @interface SourceNodeObjCMethodImplementation : SourceNode
+@end
+
+@interface SourceNodeObjCMethodCall : SourceNode
 @end

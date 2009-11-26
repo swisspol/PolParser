@@ -19,9 +19,11 @@
 ·  <ObjCTry>
 ·  ·  ♢@try♢•♢
 ·  ·  <Braces>
-·  ·  ·  ♢{♢¶♢••••♢|@throw|♢|;|♢¶♢••••♢NSBeep♢
-·  ·  ·  <Parenthesis>
-·  ·  ·  ·  ♢(♢)♢
+·  ·  ·  ♢{♢¶♢••••♢|@throw|♢|;|♢¶♢••••♢
+·  ·  ·  <CFunctionCall>
+·  ·  ·  ·  ♢NSBeep♢
+·  ·  ·  ·  <Parenthesis>
+·  ·  ·  ·  ·  ♢(♢)♢
 ·  ·  ·  ♢|;|♢¶♢••••♢
 ·  ·  ·  <ObjCThrow>
 ·  ·  ·  ·  ♢@throw♢•♢foo♢|;|♢
@@ -41,16 +43,20 @@
 ·  ·  ·  ♢(♢NSException♢•♢|*|♢•♢e♢)♢
 ·  ·  ♢¶♢
 ·  ·  <Braces>
-·  ·  ·  ♢{♢¶♢••••♢NSLog♢
-·  ·  ·  <Parenthesis>
-·  ·  ·  ·  ♢(♢|@"%@"|♢,♢•♢e♢)♢
+·  ·  ·  ♢{♢¶♢••••♢
+·  ·  ·  <CFunctionCall>
+·  ·  ·  ·  ♢NSLog♢
+·  ·  ·  ·  <Parenthesis>
+·  ·  ·  ·  ·  ♢(♢|@"%@"|♢,♢•♢e♢)♢
 ·  ·  ·  ♢|;|♢¶♢}♢
 ·  ♢¶♢
 ·  <ObjCFinally>
 ·  ·  ♢@finally♢•♢
 ·  ·  <Braces>
-·  ·  ·  ♢{♢¶♢••••♢NSLog♢
-·  ·  ·  <Parenthesis>
-·  ·  ·  ·  ♢(♢|@"Done"|♢)♢
+·  ·  ·  ♢{♢¶♢••••♢
+·  ·  ·  <CFunctionCall>
+·  ·  ·  ·  ♢NSLog♢
+·  ·  ·  ·  <Parenthesis>
+·  ·  ·  ·  ·  ♢(♢|@"Done"|♢)♢
 ·  ·  ·  ♢|;|♢¶♢}♢
 ·  ♢¶♢¶♢

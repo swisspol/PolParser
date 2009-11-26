@@ -20,6 +20,19 @@
 
 @implementation SourceLanguageCPP
 
++ (NSArray*) languageDependencies {
+	return [NSArray arrayWithObjects:@"Base", @"C", nil];
+}
+
++ (NSArray*) languageNodeClasses {
+	NSMutableArray* classes = [NSMutableArray array];
+    
+    [classes addObject:[SourceNodeCPPComment class]];
+    [classes addObject:[SourceNodeCPPScopeOperator class]];
+    
+    return classes;
+}
+
 - (NSString*) name {
     return @"C++";
 }
@@ -28,27 +41,10 @@
     return [NSSet setWithObjects:@"cc", @"cp", @"cpp", nil];
 }
 
-- (NSArray*) nodeClasses {
-    static NSMutableArray* classes = nil;
-    if(classes == nil) {
-        classes = [[NSMutableArray alloc] init];
-        [classes addObjectsFromArray:[super nodeClasses]];
-        
-        [classes insertObject:[SourceNodeCPPScopeOperator class] atIndex:[classes indexOfObject:[SourceNodeColon class]]]; //Must be before colon
-        
-        [classes addObject:[SourceNodeCPPComment class]];
-    }
-    return classes;
-}
-
 - (SourceNodeRoot*) parseSourceString:(NSString*)source range:(NSRange)range buffer:(const unichar*)buffer syntaxAnalysis:(BOOL)syntaxAnalysis {
     NSLog(@"%@ parsing is not fully implemented", self.name);
     
     return [super parseSourceString:source range:range buffer:buffer syntaxAnalysis:syntaxAnalysis];
-}
-
-- (BOOL) nodeIsStatementDelimiter:(SourceNode*)node {
-    return [super nodeIsStatementDelimiter:node] || [node isKindOfClass:[SourceNodeCPPComment class]];
 }
 
 @end
@@ -80,6 +76,10 @@
 @end
 
 @implementation SourceNodeCPPScopeOperator
+
++ (NSArray*) patchedClasses {
+	return [NSArray arrayWithObject:[SourceNodeColon class]];
+}
 
 + (NSUInteger) isMatchingPrefix:(const unichar*)string maxLength:(NSUInteger)maxLength {
     return (maxLength >= 2) && (string[0] == ':') && (string[1] == ':') ? 2 : NSNotFound;

@@ -26,35 +26,45 @@ switch (arg) {
 ·  ·  <Braces>
 ·  ·  ·  ♢{♢¶♢••••♢
 ·  ·  ·  <CFlowCase>
-·  ·  ·  ·  ♢case♢•♢1♢|:|♢¶♢••••••••♢printf♢
-·  ·  ·  ·  <Parenthesis>
-·  ·  ·  ·  ·  ♢(♢|"1"|♢)♢
+·  ·  ·  ·  ♢case♢•♢1♢|:|♢¶♢••••••••♢
+·  ·  ·  ·  <CFunctionCall>
+·  ·  ·  ·  ·  ♢printf♢
+·  ·  ·  ·  ·  <Parenthesis>
+·  ·  ·  ·  ·  ·  ♢(♢|"1"|♢)♢
 ·  ·  ·  ·  ♢|;|♢¶♢••••••••♢|break|♢|;|♢
 ·  ·  ·  ♢¶♢••••♢
 ·  ·  ·  <CFlowCase>
 ·  ·  ·  ·  ♢case♢•♢2♢|:|♢¶♢••••♢
 ·  ·  ·  ♢
 ·  ·  ·  <CFlowCase>
-·  ·  ·  ·  ♢case♢•♢3♢|:|♢¶♢••••••••♢printf♢
-·  ·  ·  ·  <Parenthesis>
-·  ·  ·  ·  ·  ♢(♢|"2-3"|♢)♢
+·  ·  ·  ·  ♢case♢•♢3♢|:|♢¶♢••••••••♢
+·  ·  ·  ·  <CFunctionCall>
+·  ·  ·  ·  ·  ♢printf♢
+·  ·  ·  ·  ·  <Parenthesis>
+·  ·  ·  ·  ·  ·  ♢(♢|"2-3"|♢)♢
 ·  ·  ·  ·  ♢|;|♢¶♢••••••••♢|break|♢|;|♢
 ·  ·  ·  ♢¶♢••••♢
 ·  ·  ·  <CFlowCase>
-·  ·  ·  ·  ♢case♢•♢4♢|:|♢¶♢••••••••♢printf♢
-·  ·  ·  ·  <Parenthesis>
-·  ·  ·  ·  ·  ♢(♢|"4"|♢)♢
+·  ·  ·  ·  ♢case♢•♢4♢|:|♢¶♢••••••••♢
+·  ·  ·  ·  <CFunctionCall>
+·  ·  ·  ·  ·  ♢printf♢
+·  ·  ·  ·  ·  <Parenthesis>
+·  ·  ·  ·  ·  ·  ♢(♢|"4"|♢)♢
 ·  ·  ·  ·  ♢|;|♢¶♢••••••••♢|break|♢|;|♢
 ·  ·  ·  ♢¶♢••••♢
 ·  ·  ·  <CFlowCase>
-·  ·  ·  ·  ♢case♢•♢5♢|:|♢¶♢••••••••♢printf♢
-·  ·  ·  ·  <Parenthesis>
-·  ·  ·  ·  ·  ♢(♢|"5"|♢)♢
+·  ·  ·  ·  ♢case♢•♢5♢|:|♢¶♢••••••••♢
+·  ·  ·  ·  <CFunctionCall>
+·  ·  ·  ·  ·  ♢printf♢
+·  ·  ·  ·  ·  <Parenthesis>
+·  ·  ·  ·  ·  ·  ♢(♢|"5"|♢)♢
 ·  ·  ·  ·  ♢|;|♢¶♢••••♢
 ·  ·  ·  ♢
 ·  ·  ·  <CFlowDefault>
-·  ·  ·  ·  ♢default♢|:|♢¶♢••••••••♢printf♢
-·  ·  ·  ·  <Parenthesis>
-·  ·  ·  ·  ·  ♢(♢|"0"|♢)♢
+·  ·  ·  ·  ♢default♢|:|♢¶♢••••••••♢
+·  ·  ·  ·  <CFunctionCall>
+·  ·  ·  ·  ·  ♢printf♢
+·  ·  ·  ·  ·  <Parenthesis>
+·  ·  ·  ·  ·  ·  ♢(♢|"0"|♢)♢
 ·  ·  ·  ·  ♢|;|♢¶♢}♢
 ·  ♢¶♢¶♢

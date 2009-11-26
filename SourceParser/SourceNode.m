@@ -30,6 +30,10 @@
     return [super allocWithZone:zone];
 }
 
++ (NSArray*) patchedClasses {
+	return nil;
+}
+
 + (BOOL) isAtomic {
     return YES;
 }
@@ -240,12 +244,8 @@ static void _MergeChildrenContent(SourceNode* node, NSMutableString* string) {
     return nil;
 }
 
-#if NS_BLOCKS_AVAILABLE
-static void _ApplyBlock(SourceNode* node, NSUInteger revision, BOOL recursive, void (^block)(SourceNode* node))
-#else
-static void _ApplyFunction(SourceNode* node, NSUInteger revision, BOOL recursive, SourceNodeApplierFunction function, void* context)
-#endif
-{
+/* WARNING: Keep in sync with _ApplyBlock() */
+static void _ApplyFunction(SourceNode* node, NSUInteger revision, SourceNodeApplierFunction function, void* context) {
     NSUInteger count = node.children.count;
     SourceNode* nodes[count];
     [node.children getObjects:nodes];
@@ -253,36 +253,52 @@ static void _ApplyFunction(SourceNode* node, NSUInteger revision, BOOL recursive
     for(NSUInteger i = 0; i < count; ++i) {
         if(nodes[i].parent) {
         	if(nodes[i].revision != revision) {
-#if NS_BLOCKS_AVAILABLE
-                block(nodes[i]);
-#else
-                (*function)(nodes[i], context);
-#endif
-				nodes[i].revision = revision;
+                nodes[i].revision = revision;
+                nodes[i] = (*function)(nodes[i], context);
+				if(nodes[i] == nil)
+                	continue;
             }
-            if(recursive && nodes[i].parent && nodes[i].children)
-#if NS_BLOCKS_AVAILABLE
-				_ApplyBlock(nodes[i], revision, recursive, block);
-#else
-                _ApplyFunction(nodes[i], revision, recursive, function, context);        
-#endif
+            if(nodes[i].parent && nodes[i].children)
+                _ApplyFunction(nodes[i], revision, function, context);
         }
     }
 }
 
 static NSUInteger _globalRevision = 0;
 
-- (void) applyFunctionOnChildren:(SourceNodeApplierFunction)function context:(void*)context recursively:(BOOL)recursively {
+- (void) applyFunctionOnChildren:(SourceNodeApplierFunction)function context:(void*)context {
     NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
-    _ApplyFunction(self, ++_globalRevision, recursively, function, context);
+    if(_children)
+    	_ApplyFunction(self, ++_globalRevision, function, context);
     [pool drain];
 }
 
 #if NS_BLOCKS_AVAILABLE
 
-- (void) enumerateChildrenRecursively:(BOOL)recursively usingBlock:(void (^)(SourceNode* node))block {
+/* WARNING: Keep in sync with _ApplyFunction() */
+static void _ApplyBlock(SourceNode* node, NSUInteger revision, void (^block)(SourceNode* node)) {
+    NSUInteger count = node.children.count;
+    SourceNode* nodes[count];
+    [node.children getObjects:nodes];
+    
+    for(NSUInteger i = 0; i < count; ++i) {
+        if(nodes[i].parent) {
+        	if(nodes[i].revision != revision) {
+                nodes[i].revision = revision;
+                nodes[i] = block(nodes[i]);
+				if(nodes[i] == nil)
+                	continue;
+            }
+            if(nodes[i].parent && nodes[i].children)
+				_ApplyBlock(nodes[i], revision, block);
+        }
+    }
+}
+
+- (void) enumerateChildrenUsingBlock:(BOOL (^)(SourceNode* node))block {
     NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
-    _ApplyBlock(self, ++_globalRevision, recursively, block);
+    if(_children)
+    	_ApplyBlock(self, ++_globalRevision, block);
     [pool drain];
 }
 

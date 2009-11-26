@@ -20,50 +20,61 @@
 
 @implementation SourceLanguageObjC
 
++ (NSArray*) languageDependencies {
+	return [NSArray arrayWithObjects:@"Base", @"C", nil];
+}
+
++ (NSSet*) languageReservedKeywords {
+	return [NSSet setWithObjects:@"in", @"out", @"inout", @"bycopy", @"byref", @"oneway", @"@class", @"@selector", @"@protocol",
+    	@"@encode", @"@synchronized", @"@required", @"@optional", @"@property", @"@try", @"@throw", @"@catch", @"@finally",
+        @"@private", @"@protected", @"@public", @"@interface", @"@implementation", @"@protocol", @"@end", nil];
+}
+
++ (NSArray*) languageNodeClasses {
+	NSMutableArray* classes = [NSMutableArray array];
+    
+    [classes addObject:[SourceNodeCPPComment class]]; //From C++ language
+    
+    [classes addObject:[SourceNodeObjCString class]];
+    [classes addObject:[SourceNodeObjCPreprocessorImport class]];
+    [classes addObject:[SourceNodeObjCInterface class]];
+    [classes addObject:[SourceNodeObjCImplementation class]];
+    [classes addObject:[SourceNodeObjCProtocol class]];
+    [classes addObject:[SourceNodeObjCClass class]];
+    [classes addObject:[SourceNodeObjCPublic class]];
+    [classes addObject:[SourceNodeObjCProtected class]];
+    [classes addObject:[SourceNodeObjCPrivate class]];
+    [classes addObject:[SourceNodeObjCOptional class]];
+    [classes addObject:[SourceNodeObjCRequired class]];
+    [classes addObject:[SourceNodeObjCProperty class]];
+    [classes addObject:[SourceNodeObjCTry class]];
+    [classes addObject:[SourceNodeObjCCatch class]];
+    [classes addObject:[SourceNodeObjCFinally class]];
+    [classes addObject:[SourceNodeObjCThrow class]];
+    [classes addObject:[SourceNodeObjCSynchronized class]];
+    [classes addObject:[SourceNodeObjCSelector class]];
+    [classes addObject:[SourceNodeObjCEncode class]];
+    [classes addObject:[SourceNodeObjCSelf class]];
+    [classes addObject:[SourceNodeObjCSuper class]];
+    [classes addObject:[SourceNodeObjCNil class]];
+    
+    [classes addObject:[SourceNodeObjCMethodDeclaration class]];
+    [classes addObject:[SourceNodeObjCMethodImplementation class]];
+    [classes addObject:[SourceNodeObjCMethodCall class]];
+    
+    return classes;
+}
+
++ (NSSet*) languageTopLevelNodeClasses {
+	return [NSSet setWithObjects:[SourceNodeObjCInterface class], [SourceNodeObjCImplementation class], nil];
+}
+
 - (NSString*) name {
     return @"Obj-C";
 }
 
 - (NSSet*) fileExtensions {
     return [NSSet setWithObject:@"m"];
-}
-
-- (NSArray*) nodeClasses {
-    static NSMutableArray* classes = nil;
-    if(classes == nil) {
-        classes = [[NSMutableArray alloc] init];
-        [classes addObjectsFromArray:[super nodeClasses]];
-        
-        [classes addObject:[SourceNodeCPPComment class]]; //From C++ language
-        
-        [classes insertObject:[SourceNodeObjCString class] atIndex:[classes indexOfObject:[SourceNodeCStringSingleQuote class]]]; //Must be before single and double quote strings
-        
-        [classes addObject:[SourceNodeObjCPreprocessorImport class]];
-        [classes addObject:[SourceNodeObjCInterface class]];
-        [classes addObject:[SourceNodeObjCImplementation class]];
-        [classes addObject:[SourceNodeObjCProtocol class]];
-        [classes addObject:[SourceNodeObjCClass class]];
-        [classes addObject:[SourceNodeObjCPublic class]];
-        [classes addObject:[SourceNodeObjCProtected class]];
-        [classes addObject:[SourceNodeObjCPrivate class]];
-        [classes addObject:[SourceNodeObjCOptional class]];
-        [classes addObject:[SourceNodeObjCRequired class]];
-        [classes addObject:[SourceNodeObjCProperty class]];
-        [classes addObject:[SourceNodeObjCTry class]];
-        [classes addObject:[SourceNodeObjCCatch class]];
-        [classes addObject:[SourceNodeObjCFinally class]];
-        [classes addObject:[SourceNodeObjCThrow class]];
-        [classes addObject:[SourceNodeObjCSynchronized class]];
-        [classes addObject:[SourceNodeObjCSelector class]];
-        [classes addObject:[SourceNodeObjCEncode class]];
-        [classes addObject:[SourceNodeObjCSelf class]];
-        [classes addObject:[SourceNodeObjCSuper class]];
-        [classes addObject:[SourceNodeObjCNil class]];
-        
-        [classes addObject:[SourceNodeObjCMethodDeclaration class]];
-        [classes addObject:[SourceNodeObjCMethodImplementation class]];
-    }
-    return classes;
 }
 
 static BOOL _HasInterfaceOrProtocolParent(SourceNode* node) {
@@ -80,19 +91,13 @@ static BOOL _HasImplementationParent(SourceNode* node) {
     return [node.parent isKindOfClass:[SourceNodeCPreprocessorCondition class]] ? _HasImplementationParent(node.parent) : NO;
 }
 
-- (BOOL) nodeIsStatementDelimiter:(SourceNode*)node {
-    return [super nodeIsStatementDelimiter:node] || [node isKindOfClass:[SourceNodeCPPComment class]];
+static SourceNode* _ApplierFunction(SourceNode* node, void* context) {
+	[node removeFromParent];
+	[(SourceNode*)context addChild:node];
+    return nil;
 }
 
-- (BOOL) nodeHasRootParent:(SourceNode*)node {
-    if(node.parent && (node.parent.parent == nil))
-        return YES;
-    
-    return [node.parent isKindOfClass:[SourceNodeCPreprocessorCondition class]] || [node.parent isKindOfClass:[SourceNodeObjCInterface class]] || [node.parent isKindOfClass:[SourceNodeObjCImplementation class]] ? [self nodeHasRootParent:node.parent] : NO;
-}
-
-- (void) performSyntaxAnalysisForNode:(SourceNode*)node {
-    [super performSyntaxAnalysisForNode:node];
+- (SourceNode*) performSyntaxAnalysisForNode:(SourceNode*)node sourceBuffer:(const unichar*)sourceBuffer topLevelNodeClasses:(NSSet*)nodeClasses {
     
     if([node isKindOfClass:[SourceNodeBraces class]]) {
         SourceNode* previousNode = [node findPreviousSiblingIgnoringWhitespaceAndNewline];
@@ -165,8 +170,28 @@ static BOOL _HasImplementationParent(SourceNode* node) {
         }
         
     }
+    else if([node isKindOfClass:[SourceNodeBrackets class]] && node.children) {
+        
+        // "[foo bar:baz]"
+        SourceNode* target = [node.firstChild findNextSiblingIgnoringWhitespaceAndNewline];
+        if([target isKindOfClass:[SourceNodeText class]] || [target isKindOfClass:[SourceNodeObjCSelf class]] || [target isKindOfClass:[SourceNodeObjCSuper class]]
+        	|| [target isKindOfClass:[SourceNodeBrackets class]] || [target isKindOfClass:[SourceNodeCFunctionCall class]] || [target isKindOfClass:[SourceNodeObjCString class]]) {
+        	if([target.nextSibling isKindOfClass:[SourceNodeWhitespace class]] || [target.nextSibling isKindOfClass:[SourceNodeNewline class]]) {
+                SourceNode* nextNode = [target findNextSiblingIgnoringWhitespaceAndNewline];
+                if([nextNode isKindOfClass:[SourceNodeText class]]) {
+                	SourceNode* newNode = [[SourceNodeObjCMethodCall alloc] initWithSource:node.source range:node.range];
+                    [node applyFunctionOnChildren:_ApplierFunction context:newNode];
+                    [node replaceWithNode:newNode];
+                    [newNode release];
+                    
+                    return newNode;
+                }
+            }
+        }
+        
+    }
     
-    //FIXME: Add support for method calls
+    return node;
 }
 
 @end
@@ -178,6 +203,10 @@ IS_MATCHING_PREFIX_METHOD_WITH_TRAILING_WHITESPACE_OR_NEWLINE_OR_SEMICOLON_OR_CH
 @end
 
 @implementation SourceNodeObjCString
+
++ (NSArray*) patchedClasses {
+	return [NSArray arrayWithObject:[SourceNodeCStringDoubleQuote class]];
+}
 
 + (NSUInteger) isMatchingPrefix:(const unichar*)string maxLength:(NSUInteger)maxLength {
     return (maxLength >= 2) && (string[0] == '@') && (string[1] == '"') ? 2 : NSNotFound;
@@ -239,4 +268,7 @@ IMPLEMENTATION(Nil, @"nil", false, false, 0)
 @end
 
 @implementation SourceNodeObjCMethodImplementation
+@end
+
+@implementation SourceNodeObjCMethodCall
 @end

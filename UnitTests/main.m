@@ -65,8 +65,8 @@ int main(int argc, const char* argv[]) {
                             @catch(NSException* exception) {
                                 NSLog(@"<FAILED LAUNCHING OPENDIFF: \"%@\">", [exception reason]);
                             }
-                            [task waitUntilExit];
-                            [task release];
+                            //[task waitUntilExit];
+                            //[task release];
                         } else {
                             printf("%s: ok\n", [path UTF8String]);
                         }

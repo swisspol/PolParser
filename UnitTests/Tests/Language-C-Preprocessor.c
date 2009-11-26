@@ -10,13 +10,14 @@
 int main() { return 0; }
 
 #else
-#error Foobar
 
 int main() { return 1; }
 
 #endif
 
 #undef FOO
+
+#define TEST_FUNCTION(arg) CHECK((arg) == true)
 
 -----
 
@@ -48,10 +49,7 @@ int main() { return 1; }
 ·  ·  ♢¶♢¶♢
 ·  ♢
 ·  <CPreprocessorConditionElse>
-·  ·  ♢#else♢¶♢
-·  ·  <CPreprocessorError>
-·  ·  ·  ♢#error♢•♢Foobar♢
-·  ·  ♢¶♢¶♢
+·  ·  ♢#else♢¶♢¶♢
 ·  ·  <CFunctionDefinition>
 ·  ·  ·  ♢int♢•♢main♢
 ·  ·  ·  <Parenthesis>
@@ -66,4 +64,15 @@ int main() { return 1; }
 ·  ♢¶♢¶♢
 ·  <CPreprocessorUndefine>
 ·  ·  ♢#undef♢•♢FOO♢
+·  ♢¶♢¶♢
+·  <CPreprocessorDefine>
+·  ·  ♢#define♢•♢TEST_FUNCTION♢
+·  ·  <Parenthesis>
+·  ·  ·  ♢(♢arg♢)♢
+·  ·  ♢•♢CHECK♢
+·  ·  <Parenthesis>
+·  ·  ·  ♢(♢
+·  ·  ·  <Parenthesis>
+·  ·  ·  ·  ♢(♢arg♢)♢
+·  ·  ·  ♢•♢==♢•♢true♢)♢
 ·  ♢¶♢¶♢

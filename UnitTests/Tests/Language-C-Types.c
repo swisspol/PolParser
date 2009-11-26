@@ -40,7 +40,7 @@ static int foo = sizeof(long);
 ·  ·  ·  ·  ♢{♢¶♢→♢int♢•♢temp1♢|;|♢¶♢••••♢long♢•♢temp2♢|;|♢¶♢}♢
 ·  ·  ·  ♢•♢boom♢|;|♢
 ·  ♢¶♢¶♢|static|♢•♢int♢•♢foo♢•♢=♢•♢
-·  <CTypeSizeOf>
+·  <CSizeOf>
 ·  ·  ♢sizeof♢
 ·  ·  <Parenthesis>
 ·  ·  ·  ♢(♢long♢)♢

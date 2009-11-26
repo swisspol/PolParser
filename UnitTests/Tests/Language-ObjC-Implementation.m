@@ -1,16 +1,22 @@
 @implementation Demo
 	
-- bar {
-	SEL temp = @selector(test:bar:);
-    
++ (id) uniqueID {
+	@synchronized (self) {
+    	;
+    }
     return nil;
 }
 
+- bar {
+	return nil;
+}
+
 - (BOOL) test:(int)foo bar:(int)bar {
-	@synchronized ([self class]) {
-    	self + 2;
-    }
-    return [super test:foo bar:bar];
+	return NO;
+}
+
+static void LocalFunction(int arg) {
+	sleep(arg);
 }
 
 @end
@@ -21,14 +27,28 @@
 ·  <ObjCImplementation>
 ·  ·  ♢@implementation♢•♢Demo♢¶♢→♢¶♢
 ·  ·  <ObjCMethodImplementation>
+·  ·  ·  ♢+♢•♢
+·  ·  ·  <Parenthesis>
+·  ·  ·  ·  ♢(♢id♢)♢
+·  ·  ·  ♢•♢uniqueID♢•♢
+·  ·  ·  <Braces>
+·  ·  ·  ·  ♢{♢¶♢→♢
+·  ·  ·  ·  <ObjCSynchronized>
+·  ·  ·  ·  ·  ♢@synchronized♢•♢
+·  ·  ·  ·  ·  <Parenthesis>
+·  ·  ·  ·  ·  ·  ♢(♢|self|♢)♢
+·  ·  ·  ·  ·  ♢•♢
+·  ·  ·  ·  ·  <Braces>
+·  ·  ·  ·  ·  ·  ♢{♢¶♢••••→♢|;|♢¶♢••••♢}♢
+·  ·  ·  ·  ♢¶♢••••♢
+·  ·  ·  ·  <CFlowReturn>
+·  ·  ·  ·  ·  ♢return♢•♢|nil|♢|;|♢
+·  ·  ·  ·  ♢¶♢}♢
+·  ·  ♢¶♢¶♢
+·  ·  <ObjCMethodImplementation>
 ·  ·  ·  ♢-♢•♢bar♢•♢
 ·  ·  ·  <Braces>
-·  ·  ·  ·  ♢{♢¶♢→♢SEL♢•♢temp♢•♢=♢•♢
-·  ·  ·  ·  <ObjCSelector>
-·  ·  ·  ·  ·  ♢@selector♢
-·  ·  ·  ·  ·  <Parenthesis>
-·  ·  ·  ·  ·  ·  ♢(♢test♢|:|♢bar♢|:|♢)♢
-·  ·  ·  ·  ♢|;|♢¶♢••••♢¶♢••••♢
+·  ·  ·  ·  ♢{♢¶♢→♢
 ·  ·  ·  ·  <CFlowReturn>
 ·  ·  ·  ·  ·  ♢return♢•♢|nil|♢|;|♢
 ·  ·  ·  ·  ♢¶♢}♢
@@ -46,22 +66,21 @@
 ·  ·  ·  ♢bar♢•♢
 ·  ·  ·  <Braces>
 ·  ·  ·  ·  ♢{♢¶♢→♢
-·  ·  ·  ·  <ObjCSynchronized>
-·  ·  ·  ·  ·  ♢@synchronized♢•♢
-·  ·  ·  ·  ·  <Parenthesis>
-·  ·  ·  ·  ·  ·  ♢(♢
-·  ·  ·  ·  ·  ·  <Brackets>
-·  ·  ·  ·  ·  ·  ·  ♢[♢|self|♢•♢class♢]♢
-·  ·  ·  ·  ·  ·  ♢)♢
-·  ·  ·  ·  ·  ♢•♢
-·  ·  ·  ·  ·  <Braces>
-·  ·  ·  ·  ·  ·  ♢{♢¶♢••••→♢|self|♢•♢+♢•♢2♢|;|♢¶♢••••♢}♢
-·  ·  ·  ·  ♢¶♢••••♢
 ·  ·  ·  ·  <CFlowReturn>
-·  ·  ·  ·  ·  ♢return♢•♢
-·  ·  ·  ·  ·  <Brackets>
-·  ·  ·  ·  ·  ·  ♢[♢|super|♢•♢test♢|:|♢foo♢•♢bar♢|:|♢bar♢]♢
-·  ·  ·  ·  ·  ♢|;|♢
+·  ·  ·  ·  ·  ♢return♢•♢NO♢|;|♢
 ·  ·  ·  ·  ♢¶♢}♢
+·  ·  ♢¶♢¶♢
+·  ·  <CFunctionDefinition>
+·  ·  ·  ♢|static|♢•♢|void|♢•♢LocalFunction♢
+·  ·  ·  <Parenthesis>
+·  ·  ·  ·  ♢(♢int♢•♢arg♢)♢
+·  ·  ·  ♢•♢
+·  ·  ·  <Braces>
+·  ·  ·  ·  ♢{♢¶♢→♢
+·  ·  ·  ·  <CFunctionCall>
+·  ·  ·  ·  ·  ♢sleep♢
+·  ·  ·  ·  ·  <Parenthesis>
+·  ·  ·  ·  ·  ·  ♢(♢arg♢)♢
+·  ·  ·  ·  ♢|;|♢¶♢}♢
 ·  ·  ♢¶♢¶♢@end♢
 ·  ♢¶♢¶♢

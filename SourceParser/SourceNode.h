@@ -20,7 +20,7 @@
 
 @class SourceNode;
 
-typedef void (*SourceNodeApplierFunction)(SourceNode* node, void* context);
+typedef SourceNode* (*SourceNodeApplierFunction)(SourceNode* node, void* context); //Return a node whose children to process for recursive operations
 
 /* Abstract class: do not instantiate */
 @interface SourceNode : NSObject {
@@ -63,8 +63,8 @@ typedef void (*SourceNodeApplierFunction)(SourceNode* node, void* context);
 - (SourceNode*) findPreviousSiblingOfClass:(Class)class;
 - (SourceNode*) findNextSiblingOfClass:(Class)class;
 
-- (void) applyFunctionOnChildren:(SourceNodeApplierFunction)function context:(void*)context recursively:(BOOL)recursively;
+- (void) applyFunctionOnChildren:(SourceNodeApplierFunction)function context:(void*)context;
 #if NS_BLOCKS_AVAILABLE
-- (void) enumerateChildrenRecursively:(BOOL)recursively usingBlock:(void (^)(SourceNode* node))block;
+- (void) enumerateChildrenUsingBlock:(SourceNode* (^)(SourceNode* node))block;
 #endif
 @end

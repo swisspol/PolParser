@@ -20,31 +20,16 @@
 
 @implementation SourceLanguageObjCPP
 
++ (NSArray*) languageDependencies {
+	return [NSArray arrayWithObjects:@"Base", @"C", @"C++", @"ObjC", nil];
+}
+
 - (NSString*) name {
     return @"Obj-C++";
 }
 
 - (NSSet*) fileExtensions {
-    return [NSSet setWithObjects:@"h", @"mm", nil];
-}
-
-- (NSArray*) nodeClasses {
-    static NSMutableArray* classes = nil;
-    if(classes == nil) {
-        classes = [[NSMutableArray alloc] init];
-        [classes addObjectsFromArray:[super nodeClasses]];
-        
-        [classes removeObject:[SourceNodeCPPComment class]]; //From C++ language
-        
-        [classes addObjectsFromArray:[[SourceLanguage languageForName:@"C++"] nodeClasses]];
-    }
-    return classes;
-}
-
-- (void) performSyntaxAnalysisForNode:(SourceNode*)node {
-    [super performSyntaxAnalysisForNode:node];
-    
-    //FIXME: Parsing also needs to inherit from SourceLanguageCPP
+    return [NSSet setWithObjects:@"h", @"mm", nil]; //FIXME: We assume .h to be in the "superset" language
 }
 
 - (SourceNodeRoot*) parseSourceString:(NSString*)source range:(NSRange)range buffer:(const unichar*)buffer syntaxAnalysis:(BOOL)syntaxAnalysis {

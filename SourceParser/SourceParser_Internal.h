@@ -65,6 +65,7 @@ void _RearrangeNodesAsChildren(SourceNode* startNode, SourceNode* endNode);
 
 @interface SourceNode ()
 + (BOOL) isAtomic;
++ (NSArray*) patchedClasses;
 + (NSUInteger) isMatchingPrefix:(const unichar*)string maxLength:(NSUInteger)maxLength; //"maxLength" is guaranteed to be at least 1
 + (NSUInteger) isMatchingSuffix:(const unichar*)string maxLength:(NSUInteger)maxLength; //"maxLength" may be 0 for atomic classes
 @property(nonatomic) NSRange range;
@@ -79,23 +80,26 @@ void _RearrangeNodesAsChildren(SourceNode* startNode, SourceNode* endNode);
 @end
 
 @interface SourceLanguage ()
++ (NSArray*) languageDependencies;
++ (NSSet*) languageReservedKeywords;
++ (NSArray*) languageNodeClasses;
++ (NSSet*) languageTopLevelNodeClasses;
+@property(nonatomic, readonly) NSSet* topLevelNodeClasses;
 - (SourceNodeRoot*) parseSourceString:(NSString*)source range:(NSRange)range buffer:(const unichar*)buffer syntaxAnalysis:(BOOL)syntaxAnalysis;
-- (void) performSyntaxAnalysisForNode:(SourceNode*)node; //Override point to perform language dependent source tree refactoring after parsing
+- (SourceNode*) performSyntaxAnalysisForNode:(SourceNode*)node sourceBuffer:(const unichar*)sourceBuffer topLevelNodeClasses:(NSSet*)nodeClasses; //Override point to perform language dependent source tree refactoring after parsing
 @end
 
 @interface SourceLanguageBase : SourceLanguage
 @end
 
-@interface SourceLanguageC : SourceLanguageBase
-- (BOOL) nodeHasRootParent:(SourceNode*)node;
-- (BOOL) nodeIsStatementDelimiter:(SourceNode*)node;
+@interface SourceLanguageC : SourceLanguage
 @end
 
-@interface SourceLanguageCPP : SourceLanguageC
+@interface SourceLanguageCPP : SourceLanguage
 @end
 
-@interface SourceLanguageObjC : SourceLanguageC
+@interface SourceLanguageObjC : SourceLanguage
 @end
 
-@interface SourceLanguageObjCPP : SourceLanguageObjC
+@interface SourceLanguageObjCPP : SourceLanguage
 @end

@@ -1,4 +1,7 @@
+#import <Foundation/Foundation.h>
+
 @protocol Cocoa
+@optional
 - (BOOL) test:(int)foo bar:(int)bar;
 @end
 
@@ -13,13 +16,17 @@
 - (void) run;
 - foo:(id)arg;
 - bar;
+static void LocalFunction(int arg);
 @end
 
 -----
 
 <Root>
+·  <ObjCPreprocessorImport>
+·  ·  ♢#import♢•♢<Foundation/Foundation.h>♢
+·  ♢¶♢¶♢
 ·  <ObjCProtocol>
-·  ·  ♢@protocol♢•♢Cocoa♢¶♢
+·  ·  ♢@protocol♢•♢Cocoa♢¶♢|@optional|♢¶♢
 ·  ·  <ObjCMethodDeclaration>
 ·  ·  ·  ♢-♢•♢
 ·  ·  ·  <Parenthesis>
@@ -64,5 +71,11 @@
 ·  ·  ♢¶♢
 ·  ·  <ObjCMethodDeclaration>
 ·  ·  ·  ♢-♢•♢bar♢|;|♢
+·  ·  ♢¶♢
+·  ·  <CFunctionPrototype>
+·  ·  ·  ♢|static|♢•♢|void|♢•♢LocalFunction♢
+·  ·  ·  <Parenthesis>
+·  ·  ·  ·  ♢(♢int♢•♢arg♢)♢
+·  ·  ·  ♢|;|♢
 ·  ·  ♢¶♢@end♢
 ·  ♢¶♢¶♢

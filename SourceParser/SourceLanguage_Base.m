@@ -20,28 +20,25 @@
 
 @implementation SourceLanguageBase
 
++ (NSArray*) languageNodeClasses {
+	NSMutableArray* classes = [NSMutableArray array];
+    
+    [classes addObject:[SourceNodeNewline class]];
+    [classes addObject:[SourceNodeIndenting class]]; //Must be before SourceNodeWhitespace
+    [classes addObject:[SourceNodeWhitespace class]];
+    [classes addObject:[SourceNodeBraces class]];
+    [classes addObject:[SourceNodeParenthesis class]];
+    [classes addObject:[SourceNodeBrackets class]];
+    
+    return classes;
+}
+
 - (NSString*) name {
     return @"Base";
 }
 
 - (NSSet*) fileExtensions {
     return nil;
-}
-
-- (NSArray*) nodeClasses {
-    static NSMutableArray* classes = nil;
-    if(classes == nil) {
-        classes = [[NSMutableArray alloc] init];
-        [classes addObjectsFromArray:[super nodeClasses]];
-        
-        [classes addObject:[SourceNodeNewline class]];
-        [classes addObject:[SourceNodeIndenting class]]; //Must be before SourceNodeWhitespace
-        [classes addObject:[SourceNodeWhitespace class]];
-        [classes addObject:[SourceNodeBraces class]];
-        [classes addObject:[SourceNodeParenthesis class]];
-        [classes addObject:[SourceNodeBrackets class]];
-    }
-    return classes;
 }
 
 @end

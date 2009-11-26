@@ -21,12 +21,14 @@ int main(int argc, char *argv[]) {
 ·  ·  <Braces>
 ·  ·  ·  ♢{♢¶♢••••♢|//•Return•the•result|♢¶♢••••♢
 ·  ·  ·  <CFlowReturn>
-·  ·  ·  ·  ♢return♢•♢Run♢
-·  ·  ·  ·  <Parenthesis>
-·  ·  ·  ·  ·  ♢(♢argc,♢•♢
+·  ·  ·  ·  ♢return♢•♢
+·  ·  ·  ·  <CFunctionCall>
+·  ·  ·  ·  ·  ♢Run♢
 ·  ·  ·  ·  ·  <Parenthesis>
-·  ·  ·  ·  ·  ·  ♢(♢|const|♢•♢char♢|*|♢|*|♢)♢
-·  ·  ·  ·  ·  ♢argv♢)♢
+·  ·  ·  ·  ·  ·  ♢(♢argc,♢•♢
+·  ·  ·  ·  ·  ·  <Parenthesis>
+·  ·  ·  ·  ·  ·  ·  ♢(♢|const|♢•♢char♢|*|♢|*|♢)♢
+·  ·  ·  ·  ·  ·  ♢argv♢)♢
 ·  ·  ·  ·  ♢|;|♢
 ·  ·  ·  ♢•♢|//argc•is•always•>•1|♢¶♢}♢
 ·  ♢¶♢¶♢

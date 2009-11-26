@@ -43,7 +43,7 @@ static void LocalFunction(int arg);
 ·  <ObjCInterface>
 ·  ·  ♢@interface♢•♢Demo♢•♢|:|♢•♢NSObject♢•♢<Cocoa>♢•♢
 ·  ·  <Braces>
-·  ·  ·  ♢{♢¶♢|@private|♢¶♢→♢int♢•♢foo♢|;|♢¶♢|@public|♢¶♢→♢int♢•♢_bar♢|;|♢¶♢}♢
+·  ·  ·  ♢{♢¶♢|@private|♢¶♢|→|♢int♢•♢foo♢|;|♢¶♢|@public|♢¶♢|→|♢int♢•♢_bar♢|;|♢¶♢}♢
 ·  ·  ♢¶♢
 ·  ·  <ObjCProperty>
 ·  ·  ·  ♢@property♢

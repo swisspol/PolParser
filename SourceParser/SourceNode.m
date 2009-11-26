@@ -336,7 +336,7 @@ static void _AppendChildrenCompactDescription(SourceNode* node, NSMutableString*
         } else {
         	if(node == firstNode)
             	[string appendFormat:@"%@%@", prefix, separator];
-            if([node isKindOfClass:[SourceNodeWhitespace class]] || [node isKindOfClass:[SourceNodeNewline class]] || [node isKindOfClass:[SourceNodeText class]])
+            if([node isMemberOfClass:[SourceNodeWhitespace class]] || [node isMemberOfClass:[SourceNodeNewline class]] || [node isMemberOfClass:[SourceNodeText class]])
                 [string appendFormat:@"%@%@", _FormatString(node.content), separator];
             else
             	[string appendFormat:@"|%@|%@", _FormatString(node.content), separator];

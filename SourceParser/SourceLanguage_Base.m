@@ -86,7 +86,7 @@
 @implementation SourceNodeIndenting
 
 + (NSUInteger) isMatchingPrefix:(const unichar*)string maxLength:(NSUInteger)maxLength {
-    return IsWhiteSpace(*string) && IsNewline(*(string - 1)) ? 1 : NSNotFound;
+    return IsWhiteSpace(*string) && ((*(string - 1) == 0) || IsNewline(*(string - 1))) ? 1 : NSNotFound; //The source buffer starts with a padding zero (see SourceLanguage.m)
 }
 
 + (NSUInteger) isMatchingSuffix:(const unichar*)string maxLength:(NSUInteger)maxLength {

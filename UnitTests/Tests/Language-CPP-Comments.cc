@@ -19,7 +19,7 @@ int main(int argc, char *argv[]) {
 ·  ·  ·  ♢)♢
 ·  ·  ♢•♢
 ·  ·  <Braces>
-·  ·  ·  ♢{♢¶♢••••♢|//•Return•the•result|♢¶♢••••♢
+·  ·  ·  ♢{♢¶♢|••••|♢|//•Return•the•result|♢¶♢|••••|♢
 ·  ·  ·  <CFlowReturn>
 ·  ·  ·  ·  ♢return♢•♢
 ·  ·  ·  ·  <CFunctionCall>

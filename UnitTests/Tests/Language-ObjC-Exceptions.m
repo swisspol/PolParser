@@ -19,15 +19,15 @@
 ·  <ObjCTry>
 ·  ·  ♢@try♢•♢
 ·  ·  <Braces>
-·  ·  ·  ♢{♢¶♢••••♢|@throw|♢|;|♢¶♢••••♢
+·  ·  ·  ♢{♢¶♢|••••|♢|@throw|♢|;|♢¶♢|••••|♢
 ·  ·  ·  <CFunctionCall>
 ·  ·  ·  ·  ♢NSBeep♢
 ·  ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ·  ♢(♢)♢
-·  ·  ·  ♢|;|♢¶♢••••♢
+·  ·  ·  ♢|;|♢¶♢|••••|♢
 ·  ·  ·  <ObjCThrow>
 ·  ·  ·  ·  ♢@throw♢•♢foo♢|;|♢
-·  ·  ·  ♢¶♢••••♢¶♢••••♢
+·  ·  ·  ♢¶♢|••••|♢¶♢|••••|♢
 ·  ·  ·  <CConditionIf>
 ·  ·  ·  ·  ♢if♢
 ·  ·  ·  ·  <Parenthesis>
@@ -43,7 +43,7 @@
 ·  ·  ·  ♢(♢NSException♢•♢|*|♢•♢e♢)♢
 ·  ·  ♢¶♢
 ·  ·  <Braces>
-·  ·  ·  ♢{♢¶♢••••♢
+·  ·  ·  ♢{♢¶♢|••••|♢
 ·  ·  ·  <CFunctionCall>
 ·  ·  ·  ·  ♢NSLog♢
 ·  ·  ·  ·  <Parenthesis>
@@ -53,7 +53,7 @@
 ·  <ObjCFinally>
 ·  ·  ♢@finally♢•♢
 ·  ·  <Braces>
-·  ·  ·  ♢{♢¶♢••••♢
+·  ·  ·  ♢{♢¶♢|••••|♢
 ·  ·  ·  <CFunctionCall>
 ·  ·  ·  ·  ♢NSLog♢
 ·  ·  ·  ·  <Parenthesis>

@@ -33,7 +33,7 @@ int* Bar() {
 ·  ·  ·  ♢(♢int♢•♢arg1,♢•♢int♢•♢arg2♢)♢
 ·  ·  ♢•♢
 ·  ·  <Braces>
-·  ·  ·  ♢{♢¶♢••••♢int♢•♢foo♢•♢=♢•♢
+·  ·  ·  ♢{♢¶♢|••••|♢int♢•♢foo♢•♢=♢•♢
 ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ♢(♢1♢•♢+♢•♢
 ·  ·  ·  ·  <CFunctionCall>
@@ -41,7 +41,7 @@ int* Bar() {
 ·  ·  ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ·  ·  ♢(♢)♢
 ·  ·  ·  ·  ♢•♢+♢•♢2♢)♢
-·  ·  ·  ♢|;|♢¶♢••••♢|void|♢|*|♢•♢ptr♢•♢=♢•♢
+·  ·  ·  ♢|;|♢¶♢|••••|♢|void|♢|*|♢•♢ptr♢•♢=♢•♢
 ·  ·  ·  <CFunctionCall>
 ·  ·  ·  ·  ♢realloc♢
 ·  ·  ·  ·  <Parenthesis>
@@ -51,7 +51,7 @@ int* Bar() {
 ·  ·  ·  ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ·  ·  ·  ♢(♢1024♢)♢
 ·  ·  ·  ·  ·  ♢,♢•♢2048♢)♢
-·  ·  ·  ♢|;|♢¶♢••••♢
+·  ·  ·  ♢|;|♢¶♢|••••|♢
 ·  ·  ·  <CFunctionCall>
 ·  ·  ·  ·  ♢free♢
 ·  ·  ·  ·  <Parenthesis>
@@ -64,7 +64,7 @@ int* Bar() {
 ·  ·  ·  ♢(♢)♢
 ·  ·  ♢•♢
 ·  ·  <Braces>
-·  ·  ·  ♢{♢¶♢→♢
+·  ·  ·  ♢{♢¶♢|→|♢
 ·  ·  ·  <CFlowReturn>
 ·  ·  ·  ·  ♢return♢•♢0♢|;|♢
 ·  ·  ·  ♢¶♢}♢

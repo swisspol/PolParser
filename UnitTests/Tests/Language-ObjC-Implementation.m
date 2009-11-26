@@ -25,22 +25,22 @@ static void LocalFunction(int arg) {
 
 <Root>
 ·  <ObjCImplementation>
-·  ·  ♢@implementation♢•♢Demo♢¶♢→♢¶♢
+·  ·  ♢@implementation♢•♢Demo♢¶♢|→|♢¶♢
 ·  ·  <ObjCMethodImplementation>
 ·  ·  ·  ♢+♢•♢
 ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ♢(♢id♢)♢
 ·  ·  ·  ♢•♢uniqueID♢•♢
 ·  ·  ·  <Braces>
-·  ·  ·  ·  ♢{♢¶♢→♢
+·  ·  ·  ·  ♢{♢¶♢|→|♢
 ·  ·  ·  ·  <ObjCSynchronized>
 ·  ·  ·  ·  ·  ♢@synchronized♢•♢
 ·  ·  ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ·  ·  ♢(♢|self|♢)♢
 ·  ·  ·  ·  ·  ♢•♢
 ·  ·  ·  ·  ·  <Braces>
-·  ·  ·  ·  ·  ·  ♢{♢¶♢••••→♢|;|♢¶♢••••♢}♢
-·  ·  ·  ·  ♢¶♢••••♢
+·  ·  ·  ·  ·  ·  ♢{♢¶♢|••••→|♢|;|♢¶♢|••••|♢}♢
+·  ·  ·  ·  ♢¶♢|••••|♢
 ·  ·  ·  ·  <CFlowReturn>
 ·  ·  ·  ·  ·  ♢return♢•♢|nil|♢|;|♢
 ·  ·  ·  ·  ♢¶♢}♢
@@ -48,7 +48,7 @@ static void LocalFunction(int arg) {
 ·  ·  <ObjCMethodImplementation>
 ·  ·  ·  ♢-♢•♢bar♢•♢
 ·  ·  ·  <Braces>
-·  ·  ·  ·  ♢{♢¶♢→♢
+·  ·  ·  ·  ♢{♢¶♢|→|♢
 ·  ·  ·  ·  <CFlowReturn>
 ·  ·  ·  ·  ·  ♢return♢•♢|nil|♢|;|♢
 ·  ·  ·  ·  ♢¶♢}♢
@@ -65,7 +65,7 @@ static void LocalFunction(int arg) {
 ·  ·  ·  ·  ♢(♢int♢)♢
 ·  ·  ·  ♢bar♢•♢
 ·  ·  ·  <Braces>
-·  ·  ·  ·  ♢{♢¶♢→♢
+·  ·  ·  ·  ♢{♢¶♢|→|♢
 ·  ·  ·  ·  <CFlowReturn>
 ·  ·  ·  ·  ·  ♢return♢•♢NO♢|;|♢
 ·  ·  ·  ·  ♢¶♢}♢
@@ -76,7 +76,7 @@ static void LocalFunction(int arg) {
 ·  ·  ·  ·  ♢(♢int♢•♢arg♢)♢
 ·  ·  ·  ♢•♢
 ·  ·  ·  <Braces>
-·  ·  ·  ·  ♢{♢¶♢→♢
+·  ·  ·  ·  ♢{♢¶♢|→|♢
 ·  ·  ·  ·  <CFunctionCall>
 ·  ·  ·  ·  ·  ♢sleep♢
 ·  ·  ·  ·  ·  <Parenthesis>

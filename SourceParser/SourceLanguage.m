@@ -360,7 +360,7 @@ static SourceNode* _ApplierFunction(SourceNode* node, void* context) {
     source = [source copy];
     NSRange range = NSMakeRange(0, source.length);
     unichar* buffer = malloc((range.length + 1) * sizeof(unichar));
-    buffer[0] = 0xFFFF; //We need one-character padding at the start since some nodes look at buffer[index - 1]
+    buffer[0] = 0x0000; //We need one-character padding at the start since some nodes look at buffer[index - 1]
     [source getCharacters:(buffer + 1) range:range];
     
     SourceNodeRoot* root = [[self parseSourceString:source range:range buffer:buffer + 1 syntaxAnalysis:syntaxAnalysis] retain];

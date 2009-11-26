@@ -229,7 +229,25 @@ IS_MATCHING_PREFIX_METHOD_WITH_TRAILING_WHITESPACE_OR_NEWLINE_OR_SEMICOLON_OR_CH
     return NO; \
 } \
 \
-IS_MATCHING_PREFIX_METHOD_WITH_TRAILING_WHITESPACE_OR_NEWLINE_OR_SEMICOLON_OR_CHARACTER(__TOKEN__, true, false, 0) \
++ (NSUInteger) isMatchingPrefix:(const unichar*)string maxLength:(NSUInteger)maxLength { \
+    IS_MATCHING(__TOKEN__, true, false, 0, string, maxLength) \
+    if(_matching != NSNotFound) { \
+        string += _matching; \
+        maxLength -= _matching; \
+        while(maxLength) { \
+            if(IsNewline(*string) || (*string == '{') || ((maxLength >= 2) && (string[0] == '/') && ((string[1] == '*') || (string[1] == '/')))) { \
+                do { \
+                    --string; \
+                } while(IsWhiteSpace(*string)); \
+                break; \
+            } \
+            ++string; \
+            --maxLength; \
+            ++_matching; \
+        } \
+    } \
+    return _matching; \
+} \
 \
 IS_MATCHING_SUFFIX_METHOD_WITH_TRAILING_WHITESPACE_OR_NEWLINE_OR_SEMICOLON_OR_CHARACTER(@"@end", true, false, 0) \
 \

@@ -26,7 +26,7 @@ static void LocalFunction(int arg);
 ·  ·  ♢|#import|♢•♢<Foundation/Foundation.h>♢
 ·  ♢¶♢¶♢
 ·  <ObjCProtocol>
-·  ·  ♢|@protocol|♢•♢Cocoa♢¶♢|@optional|♢¶♢
+·  ·  ♢|@protocol•Cocoa|♢¶♢|@optional|♢¶♢
 ·  ·  <ObjCMethodDeclaration>
 ·  ·  ·  ♢-♢•♢
 ·  ·  ·  <Parenthesis>
@@ -41,7 +41,7 @@ static void LocalFunction(int arg);
 ·  ·  ♢¶♢|@end|♢
 ·  ♢¶♢¶♢
 ·  <ObjCInterface>
-·  ·  ♢|@interface|♢•♢Demo♢•♢|:|♢•♢NSObject♢•♢<Cocoa>♢•♢
+·  ·  ♢|@interface•Demo•:•NSObject•<Cocoa>•|♢
 ·  ·  <Braces>
 ·  ·  ·  ♢|{|♢¶♢|@private|♢¶♢|→|♢|int|♢•♢foo♢|;|♢¶♢|@public|♢¶♢|→|♢|int|♢•♢_bar♢|;|♢¶♢|}|♢
 ·  ·  ♢¶♢

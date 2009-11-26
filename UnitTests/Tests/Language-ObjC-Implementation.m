@@ -1,5 +1,9 @@
 @implementation Demo
 	
+static void LocalFunction(int arg) {
+	sleep(arg);
+}
+
 @synthesize foo, bar=_bar;
 
 + (id) uniqueID {
@@ -17,17 +21,26 @@
 	return NO;
 }
 
-static void LocalFunction(int arg) {
-	sleep(arg);
-}
-
 @end
 
 -----
 
 <Root>
 ·  <ObjCImplementation>
-·  ·  ♢|@implementation|♢•♢Demo♢¶♢|→|♢¶♢
+·  ·  ♢|@implementation•Demo|♢¶♢|→|♢¶♢
+·  ·  <CFunctionDefinition>
+·  ·  ·  ♢|static|♢•♢|void|♢•♢LocalFunction♢
+·  ·  ·  <Parenthesis>
+·  ·  ·  ·  ♢|(|♢|int|♢•♢arg♢|)|♢
+·  ·  ·  ♢•♢
+·  ·  ·  <Braces>
+·  ·  ·  ·  ♢|{|♢¶♢|→|♢
+·  ·  ·  ·  <CFunctionCall>
+·  ·  ·  ·  ·  ♢sleep♢
+·  ·  ·  ·  ·  <Parenthesis>
+·  ·  ·  ·  ·  ·  ♢|(|♢arg♢|)|♢
+·  ·  ·  ·  ♢|;|♢¶♢|}|♢
+·  ·  ♢¶♢¶♢
 ·  ·  <ObjCSynthesize>
 ·  ·  ·  ♢|@synthesize|♢•♢foo,♢•♢bar=_bar♢|;|♢
 ·  ·  ♢¶♢¶♢
@@ -74,18 +87,5 @@ static void LocalFunction(int arg) {
 ·  ·  ·  ·  <CFlowReturn>
 ·  ·  ·  ·  ·  ♢|return|♢•♢NO♢|;|♢
 ·  ·  ·  ·  ♢¶♢|}|♢
-·  ·  ♢¶♢¶♢
-·  ·  <CFunctionDefinition>
-·  ·  ·  ♢|static|♢•♢|void|♢•♢LocalFunction♢
-·  ·  ·  <Parenthesis>
-·  ·  ·  ·  ♢|(|♢|int|♢•♢arg♢|)|♢
-·  ·  ·  ♢•♢
-·  ·  ·  <Braces>
-·  ·  ·  ·  ♢|{|♢¶♢|→|♢
-·  ·  ·  ·  <CFunctionCall>
-·  ·  ·  ·  ·  ♢sleep♢
-·  ·  ·  ·  ·  <Parenthesis>
-·  ·  ·  ·  ·  ·  ♢|(|♢arg♢|)|♢
-·  ·  ·  ·  ♢|;|♢¶♢|}|♢
 ·  ·  ♢¶♢¶♢|@end|♢
 ·  ♢¶♢¶♢

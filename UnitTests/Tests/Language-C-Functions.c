@@ -15,9 +15,8 @@ int* Bar() {
 -----
 
 <Root>
-·  ♢someMacro♢•♢
 ·  <CFunctionPrototype>
-·  ·  ♢someType♢•♢Foo♢
+·  ·  ♢someMacro♢•♢someType♢•♢Foo♢
 ·  ·  <Parenthesis>
 ·  ·  ·  ♢|(|♢int♢•♢arg1,♢•♢int♢•♢arg2♢|)|♢
 ·  ·  ♢|;|♢

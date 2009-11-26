@@ -11,11 +11,15 @@ int main() { return 0; }
 
 #elseif 2
 
+#ifdef NDEBUG
 int main() { return 1; }
+#else
+int main() { return 2; }
+#endif
 
 #else
 
-int main() { return 2; }
+int main() { return 3; }
 
 #endif
 
@@ -35,7 +39,7 @@ int main() { return 2; }
 ·  <CPreprocessorDefine>
 ·  ·  ♢|#define|♢•♢FOO♢•♢1♢
 ·  ♢→♢¶♢¶♢
-·  <CPreprocessorConditionIf>
+·  <CCPreprocessorIf>
 ·  ·  ♢|#if|♢•♢1♢¶♢
 ·  ·  <CPreprocessorWarning>
 ·  ·  ·  ♢|#warning|♢•♢Foobar♢
@@ -52,7 +56,7 @@ int main() { return 2; }
 ·  ·  ·  ·  ♢•♢|}|♢
 ·  ·  ♢¶♢¶♢
 ·  ♢
-·  <CPreprocessorConditionElseif>
+·  <CPreprocessorElseif>
 ·  ·  ♢|#elseif|♢•♢2♢¶♢¶♢
 ·  ·  <CFunctionDefinition>
 ·  ·  ·  ♢int♢•♢main♢
@@ -66,7 +70,7 @@ int main() { return 2; }
 ·  ·  ·  ·  ♢•♢|}|♢
 ·  ·  ♢¶♢¶♢
 ·  ♢
-·  <CPreprocessorConditionElse>
+·  <CCPreprocessorElse>
 ·  ·  ♢|#else|♢¶♢¶♢
 ·  ·  <CFunctionDefinition>
 ·  ·  ·  ♢int♢•♢main♢

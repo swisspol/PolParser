@@ -81,14 +81,14 @@ static BOOL _HasInterfaceOrProtocolParent(SourceNode* node) {
     if([node.parent isKindOfClass:[SourceNodeObjCInterface class]] || [node.parent isKindOfClass:[SourceNodeObjCProtocol class]])
         return YES;
     
-    return [node.parent isKindOfClass:[SourceNodeCPreprocessorCondition class]] ? _HasInterfaceOrProtocolParent(node.parent) : NO;
+    return [node.parent isKindOfClass:[SourceNodeCPreprocessor class]] ? _HasInterfaceOrProtocolParent(node.parent) : NO;
 }
 
 static BOOL _HasImplementationParent(SourceNode* node) {
     if([node.parent isKindOfClass:[SourceNodeObjCImplementation class]])
         return YES;
     
-    return [node.parent isKindOfClass:[SourceNodeCPreprocessorCondition class]] ? _HasImplementationParent(node.parent) : NO;
+    return [node.parent isKindOfClass:[SourceNodeCPreprocessor class]] ? _HasImplementationParent(node.parent) : NO;
 }
 
 static SourceNode* _ApplierFunction(SourceNode* node, void* context) {

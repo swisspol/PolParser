@@ -34,11 +34,12 @@
 	NSMutableArray* classes = [NSMutableArray array];
     
     [classes addObject:[SourceNodeCComment class]];
-    [classes addObject:[SourceNodeCPreprocessorConditionIf class]];
-    [classes addObject:[SourceNodeCPreprocessorConditionIfdef class]];
-    [classes addObject:[SourceNodeCPreprocessorConditionIfndef class]];
-    [classes addObject:[SourceNodeCPreprocessorConditionElse class]];
-    [classes addObject:[SourceNodeCPreprocessorConditionElseif class]];
+    [classes addObject:[SourceNodeCPreprocessorIf class]];
+    [classes addObject:[SourceNodeCPreprocessorIfdef class]];
+    [classes addObject:[SourceNodeCPreprocessorIfndef class]];
+    [classes addObject:[SourceNodeCPreprocessorElse class]];
+    [classes addObject:[SourceNodeCPreprocessorElseif class]];
+    [classes addObject:[SourceNodeCPreprocessorEndif class]];
     [classes addObject:[SourceNodeCPreprocessorDefine class]];
     [classes addObject:[SourceNodeCPreprocessorUndefine class]];
     [classes addObject:[SourceNodeCPreprocessorPragma class]];
@@ -94,8 +95,8 @@
 }
 
 + (NSSet*) languageTopLevelNodeClasses {
-	return [NSSet setWithObjects:[SourceNodeCPreprocessorConditionIf class], [SourceNodeCPreprocessorConditionIfdef class],
-    	[SourceNodeCPreprocessorConditionIfndef class], [SourceNodeCPreprocessorConditionElse class], [SourceNodeCPreprocessorConditionElseif class], nil];
+	return [NSSet setWithObjects:[SourceNodeCPreprocessorIf class], [SourceNodeCPreprocessorIfdef class],
+    	[SourceNodeCPreprocessorIfndef class], [SourceNodeCPreprocessorElse class], [SourceNodeCPreprocessorElseif class], nil];
 }
 
 - (NSString*) name {
@@ -139,7 +140,20 @@ static inline BOOL _IsNodeAtTopLevel(SourceNode* node, NSSet* topLevelClasses) {
 
 - (SourceNode*) performSyntaxAnalysisForNode:(SourceNode*)node sourceBuffer:(const unichar*)sourceBuffer topLevelNodeClasses:(NSSet*)nodeClasses {
     
-    if([node isKindOfClass:[SourceNodeBraces class]]) {
+    if([node isKindOfClass:[SourceNodeCPreprocessorIf class]] || [node isKindOfClass:[SourceNodeCPreprocessorIfdef class]] || [node isKindOfClass:[SourceNodeCPreprocessorIfndef class]]
+    	|| [node isKindOfClass:[SourceNodeCPreprocessorElse class]] || [node isKindOfClass:[SourceNodeCPreprocessorElseif class]]) {
+    	
+        // #if #ifdef #ifndef #else #elseif ... #endif
+        SourceNode* nextNode = [node findNextSiblingIgnoringWhitespaceAndNewline];
+        while(nextNode) {
+        	if([nextNode isKindOfClass:[SourceNodeCPreprocessorElse class]] || [nextNode isKindOfClass:[SourceNodeCPreprocessorElseif class]] || [nextNode isKindOfClass:[SourceNodeCPreprocessorEndif class]])
+            	break;
+            nextNode = [nextNode findNextSiblingIgnoringWhitespaceAndNewline];
+        }
+        if(nextNode)
+        	_RearrangeNodesAsChildren(node, [nextNode findPreviousSiblingIgnoringWhitespaceAndNewline]);
+        
+    } else if([node isKindOfClass:[SourceNodeBraces class]]) {
         SourceNode* previousNode = [node findPreviousSiblingIgnoringWhitespaceAndNewline];
         
         // "if() {}" "for() {}" "switch() {}" "while() {}" "else if() {}"
@@ -345,7 +359,7 @@ static inline BOOL _IsNodeAtTopLevel(SourceNode* node, NSSet* topLevelClasses) {
                     NSUInteger count = 0;
                     while(1) {
                     	SourceNode* siblingNode = [previousNode findPreviousSiblingIgnoringWhitespaceAndNewline];
-                        if(!((count == 0) && [siblingNode isKindOfClass:[SourceNodeText class]]) && ![siblingNode isKindOfClass:[SourceNodeAsterisk class]] && ![siblingNode isKindOfClass:[SourceNodeCVoid class]]
+                        if(![siblingNode isMemberOfClass:[SourceNodeText class]] && ![siblingNode isKindOfClass:[SourceNodeAsterisk class]] && ![siblingNode isKindOfClass:[SourceNodeCVoid class]]
                         	&& ![siblingNode isKindOfClass:[SourceNodeCTypeStatic class]] && ![siblingNode isKindOfClass:[SourceNodeCTypeExtern class]] && ![siblingNode isKindOfClass:[SourceNodeCTypeInline class]])
                         	break;
                         if(![siblingNode isKindOfClass:[SourceNodeAsterisk class]])
@@ -451,56 +465,25 @@ IMPLEMENTATION(Asterisk, '*')
 
 @end
 
-@implementation SourceNodeCPreprocessorCondition
-
-+ (id) allocWithZone:(NSZone*)zone
-{
-    if(self == [SourceNodeCPreprocessorCondition class])
-        [NSException raise:NSInternalInconsistencyException format:@"SourceNodeCPreprocessorCondition is an abstract class"];
-    
-    return [super allocWithZone:zone];
-}
-
-+ (NSUInteger) isMatchingSuffix:(const unichar*)string maxLength:(NSUInteger)maxLength {
-    {
-        IS_MATCHING(@"#else", true, false, 0, string, maxLength);
-        if(_matching != NSNotFound)
-            return 0;
-    }
-    {
-        IS_MATCHING(@"#elseif", true, false, '(', string, maxLength);
-        if(_matching != NSNotFound)
-            return 0;
-    }
-    {
-        IS_MATCHING(@"#endif", true, false, 0, string, maxLength);
-        if(_matching != NSNotFound)
-            return _matching;
-    }
-    
-    return NSNotFound;
-}
-
-@end
-
 #define IMPLEMENTATION(__NAME__, ...) \
-@implementation SourceNodeC##__NAME__ \
+@implementation SourceNodeCPreprocessor##__NAME__ \
 \
 IS_MATCHING_PREFIX_METHOD_WITH_TRAILING_WHITESPACE_OR_NEWLINE_OR_SEMICOLON_OR_CHARACTER(__VA_ARGS__); \
 \
 @end
 
-IMPLEMENTATION(PreprocessorConditionIf, @"#if", true, false, '(')
-IMPLEMENTATION(PreprocessorConditionIfdef, @"#ifdef", true, false, '(')
-IMPLEMENTATION(PreprocessorConditionIfndef, @"#ifndef", true, false, '(')
-IMPLEMENTATION(PreprocessorConditionElse, @"#else", true, false, '(')
-IMPLEMENTATION(PreprocessorConditionElseif, @"#elseif", true, false, '(')
-IMPLEMENTATION(PreprocessorDefine, @"#define", true, false, 0)
-IMPLEMENTATION(PreprocessorUndefine, @"#undef", true, false, 0)
-IMPLEMENTATION(PreprocessorPragma, @"#pragma", true, false, '(')
-IMPLEMENTATION(PreprocessorWarning, @"#warning", true, false, '(')
-IMPLEMENTATION(PreprocessorError, @"#error", true, false, '(')
-IMPLEMENTATION(PreprocessorInclude, @"#include", false, false, 0)
+IMPLEMENTATION(If, @"#if", true, false, '(')
+IMPLEMENTATION(Ifdef, @"#ifdef", true, false, '(')
+IMPLEMENTATION(Ifndef, @"#ifndef", true, false, '(')
+IMPLEMENTATION(Else, @"#else", true, false, '(')
+IMPLEMENTATION(Elseif, @"#elseif", true, false, '(')
+IMPLEMENTATION(Endif, @"#endif", true, false, '(')
+IMPLEMENTATION(Define, @"#define", true, false, 0)
+IMPLEMENTATION(Undefine, @"#undef", true, false, 0)
+IMPLEMENTATION(Pragma, @"#pragma", true, false, '(')
+IMPLEMENTATION(Warning, @"#warning", true, false, '(')
+IMPLEMENTATION(Error, @"#error", true, false, '(')
+IMPLEMENTATION(Include, @"#include", false, false, 0)
 
 #undef IMPLEMENTATION
 

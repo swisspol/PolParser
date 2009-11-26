@@ -55,23 +55,22 @@
 @interface SourceNodeCPreprocessor : SourceNode
 @end
 
-/* Abstract class: do not instantiate */
-@interface SourceNodeCPreprocessorCondition : SourceNodeCPreprocessor
+@interface SourceNodeCPreprocessorIf : SourceNodeCPreprocessor
 @end
 
-@interface SourceNodeCPreprocessorConditionIf : SourceNodeCPreprocessorCondition
+@interface SourceNodeCPreprocessorIfdef : SourceNodeCPreprocessor
 @end
 
-@interface SourceNodeCPreprocessorConditionIfdef : SourceNodeCPreprocessorCondition
+@interface SourceNodeCPreprocessorIfndef : SourceNodeCPreprocessor
 @end
 
-@interface SourceNodeCPreprocessorConditionIfndef : SourceNodeCPreprocessorCondition
+@interface SourceNodeCPreprocessorElse : SourceNodeCPreprocessor
 @end
 
-@interface SourceNodeCPreprocessorConditionElse : SourceNodeCPreprocessorCondition
+@interface SourceNodeCPreprocessorElseif : SourceNodeCPreprocessor
 @end
 
-@interface SourceNodeCPreprocessorConditionElseif : SourceNodeCPreprocessorCondition
+@interface SourceNodeCPreprocessorEndif : SourceNodeCPreprocessor
 @end
 
 @interface SourceNodeCPreprocessorDefine : SourceNodeCPreprocessor

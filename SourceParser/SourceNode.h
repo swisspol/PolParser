@@ -31,6 +31,7 @@ typedef SourceNode* (*SourceNodeApplierFunction)(SourceNode* node, void* context
     SourceNode* _parent;
     NSMutableArray* _children;
     NSUInteger _revision;
+    void* _jsObject;
 }
 + (NSString*) name;
 
@@ -59,7 +60,6 @@ typedef SourceNode* (*SourceNodeApplierFunction)(SourceNode* node, void* context
 - (void) insertNextSibling:(SourceNode*)sibling;
 - (void) replaceWithNode:(SourceNode*)node; //Replaces self by "node" (passing nil just removes the node from the tree)
 
-- (BOOL) hasParentOfClass:(Class)class;
 - (SourceNode*) findPreviousSiblingOfClass:(Class)class;
 - (SourceNode*) findNextSiblingOfClass:(Class)class;
 

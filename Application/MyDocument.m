@@ -136,7 +136,7 @@ static void _FindUsedClasses(SourceNode* node, NSMutableSet* set) {
     _colors = [[NSMutableDictionary alloc] init];
     CGFloat offset = 10;
     CGFloat hue = 0.0;
-    NSArray* nodeClasses = [[[_sourceRoot language] nodeClasses] sortedArrayUsingFunction:_SortFunction context:NULL];
+    NSArray* nodeClasses = [_sourceRoot.language.nodeClasses sortedArrayUsingFunction:_SortFunction context:NULL];
     for(Class nodeClass in nodeClasses) {
         NSButton* button = [NSKeyedUnarchiver unarchiveObjectWithData:data];
         [button setTag:(NSInteger)nodeClass];

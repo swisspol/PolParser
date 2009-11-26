@@ -52,6 +52,8 @@
 		E2B6381410BA549800BF43E7 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2B6381210BA549800BF43E7 /* MainMenu.xib */; };
 		E2B6383610BA554000BF43E7 /* MyDocument.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2B6383410BA554000BF43E7 /* MyDocument.xib */; };
 		E2B6383910BA55AB00BF43E7 /* MyDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B6383810BA55AB00BF43E7 /* MyDocument.m */; };
+		E2D08E4010BEA7C7004151B9 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2D08E3F10BEA7C7004151B9 /* JavaScriptCore.framework */; };
+		E2D08F7110BEB7DD004151B9 /* JavaScriptBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = E2D08F7010BEB7DD004151B9 /* JavaScriptBridge.m */; };
 		E2E5BC0E10BB986B004E3745 /* SourceLanguage_Base.m in Sources */ = {isa = PBXBuildFile; fileRef = E2E5BC0D10BB986B004E3745 /* SourceLanguage_Base.m */; };
 		E2E5BC0F10BB986B004E3745 /* SourceLanguage_Base.m in Sources */ = {isa = PBXBuildFile; fileRef = E2E5BC0D10BB986B004E3745 /* SourceLanguage_Base.m */; };
 /* End PBXBuildFile section */
@@ -122,6 +124,8 @@
 		E2B6383510BA554000BF43E7 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/MyDocument.xib; sourceTree = "<group>"; };
 		E2B6383710BA55AB00BF43E7 /* MyDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyDocument.h; sourceTree = "<group>"; };
 		E2B6383810BA55AB00BF43E7 /* MyDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyDocument.m; sourceTree = "<group>"; };
+		E2D08E3F10BEA7C7004151B9 /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		E2D08F7010BEB7DD004151B9 /* JavaScriptBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JavaScriptBridge.m; sourceTree = "<group>"; };
 		E2E5BBED10BB9778004E3745 /* SourceParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SourceParser.h; sourceTree = "<group>"; };
 		E2E5BC0C10BB986B004E3745 /* SourceLanguage_Base.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SourceLanguage_Base.h; sourceTree = "<group>"; };
 		E2E5BC0D10BB986B004E3745 /* SourceLanguage_Base.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SourceLanguage_Base.m; sourceTree = "<group>"; };
@@ -133,6 +137,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8DD76F9C0486AA7600D96B5E /* Foundation.framework in Frameworks */,
+				E2D08E4010BEA7C7004151B9 /* JavaScriptCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -172,8 +177,9 @@
 		08FB779DFE84155DC02AAC07 /* External Frameworks and Libraries */ = {
 			isa = PBXGroup;
 			children = (
-				08FB779EFE84155DC02AAC07 /* Foundation.framework */,
 				E2B6372310BA539100BF43E7 /* Cocoa.framework */,
+				08FB779EFE84155DC02AAC07 /* Foundation.framework */,
+				E2D08E3F10BEA7C7004151B9 /* JavaScriptCore.framework */,
 			);
 			name = "External Frameworks and Libraries";
 			sourceTree = "<group>";
@@ -236,6 +242,7 @@
 		E2B637FA10BA540800BF43E7 /* Tool */ = {
 			isa = PBXGroup;
 			children = (
+				E2D08F7010BEB7DD004151B9 /* JavaScriptBridge.m */,
 				E2B637FB10BA540800BF43E7 /* main.m */,
 			);
 			path = Tool;
@@ -341,6 +348,7 @@
 				E2B637FC10BA540800BF43E7 /* main.m in Sources */,
 				E2E5BC0F10BB986B004E3745 /* SourceLanguage_Base.m in Sources */,
 				E213417F10BCF9B800023F41 /* SourceLanguage_ObjCPP.m in Sources */,
+				E2D08F7110BEB7DD004151B9 /* JavaScriptBridge.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

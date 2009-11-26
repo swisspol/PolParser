@@ -20,7 +20,7 @@
 
 @implementation SourceNode
 
-@synthesize source=_source, range=_range, parent=_parent, children=_children, revision=_revision;
+@synthesize source=_source, range=_range, parent=_parent, children=_children, revision=_revision, jsObject=_jsObject;
 
 + (id) allocWithZone:(NSZone*)zone
 {
@@ -212,16 +212,6 @@ static void _MergeChildrenContent(SourceNode* node, NSMutableString* string) {
     [parent removeChildAtIndex:index];
     if(node)
         [parent insertChild:node atIndex:index];
-}
-
-- (BOOL) hasParentOfClass:(Class)class {
-    SourceNode* node = _parent;
-    while(node) {
-        if([node isKindOfClass:class])
-            return YES;
-        node = node.parent;
-    }
-    return NO;
 }
 
 - (SourceNode*) findPreviousSiblingOfClass:(Class)class {

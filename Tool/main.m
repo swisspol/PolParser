@@ -1,152 +1,92 @@
+/*
+    This file is part of the PolParser library.
+    Copyright (C) 2009 Pierre-Olivier Latour <info@pol-online.net>
+    
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+    
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+    
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
+#import <libgen.h>
+
 #import "SourceParser.h"
 
-static void _ProcessNode(SourceNode* node) {
-    //Replace indenting spaces by tabs - FIXME: This affects open-braces reformatting since it replaces some "SourceNodeIndenting" nodes
-    /*if([node isKindOfClass:[SourceNodeIndenting class]]) {
-        NSString* text = node.content;
-        text = [text stringByReplacingOccurrencesOfString:@"    " withString:@"\t"];
-        [node replaceWithText:text];
-    }*/
-    
-    //Strip multiple whitespace (but not indenting)
-    if([node isMemberOfClass:[SourceNodeWhitespace class]]) {
-    	[node replaceWithText:@" "];
-    }
-    
-    //Strip whitespace at end of lines & multiple newlines
-    if([node isKindOfClass:[SourceNodeNewline class]]) {
-        if([node.previousSibling isKindOfClass:[SourceNodeWhitespace class]]) //FIXME: This is affected by the above operation
-            [node.previousSibling removeFromParent];
-        if([node.nextSibling isKindOfClass:[SourceNodeNewline class]] && [node.nextSibling.nextSibling isKindOfClass:[SourceNodeNewline class]])
-            [node.nextSibling removeFromParent];
-    }
-    
-    //Strip multiple semicolons (except in for() loops) and whitespace before the remaining ones
-    if([node isKindOfClass:[SourceNodeSemicolon class]]) {
-    	while([node.previousSibling isKindOfClass:[SourceNodeWhitespace class]] || [node.previousSibling isKindOfClass:[SourceNodeNewline class]]) {
-        	[node.previousSibling removeFromParent];
-        }
-        if(![node.parent.parent isKindOfClass:[SourceNodeCFlowFor class]]) {
-            SourceNode* nextNode = [node findNextSiblingIgnoringWhitespaceAndNewline];
-            while([nextNode isKindOfClass:[SourceNodeSemicolon class]]) {
-                SourceNode* tempNode = [nextNode findNextSiblingIgnoringWhitespaceAndNewline];
-                [nextNode removeFromParent];
-                nextNode = tempNode;
-            }
-        }
-    }
-    
-    //Delete empty C++ comments and reformat the remaining ones as "  // Comment"
-    if([node isKindOfClass:[SourceNodeCPPComment class]]) {
-        if([node.previousSibling isKindOfClass:[SourceNodeWhitespace class]])
-            [node.previousSibling removeFromParent];
-        NSString* text = node.content;
-        NSRange range = [node.content rangeOfCharacterFromSet:[[NSCharacterSet whitespaceCharacterSet] invertedSet] options:0 range:NSMakeRange(2, text.length - 2)];
-        if(range.location != NSNotFound)
-            text = [NSString stringWithFormat:@"%@// %@", [node.previousSibling isKindOfClass:[SourceNodeNewline class]] ? @"": @"  ", [text substringFromIndex:range.location]];
-        else
-            text = nil;
-        [node replaceWithText:text];
-    }
-    
-    //Reformat "if...", "else if...", "for..." and "while..." as "if ...", "else if ...", "for ..." and "while ..."
-    if(([node isKindOfClass:[SourceNodeCConditionIf class]] || [node isKindOfClass:[SourceNodeCConditionElseIf class]] || [node isKindOfClass:[SourceNodeCFlowFor class]] || [node isKindOfClass:[SourceNodeCFlowWhile class]]) && node.children.count) {
-        SourceNode* subnode = node.firstChild;
-        while([subnode.nextSibling isKindOfClass:[SourceNodeWhitespace class]] || [subnode.nextSibling isKindOfClass:[SourceNodeNewline class]])
-            [subnode.nextSibling removeFromParent];
-        [subnode insertNextSibling:[SourceNodeText sourceNodeWithText:@" "]];
-    }
-    
-    //Reformat "do {} while()" as "do {} while ()"
-    if([node isKindOfClass:[SourceNodeCFlowDoWhile class]] && node.children.count) {
-        SourceNode* subnode = node.lastChild;
-        if([subnode isKindOfClass:[SourceNodeParenthesis class]]) {
-            while([subnode.previousSibling isKindOfClass:[SourceNodeWhitespace class]] || [subnode.previousSibling isKindOfClass:[SourceNodeNewline class]])
-                [subnode.previousSibling removeFromParent];
-            [subnode insertPreviousSibling:[SourceNodeText sourceNodeWithText:@" "]];
-        }
-    }
-    
-    //Reformat open-braces as "... {"
-    if([node isKindOfClass:[SourceNodeBraces class]]) {
-        if([node.parent isKindOfClass:[SourceNodeCFlowFor class]] || [node.parent isKindOfClass:[SourceNodeCFlowDoWhile class]] || [node.parent isKindOfClass:[SourceNodeCFlowWhile class]]
-            || [node.parent isKindOfClass:[SourceNodeCConditionIf class]] || [node.parent isKindOfClass:[SourceNodeCConditionElse class]] || [node.parent isKindOfClass:[SourceNodeCFunctionDefinition class]]
-            || [node.parent isKindOfClass:[SourceNodeObjCInterface class]] || [node.parent isKindOfClass:[SourceNodeObjCTry class]] || [node.parent isKindOfClass:[SourceNodeObjCCatch class]]
-            || [node.parent isKindOfClass:[SourceNodeObjCFinally class]] || [node.parent isKindOfClass:[SourceNodeObjCSynchronized class]] || [node.parent isKindOfClass:[SourceNodeObjCMethodImplementation class]]
-            || [node.parent isKindOfClass:[SourceNodeCConditionElseIf class]]) {
-            
-            SourceNode* subnode = [node findPreviousSiblingIgnoringWhitespaceAndNewline];
-            if(subnode) {
-                while([subnode.nextSibling isKindOfClass:[SourceNodeWhitespace class]] || [subnode.nextSibling isKindOfClass:[SourceNodeNewline class]]) {
-                    [subnode.nextSibling removeFromParent];
-                }
-                [node insertPreviousSibling:[SourceNodeText sourceNodeWithText:@" "]];
-            }
-        }
-    }
-    
-    //FIXME: Remove all indenting and re-intend according to braces
-}
-
-#if !NS_BLOCKS_AVAILABLE
-
-static SourceNode* _ApplierFunction(SourceNode* node, void* context) {
-    _ProcessNode(node);
-    return node;
-}
-
-#endif
+extern BOOL RunJavaScriptOnRootNode(NSString* script, SourceNode* root);
 
 int main(int argc, const char* argv[]) {
     NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+    int result = 1;
     
     if(argc >= 2) {
-        BOOL optionClean = NO;
         BOOL optionDiff = NO;
+        NSString* optionScript = nil;
         
         int offset = 1;
         while(argv[offset][0] == '-') {
-            if(strcmp(argv[offset], "-clean") == 0)
-                optionClean = YES;
+            if((strcmp(argv[offset], "-refactor") == 0) && (offset + 1 < argc)) {
+                if(argv[offset + 1][0] != '-') {
+                	NSString* path = [[NSString stringWithUTF8String:argv[offset + 1]] stringByStandardizingPath];
+                    optionScript = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:NULL];
+                    if(optionScript) {
+                        ++offset;
+                    } else {
+                    	printf("Failed loading JavaScript from \"%s\"\n", [path UTF8String]);
+                        goto Exit;
+                    }
+                }
+            }
             else if(strcmp(argv[offset], "-diff") == 0)
                 optionDiff = YES;
             ++offset;
         }
+        NSString* inFile = [[NSString stringWithUTF8String:argv[offset]] stringByStandardizingPath];
+        NSString* outFile = (offset + 1 < argc ? [[NSString stringWithUTF8String:argv[offset + 1]] stringByStandardizingPath] : nil);
         
-        NSString* path = [[NSString stringWithUTF8String:argv[offset]] stringByStandardizingPath];
-        SourceNodeRoot* root = [SourceLanguage parseSourceFile:path encoding:NSUTF8StringEncoding syntaxAnalysis:YES];
+        SourceNodeRoot* root = [SourceLanguage parseSourceFile:inFile encoding:NSUTF8StringEncoding syntaxAnalysis:YES];
         if(root) {
-            if(optionClean)
-#if NS_BLOCKS_AVAILABLE
-                [root enumerateChildrenRecursively:YES usingBlock:^(SourceNode* node) {
-                    _ProcessNode(node);
-                    return node;
-                }];
-#else
-                [root applyFunctionOnChildren:_ApplierFunction context:NULL];
-#endif
+            if(!optionScript || RunJavaScriptOnRootNode(optionScript, root))
+            	result = 0;
             
-            printf("%s\n", [[root fullDescription] UTF8String]);
-            
-            if(argc >= 3) {
+            if(outFile) {
                 NSString* newPath = [[NSString stringWithUTF8String:argv[offset + 1]] stringByStandardizingPath];
-                if([root writeContentToFile:newPath encoding:NSUTF8StringEncoding] && optionDiff) {
-                    NSTask* task = [[NSTask alloc] init];
-                    [task setLaunchPath:@"/usr/bin/opendiff"];
-                    [task setArguments:[NSArray arrayWithObjects:path, newPath, nil]];
-                    @try {
-                        [task launch];
+                if([root writeContentToFile:outFile encoding:NSUTF8StringEncoding]) {
+                    if(optionDiff) {
+                        NSTask* task = [[NSTask alloc] init];
+                        [task setLaunchPath:@"/usr/bin/opendiff"];
+                        [task setArguments:[NSArray arrayWithObjects:inFile, newPath, nil]];
+                        @try {
+                            [task launch];
+                        }
+                        @catch(NSException* exception) {
+                            printf("Failed running %s\n", [[task launchPath] UTF8String]);
+                        }
+                        [task waitUntilExit];
+                        [task release];
                     }
-                    @catch(NSException* exception) {
-                        ;
-                    }
-                    [task waitUntilExit];
-                    [task release];
+                } else {
+                	printf("Failed writing source file to \"%s\"\n", [outFile UTF8String]);
+                    result = 1;
                 }
+            } else {
+                printf("%s\n", [[root fullDescription] UTF8String]);
             }
+        } else {
+            printf("Failed parsing source file from \"%s\"\n", [inFile UTF8String]);
         }
+    } else {
+        printf("%s [-refactor JavaScriptFilePath] [-diff] inFile [outFile]\n", basename((char*)argv[0]));
     }
     
+Exit:
     [pool drain];
-    return 0;
+    return result;
 }

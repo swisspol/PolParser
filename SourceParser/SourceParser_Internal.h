@@ -72,6 +72,7 @@ void _RearrangeNodesAsChildren(SourceNode* startNode, SourceNode* endNode);
 @property(nonatomic, assign) SourceNode* parent;
 @property(nonatomic, readonly) NSMutableArray* mutableChildren;
 @property(nonatomic) NSUInteger revision;
+@property(nonatomic) void* jsObject;
 - (id) initWithSource:(NSString*)source range:(NSRange)range;
 @end
 

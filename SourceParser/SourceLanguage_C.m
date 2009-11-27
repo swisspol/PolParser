@@ -26,12 +26,22 @@
 
 + (NSSet*) languageReservedKeywords {
 	return [NSSet setWithObjects:@"auto", @"break", @"case", @"char", @"const", @"continue", @"default", @"do", @"double",
-    	@"else", @"enum", @"extern", @"float", @"for", @"goto", @"if", @"int", @"long", @"register", @"return", @"short", @"signed",
-        @"sizeof", @"static", @"struct", @"switch", @"typedef", @"union", @"unsigned", @"void", @"volatile", @"while", nil];
+    	@"else", @"enum", @"inline", @"extern", @"float", @"for", @"goto", @"if", @"int", @"long", @"register", @"return", @"short",
+        @"signed", @"sizeof", @"static", @"struct", @"switch", @"typedef", @"union", @"unsigned", @"void", @"volatile", @"while",
+        @"NULL", nil]; //Not "true" keywords
 }
 
 + (NSArray*) languageNodeClasses {
-	NSMutableArray* classes = [NSMutableArray array];
+	NSMutableArray* classes = [NSMutableArray arrayWithArray:[super languageNodeClasses]];
+    
+    [classes addObject:[SourceNodeColon class]];
+    [classes addObject:[SourceNodeSemicolon class]];
+    [classes addObject:[SourceNodeQuestionMark class]];
+    [classes addObject:[SourceNodeExclamationMark class]];
+    [classes addObject:[SourceNodeTilda class]];
+    [classes addObject:[SourceNodeCaret class]];
+    [classes addObject:[SourceNodeAmpersand class]];
+    [classes addObject:[SourceNodeAsterisk class]];
     
     [classes addObject:[SourceNodeCComment class]];
     [classes addObject:[SourceNodeCPreprocessorConditionIf class]];
@@ -45,16 +55,6 @@
     [classes addObject:[SourceNodeCPreprocessorWarning class]];
     [classes addObject:[SourceNodeCPreprocessorError class]];
     [classes addObject:[SourceNodeCPreprocessorInclude class]];
-    [classes addObject:[SourceNodeColon class]];
-    [classes addObject:[SourceNodeSemicolon class]];
-    [classes addObject:[SourceNodeQuestionMark class]];
-    [classes addObject:[SourceNodeExclamationMark class]];
-    [classes addObject:[SourceNodeTilda class]];
-    [classes addObject:[SourceNodeCaret class]];
-    [classes addObject:[SourceNodeAmpersand class]];
-    [classes addObject:[SourceNodeAsterisk class]];
-    [classes addObject:[SourceNodeCNULL class]];
-    [classes addObject:[SourceNodeCVoid class]];
     [classes addObject:[SourceNodeCStringSingleQuote class]];
     [classes addObject:[SourceNodeCStringDoubleQuote class]];
     [classes addObject:[SourceNodeCConditionalOperator class]];
@@ -75,14 +75,7 @@
     [classes addObject:[SourceNodeCTypedef class]];
     [classes addObject:[SourceNodeCTypeStruct class]];
     [classes addObject:[SourceNodeCTypeUnion class]];
-    [classes addObject:[SourceNodeCTypeAuto class]];
-    [classes addObject:[SourceNodeCTypeStatic class]];
-    [classes addObject:[SourceNodeCTypeRegister class]];
-    [classes addObject:[SourceNodeCTypeVolatile class]];
-    [classes addObject:[SourceNodeCTypeConst class]];
-    [classes addObject:[SourceNodeCTypeEnum class]];
-    [classes addObject:[SourceNodeCTypeExtern class]];
-    [classes addObject:[SourceNodeCTypeInline class]];
+	[classes addObject:[SourceNodeCTypeEnum class]];
     [classes addObject:[SourceNodeCSizeOf class]];
     [classes addObject:[SourceNodeCTypeOf class]];
     
@@ -152,7 +145,7 @@ static inline BOOL _IsNodeAtTopLevel(SourceNode* node, NSSet* topLevelClasses) {
                     [previousNode insertNextSibling:newNode];
                     [newNode release];
                     
-                    SourceNode* prefixNode = [[SourceNodeToken alloc] initWithSource:node.source range:NSMakeRange(elseNode.range.location, previousNode.range.location + previousNode.range.length - elseNode.range.location)];
+                    SourceNode* prefixNode = [[SourceNodeMatch alloc] initWithSource:node.source range:NSMakeRange(elseNode.range.location, previousNode.range.location + previousNode.range.length - elseNode.range.location)];
                     [newNode insertNextSibling:prefixNode];
                     [prefixNode release];
                     
@@ -177,7 +170,7 @@ static inline BOOL _IsNodeAtTopLevel(SourceNode* node, NSSet* topLevelClasses) {
                 if([nextNextNode isKindOfClass:[SourceNodeParenthesis class]]) {
                     _RearrangeNodesAsChildren(previousNode, nextNextNode);
                     
-                    SourceNode* newWhile = [[SourceNodeKeyword alloc] initWithSource:nextNode.source range:nextNode.range];
+                    SourceNode* newWhile = [[SourceNodeMatch alloc] initWithSource:nextNode.source range:nextNode.range];
                     [nextNode replaceWithNode:newWhile];
                     [newWhile release];
                 }
@@ -211,7 +204,7 @@ static inline BOOL _IsNodeAtTopLevel(SourceNode* node, NSSet* topLevelClasses) {
                     [node insertNextSibling:newNode];
                     [newNode release];
                     
-                    SourceNode* prefixNode = [[SourceNodeToken alloc] initWithSource:node.source range:NSMakeRange(elseNode.range.location, node.range.location + node.range.length - elseNode.range.location)];
+                    SourceNode* prefixNode = [[SourceNodeMatch alloc] initWithSource:node.source range:NSMakeRange(elseNode.range.location, node.range.location + node.range.length - elseNode.range.location)];
                     [newNode insertNextSibling:prefixNode];
                     [prefixNode release];
                     
@@ -307,15 +300,14 @@ static inline BOOL _IsNodeAtTopLevel(SourceNode* node, NSSet* topLevelClasses) {
             }
         }
         
-    } else if([node isKindOfClass:[SourceNodeCTypeStruct class]] || [node isKindOfClass:[SourceNodeCTypeUnion class]]) {
+    } else if([node isKindOfClass:[SourceNodeCTypeEnum class]] || [node isKindOfClass:[SourceNodeCTypeStruct class]] || [node isKindOfClass:[SourceNodeCTypeUnion class]]) {
         
-        // "struct {}" "union {}"
-        SourceNode* bracesNode = [node findNextSiblingOfClass:[SourceNodeBraces class]];
+        // "enum {}" "struct {}" "union {}"
+		SourceNode* bracesNode = [node findNextSiblingOfClass:[SourceNodeBraces class]];
         SourceNode* semicolonNode = [node findNextSiblingOfClass:[SourceNodeSemicolon class]];
         if(bracesNode && (!semicolonNode || ([node.parent indexOfChild:semicolonNode] > [node.parent indexOfChild:bracesNode]))) {
-            semicolonNode = [bracesNode findNextSiblingOfClass:[SourceNodeSemicolon class]];
-            if(!semicolonNode && [bracesNode.parent isKindOfClass:[SourceNodeCTypedef class]])
-                _RearrangeNodesAsChildren(node, bracesNode.parent.lastChild);
+            if(!semicolonNode)
+                _RearrangeNodesAsChildren(node, node.parent.lastChild);
             else if(semicolonNode)
                 _RearrangeNodesAsChildren(node, semicolonNode);
         }
@@ -342,14 +334,17 @@ static inline BOOL _IsNodeAtTopLevel(SourceNode* node, NSSet* topLevelClasses) {
             if([nextNode isKindOfClass:[SourceNodeSemicolon class]] || [nextNode isKindOfClass:[SourceNodeBraces class]]) {
                 SourceNode* previousNode = [node findPreviousSiblingIgnoringWhitespaceAndNewline];
                 if([previousNode isMemberOfClass:[SourceNodeText class]] && _IsIdentifier(sourceBuffer + previousNode.range.location, previousNode.range.length)) {
+                    SourceNode* newNode = [[SourceNodeMatch alloc] initWithSource:previousNode.source range:previousNode.range];
+                    [previousNode replaceWithNode:newNode];
+                    [newNode release];
+                    previousNode = newNode;
                     while(1) {
                     	SourceNode* siblingNode = [previousNode findPreviousSiblingIgnoringWhitespaceAndNewline];
-                        if(![siblingNode isMemberOfClass:[SourceNodeText class]] && ![siblingNode isMemberOfClass:[SourceNodeKeyword class]] && ![siblingNode isKindOfClass:[SourceNodeAsterisk class]] && ![siblingNode isKindOfClass:[SourceNodeCVoid class]]
-                        	&& ![siblingNode isKindOfClass:[SourceNodeCTypeStatic class]] && ![siblingNode isKindOfClass:[SourceNodeCTypeExtern class]] && ![siblingNode isKindOfClass:[SourceNodeCTypeInline class]])
+                        if(![siblingNode isMemberOfClass:[SourceNodeText class]] && ![siblingNode isKindOfClass:[SourceNodeKeyword class]] && ![siblingNode isKindOfClass:[SourceNodeAsterisk class]])
                         	break;
                         previousNode = siblingNode;
                     }
-                    SourceNode* newNode = [([nextNode isKindOfClass:[SourceNodeBraces class]] ? [SourceNodeCFunctionDefinition alloc] : [SourceNodeCFunctionPrototype alloc]) initWithSource:previousNode.source range:NSMakeRange(previousNode.range.location, 0)];
+                    newNode = [([nextNode isKindOfClass:[SourceNodeBraces class]] ? [SourceNodeCFunctionDefinition alloc] : [SourceNodeCFunctionPrototype alloc]) initWithSource:previousNode.source range:NSMakeRange(previousNode.range.location, 0)];
                     [previousNode insertPreviousSibling:newNode];
                     [newNode release];
                     _RearrangeNodesAsChildren(newNode, nextNode);
@@ -361,7 +356,7 @@ static inline BOOL _IsNodeAtTopLevel(SourceNode* node, NSSet* topLevelClasses) {
         else if(![node.parent isKindOfClass:[SourceNodeCFunctionDefinition class]] && ![node.parent isKindOfClass:[SourceNodeCFunctionCall class]] && ![node.parent isKindOfClass:[SourceNodeCPreprocessorDefine class]] && _IsNodeInBlock(node)) {
             SourceNode* previousNode = [node findPreviousSiblingIgnoringWhitespaceAndNewline];
             if([previousNode isMemberOfClass:[SourceNodeText class]] && _IsIdentifier(sourceBuffer + previousNode.range.location, previousNode.range.length)) {
-            	SourceNode* newNode = [[SourceNodeToken alloc] initWithSource:previousNode.source range:previousNode.range];
+            	SourceNode* newNode = [[SourceNodeMatch alloc] initWithSource:previousNode.source range:previousNode.range];
                 [previousNode replaceWithNode:newNode];
                 [newNode release];
                 previousNode = newNode;
@@ -383,29 +378,14 @@ static inline BOOL _IsNodeAtTopLevel(SourceNode* node, NSSet* topLevelClasses) {
 
 @end
 
-#define IMPLEMENTATION(__NAME__, __CHARACTER__) \
-@implementation SourceNode##__NAME__ \
-\
-+ (NSUInteger) isMatchingPrefix:(const unichar*)string maxLength:(NSUInteger)maxLength { \
-    return *string == __CHARACTER__ ? 1 : NSNotFound; \
-} \
-\
-+ (NSUInteger) isMatchingSuffix:(const unichar*)string maxLength:(NSUInteger)maxLength { \
-    return 0; \
-} \
-\
-@end
-
-IMPLEMENTATION(Colon, ':')
-IMPLEMENTATION(Semicolon, ';')
-IMPLEMENTATION(QuestionMark, '?')
-IMPLEMENTATION(ExclamationMark, '!')
-IMPLEMENTATION(Tilda, '~')
-IMPLEMENTATION(Caret, '^')
-IMPLEMENTATION(Ampersand, '&')
-IMPLEMENTATION(Asterisk, '*')
-
-#undef IMPLEMENTATION
+TOKEN_CLASS_IMPLEMENTATION(Colon, ":")
+TOKEN_CLASS_IMPLEMENTATION(Semicolon, ";")
+TOKEN_CLASS_IMPLEMENTATION(QuestionMark, "?")
+TOKEN_CLASS_IMPLEMENTATION(ExclamationMark, "!")
+TOKEN_CLASS_IMPLEMENTATION(Tilda, "~")
+TOKEN_CLASS_IMPLEMENTATION(Caret, "^")
+TOKEN_CLASS_IMPLEMENTATION(Ampersand, "&")
+TOKEN_CLASS_IMPLEMENTATION(Asterisk, "*")
 
 @implementation SourceNodeCComment
 
@@ -438,11 +418,11 @@ IMPLEMENTATION(Asterisk, '*')
         if(IsNewline(*string) || (*string == '#') || ((maxLength >= 2) && (string[0] == '/') && ((string[1] == '*') || (string[1] == '/')))) {
             do {
                 --string;
-            } while(IsWhiteSpace(*string));
+            } while(IsWhitespace(*string));
             if(*string != '\\')
                 return 0;
         }
-        if(!IsWhiteSpace(*string))
+        if(!IsWhitespace(*string))
             break;
         ++string;
         --maxLength;
@@ -457,17 +437,17 @@ IMPLEMENTATION(Asterisk, '*')
 
 + (NSUInteger) isMatchingSuffix:(const unichar*)string maxLength:(NSUInteger)maxLength {
     {
-        IS_MATCHING(@"#else", true, false, 0, string, maxLength);
+        IS_MATCHING(@"#else", true, NULL, string, maxLength);
         if(_matching != NSNotFound)
             return 0;
     }
     {
-        IS_MATCHING(@"#elseif", true, false, '(', string, maxLength);
+        IS_MATCHING(@"#elseif", true, "(", string, maxLength);
         if(_matching != NSNotFound)
             return 0;
     }
     {
-        IS_MATCHING(@"#endif", true, false, 0, string, maxLength);
+        IS_MATCHING(@"#endif", true, NULL, string, maxLength);
         if(_matching != NSNotFound)
             return _matching;
     }
@@ -477,11 +457,11 @@ IMPLEMENTATION(Asterisk, '*')
 
 @end
 
-#define IMPLEMENTATION(__NAME__, __PREFIX__, __TRAILING_WHITESPACE_OR_NEWLINE__, __SEMICOLON__, __CHARACTER__) \
+#define IMPLEMENTATION(__NAME__, __PREFIX__, __CHARACTERS__) \
 @implementation SourceNodeCPreprocessorCondition##__NAME__ \
 \
 + (NSUInteger) isMatchingPrefix:(const unichar*)string maxLength:(NSUInteger)maxLength { \
-    IS_MATCHING(__PREFIX__, __TRAILING_WHITESPACE_OR_NEWLINE__, __SEMICOLON__, __CHARACTER__, string, maxLength) \
+    IS_MATCHING(__PREFIX__, true, __CHARACTERS__, string, maxLength) \
     if(_matching != NSNotFound) { \
         string += _matching; \
         maxLength -= _matching; \
@@ -489,7 +469,7 @@ IMPLEMENTATION(Asterisk, '*')
             if(IsNewline(*string) || (*string == '#') || ((maxLength >= 2) && (string[0] == '/') && ((string[1] == '*') || (string[1] == '/')))) { \
                 do { \
                     --string; \
-                } while(IsWhiteSpace(*string)); \
+                } while(IsWhitespace(*string)); \
                 if(*string != '\\') \
                     break; \
             } \
@@ -503,27 +483,27 @@ IMPLEMENTATION(Asterisk, '*')
 \
 @end
 
-IMPLEMENTATION(If, @"#if", true, false, '(')
-IMPLEMENTATION(Ifdef, @"#ifdef", true, false, '(')
-IMPLEMENTATION(Ifndef, @"#ifndef", true, false, '(')
-IMPLEMENTATION(Else, @"#else", true, false, '(')
-IMPLEMENTATION(Elseif, @"#elseif", true, false, '(')
+IMPLEMENTATION(If, @"#if", "(")
+IMPLEMENTATION(Ifdef, @"#ifdef", "(")
+IMPLEMENTATION(Ifndef, @"#ifndef", "(")
+IMPLEMENTATION(Else, @"#else", "(")
+IMPLEMENTATION(Elseif, @"#elseif", "(")
 
 #undef IMPLEMENTATION
 
 #define IMPLEMENTATION(__NAME__, ...) \
 @implementation SourceNodeCPreprocessor##__NAME__ \
 \
-IS_MATCHING_PREFIX_METHOD_WITH_TRAILING_WHITESPACE_OR_NEWLINE_OR_SEMICOLON_OR_CHARACTER(__VA_ARGS__); \
+IS_MATCHING_PREFIX_METHOD_WITH_TRAILING_CHARACTERS(__VA_ARGS__) \
 \
 @end
 
-IMPLEMENTATION(Define, @"#define", true, false, 0)
-IMPLEMENTATION(Undefine, @"#undef", true, false, 0)
-IMPLEMENTATION(Pragma, @"#pragma", true, false, '(')
-IMPLEMENTATION(Warning, @"#warning", true, false, '(')
-IMPLEMENTATION(Error, @"#error", true, false, '(')
-IMPLEMENTATION(Include, @"#include", false, false, 0)
+IMPLEMENTATION(Define, @"#define", true, NULL)
+IMPLEMENTATION(Undefine, @"#undef", true, NULL)
+IMPLEMENTATION(Pragma, @"#pragma", true, "(")
+IMPLEMENTATION(Warning, @"#warning", true, "(")
+IMPLEMENTATION(Error, @"#error", true, "(")
+IMPLEMENTATION(Include, @"#include", false, NULL)
 
 #undef IMPLEMENTATION
 
@@ -551,10 +531,28 @@ IMPLEMENTATION(Include, @"#include", false, false, 0)
 
 @end
 
+KEYWORD_CLASS_IMPLEMENTATION(C, NULL, @"NULL")
+KEYWORD_CLASS_IMPLEMENTATION(C, Void, @"void")
+KEYWORD_CLASS_IMPLEMENTATION(C, Auto, @"auto")
+KEYWORD_CLASS_IMPLEMENTATION(C, Static, @"static")
+KEYWORD_CLASS_IMPLEMENTATION(C, Register, @"register")
+KEYWORD_CLASS_IMPLEMENTATION(C, Volatile, @"volatile")
+KEYWORD_CLASS_IMPLEMENTATION(C, Const, @"const")
+KEYWORD_CLASS_IMPLEMENTATION(C, Extern, @"extern")
+KEYWORD_CLASS_IMPLEMENTATION(C, Inline, @"inline")
+KEYWORD_CLASS_IMPLEMENTATION(C, Signed, @"signed")
+KEYWORD_CLASS_IMPLEMENTATION(C, Unsigned, @"unsigned")
+KEYWORD_CLASS_IMPLEMENTATION(C, Char, @"char")
+KEYWORD_CLASS_IMPLEMENTATION(C, Short, @"short")
+KEYWORD_CLASS_IMPLEMENTATION(C, Int, @"int")
+KEYWORD_CLASS_IMPLEMENTATION(C, Long, @"long")
+KEYWORD_CLASS_IMPLEMENTATION(C, Float, @"float")
+KEYWORD_CLASS_IMPLEMENTATION(C, Double, @"double")
+
 #define IMPLEMENTATION(__NAME__, ...) \
 @implementation SourceNodeC##__NAME__ \
 \
-IS_MATCHING_PREFIX_METHOD_WITH_TRAILING_WHITESPACE_OR_NEWLINE_OR_SEMICOLON_OR_CHARACTER(__VA_ARGS__); \
+IS_MATCHING_PREFIX_METHOD_WITH_TRAILING_CHARACTERS(__VA_ARGS__) \
 \
 + (NSUInteger) isMatchingSuffix:(const unichar*)string maxLength:(NSUInteger)maxLength { \
     return 0; \
@@ -562,33 +560,24 @@ IS_MATCHING_PREFIX_METHOD_WITH_TRAILING_WHITESPACE_OR_NEWLINE_OR_SEMICOLON_OR_CH
 \
 @end
 
-IMPLEMENTATION(NULL, @"NULL", false, false, 0)
-IMPLEMENTATION(Void, @"void", false, false, 0)
-IMPLEMENTATION(ConditionIf, @"if", true, false, '(')
-IMPLEMENTATION(ConditionElse, @"else", true, false, '{')
-IMPLEMENTATION(FlowBreak, @"break", true, true, 0)
-IMPLEMENTATION(FlowContinue, @"continue", true, true, 0)
-IMPLEMENTATION(FlowSwitch, @"switch", true, false, '(')
-IMPLEMENTATION(FlowCase, @"case", true, false, 0)
-IMPLEMENTATION(FlowDefault, @"default", true, false, ':')
-IMPLEMENTATION(FlowFor, @"for", true, false, '(')
-IMPLEMENTATION(FlowDoWhile, @"do", true, false, '{')
-IMPLEMENTATION(FlowWhile, @"while", true, false, '(')
-IMPLEMENTATION(FlowGoto, @"goto", true, false, 0)
-IMPLEMENTATION(FlowReturn, @"return", true, true, '(')
-IMPLEMENTATION(Typedef, @"typedef", true, false, 0)
-IMPLEMENTATION(TypeStruct, @"struct", true, false, '{')
-IMPLEMENTATION(TypeUnion, @"union", true, false, '{')
-IMPLEMENTATION(TypeAuto, @"auto", true, false, 0)
-IMPLEMENTATION(TypeStatic, @"static", true, false, 0)
-IMPLEMENTATION(TypeRegister, @"register", true, false, 0)
-IMPLEMENTATION(TypeVolatile, @"volatile", true, false, 0)
-IMPLEMENTATION(TypeConst, @"const", true, false, 0)
-IMPLEMENTATION(TypeEnum, @"enum", true, false, '{')
-IMPLEMENTATION(TypeExtern, @"extern", true, false, 0)
-IMPLEMENTATION(TypeInline, @"inline", true, false, 0)
-IMPLEMENTATION(SizeOf, @"sizeof", true, false, '(')
-IMPLEMENTATION(TypeOf, @"sizeof", true, false, '(')
+IMPLEMENTATION(ConditionIf, @"if", true, "(")
+IMPLEMENTATION(ConditionElse, @"else", true, "{")
+IMPLEMENTATION(FlowBreak, @"break", true, ";")
+IMPLEMENTATION(FlowContinue, @"continue", true, ";")
+IMPLEMENTATION(FlowSwitch, @"switch", true, "(")
+IMPLEMENTATION(FlowCase, @"case", true, NULL)
+IMPLEMENTATION(FlowDefault, @"default", true, ":")
+IMPLEMENTATION(FlowFor, @"for", true, "(")
+IMPLEMENTATION(FlowDoWhile, @"do", true, "{")
+IMPLEMENTATION(FlowWhile, @"while", true, "(")
+IMPLEMENTATION(FlowGoto, @"goto", true, NULL)
+IMPLEMENTATION(FlowReturn, @"return", true, ";(")
+IMPLEMENTATION(Typedef, @"typedef", true, NULL)
+IMPLEMENTATION(TypeStruct, @"struct", true, "{")
+IMPLEMENTATION(TypeUnion, @"union", true, "{")
+IMPLEMENTATION(TypeEnum, @"enum", true, "{")
+IMPLEMENTATION(SizeOf, @"sizeof", true, "(")
+IMPLEMENTATION(TypeOf, @"typeof", true, "(")
 
 #undef IMPLEMENTATION
 

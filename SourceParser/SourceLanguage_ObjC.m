@@ -27,11 +27,12 @@
 + (NSSet*) languageReservedKeywords {
 	return [NSSet setWithObjects:@"in", @"out", @"inout", @"bycopy", @"byref", @"oneway", @"@class", @"@selector", @"@protocol",
     	@"@encode", @"@synchronized", @"@required", @"@optional", @"@property", @"`", @"@try", @"@throw", @"@catch",
-        @"@finally", @"@private", @"@protected", @"@public", @"@interface", @"@implementation", @"@protocol", @"@end", nil];
+        @"@finally", @"@private", @"@protected", @"@public", @"@interface", @"@implementation", @"@protocol", @"@end",
+        @"self", @"super", @"nil", nil]; //Not "true" keywords
 }
 
 + (NSArray*) languageNodeClasses {
-	NSMutableArray* classes = [NSMutableArray array];
+	NSMutableArray* classes = [NSMutableArray arrayWithArray:[super languageNodeClasses]];
     
     [classes addObject:[SourceNodeCPPComment class]]; //From C++ language
     
@@ -55,9 +56,6 @@
     [classes addObject:[SourceNodeObjCSynchronized class]];
     [classes addObject:[SourceNodeObjCSelector class]];
     [classes addObject:[SourceNodeObjCEncode class]];
-    [classes addObject:[SourceNodeObjCSelf class]];
-    [classes addObject:[SourceNodeObjCSuper class]];
-    [classes addObject:[SourceNodeObjCNil class]];
     
     [classes addObject:[SourceNodeObjCMethodDeclaration class]];
     [classes addObject:[SourceNodeObjCMethodImplementation class]];
@@ -188,7 +186,7 @@ static SourceNode* _ApplierFunction(SourceNode* node, void* context) {
                 SourceNode* nextNode = [target findNextSiblingIgnoringWhitespaceAndNewline];
                 if([nextNode isMemberOfClass:[SourceNodeText class]]) {
                 	if([target isMemberOfClass:[SourceNodeText class]]) {
-						SourceNode* newNode = [[SourceNodeToken alloc] initWithSource:target.source range:target.range];
+						SourceNode* newNode = [[SourceNodeMatch alloc] initWithSource:target.source range:target.range];
                         [target replaceWithNode:newNode];
                         [newNode release];
 					}
@@ -212,7 +210,7 @@ static SourceNode* _ApplierFunction(SourceNode* node, void* context) {
 
 @implementation SourceNodeObjCPreprocessorImport
 
-IS_MATCHING_PREFIX_METHOD_WITH_TRAILING_WHITESPACE_OR_NEWLINE_OR_SEMICOLON_OR_CHARACTER(@"#import", false, false, 0)
+IS_MATCHING_PREFIX_METHOD_WITH_TRAILING_CHARACTERS(@"#import", false, NULL)
 
 @end
 
@@ -228,6 +226,10 @@ IS_MATCHING_PREFIX_METHOD_WITH_TRAILING_WHITESPACE_OR_NEWLINE_OR_SEMICOLON_OR_CH
 
 @end
 
+KEYWORD_CLASS_IMPLEMENTATION(ObjC, Self, @"self")
+KEYWORD_CLASS_IMPLEMENTATION(ObjC, Super, @"super")
+KEYWORD_CLASS_IMPLEMENTATION(ObjC, Nil, @"nil")
+
 #define IMPLEMENTATION(__NAME__, __TOKEN__) \
 @implementation SourceNodeObjC##__NAME__ \
 \
@@ -236,7 +238,7 @@ IS_MATCHING_PREFIX_METHOD_WITH_TRAILING_WHITESPACE_OR_NEWLINE_OR_SEMICOLON_OR_CH
 } \
 \
 + (NSUInteger) isMatchingPrefix:(const unichar*)string maxLength:(NSUInteger)maxLength { \
-    IS_MATCHING(__TOKEN__, true, false, 0, string, maxLength) \
+    IS_MATCHING(__TOKEN__, true, NULL, string, maxLength) \
     if(_matching != NSNotFound) { \
         string += _matching; \
         maxLength -= _matching; \
@@ -244,7 +246,7 @@ IS_MATCHING_PREFIX_METHOD_WITH_TRAILING_WHITESPACE_OR_NEWLINE_OR_SEMICOLON_OR_CH
             if(IsNewline(*string) || (*string == '{') || ((maxLength >= 2) && (string[0] == '/') && ((string[1] == '*') || (string[1] == '/')))) { \
                 do { \
                     --string; \
-                } while(IsWhiteSpace(*string)); \
+                } while(IsWhitespace(*string)); \
                 break; \
             } \
             ++string; \
@@ -255,7 +257,7 @@ IS_MATCHING_PREFIX_METHOD_WITH_TRAILING_WHITESPACE_OR_NEWLINE_OR_SEMICOLON_OR_CH
     return _matching; \
 } \
 \
-IS_MATCHING_SUFFIX_METHOD_WITH_TRAILING_WHITESPACE_OR_NEWLINE_OR_SEMICOLON_OR_CHARACTER(@"@end", true, false, 0) \
+IS_MATCHING_SUFFIX_METHOD_WITH_TRAILING_CHARACTERS(@"@end", false, NULL) \
 \
 @end
 
@@ -268,7 +270,7 @@ IMPLEMENTATION(Protocol, @"@protocol")
 #define IMPLEMENTATION(__NAME__, ...) \
 @implementation SourceNodeObjC##__NAME__ \
 \
-IS_MATCHING_PREFIX_METHOD_WITH_TRAILING_WHITESPACE_OR_NEWLINE_OR_SEMICOLON_OR_CHARACTER(__VA_ARGS__); \
+IS_MATCHING_PREFIX_METHOD_WITH_TRAILING_CHARACTERS(__VA_ARGS__) \
 \
 + (NSUInteger) isMatchingSuffix:(const unichar*)string maxLength:(NSUInteger)maxLength { \
     return 0; \
@@ -276,24 +278,21 @@ IS_MATCHING_PREFIX_METHOD_WITH_TRAILING_WHITESPACE_OR_NEWLINE_OR_SEMICOLON_OR_CH
 \
 @end
 
-IMPLEMENTATION(Class, @"@class", true, false, 0)
-IMPLEMENTATION(Public, @"@public", true, false, 0)
-IMPLEMENTATION(Protected, @"@protected", true, false, 0)
-IMPLEMENTATION(Private, @"@private", true, false, 0)
-IMPLEMENTATION(Required, @"@required", true, false, 0)
-IMPLEMENTATION(Optional, @"@optional", true, false, 0)
-IMPLEMENTATION(Try, @"@try", true, false, '{')
-IMPLEMENTATION(Catch, @"@catch", true, false, '(')
-IMPLEMENTATION(Finally, @"@finally", true, false, '{')
-IMPLEMENTATION(Throw, @"@throw", false, false, 0)
-IMPLEMENTATION(Synchronized, @"@synchronized", true, false, '(')
-IMPLEMENTATION(Property, @"@property", true, false, '(')
-IMPLEMENTATION(Synthesize, @"@synthesize", true, false, '(')
-IMPLEMENTATION(Selector, @"@selector", true, false, '(')
-IMPLEMENTATION(Encode, @"@encode", true, false, '(')
-IMPLEMENTATION(Self, @"self", false, false, 0)
-IMPLEMENTATION(Super, @"super", false, false, 0)
-IMPLEMENTATION(Nil, @"nil", false, false, 0)
+IMPLEMENTATION(Class, @"@class", true, NULL)
+IMPLEMENTATION(Public, @"@public", true, NULL)
+IMPLEMENTATION(Protected, @"@protected", true, NULL)
+IMPLEMENTATION(Private, @"@private", true, NULL)
+IMPLEMENTATION(Required, @"@required", true, NULL)
+IMPLEMENTATION(Optional, @"@optional", true, NULL)
+IMPLEMENTATION(Try, @"@try", true, "{")
+IMPLEMENTATION(Catch, @"@catch", true, "(")
+IMPLEMENTATION(Finally, @"@finally", true, "{")
+IMPLEMENTATION(Throw, @"@throw", false, NULL)
+IMPLEMENTATION(Synchronized, @"@synchronized", true, "(")
+IMPLEMENTATION(Property, @"@property", true, "(")
+IMPLEMENTATION(Synthesize, @"@synthesize", true, "(")
+IMPLEMENTATION(Selector, @"@selector", true, "(")
+IMPLEMENTATION(Encode, @"@encode", true, "(")
 
 #undef IMPLEMENTATION
 

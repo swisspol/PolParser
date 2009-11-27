@@ -29,7 +29,7 @@ static void LocalFunction(int arg) {
 ·  <ObjCImplementation>
 ·  ·  ♢|@implementation•Demo|♢¶♢|→|♢¶♢
 ·  ·  <CFunctionDefinition>
-·  ·  ·  ♢|static|♢•♢|void|♢•♢LocalFunction♢
+·  ·  ·  ♢|static|♢•♢|void|♢•♢|LocalFunction|♢
 ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ♢|(|♢|int|♢•♢arg♢|)|♢
 ·  ·  ·  ♢•♢

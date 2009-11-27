@@ -21,5 +21,12 @@
 @interface SourceNodeCPPComment : SourceNode //Leaf
 @end
 
-@interface SourceNodeCPPScopeOperator : SourceNode //Leaf
+/* Special Keywords */
+
+@interface SourceNodeCPPThis : SourceNodeKeyword //Leaf
+@end
+
+/* Special Tokens */
+
+@interface SourceNodeDoubleSemicolon : SourceNodeToken //Leaf
 @end

@@ -62,6 +62,8 @@ typedef SourceNode* (*SourceNodeApplierFunction)(SourceNode* node, void* context
 
 - (SourceNode*) findPreviousSiblingOfClass:(Class)class;
 - (SourceNode*) findNextSiblingOfClass:(Class)class;
+- (SourceNode*) findFirstChildOfClass:(Class)class;
+- (SourceNode*) findLastChildOfClass:(Class)class;
 
 - (void) applyFunctionOnChildren:(SourceNodeApplierFunction)function context:(void*)context;
 #if NS_BLOCKS_AVAILABLE

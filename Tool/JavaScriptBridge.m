@@ -292,24 +292,68 @@ static JSValueRef _CallFunctionReplaceWithNode(JSContextRef ctx, JSObjectRef fun
     return NULL;
 }
 
-static JSValueRef _CallFunctionFindPreviousSibling(JSContextRef ctx, JSObjectRef function, JSObjectRef thisObject, size_t argumentCount, const JSValueRef arguments[], JSValueRef* exception) {
-	if((argumentCount <= 1) && ((argumentCount == 0) || JSValueIsNumber(ctx, arguments[0]))) {
+static JSValueRef _CallFunctionFindPreviousSiblingIgnoringWhitespaceAndNewline(JSContextRef ctx, JSObjectRef function, JSObjectRef thisObject, size_t argumentCount, const JSValueRef arguments[], JSValueRef* exception) {
+	if(argumentCount == 0) {
+    	SourceNode* node = JSObjectGetPrivate(thisObject);
+        if(node.parent)
+        	return _JSObjectFromNode([node findPreviousSiblingIgnoringWhitespaceAndNewline], ctx);
+    }
+    *exception = _MakeException(ctx, @"Invalid argument(s)");
+    return NULL;
+}
+
+static JSValueRef _CallFunctionFindNextSiblingIgnoringWhitespaceAndNewline(JSContextRef ctx, JSObjectRef function, JSObjectRef thisObject, size_t argumentCount, const JSValueRef arguments[], JSValueRef* exception) {
+	if(argumentCount == 0) {
+    	SourceNode* node = JSObjectGetPrivate(thisObject);
+        if(node.parent)
+        	return _JSObjectFromNode([node findNextSiblingIgnoringWhitespaceAndNewline], ctx);
+    }
+    *exception = _MakeException(ctx, @"Invalid argument(s)");
+    return NULL;
+}
+
+static JSValueRef _CallFunctionFindPreviousSiblingOfType(JSContextRef ctx, JSObjectRef function, JSObjectRef thisObject, size_t argumentCount, const JSValueRef arguments[], JSValueRef* exception) {
+	if((argumentCount == 1) && JSValueIsNumber(ctx, arguments[0])) {
     	SourceNode* node = JSObjectGetPrivate(thisObject);
         if(node.parent) {
-        	Class class = (argumentCount == 0 ? nil : (Class)(long)JSValueToNumber(ctx, arguments[0], NULL));
-        	return _JSObjectFromNode(class ? [node findPreviousSiblingOfClass:class] : [node findPreviousSiblingIgnoringWhitespaceAndNewline], ctx);
+        	Class class = (Class)(long)JSValueToNumber(ctx, arguments[0], NULL);
+        	return _JSObjectFromNode([node findPreviousSiblingOfClass:class], ctx);
         }
     }
     *exception = _MakeException(ctx, @"Invalid argument(s)");
     return NULL;
 }
 
-static JSValueRef _CallFunctionFindNextSibling(JSContextRef ctx, JSObjectRef function, JSObjectRef thisObject, size_t argumentCount, const JSValueRef arguments[], JSValueRef* exception) {
-	if((argumentCount <= 1) && ((argumentCount == 0) || JSValueIsNumber(ctx, arguments[0]))) {
+static JSValueRef _CallFunctionFindNextSiblingOfType(JSContextRef ctx, JSObjectRef function, JSObjectRef thisObject, size_t argumentCount, const JSValueRef arguments[], JSValueRef* exception) {
+	if((argumentCount == 1) && JSValueIsNumber(ctx, arguments[0])) {
     	SourceNode* node = JSObjectGetPrivate(thisObject);
         if(node.parent) {
-        	Class class = (argumentCount == 0 ? nil : (Class)(long)JSValueToNumber(ctx, arguments[0], NULL));
-        	return _JSObjectFromNode(class ? [node findNextSiblingOfClass:class] : [node findNextSiblingIgnoringWhitespaceAndNewline], ctx);
+        	Class class = (Class)(long)JSValueToNumber(ctx, arguments[0], NULL);
+        	return _JSObjectFromNode([node findNextSiblingOfClass:class], ctx);
+        }
+    }
+    *exception = _MakeException(ctx, @"Invalid argument(s)");
+    return NULL;
+}
+
+static JSValueRef _CallFunctionFindFirstChildOfType(JSContextRef ctx, JSObjectRef function, JSObjectRef thisObject, size_t argumentCount, const JSValueRef arguments[], JSValueRef* exception) {
+	if((argumentCount == 1) && JSValueIsNumber(ctx, arguments[0])) {
+    	SourceNode* node = JSObjectGetPrivate(thisObject);
+        if(node.parent) {
+        	Class class = (Class)(long)JSValueToNumber(ctx, arguments[0], NULL);
+        	return _JSObjectFromNode([node findFirstChildOfClass:class], ctx);
+        }
+    }
+    *exception = _MakeException(ctx, @"Invalid argument(s)");
+    return NULL;
+}
+
+static JSValueRef _CallFunctionFindLastChildOfType(JSContextRef ctx, JSObjectRef function, JSObjectRef thisObject, size_t argumentCount, const JSValueRef arguments[], JSValueRef* exception) {
+	if((argumentCount == 1) && JSValueIsNumber(ctx, arguments[0])) {
+    	SourceNode* node = JSObjectGetPrivate(thisObject);
+        if(node.parent) {
+        	Class class = (Class)(long)JSValueToNumber(ctx, arguments[0], NULL);
+        	return _JSObjectFromNode([node findLastChildOfClass:class], ctx);
         }
     }
     *exception = _MakeException(ctx, @"Invalid argument(s)");
@@ -363,8 +407,12 @@ static JSStaticFunction _staticFunctions[] = {
     {"insertPreviousSibling", _CallFunctionInsertPreviousSibling, kJSPropertyAttributeReadOnly | kJSPropertyAttributeDontDelete | kJSPropertyAttributeDontEnum},
     {"insertNextSibling", _CallFunctionInsertNextSibling, kJSPropertyAttributeReadOnly | kJSPropertyAttributeDontDelete | kJSPropertyAttributeDontEnum},
     {"replaceWithNode", _CallFunctionReplaceWithNode, kJSPropertyAttributeReadOnly | kJSPropertyAttributeDontDelete | kJSPropertyAttributeDontEnum},
-    {"findPreviousSibling", _CallFunctionFindPreviousSibling, kJSPropertyAttributeReadOnly | kJSPropertyAttributeDontDelete | kJSPropertyAttributeDontEnum},
-    {"findNextSibling", _CallFunctionFindNextSibling, kJSPropertyAttributeReadOnly | kJSPropertyAttributeDontDelete | kJSPropertyAttributeDontEnum},
+    {"findPreviousSiblingIgnoringWhitespaceAndNewline", _CallFunctionFindPreviousSiblingIgnoringWhitespaceAndNewline, kJSPropertyAttributeReadOnly | kJSPropertyAttributeDontDelete | kJSPropertyAttributeDontEnum},
+    {"findNextSiblingIgnoringWhitespaceAndNewline", _CallFunctionFindNextSiblingIgnoringWhitespaceAndNewline, kJSPropertyAttributeReadOnly | kJSPropertyAttributeDontDelete | kJSPropertyAttributeDontEnum},
+    {"findPreviousSiblingOfType", _CallFunctionFindPreviousSiblingOfType, kJSPropertyAttributeReadOnly | kJSPropertyAttributeDontDelete | kJSPropertyAttributeDontEnum},
+    {"findNextSiblingOfType", _CallFunctionFindNextSiblingOfType, kJSPropertyAttributeReadOnly | kJSPropertyAttributeDontDelete | kJSPropertyAttributeDontEnum},
+    {"findFirstChildOfType", _CallFunctionFindFirstChildOfType, kJSPropertyAttributeReadOnly | kJSPropertyAttributeDontDelete | kJSPropertyAttributeDontEnum},
+    {"findLastChildOfType", _CallFunctionFindLastChildOfType, kJSPropertyAttributeReadOnly | kJSPropertyAttributeDontDelete | kJSPropertyAttributeDontEnum},
 #if !__MAIN_FUNCTION__
     {"applyFunctionOnChildren", _CallFunctionApplyFunctionOnChildren, kJSPropertyAttributeReadOnly | kJSPropertyAttributeDontDelete | kJSPropertyAttributeDontEnum},
 #endif

@@ -73,7 +73,7 @@ static void LocalFunction(int arg);
 ·  ·  ·  ♢-♢•♢bar♢|;|♢
 ·  ·  ♢¶♢
 ·  ·  <CFunctionPrototype>
-·  ·  ·  ♢|static|♢•♢|void|♢•♢LocalFunction♢
+·  ·  ·  ♢|static|♢•♢|void|♢•♢|LocalFunction|♢
 ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ♢|(|♢|int|♢•♢arg♢|)|♢
 ·  ·  ·  ♢|;|♢

@@ -19,10 +19,18 @@
 #import "SourceParser.h"
 
 #define IsNewline(C) (C == '\n')
-#define IsWhiteSpace(C) ((C == ' ') || (C == '\t'))
-#define IsWhiteSpaceOrNewline(C) ((C == ' ') || (C == '\t') || (C == '\n'))
+#define IsWhitespace(C) ((C == ' ') || (C == '\t'))
+#define IsWhitespaceOrNewline(C) ((C == ' ') || (C == '\t') || (C == '\n'))
 
-#define IS_MATCHING(__MATCH__, __TRAILING_WHITESPACE_OR_NEWLINE__, __SEMICOLON__, __CHARACTER__, __STRING__, __MAXLENGTH__) \
+static inline BOOL _IsCharacterInSet(const unichar character, const char* set, NSUInteger count) {
+	for(NSUInteger i = 0; i < count; ++i) {
+    	if(character == set[i])
+       		return YES;
+    }
+    return NO;
+}
+
+#define IS_MATCHING(__MATCH__, __WHITESPACE_OR_NEWLINE__, __OTHER_CHARACTERS__, __STRING__, __MAXLENGTH__) \
     NSUInteger _matching; \
     static unichar* __match = NULL; \
     static NSUInteger __length; \
@@ -32,25 +40,57 @@
         __match = malloc(__length * sizeof(unichar)); \
         [string getCharacters:__match]; \
     } \
-    if(__TRAILING_WHITESPACE_OR_NEWLINE__ && __SEMICOLON__) { \
-        _matching = (__MAXLENGTH__ > __length) && _EqualUnichars(string, __match, __length) && (IsWhiteSpaceOrNewline(string[__length]) || (string[__length] == ';') || (__CHARACTER__ && (string[__length] == __CHARACTER__))) ? __length : NSNotFound; \
-    } else if(__TRAILING_WHITESPACE_OR_NEWLINE__) { \
-        _matching = (__MAXLENGTH__ > __length) && _EqualUnichars(string, __match, __length) && (IsWhiteSpaceOrNewline(string[__length]) || (__CHARACTER__ && (string[__length] == __CHARACTER__))) ? __length : NSNotFound; \
-    } else { \
+    if(__WHITESPACE_OR_NEWLINE__ && __OTHER_CHARACTERS__) { \
+        NSUInteger count = sizeof(__OTHER_CHARACTERS__) - 1; \
+        _matching = (__MAXLENGTH__ > __length) && _EqualUnichars(string, __match, __length) && (IsWhitespaceOrNewline(string[__length]) || _IsCharacterInSet(string[__length], __OTHER_CHARACTERS__, count)) ? __length : NSNotFound; \
+    } \
+    else if(__OTHER_CHARACTERS__) { \
+        NSUInteger count = sizeof(__OTHER_CHARACTERS__) - 1; \
+        _matching = (__MAXLENGTH__ > __length) && _EqualUnichars(string, __match, __length) && _IsCharacterInSet(string[__length], __OTHER_CHARACTERS__, count) ? __length : NSNotFound; \
+    } \
+    else if(__WHITESPACE_OR_NEWLINE__) { \
+        _matching = (__MAXLENGTH__ > __length) && _EqualUnichars(string, __match, __length) && IsWhitespaceOrNewline(string[__length]) ? __length : NSNotFound; \
+    } \
+    else { \
         _matching = (__MAXLENGTH__ >= __length) && _EqualUnichars(string, __match, __length) ? __length : NSNotFound; \
     }
 
-#define IS_MATCHING_PREFIX_METHOD_WITH_TRAILING_WHITESPACE_OR_NEWLINE_OR_SEMICOLON_OR_CHARACTER(__PREFIX__, __TRAILING_WHITESPACE_OR_NEWLINE__, __SEMICOLON__, __CHARACTER__) \
+#define IS_MATCHING_PREFIX_METHOD_WITH_TRAILING_CHARACTERS(__PREFIX__, __WHITESPACE_OR_NEWLINE__, __OTHER_CHARACTERS__) \
 + (NSUInteger) isMatchingPrefix:(const unichar*)string maxLength:(NSUInteger)maxLength { \
-    IS_MATCHING(__PREFIX__, __TRAILING_WHITESPACE_OR_NEWLINE__, __SEMICOLON__, __CHARACTER__, string, maxLength) \
+    IS_MATCHING(__PREFIX__, __WHITESPACE_OR_NEWLINE__, __OTHER_CHARACTERS__, string, maxLength) \
     return _matching; \
 }
 
-#define IS_MATCHING_SUFFIX_METHOD_WITH_TRAILING_WHITESPACE_OR_NEWLINE_OR_SEMICOLON_OR_CHARACTER(__SUFFIX__, __TRAILING_WHITESPACE_OR_NEWLINE__, __SEMICOLON__, __CHARACTER__) \
+#define IS_MATCHING_SUFFIX_METHOD_WITH_TRAILING_CHARACTERS(__SUFFIX__, __WHITESPACE_OR_NEWLINE__, __OTHER_CHARACTERS__) \
 + (NSUInteger) isMatchingSuffix:(const unichar*)string maxLength:(NSUInteger)maxLength { \
-    IS_MATCHING(__SUFFIX__, __TRAILING_WHITESPACE_OR_NEWLINE__, __SEMICOLON__, __CHARACTER__, string, maxLength) \
+    IS_MATCHING(__SUFFIX__, __WHITESPACE_OR_NEWLINE__, __OTHER_CHARACTERS__, string, maxLength) \
     return _matching; \
 }
+
+#define KEYWORD_CLASS_IMPLEMENTATION(__LANGUAGE__, __NAME__, __MATCH__) \
+@implementation SourceNode##__LANGUAGE__##__NAME__ \
+\
++ (NSUInteger) isMatchingPrefix:(const unichar*)string maxLength:(NSUInteger)maxLength { \
+    IS_MATCHING(__MATCH__, true, ";)]}*", string, maxLength) \
+    return _matching; \
+} \
+\
+@end
+
+#define TOKEN_CLASS_IMPLEMENTATION(__NAME__, __CHARACTERS__) \
+@implementation SourceNode##__NAME__ \
+\
++ (NSUInteger) isMatchingPrefix:(const unichar*)string maxLength:(NSUInteger)maxLength { \
+    const char* characters = __CHARACTERS__; \
+    NSUInteger count = sizeof(__CHARACTERS__) - 1; \
+    for(NSUInteger i = 0; i < count; ++i) { \
+    	if(string[i] != characters[i]) \
+       		return NSNotFound; \
+    } \
+    return count; \
+} \
+\
+@end
 
 static inline BOOL _EqualUnichars(const unichar* string1, const unichar* string2, NSUInteger length) {
     while(length) {

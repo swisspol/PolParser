@@ -21,9 +21,6 @@
 @interface SourceNodeObjCPreprocessorImport : SourceNodeCPreprocessor
 @end
 
-@interface SourceNodeObjCNil : SourceNode //Leaf
-@end
-
 @interface SourceNodeObjCString : SourceNodeCStringDoubleQuote //Leaf
 @end
 
@@ -81,12 +78,6 @@
 @interface SourceNodeObjCEncode : SourceNode
 @end
 
-@interface SourceNodeObjCSelf : SourceNode //Leaf
-@end
-
-@interface SourceNodeObjCSuper : SourceNode //Leaf
-@end
-
 @interface SourceNodeObjCMethodDeclaration : SourceNode
 @end
 
@@ -94,4 +85,15 @@
 @end
 
 @interface SourceNodeObjCMethodCall : SourceNode
+@end
+
+/* Special Keywords */
+
+@interface SourceNodeObjCNil : SourceNodeKeyword //Leaf
+@end
+
+@interface SourceNodeObjCSelf : SourceNodeKeyword //Leaf
+@end
+
+@interface SourceNodeObjCSuper : SourceNodeKeyword //Leaf
 @end

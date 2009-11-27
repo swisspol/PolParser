@@ -59,10 +59,15 @@
 - (id) initWithText:(NSString*)text;
 @end
 
+/* Abstract class: do not instantiate */
 @interface SourceNodeKeyword : SourceNodeText //Leaf
 @end
 
+/* Abstract class: do not instantiate */
 @interface SourceNodeToken : SourceNodeText //Leaf
+@end
+
+@interface SourceNodeMatch : SourceNodeText //Leaf
 @end
 
 @interface SourceNode (SourceNodeTextExtensions)

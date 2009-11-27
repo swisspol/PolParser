@@ -16,19 +16,19 @@ int* Bar() {
 
 <Root>
 ·  <CFunctionPrototype>
-·  ·  ♢someMacro♢•♢someType♢•♢Foo♢
+·  ·  ♢someMacro♢•♢someType♢•♢|Foo|♢
 ·  ·  <Parenthesis>
 ·  ·  ·  ♢|(|♢|int|♢•♢arg1,♢•♢|int|♢•♢arg2♢|)|♢
 ·  ·  ♢|;|♢
 ·  ♢¶♢¶♢
 ·  <CFunctionPrototype>
-·  ·  ♢|extern|♢•♢|int|♢•♢Bar♢
+·  ·  ♢|extern|♢•♢|int|♢•♢|Bar|♢
 ·  ·  <Parenthesis>
 ·  ·  ·  ♢|(|♢|)|♢
 ·  ·  ♢|;|♢
 ·  ♢¶♢¶♢
 ·  <CFunctionDefinition>
-·  ·  ♢|static|♢•♢|inline|♢•♢|void|♢•♢Foo♢
+·  ·  ♢|static|♢•♢|inline|♢•♢|void|♢•♢|Foo|♢
 ·  ·  <Parenthesis>
 ·  ·  ·  ♢|(|♢|int|♢•♢arg1,♢•♢|int|♢•♢arg2♢|)|♢
 ·  ·  ♢•♢
@@ -59,7 +59,7 @@ int* Bar() {
 ·  ·  ·  ♢|;|♢¶♢|}|♢
 ·  ♢¶♢¶♢
 ·  <CFunctionDefinition>
-·  ·  ♢|int|♢|*|♢•♢Bar♢
+·  ·  ♢|int|♢|*|♢•♢|Bar|♢
 ·  ·  <Parenthesis>
 ·  ·  ·  ♢|(|♢|)|♢
 ·  ·  ♢•♢

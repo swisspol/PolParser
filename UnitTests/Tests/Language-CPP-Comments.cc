@@ -11,7 +11,7 @@ int main(int argc, char *argv[]) {
 <Root>
 ·  ♢|/*¶*•The•main•function¶*/|♢¶♢
 ·  <CFunctionDefinition>
-·  ·  ♢|int|♢•♢main♢
+·  ·  ♢|int|♢•♢|main|♢
 ·  ·  <Parenthesis>
 ·  ·  ·  ♢|(|♢|int|♢•♢argc,♢•♢|char|♢•♢|*|♢argv♢
 ·  ·  ·  <Brackets>

@@ -21,7 +21,7 @@
 @implementation SourceLanguageBase
 
 + (NSArray*) languageNodeClasses {
-	NSMutableArray* classes = [NSMutableArray array];
+	NSMutableArray* classes = [NSMutableArray arrayWithArray:[super languageNodeClasses]];
     
     [classes addObject:[SourceNodeNewline class]];
     [classes addObject:[SourceNodeIndenting class]]; //Must be before SourceNodeWhitespace
@@ -70,11 +70,11 @@
 @implementation SourceNodeWhitespace
 
 + (NSUInteger) isMatchingPrefix:(const unichar*)string maxLength:(NSUInteger)maxLength {
-    return IsWhiteSpace(*string) ? 1 : NSNotFound;
+    return IsWhitespace(*string) ? 1 : NSNotFound;
 }
 
 + (NSUInteger) isMatchingSuffix:(const unichar*)string maxLength:(NSUInteger)maxLength {
-    return maxLength && !IsWhiteSpace(*string) ? 0 : NSNotFound;
+    return maxLength && !IsWhitespace(*string) ? 0 : NSNotFound;
 }
 
 - (void) insertChild:(SourceNode*)child atIndex:(NSUInteger)index {
@@ -86,11 +86,11 @@
 @implementation SourceNodeIndenting
 
 + (NSUInteger) isMatchingPrefix:(const unichar*)string maxLength:(NSUInteger)maxLength {
-    return IsWhiteSpace(*string) && ((*(string - 1) == 0) || IsNewline(*(string - 1))) ? 1 : NSNotFound; //The source buffer starts with a padding zero (see SourceLanguage.m)
+    return IsWhitespace(*string) && ((*(string - 1) == 0) || IsNewline(*(string - 1))) ? 1 : NSNotFound; //The source buffer starts with a padding zero (see SourceLanguage.m)
 }
 
 + (NSUInteger) isMatchingSuffix:(const unichar*)string maxLength:(NSUInteger)maxLength {
-    return maxLength && !IsWhiteSpace(*string) ? 0 : NSNotFound;
+    return maxLength && !IsWhitespace(*string) ? 0 : NSNotFound;
 }
 
 - (void) insertChild:(SourceNode*)child atIndex:(NSUInteger)index {

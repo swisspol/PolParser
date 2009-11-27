@@ -234,6 +234,26 @@ static void _MergeChildrenContent(SourceNode* node, NSMutableString* string) {
     return nil;
 }
 
+- (SourceNode*) findFirstChildOfClass:(Class)class {
+	SourceNode* node = self.firstChild;
+    while(node) {
+        if([node isKindOfClass:class])
+            return node;
+        node = node.nextSibling;
+    }
+    return nil;
+}
+
+- (SourceNode*) findLastChildOfClass:(Class)class {
+	SourceNode* node = self.lastChild;
+    while(node) {
+        if([node isKindOfClass:class])
+            return node;
+        node = node.previousSibling;
+    }
+    return nil;
+}
+
 /* WARNING: Keep in sync with _ApplyBlock() */
 static void _ApplyFunction(SourceNode* node, NSUInteger revision, SourceNodeApplierFunction function, void* context) {
     NSUInteger count = node.children.count;

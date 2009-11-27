@@ -18,36 +18,6 @@
 
 #import "SourceLanguage.h"
 
-@interface SourceNodeColon : SourceNode //Leaf
-@end
-
-@interface SourceNodeSemicolon : SourceNode //Leaf
-@end
-
-@interface SourceNodeQuestionMark : SourceNode //Leaf
-@end
-
-@interface SourceNodeExclamationMark : SourceNode //Leaf
-@end
-
-@interface SourceNodeTilda : SourceNode //Leaf
-@end
-
-@interface SourceNodeCaret : SourceNode //Leaf
-@end
-
-@interface SourceNodeAmpersand : SourceNode //Leaf
-@end
-
-@interface SourceNodeAsterisk : SourceNode //Leaf
-@end
-
-@interface SourceNodeCNULL : SourceNode //Leaf
-@end
-
-@interface SourceNodeCVoid : SourceNode //Leaf
-@end
-
 @interface SourceNodeCComment : SourceNode //Leaf
 @end
 
@@ -146,34 +116,13 @@
 @interface SourceNodeCTypedef : SourceNode //Leaf
 @end
 
+@interface SourceNodeCTypeEnum : SourceNode //Leaf
+@end
+
 @interface SourceNodeCTypeStruct : SourceNode
 @end
 
 @interface SourceNodeCTypeUnion : SourceNode
-@end
-
-@interface SourceNodeCTypeAuto : SourceNode //Leaf
-@end
-
-@interface SourceNodeCTypeStatic : SourceNode //Leaf
-@end
-
-@interface SourceNodeCTypeRegister : SourceNode //Leaf
-@end
-
-@interface SourceNodeCTypeVolatile : SourceNode //Leaf
-@end
-
-@interface SourceNodeCTypeConst : SourceNode //Leaf
-@end
-
-@interface SourceNodeCTypeEnum : SourceNode //Leaf
-@end
-
-@interface SourceNodeCTypeExtern : SourceNode //Leaf
-@end
-
-@interface SourceNodeCTypeInline : SourceNode //Leaf
 @end
 
 @interface SourceNodeCSizeOf : SourceNode
@@ -189,4 +138,83 @@
 @end
 
 @interface SourceNodeCFunctionCall : SourceNode
+@end
+
+/* Special Keywords */
+
+@interface SourceNodeCNULL : SourceNodeKeyword //Leaf
+@end
+
+@interface SourceNodeCVoid : SourceNodeKeyword //Leaf
+@end
+
+@interface SourceNodeCAuto : SourceNodeKeyword //Leaf
+@end
+
+@interface SourceNodeCStatic : SourceNodeKeyword //Leaf
+@end
+
+@interface SourceNodeCRegister : SourceNodeKeyword //Leaf
+@end
+
+@interface SourceNodeCVolatile : SourceNodeKeyword //Leaf
+@end
+
+@interface SourceNodeCConst : SourceNodeKeyword //Leaf
+@end
+
+@interface SourceNodeCExtern : SourceNodeKeyword //Leaf
+@end
+
+@interface SourceNodeCInline : SourceNodeKeyword //Leaf
+@end
+
+@interface SourceNodeCSigned : SourceNodeKeyword //Leaf
+@end
+
+@interface SourceNodeCUnsigned : SourceNodeKeyword //Leaf
+@end
+
+@interface SourceNodeCChar : SourceNodeKeyword //Leaf
+@end
+
+@interface SourceNodeCShort : SourceNodeKeyword //Leaf
+@end
+
+@interface SourceNodeCInt : SourceNodeKeyword //Leaf
+@end
+
+@interface SourceNodeCLong : SourceNodeKeyword //Leaf
+@end
+
+@interface SourceNodeCFloat : SourceNodeKeyword //Leaf
+@end
+
+@interface SourceNodeCDouble : SourceNodeKeyword //Leaf
+@end
+
+/* Special Tokens */
+
+@interface SourceNodeColon : SourceNodeToken //Leaf
+@end
+
+@interface SourceNodeSemicolon : SourceNodeToken //Leaf
+@end
+
+@interface SourceNodeQuestionMark : SourceNodeToken //Leaf
+@end
+
+@interface SourceNodeExclamationMark : SourceNodeToken //Leaf
+@end
+
+@interface SourceNodeTilda : SourceNodeToken //Leaf
+@end
+
+@interface SourceNodeCaret : SourceNodeToken //Leaf
+@end
+
+@interface SourceNodeAmpersand : SourceNodeToken //Leaf
+@end
+
+@interface SourceNodeAsterisk : SourceNodeToken //Leaf
 @end

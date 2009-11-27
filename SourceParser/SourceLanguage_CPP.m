@@ -25,14 +25,15 @@
 }
 
 + (NSSet*) languageReservedKeywords {
-	return [NSSet setWithObjects:@"this", nil];
+	return [NSSet setWithObjects:@"this", nil]; //Not "true" keywords
 }
 
 + (NSArray*) languageNodeClasses {
-	NSMutableArray* classes = [NSMutableArray array];
+	NSMutableArray* classes = [NSMutableArray arrayWithArray:[super languageNodeClasses]];
+    
+    [classes addObject:[SourceNodeDoubleSemicolon class]];
     
     [classes addObject:[SourceNodeCPPComment class]];
-    [classes addObject:[SourceNodeCPPScopeOperator class]];
     
     return classes;
 }
@@ -64,11 +65,11 @@
         if(IsNewline(*string)) {
             do {
                 --string;
-            } while(IsWhiteSpace(*string));
+            } while(IsWhitespace(*string));
             if(*string != '\\')
                 return 0;
         }
-        if(!IsWhiteSpace(*string))
+        if(!IsWhitespace(*string))
             break;
         ++string;
         --maxLength;
@@ -79,18 +80,14 @@
 
 @end
 
-@implementation SourceNodeCPPScopeOperator
+TOKEN_CLASS_IMPLEMENTATION(DoubleSemicolon, "::")
+
+@implementation SourceNodeDoubleSemicolon (Patch)
 
 + (NSArray*) patchedClasses {
 	return [NSArray arrayWithObject:[SourceNodeColon class]];
 }
 
-+ (NSUInteger) isMatchingPrefix:(const unichar*)string maxLength:(NSUInteger)maxLength {
-    return (maxLength >= 2) && (string[0] == ':') && (string[1] == ':') ? 2 : NSNotFound;
-}
-
-+ (NSUInteger) isMatchingSuffix:(const unichar*)string maxLength:(NSUInteger)maxLength {
-    return 0;
-}
-
 @end
+
+KEYWORD_CLASS_IMPLEMENTATION(CPP, This, @"this")

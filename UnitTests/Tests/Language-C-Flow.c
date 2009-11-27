@@ -13,7 +13,7 @@ Temp:
 
 <Root>
 ·  <CFunctionDefinition>
-·  ·  ♢|static|♢•♢|void|♢•♢Foo♢
+·  ·  ♢|static|♢•♢|void|♢•♢|Foo|♢
 ·  ·  <Parenthesis>
 ·  ·  ·  ♢|(|♢|int|♢•♢arg♢|)|♢
 ·  ·  ♢•♢

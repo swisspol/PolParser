@@ -24,7 +24,7 @@ void _RearrangeNodesAsChildren(SourceNode* startNode, SourceNode* endNode) {
     
     SourceNode* node;
     if(startNode.range.length) {
-        node = [[SourceNodeToken alloc] initWithSource:startNode.source range:startNode.range];
+        node = [[SourceNodeMatch alloc] initWithSource:startNode.source range:startNode.range];
         [startNode addChild:node];
         [node release];
     }
@@ -108,7 +108,17 @@ static NSMutableSet* _languageCache = nil;
 }
 
 + (NSArray*) languageNodeClasses {
-	return [NSArray arrayWithObjects:[SourceNodeText class], [SourceNodeKeyword class], [SourceNodeToken class], [SourceNodeToken class], nil]; //Special-cased by parser
+    if(self == [SourceLanguage class])
+    	return [NSArray arrayWithObjects:[SourceNodeText class], [SourceNodeMatch class], nil]; //Special-cased by parser
+    
+    NSString* prefix = [NSStringFromClass(self) substringFromIndex:[@"SourceLanguage" length]];
+    NSMutableArray* classes = [NSMutableArray array];
+    for(NSString* keyword in [self languageReservedKeywords]) {
+    	Class class = NSClassFromString([NSString stringWithFormat:@"SourceNode%@%@%@", prefix, [[keyword substringToIndex:1]uppercaseString], [keyword substringFromIndex:1]]);
+        if(class)
+        	[classes addObject:class];
+    }
+    return classes;
 }
 
 + (NSSet*) languageTopLevelNodeClasses {
@@ -250,7 +260,7 @@ static inline BOOL _IsKeyword(const unichar* buffer, NSUInteger length, NSUInteg
             suffixLength = [[parentNode class] isMatchingSuffix:(buffer + range.location + rawLength) maxLength:(range.length - rawLength)];
             if(suffixLength != NSNotFound) {
                 if(rawLength > 0) {
-                    SourceNode* node = [(_IsKeyword(buffer + range.location, rawLength, keywordCount, keywordBuffers, keywordLengths) ? [SourceNodeKeyword alloc] : [SourceNodeText alloc]) initWithSource:source range:NSMakeRange(range.location, rawLength)];
+                    SourceNode* node = [[SourceNodeText alloc] initWithSource:source range:NSMakeRange(range.location, rawLength)];
                     [parentNode addChild:node];
                     [node release];
                     
@@ -262,7 +272,7 @@ static inline BOOL _IsKeyword(const unichar* buffer, NSUInteger length, NSUInteg
                 parentNode.range = NSMakeRange(parentNode.range.location, range.location + suffixLength - parentNode.range.location);
                 
                 if(suffixLength > 0) {
-                    SourceNode* node = [[SourceNodeToken alloc] initWithSource:source range:NSMakeRange(parentNode.range.location + parentNode.range.length - suffixLength, suffixLength)];
+                    SourceNode* node = [[SourceNodeMatch alloc] initWithSource:source range:NSMakeRange(parentNode.range.location + parentNode.range.length - suffixLength, suffixLength)];
                     [parentNode addChild:node];
                     [node release];
                 }
@@ -277,7 +287,7 @@ static inline BOOL _IsKeyword(const unichar* buffer, NSUInteger length, NSUInteg
         Class prefixClass;
         NSUInteger prefixLength;
         for(prefixClass in self.nodeClasses) {
-            if((prefixClass == [SourceNodeText class]) || (prefixClass == [SourceNodeToken class]) || (prefixClass == [SourceNodeKeyword class]))
+            if((prefixClass == [SourceNodeText class]) || (prefixClass == [SourceNodeMatch class]))
                 continue;
             prefixLength = [prefixClass isMatchingPrefix:(buffer + range.location + rawLength) maxLength:(range.length - rawLength)];
             if(prefixLength != NSNotFound)
@@ -285,7 +295,7 @@ static inline BOOL _IsKeyword(const unichar* buffer, NSUInteger length, NSUInteg
         }
         if(prefixClass) {
             if(rawLength > 0) {
-                SourceNode* node = [(_IsKeyword(buffer + range.location, rawLength, keywordCount, keywordBuffers, keywordLengths) ? [SourceNodeKeyword alloc] : [SourceNodeText alloc]) initWithSource:source range:NSMakeRange(range.location, rawLength)];
+                SourceNode* node = [[SourceNodeText alloc] initWithSource:source range:NSMakeRange(range.location, rawLength)];
                 [(SourceNode*)[stack lastObject] addChild:node];
                 [node release];
                 
@@ -322,7 +332,7 @@ static inline BOOL _IsKeyword(const unichar* buffer, NSUInteger length, NSUInteg
                 [stack addObject:node];
                 [node release];
                 
-                node = [[SourceNodeToken alloc] initWithSource:source range:NSMakeRange(range.location, prefixLength)];
+                node = [[SourceNodeMatch alloc] initWithSource:source range:NSMakeRange(range.location, prefixLength)];
                 [(SourceNode*)[stack lastObject] addChild:node];
                 [node release];
                 
@@ -334,7 +344,7 @@ static inline BOOL _IsKeyword(const unichar* buffer, NSUInteger length, NSUInteg
         
         ++rawLength;
         if(rawLength == range.length) {
-            SourceNode* node = [(_IsKeyword(buffer + range.location, range.length, keywordCount, keywordBuffers, keywordLengths) ? [SourceNodeKeyword alloc] : [SourceNodeText alloc]) initWithSource:source range:range];
+            SourceNode* node = [[SourceNodeText alloc] initWithSource:source range:range];
             [(SourceNode*)[stack lastObject] addChild:node];
             [node release];
             
@@ -449,10 +459,39 @@ static inline BOOL _IsKeyword(const unichar* buffer, NSUInteger length, NSUInteg
 
 @end
 
-@implementation SourceNodeToken
+@implementation SourceNodeMatch
 @end
 
 @implementation SourceNodeKeyword
+
++ (id) allocWithZone:(NSZone*)zone
+{
+    if(self == [SourceNodeKeyword class])
+        [NSException raise:NSInternalInconsistencyException format:@"SourceNodeKeyword is an abstract class"];
+    
+    return [super allocWithZone:zone];
+}
+
++ (NSUInteger) isMatchingSuffix:(const unichar*)string maxLength:(NSUInteger)maxLength {
+    return 0;
+}
+
+@end
+
+@implementation SourceNodeToken
+
++ (id) allocWithZone:(NSZone*)zone
+{
+    if(self == [SourceNodeKeyword class])
+        [NSException raise:NSInternalInconsistencyException format:@"SourceNodeToken is an abstract class"];
+    
+    return [super allocWithZone:zone];
+}
+
++ (NSUInteger) isMatchingSuffix:(const unichar*)string maxLength:(NSUInteger)maxLength {
+    return 0;
+}
+
 @end
 
 @implementation SourceNode (SourceNodeTextExtensions)

@@ -42,7 +42,7 @@ int main() { return 2; }
 ·  ·  ·  ♢|#warning|♢•♢Foobar♢
 ·  ·  ♢¶♢¶♢
 ·  ·  <CFunctionDefinition>
-·  ·  ·  ♢|int|♢•♢main♢
+·  ·  ·  ♢|int|♢•♢|main|♢
 ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ♢|(|♢|)|♢
 ·  ·  ·  ♢•♢
@@ -56,7 +56,7 @@ int main() { return 2; }
 ·  <CPreprocessorConditionElseif>
 ·  ·  ♢|#elseif•2|♢¶♢¶♢
 ·  ·  <CFunctionDefinition>
-·  ·  ·  ♢|int|♢•♢main♢
+·  ·  ·  ♢|int|♢•♢|main|♢
 ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ♢|(|♢|)|♢
 ·  ·  ·  ♢•♢
@@ -70,7 +70,7 @@ int main() { return 2; }
 ·  <CPreprocessorConditionElse>
 ·  ·  ♢|#else|♢¶♢¶♢
 ·  ·  <CFunctionDefinition>
-·  ·  ·  ♢|int|♢•♢main♢
+·  ·  ·  ♢|int|♢•♢|main|♢
 ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ♢|(|♢|)|♢
 ·  ·  ·  ♢•♢

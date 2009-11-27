@@ -21,7 +21,7 @@ if(0) return NULL;
 ·  ·  ·  ♢|(|♢1♢|)|♢
 ·  ·  ♢¶♢|••••|♢
 ·  ·  <CFunctionCall>
-·  ·  ·  ♢foo♢
+·  ·  ·  ♢|foo|♢
 ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ♢|(|♢|)|♢
 ·  ·  ♢|;|♢
@@ -29,7 +29,7 @@ if(0) return NULL;
 ·  <CConditionElse>
 ·  ·  ♢|else|♢¶♢|••••|♢
 ·  ·  <CFunctionCall>
-·  ·  ·  ♢bar♢
+·  ·  ·  ♢|bar|♢
 ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ♢|(|♢|)|♢
 ·  ·  ♢|;|♢
@@ -40,7 +40,7 @@ if(0) return NULL;
 ·  ·  ·  ♢|(|♢1♢|)|♢
 ·  ·  ♢¶♢|••••|♢
 ·  ·  <CFunctionCall>
-·  ·  ·  ♢foo♢
+·  ·  ·  ♢|foo|♢
 ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ♢|(|♢|)|♢
 ·  ·  ♢|;|♢
@@ -51,7 +51,7 @@ if(0) return NULL;
 ·  ·  ·  ♢|(|♢2♢|)|♢
 ·  ·  ♢¶♢|••••|♢
 ·  ·  <CFunctionCall>
-·  ·  ·  ♢bar♢
+·  ·  ·  ♢|bar|♢
 ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ♢|(|♢|)|♢
 ·  ·  ♢|;|♢
@@ -59,7 +59,7 @@ if(0) return NULL;
 ·  <CConditionElse>
 ·  ·  ♢|else|♢¶♢|••••|♢
 ·  ·  <CFunctionCall>
-·  ·  ·  ♢temp♢
+·  ·  ·  ♢|temp|♢
 ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ♢|(|♢|)|♢
 ·  ·  ♢|;|♢

@@ -26,7 +26,7 @@ else {
 ·  ·  <Braces>
 ·  ·  ·  ♢|{|♢¶♢|••••|♢
 ·  ·  ·  <CFunctionCall>
-·  ·  ·  ·  ♢printf♢
+·  ·  ·  ·  ♢|printf|♢
 ·  ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ·  ♢|(|♢|"1"|♢|)|♢
 ·  ·  ·  ♢|;|♢¶♢|}|♢
@@ -46,7 +46,7 @@ else {
 ·  ·  ·  ·  <Braces>
 ·  ·  ·  ·  ·  ♢|{|♢¶♢|••••••••|♢
 ·  ·  ·  ·  ·  <CFunctionCall>
-·  ·  ·  ·  ·  ·  ♢printf♢
+·  ·  ·  ·  ·  ·  ♢|printf|♢
 ·  ·  ·  ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ·  ·  ·  ♢|(|♢|"3"|♢|)|♢
 ·  ·  ·  ·  ·  ♢|;|♢¶♢|••••|♢|}|♢
@@ -59,7 +59,7 @@ else {
 ·  ·  ·  ·  <Braces>
 ·  ·  ·  ·  ·  ♢|{|♢¶♢|••••••••|♢
 ·  ·  ·  ·  ·  <CFunctionCall>
-·  ·  ·  ·  ·  ·  ♢printf♢
+·  ·  ·  ·  ·  ·  ♢|printf|♢
 ·  ·  ·  ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ·  ·  ·  ♢|(|♢|"4"|♢|)|♢
 ·  ·  ·  ·  ·  ♢|;|♢¶♢|••••|♢|}|♢
@@ -67,7 +67,7 @@ else {
 ·  ·  ·  <CConditionElse>
 ·  ·  ·  ·  ♢|else|♢¶♢|••••••••|♢
 ·  ·  ·  ·  <CFunctionCall>
-·  ·  ·  ·  ·  ♢printf♢
+·  ·  ·  ·  ·  ♢|printf|♢
 ·  ·  ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ·  ·  ♢|(|♢|"5"|♢|)|♢
 ·  ·  ·  ·  ♢|;|♢
@@ -78,7 +78,7 @@ else {
 ·  ·  <Braces>
 ·  ·  ·  ♢|{|♢¶♢|••••|♢
 ·  ·  ·  <CFunctionCall>
-·  ·  ·  ·  ♢printf♢
+·  ·  ·  ·  ♢|printf|♢
 ·  ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ·  ♢|(|♢|"6"|♢|)|♢
 ·  ·  ·  ♢|;|♢¶♢|}|♢

@@ -22,15 +22,15 @@ NSDictionary* dictionary = [[NSProcessInfo processInfo] environment];
 ·  ·  ·  ♢|(|♢test♢|:|♢bar♢|:|♢|)|♢
 ·  ♢|;|♢¶♢¶♢NSString♢|*|♢•♢string1♢•♢=♢•♢
 ·  <ObjCMethodCall>
-·  ·  ♢|[|♢NSString♢•♢stringWithFormat♢|:|♢|@"%@-%@"|♢,♢•♢|@"foo"|♢,♢•♢|@"bar"|♢|]|♢
+·  ·  ♢|[|♢|NSString|♢•♢stringWithFormat♢|:|♢|@"%@-%@"|♢,♢•♢|@"foo"|♢,♢•♢|@"bar"|♢|]|♢
 ·  ♢|;|♢¶♢¶♢NSString♢|*|♢•♢string2♢•♢=♢•♢
 ·  <ObjCMethodCall>
-·  ·  ♢|[|♢NSString♢•♢stringWithContentsOfFile♢|:|♢
+·  ·  ♢|[|♢|NSString|♢•♢stringWithContentsOfFile♢|:|♢
 ·  ·  <ObjCMethodCall>
 ·  ·  ·  ♢|[|♢|@"~/foo.bar"|♢•♢stringByExpandingTildeInPath♢|]|♢
 ·  ·  ♢•♢encoding♢|:|♢NSUTF8StringEncoding♢•♢error♢|:|♢
 ·  ·  <CFunctionCall>
-·  ·  ·  ♢GetDefaultEncoding♢
+·  ·  ·  ♢|GetDefaultEncoding|♢
 ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ♢|(|♢|)|♢
 ·  ·  ♢|]|♢
@@ -38,7 +38,7 @@ NSDictionary* dictionary = [[NSProcessInfo processInfo] environment];
 ·  <ObjCMethodCall>
 ·  ·  ♢|[|♢
 ·  ·  <CFunctionCall>
-·  ·  ·  ♢NSUserName♢
+·  ·  ·  ♢|NSUserName|♢
 ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ♢|(|♢|)|♢
 ·  ·  ♢•♢lowercaseString♢|]|♢
@@ -52,7 +52,7 @@ NSDictionary* dictionary = [[NSProcessInfo processInfo] environment];
 ·  <ObjCMethodCall>
 ·  ·  ♢|[|♢
 ·  ·  <ObjCMethodCall>
-·  ·  ·  ♢|[|♢NSProcessInfo♢•♢processInfo♢|]|♢
+·  ·  ·  ♢|[|♢|NSProcessInfo|♢•♢processInfo♢|]|♢
 ·  ·  ♢•♢environment♢|]|♢
 ·  ♢|;|♢¶♢¶♢
 ·  <ObjCMethodCall>

@@ -36,7 +36,7 @@ static void LocalFunction(int arg) {
 ·  ·  ·  <Braces>
 ·  ·  ·  ·  ♢|{|♢¶♢|→|♢
 ·  ·  ·  ·  <CFunctionCall>
-·  ·  ·  ·  ·  ♢sleep♢
+·  ·  ·  ·  ·  ♢|sleep|♢
 ·  ·  ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ·  ·  ♢|(|♢arg♢|)|♢
 ·  ·  ·  ·  ♢|;|♢¶♢|}|♢

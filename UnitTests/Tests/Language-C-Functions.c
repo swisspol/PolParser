@@ -37,23 +37,23 @@ int* Bar() {
 ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ♢|(|♢arg1♢•♢+♢•♢
 ·  ·  ·  ·  <CFunctionCall>
-·  ·  ·  ·  ·  ♢Bar♢
+·  ·  ·  ·  ·  ♢|Bar|♢
 ·  ·  ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ·  ·  ♢|(|♢|)|♢
 ·  ·  ·  ·  ♢•♢+♢•♢arg2♢|)|♢
 ·  ·  ·  ♢|;|♢¶♢|••••|♢|void|♢|*|♢•♢ptr♢•♢=♢•♢
 ·  ·  ·  <CFunctionCall>
-·  ·  ·  ·  ♢realloc♢
+·  ·  ·  ·  ♢|realloc|♢
 ·  ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ·  ♢|(|♢
 ·  ·  ·  ·  ·  <CFunctionCall>
-·  ·  ·  ·  ·  ·  ♢malloc♢
+·  ·  ·  ·  ·  ·  ♢|malloc|♢
 ·  ·  ·  ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ·  ·  ·  ♢|(|♢1024♢|)|♢
 ·  ·  ·  ·  ·  ♢,♢•♢2048♢|)|♢
 ·  ·  ·  ♢|;|♢¶♢|••••|♢
 ·  ·  ·  <CFunctionCall>
-·  ·  ·  ·  ♢free♢
+·  ·  ·  ·  ♢|free|♢
 ·  ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ·  ♢|(|♢ptr♢|)|♢
 ·  ·  ·  ♢|;|♢¶♢|}|♢

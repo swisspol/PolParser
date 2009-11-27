@@ -152,7 +152,7 @@ static inline BOOL _IsNodeAtTopLevel(SourceNode* node, NSSet* topLevelClasses) {
                     [previousNode insertNextSibling:newNode];
                     [newNode release];
                     
-                    SourceNode* prefixNode = [[SourceNodePrefix alloc] initWithSource:node.source range:NSMakeRange(elseNode.range.location, previousNode.range.location + previousNode.range.length - elseNode.range.location)];
+                    SourceNode* prefixNode = [[SourceNodeToken alloc] initWithSource:node.source range:NSMakeRange(elseNode.range.location, previousNode.range.location + previousNode.range.length - elseNode.range.location)];
                     [newNode insertNextSibling:prefixNode];
                     [prefixNode release];
                     
@@ -211,7 +211,7 @@ static inline BOOL _IsNodeAtTopLevel(SourceNode* node, NSSet* topLevelClasses) {
                     [node insertNextSibling:newNode];
                     [newNode release];
                     
-                    SourceNode* prefixNode = [[SourceNodePrefix alloc] initWithSource:node.source range:NSMakeRange(elseNode.range.location, node.range.location + node.range.length - elseNode.range.location)];
+                    SourceNode* prefixNode = [[SourceNodeToken alloc] initWithSource:node.source range:NSMakeRange(elseNode.range.location, node.range.location + node.range.length - elseNode.range.location)];
                     [newNode insertNextSibling:prefixNode];
                     [prefixNode release];
                     
@@ -361,7 +361,12 @@ static inline BOOL _IsNodeAtTopLevel(SourceNode* node, NSSet* topLevelClasses) {
         else if(![node.parent isKindOfClass:[SourceNodeCFunctionDefinition class]] && ![node.parent isKindOfClass:[SourceNodeCFunctionCall class]] && ![node.parent isKindOfClass:[SourceNodeCPreprocessorDefine class]] && _IsNodeInBlock(node)) {
             SourceNode* previousNode = [node findPreviousSiblingIgnoringWhitespaceAndNewline];
             if([previousNode isMemberOfClass:[SourceNodeText class]] && _IsIdentifier(sourceBuffer + previousNode.range.location, previousNode.range.length)) {
-            	SourceNode* newNode = [[SourceNodeCFunctionCall alloc] initWithSource:previousNode.source range:NSMakeRange(previousNode.range.location, 0)];
+            	SourceNode* newNode = [[SourceNodeToken alloc] initWithSource:previousNode.source range:previousNode.range];
+                [previousNode replaceWithNode:newNode];
+                [newNode release];
+                previousNode = newNode;
+                
+                newNode = [[SourceNodeCFunctionCall alloc] initWithSource:previousNode.source range:NSMakeRange(previousNode.range.location, 0)];
                 [previousNode insertPreviousSibling:newNode];
                 [newNode release];
                 _RearrangeNodesAsChildren(newNode, node);

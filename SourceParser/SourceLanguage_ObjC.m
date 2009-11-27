@@ -187,7 +187,13 @@ static SourceNode* _ApplierFunction(SourceNode* node, void* context) {
         	if([target.nextSibling isKindOfClass:[SourceNodeWhitespace class]] || [target.nextSibling isKindOfClass:[SourceNodeNewline class]]) {
                 SourceNode* nextNode = [target findNextSiblingIgnoringWhitespaceAndNewline];
                 if([nextNode isMemberOfClass:[SourceNodeText class]]) {
-                	SourceNode* newNode = [[SourceNodeObjCMethodCall alloc] initWithSource:node.source range:node.range];
+                	if([target isMemberOfClass:[SourceNodeText class]]) {
+						SourceNode* newNode = [[SourceNodeToken alloc] initWithSource:target.source range:target.range];
+                        [target replaceWithNode:newNode];
+                        [newNode release];
+					}
+                    
+                    SourceNode* newNode = [[SourceNodeObjCMethodCall alloc] initWithSource:node.source range:node.range];
                     [node applyFunctionOnChildren:_ApplierFunction context:newNode];
                     [node replaceWithNode:newNode];
                     [newNode release];

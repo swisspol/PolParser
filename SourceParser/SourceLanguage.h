@@ -62,10 +62,7 @@
 @interface SourceNodeKeyword : SourceNodeText //Leaf
 @end
 
-@interface SourceNodePrefix : SourceNodeText //Leaf
-@end
-
-@interface SourceNodeSuffix : SourceNodeText //Leaf
+@interface SourceNodeToken : SourceNodeText //Leaf
 @end
 
 @interface SourceNode (SourceNodeTextExtensions)

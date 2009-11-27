@@ -23,7 +23,7 @@ do {
 ·  ·  ·  ♢|(|♢|int|♢•♢i♢•♢=♢•♢foo♢|;|♢•♢i♢•♢<♢•♢bar♢|;|♢•♢++i♢|)|♢
 ·  ·  ♢¶♢|••••|♢
 ·  ·  <CFunctionCall>
-·  ·  ·  ♢printf♢
+·  ·  ·  ♢|printf|♢
 ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ♢|(|♢|"Counter•=•\"%i\""|♢,♢•♢i♢|)|♢
 ·  ·  ♢|;|♢
@@ -36,7 +36,7 @@ do {
 ·  ·  <Braces>
 ·  ·  ·  ♢|{|♢¶♢|••••|♢
 ·  ·  ·  <CFunctionCall>
-·  ·  ·  ·  ♢printf♢
+·  ·  ·  ·  ♢|printf|♢
 ·  ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ·  ♢|(|♢|"%i"|♢,♢•♢i♢|)|♢
 ·  ·  ·  ♢|;|♢¶♢|••••|♢|continue|♢|;|♢¶♢|}|♢

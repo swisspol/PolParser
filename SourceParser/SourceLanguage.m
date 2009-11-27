@@ -24,7 +24,7 @@ void _RearrangeNodesAsChildren(SourceNode* startNode, SourceNode* endNode) {
     
     SourceNode* node;
     if(startNode.range.length) {
-        node = [[SourceNodePrefix alloc] initWithSource:startNode.source range:startNode.range];
+        node = [[SourceNodeToken alloc] initWithSource:startNode.source range:startNode.range];
         [startNode addChild:node];
         [node release];
     }
@@ -108,7 +108,7 @@ static NSMutableSet* _languageCache = nil;
 }
 
 + (NSArray*) languageNodeClasses {
-	return [NSArray arrayWithObjects:[SourceNodeText class], [SourceNodeKeyword class], [SourceNodePrefix class], [SourceNodeSuffix class], nil]; //Special-cased by parser
+	return [NSArray arrayWithObjects:[SourceNodeText class], [SourceNodeKeyword class], [SourceNodeToken class], [SourceNodeToken class], nil]; //Special-cased by parser
 }
 
 + (NSSet*) languageTopLevelNodeClasses {
@@ -262,7 +262,7 @@ static inline BOOL _IsKeyword(const unichar* buffer, NSUInteger length, NSUInteg
                 parentNode.range = NSMakeRange(parentNode.range.location, range.location + suffixLength - parentNode.range.location);
                 
                 if(suffixLength > 0) {
-                    SourceNode* node = [[SourceNodeSuffix alloc] initWithSource:source range:NSMakeRange(parentNode.range.location + parentNode.range.length - suffixLength, suffixLength)];
+                    SourceNode* node = [[SourceNodeToken alloc] initWithSource:source range:NSMakeRange(parentNode.range.location + parentNode.range.length - suffixLength, suffixLength)];
                     [parentNode addChild:node];
                     [node release];
                 }
@@ -277,7 +277,7 @@ static inline BOOL _IsKeyword(const unichar* buffer, NSUInteger length, NSUInteg
         Class prefixClass;
         NSUInteger prefixLength;
         for(prefixClass in self.nodeClasses) {
-            if((prefixClass == [SourceNodeText class]) || (prefixClass == [SourceNodePrefix class]) || (prefixClass == [SourceNodeSuffix class]) || (prefixClass == [SourceNodeKeyword class]))
+            if((prefixClass == [SourceNodeText class]) || (prefixClass == [SourceNodeToken class]) || (prefixClass == [SourceNodeKeyword class]))
                 continue;
             prefixLength = [prefixClass isMatchingPrefix:(buffer + range.location + rawLength) maxLength:(range.length - rawLength)];
             if(prefixLength != NSNotFound)
@@ -322,7 +322,7 @@ static inline BOOL _IsKeyword(const unichar* buffer, NSUInteger length, NSUInteg
                 [stack addObject:node];
                 [node release];
                 
-                node = [[SourceNodePrefix alloc] initWithSource:source range:NSMakeRange(range.location, prefixLength)];
+                node = [[SourceNodeToken alloc] initWithSource:source range:NSMakeRange(range.location, prefixLength)];
                 [(SourceNode*)[stack lastObject] addChild:node];
                 [node release];
                 
@@ -449,10 +449,7 @@ static inline BOOL _IsKeyword(const unichar* buffer, NSUInteger length, NSUInteg
 
 @end
 
-@implementation SourceNodePrefix
-@end
-
-@implementation SourceNodeSuffix
+@implementation SourceNodeToken
 @end
 
 @implementation SourceNodeKeyword

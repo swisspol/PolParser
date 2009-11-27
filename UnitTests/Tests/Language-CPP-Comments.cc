@@ -23,7 +23,7 @@ int main(int argc, char *argv[]) {
 ·  ·  ·  <CFlowReturn>
 ·  ·  ·  ·  ♢|return|♢•♢
 ·  ·  ·  ·  <CFunctionCall>
-·  ·  ·  ·  ·  ♢Run♢
+·  ·  ·  ·  ·  ♢|Run|♢
 ·  ·  ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ·  ·  ♢|(|♢argc,♢•♢
 ·  ·  ·  ·  ·  ·  <Parenthesis>

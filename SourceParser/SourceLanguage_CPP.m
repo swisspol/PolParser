@@ -24,6 +24,10 @@
 	return [NSArray arrayWithObjects:@"Base", @"C", nil];
 }
 
++ (NSSet*) languageReservedKeywords {
+	return [NSSet setWithObjects:@"this", nil];
+}
+
 + (NSArray*) languageNodeClasses {
 	NSMutableArray* classes = [NSMutableArray array];
     

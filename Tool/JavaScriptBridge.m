@@ -27,13 +27,17 @@
 
 static NSString* _wrapperScript = @"\
 function __wrapper() {\
-	try {\
+	var __success = false; \
+    try {\
 		%@\
+        \
+        __success = true;\
     }\
     catch(e) {\
     	Log(\"[===== WARNING: JavaScript Exception while processing node =====]\");\
         Log(this.description);\
     }\
+    return __success;\
 }";
 
 #endif
@@ -316,14 +320,20 @@ static SourceNode* _JavaScriptFunctionApplier(SourceNode* node, void* context) {
 	void** params = (void**)context;
     JSContextRef ctx = params[0];
     JSObjectRef object = params[1];
+#if __MAIN_FUNCTION__
+	BOOL* successPtr = params[2];
+    JSValueRef value = JSObjectCallAsFunction(ctx, object, _JSObjectFromNode(node, ctx), 0, NULL, NULL);
+    if(!value || !JSValueIsBoolean(ctx, value) || !JSValueToBoolean(ctx, value))
+    	*successPtr = NO;
+    return node;
+#else
     void* recursive = params[2];
     JSValueRef exception = NULL;
     JSObjectCallAsFunction(ctx, object, _JSObjectFromNode(node, ctx), 0, NULL, &exception);
-#if !__MAIN_FUNCTION__
     if(exception)
     	printf("<JavaScript Exception: %s>\n", [_ExceptionToString(context, exception) UTF8String]);
-#endif
     return recursive ? node : nil;
+#endif
 }
 
 #if !__MAIN_FUNCTION__
@@ -480,7 +490,7 @@ BOOL RunJavaScriptOnRootNode(NSString* script, SourceNode* root) {
                     JSValueRef exception = NULL;
                     JSEvaluateScript(context, jsScript, NULL, NULL, 1, &exception);
                     if(exception)
-                        printf("<JavaScript Exception: %s>\n", [_ExceptionToString(context, exception) UTF8String]);
+                        printf("<JavaScript Evaluation Failed: %s>\n", [_ExceptionToString(context, exception) UTF8String]);
                     else
                     	success = YES;
                     
@@ -491,9 +501,9 @@ BOOL RunJavaScriptOnRootNode(NSString* script, SourceNode* root) {
                         JSStringRelease(jsString);
                         if(function && JSValueIsObject(context, function)) {
                             void* params[3];
-                            params[0] = (void*)context;
-                            params[1] = (void*)function;
-                            params[2] = (void*)context;
+                            params[0] = context;
+                            params[1] = function;
+                            params[2] = &success;
                             _JavaScriptFunctionApplier(root, params);
                             [root applyFunctionOnChildren:_JavaScriptFunctionApplier context:params];
                         } else {

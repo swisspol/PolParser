@@ -77,7 +77,8 @@
 }
 
 static BOOL _HasInterfaceOrProtocolParent(SourceNode* node) {
-    if([node.parent isKindOfClass:[SourceNodeObjCInterface class]] || [node.parent isKindOfClass:[SourceNodeObjCProtocol class]])
+    if([node.parent isKindOfClass:[SourceNodeObjCInterface class]] || [node.parent isKindOfClass:[SourceNodeObjCPrivate class]] || [node.parent isKindOfClass:[SourceNodeObjCProtected class]] || [node.parent isKindOfClass:[SourceNodeObjCPublic class]]
+    	|| [node.parent isKindOfClass:[SourceNodeObjCProtocol class]] || [node.parent isKindOfClass:[SourceNodeObjCProtected class]] || [node.parent isKindOfClass:[SourceNodeObjCOptional class]])
         return YES;
     
     return [node.parent isKindOfClass:[SourceNodeCPreprocessorCondition class]] ? _HasInterfaceOrProtocolParent(node.parent) : NO;
@@ -146,6 +147,37 @@ static SourceNode* _ApplierFunction(SourceNode* node, void* context) {
         SourceNode* semicolonNode = [node findNextSiblingOfClass:[SourceNodeSemicolon class]];
         if(semicolonNode)
             _RearrangeNodesAsChildren(node, semicolonNode);
+        
+    } else if([node isMemberOfClass:[SourceNodeObjCPrivate class]] || [node isMemberOfClass:[SourceNodeObjCProtected class]] || [node isMemberOfClass:[SourceNodeObjCPublic class]]) {
+        
+        // "@private ..." "@protected ..." "@public ..."
+    	SourceNode* endNode = [node.parent.lastChild findPreviousSiblingIgnoringWhitespaceAndNewline]; //Last child is guaranted to be @end
+        SourceNode* otherNode = [node findNextSiblingOfClass:[SourceNodeObjCPrivate class]];
+        if(otherNode && (otherNode.range.location < endNode.range.location))
+        	endNode = otherNode.previousSibling;
+        otherNode = [node findNextSiblingOfClass:[SourceNodeObjCProtected class]];
+        if(otherNode && (otherNode.range.location < endNode.range.location))
+        	endNode = otherNode.previousSibling;
+        otherNode = [node findNextSiblingOfClass:[SourceNodeObjCPublic class]];
+        if(otherNode && (otherNode.range.location < endNode.range.location))
+        	endNode = otherNode.previousSibling;
+        if([endNode isKindOfClass:[SourceNodeWhitespace class]] || [endNode isKindOfClass:[SourceNodeNewline class]])
+        	endNode = [endNode findPreviousSiblingIgnoringWhitespaceAndNewline];
+        _RearrangeNodesAsChildren(node, endNode);
+        
+    } else if([node isMemberOfClass:[SourceNodeObjCRequired class]] || [node isMemberOfClass:[SourceNodeObjCOptional class]]) {
+        
+        // "@required ..." @"@optional ..."
+    	SourceNode* endNode = [node.parent.lastChild findPreviousSiblingIgnoringWhitespaceAndNewline]; //Last child is guaranted to be @end
+        SourceNode* otherNode = [node findNextSiblingOfClass:[SourceNodeObjCRequired class]];
+        if(otherNode && (otherNode.range.location < endNode.range.location))
+        	endNode = otherNode.previousSibling;
+        otherNode = [node findNextSiblingOfClass:[SourceNodeObjCOptional class]];
+        if(otherNode && (otherNode.range.location < endNode.range.location))
+        	endNode = otherNode.previousSibling;
+        if([endNode isKindOfClass:[SourceNodeWhitespace class]] || [endNode isKindOfClass:[SourceNodeNewline class]])
+        	endNode = [endNode findPreviousSiblingIgnoringWhitespaceAndNewline];
+        _RearrangeNodesAsChildren(node, endNode);
         
     } else if([node isMemberOfClass:[SourceNodeText class]] && _HasInterfaceOrProtocolParent(node)) {
         

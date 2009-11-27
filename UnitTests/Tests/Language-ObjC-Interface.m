@@ -6,10 +6,11 @@
 @end
 
 @interface Demo : NSObject <Cocoa> {
+	void* _secret;
 @private
-	int foo;
+	int _foo;
 @public
-	int _bar;
+	int bar;
 }
 @property(nonatomic, readonly, getter=isValid)  BOOL valid;
 + (id) sharedInstance;
@@ -26,24 +27,32 @@ static void LocalFunction(int arg);
 ·  ·  ♢|#import|♢•♢<Foundation/Foundation.h>♢
 ·  ♢¶♢¶♢
 ·  <ObjCProtocol>
-·  ·  ♢|@protocol•Cocoa|♢¶♢|@optional|♢¶♢
-·  ·  <ObjCMethodDeclaration>
-·  ·  ·  ♢-♢•♢
-·  ·  ·  <Parenthesis>
-·  ·  ·  ·  ♢|(|♢BOOL♢|)|♢
-·  ·  ·  ♢•♢test♢|:|♢
-·  ·  ·  <Parenthesis>
-·  ·  ·  ·  ♢|(|♢|int|♢|)|♢
-·  ·  ·  ♢foo♢•♢bar♢|:|♢
-·  ·  ·  <Parenthesis>
-·  ·  ·  ·  ♢|(|♢|int|♢|)|♢
-·  ·  ·  ♢bar♢|;|♢
+·  ·  ♢|@protocol•Cocoa|♢¶♢
+·  ·  <ObjCOptional>
+·  ·  ·  ♢|@optional|♢¶♢
+·  ·  ·  <ObjCMethodDeclaration>
+·  ·  ·  ·  ♢-♢•♢
+·  ·  ·  ·  <Parenthesis>
+·  ·  ·  ·  ·  ♢|(|♢BOOL♢|)|♢
+·  ·  ·  ·  ♢•♢test♢|:|♢
+·  ·  ·  ·  <Parenthesis>
+·  ·  ·  ·  ·  ♢|(|♢|int|♢|)|♢
+·  ·  ·  ·  ♢foo♢•♢bar♢|:|♢
+·  ·  ·  ·  <Parenthesis>
+·  ·  ·  ·  ·  ♢|(|♢|int|♢|)|♢
+·  ·  ·  ·  ♢bar♢|;|♢
 ·  ·  ♢¶♢|@end|♢
 ·  ♢¶♢¶♢
 ·  <ObjCInterface>
 ·  ·  ♢|@interface•Demo•:•NSObject•<Cocoa>•|♢
 ·  ·  <Braces>
-·  ·  ·  ♢|{|♢¶♢|@private|♢¶♢|→|♢|int|♢•♢foo♢|;|♢¶♢|@public|♢¶♢|→|♢|int|♢•♢_bar♢|;|♢¶♢|}|♢
+·  ·  ·  ♢|{|♢¶♢|→|♢|void|♢|*|♢•♢_secret♢|;|♢¶♢
+·  ·  ·  <ObjCPrivate>
+·  ·  ·  ·  ♢|@private|♢¶♢|→|♢|int|♢•♢_foo♢|;|♢
+·  ·  ·  ♢¶♢
+·  ·  ·  <ObjCPublic>
+·  ·  ·  ·  ♢|@public|♢¶♢|→|♢|int|♢•♢bar♢|;|♢
+·  ·  ·  ♢¶♢|}|♢
 ·  ·  ♢¶♢
 ·  ·  <ObjCProperty>
 ·  ·  ·  ♢|@property|♢

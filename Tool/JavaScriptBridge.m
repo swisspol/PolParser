@@ -360,6 +360,42 @@ static JSValueRef _CallFunctionFindLastChildOfType(JSContextRef ctx, JSObjectRef
     return NULL;
 }
 
+static JSValueRef _CallFunctionIsWhitespaceOrNewline(JSContextRef ctx, JSObjectRef function, JSObjectRef thisObject, size_t argumentCount, const JSValueRef arguments[], JSValueRef* exception) {
+	if(argumentCount == 0) {
+    	SourceNode* node = JSObjectGetPrivate(thisObject);
+        return JSValueMakeBoolean(ctx, [node isKindOfClass:[SourceNodeWhitespace class]] || [node isKindOfClass:[SourceNodeNewline class]]);
+    }
+    *exception = _MakeException(ctx, @"Invalid argument(s)");
+    return NULL;
+}
+
+static JSValueRef _CallFunctionIsAnyText(JSContextRef ctx, JSObjectRef function, JSObjectRef thisObject, size_t argumentCount, const JSValueRef arguments[], JSValueRef* exception) {
+	if(argumentCount == 0) {
+    	SourceNode* node = JSObjectGetPrivate(thisObject);
+        return JSValueMakeBoolean(ctx, [node isKindOfClass:[SourceNodeText class]]);
+    }
+    *exception = _MakeException(ctx, @"Invalid argument(s)");
+    return NULL;
+}
+
+static JSValueRef _CallFunctionIsKeyword(JSContextRef ctx, JSObjectRef function, JSObjectRef thisObject, size_t argumentCount, const JSValueRef arguments[], JSValueRef* exception) {
+	if(argumentCount == 0) {
+    	SourceNode* node = JSObjectGetPrivate(thisObject);
+        return JSValueMakeBoolean(ctx, [node isKindOfClass:[SourceNodeKeyword class]]);
+    }
+    *exception = _MakeException(ctx, @"Invalid argument(s)");
+    return NULL;
+}
+
+static JSValueRef _CallFunctionIsToken(JSContextRef ctx, JSObjectRef function, JSObjectRef thisObject, size_t argumentCount, const JSValueRef arguments[], JSValueRef* exception) {
+	if(argumentCount == 0) {
+    	SourceNode* node = JSObjectGetPrivate(thisObject);
+        return JSValueMakeBoolean(ctx, [node isKindOfClass:[SourceNodeToken class]]);
+    }
+    *exception = _MakeException(ctx, @"Invalid argument(s)");
+    return NULL;
+}
+
 static SourceNode* _JavaScriptFunctionApplier(SourceNode* node, void* context) {
 	void** params = (void**)context;
     JSContextRef ctx = params[0];
@@ -413,6 +449,10 @@ static JSStaticFunction _staticFunctions[] = {
     {"findNextSiblingOfType", _CallFunctionFindNextSiblingOfType, kJSPropertyAttributeReadOnly | kJSPropertyAttributeDontDelete | kJSPropertyAttributeDontEnum},
     {"findFirstChildOfType", _CallFunctionFindFirstChildOfType, kJSPropertyAttributeReadOnly | kJSPropertyAttributeDontDelete | kJSPropertyAttributeDontEnum},
     {"findLastChildOfType", _CallFunctionFindLastChildOfType, kJSPropertyAttributeReadOnly | kJSPropertyAttributeDontDelete | kJSPropertyAttributeDontEnum},
+	{"isWhitespaceOrNewline", _CallFunctionIsWhitespaceOrNewline, kJSPropertyAttributeReadOnly | kJSPropertyAttributeDontDelete | kJSPropertyAttributeDontEnum},
+    {"isAnyText", _CallFunctionIsAnyText, kJSPropertyAttributeReadOnly | kJSPropertyAttributeDontDelete | kJSPropertyAttributeDontEnum},
+    {"isKeyword", _CallFunctionIsKeyword, kJSPropertyAttributeReadOnly | kJSPropertyAttributeDontDelete | kJSPropertyAttributeDontEnum},
+    {"isToken", _CallFunctionIsToken, kJSPropertyAttributeReadOnly | kJSPropertyAttributeDontDelete | kJSPropertyAttributeDontEnum},
 #if !__MAIN_FUNCTION__
     {"applyFunctionOnChildren", _CallFunctionApplyFunctionOnChildren, kJSPropertyAttributeReadOnly | kJSPropertyAttributeDontDelete | kJSPropertyAttributeDontEnum},
 #endif

@@ -20,7 +20,7 @@
 
 void _RearrangeNodesAsChildren(SourceNode* startNode, SourceNode* endNode) {
     if(startNode == endNode)
-    	return;
+    	[NSException raise:NSInternalInconsistencyException format:@""];
     
     SourceNode* node;
     if(startNode.range.length) {

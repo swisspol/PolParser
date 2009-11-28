@@ -64,6 +64,7 @@ typedef SourceNode* (*SourceNodeApplierFunction)(SourceNode* node, void* context
 - (SourceNode*) findNextSiblingOfClass:(Class)class;
 - (SourceNode*) findFirstChildOfClass:(Class)class;
 - (SourceNode*) findLastChildOfClass:(Class)class;
+- (NSUInteger) getDepthInParentsOfClass:(Class)class; //Passing nil returns the absolute depth
 
 - (void) applyFunctionOnChildren:(SourceNodeApplierFunction)function context:(void*)context;
 #if NS_BLOCKS_AVAILABLE

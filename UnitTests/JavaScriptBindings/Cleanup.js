@@ -1,5 +1,5 @@
 if(this.type == Node.TYPE_NEWLINE) {
-    // Strip whitespace at end of lines
+    // Strip whitespace at end of lines (and therefore lines that are pure "indenting")
 	if(this.previousSibling && (this.previousSibling.isWhitespace()))
     	this.previousSibling.removeFromParent();
     
@@ -34,11 +34,19 @@ else if((this.type == Node.TYPE_OBJCMETHODDECLARATION) || (this.type == Node.TYP
 
 <----->
 
-// Convert tabs indenting to spaces indenting and make sure they are multiple of 4
+// Convert tabs indenting to spaces indenting, make sure they are multiple of 4 and their length is greater or equal than to what's expected according to the number of nested braces
 if(this.type == Node.TYPE_INDENTING) {
-	var indent = this.content.replace("	", "    ");
+	var indent = this.content.replace(/\t/g, "    ");
 	var extra = indent.length % 4;
     if(extra > 0)
-    	indent = indent.slice(0, -extra);
+		indent = indent.slice(0, -extra);
+    var length = indent.length / 4;
+    var depth = this.getDepthInParentsOfType(Node.TYPE_BRACES);
+    if((this.parent.type == Node.TYPE_BRACES) && (this.nextSibling == this.parent.lastChild))
+    	--depth;
+    while(depth > length) {
+    	indent = indent + "    ";
+        --depth;
+    }
     this.replaceWithText(indent);
 }

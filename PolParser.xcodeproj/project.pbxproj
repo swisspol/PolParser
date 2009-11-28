@@ -35,11 +35,12 @@
 		E213426710BD054800023F41 /* SourceLanguage_ObjCPP.m in Sources */ = {isa = PBXBuildFile; fileRef = E213417E10BCF9B800023F41 /* SourceLanguage_ObjCPP.m */; };
 		E213426910BD054800023F41 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08FB779EFE84155DC02AAC07 /* Foundation.framework */; };
 		E213427110BD056000023F41 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E213425310BD052800023F41 /* main.m */; };
-		E21AAB6E10C0D43B00471B14 /* JavaScriptBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = E2D08F7010BEB7DD004151B9 /* JavaScriptBridge.m */; };
 		E21AAB6F10C0D43F00471B14 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2D08E3F10BEA7C7004151B9 /* JavaScriptCore.framework */; };
 		E21AAB9310C0D46C00471B14 /* JavaScriptBindings in CopyFiles */ = {isa = PBXBuildFile; fileRef = E21AAB7810C0D45000471B14 /* JavaScriptBindings */; };
 		E21AAB9410C0D46C00471B14 /* SourceParser in CopyFiles */ = {isa = PBXBuildFile; fileRef = E21AAB7B10C0D45000471B14 /* SourceParser */; };
 		E21AAC4310C0E13A00471B14 /* SampleSource in CopyFiles */ = {isa = PBXBuildFile; fileRef = E21AABFF10C0DC5000471B14 /* SampleSource */; };
+		E21AADB210C1136A00471B14 /* JavaScriptBindings.m in Sources */ = {isa = PBXBuildFile; fileRef = E21AADB110C1136A00471B14 /* JavaScriptBindings.m */; };
+		E21AADB310C1136A00471B14 /* JavaScriptBindings.m in Sources */ = {isa = PBXBuildFile; fileRef = E21AADB110C1136A00471B14 /* JavaScriptBindings.m */; };
 		E2B6368D10BA46C800BF43E7 /* SourceLanguage_C.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B6368310BA46C800BF43E7 /* SourceLanguage_C.m */; };
 		E2B6368E10BA46C800BF43E7 /* SourceLanguage_CPP.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B6368510BA46C800BF43E7 /* SourceLanguage_CPP.m */; };
 		E2B6368F10BA46C800BF43E7 /* SourceLanguage_ObjC.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B6368710BA46C800BF43E7 /* SourceLanguage_ObjC.m */; };
@@ -57,7 +58,6 @@
 		E2B6383610BA554000BF43E7 /* MyDocument.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2B6383410BA554000BF43E7 /* MyDocument.xib */; };
 		E2B6383910BA55AB00BF43E7 /* MyDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B6383810BA55AB00BF43E7 /* MyDocument.m */; };
 		E2D08E4010BEA7C7004151B9 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2D08E3F10BEA7C7004151B9 /* JavaScriptCore.framework */; };
-		E2D08F7110BEB7DD004151B9 /* JavaScriptBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = E2D08F7010BEB7DD004151B9 /* JavaScriptBridge.m */; };
 		E2E5BC0E10BB986B004E3745 /* SourceLanguage_Base.m in Sources */ = {isa = PBXBuildFile; fileRef = E2E5BC0D10BB986B004E3745 /* SourceLanguage_Base.m */; };
 		E2E5BC0F10BB986B004E3745 /* SourceLanguage_Base.m in Sources */ = {isa = PBXBuildFile; fileRef = E2E5BC0D10BB986B004E3745 /* SourceLanguage_Base.m */; };
 /* End PBXBuildFile section */
@@ -112,6 +112,7 @@
 		E21AAB7810C0D45000471B14 /* JavaScriptBindings */ = {isa = PBXFileReference; lastKnownFileType = folder; path = JavaScriptBindings; sourceTree = "<group>"; };
 		E21AAB7B10C0D45000471B14 /* SourceParser */ = {isa = PBXFileReference; lastKnownFileType = folder; path = SourceParser; sourceTree = "<group>"; };
 		E21AABFF10C0DC5000471B14 /* SampleSource */ = {isa = PBXFileReference; lastKnownFileType = folder; path = SampleSource; sourceTree = "<group>"; };
+		E21AADB110C1136A00471B14 /* JavaScriptBindings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JavaScriptBindings.m; sourceTree = "<group>"; };
 		E2B6368210BA46C800BF43E7 /* SourceLanguage_C.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SourceLanguage_C.h; sourceTree = "<group>"; };
 		E2B6368310BA46C800BF43E7 /* SourceLanguage_C.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SourceLanguage_C.m; sourceTree = "<group>"; };
 		E2B6368410BA46C800BF43E7 /* SourceLanguage_CPP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SourceLanguage_CPP.h; sourceTree = "<group>"; };
@@ -133,7 +134,6 @@
 		E2B6383710BA55AB00BF43E7 /* MyDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyDocument.h; sourceTree = "<group>"; };
 		E2B6383810BA55AB00BF43E7 /* MyDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyDocument.m; sourceTree = "<group>"; };
 		E2D08E3F10BEA7C7004151B9 /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
-		E2D08F7010BEB7DD004151B9 /* JavaScriptBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JavaScriptBridge.m; sourceTree = "<group>"; };
 		E2E5BBED10BB9778004E3745 /* SourceParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SourceParser.h; sourceTree = "<group>"; };
 		E2E5BC0C10BB986B004E3745 /* SourceLanguage_Base.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SourceLanguage_Base.h; sourceTree = "<group>"; };
 		E2E5BC0D10BB986B004E3745 /* SourceLanguage_Base.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SourceLanguage_Base.m; sourceTree = "<group>"; };
@@ -173,6 +173,7 @@
 			isa = PBXGroup;
 			children = (
 				32A70AAB03705E1F00C91783 /* Prefix.pch */,
+				E21AADB110C1136A00471B14 /* JavaScriptBindings.m */,
 				E2B6368110BA46C800BF43E7 /* SourceParser */,
 				E2B637F410BA53CB00BF43E7 /* Application */,
 				E2B637FA10BA540800BF43E7 /* Tool */,
@@ -253,7 +254,6 @@
 		E2B637FA10BA540800BF43E7 /* Tool */ = {
 			isa = PBXGroup;
 			children = (
-				E2D08F7010BEB7DD004151B9 /* JavaScriptBridge.m */,
 				E2B637FB10BA540800BF43E7 /* main.m */,
 			);
 			path = Tool;
@@ -359,7 +359,7 @@
 				E2B637FC10BA540800BF43E7 /* main.m in Sources */,
 				E2E5BC0F10BB986B004E3745 /* SourceLanguage_Base.m in Sources */,
 				E213417F10BCF9B800023F41 /* SourceLanguage_ObjCPP.m in Sources */,
-				E2D08F7110BEB7DD004151B9 /* JavaScriptBridge.m in Sources */,
+				E21AADB310C1136A00471B14 /* JavaScriptBindings.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -375,7 +375,7 @@
 				E213426610BD054800023F41 /* SourceLanguage_Base.m in Sources */,
 				E213426710BD054800023F41 /* SourceLanguage_ObjCPP.m in Sources */,
 				E213427110BD056000023F41 /* main.m in Sources */,
-				E21AAB6E10C0D43B00471B14 /* JavaScriptBridge.m in Sources */,
+				E21AADB210C1136A00471B14 /* JavaScriptBindings.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

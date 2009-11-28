@@ -381,6 +381,16 @@ static JSValueRef _CallFunctionFindLastChildOfType(JSContextRef ctx, JSObjectRef
     return NULL;
 }
 
+static JSValueRef _CallFunctionGetDepthInParentsOfType(JSContextRef ctx, JSObjectRef function, JSObjectRef thisObject, size_t argumentCount, const JSValueRef arguments[], JSValueRef* exception) {
+	if((argumentCount == 0) || ((argumentCount == 1) && JSValueIsNumber(ctx, arguments[0]))) {
+    	SourceNode* node = JSObjectGetPrivate(thisObject);
+        Class class = (argumentCount == 1 ? (Class)(long)JSValueToNumber(ctx, arguments[0], NULL) : nil);
+        return JSValueMakeNumber(ctx, [node getDepthInParentsOfClass:class]);
+    }
+    *exception = _MakeException(ctx, @"Invalid argument(s)");
+    return NULL;
+}
+
 static JSValueRef _CallFunctionIsWhitespace(JSContextRef ctx, JSObjectRef function, JSObjectRef thisObject, size_t argumentCount, const JSValueRef arguments[], JSValueRef* exception) {
 	if(argumentCount == 0) {
     	SourceNode* node = JSObjectGetPrivate(thisObject);
@@ -480,6 +490,7 @@ static JSStaticFunction _staticFunctions[] = {
     {"findNextSiblingOfType", _CallFunctionFindNextSiblingOfType, kJSPropertyAttributeReadOnly | kJSPropertyAttributeDontDelete | kJSPropertyAttributeDontEnum},
     {"findFirstChildOfType", _CallFunctionFindFirstChildOfType, kJSPropertyAttributeReadOnly | kJSPropertyAttributeDontDelete | kJSPropertyAttributeDontEnum},
     {"findLastChildOfType", _CallFunctionFindLastChildOfType, kJSPropertyAttributeReadOnly | kJSPropertyAttributeDontDelete | kJSPropertyAttributeDontEnum},
+    {"getDepthInParentsOfType", _CallFunctionGetDepthInParentsOfType, kJSPropertyAttributeReadOnly | kJSPropertyAttributeDontDelete | kJSPropertyAttributeDontEnum},
 	{"isWhitespace", _CallFunctionIsWhitespace, kJSPropertyAttributeReadOnly | kJSPropertyAttributeDontDelete | kJSPropertyAttributeDontEnum},
     {"isWhitespaceOrNewline", _CallFunctionIsWhitespaceOrNewline, kJSPropertyAttributeReadOnly | kJSPropertyAttributeDontDelete | kJSPropertyAttributeDontEnum},
     {"isAnyText", _CallFunctionIsAnyText, kJSPropertyAttributeReadOnly | kJSPropertyAttributeDontDelete | kJSPropertyAttributeDontEnum},

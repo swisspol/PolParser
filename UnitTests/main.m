@@ -18,6 +18,33 @@
 
 #import "SourceParser.h"
 
+static BOOL _ValidateResult(NSString* path, NSString* actualResult, NSString* expectedResult) {
+	NSMutableString* expected = [NSMutableString stringWithString:expectedResult];
+    [expected replaceOccurrencesOfString:@"\n" withString:@"" options:NSAnchoredSearch range:NSMakeRange(0, expected.length)];
+    [expected replaceOccurrencesOfString:@"\n" withString:@"" options:(NSBackwardsSearch | NSAnchoredSearch) range:NSMakeRange(0, expected.length)];
+    if(![actualResult isEqualToString:expected]) {
+        NSString* expectedPath = [NSTemporaryDirectory() stringByAppendingPathComponent:[NSString stringWithFormat:@"%@ [Expected].out", path]];
+        [expected writeToFile:expectedPath atomically:YES encoding:NSUTF8StringEncoding error:NULL];
+        
+        NSString* resultPath = [NSTemporaryDirectory() stringByAppendingPathComponent:[NSString stringWithFormat:@"%@ [Result].out", path]];
+        [actualResult writeToFile:resultPath atomically:YES encoding:NSUTF8StringEncoding error:NULL];
+        
+        NSTask* task = [[NSTask alloc] init];
+        [task setLaunchPath:@"/usr/bin/opendiff"];
+        [task setArguments:[NSArray arrayWithObjects:expectedPath, resultPath, nil]];
+        @try {
+            [task launch];
+        }
+        @catch(NSException* exception) {
+            NSLog(@"<FAILED LAUNCHING OPENDIFF: \"%@\">", [exception reason]);
+        }
+        //[task waitUntilExit];
+        //[task release];
+        return NO;
+    }
+    return YES;
+}
+
 int main(int argc, const char* argv[]) {
     NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
     BOOL optionPrintRoot = NO;
@@ -47,7 +74,7 @@ int main(int argc, const char* argv[]) {
         	NSLog(@"<FAILED LOADING TEST CONTENT FROM \"%@\">", path);
         } else {
             NSArray* parts = [content componentsSeparatedByString:@"-----"];
-            if(parts.count != 2) {
+            if(parts.count < 2) {
             	NSLog(@"<INVALID TEST CONTENT IN \"%@\">", path);
             } else {
                 @try {
@@ -60,34 +87,19 @@ int main(int argc, const char* argv[]) {
                         if(optionPrintRoot)
                         	printf("<%s>\n%s\n", [path UTF8String], [root.fullDescription UTF8String]);
                         
-                        NSMutableString* expected = [NSMutableString stringWithString:[parts objectAtIndex:1]];
-                        [expected replaceOccurrencesOfString:@"\n" withString:@"" options:NSAnchoredSearch range:NSMakeRange(0, expected.length)];
-                        [expected replaceOccurrencesOfString:@"\n" withString:@"" options:(NSBackwardsSearch | NSAnchoredSearch) range:NSMakeRange(0, expected.length)];
-                        
-                        NSString* result = [root compactDescription];
-                        if(![result isEqualToString:expected]) {
-                        	printf("%s: FAILED\n", [path UTF8String]);
-                            
-                            NSString* expectedPath = [NSTemporaryDirectory() stringByAppendingPathComponent:[NSString stringWithFormat:@"%@ [Expected].out", path]];
-                            [expected writeToFile:expectedPath atomically:YES encoding:NSUTF8StringEncoding error:NULL];
-                            
-                            NSString* resultPath = [NSTemporaryDirectory() stringByAppendingPathComponent:[NSString stringWithFormat:@"%@ [Result].out", path]];
-                            [result writeToFile:resultPath atomically:YES encoding:NSUTF8StringEncoding error:NULL];
-                            
-                            NSTask* task = [[NSTask alloc] init];
-                            [task setLaunchPath:@"/usr/bin/opendiff"];
-                            [task setArguments:[NSArray arrayWithObjects:expectedPath, resultPath, nil]];
-                            @try {
-                                [task launch];
-                            }
-                            @catch(NSException* exception) {
-                                NSLog(@"<FAILED LAUNCHING OPENDIFF: \"%@\">", [exception reason]);
-                            }
-                            //[task waitUntilExit];
-                            //[task release];
-                        } else {
-                            printf("%s: ok\n", [path UTF8String]);
+                        BOOL success = YES;
+                        if((parts.count > 1) && [[parts objectAtIndex:1] length]) {
+                        	if(!_ValidateResult(path, root.compactDescription, [parts objectAtIndex:1]))
+                            	success = NO;
                         }
+                        if((parts.count > 2) && [[parts objectAtIndex:2] length]) {
+                        	if(!_ValidateResult(path, root.fullDescription, [parts objectAtIndex:2]))
+                            	success = NO;
+                        }
+                        if(success)
+                        	printf("%s: ok\n", [path UTF8String]);
+                        else
+                        	printf("%s: FAILED\n", [path UTF8String]);
                     }
                 }
                 @catch(NSException* exception) {

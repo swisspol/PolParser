@@ -381,6 +381,7 @@ static void _AppendNodeFullDescription(SourceNode* node, NSMutableString* string
 - (NSString*) fullDescription {
     NSMutableString* string = [NSMutableString string];
     _AppendNodeFullDescription(self, string, @"");
+    [string replaceCharactersInRange:NSMakeRange(string.length - 1, 1) withString:@""];
     return string;
 }
 

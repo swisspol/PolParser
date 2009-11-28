@@ -23,7 +23,7 @@ static void LocalFunction(int arg) {
 
 @end
 
------
+<----->
 
 <Root>
 ·  <ObjCImplementation>

@@ -69,6 +69,30 @@
     [super dealloc];
 }
 
+- (id) copyWithZone:(NSZone*)zone {
+	SourceNode* copy = [[[self class] alloc] init];
+    if(copy) {
+    	copy->_source = [_source retain];
+        copy->_range = _range;
+        copy->_lines = _lines;
+        //node->_parent = nil;
+        //node->_children = nil;
+        //node->_revision = 0;
+        //node->_jsObject = NULL;
+        for(SourceNode* node in _children) {
+        	SourceNode* child = [node copyWithZone:zone];
+            if(child) {
+            	[copy addChild:child];
+                [child release];
+            } else {
+                [copy release];
+                return nil;
+            }
+        }
+    }
+    return copy;
+}
+
 static NSRange _LineNumbersForRange(NSString* string, NSRange range) {
     NSRange lines = NSMakeRange(0, 1);
     NSRange subrange = NSMakeRange(0, 0);

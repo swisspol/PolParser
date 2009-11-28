@@ -434,6 +434,13 @@ static inline BOOL _IsKeyword(const unichar* buffer, NSUInteger length, NSUInteg
     [super dealloc];
 }
 
+- (id) copyWithZone:(NSZone*)zone {
+	SourceNodeRoot* copy = [super copyWithZone:zone];
+    if(copy)
+    	[copy->_language retain];
+    return copy;
+}
+
 - (BOOL) writeContentToFile:(NSString*)path encoding:(NSStringEncoding)encoding {
     return [[self content] writeToFile:path atomically:YES encoding:encoding error:NULL];
 }

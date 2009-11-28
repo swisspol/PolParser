@@ -12,7 +12,7 @@ NSDictionary* dictionary = [[NSProcessInfo processInfo] environment];
 
 [super test:foo bar:bar];
 
------
+<----->
 
 <Root>
 ·  ♢SEL♢•♢temp♢•♢=♢•♢

@@ -6,7 +6,7 @@ int main(int argc, char *argv[]) {
     return Run(argc, (const char**)argv); //argc is always > 1
 }
 
------
+<----->
 
 <Root>
 ·  ♢|/*¶*•The•main•function¶*/|♢¶♢

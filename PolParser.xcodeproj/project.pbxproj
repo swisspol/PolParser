@@ -35,7 +35,11 @@
 		E213426710BD054800023F41 /* SourceLanguage_ObjCPP.m in Sources */ = {isa = PBXBuildFile; fileRef = E213417E10BCF9B800023F41 /* SourceLanguage_ObjCPP.m */; };
 		E213426910BD054800023F41 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08FB779EFE84155DC02AAC07 /* Foundation.framework */; };
 		E213427110BD056000023F41 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E213425310BD052800023F41 /* main.m */; };
-		E213427F10BD062C00023F41 /* Tests in CopyFiles */ = {isa = PBXBuildFile; fileRef = E213427A10BD061F00023F41 /* Tests */; };
+		E21AAB6E10C0D43B00471B14 /* JavaScriptBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = E2D08F7010BEB7DD004151B9 /* JavaScriptBridge.m */; };
+		E21AAB6F10C0D43F00471B14 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2D08E3F10BEA7C7004151B9 /* JavaScriptCore.framework */; };
+		E21AAB9310C0D46C00471B14 /* JavaScriptBindings in CopyFiles */ = {isa = PBXBuildFile; fileRef = E21AAB7810C0D45000471B14 /* JavaScriptBindings */; };
+		E21AAB9410C0D46C00471B14 /* SourceParser in CopyFiles */ = {isa = PBXBuildFile; fileRef = E21AAB7B10C0D45000471B14 /* SourceParser */; };
+		E21AAC4310C0E13A00471B14 /* SampleSource in CopyFiles */ = {isa = PBXBuildFile; fileRef = E21AABFF10C0DC5000471B14 /* SampleSource */; };
 		E2B6368D10BA46C800BF43E7 /* SourceLanguage_C.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B6368310BA46C800BF43E7 /* SourceLanguage_C.m */; };
 		E2B6368E10BA46C800BF43E7 /* SourceLanguage_CPP.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B6368510BA46C800BF43E7 /* SourceLanguage_CPP.m */; };
 		E2B6368F10BA46C800BF43E7 /* SourceLanguage_ObjC.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B6368710BA46C800BF43E7 /* SourceLanguage_ObjC.m */; };
@@ -89,7 +93,9 @@
 			dstPath = "";
 			dstSubfolderSpec = 16;
 			files = (
-				E213427F10BD062C00023F41 /* Tests in CopyFiles */,
+				E21AAB9310C0D46C00471B14 /* JavaScriptBindings in CopyFiles */,
+				E21AAC4310C0E13A00471B14 /* SampleSource in CopyFiles */,
+				E21AAB9410C0D46C00471B14 /* SourceParser in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -103,7 +109,9 @@
 		E213417E10BCF9B800023F41 /* SourceLanguage_ObjCPP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SourceLanguage_ObjCPP.m; sourceTree = "<group>"; };
 		E213425310BD052800023F41 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E213426D10BD054800023F41 /* UnitTests */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = UnitTests; sourceTree = BUILT_PRODUCTS_DIR; };
-		E213427A10BD061F00023F41 /* Tests */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Tests; sourceTree = "<group>"; };
+		E21AAB7810C0D45000471B14 /* JavaScriptBindings */ = {isa = PBXFileReference; lastKnownFileType = folder; path = JavaScriptBindings; sourceTree = "<group>"; };
+		E21AAB7B10C0D45000471B14 /* SourceParser */ = {isa = PBXFileReference; lastKnownFileType = folder; path = SourceParser; sourceTree = "<group>"; };
+		E21AABFF10C0DC5000471B14 /* SampleSource */ = {isa = PBXFileReference; lastKnownFileType = folder; path = SampleSource; sourceTree = "<group>"; };
 		E2B6368210BA46C800BF43E7 /* SourceLanguage_C.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SourceLanguage_C.h; sourceTree = "<group>"; };
 		E2B6368310BA46C800BF43E7 /* SourceLanguage_C.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SourceLanguage_C.m; sourceTree = "<group>"; };
 		E2B6368410BA46C800BF43E7 /* SourceLanguage_CPP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SourceLanguage_CPP.h; sourceTree = "<group>"; };
@@ -146,6 +154,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E213426910BD054800023F41 /* Foundation.framework in Frameworks */,
+				E21AAB6F10C0D43F00471B14 /* JavaScriptCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -198,7 +207,9 @@
 			isa = PBXGroup;
 			children = (
 				E213425310BD052800023F41 /* main.m */,
-				E213427A10BD061F00023F41 /* Tests */,
+				E21AAB7810C0D45000471B14 /* JavaScriptBindings */,
+				E21AABFF10C0DC5000471B14 /* SampleSource */,
+				E21AAB7B10C0D45000471B14 /* SourceParser */,
 			);
 			path = UnitTests;
 			sourceTree = "<group>";
@@ -364,6 +375,7 @@
 				E213426610BD054800023F41 /* SourceLanguage_Base.m in Sources */,
 				E213426710BD054800023F41 /* SourceLanguage_ObjCPP.m in Sources */,
 				E213427110BD056000023F41 /* main.m in Sources */,
+				E21AAB6E10C0D43B00471B14 /* JavaScriptBridge.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

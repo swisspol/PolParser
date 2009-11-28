@@ -12,7 +12,7 @@ int* Bar() {
 	return 0;
 }
 
------
+<----->
 
 <Root>
 ·  <CFunctionPrototype>

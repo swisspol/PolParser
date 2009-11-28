@@ -14,7 +14,7 @@ do {
     --foo;
 } while (*foo) ;
 
------
+<----->
 
 <Root>
 ·  <CFlowFor>

@@ -20,7 +20,7 @@
 static void LocalFunction(int arg);
 @end
 
------
+<----->
 
 <Root>
 ·  <ObjCPreprocessorImport>

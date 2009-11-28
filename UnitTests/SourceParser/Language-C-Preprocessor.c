@@ -24,7 +24,7 @@ int main() { return 2; }
 #define TEST_FUNCTION(arg) \
 	CHECK((arg) == true)
 
------
+<----->
 
 <Root>
 ·  <CPreprocessorInclude>

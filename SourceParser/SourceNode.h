@@ -23,7 +23,7 @@
 typedef SourceNode* (*SourceNodeApplierFunction)(SourceNode* node, void* context); //Return a node whose children to process for recursive operations
 
 /* Abstract class: do not instantiate */
-@interface SourceNode : NSObject {
+@interface SourceNode : NSObject <NSCopying> {
 @private
     NSString* _source;
     NSRange _range;

@@ -18,15 +18,18 @@
 
 #import "SourceParser.h"
 
-static BOOL _ValidateResult(NSString* path, NSString* actualResult, NSString* expectedResult) {
-	NSMutableString* expected = [NSMutableString stringWithString:expectedResult];
-    [expected replaceOccurrencesOfString:@"\n" withString:@"" options:NSAnchoredSearch range:NSMakeRange(0, expected.length)];
-    [expected replaceOccurrencesOfString:@"\n" withString:@"" options:(NSBackwardsSearch | NSAnchoredSearch) range:NSMakeRange(0, expected.length)];
-    if(![actualResult isEqualToString:expected]) {
-        NSString* expectedPath = [NSTemporaryDirectory() stringByAppendingPathComponent:[NSString stringWithFormat:@"%@ [Expected].out", path]];
-        [expected writeToFile:expectedPath atomically:YES encoding:NSUTF8StringEncoding error:NULL];
+extern BOOL RunJavaScriptOnRootNode(NSString* script, SourceNode* root);
+
+static BOOL _ValidateResult(NSString* name, NSString* actualResult, NSString* expectedResult) {
+	if(!actualResult)
+    	actualResult = @"";
+    if(!expectedResult)
+    	expectedResult = @"";
+    if(![actualResult isEqualToString:expectedResult]) {
+        NSString* expectedPath = [NSTemporaryDirectory() stringByAppendingPathComponent:[NSString stringWithFormat:@"%@ [Expected].txt", name]];
+        [expectedResult writeToFile:expectedPath atomically:YES encoding:NSUTF8StringEncoding error:NULL];
         
-        NSString* resultPath = [NSTemporaryDirectory() stringByAppendingPathComponent:[NSString stringWithFormat:@"%@ [Result].out", path]];
+        NSString* resultPath = [NSTemporaryDirectory() stringByAppendingPathComponent:[NSString stringWithFormat:@"%@ [Actual].txt", name]];
         [actualResult writeToFile:resultPath atomically:YES encoding:NSUTF8StringEncoding error:NULL];
         
         NSTask* task = [[NSTask alloc] init];
@@ -47,34 +50,32 @@ static BOOL _ValidateResult(NSString* path, NSString* actualResult, NSString* ex
 
 int main(int argc, const char* argv[]) {
     NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
-    BOOL optionPrintRoot = NO;
+    NSString* basePath;
     
-    NSString* basePath = @"Tests";
-    NSArray* testFiles;
-    if(argc > 1) {
-    	testFiles = [NSMutableArray array];
-        for(int i = 1; i < argc; ++i) {
-        	if(argv[i][0] == '-') {
-            	if(strcmp(argv[i], "-print") == 0)
-                	optionPrintRoot = YES;
-            } else {
-                [(NSMutableArray*)testFiles addObject:[NSString stringWithUTF8String:argv[i]]];
-            }
+    NSMutableSet* filteredFiles = [NSMutableSet set];
+    for(int i = 1; i < argc; ++i) {
+        if(argv[i][0] == '-') {
+            ;
+        } else {
+            [filteredFiles addObject:[NSString stringWithUTF8String:argv[i]]];
         }
-    } else {
-    	testFiles = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:basePath error:NULL];
     }
-    for(NSString* path in testFiles) {
+    
+    basePath = @"SourceParser";
+    for(NSString* path in [[NSFileManager defaultManager] contentsOfDirectoryAtPath:basePath error:NULL]) {
     	if([path hasPrefix:@"."])
         	continue;
+        if(filteredFiles.count && ![filteredFiles containsObject:path])
+        	continue;
+        path = [basePath stringByAppendingPathComponent:path];
         
         NSAutoreleasePool* localPool = [[NSAutoreleasePool alloc] init];
-        NSString* content = [NSString stringWithContentsOfFile:[basePath stringByAppendingPathComponent:path] encoding:NSUTF8StringEncoding error:NULL];
+        NSString* content = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:NULL];
         if(content == nil) {
-        	NSLog(@"<FAILED LOADING TEST CONTENT FROM \"%@\">", path);
+        	NSLog(@"<FAILED LOADING TEST CONTENT \"%@\">", path);
         } else {
-            NSArray* parts = [content componentsSeparatedByString:@"-----"];
-            if(parts.count < 2) {
+            NSArray* parts = [content componentsSeparatedByString:@"<----->"];
+            if(parts.count < 1) {
             	NSLog(@"<INVALID TEST CONTENT IN \"%@\">", path);
             } else {
                 @try {
@@ -84,16 +85,19 @@ int main(int argc, const char* argv[]) {
                     if(root == nil) {
                         NSLog(@"<FAILED PARSING SOURCE FROM \"%@\">", path);
                     } else {
-                        if(optionPrintRoot)
-                        	printf("<%s>\n%s\n", [path UTF8String], [root.fullDescription UTF8String]);
-                        
                         BOOL success = YES;
                         if((parts.count > 1) && [[parts objectAtIndex:1] length]) {
-                        	if(!_ValidateResult(path, root.compactDescription, [parts objectAtIndex:1]))
+                        	NSMutableString* expected = [NSMutableString stringWithString:[parts objectAtIndex:1]];
+                            [expected replaceOccurrencesOfString:@"\n" withString:@"" options:NSAnchoredSearch range:NSMakeRange(0, expected.length)];
+                            [expected replaceOccurrencesOfString:@"\n" withString:@"" options:(NSBackwardsSearch | NSAnchoredSearch) range:NSMakeRange(0, expected.length)];
+                            if(!_ValidateResult([path lastPathComponent], root.compactDescription, expected))
                             	success = NO;
                         }
                         if((parts.count > 2) && [[parts objectAtIndex:2] length]) {
-                        	if(!_ValidateResult(path, root.fullDescription, [parts objectAtIndex:2]))
+                        	NSMutableString* expected = [NSMutableString stringWithString:[parts objectAtIndex:2]];
+                            [expected replaceOccurrencesOfString:@"\n" withString:@"" options:NSAnchoredSearch range:NSMakeRange(0, expected.length)];
+                            [expected replaceOccurrencesOfString:@"\n" withString:@"" options:(NSBackwardsSearch | NSAnchoredSearch) range:NSMakeRange(0, expected.length)];
+                            if(!_ValidateResult([path lastPathComponent], root.fullDescription, expected))
                             	success = NO;
                         }
                         if(success)
@@ -104,6 +108,75 @@ int main(int argc, const char* argv[]) {
                 }
                 @catch(NSException* exception) {
                     NSLog(@"<EXCEPTION \"%@\">", [exception reason]);
+                }
+            }
+        }
+        [localPool drain];
+    }
+    
+    NSMutableDictionary* roots = [NSMutableDictionary dictionary];
+    basePath = @"SampleSource";
+    for(NSString* path in [[NSFileManager defaultManager] contentsOfDirectoryAtPath:basePath error:NULL]) {
+    	if([path hasPrefix:@"."])
+        	continue;
+        path = [basePath stringByAppendingPathComponent:path];
+        
+        NSAutoreleasePool* localPool = [[NSAutoreleasePool alloc] init];
+        SourceNodeRoot* root = [SourceLanguage parseSourceFile:path encoding:NSUTF8StringEncoding syntaxAnalysis:YES];
+        if(root == nil)
+        	NSLog(@"<FAILED PARSING SOURCE \"%@\">", path);
+        else
+            [roots setObject:root forKey:[path lastPathComponent]];
+        [localPool release];
+    }
+    basePath = @"JavaScriptBindings";
+    for(NSString* path in [[NSFileManager defaultManager] contentsOfDirectoryAtPath:basePath error:NULL]) {
+    	if([path hasPrefix:@"."])
+        	continue;
+        if([[path pathExtension] caseInsensitiveCompare:@"js"] != NSOrderedSame) //FIXME: This can't work if we ever support JavaScript parsing
+        	continue;
+        if(filteredFiles.count && ![filteredFiles containsObject:path])
+        	continue;
+        path = [basePath stringByAppendingPathComponent:path];
+        
+        NSAutoreleasePool* localPool = [[NSAutoreleasePool alloc] init];
+        NSString* content = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:NULL];
+        if(content == nil) {
+        	NSLog(@"<FAILED LOADING TEST CONTENT \"%@\">", path);
+        } else {
+            NSArray* parts = [content componentsSeparatedByString:@"<----->"];
+            if(parts.count == 0) {
+            	NSLog(@"<INVALID TEST CONTENT IN \"%@\">", path);
+            } else {
+                for(NSString* name in roots) {
+                    BOOL success = NO;
+                    SourceNodeRoot* root = [[roots objectForKey:name] copy];
+                    if(root) {
+                        @try {
+                            success = YES;
+                            for(NSUInteger i = 0; i < parts.count; ++i) {
+                            	if(!RunJavaScriptOnRootNode([parts objectAtIndex:i], root)) {
+                                	NSLog(@"<FAILED EXECUTING JAVASCRIPT \"%@\" on \"%@\">", path, name);
+                                    success = NO;
+                                    break;
+                                }
+                            }
+                           	if(success) {
+                                NSString* newName = [NSString stringWithFormat:@"%@-%@", [[path lastPathComponent] stringByDeletingPathExtension], name];
+                                NSString* expected = [NSString stringWithContentsOfFile:[basePath stringByAppendingPathComponent:newName] encoding:NSUTF8StringEncoding error:NULL];
+                                if(!_ValidateResult(newName, root.content, expected))
+                                    success = NO;
+                            }
+                        }
+                        @catch(NSException* exception) {
+                            NSLog(@"<EXCEPTION \"%@\">", [exception reason]);
+                        }
+                        [root release];
+                    }
+                    if(success)
+                        printf("%s [%s]: ok\n", [path UTF8String], [name UTF8String]);
+                    else
+                        printf("%s [%s]: FAILED\n", [path UTF8String], [name UTF8String]);
                 }
             }
         }

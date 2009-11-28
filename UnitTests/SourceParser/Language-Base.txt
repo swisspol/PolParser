@@ -4,7 +4,7 @@ Copyright (C) 2009 Pierre-Olivier Latour <info@pol-online.net>
 		You should have received a copy of the GNU General Public License
 		along with this program.  If not, see [http://www.gnu.org/licenses/].
 
------
+<----->
 
 <Root>
 ·  ♢|••••••••|♢This♢•♢file♢•♢is♢•♢part♢•♢of♢•♢the♢•♢PolParser♢•♢library.♢¶♢Copyright♢•♢

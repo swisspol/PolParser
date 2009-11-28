@@ -54,6 +54,7 @@
 - (BOOL) writeContentToFile:(NSString*)path encoding:(NSStringEncoding)encoding;
 @end
 
+/* This class cannot have children */
 @interface SourceNodeText : SourceNode //Leaf
 + (SourceNodeText*) sourceNodeWithText:(NSString*)text;
 - (id) initWithText:(NSString*)text;

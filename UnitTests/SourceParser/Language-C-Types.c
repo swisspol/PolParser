@@ -23,7 +23,7 @@ typedef union {
 
 static int foo = sizeof(long);
 
------
+<----->
 
 <Root>
 ·  <CTypedef>

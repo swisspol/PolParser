@@ -15,7 +15,7 @@ else {
     printf("6");
 }
 
------
+<----->
 
 <Root>
 ·  <CConditionIf>

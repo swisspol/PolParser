@@ -33,9 +33,8 @@ function __wrapper() {\
         \
         __success = true;\
     }\
-    catch(e) {\
-    	Log(\"[===== WARNING: JavaScript Exception while processing node =====]\");\
-        Log(this.description);\
+    catch(__exception) {\
+    	Log(__exception);\
     }\
     return __success;\
 }";
@@ -148,14 +147,15 @@ static JSValueRef _GetPropertyLastChild(JSContextRef ctx, JSObjectRef object, JS
 
 static JSValueRef _GetPropertyPreviousSibling(JSContextRef ctx, JSObjectRef object, JSStringRef propertyName, JSValueRef* exception) {
 	SourceNode* node = JSObjectGetPrivate(object);
-    return _JSObjectFromNode(node.firstChild, ctx);
+    return _JSObjectFromNode(node.previousSibling, ctx);
 }
 
 static JSValueRef _GetPropertyNextSibling(JSContextRef ctx, JSObjectRef object, JSStringRef propertyName, JSValueRef* exception) {
 	SourceNode* node = JSObjectGetPrivate(object);
-    return _JSObjectFromNode(node.lastChild, ctx);
+    return _JSObjectFromNode(node.nextSibling, ctx);
 }
 
+/*
 static JSValueRef _GetPropertyDescription(JSContextRef ctx, JSObjectRef object, JSStringRef propertyName, JSValueRef* exception) {
 	SourceNode* node = JSObjectGetPrivate(object);
     JSStringRef string = JSStringCreateWithCFString((CFStringRef)node.description);
@@ -163,6 +163,7 @@ static JSValueRef _GetPropertyDescription(JSContextRef ctx, JSObjectRef object, 
     JSStringRelease(string);
     return value;
 }
+*/
 
 static JSStaticValue _staticValues[] = {
 	{"name", _GetPropertyName, NULL, kJSPropertyAttributeReadOnly | kJSPropertyAttributeDontDelete | kJSPropertyAttributeDontEnum},
@@ -174,7 +175,7 @@ static JSStaticValue _staticValues[] = {
     {"lastChild", _GetPropertyLastChild, NULL, kJSPropertyAttributeReadOnly | kJSPropertyAttributeDontDelete | kJSPropertyAttributeDontEnum},
     {"previousSibling", _GetPropertyPreviousSibling, NULL, kJSPropertyAttributeReadOnly | kJSPropertyAttributeDontDelete | kJSPropertyAttributeDontEnum},
     {"nextSibling", _GetPropertyNextSibling, NULL, kJSPropertyAttributeReadOnly | kJSPropertyAttributeDontDelete | kJSPropertyAttributeDontEnum},
-    {"description", _GetPropertyDescription, NULL, kJSPropertyAttributeReadOnly | kJSPropertyAttributeDontDelete | kJSPropertyAttributeDontEnum},
+    //{"description", _GetPropertyDescription, NULL, kJSPropertyAttributeReadOnly | kJSPropertyAttributeDontDelete | kJSPropertyAttributeDontEnum},
     {NULL, NULL, NULL, 0}
 };
 
@@ -292,6 +293,26 @@ static JSValueRef _CallFunctionReplaceWithNode(JSContextRef ctx, JSObjectRef fun
     return NULL;
 }
 
+static JSValueRef _CallFunctionReplaceWithText(JSContextRef ctx, JSObjectRef function, JSObjectRef thisObject, size_t argumentCount, const JSValueRef arguments[], JSValueRef* exception) {
+	if((argumentCount == 1) && JSValueIsString(ctx, arguments[0])) {
+    	SourceNode* node = JSObjectGetPrivate(thisObject);
+        if(node.parent) {
+#if __UNPROTECT_VALUES__
+        	_NodeApplierFunction(node, (void*)ctx);
+        	[node applyFunctionOnChildren:_NodeApplierFunction context:(void*)ctx];
+#endif
+        	JSStringRef jsString = JSValueToStringCopy(ctx, arguments[0], NULL);
+            CFStringRef cfString = JSStringCopyCFString(kCFAllocatorDefault, jsString);
+            [node replaceWithText:(NSString*)cfString];
+            JSStringRelease(jsString);
+            CFRelease(cfString);
+            return JSValueMakeUndefined(ctx);
+        }
+    }
+    *exception = _MakeException(ctx, @"Invalid argument(s)");
+    return NULL;
+}
+
 static JSValueRef _CallFunctionFindPreviousSiblingIgnoringWhitespaceAndNewline(JSContextRef ctx, JSObjectRef function, JSObjectRef thisObject, size_t argumentCount, const JSValueRef arguments[], JSValueRef* exception) {
 	if(argumentCount == 0) {
     	SourceNode* node = JSObjectGetPrivate(thisObject);
@@ -355,6 +376,15 @@ static JSValueRef _CallFunctionFindLastChildOfType(JSContextRef ctx, JSObjectRef
         	Class class = (Class)(long)JSValueToNumber(ctx, arguments[0], NULL);
         	return _JSObjectFromNode([node findLastChildOfClass:class], ctx);
         }
+    }
+    *exception = _MakeException(ctx, @"Invalid argument(s)");
+    return NULL;
+}
+
+static JSValueRef _CallFunctionIsWhitespace(JSContextRef ctx, JSObjectRef function, JSObjectRef thisObject, size_t argumentCount, const JSValueRef arguments[], JSValueRef* exception) {
+	if(argumentCount == 0) {
+    	SourceNode* node = JSObjectGetPrivate(thisObject);
+        return JSValueMakeBoolean(ctx, [node isKindOfClass:[SourceNodeWhitespace class]]);
     }
     *exception = _MakeException(ctx, @"Invalid argument(s)");
     return NULL;
@@ -443,13 +473,15 @@ static JSStaticFunction _staticFunctions[] = {
     {"insertPreviousSibling", _CallFunctionInsertPreviousSibling, kJSPropertyAttributeReadOnly | kJSPropertyAttributeDontDelete | kJSPropertyAttributeDontEnum},
     {"insertNextSibling", _CallFunctionInsertNextSibling, kJSPropertyAttributeReadOnly | kJSPropertyAttributeDontDelete | kJSPropertyAttributeDontEnum},
     {"replaceWithNode", _CallFunctionReplaceWithNode, kJSPropertyAttributeReadOnly | kJSPropertyAttributeDontDelete | kJSPropertyAttributeDontEnum},
+    {"replaceWithText", _CallFunctionReplaceWithText, kJSPropertyAttributeReadOnly | kJSPropertyAttributeDontDelete | kJSPropertyAttributeDontEnum},
     {"findPreviousSiblingIgnoringWhitespaceAndNewline", _CallFunctionFindPreviousSiblingIgnoringWhitespaceAndNewline, kJSPropertyAttributeReadOnly | kJSPropertyAttributeDontDelete | kJSPropertyAttributeDontEnum},
     {"findNextSiblingIgnoringWhitespaceAndNewline", _CallFunctionFindNextSiblingIgnoringWhitespaceAndNewline, kJSPropertyAttributeReadOnly | kJSPropertyAttributeDontDelete | kJSPropertyAttributeDontEnum},
     {"findPreviousSiblingOfType", _CallFunctionFindPreviousSiblingOfType, kJSPropertyAttributeReadOnly | kJSPropertyAttributeDontDelete | kJSPropertyAttributeDontEnum},
     {"findNextSiblingOfType", _CallFunctionFindNextSiblingOfType, kJSPropertyAttributeReadOnly | kJSPropertyAttributeDontDelete | kJSPropertyAttributeDontEnum},
     {"findFirstChildOfType", _CallFunctionFindFirstChildOfType, kJSPropertyAttributeReadOnly | kJSPropertyAttributeDontDelete | kJSPropertyAttributeDontEnum},
     {"findLastChildOfType", _CallFunctionFindLastChildOfType, kJSPropertyAttributeReadOnly | kJSPropertyAttributeDontDelete | kJSPropertyAttributeDontEnum},
-	{"isWhitespaceOrNewline", _CallFunctionIsWhitespaceOrNewline, kJSPropertyAttributeReadOnly | kJSPropertyAttributeDontDelete | kJSPropertyAttributeDontEnum},
+	{"isWhitespace", _CallFunctionIsWhitespace, kJSPropertyAttributeReadOnly | kJSPropertyAttributeDontDelete | kJSPropertyAttributeDontEnum},
+    {"isWhitespaceOrNewline", _CallFunctionIsWhitespaceOrNewline, kJSPropertyAttributeReadOnly | kJSPropertyAttributeDontDelete | kJSPropertyAttributeDontEnum},
     {"isAnyText", _CallFunctionIsAnyText, kJSPropertyAttributeReadOnly | kJSPropertyAttributeDontDelete | kJSPropertyAttributeDontEnum},
     {"isKeyword", _CallFunctionIsKeyword, kJSPropertyAttributeReadOnly | kJSPropertyAttributeDontDelete | kJSPropertyAttributeDontEnum},
     {"isToken", _CallFunctionIsToken, kJSPropertyAttributeReadOnly | kJSPropertyAttributeDontDelete | kJSPropertyAttributeDontEnum},

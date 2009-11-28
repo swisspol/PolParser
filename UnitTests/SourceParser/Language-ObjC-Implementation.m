@@ -45,7 +45,7 @@ static void LocalFunction(int arg) {
 ·  ·  ·  ♢|@synthesize|♢•♢foo,♢•♢bar=_bar♢|;|♢
 ·  ·  ♢¶♢¶♢
 ·  ·  <ObjCMethodImplementation>
-·  ·  ·  ♢+♢•♢
+·  ·  ·  ♢|+|♢•♢
 ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ♢|(|♢id♢|)|♢
 ·  ·  ·  ♢•♢uniqueID♢•♢
@@ -64,7 +64,7 @@ static void LocalFunction(int arg) {
 ·  ·  ·  ·  ♢¶♢|}|♢
 ·  ·  ♢¶♢¶♢
 ·  ·  <ObjCMethodImplementation>
-·  ·  ·  ♢-♢•♢bar♢•♢
+·  ·  ·  ♢|-|♢•♢bar♢•♢
 ·  ·  ·  <Braces>
 ·  ·  ·  ·  ♢|{|♢¶♢|→|♢
 ·  ·  ·  ·  <CFlowReturn>
@@ -72,7 +72,7 @@ static void LocalFunction(int arg) {
 ·  ·  ·  ·  ♢¶♢|}|♢
 ·  ·  ♢¶♢¶♢
 ·  ·  <ObjCMethodImplementation>
-·  ·  ·  ♢-♢•♢
+·  ·  ·  ♢|-|♢•♢
 ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ♢|(|♢BOOL♢|)|♢
 ·  ·  ·  ♢•♢test♢|:|♢

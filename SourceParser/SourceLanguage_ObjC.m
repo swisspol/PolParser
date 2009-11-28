@@ -186,7 +186,12 @@ static SourceNode* _ApplierFunction(SourceNode* node, void* context) {
         if([content isEqualToString:@"-"] || [content isEqualToString:@"+"]) {
             SourceNode* semicolonNode = [node findNextSiblingOfClass:[SourceNodeSemicolon class]];
             if(semicolonNode) {
-                SourceNode* newNode = [[SourceNodeObjCMethodDeclaration alloc] initWithSource:node.source range:NSMakeRange(node.range.location, 0)];
+                SourceNode* newNode = [[SourceNodeMatch alloc] initWithSource:node.source range:node.range];
+                [node replaceWithNode:newNode];
+                [newNode release];
+                node = newNode;
+                
+                newNode = [[SourceNodeObjCMethodDeclaration alloc] initWithSource:node.source range:NSMakeRange(node.range.location, 0)];
                 [node insertPreviousSibling:newNode];
                 [newNode release];
                 _RearrangeNodesAsChildren(newNode, semicolonNode);
@@ -200,7 +205,12 @@ static SourceNode* _ApplierFunction(SourceNode* node, void* context) {
         if([content isEqualToString:@"-"] || [content isEqualToString:@"+"]) {
             SourceNode* nextNode = [node findNextSiblingOfClass:[SourceNodeBraces class]];
             if(nextNode) {
-                SourceNode* newNode = [[SourceNodeObjCMethodImplementation alloc] initWithSource:node.source range:NSMakeRange(node.range.location, 0)];
+                SourceNode* newNode = [[SourceNodeMatch alloc] initWithSource:node.source range:node.range];
+                [node replaceWithNode:newNode];
+                [newNode release];
+                node = newNode;
+                
+                newNode = [[SourceNodeObjCMethodImplementation alloc] initWithSource:node.source range:NSMakeRange(node.range.location, 0)];
                 [node insertPreviousSibling:newNode];
                 [newNode release];
                 _RearrangeNodesAsChildren(newNode, nextNode);

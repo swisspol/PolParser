@@ -31,7 +31,7 @@ static void LocalFunction(int arg);
 ·  ·  <ObjCOptional>
 ·  ·  ·  ♢|@optional|♢¶♢
 ·  ·  ·  <ObjCMethodDeclaration>
-·  ·  ·  ·  ♢-♢•♢
+·  ·  ·  ·  ♢|-|♢•♢
 ·  ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ·  ♢|(|♢BOOL♢|)|♢
 ·  ·  ·  ·  ♢•♢test♢|:|♢
@@ -61,25 +61,25 @@ static void LocalFunction(int arg);
 ·  ·  ·  ♢••♢BOOL♢•♢valid♢|;|♢
 ·  ·  ♢¶♢
 ·  ·  <ObjCMethodDeclaration>
-·  ·  ·  ♢+♢•♢
+·  ·  ·  ♢|+|♢•♢
 ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ♢|(|♢id♢|)|♢
 ·  ·  ·  ♢•♢sharedInstance♢|;|♢
 ·  ·  ♢¶♢
 ·  ·  <ObjCMethodDeclaration>
-·  ·  ·  ♢-♢•♢
+·  ·  ·  ♢|-|♢•♢
 ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ♢|(|♢|void|♢|)|♢
 ·  ·  ·  ♢•♢run♢|;|♢
 ·  ·  ♢¶♢
 ·  ·  <ObjCMethodDeclaration>
-·  ·  ·  ♢-♢•♢foo♢|:|♢
+·  ·  ·  ♢|-|♢•♢foo♢|:|♢
 ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ♢|(|♢id♢|)|♢
 ·  ·  ·  ♢arg♢|;|♢
 ·  ·  ♢¶♢
 ·  ·  <ObjCMethodDeclaration>
-·  ·  ·  ♢-♢•♢bar♢|;|♢
+·  ·  ·  ♢|-|♢•♢bar♢|;|♢
 ·  ·  ♢¶♢
 ·  ·  <CFunctionPrototype>
 ·  ·  ·  ♢|static|♢•♢|void|♢•♢|LocalFunction|♢

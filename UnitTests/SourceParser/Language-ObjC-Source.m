@@ -1176,7 +1176,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 ·  <ObjCImplementation>
 ·  ·  ♢|@implementation•Document|♢¶♢¶♢
 ·  ·  <ObjCMethodImplementation>
-·  ·  ·  ♢-♢•♢
+·  ·  ·  ♢|-|♢•♢
 ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ♢|(|♢id♢|)|♢
 ·  ·  ·  ♢init♢•♢
@@ -1258,7 +1258,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 ·  ·  ·  ·  ♢¶♢|}|♢
 ·  ·  ♢¶♢¶♢|/*•Return•an•NSDictionary•which•maps•Cocoa•text•system•document•identifiers•(as•declared•in•AppKit/NSAttributedString.h)•to•document•types•declared•in•TextEdit's•Info.plist.¶*/|♢¶♢
 ·  ·  <ObjCMethodImplementation>
-·  ·  ·  ♢-♢•♢
+·  ·  ·  ♢|-|♢•♢
 ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ♢|(|♢NSDictionary♢•♢|*|♢|)|♢
 ·  ·  ·  ♢textDocumentTypeToTextEditDocumentTypeMappingTable♢•♢
@@ -1298,7 +1298,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 ·  ·  ·  ·  ♢¶♢|}|♢
 ·  ·  ♢¶♢¶♢|/*•This•method•is•called•by•the•document•controller.•The•message•is•passed•on•after•information•about•the•selected•encoding•(from•our•controller•subclass)•and•preference•regarding•HTML•and•RTF•formatting•has•been•added.•-lastSelectedEncodingForURL:•returns•the•encoding•specified•in•the•Open•panel,•or•the•default•encoding•if•the•document•was•opened•without•an•open•panel.¶*/|♢¶♢
 ·  ·  <ObjCMethodImplementation>
-·  ·  ·  ♢-♢•♢
+·  ·  ·  ♢|-|♢•♢
 ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ♢|(|♢BOOL♢|)|♢
 ·  ·  ·  ♢readFromURL♢|:|♢
@@ -1333,7 +1333,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 ·  ·  ·  ·  ♢¶♢|}|♢
 ·  ·  ♢¶♢¶♢
 ·  ·  <ObjCMethodImplementation>
-·  ·  ·  ♢-♢•♢
+·  ·  ·  ♢|-|♢•♢
 ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ♢|(|♢BOOL♢|)|♢
 ·  ·  ·  ♢readFromURL♢|:|♢
@@ -1995,7 +1995,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 ·  ·  ·  ·  ♢¶♢|}|♢
 ·  ·  ♢¶♢¶♢
 ·  ·  <ObjCMethodImplementation>
-·  ·  ·  ♢-♢•♢
+·  ·  ·  ♢|-|♢•♢
 ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ♢|(|♢NSDictionary♢•♢|*|♢|)|♢
 ·  ·  ·  ♢defaultTextAttributes♢|:|♢
@@ -2168,7 +2168,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 ·  ·  ·  ·  ♢¶♢|}|♢
 ·  ·  ♢¶♢¶♢
 ·  ·  <ObjCMethodImplementation>
-·  ·  ·  ♢-♢•♢
+·  ·  ·  ♢|-|♢•♢
 ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ♢|(|♢|void|♢|)|♢
 ·  ·  ·  ♢applyDefaultTextAttributes♢|:|♢
@@ -2244,7 +2244,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 ·  ·  ·  ·  ♢|;|♢¶♢|}|♢
 ·  ·  ♢¶♢¶♢¶♢|/*•This•method•will•return•a•suggested•encoding•for•the•document.•In•Leopard,•unless•the•user•has•specified•a•favorite•encoding•for•saving•that•applies•to•the•document,•we•use•UTF-8.¶*/|♢¶♢
 ·  ·  <ObjCMethodImplementation>
-·  ·  ·  ♢-♢•♢
+·  ·  ·  ♢|-|♢•♢
 ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ♢|(|♢NSStringEncoding♢|)|♢
 ·  ·  ·  ♢suggestedDocumentEncoding♢•♢
@@ -2310,7 +2310,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 ·  ·  ·  ·  ♢¶♢|}|♢
 ·  ·  ♢¶♢¶♢|/*•Returns•an•object•that•represents•the•document•to•be•written•to•file.•¶*/|♢¶♢
 ·  ·  <ObjCMethodImplementation>
-·  ·  ·  ♢-♢•♢
+·  ·  ·  ♢|-|♢•♢
 ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ♢|(|♢id♢|)|♢
 ·  ·  ·  ♢fileWrapperOfType♢|:|♢
@@ -2810,7 +2810,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 ·  ·  ·  ·  ♢¶♢|}|♢
 ·  ·  ♢¶♢¶♢|/*•Clear•the•delegates•of•the•text•views•and•window,•then•release•all•resources•and•go•away...¶*/|♢¶♢
 ·  ·  <ObjCMethodImplementation>
-·  ·  ·  ♢-♢•♢
+·  ·  ·  ♢|-|♢•♢
 ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ♢|(|♢|void|♢|)|♢
 ·  ·  ·  ♢dealloc♢•♢
@@ -2862,7 +2862,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 ·  ·  ·  ·  ♢|;|♢¶♢|}|♢
 ·  ·  ♢¶♢¶♢
 ·  ·  <ObjCMethodImplementation>
-·  ·  ·  ♢-♢•♢
+·  ·  ·  ♢|-|♢•♢
 ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ♢|(|♢CGFloat♢|)|♢
 ·  ·  ·  ♢scaleFactor♢•♢
@@ -2873,7 +2873,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 ·  ·  ·  ·  ♢¶♢|}|♢
 ·  ·  ♢¶♢¶♢
 ·  ·  <ObjCMethodImplementation>
-·  ·  ·  ♢-♢•♢
+·  ·  ·  ♢|-|♢•♢
 ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ♢|(|♢|void|♢|)|♢
 ·  ·  ·  ♢setScaleFactor♢|:|♢
@@ -2884,7 +2884,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 ·  ·  ·  ·  ♢|{|♢¶♢|••••|♢scaleFactor♢•♢=♢•♢newScaleFactor♢|;|♢¶♢|}|♢
 ·  ·  ♢¶♢¶♢
 ·  ·  <ObjCMethodImplementation>
-·  ·  ·  ♢-♢•♢
+·  ·  ·  ♢|-|♢•♢
 ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ♢|(|♢NSSize♢|)|♢
 ·  ·  ·  ♢viewSize♢•♢
@@ -2895,7 +2895,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 ·  ·  ·  ·  ♢¶♢|}|♢
 ·  ·  ♢¶♢¶♢
 ·  ·  <ObjCMethodImplementation>
-·  ·  ·  ♢-♢•♢
+·  ·  ·  ♢|-|♢•♢
 ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ♢|(|♢|void|♢|)|♢
 ·  ·  ·  ♢setViewSize♢|:|♢
@@ -2906,7 +2906,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 ·  ·  ·  ·  ♢|{|♢¶♢|••••|♢viewSize♢•♢=♢•♢size♢|;|♢¶♢|}|♢
 ·  ·  ♢¶♢¶♢
 ·  ·  <ObjCMethodImplementation>
-·  ·  ·  ♢-♢•♢
+·  ·  ·  ♢|-|♢•♢
 ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ♢|(|♢|void|♢|)|♢
 ·  ·  ·  ♢setReadOnly♢|:|♢
@@ -2917,7 +2917,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 ·  ·  ·  ·  ♢|{|♢¶♢|••••|♢isReadOnly♢•♢=♢•♢flag♢|;|♢¶♢|}|♢
 ·  ·  ♢¶♢¶♢
 ·  ·  <ObjCMethodImplementation>
-·  ·  ·  ♢-♢•♢
+·  ·  ·  ♢|-|♢•♢
 ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ♢|(|♢BOOL♢|)|♢
 ·  ·  ·  ♢isReadOnly♢•♢
@@ -2928,7 +2928,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 ·  ·  ·  ·  ♢¶♢|}|♢
 ·  ·  ♢¶♢¶♢
 ·  ·  <ObjCMethodImplementation>
-·  ·  ·  ♢-♢•♢
+·  ·  ·  ♢|-|♢•♢
 ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ♢|(|♢|void|♢|)|♢
 ·  ·  ·  ♢setBackgroundColor♢|:|♢
@@ -2945,7 +2945,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 ·  ·  ·  ·  ♢|;|♢¶♢|}|♢
 ·  ·  ♢¶♢¶♢
 ·  ·  <ObjCMethodImplementation>
-·  ·  ·  ♢-♢•♢
+·  ·  ·  ♢|-|♢•♢
 ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ♢|(|♢NSColor♢•♢|*|♢|)|♢
 ·  ·  ·  ♢backgroundColor♢•♢
@@ -2956,7 +2956,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 ·  ·  ·  ·  ♢¶♢|}|♢
 ·  ·  ♢¶♢¶♢
 ·  ·  <ObjCMethodImplementation>
-·  ·  ·  ♢-♢•♢
+·  ·  ·  ♢|-|♢•♢
 ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ♢|(|♢NSTextStorage♢•♢|*|♢|)|♢
 ·  ·  ·  ♢textStorage♢•♢
@@ -2967,7 +2967,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 ·  ·  ·  ·  ♢¶♢|}|♢
 ·  ·  ♢¶♢¶♢
 ·  ·  <ObjCMethodImplementation>
-·  ·  ·  ♢-♢•♢
+·  ·  ·  ♢|-|♢•♢
 ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ♢|(|♢NSSize♢|)|♢
 ·  ·  ·  ♢paperSize♢•♢
@@ -2984,7 +2984,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 ·  ·  ·  ·  ♢¶♢|}|♢
 ·  ·  ♢¶♢¶♢
 ·  ·  <ObjCMethodImplementation>
-·  ·  ·  ♢-♢•♢
+·  ·  ·  ♢|-|♢•♢
 ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ♢|(|♢|void|♢|)|♢
 ·  ·  ·  ♢setPaperSize♢|:|♢
@@ -3026,7 +3026,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 ·  ·  ·  ·  ♢¶♢|}|♢
 ·  ·  ♢¶♢¶♢|/*•Hyphenation•related•methods.¶*/|♢¶♢
 ·  ·  <ObjCMethodImplementation>
-·  ·  ·  ♢-♢•♢
+·  ·  ·  ♢|-|♢•♢
 ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ♢|(|♢|void|♢|)|♢
 ·  ·  ·  ♢setHyphenationFactor♢|:|♢
@@ -3037,7 +3037,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 ·  ·  ·  ·  ♢|{|♢¶♢|••••|♢hyphenationFactor♢•♢=♢•♢factor♢|;|♢¶♢|}|♢
 ·  ·  ♢¶♢¶♢
 ·  ·  <ObjCMethodImplementation>
-·  ·  ·  ♢-♢•♢
+·  ·  ·  ♢|-|♢•♢
 ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ♢|(|♢|float|♢|)|♢
 ·  ·  ·  ♢hyphenationFactor♢•♢
@@ -3048,7 +3048,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 ·  ·  ·  ·  ♢¶♢|}|♢
 ·  ·  ♢¶♢¶♢|/*•Encoding...¶*/|♢¶♢
 ·  ·  <ObjCMethodImplementation>
-·  ·  ·  ♢-♢•♢
+·  ·  ·  ♢|-|♢•♢
 ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ♢|(|♢NSUInteger♢|)|♢
 ·  ·  ·  ♢encoding♢•♢
@@ -3059,7 +3059,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 ·  ·  ·  ·  ♢¶♢|}|♢
 ·  ·  ♢¶♢¶♢
 ·  ·  <ObjCMethodImplementation>
-·  ·  ·  ♢-♢•♢
+·  ·  ·  ♢|-|♢•♢
 ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ♢|(|♢|void|♢|)|♢
 ·  ·  ·  ♢setEncoding♢|:|♢
@@ -3070,7 +3070,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 ·  ·  ·  ·  ♢|{|♢¶♢|••••|♢documentEncoding♢•♢=♢•♢encoding♢|;|♢¶♢|}|♢
 ·  ·  ♢¶♢¶♢|/*•This•is•the•encoding•used•for•saving;•valid•only•during•a•save•operation¶*/|♢¶♢
 ·  ·  <ObjCMethodImplementation>
-·  ·  ·  ♢-♢•♢
+·  ·  ·  ♢|-|♢•♢
 ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ♢|(|♢NSUInteger♢|)|♢
 ·  ·  ·  ♢encodingForSaving♢•♢
@@ -3081,7 +3081,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 ·  ·  ·  ·  ♢¶♢|}|♢
 ·  ·  ♢¶♢¶♢
 ·  ·  <ObjCMethodImplementation>
-·  ·  ·  ♢-♢•♢
+·  ·  ·  ♢|-|♢•♢
 ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ♢|(|♢|void|♢|)|♢
 ·  ·  ·  ♢setEncodingForSaving♢|:|♢
@@ -3092,7 +3092,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 ·  ·  ·  ·  ♢|{|♢¶♢|••••|♢documentEncodingForSaving♢•♢=♢•♢encoding♢|;|♢¶♢|}|♢
 ·  ·  ♢¶♢¶♢¶♢
 ·  ·  <ObjCMethodImplementation>
-·  ·  ·  ♢-♢•♢
+·  ·  ·  ♢|-|♢•♢
 ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ♢|(|♢BOOL♢|)|♢
 ·  ·  ·  ♢isConverted♢•♢
@@ -3103,7 +3103,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 ·  ·  ·  ·  ♢¶♢|}|♢
 ·  ·  ♢¶♢¶♢
 ·  ·  <ObjCMethodImplementation>
-·  ·  ·  ♢-♢•♢
+·  ·  ·  ♢|-|♢•♢
 ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ♢|(|♢|void|♢|)|♢
 ·  ·  ·  ♢setConverted♢|:|♢
@@ -3114,7 +3114,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 ·  ·  ·  ·  ♢|{|♢¶♢|••••|♢convertedDocument♢•♢=♢•♢flag♢|;|♢¶♢|}|♢
 ·  ·  ♢¶♢¶♢
 ·  ·  <ObjCMethodImplementation>
-·  ·  ·  ♢-♢•♢
+·  ·  ·  ♢|-|♢•♢
 ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ♢|(|♢BOOL♢|)|♢
 ·  ·  ·  ♢isLossy♢•♢
@@ -3125,7 +3125,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 ·  ·  ·  ·  ♢¶♢|}|♢
 ·  ·  ♢¶♢¶♢
 ·  ·  <ObjCMethodImplementation>
-·  ·  ·  ♢-♢•♢
+·  ·  ·  ♢|-|♢•♢
 ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ♢|(|♢|void|♢|)|♢
 ·  ·  ·  ♢setLossy♢|:|♢
@@ -3136,7 +3136,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 ·  ·  ·  ·  ♢|{|♢¶♢|••••|♢lossyDocument♢•♢=♢•♢flag♢|;|♢¶♢|}|♢
 ·  ·  ♢¶♢¶♢
 ·  ·  <ObjCMethodImplementation>
-·  ·  ·  ♢-♢•♢
+·  ·  ·  ♢|-|♢•♢
 ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ♢|(|♢BOOL♢|)|♢
 ·  ·  ·  ♢isOpenedIgnoringRichText♢•♢
@@ -3147,7 +3147,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 ·  ·  ·  ·  ♢¶♢|}|♢
 ·  ·  ♢¶♢¶♢
 ·  ·  <ObjCMethodImplementation>
-·  ·  ·  ♢-♢•♢
+·  ·  ·  ♢|-|♢•♢
 ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ♢|(|♢|void|♢|)|♢
 ·  ·  ·  ♢setOpenedIgnoringRichText♢|:|♢
@@ -3158,7 +3158,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 ·  ·  ·  ·  ♢|{|♢¶♢|••••|♢openedIgnoringRichText♢•♢=♢•♢flag♢|;|♢¶♢|}|♢
 ·  ·  ♢¶♢¶♢|/*•A•transient•document•is•an•untitled•document•that•was•opened•automatically.•If•a•real•document•is•opened•before•the•transient•document•is•edited,•the•real•document•should•replace•the•transient.•If•a•transient•document•is•edited,•it•ceases•to•be•transient.•¶*/|♢¶♢
 ·  ·  <ObjCMethodImplementation>
-·  ·  ·  ♢-♢•♢
+·  ·  ·  ♢|-|♢•♢
 ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ♢|(|♢BOOL♢|)|♢
 ·  ·  ·  ♢isTransient♢•♢
@@ -3169,7 +3169,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 ·  ·  ·  ·  ♢¶♢|}|♢
 ·  ·  ♢¶♢¶♢
 ·  ·  <ObjCMethodImplementation>
-·  ·  ·  ♢-♢•♢
+·  ·  ·  ♢|-|♢•♢
 ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ♢|(|♢|void|♢|)|♢
 ·  ·  ·  ♢setTransient♢|:|♢
@@ -3180,7 +3180,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 ·  ·  ·  ·  ♢|{|♢¶♢|••••|♢transient♢•♢=♢•♢flag♢|;|♢¶♢|}|♢
 ·  ·  ♢¶♢¶♢|/*•We•can't•replace•transient•document•that•have•sheets•on•them.¶*/|♢¶♢
 ·  ·  <ObjCMethodImplementation>
-·  ·  ·  ♢-♢•♢
+·  ·  ·  ♢|-|♢•♢
 ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ♢|(|♢BOOL♢|)|♢
 ·  ·  ·  ♢isTransientAndCanBeReplaced♢•♢
@@ -3224,7 +3224,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 ·  ·  ·  ·  ♢¶♢|}|♢
 ·  ·  ♢¶♢¶♢¶♢|/*•The•rich•text•status•is•dependent•on•the•document•type,•and•vice•versa.•Making•a•plain•document•rich,•will•-setFileType:•to•RTF.•¶*/|♢¶♢
 ·  ·  <ObjCMethodImplementation>
-·  ·  ·  ♢-♢•♢
+·  ·  ·  ♢|-|♢•♢
 ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ♢|(|♢|void|♢|)|♢
 ·  ·  ·  ♢setRichText♢|:|♢
@@ -3277,7 +3277,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 ·  ·  ·  ·  ♢¶♢|}|♢
 ·  ·  ♢¶♢¶♢
 ·  ·  <ObjCMethodImplementation>
-·  ·  ·  ♢-♢•♢
+·  ·  ·  ♢|-|♢•♢
 ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ♢|(|♢BOOL♢|)|♢
 ·  ·  ·  ♢isRichText♢•♢
@@ -3300,7 +3300,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 ·  ·  ·  ·  ♢¶♢|}|♢
 ·  ·  ♢¶♢¶♢¶♢|/*•Document•properties•management•*/|♢¶♢¶♢|/*•Table•mapping•document•property•keys•"company",•etc,•to•text•system•document•attribute•keys•(NSCompanyDocumentAttribute,•etc)¶*/|♢¶♢
 ·  ·  <ObjCMethodImplementation>
-·  ·  ·  ♢-♢•♢
+·  ·  ·  ♢|-|♢•♢
 ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ♢|(|♢NSDictionary♢•♢|*|♢|)|♢
 ·  ·  ·  ♢documentPropertyToAttributeNameMappings♢•♢
@@ -3323,7 +3323,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 ·  ·  ·  ·  ♢¶♢|}|♢
 ·  ·  ♢¶♢¶♢
 ·  ·  <ObjCMethodImplementation>
-·  ·  ·  ♢-♢•♢
+·  ·  ·  ♢|-|♢•♢
 ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ♢|(|♢NSArray♢•♢|*|♢|)|♢
 ·  ·  ·  ♢knownDocumentProperties♢•♢
@@ -3340,7 +3340,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 ·  ·  ·  ·  ♢¶♢|}|♢
 ·  ·  ♢¶♢¶♢|/*•If•there•are•document•properties•and•they•are•not•the•same•as•the•defaults•established•in•preferences,•return•YES¶*/|♢¶♢
 ·  ·  <ObjCMethodImplementation>
-·  ·  ·  ♢-♢•♢
+·  ·  ·  ♢|-|♢•♢
 ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ♢|(|♢BOOL♢|)|♢
 ·  ·  ·  ♢hasDocumentProperties♢•♢
@@ -3382,7 +3382,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 ·  ·  ·  ·  ♢¶♢|}|♢
 ·  ·  ♢¶♢¶♢|/*•This•actually•clears•all•properties•(rather•than•setting•them•to•default•values•established•in•preferences)¶*/|♢¶♢
 ·  ·  <ObjCMethodImplementation>
-·  ·  ·  ♢-♢•♢
+·  ·  ·  ♢|-|♢•♢
 ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ♢|(|♢|void|♢|)|♢
 ·  ·  ·  ♢clearDocumentProperties♢•♢
@@ -3402,7 +3402,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 ·  ·  ·  ·  ♢¶♢|}|♢
 ·  ·  ♢¶♢¶♢|/*•This•sets•document•properties•to•values•established•in•defaults¶*/|♢¶♢
 ·  ·  <ObjCMethodImplementation>
-·  ·  ·  ♢-♢•♢
+·  ·  ·  ♢|-|♢•♢
 ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ♢|(|♢|void|♢|)|♢
 ·  ·  ·  ♢setDocumentPropertiesToDefaults♢•♢
@@ -3428,7 +3428,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 ·  ·  ·  ·  ♢¶♢|}|♢
 ·  ·  ♢¶♢¶♢|/*•We•implement•a•setValue:forDocumentProperty:•to•work•around•NSUndoManager•bug•where•prepareWithInvocationTarget:•fails•to•freeze-dry•invocations•with•"known"•methods•such•as•setValue:forKey:.••¶*/|♢¶♢
 ·  ·  <ObjCMethodImplementation>
-·  ·  ·  ♢-♢•♢
+·  ·  ·  ♢|-|♢•♢
 ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ♢|(|♢|void|♢|)|♢
 ·  ·  ·  ♢setValue♢|:|♢
@@ -3468,7 +3468,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 ·  ·  ·  ·  ♢|;|♢¶♢|}|♢
 ·  ·  ♢¶♢¶♢
 ·  ·  <ObjCMethodImplementation>
-·  ·  ·  ♢-♢•♢
+·  ·  ·  ♢|-|♢•♢
 ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ♢|(|♢|void|♢|)|♢
 ·  ·  ·  ♢setValue♢|:|♢
@@ -3507,7 +3507,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 ·  ·  ·  ·  ♢¶♢|}|♢
 ·  ·  ♢¶♢¶♢|/*•For•genstrings:¶••••NSLocalizedStringWithDefaultValue(@"author",•@"",•@"",•@"Change•Author",•@"Undo•menu•change•string,•without•the•'Undo'");¶••••NSLocalizedStringWithDefaultValue(@"copyright",•@"",•@"",•@"Change•Copyright",•@"Undo•menu•change•string,•without•the•'Undo'");¶••••NSLocalizedStringWithDefaultValue(@"subject",•@"",•@"",•@"Change•Subject",•@"Undo•menu•change•string,•without•the•'Undo'");¶••••NSLocalizedStringWithDefaultValue(@"title",•@"",•@"",•@"Change•Title",•@"Undo•menu•change•string,•without•the•'Undo'");¶••••NSLocalizedStringWithDefaultValue(@"company",•@"",•@"",•@"Change•Company",•@"Undo•menu•change•string,•without•the•'Undo'");¶••••NSLocalizedStringWithDefaultValue(@"comment",•@"",•@"",•@"Change•Comment",•@"Undo•menu•change•string,•without•the•'Undo'");¶••••NSLocalizedStringWithDefaultValue(@"keywords",•@"",•@"",•@"Change•Keywords",•@"Undo•menu•change•string,•without•the•'Undo'");¶*/|♢¶♢¶♢¶♢¶♢
 ·  ·  <ObjCMethodImplementation>
-·  ·  ·  ♢-♢•♢
+·  ·  ·  ♢|-|♢•♢
 ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ♢|(|♢NSPrintOperation♢•♢|*|♢|)|♢
 ·  ·  ·  ♢printOperationWithSettings♢|:|♢
@@ -3647,7 +3647,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 ·  ·  ·  ·  ♢¶♢|}|♢
 ·  ·  ♢¶♢¶♢
 ·  ·  <ObjCMethodImplementation>
-·  ·  ·  ♢-♢•♢
+·  ·  ·  ♢|-|♢•♢
 ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ♢|(|♢NSPrintInfo♢•♢|*|♢|)|♢
 ·  ·  ·  ♢printInfo♢•♢
@@ -3690,7 +3690,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 ·  ·  ·  ·  ♢¶♢|}|♢
 ·  ·  ♢¶♢¶♢|/*•Toggles•read-only•state•of•the•document¶*/|♢¶♢
 ·  ·  <ObjCMethodImplementation>
-·  ·  ·  ♢-♢•♢
+·  ·  ·  ♢|-|♢•♢
 ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ♢|(|♢IBAction♢|)|♢
 ·  ·  ·  ♢toggleReadOnly♢|:|♢
@@ -3737,7 +3737,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 ·  ·  ·  ·  ♢|;|♢¶♢|}|♢
 ·  ·  ♢¶♢¶♢
 ·  ·  <ObjCMethodImplementation>
-·  ·  ·  ♢-♢•♢
+·  ·  ·  ♢|-|♢•♢
 ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ♢|(|♢BOOL♢|)|♢
 ·  ·  ·  ♢toggleRichWillLoseInformation♢•♢
@@ -3784,7 +3784,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 ·  ·  ·  ·  ♢•♢|//•We•will•also•lose•information•if•the•document•has•properties.|♢¶♢|}|♢
 ·  ·  ♢¶♢¶♢
 ·  ·  <ObjCMethodImplementation>
-·  ·  ·  ♢-♢•♢
+·  ·  ·  ♢|-|♢•♢
 ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ♢|(|♢BOOL♢|)|♢
 ·  ·  ·  ♢hasMultiplePages♢•♢
@@ -3795,7 +3795,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 ·  ·  ·  ·  ♢¶♢|}|♢
 ·  ·  ♢¶♢¶♢
 ·  ·  <ObjCMethodImplementation>
-·  ·  ·  ♢-♢•♢
+·  ·  ·  ♢|-|♢•♢
 ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ♢|(|♢|void|♢|)|♢
 ·  ·  ·  ♢setHasMultiplePages♢|:|♢
@@ -3806,7 +3806,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 ·  ·  ·  ·  ♢|{|♢¶♢|••••|♢hasMultiplePages♢•♢=♢•♢flag♢|;|♢¶♢|}|♢
 ·  ·  ♢¶♢¶♢
 ·  ·  <ObjCMethodImplementation>
-·  ·  ·  ♢-♢•♢
+·  ·  ·  ♢|-|♢•♢
 ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ♢|(|♢IBAction♢|)|♢
 ·  ·  ·  ♢togglePageBreaks♢|:|♢
@@ -3823,7 +3823,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 ·  ·  ·  ·  ♢|;|♢¶♢|}|♢
 ·  ·  ♢¶♢¶♢
 ·  ·  <ObjCMethodImplementation>
-·  ·  ·  ♢-♢•♢
+·  ·  ·  ♢|-|♢•♢
 ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ♢|(|♢|void|♢|)|♢
 ·  ·  ·  ♢toggleHyphenation♢|:|♢
@@ -3854,7 +3854,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 ·  ·  ·  ·  ♢|;|♢→♢|/*•Toggle•between•0.0•and•0.9•*/|♢¶♢|}|♢
 ·  ·  ♢¶♢¶♢|/*•Action•method•for•the•"Append•'.txt'•extension"•button¶*/|♢¶♢
 ·  ·  <ObjCMethodImplementation>
-·  ·  ·  ♢-♢•♢
+·  ·  ·  ♢|-|♢•♢
 ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ♢|(|♢|void|♢|)|♢
 ·  ·  ·  ♢appendPlainTextExtensionChanged♢|:|♢
@@ -3889,7 +3889,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 ·  ·  ·  ·  ♢|;|♢¶♢|}|♢
 ·  ·  ♢¶♢¶♢
 ·  ·  <ObjCMethodImplementation>
-·  ·  ·  ♢-♢•♢
+·  ·  ·  ♢|-|♢•♢
 ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ♢|(|♢|void|♢|)|♢
 ·  ·  ·  ♢encodingPopupChanged♢|:|♢
@@ -3973,7 +3973,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 ·  ·  ·  ·  ♢¶♢|}|♢
 ·  ·  ♢¶♢¶♢|/*•Menu•validation¶*/|♢¶♢
 ·  ·  <ObjCMethodImplementation>
-·  ·  ·  ♢-♢•♢
+·  ·  ·  ♢|-|♢•♢
 ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ♢|(|♢BOOL♢|)|♢
 ·  ·  ·  ♢validateMenuItem♢|:|♢
@@ -4097,7 +4097,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 ·  ·  ·  ·  ♢¶♢|}|♢
 ·  ·  ♢¶♢¶♢|//•For•scripting.•We•already•have•a•-textStorage•method•implemented•above.|♢¶♢
 ·  ·  <ObjCMethodImplementation>
-·  ·  ·  ♢-♢•♢
+·  ·  ·  ♢|-|♢•♢
 ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ♢|(|♢|void|♢|)|♢
 ·  ·  ·  ♢setTextStorage♢|:|♢
@@ -4181,7 +4181,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 ·  ·  ·  ·  ♢¶♢|}|♢
 ·  ·  ♢¶♢¶♢
 ·  ·  <ObjCMethodImplementation>
-·  ·  ·  ♢-♢•♢
+·  ·  ·  ♢|-|♢•♢
 ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ♢|(|♢IBAction♢|)|♢
 ·  ·  ·  ♢revertDocumentToSaved♢|:|♢
@@ -4209,7 +4209,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 ·  ·  ·  ·  ♢|;|♢¶♢|}|♢
 ·  ·  ♢¶♢¶♢
 ·  ·  <ObjCMethodImplementation>
-·  ·  ·  ♢-♢•♢
+·  ·  ·  ♢|-|♢•♢
 ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ♢|(|♢BOOL♢|)|♢
 ·  ·  ·  ♢revertToContentsOfURL♢|:|♢
@@ -4271,7 +4271,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 ·  ·  ·  ·  ♢¶♢|}|♢
 ·  ·  ♢¶♢¶♢|/*•Target/action•method•for•saving•as•(actually•"saving•to")•PDF.•Note•that•this•approach•of•omitting•the•path•will•not•work•on•Leopard;•see•TextEdit's•README.rtf¶*/|♢¶♢
 ·  ·  <ObjCMethodImplementation>
-·  ·  ·  ♢-♢•♢
+·  ·  ·  ♢|-|♢•♢
 ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ♢|(|♢IBAction♢|)|♢
 ·  ·  ·  ♢saveDocumentAsPDFTo♢|:|♢
@@ -4322,7 +4322,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 ·  <ObjCImplementation>
 ·  ·  ♢|@implementation•Document•(TextEditNSDocumentOverrides)|♢¶♢¶♢
 ·  ·  <ObjCMethodImplementation>
-·  ·  ·  ♢+♢•♢
+·  ·  ·  ♢|+|♢•♢
 ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ♢|(|♢BOOL♢|)|♢
 ·  ·  ·  ♢canConcurrentlyReadDocumentsOfType♢|:|♢
@@ -4354,7 +4354,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 ·  ·  ·  ·  ♢¶♢|}|♢
 ·  ·  ♢¶♢¶♢
 ·  ·  <ObjCMethodImplementation>
-·  ·  ·  ♢-♢•♢
+·  ·  ·  ♢|-|♢•♢
 ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ♢|(|♢id♢|)|♢
 ·  ·  ·  ♢initForURL♢|:|♢
@@ -4421,7 +4421,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 ·  ·  ·  ·  ♢¶♢|}|♢
 ·  ·  ♢¶♢¶♢
 ·  ·  <ObjCMethodImplementation>
-·  ·  ·  ♢-♢•♢
+·  ·  ·  ♢|-|♢•♢
 ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ♢|(|♢|void|♢|)|♢
 ·  ·  ·  ♢makeWindowControllers♢•♢
@@ -4458,7 +4458,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 ·  ·  ·  ·  ♢¶♢|}|♢
 ·  ·  ♢¶♢¶♢
 ·  ·  <ObjCMethodImplementation>
-·  ·  ·  ♢-♢•♢
+·  ·  ·  ♢|-|♢•♢
 ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ♢|(|♢NSArray♢•♢|*|♢|)|♢
 ·  ·  ·  ♢writableTypesForSaveOperation♢|:|♢
@@ -4532,7 +4532,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 ·  ·  ·  ·  ♢¶♢|}|♢
 ·  ·  ♢¶♢¶♢|/*•Whether•to•keep•the•backup•file¶*/|♢¶♢
 ·  ·  <ObjCMethodImplementation>
-·  ·  ·  ♢-♢•♢
+·  ·  ·  ♢|-|♢•♢
 ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ♢|(|♢BOOL♢|)|♢
 ·  ·  ·  ♢keepBackupFile♢•♢
@@ -4549,7 +4549,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 ·  ·  ·  ·  ♢¶♢|}|♢
 ·  ·  ♢¶♢¶♢|/*•When•a•document•is•changed,•it•ceases•to•be•transient.•¶*/|♢¶♢
 ·  ·  <ObjCMethodImplementation>
-·  ·  ·  ♢-♢•♢
+·  ·  ·  ♢|-|♢•♢
 ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ♢|(|♢|void|♢|)|♢
 ·  ·  ·  ♢updateChangeCount♢|:|♢
@@ -4566,7 +4566,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 ·  ·  ·  ·  ♢|;|♢¶♢|}|♢
 ·  ·  ♢¶♢¶♢|/*•When•we•save,•we•send•a•notification•so•that•views•that•are•currently•coalescing•undo•actions•can•break•that.•This•is•done•for•two•reasons,•one•technical•and•the•other•HI•oriented.•¶¶Firstly,•since•the•dirty•state•tracking•is•based•on•undo,•for•a•coalesced•set•of•changes•that•span•over•a•save•operation,•the•changes•that•occur•between•the•save•and•the•next•time•the•undo•coalescing•stops•will•not•mark•the•document•as•dirty.•Secondly,•allowing•the•user•to•undo•back•to•the•precise•point•of•a•save•is•good•UI.•¶¶In•addition•we•overwrite•this•method•as•a•way•to•tell•that•the•document•has•been•saved•successfully.•If•so,•we•set•the•save•time•parameters•in•the•document.¶*/|♢¶♢
 ·  ·  <ObjCMethodImplementation>
-·  ·  ·  ♢-♢•♢
+·  ·  ·  ♢|-|♢•♢
 ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ♢|(|♢BOOL♢|)|♢
 ·  ·  ·  ♢saveToURL♢|:|♢
@@ -4635,7 +4635,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 ·  ·  ·  ·  ♢••••♢¶♢|}|♢
 ·  ·  ♢¶♢¶♢|/*•Since•a•document•into•which•the•user•has•dragged•graphics•should•autosave•as•RTFD,•we•override•this•method•to•return•RTFD,•unless•the•document•was•already•RTFD,•WebArchive,•or•plain•(the•last•one•done•for•optimization,•to•avoid•calling•containsAttachments).¶*/|♢¶♢
 ·  ·  <ObjCMethodImplementation>
-·  ·  ·  ♢-♢•♢
+·  ·  ·  ♢|-|♢•♢
 ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ♢|(|♢NSString♢•♢|*|♢|)|♢
 ·  ·  ·  ♢autosavingFileType♢•♢
@@ -4692,7 +4692,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 ·  ·  ·  ·  ♢¶♢|}|♢
 ·  ·  ♢¶♢¶♢¶♢|/*•When•the•file•URL•is•set•to•nil,•we•store•away•the•old•URL.•This•happens•when•a•document•is•converted•to•and•from•rich•text.•If•the•document•exists•on•disk,•we•default•to•use•the•same•base•file•when•subsequently•saving•the•document.•¶*/|♢¶♢
 ·  ·  <ObjCMethodImplementation>
-·  ·  ·  ♢-♢•♢
+·  ·  ·  ♢|-|♢•♢
 ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ♢|(|♢|void|♢|)|♢
 ·  ·  ·  ♢setFileURL♢|:|♢
@@ -4723,7 +4723,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 ·  ·  ·  ·  ♢|;|♢¶♢|}|♢
 ·  ·  ♢¶♢¶♢
 ·  ·  <ObjCMethodImplementation>
-·  ·  ·  ♢-♢•♢
+·  ·  ·  ♢|-|♢•♢
 ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ♢|(|♢|void|♢|)|♢
 ·  ·  ·  ♢didPresentErrorWithRecovery♢|:|♢
@@ -4753,7 +4753,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 ·  ·  ·  ·  ♢¶♢|}|♢
 ·  ·  ♢¶♢¶♢
 ·  ·  <ObjCMethodImplementation>
-·  ·  ·  ♢-♢•♢
+·  ·  ·  ♢|-|♢•♢
 ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ♢|(|♢|void|♢|)|♢
 ·  ·  ·  ♢attemptRecoveryFromError♢|:|♢
@@ -4947,7 +4947,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 ·  ·  ·  ·  ♢|;|♢¶♢|}|♢
 ·  ·  ♢¶♢¶♢
 ·  ·  <ObjCMethodImplementation>
-·  ·  ·  ♢-♢•♢
+·  ·  ·  ♢|-|♢•♢
 ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ♢|(|♢|void|♢|)|♢
 ·  ·  ·  ♢saveDocumentWithDelegate♢|:|♢
@@ -5213,7 +5213,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 ·  ·  ·  ·  ♢¶♢|}|♢
 ·  ·  ♢¶♢¶♢|/*•For•plain-text•documents,•we•add•our•own•accessory•view•for•selecting•encodings.•The•plain•text•case•does•not•require•a•format•popup.•¶*/|♢¶♢
 ·  ·  <ObjCMethodImplementation>
-·  ·  ·  ♢-♢•♢
+·  ·  ·  ♢|-|♢•♢
 ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ♢|(|♢BOOL♢|)|♢
 ·  ·  ·  ♢shouldRunSavePanelWithAccessoryView♢•♢
@@ -5227,7 +5227,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 ·  ·  ·  ·  ♢¶♢|}|♢
 ·  ·  ♢¶♢¶♢|/*•If•the•document•is•a•converted•version•of•a•document•that•existed•on•disk,•set•the•default•directory•to•the•directory•in•which•the•source•file•(converted•file)•resided•at•the•time•the•document•was•converted.•If•the•document•is•plain•text,•we•additionally•add•an•encoding•popup.•¶*/|♢¶♢
 ·  ·  <ObjCMethodImplementation>
-·  ·  ·  ♢-♢•♢
+·  ·  ·  ♢|-|♢•♢
 ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ♢|(|♢BOOL♢|)|♢
 ·  ·  ·  ♢prepareSavePanel♢|:|♢
@@ -5471,7 +5471,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 ·  ·  ·  ·  ♢¶♢|}|♢
 ·  ·  ♢¶♢¶♢|/*•If•the•document•does•not•exist•on•disk,•but•it•has•been•converted•from•a•document•that•existed•on•disk,•return•the•base•file•name•without•the•path•extension.•Otherwise•return•the•default•("Untitled").•This•is•used•for•the•window•title•and•for•the•default•name•when•saving.•¶*/|♢¶♢
 ·  ·  <ObjCMethodImplementation>
-·  ·  ·  ♢-♢•♢
+·  ·  ·  ♢|-|♢•♢
 ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ♢|(|♢NSString♢•♢|*|♢|)|♢
 ·  ·  ·  ♢displayName♢•♢
@@ -5664,7 +5664,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [61:62] <Newline> = ♢¶♢
 |    |    [62:63] <Newline> = ♢¶♢
 |    |    [63:85] <ObjCMethodImplementation>
-|    |    |    [63:63] <Text> = ♢-♢
+|    |    |    [63:63] <Match> = ♢-♢
 |    |    |    [63:63] <Whitespace> = ♢•♢
 |    |    |    [63:63] <Parenthesis>
 |    |    |    |    [63:63] <Match> = ♢(♢
@@ -5895,7 +5895,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [87:88] <CComment> = ♢/*•Return•an•NSDictionary•which•maps•Cocoa•text•system•document•identifiers•(as•declared•in•AppKit/NSAttributedString.h)•to•document•types•declared•in•TextEdit's•Info.plist.¶*/♢
 |    |    [88:89] <Newline> = ♢¶♢
 |    |    [89:106] <ObjCMethodImplementation>
-|    |    |    [89:89] <Text> = ♢-♢
+|    |    |    [89:89] <Match> = ♢-♢
 |    |    |    [89:89] <Whitespace> = ♢•♢
 |    |    |    [89:89] <Parenthesis>
 |    |    |    |    [89:89] <Match> = ♢(♢
@@ -6055,7 +6055,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [108:109] <CComment> = ♢/*•This•method•is•called•by•the•document•controller.•The•message•is•passed•on•after•information•about•the•selected•encoding•(from•our•controller•subclass)•and•preference•regarding•HTML•and•RTF•formatting•has•been•added.•-lastSelectedEncodingForURL:•returns•the•encoding•specified•in•the•Open•panel,•or•the•default•encoding•if•the•document•was•opened•without•an•open•panel.¶*/♢
 |    |    [109:110] <Newline> = ♢¶♢
 |    |    [110:113] <ObjCMethodImplementation>
-|    |    |    [110:110] <Text> = ♢-♢
+|    |    |    [110:110] <Match> = ♢-♢
 |    |    |    [110:110] <Whitespace> = ♢•♢
 |    |    |    [110:110] <Parenthesis>
 |    |    |    |    [110:110] <Match> = ♢(♢
@@ -6170,7 +6170,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [113:114] <Newline> = ♢¶♢
 |    |    [114:115] <Newline> = ♢¶♢
 |    |    [115:248] <ObjCMethodImplementation>
-|    |    |    [115:115] <Text> = ♢-♢
+|    |    |    [115:115] <Match> = ♢-♢
 |    |    |    [115:115] <Whitespace> = ♢•♢
 |    |    |    [115:115] <Parenthesis>
 |    |    |    |    [115:115] <Match> = ♢(♢
@@ -8152,7 +8152,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [248:249] <Newline> = ♢¶♢
 |    |    [249:250] <Newline> = ♢¶♢
 |    |    [250:285] <ObjCMethodImplementation>
-|    |    |    [250:250] <Text> = ♢-♢
+|    |    |    [250:250] <Match> = ♢-♢
 |    |    |    [250:250] <Whitespace> = ♢•♢
 |    |    |    [250:250] <Parenthesis>
 |    |    |    |    [250:250] <Match> = ♢(♢
@@ -8737,7 +8737,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [285:286] <Newline> = ♢¶♢
 |    |    [286:287] <Newline> = ♢¶♢
 |    |    [287:302] <ObjCMethodImplementation>
-|    |    |    [287:287] <Text> = ♢-♢
+|    |    |    [287:287] <Match> = ♢-♢
 |    |    |    [287:287] <Whitespace> = ♢•♢
 |    |    |    [287:287] <Parenthesis>
 |    |    |    |    [287:287] <Match> = ♢(♢
@@ -9016,7 +9016,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [305:306] <CComment> = ♢/*•This•method•will•return•a•suggested•encoding•for•the•document.•In•Leopard,•unless•the•user•has•specified•a•favorite•encoding•for•saving•that•applies•to•the•document,•we•use•UTF-8.¶*/♢
 |    |    [306:307] <Newline> = ♢¶♢
 |    |    [307:318] <ObjCMethodImplementation>
-|    |    |    [307:307] <Text> = ♢-♢
+|    |    |    [307:307] <Match> = ♢-♢
 |    |    |    [307:307] <Whitespace> = ♢•♢
 |    |    |    [307:307] <Parenthesis>
 |    |    |    |    [307:307] <Match> = ♢(♢
@@ -9207,7 +9207,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [320:321] <CComment> = ♢/*•Returns•an•object•that•represents•the•document•to•be•written•to•file.•¶*/♢
 |    |    [321:322] <Newline> = ♢¶♢
 |    |    [322:409] <ObjCMethodImplementation>
-|    |    |    [322:322] <Text> = ♢-♢
+|    |    |    [322:322] <Match> = ♢-♢
 |    |    |    [322:322] <Whitespace> = ♢•♢
 |    |    |    [322:322] <Parenthesis>
 |    |    |    |    [322:322] <Match> = ♢(♢
@@ -10803,7 +10803,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [411:412] <CComment> = ♢/*•Clear•the•delegates•of•the•text•views•and•window,•then•release•all•resources•and•go•away...¶*/♢
 |    |    [412:413] <Newline> = ♢¶♢
 |    |    [413:429] <ObjCMethodImplementation>
-|    |    |    [413:413] <Text> = ♢-♢
+|    |    |    [413:413] <Match> = ♢-♢
 |    |    |    [413:413] <Whitespace> = ♢•♢
 |    |    |    [413:413] <Parenthesis>
 |    |    |    |    [413:413] <Match> = ♢(♢
@@ -10936,7 +10936,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [429:430] <Newline> = ♢¶♢
 |    |    [430:431] <Newline> = ♢¶♢
 |    |    [431:433] <ObjCMethodImplementation>
-|    |    |    [431:431] <Text> = ♢-♢
+|    |    |    [431:431] <Match> = ♢-♢
 |    |    |    [431:431] <Whitespace> = ♢•♢
 |    |    |    [431:431] <Parenthesis>
 |    |    |    |    [431:431] <Match> = ♢(♢
@@ -10958,7 +10958,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [433:434] <Newline> = ♢¶♢
 |    |    [434:435] <Newline> = ♢¶♢
 |    |    [435:437] <ObjCMethodImplementation>
-|    |    |    [435:435] <Text> = ♢-♢
+|    |    |    [435:435] <Match> = ♢-♢
 |    |    |    [435:435] <Whitespace> = ♢•♢
 |    |    |    [435:435] <Parenthesis>
 |    |    |    |    [435:435] <Match> = ♢(♢
@@ -10987,7 +10987,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [437:438] <Newline> = ♢¶♢
 |    |    [438:439] <Newline> = ♢¶♢
 |    |    [439:441] <ObjCMethodImplementation>
-|    |    |    [439:439] <Text> = ♢-♢
+|    |    |    [439:439] <Match> = ♢-♢
 |    |    |    [439:439] <Whitespace> = ♢•♢
 |    |    |    [439:439] <Parenthesis>
 |    |    |    |    [439:439] <Match> = ♢(♢
@@ -11009,7 +11009,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [441:442] <Newline> = ♢¶♢
 |    |    [442:443] <Newline> = ♢¶♢
 |    |    [443:445] <ObjCMethodImplementation>
-|    |    |    [443:443] <Text> = ♢-♢
+|    |    |    [443:443] <Match> = ♢-♢
 |    |    |    [443:443] <Whitespace> = ♢•♢
 |    |    |    [443:443] <Parenthesis>
 |    |    |    |    [443:443] <Match> = ♢(♢
@@ -11038,7 +11038,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [445:446] <Newline> = ♢¶♢
 |    |    [446:447] <Newline> = ♢¶♢
 |    |    [447:449] <ObjCMethodImplementation>
-|    |    |    [447:447] <Text> = ♢-♢
+|    |    |    [447:447] <Match> = ♢-♢
 |    |    |    [447:447] <Whitespace> = ♢•♢
 |    |    |    [447:447] <Parenthesis>
 |    |    |    |    [447:447] <Match> = ♢(♢
@@ -11067,7 +11067,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [449:450] <Newline> = ♢¶♢
 |    |    [450:451] <Newline> = ♢¶♢
 |    |    [451:453] <ObjCMethodImplementation>
-|    |    |    [451:451] <Text> = ♢-♢
+|    |    |    [451:451] <Match> = ♢-♢
 |    |    |    [451:451] <Whitespace> = ♢•♢
 |    |    |    [451:451] <Parenthesis>
 |    |    |    |    [451:451] <Match> = ♢(♢
@@ -11089,7 +11089,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [453:454] <Newline> = ♢¶♢
 |    |    [454:455] <Newline> = ♢¶♢
 |    |    [455:459] <ObjCMethodImplementation>
-|    |    |    [455:455] <Text> = ♢-♢
+|    |    |    [455:455] <Match> = ♢-♢
 |    |    |    [455:455] <Whitespace> = ♢•♢
 |    |    |    [455:455] <Parenthesis>
 |    |    |    |    [455:455] <Match> = ♢(♢
@@ -11144,7 +11144,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [459:460] <Newline> = ♢¶♢
 |    |    [460:461] <Newline> = ♢¶♢
 |    |    [461:463] <ObjCMethodImplementation>
-|    |    |    [461:461] <Text> = ♢-♢
+|    |    |    [461:461] <Match> = ♢-♢
 |    |    |    [461:461] <Whitespace> = ♢•♢
 |    |    |    [461:461] <Parenthesis>
 |    |    |    |    [461:461] <Match> = ♢(♢
@@ -11168,7 +11168,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [463:464] <Newline> = ♢¶♢
 |    |    [464:465] <Newline> = ♢¶♢
 |    |    [465:467] <ObjCMethodImplementation>
-|    |    |    [465:465] <Text> = ♢-♢
+|    |    |    [465:465] <Match> = ♢-♢
 |    |    |    [465:465] <Whitespace> = ♢•♢
 |    |    |    [465:465] <Parenthesis>
 |    |    |    |    [465:465] <Match> = ♢(♢
@@ -11192,7 +11192,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [467:468] <Newline> = ♢¶♢
 |    |    [468:469] <Newline> = ♢¶♢
 |    |    [469:471] <ObjCMethodImplementation>
-|    |    |    [469:469] <Text> = ♢-♢
+|    |    |    [469:469] <Match> = ♢-♢
 |    |    |    [469:469] <Whitespace> = ♢•♢
 |    |    |    [469:469] <Parenthesis>
 |    |    |    |    [469:469] <Match> = ♢(♢
@@ -11224,7 +11224,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [471:472] <Newline> = ♢¶♢
 |    |    [472:473] <Newline> = ♢¶♢
 |    |    [473:481] <ObjCMethodImplementation>
-|    |    |    [473:473] <Text> = ♢-♢
+|    |    |    [473:473] <Match> = ♢-♢
 |    |    |    [473:473] <Whitespace> = ♢•♢
 |    |    |    [473:473] <Parenthesis>
 |    |    |    |    [473:473] <Match> = ♢(♢
@@ -11338,7 +11338,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [483:484] <CComment> = ♢/*•Hyphenation•related•methods.¶*/♢
 |    |    [484:485] <Newline> = ♢¶♢
 |    |    [485:487] <ObjCMethodImplementation>
-|    |    |    [485:485] <Text> = ♢-♢
+|    |    |    [485:485] <Match> = ♢-♢
 |    |    |    [485:485] <Whitespace> = ♢•♢
 |    |    |    [485:485] <Parenthesis>
 |    |    |    |    [485:485] <Match> = ♢(♢
@@ -11367,7 +11367,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [487:488] <Newline> = ♢¶♢
 |    |    [488:489] <Newline> = ♢¶♢
 |    |    [489:491] <ObjCMethodImplementation>
-|    |    |    [489:489] <Text> = ♢-♢
+|    |    |    [489:489] <Match> = ♢-♢
 |    |    |    [489:489] <Whitespace> = ♢•♢
 |    |    |    [489:489] <Parenthesis>
 |    |    |    |    [489:489] <Match> = ♢(♢
@@ -11391,7 +11391,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [493:494] <CComment> = ♢/*•Encoding...¶*/♢
 |    |    [494:495] <Newline> = ♢¶♢
 |    |    [495:497] <ObjCMethodImplementation>
-|    |    |    [495:495] <Text> = ♢-♢
+|    |    |    [495:495] <Match> = ♢-♢
 |    |    |    [495:495] <Whitespace> = ♢•♢
 |    |    |    [495:495] <Parenthesis>
 |    |    |    |    [495:495] <Match> = ♢(♢
@@ -11413,7 +11413,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [497:498] <Newline> = ♢¶♢
 |    |    [498:499] <Newline> = ♢¶♢
 |    |    [499:501] <ObjCMethodImplementation>
-|    |    |    [499:499] <Text> = ♢-♢
+|    |    |    [499:499] <Match> = ♢-♢
 |    |    |    [499:499] <Whitespace> = ♢•♢
 |    |    |    [499:499] <Parenthesis>
 |    |    |    |    [499:499] <Match> = ♢(♢
@@ -11444,7 +11444,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [503:504] <CComment> = ♢/*•This•is•the•encoding•used•for•saving;•valid•only•during•a•save•operation¶*/♢
 |    |    [504:505] <Newline> = ♢¶♢
 |    |    [505:507] <ObjCMethodImplementation>
-|    |    |    [505:505] <Text> = ♢-♢
+|    |    |    [505:505] <Match> = ♢-♢
 |    |    |    [505:505] <Whitespace> = ♢•♢
 |    |    |    [505:505] <Parenthesis>
 |    |    |    |    [505:505] <Match> = ♢(♢
@@ -11466,7 +11466,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [507:508] <Newline> = ♢¶♢
 |    |    [508:509] <Newline> = ♢¶♢
 |    |    [509:511] <ObjCMethodImplementation>
-|    |    |    [509:509] <Text> = ♢-♢
+|    |    |    [509:509] <Match> = ♢-♢
 |    |    |    [509:509] <Whitespace> = ♢•♢
 |    |    |    [509:509] <Parenthesis>
 |    |    |    |    [509:509] <Match> = ♢(♢
@@ -11496,7 +11496,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [512:513] <Newline> = ♢¶♢
 |    |    [513:514] <Newline> = ♢¶♢
 |    |    [514:516] <ObjCMethodImplementation>
-|    |    |    [514:514] <Text> = ♢-♢
+|    |    |    [514:514] <Match> = ♢-♢
 |    |    |    [514:514] <Whitespace> = ♢•♢
 |    |    |    [514:514] <Parenthesis>
 |    |    |    |    [514:514] <Match> = ♢(♢
@@ -11518,7 +11518,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [516:517] <Newline> = ♢¶♢
 |    |    [517:518] <Newline> = ♢¶♢
 |    |    [518:520] <ObjCMethodImplementation>
-|    |    |    [518:518] <Text> = ♢-♢
+|    |    |    [518:518] <Match> = ♢-♢
 |    |    |    [518:518] <Whitespace> = ♢•♢
 |    |    |    [518:518] <Parenthesis>
 |    |    |    |    [518:518] <Match> = ♢(♢
@@ -11547,7 +11547,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [520:521] <Newline> = ♢¶♢
 |    |    [521:522] <Newline> = ♢¶♢
 |    |    [522:524] <ObjCMethodImplementation>
-|    |    |    [522:522] <Text> = ♢-♢
+|    |    |    [522:522] <Match> = ♢-♢
 |    |    |    [522:522] <Whitespace> = ♢•♢
 |    |    |    [522:522] <Parenthesis>
 |    |    |    |    [522:522] <Match> = ♢(♢
@@ -11569,7 +11569,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [524:525] <Newline> = ♢¶♢
 |    |    [525:526] <Newline> = ♢¶♢
 |    |    [526:528] <ObjCMethodImplementation>
-|    |    |    [526:526] <Text> = ♢-♢
+|    |    |    [526:526] <Match> = ♢-♢
 |    |    |    [526:526] <Whitespace> = ♢•♢
 |    |    |    [526:526] <Parenthesis>
 |    |    |    |    [526:526] <Match> = ♢(♢
@@ -11598,7 +11598,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [528:529] <Newline> = ♢¶♢
 |    |    [529:530] <Newline> = ♢¶♢
 |    |    [530:532] <ObjCMethodImplementation>
-|    |    |    [530:530] <Text> = ♢-♢
+|    |    |    [530:530] <Match> = ♢-♢
 |    |    |    [530:530] <Whitespace> = ♢•♢
 |    |    |    [530:530] <Parenthesis>
 |    |    |    |    [530:530] <Match> = ♢(♢
@@ -11620,7 +11620,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [532:533] <Newline> = ♢¶♢
 |    |    [533:534] <Newline> = ♢¶♢
 |    |    [534:536] <ObjCMethodImplementation>
-|    |    |    [534:534] <Text> = ♢-♢
+|    |    |    [534:534] <Match> = ♢-♢
 |    |    |    [534:534] <Whitespace> = ♢•♢
 |    |    |    [534:534] <Parenthesis>
 |    |    |    |    [534:534] <Match> = ♢(♢
@@ -11651,7 +11651,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [538:539] <CComment> = ♢/*•A•transient•document•is•an•untitled•document•that•was•opened•automatically.•If•a•real•document•is•opened•before•the•transient•document•is•edited,•the•real•document•should•replace•the•transient.•If•a•transient•document•is•edited,•it•ceases•to•be•transient.•¶*/♢
 |    |    [539:540] <Newline> = ♢¶♢
 |    |    [540:542] <ObjCMethodImplementation>
-|    |    |    [540:540] <Text> = ♢-♢
+|    |    |    [540:540] <Match> = ♢-♢
 |    |    |    [540:540] <Whitespace> = ♢•♢
 |    |    |    [540:540] <Parenthesis>
 |    |    |    |    [540:540] <Match> = ♢(♢
@@ -11673,7 +11673,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [542:543] <Newline> = ♢¶♢
 |    |    [543:544] <Newline> = ♢¶♢
 |    |    [544:546] <ObjCMethodImplementation>
-|    |    |    [544:544] <Text> = ♢-♢
+|    |    |    [544:544] <Match> = ♢-♢
 |    |    |    [544:544] <Whitespace> = ♢•♢
 |    |    |    [544:544] <Parenthesis>
 |    |    |    |    [544:544] <Match> = ♢(♢
@@ -11704,7 +11704,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [548:549] <CComment> = ♢/*•We•can't•replace•transient•document•that•have•sheets•on•them.¶*/♢
 |    |    [549:550] <Newline> = ♢¶♢
 |    |    [550:554] <ObjCMethodImplementation>
-|    |    |    [550:550] <Text> = ♢-♢
+|    |    |    [550:550] <Match> = ♢-♢
 |    |    |    [550:550] <Whitespace> = ♢•♢
 |    |    |    [550:550] <Parenthesis>
 |    |    |    |    [550:550] <Match> = ♢(♢
@@ -11795,7 +11795,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [557:558] <CComment> = ♢/*•The•rich•text•status•is•dependent•on•the•document•type,•and•vice•versa.•Making•a•plain•document•rich,•will•-setFileType:•to•RTF.•¶*/♢
 |    |    [558:559] <Newline> = ♢¶♢
 |    |    [559:568] <ObjCMethodImplementation>
-|    |    |    [559:559] <Text> = ♢-♢
+|    |    |    [559:559] <Match> = ♢-♢
 |    |    |    [559:559] <Whitespace> = ♢•♢
 |    |    |    [559:559] <Parenthesis>
 |    |    |    |    [559:559] <Match> = ♢(♢
@@ -11912,7 +11912,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [568:569] <Newline> = ♢¶♢
 |    |    [569:570] <Newline> = ♢¶♢
 |    |    [570:572] <ObjCMethodImplementation>
-|    |    |    [570:570] <Text> = ♢-♢
+|    |    |    [570:570] <Match> = ♢-♢
 |    |    |    [570:570] <Whitespace> = ♢•♢
 |    |    |    [570:570] <Parenthesis>
 |    |    |    |    [570:570] <Match> = ♢(♢
@@ -11968,7 +11968,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [577:578] <CComment> = ♢/*•Table•mapping•document•property•keys•"company",•etc,•to•text•system•document•attribute•keys•(NSCompanyDocumentAttribute,•etc)¶*/♢
 |    |    [578:579] <Newline> = ♢¶♢
 |    |    [579:590] <ObjCMethodImplementation>
-|    |    |    [579:579] <Text> = ♢-♢
+|    |    |    [579:579] <Match> = ♢-♢
 |    |    |    [579:579] <Whitespace> = ♢•♢
 |    |    |    [579:579] <Parenthesis>
 |    |    |    |    [579:579] <Match> = ♢(♢
@@ -12083,7 +12083,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [590:591] <Newline> = ♢¶♢
 |    |    [591:592] <Newline> = ♢¶♢
 |    |    [592:594] <ObjCMethodImplementation>
-|    |    |    [592:592] <Text> = ♢-♢
+|    |    |    [592:592] <Match> = ♢-♢
 |    |    |    [592:592] <Whitespace> = ♢•♢
 |    |    |    [592:592] <Parenthesis>
 |    |    |    |    [592:592] <Match> = ♢(♢
@@ -12119,7 +12119,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [596:597] <CComment> = ♢/*•If•there•are•document•properties•and•they•are•not•the•same•as•the•defaults•established•in•preferences,•return•YES¶*/♢
 |    |    [597:598] <Newline> = ♢¶♢
 |    |    [598:604] <ObjCMethodImplementation>
-|    |    |    [598:598] <Text> = ♢-♢
+|    |    |    [598:598] <Match> = ♢-♢
 |    |    |    [598:598] <Whitespace> = ♢•♢
 |    |    |    [598:598] <Parenthesis>
 |    |    |    |    [598:598] <Match> = ♢(♢
@@ -12227,7 +12227,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [606:607] <CComment> = ♢/*•This•actually•clears•all•properties•(rather•than•setting•them•to•default•values•established•in•preferences)¶*/♢
 |    |    [607:608] <Newline> = ♢¶♢
 |    |    [608:610] <ObjCMethodImplementation>
-|    |    |    [608:608] <Text> = ♢-♢
+|    |    |    [608:608] <Match> = ♢-♢
 |    |    |    [608:608] <Whitespace> = ♢•♢
 |    |    |    [608:608] <Parenthesis>
 |    |    |    |    [608:608] <Match> = ♢(♢
@@ -12279,7 +12279,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [612:613] <CComment> = ♢/*•This•sets•document•properties•to•values•established•in•defaults¶*/♢
 |    |    [613:614] <Newline> = ♢¶♢
 |    |    [614:616] <ObjCMethodImplementation>
-|    |    |    [614:614] <Text> = ♢-♢
+|    |    |    [614:614] <Match> = ♢-♢
 |    |    |    [614:614] <Whitespace> = ♢•♢
 |    |    |    [614:614] <Parenthesis>
 |    |    |    |    [614:614] <Match> = ♢(♢
@@ -12343,7 +12343,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [618:619] <CComment> = ♢/*•We•implement•a•setValue:forDocumentProperty:•to•work•around•NSUndoManager•bug•where•prepareWithInvocationTarget:•fails•to•freeze-dry•invocations•with•"known"•methods•such•as•setValue:forKey:.••¶*/♢
 |    |    [619:620] <Newline> = ♢¶♢
 |    |    [620:627] <ObjCMethodImplementation>
-|    |    |    [620:620] <Text> = ♢-♢
+|    |    |    [620:620] <Match> = ♢-♢
 |    |    |    [620:620] <Whitespace> = ♢•♢
 |    |    |    [620:620] <Parenthesis>
 |    |    |    |    [620:620] <Match> = ♢(♢
@@ -12462,7 +12462,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [627:628] <Newline> = ♢¶♢
 |    |    [628:629] <Newline> = ♢¶♢
 |    |    [629:635] <ObjCMethodImplementation>
-|    |    |    [629:629] <Text> = ♢-♢
+|    |    |    [629:629] <Match> = ♢-♢
 |    |    |    [629:629] <Whitespace> = ♢•♢
 |    |    |    [629:629] <Parenthesis>
 |    |    |    |    [629:629] <Match> = ♢(♢
@@ -12569,7 +12569,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [647:648] <Newline> = ♢¶♢
 |    |    [648:649] <Newline> = ♢¶♢
 |    |    [649:675] <ObjCMethodImplementation>
-|    |    |    [649:649] <Text> = ♢-♢
+|    |    |    [649:649] <Match> = ♢-♢
 |    |    |    [649:649] <Whitespace> = ♢•♢
 |    |    |    [649:649] <Parenthesis>
 |    |    |    |    [649:649] <Match> = ♢(♢
@@ -12965,7 +12965,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [675:676] <Newline> = ♢¶♢
 |    |    [676:677] <Newline> = ♢¶♢
 |    |    [677:690] <ObjCMethodImplementation>
-|    |    |    [677:677] <Text> = ♢-♢
+|    |    |    [677:677] <Match> = ♢-♢
 |    |    |    [677:677] <Whitespace> = ♢•♢
 |    |    |    [677:677] <Parenthesis>
 |    |    |    |    [677:677] <Match> = ♢(♢
@@ -13108,7 +13108,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [692:693] <CComment> = ♢/*•Toggles•read-only•state•of•the•document¶*/♢
 |    |    [693:694] <Newline> = ♢¶♢
 |    |    [694:700] <ObjCMethodImplementation>
-|    |    |    [694:694] <Text> = ♢-♢
+|    |    |    [694:694] <Match> = ♢-♢
 |    |    |    [694:694] <Whitespace> = ♢•♢
 |    |    |    [694:694] <Parenthesis>
 |    |    |    |    [694:694] <Match> = ♢(♢
@@ -13223,7 +13223,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [700:701] <Newline> = ♢¶♢
 |    |    [701:702] <Newline> = ♢¶♢
 |    |    [702:713] <ObjCMethodImplementation>
-|    |    |    [702:702] <Text> = ♢-♢
+|    |    |    [702:702] <Match> = ♢-♢
 |    |    |    [702:702] <Whitespace> = ♢•♢
 |    |    |    [702:702] <Parenthesis>
 |    |    |    |    [702:702] <Match> = ♢(♢
@@ -13385,7 +13385,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [713:714] <Newline> = ♢¶♢
 |    |    [714:715] <Newline> = ♢¶♢
 |    |    [715:717] <ObjCMethodImplementation>
-|    |    |    [715:715] <Text> = ♢-♢
+|    |    |    [715:715] <Match> = ♢-♢
 |    |    |    [715:715] <Whitespace> = ♢•♢
 |    |    |    [715:715] <Parenthesis>
 |    |    |    |    [715:715] <Match> = ♢(♢
@@ -13407,7 +13407,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [717:718] <Newline> = ♢¶♢
 |    |    [718:719] <Newline> = ♢¶♢
 |    |    [719:721] <ObjCMethodImplementation>
-|    |    |    [719:719] <Text> = ♢-♢
+|    |    |    [719:719] <Match> = ♢-♢
 |    |    |    [719:719] <Whitespace> = ♢•♢
 |    |    |    [719:719] <Parenthesis>
 |    |    |    |    [719:719] <Match> = ♢(♢
@@ -13436,7 +13436,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [721:722] <Newline> = ♢¶♢
 |    |    [722:723] <Newline> = ♢¶♢
 |    |    [723:725] <ObjCMethodImplementation>
-|    |    |    [723:723] <Text> = ♢-♢
+|    |    |    [723:723] <Match> = ♢-♢
 |    |    |    [723:723] <Whitespace> = ♢•♢
 |    |    |    [723:723] <Parenthesis>
 |    |    |    |    [723:723] <Match> = ♢(♢
@@ -13474,7 +13474,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [725:726] <Newline> = ♢¶♢
 |    |    [726:727] <Newline> = ♢¶♢
 |    |    [727:731] <ObjCMethodImplementation>
-|    |    |    [727:727] <Text> = ♢-♢
+|    |    |    [727:727] <Match> = ♢-♢
 |    |    |    [727:727] <Whitespace> = ♢•♢
 |    |    |    [727:727] <Parenthesis>
 |    |    |    |    [727:727] <Match> = ♢(♢
@@ -13564,7 +13564,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [733:734] <CComment> = ♢/*•Action•method•for•the•"Append•'.txt'•extension"•button¶*/♢
 |    |    [734:735] <Newline> = ♢¶♢
 |    |    [735:739] <ObjCMethodImplementation>
-|    |    |    [735:735] <Text> = ♢-♢
+|    |    |    [735:735] <Match> = ♢-♢
 |    |    |    [735:735] <Whitespace> = ♢•♢
 |    |    |    [735:735] <Parenthesis>
 |    |    |    |    [735:735] <Match> = ♢(♢
@@ -13660,7 +13660,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [739:740] <Newline> = ♢¶♢
 |    |    [740:741] <Newline> = ♢¶♢
 |    |    [741:743] <ObjCMethodImplementation>
-|    |    |    [741:741] <Text> = ♢-♢
+|    |    |    [741:741] <Match> = ♢-♢
 |    |    |    [741:741] <Whitespace> = ♢•♢
 |    |    |    [741:741] <Parenthesis>
 |    |    |    |    [741:741] <Match> = ♢(♢
@@ -13879,7 +13879,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [763:764] <CComment> = ♢/*•Menu•validation¶*/♢
 |    |    [764:765] <Newline> = ♢¶♢
 |    |    [765:778] <ObjCMethodImplementation>
-|    |    |    [765:765] <Text> = ♢-♢
+|    |    |    [765:765] <Match> = ♢-♢
 |    |    |    [765:765] <Whitespace> = ♢•♢
 |    |    |    [765:765] <Parenthesis>
 |    |    |    |    [765:765] <Match> = ♢(♢
@@ -14144,7 +14144,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [780:780] <CPPComment> = ♢//•For•scripting.•We•already•have•a•-textStorage•method•implemented•above.♢
 |    |    [780:781] <Newline> = ♢¶♢
 |    |    [781:793] <ObjCMethodImplementation>
-|    |    |    [781:781] <Text> = ♢-♢
+|    |    |    [781:781] <Match> = ♢-♢
 |    |    |    [781:781] <Whitespace> = ♢•♢
 |    |    |    [781:781] <Parenthesis>
 |    |    |    |    [781:781] <Match> = ♢(♢
@@ -14342,7 +14342,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [793:794] <Newline> = ♢¶♢
 |    |    [794:795] <Newline> = ♢¶♢
 |    |    [795:802] <ObjCMethodImplementation>
-|    |    |    [795:795] <Text> = ♢-♢
+|    |    |    [795:795] <Match> = ♢-♢
 |    |    |    [795:795] <Whitespace> = ♢•♢
 |    |    |    [795:795] <Parenthesis>
 |    |    |    |    [795:795] <Match> = ♢(♢
@@ -14427,7 +14427,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [802:803] <Newline> = ♢¶♢
 |    |    [803:804] <Newline> = ♢¶♢
 |    |    [804:819] <ObjCMethodImplementation>
-|    |    |    [804:804] <Text> = ♢-♢
+|    |    |    [804:804] <Match> = ♢-♢
 |    |    |    [804:804] <Whitespace> = ♢•♢
 |    |    |    [804:804] <Parenthesis>
 |    |    |    |    [804:804] <Match> = ♢(♢
@@ -14612,7 +14612,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [821:822] <CComment> = ♢/*•Target/action•method•for•saving•as•(actually•"saving•to")•PDF.•Note•that•this•approach•of•omitting•the•path•will•not•work•on•Leopard;•see•TextEdit's•README.rtf¶*/♢
 |    |    [822:823] <Newline> = ♢¶♢
 |    |    [823:825] <ObjCMethodImplementation>
-|    |    |    [823:823] <Text> = ♢-♢
+|    |    |    [823:823] <Match> = ♢-♢
 |    |    |    [823:823] <Whitespace> = ♢•♢
 |    |    |    [823:823] <Parenthesis>
 |    |    |    |    [823:823] <Match> = ♢(♢
@@ -14777,7 +14777,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [842:843] <Newline> = ♢¶♢
 |    |    [843:844] <Newline> = ♢¶♢
 |    |    [844:847] <ObjCMethodImplementation>
-|    |    |    [844:844] <Text> = ♢+♢
+|    |    |    [844:844] <Match> = ♢+♢
 |    |    |    [844:844] <Whitespace> = ♢•♢
 |    |    |    [844:844] <Parenthesis>
 |    |    |    |    [844:844] <Match> = ♢(♢
@@ -14865,7 +14865,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [847:848] <Newline> = ♢¶♢
 |    |    [848:849] <Newline> = ♢¶♢
 |    |    [849:864] <ObjCMethodImplementation>
-|    |    |    [849:849] <Text> = ♢-♢
+|    |    |    [849:849] <Match> = ♢-♢
 |    |    |    [849:849] <Whitespace> = ♢•♢
 |    |    |    [849:849] <Parenthesis>
 |    |    |    |    [849:849] <Match> = ♢(♢
@@ -15086,7 +15086,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [864:865] <Newline> = ♢¶♢
 |    |    [865:866] <Newline> = ♢¶♢
 |    |    [866:873] <ObjCMethodImplementation>
-|    |    |    [866:866] <Text> = ♢-♢
+|    |    |    [866:866] <Match> = ♢-♢
 |    |    |    [866:866] <Whitespace> = ♢•♢
 |    |    |    [866:866] <Parenthesis>
 |    |    |    |    [866:866] <Match> = ♢(♢
@@ -15179,7 +15179,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [873:874] <Newline> = ♢¶♢
 |    |    [874:875] <Newline> = ♢¶♢
 |    |    [875:889] <ObjCMethodImplementation>
-|    |    |    [875:875] <Text> = ♢-♢
+|    |    |    [875:875] <Match> = ♢-♢
 |    |    |    [875:875] <Whitespace> = ♢•♢
 |    |    |    [875:875] <Parenthesis>
 |    |    |    |    [875:875] <Match> = ♢(♢
@@ -15360,7 +15360,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [891:892] <CComment> = ♢/*•Whether•to•keep•the•backup•file¶*/♢
 |    |    [892:893] <Newline> = ♢¶♢
 |    |    [893:895] <ObjCMethodImplementation>
-|    |    |    [893:893] <Text> = ♢-♢
+|    |    |    [893:893] <Match> = ♢-♢
 |    |    |    [893:893] <Whitespace> = ♢•♢
 |    |    |    [893:893] <Parenthesis>
 |    |    |    |    [893:893] <Match> = ♢(♢
@@ -15397,7 +15397,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [897:898] <CComment> = ♢/*•When•a•document•is•changed,•it•ceases•to•be•transient.•¶*/♢
 |    |    [898:899] <Newline> = ♢¶♢
 |    |    [899:902] <ObjCMethodImplementation>
-|    |    |    [899:899] <Text> = ♢-♢
+|    |    |    [899:899] <Match> = ♢-♢
 |    |    |    [899:899] <Whitespace> = ♢•♢
 |    |    |    [899:899] <Parenthesis>
 |    |    |    |    [899:899] <Match> = ♢(♢
@@ -15442,7 +15442,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [904:909] <CComment> = ♢/*•When•we•save,•we•send•a•notification•so•that•views•that•are•currently•coalescing•undo•actions•can•break•that.•This•is•done•for•two•reasons,•one•technical•and•the•other•HI•oriented.•¶¶Firstly,•since•the•dirty•state•tracking•is•based•on•undo,•for•a•coalesced•set•of•changes•that•span•over•a•save•operation,•the•changes•that•occur•between•the•save•and•the•next•time•the•undo•coalescing•stops•will•not•mark•the•document•as•dirty.•Secondly,•allowing•the•user•to•undo•back•to•the•precise•point•of•a•save•is•good•UI.•¶¶In•addition•we•overwrite•this•method•as•a•way•to•tell•that•the•document•has•been•saved•successfully.•If•so,•we•set•the•save•time•parameters•in•the•document.¶*/♢
 |    |    [909:910] <Newline> = ♢¶♢
 |    |    [910:920] <ObjCMethodImplementation>
-|    |    |    [910:910] <Text> = ♢-♢
+|    |    |    [910:910] <Match> = ♢-♢
 |    |    |    [910:910] <Whitespace> = ♢•♢
 |    |    |    [910:910] <Parenthesis>
 |    |    |    |    [910:910] <Match> = ♢(♢
@@ -15645,7 +15645,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [922:923] <CComment> = ♢/*•Since•a•document•into•which•the•user•has•dragged•graphics•should•autosave•as•RTFD,•we•override•this•method•to•return•RTFD,•unless•the•document•was•already•RTFD,•WebArchive,•or•plain•(the•last•one•done•for•optimization,•to•avoid•calling•containsAttachments).¶*/♢
 |    |    [923:924] <Newline> = ♢¶♢
 |    |    [924:930] <ObjCMethodImplementation>
-|    |    |    [924:924] <Text> = ♢-♢
+|    |    |    [924:924] <Match> = ♢-♢
 |    |    |    [924:924] <Whitespace> = ♢•♢
 |    |    |    [924:924] <Parenthesis>
 |    |    |    |    [924:924] <Match> = ♢(♢
@@ -15804,7 +15804,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [933:934] <CComment> = ♢/*•When•the•file•URL•is•set•to•nil,•we•store•away•the•old•URL.•This•happens•when•a•document•is•converted•to•and•from•rich•text.•If•the•document•exists•on•disk,•we•default•to•use•the•same•base•file•when•subsequently•saving•the•document.•¶*/♢
 |    |    [934:935] <Newline> = ♢¶♢
 |    |    [935:942] <ObjCMethodImplementation>
-|    |    |    [935:935] <Text> = ♢-♢
+|    |    |    [935:935] <Match> = ♢-♢
 |    |    |    [935:935] <Whitespace> = ♢•♢
 |    |    |    [935:935] <Parenthesis>
 |    |    |    |    [935:935] <Match> = ♢(♢
@@ -15897,7 +15897,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [942:943] <Newline> = ♢¶♢
 |    |    [943:944] <Newline> = ♢¶♢
 |    |    [944:948] <ObjCMethodImplementation>
-|    |    |    [944:944] <Text> = ♢-♢
+|    |    |    [944:944] <Match> = ♢-♢
 |    |    |    [944:944] <Whitespace> = ♢•♢
 |    |    |    [944:944] <Parenthesis>
 |    |    |    |    [944:944] <Match> = ♢(♢
@@ -15968,7 +15968,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [948:949] <Newline> = ♢¶♢
 |    |    [949:950] <Newline> = ♢¶♢
 |    |    [950:999] <ObjCMethodImplementation>
-|    |    |    [950:950] <Text> = ♢-♢
+|    |    |    [950:950] <Match> = ♢-♢
 |    |    |    [950:950] <Whitespace> = ♢•♢
 |    |    |    [950:950] <Parenthesis>
 |    |    |    |    [950:950] <Match> = ♢(♢
@@ -16594,7 +16594,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [999:1000] <Newline> = ♢¶♢
 |    |    [1000:1001] <Newline> = ♢¶♢
 |    |    [1001:1048] <ObjCMethodImplementation>
-|    |    |    [1001:1001] <Text> = ♢-♢
+|    |    |    [1001:1001] <Match> = ♢-♢
 |    |    |    [1001:1001] <Whitespace> = ♢•♢
 |    |    |    [1001:1001] <Parenthesis>
 |    |    |    |    [1001:1001] <Match> = ♢(♢
@@ -17397,7 +17397,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [1050:1051] <CComment> = ♢/*•For•plain-text•documents,•we•add•our•own•accessory•view•for•selecting•encodings.•The•plain•text•case•does•not•require•a•format•popup.•¶*/♢
 |    |    [1051:1052] <Newline> = ♢¶♢
 |    |    [1052:1054] <ObjCMethodImplementation>
-|    |    |    [1052:1052] <Text> = ♢-♢
+|    |    |    [1052:1052] <Match> = ♢-♢
 |    |    |    [1052:1052] <Whitespace> = ♢•♢
 |    |    |    [1052:1052] <Parenthesis>
 |    |    |    |    [1052:1052] <Match> = ♢(♢
@@ -17426,7 +17426,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [1056:1057] <CComment> = ♢/*•If•the•document•is•a•converted•version•of•a•document•that•existed•on•disk,•set•the•default•directory•to•the•directory•in•which•the•source•file•(converted•file)•resided•at•the•time•the•document•was•converted.•If•the•document•is•plain•text,•we•additionally•add•an•encoding•popup.•¶*/♢
 |    |    [1057:1058] <Newline> = ♢¶♢
 |    |    [1058:1119] <ObjCMethodImplementation>
-|    |    |    [1058:1058] <Text> = ♢-♢
+|    |    |    [1058:1058] <Match> = ♢-♢
 |    |    |    [1058:1058] <Whitespace> = ♢•♢
 |    |    |    [1058:1058] <Parenthesis>
 |    |    |    |    [1058:1058] <Match> = ♢(♢
@@ -18204,7 +18204,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [1121:1122] <CComment> = ♢/*•If•the•document•does•not•exist•on•disk,•but•it•has•been•converted•from•a•document•that•existed•on•disk,•return•the•base•file•name•without•the•path•extension.•Otherwise•return•the•default•("Untitled").•This•is•used•for•the•window•title•and•for•the•default•name•when•saving.•¶*/♢
 |    |    [1122:1123] <Newline> = ♢¶♢
 |    |    [1123:1129] <ObjCMethodImplementation>
-|    |    |    [1123:1123] <Text> = ♢-♢
+|    |    |    [1123:1123] <Match> = ♢-♢
 |    |    |    [1123:1123] <Whitespace> = ♢•♢
 |    |    |    [1123:1123] <Parenthesis>
 |    |    |    |    [1123:1123] <Match> = ♢(♢

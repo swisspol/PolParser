@@ -59,8 +59,8 @@
     [classes addObject:[SourceNodeCStringDoubleQuote class]];
     [classes addObject:[SourceNodeCConditionalOperator class]];
     [classes addObject:[SourceNodeCConditionIf class]];
+    [classes addObject:[SourceNodeCConditionElseIf class]]; //Must be before SourceNodeCConditionElse
     [classes addObject:[SourceNodeCConditionElse class]];
-    [classes addObject:[SourceNodeCConditionElseIf class]];
     [classes addObject:[SourceNodeCFlowBreak class]];
     [classes addObject:[SourceNodeCFlowContinue class]];
     [classes addObject:[SourceNodeCFlowSwitch class]];
@@ -135,30 +135,12 @@ static inline BOOL _IsNodeAtTopLevel(SourceNode* node, NSSet* topLevelClasses) {
     if([node isKindOfClass:[SourceNodeBraces class]]) {
         SourceNode* previousNode = [node findPreviousSiblingIgnoringWhitespaceAndNewline];
         
-        // "if() {}" "for() {}" "switch() {}" "while() {}" "else if() {}"
+        // "if() {}" "else if() {}" "for() {}" "switch() {}" "while() {}"
         if([previousNode isKindOfClass:[SourceNodeParenthesis class]]) {
             previousNode = [previousNode findPreviousSiblingIgnoringWhitespaceAndNewline];
-            if([previousNode isKindOfClass:[SourceNodeCConditionIf class]] || [previousNode isKindOfClass:[SourceNodeCFlowFor class]] || [previousNode isKindOfClass:[SourceNodeCFlowSwitch class]] || [previousNode isKindOfClass:[SourceNodeCFlowWhile class]]) {
-                SourceNode* elseNode = [previousNode isKindOfClass:[SourceNodeCConditionIf class]] ? [previousNode findPreviousSiblingIgnoringWhitespaceAndNewline] : nil;
-                if([elseNode isKindOfClass:[SourceNodeCConditionElse class]] && !elseNode.children) {
-                	SourceNode* newNode = [[SourceNodeCConditionElseIf alloc] initWithSource:elseNode.source range:NSMakeRange(elseNode.range.location, 0)];
-                    [previousNode insertNextSibling:newNode];
-                    [newNode release];
-                    
-                    SourceNode* prefixNode = [[SourceNodeMatch alloc] initWithSource:node.source range:NSMakeRange(elseNode.range.location, previousNode.range.location + previousNode.range.length - elseNode.range.location)];
-                    [newNode insertNextSibling:prefixNode];
-                    [prefixNode release];
-                    
-                    while(elseNode != newNode) {
-                    	SourceNode* siblingNode = elseNode.nextSibling;
-                        [elseNode removeFromParent];
-                        elseNode = siblingNode;
-                    }
-                    
-                    _RearrangeNodesAsChildren(newNode, node);
-                } else {
-                	_RearrangeNodesAsChildren(previousNode, node);
-                }
+            if([previousNode isKindOfClass:[SourceNodeCConditionIf class]] || [previousNode isKindOfClass:[SourceNodeCConditionElseIf class]] || [previousNode isKindOfClass:[SourceNodeCFlowFor class]]
+            	|| [previousNode isKindOfClass:[SourceNodeCFlowSwitch class]] || [previousNode isKindOfClass:[SourceNodeCFlowWhile class]]) {
+               	_RearrangeNodesAsChildren(previousNode, node);
             }
         }
         
@@ -190,35 +172,15 @@ static inline BOOL _IsNodeAtTopLevel(SourceNode* node, NSSet* topLevelClasses) {
                 _RearrangeNodesAsChildren(node, semicolonNode);
         }
         
-    } else if([node isKindOfClass:[SourceNodeCConditionIf class]] || [node isKindOfClass:[SourceNodeCFlowFor class]] || [node isKindOfClass:[SourceNodeCFlowSwitch class]]) {
+    } else if([node isKindOfClass:[SourceNodeCConditionIf class]] || [node isKindOfClass:[SourceNodeCConditionElseIf class]] || [node isKindOfClass:[SourceNodeCFlowFor class]] || [node isKindOfClass:[SourceNodeCFlowSwitch class]]) {
         
-        // "if()" "for()" "switch()" "else if()"
+        // "if()" "else if()" "for()" "switch()"
         SourceNode* nextNode = [node findNextSiblingIgnoringWhitespaceAndNewline];
         if([nextNode isKindOfClass:[SourceNodeParenthesis class]]) {
             SourceNode* bracesNode = [nextNode findNextSiblingOfClass:[SourceNodeBraces class]];
             SourceNode* semicolonNode = [nextNode findNextSiblingOfClass:[SourceNodeSemicolon class]];
-            if(semicolonNode && (!bracesNode || ([node.parent indexOfChild:semicolonNode] < [node.parent indexOfChild:bracesNode]))) {
-                SourceNode* elseNode = [node isKindOfClass:[SourceNodeCConditionIf class]] ? [node findPreviousSiblingIgnoringWhitespaceAndNewline] : nil;
-                if([elseNode isKindOfClass:[SourceNodeCConditionElse class]] && !elseNode.children) {
-                	SourceNode* newNode = [[SourceNodeCConditionElseIf alloc] initWithSource:elseNode.source range:NSMakeRange(elseNode.range.location, 0)];
-                    [node insertNextSibling:newNode];
-                    [newNode release];
-                    
-                    SourceNode* prefixNode = [[SourceNodeMatch alloc] initWithSource:node.source range:NSMakeRange(elseNode.range.location, node.range.location + node.range.length - elseNode.range.location)];
-                    [newNode insertNextSibling:prefixNode];
-                    [prefixNode release];
-                    
-                    while(elseNode != newNode) {
-                    	SourceNode* siblingNode = elseNode.nextSibling;
-                        [elseNode removeFromParent];
-                        elseNode = siblingNode;
-                    }
-                    
-                    _RearrangeNodesAsChildren(newNode, semicolonNode);
-                } else {
-                    _RearrangeNodesAsChildren(node, semicolonNode);
-                }
-            }
+            if(semicolonNode && (!bracesNode || ([node.parent indexOfChild:semicolonNode] < [node.parent indexOfChild:bracesNode])))
+                _RearrangeNodesAsChildren(node, semicolonNode);
         }
         
     } else if([node isKindOfClass:[SourceNodeCFlowCase class]] || [node isKindOfClass:[SourceNodeCFlowDefault class]]) {
@@ -582,6 +544,31 @@ IMPLEMENTATION(TypeOf, @"typeof", true, "(")
 #undef IMPLEMENTATION
 
 @implementation SourceNodeCConditionElseIf
+
++ (NSUInteger) isMatchingPrefix:(const unichar*)string maxLength:(NSUInteger)maxLength { \
+    NSUInteger length = [SourceNodeCConditionElse isMatchingPrefix:string maxLength:maxLength];
+    if(length != NSNotFound) {
+        string += length;
+        maxLength -= length;
+        while(IsWhitespaceOrNewline(*string) && maxLength) {
+            ++length;
+            ++string;
+            --maxLength;
+        }
+        if(maxLength) {
+            NSUInteger nextLength = [SourceNodeCConditionIf isMatchingPrefix:string maxLength:maxLength];
+            if(nextLength != NSNotFound)
+            	return length + nextLength;
+        }
+    }
+    return NSNotFound;
+}
+
+
++ (NSUInteger) isMatchingSuffix:(const unichar*)string maxLength:(NSUInteger)maxLength {
+    return 0;
+}
+
 @end
 
 @implementation SourceNodeCConditionalOperator

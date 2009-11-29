@@ -458,10 +458,25 @@ IMPLEMENTATION(Elseif, "#elseif", "(")
 
 #undef IMPLEMENTATION
 
+/* WARNING: Keep in sync with Obj-C #import */
 #define IMPLEMENTATION(__NAME__, __CHARACTERS__, ...) \
 @implementation SourceNodeCPreprocessor##__NAME__ \
 \
 IS_MATCHING_PREFIX_METHOD_WITH_TRAILING_CHARACTERS(__CHARACTERS__, __VA_ARGS__) \
+\
+- (NSString*) name { \
+	NSUInteger count = sizeof(__CHARACTERS__) - 1; \
+    NSString* name = self.content; \
+    name = [name substringWithRange:NSMakeRange(count, name.length - count)]; \
+    NSRange range = [name rangeOfCharacterFromSet:[[NSCharacterSet whitespaceAndNewlineCharacterSet] invertedSet]]; \
+    if(range.location != NSNotFound) { \
+    	name = [name substringWithRange:NSMakeRange(range.location, name.length - range.location)]; \
+        range = [name rangeOfCharacterFromSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]; \
+        if(range.location != NSNotFound) \
+        	name = [name substringWithRange:NSMakeRange(0, range.location)];\
+    } \
+    return name; \
+} \
 \
 @end
 
@@ -470,7 +485,7 @@ IMPLEMENTATION(Undefine, "#undef", true, NULL)
 IMPLEMENTATION(Pragma, "#pragma", true, "(")
 IMPLEMENTATION(Warning, "#warning", true, "(")
 IMPLEMENTATION(Error, "#error", true, "(")
-IMPLEMENTATION(Include, "#include", false, NULL)
+IMPLEMENTATION(Include, "#include", true, NULL)
 
 #undef IMPLEMENTATION
 

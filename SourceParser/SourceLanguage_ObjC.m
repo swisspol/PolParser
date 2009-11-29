@@ -250,9 +250,24 @@ static SourceNode* _ApplierFunction(SourceNode* node, void* context) {
 
 @end
 
+/* WARNING: Keep in sync with C #include */
 @implementation SourceNodeObjCPreprocessorImport
 
-IS_MATCHING_PREFIX_METHOD_WITH_TRAILING_CHARACTERS("#import", false, NULL)
+IS_MATCHING_PREFIX_METHOD_WITH_TRAILING_CHARACTERS("#import", true, NULL)
+
+- (NSString*) name {
+	NSUInteger count = sizeof("#import") - 1;
+    NSString* name = self.content;
+    name = [name substringWithRange:NSMakeRange(count, name.length - count)];
+    NSRange range = [name rangeOfCharacterFromSet:[[NSCharacterSet whitespaceAndNewlineCharacterSet] invertedSet]];
+    if(range.location != NSNotFound) {
+    	name = [name substringWithRange:NSMakeRange(range.location, name.length - range.location)];
+        range = [name rangeOfCharacterFromSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+        if(range.location != NSNotFound)
+        	name = [name substringWithRange:NSMakeRange(0, range.location)];
+    }
+    return name;
+}
 
 @end
 

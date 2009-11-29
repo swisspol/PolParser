@@ -5556,53 +5556,62 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    [40:41] <Newline> = ♢¶♢
 |    [41:42] <Newline> = ♢¶♢
 |    [42:42] <ObjCPreprocessorImport>
+|    + <name> = ♢<Cocoa/Cocoa.h>♢
 |    |    [42:42] <Match> = ♢#import♢
 |    |    [42:42] <Whitespace> = ♢•♢
 |    |    [42:42] <Text> = ♢<Cocoa/Cocoa.h>♢
 |    [42:43] <Newline> = ♢¶♢
 |    [43:43] <ObjCPreprocessorImport>
+|    + <name> = ♢"EncodingManager.h"♢
 |    |    [43:43] <Match> = ♢#import♢
 |    |    [43:43] <Whitespace> = ♢•♢
 |    |    [43:43] <CStringDoubleQuote> = ♢"EncodingManager.h"♢
 |    |    + <cleaned> = ♢EncodingManager.h♢
 |    [43:44] <Newline> = ♢¶♢
 |    [44:44] <ObjCPreprocessorImport>
+|    + <name> = ♢"Document.h"♢
 |    |    [44:44] <Match> = ♢#import♢
 |    |    [44:44] <Whitespace> = ♢•♢
 |    |    [44:44] <CStringDoubleQuote> = ♢"Document.h"♢
 |    |    + <cleaned> = ♢Document.h♢
 |    [44:45] <Newline> = ♢¶♢
 |    [45:45] <ObjCPreprocessorImport>
+|    + <name> = ♢"DocumentController.h"♢
 |    |    [45:45] <Match> = ♢#import♢
 |    |    [45:45] <Whitespace> = ♢•♢
 |    |    [45:45] <CStringDoubleQuote> = ♢"DocumentController.h"♢
 |    |    + <cleaned> = ♢DocumentController.h♢
 |    [45:46] <Newline> = ♢¶♢
 |    [46:46] <ObjCPreprocessorImport>
+|    + <name> = ♢"DocumentWindowController.h"♢
 |    |    [46:46] <Match> = ♢#import♢
 |    |    [46:46] <Whitespace> = ♢•♢
 |    |    [46:46] <CStringDoubleQuote> = ♢"DocumentWindowController.h"♢
 |    |    + <cleaned> = ♢DocumentWindowController.h♢
 |    [46:47] <Newline> = ♢¶♢
 |    [47:47] <ObjCPreprocessorImport>
+|    + <name> = ♢"PrintPanelAccessoryController.h"♢
 |    |    [47:47] <Match> = ♢#import♢
 |    |    [47:47] <Whitespace> = ♢•♢
 |    |    [47:47] <CStringDoubleQuote> = ♢"PrintPanelAccessoryController.h"♢
 |    |    + <cleaned> = ♢PrintPanelAccessoryController.h♢
 |    [47:48] <Newline> = ♢¶♢
 |    [48:48] <ObjCPreprocessorImport>
+|    + <name> = ♢"TextEditDefaultsKeys.h"♢
 |    |    [48:48] <Match> = ♢#import♢
 |    |    [48:48] <Whitespace> = ♢•♢
 |    |    [48:48] <CStringDoubleQuote> = ♢"TextEditDefaultsKeys.h"♢
 |    |    + <cleaned> = ♢TextEditDefaultsKeys.h♢
 |    [48:49] <Newline> = ♢¶♢
 |    [49:49] <ObjCPreprocessorImport>
+|    + <name> = ♢"TextEditErrors.h"♢
 |    |    [49:49] <Match> = ♢#import♢
 |    |    [49:49] <Whitespace> = ♢•♢
 |    |    [49:49] <CStringDoubleQuote> = ♢"TextEditErrors.h"♢
 |    |    + <cleaned> = ♢TextEditErrors.h♢
 |    [49:50] <Newline> = ♢¶♢
 |    [50:50] <ObjCPreprocessorImport>
+|    + <name> = ♢"TextEditMisc.h"♢
 |    |    [50:50] <Match> = ♢#import♢
 |    |    [50:50] <Whitespace> = ♢•♢
 |    |    [50:50] <CStringDoubleQuote> = ♢"TextEditMisc.h"♢
@@ -5610,6 +5619,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    [50:51] <Newline> = ♢¶♢
 |    [51:52] <Newline> = ♢¶♢
 |    [52:52] <CPreprocessorDefine>
+|    + <name> = ♢oldEditPaddingCompensation♢
 |    |    [52:52] <Match> = ♢#define♢
 |    |    [52:52] <Whitespace> = ♢•♢
 |    |    [52:52] <Text> = ♢oldEditPaddingCompensation♢
@@ -13788,6 +13798,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [745:745] <Whitespace> = ♢•••♢
 |    |    [745:746] <Newline> = ♢¶♢
 |    |    [746:746] <CPreprocessorDefine>
+|    |    + <name> = ♢TagForFirst♢
 |    |    |    [746:746] <Match> = ♢#define♢
 |    |    |    [746:746] <Whitespace> = ♢•♢
 |    |    |    [746:746] <Text> = ♢TagForFirst♢
@@ -13795,6 +13806,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    [746:746] <Text> = ♢42♢
 |    |    [746:747] <Newline> = ♢¶♢
 |    |    [747:747] <CPreprocessorDefine>
+|    |    + <name> = ♢TagForSecond♢
 |    |    |    [747:747] <Match> = ♢#define♢
 |    |    |    [747:747] <Whitespace> = ♢•♢
 |    |    |    [747:747] <Text> = ♢TagForSecond♢

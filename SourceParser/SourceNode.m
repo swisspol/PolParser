@@ -18,9 +18,19 @@
 
 #import "SourceParser_Internal.h"
 
+static IMP _nameMethod = NULL;
+static IMP _cleanContentMethod = NULL;
+
 @implementation SourceNode
 
 @synthesize source=_source, range=_range, parent=_parent, children=_children, revision=_revision, jsObject=_jsObject;
+
++ (void) initialize {
+	if(self == [SourceNode class]) {
+    	_nameMethod = [SourceNode instanceMethodForSelector:@selector(name)];
+        _cleanContentMethod = [SourceNode instanceMethodForSelector:@selector(cleanContent)];
+    }
+}
 
 + (id) allocWithZone:(NSZone*)zone
 {
@@ -169,6 +179,18 @@ static void _MergeChildrenContent(SourceNode* node, NSMutableString* string) {
     }
     
     return [_source substringWithRange:_range];
+}
+
+- (NSString*) cleanContent {
+    return self.content;
+}
+
+- (NSString*) name {
+	return [[self class] name];
+}
+
+- (NSDictionary*) attributes {
+    return nil;
 }
 
 - (void) addChild:(SourceNode*)child {
@@ -407,6 +429,18 @@ static void _AppendNodeFullDescription(SourceNode* node, NSMutableString* string
     else
         [string appendFormat:@"%@[%i:%i] <%@>\n", prefix, node.lines.location + 1, node.lines.location + node.lines.length, [[node class] name]];
     
+    if([node methodForSelector:@selector(name)] != _nameMethod)
+    	[string appendFormat:@"%@+ <name> = ♢%@♢\n", prefix, _FormatString(node.name)]; //0x2662
+    
+    if([node methodForSelector:@selector(cleanContent)] != _cleanContentMethod)
+    	[string appendFormat:@"%@+ <cleaned> = ♢%@♢\n", prefix, _FormatString(node.cleanContent)]; //0x2662
+    
+    NSDictionary* attributes = node.attributes;
+    if(attributes) {
+    	for(NSString* name in attributes)
+    		[string appendFormat:@"%@+ ♢%@♢ = ♢%@♢\n", prefix, name, _FormatString([attributes objectForKey:name])]; //0x2662
+    }
+    
     if(node.children) {
         prefix = [prefix stringByAppendingString:@"|    "];
         for(node in node.children)
@@ -417,7 +451,7 @@ static void _AppendNodeFullDescription(SourceNode* node, NSMutableString* string
 - (NSString*) detailedDescription {
     NSMutableString* string = [NSMutableString string];
     _AppendNodeFullDescription(self, string, @"");
-    [string replaceCharactersInRange:NSMakeRange(string.length - 1, 1) withString:@""];
+    [string deleteCharactersInRange:NSMakeRange(string.length - 1, 1)];
     return string;
 }
 

@@ -97,7 +97,7 @@ static JSObjectRef _CallAsConstructorCallback(JSContextRef ctx, JSObjectRef cons
         	return object;
         }
     }
-    return JSContextGetGlobalObject(ctx); //FIXME: Returning NULL or JSValueMakeUndefined() makes JavaScriptCore crash
+    return JSContextGetGlobalObject(ctx); //FIXME: Returning anything but a JSObjectRef makes JavaScriptCore crash
 }
 
 static JSValueRef _GetPropertyName(JSContextRef ctx, JSObjectRef object, JSStringRef propertyName, JSValueRef* exception) {
@@ -116,6 +116,14 @@ static JSValueRef _GetPropertyType(JSContextRef ctx, JSObjectRef object, JSStrin
 static JSValueRef _GetPropertyContent(JSContextRef ctx, JSObjectRef object, JSStringRef propertyName, JSValueRef* exception) {
 	SourceNode* node = JSObjectGetPrivate(object);
     JSStringRef string = JSStringCreateWithCFString((CFStringRef)node.content);
+    JSValueRef value = JSValueMakeString(ctx, string);
+    JSStringRelease(string);
+    return value;
+}
+
+static JSValueRef _GetPropertyCleanContent(JSContextRef ctx, JSObjectRef object, JSStringRef propertyName, JSValueRef* exception) {
+	SourceNode* node = JSObjectGetPrivate(object);
+    JSStringRef string = JSStringCreateWithCFString((CFStringRef)node.cleanContent);
     JSValueRef value = JSValueMakeString(ctx, string);
     JSStringRelease(string);
     return value;
@@ -163,6 +171,7 @@ static JSStaticValue _staticValues[] = {
 	{"name", _GetPropertyName, NULL, kJSPropertyAttributeReadOnly | kJSPropertyAttributeDontDelete | kJSPropertyAttributeDontEnum},
     {"type", _GetPropertyType, NULL, kJSPropertyAttributeReadOnly | kJSPropertyAttributeDontDelete | kJSPropertyAttributeDontEnum},
     {"content", _GetPropertyContent, NULL, kJSPropertyAttributeReadOnly | kJSPropertyAttributeDontDelete | kJSPropertyAttributeDontEnum},
+    {"cleanContent", _GetPropertyCleanContent, NULL, kJSPropertyAttributeReadOnly | kJSPropertyAttributeDontDelete | kJSPropertyAttributeDontEnum},
     {"parent", _GetPropertyParent, NULL, kJSPropertyAttributeReadOnly | kJSPropertyAttributeDontDelete | kJSPropertyAttributeDontEnum},
     {"childrenCount", _GetPropertyChildrenCount, NULL, kJSPropertyAttributeReadOnly | kJSPropertyAttributeDontDelete | kJSPropertyAttributeDontEnum},
     {"firstChild", _GetPropertyFirstChild, NULL, kJSPropertyAttributeReadOnly | kJSPropertyAttributeDontDelete | kJSPropertyAttributeDontEnum},

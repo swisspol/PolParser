@@ -50,6 +50,7 @@ static NSMutableSet* _languageCache = nil;
         [_languageCache addObject:[[[SourceLanguageCPP alloc] init] autorelease]];
         [_languageCache addObject:[[[SourceLanguageObjC alloc] init] autorelease]];
         [_languageCache addObject:[[[SourceLanguageObjCPP alloc] init] autorelease]];
+        [_languageCache addObject:[[[SourceLanguageXML alloc] init] autorelease]];
     }
     
     [super initialize];

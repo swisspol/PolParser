@@ -41,6 +41,9 @@
 		E21AAC4310C0E13A00471B14 /* SampleSource in CopyFiles */ = {isa = PBXBuildFile; fileRef = E21AABFF10C0DC5000471B14 /* SampleSource */; };
 		E21AADB210C1136A00471B14 /* JavaScriptBindings.m in Sources */ = {isa = PBXBuildFile; fileRef = E21AADB110C1136A00471B14 /* JavaScriptBindings.m */; };
 		E21AADB310C1136A00471B14 /* JavaScriptBindings.m in Sources */ = {isa = PBXBuildFile; fileRef = E21AADB110C1136A00471B14 /* JavaScriptBindings.m */; };
+		E21AAE3110C2397700471B14 /* SourceLanguage_XML.m in Sources */ = {isa = PBXBuildFile; fileRef = E21AAE3010C2397700471B14 /* SourceLanguage_XML.m */; };
+		E21AAE3210C2397700471B14 /* SourceLanguage_XML.m in Sources */ = {isa = PBXBuildFile; fileRef = E21AAE3010C2397700471B14 /* SourceLanguage_XML.m */; };
+		E21AAE3310C2397700471B14 /* SourceLanguage_XML.m in Sources */ = {isa = PBXBuildFile; fileRef = E21AAE3010C2397700471B14 /* SourceLanguage_XML.m */; };
 		E2B6368D10BA46C800BF43E7 /* SourceLanguage_C.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B6368310BA46C800BF43E7 /* SourceLanguage_C.m */; };
 		E2B6368E10BA46C800BF43E7 /* SourceLanguage_CPP.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B6368510BA46C800BF43E7 /* SourceLanguage_CPP.m */; };
 		E2B6368F10BA46C800BF43E7 /* SourceLanguage_ObjC.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B6368710BA46C800BF43E7 /* SourceLanguage_ObjC.m */; };
@@ -113,6 +116,8 @@
 		E21AAB7B10C0D45000471B14 /* SourceParser */ = {isa = PBXFileReference; lastKnownFileType = folder; path = SourceParser; sourceTree = "<group>"; };
 		E21AABFF10C0DC5000471B14 /* SampleSource */ = {isa = PBXFileReference; lastKnownFileType = folder; path = SampleSource; sourceTree = "<group>"; };
 		E21AADB110C1136A00471B14 /* JavaScriptBindings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JavaScriptBindings.m; sourceTree = "<group>"; };
+		E21AAE2F10C2397700471B14 /* SourceLanguage_XML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SourceLanguage_XML.h; sourceTree = "<group>"; };
+		E21AAE3010C2397700471B14 /* SourceLanguage_XML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SourceLanguage_XML.m; sourceTree = "<group>"; };
 		E2B6368210BA46C800BF43E7 /* SourceLanguage_C.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SourceLanguage_C.h; sourceTree = "<group>"; };
 		E2B6368310BA46C800BF43E7 /* SourceLanguage_C.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SourceLanguage_C.m; sourceTree = "<group>"; };
 		E2B6368410BA46C800BF43E7 /* SourceLanguage_CPP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SourceLanguage_CPP.h; sourceTree = "<group>"; };
@@ -234,6 +239,8 @@
 				E2B6368710BA46C800BF43E7 /* SourceLanguage_ObjC.m */,
 				E213417D10BCF9B800023F41 /* SourceLanguage_ObjCPP.h */,
 				E213417E10BCF9B800023F41 /* SourceLanguage_ObjCPP.m */,
+				E21AAE2F10C2397700471B14 /* SourceLanguage_XML.h */,
+				E21AAE3010C2397700471B14 /* SourceLanguage_XML.m */,
 			);
 			path = SourceParser;
 			sourceTree = "<group>";
@@ -360,6 +367,7 @@
 				E2E5BC0F10BB986B004E3745 /* SourceLanguage_Base.m in Sources */,
 				E213417F10BCF9B800023F41 /* SourceLanguage_ObjCPP.m in Sources */,
 				E21AADB310C1136A00471B14 /* JavaScriptBindings.m in Sources */,
+				E21AAE3210C2397700471B14 /* SourceLanguage_XML.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -376,6 +384,7 @@
 				E213426710BD054800023F41 /* SourceLanguage_ObjCPP.m in Sources */,
 				E213427110BD056000023F41 /* main.m in Sources */,
 				E21AADB210C1136A00471B14 /* JavaScriptBindings.m in Sources */,
+				E21AAE3110C2397700471B14 /* SourceLanguage_XML.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -392,6 +401,7 @@
 				E2B6383910BA55AB00BF43E7 /* MyDocument.m in Sources */,
 				E2E5BC0E10BB986B004E3745 /* SourceLanguage_Base.m in Sources */,
 				E213418010BCF9B800023F41 /* SourceLanguage_ObjCPP.m in Sources */,
+				E21AAE3310C2397700471B14 /* SourceLanguage_XML.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -463,7 +473,10 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx10.5;
-				WARNING_CFLAGS = "-Wall";
+				WARNING_CFLAGS = (
+					"-Wall",
+					"-Winline",
+				);
 			};
 			name = Debug;
 		};
@@ -476,7 +489,10 @@
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_MODEL_TUNING = G5;
 				SDKROOT = macosx10.5;
-				WARNING_CFLAGS = "-Wall";
+				WARNING_CFLAGS = (
+					"-Wall",
+					"-Winline",
+				);
 			};
 			name = Release;
 		};

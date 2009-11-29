@@ -16,11 +16,36 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#import "SourceNode.h"
 #import "SourceLanguage.h"
-#import "SourceLanguage_Base.h"
-#import "SourceLanguage_C.h"
-#import "SourceLanguage_CPP.h"
-#import "SourceLanguage_ObjC.h"
-#import "SourceLanguage_ObjCPP.h"
-#import "SourceLanguage_XML.h"
+
+@interface SourceNodeXMLTag : SourceNode {
+@private
+	NSUInteger _type;
+    NSString* _name;
+    NSDictionary* _attributes;
+}
+@end
+
+@interface SourceNodeXMLDeclaration : SourceNode {
+@private
+	NSDictionary* _attributes;
+}
+@end
+
+@interface SourceNodeXMLProcessingInstructions : SourceNode
+@end
+
+@interface SourceNodeXMLDOCTYPE : SourceNode
+@end
+
+@interface SourceNodeXMLComment : SourceNode //Leaf
+@end
+
+@interface SourceNodeXMLCDATA : SourceNode //Leaf
+@end
+
+@interface SourceNodeXMLEntity : SourceNode //Leaf
+@end
+
+@interface SourceNodeXMLElement : SourceNode
+@end

@@ -5549,8 +5549,10 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 
 [1:1142] <Root>
 |    [1:8] <CComment> = ♢/*¶••••••••Document.m¶••••••••Copyright•(c)•1995-2009•by•Apple•Computer,•Inc.,•all•rights•reserved.¶••••••••Author:•Ali•Ozer¶¶••••••••Document•object•for•TextEdit.•¶→As•of•TextEdit•1.5,•a•subclass•of•NSDocument.¶*/♢
+|    + <cleaned> = ♢¶••••••••Document.m¶••••••••Copyright•(c)•1995-2009•by•Apple•Computer,•Inc.,•all•rights•reserved.¶••••••••Author:•Ali•Ozer¶¶••••••••Document•object•for•TextEdit.•¶→As•of•TextEdit•1.5,•a•subclass•of•NSDocument.¶♢
 |    [8:9] <Newline> = ♢¶♢
 |    [9:40] <CComment> = ♢/*¶•IMPORTANT:••This•Apple•software•is•supplied•to•you•by•Apple•Computer,•Inc.•("Apple")•in¶•consideration•of•your•agreement•to•the•following•terms,•and•your•use,•installation,•¶•modification•or•redistribution•of•this•Apple•software•constitutes•acceptance•of•these•¶•terms.••If•you•do•not•agree•with•these•terms,•please•do•not•use,•install,•modify•or•¶•redistribute•this•Apple•software.¶•¶•In•consideration•of•your•agreement•to•abide•by•the•following•terms,•and•subject•to•these•¶•terms,•Apple•grants•you•a•personal,•non-exclusive•license,•under•Apple's•copyrights•in•¶•this•original•Apple•software•(the•"Apple•Software"),•to•use,•reproduce,•modify•and•¶•redistribute•the•Apple•Software,•with•or•without•modifications,•in•source•and/or•binary•¶•forms;•provided•that•if•you•redistribute•the•Apple•Software•in•its•entirety•and•without•¶•modifications,•you•must•retain•this•notice•and•the•following•text•and•disclaimers•in•all•¶•such•redistributions•of•the•Apple•Software.••Neither•the•name,•trademarks,•service•marks•¶•or•logos•of•Apple•Computer,•Inc.•may•be•used•to•endorse•or•promote•products•derived•from•¶•the•Apple•Software•without•specific•prior•written•permission•from•Apple.•Except•as•expressly¶•stated•in•this•notice,•no•other•rights•or•licenses,•express•or•implied,•are•granted•by•Apple¶•herein,•including•but•not•limited•to•any•patent•rights•that•may•be•infringed•by•your•¶•derivative•works•or•by•other•works•in•which•the•Apple•Software•may•be•incorporated.¶•¶•The•Apple•Software•is•provided•by•Apple•on•an•"AS•IS"•basis.••APPLE•MAKES•NO•WARRANTIES,•¶•EXPRESS•OR•IMPLIED,•INCLUDING•WITHOUT•LIMITATION•THE•IMPLIED•WARRANTIES•OF•NON-INFRINGEMENT,•¶•MERCHANTABILITY•AND•FITNESS•FOR•A•PARTICULAR•PURPOSE,•REGARDING•THE•APPLE•SOFTWARE•OR•ITS•¶•USE•AND•OPERATION•ALONE•OR•IN•COMBINATION•WITH•YOUR•PRODUCTS.¶•¶•IN•NO•EVENT•SHALL•APPLE•BE•LIABLE•FOR•ANY•SPECIAL,•INDIRECT,•INCIDENTAL•OR•CONSEQUENTIAL•¶•DAMAGES•(INCLUDING,•BUT•NOT•LIMITED•TO,•PROCUREMENT•OF•SUBSTITUTE•GOODS•OR•SERVICES;•LOSS•¶•OF•USE,•DATA,•OR•PROFITS;•OR•BUSINESS•INTERRUPTION)•ARISING•IN•ANY•WAY•OUT•OF•THE•USE,•¶•REPRODUCTION,•MODIFICATION•AND/OR•DISTRIBUTION•OF•THE•APPLE•SOFTWARE,•HOWEVER•CAUSED•AND•¶•WHETHER•UNDER•THEORY•OF•CONTRACT,•TORT•(INCLUDING•NEGLIGENCE),•STRICT•LIABILITY•OR•¶•OTHERWISE,•EVEN•IF•APPLE•HAS•BEEN•ADVISED•OF•THE•POSSIBILITY•OF•SUCH•DAMAGE.¶*/♢
+|    + <cleaned> = ♢¶•IMPORTANT:••This•Apple•software•is•supplied•to•you•by•Apple•Computer,•Inc.•("Apple")•in¶•consideration•of•your•agreement•to•the•following•terms,•and•your•use,•installation,•¶•modification•or•redistribution•of•this•Apple•software•constitutes•acceptance•of•these•¶•terms.••If•you•do•not•agree•with•these•terms,•please•do•not•use,•install,•modify•or•¶•redistribute•this•Apple•software.¶•¶•In•consideration•of•your•agreement•to•abide•by•the•following•terms,•and•subject•to•these•¶•terms,•Apple•grants•you•a•personal,•non-exclusive•license,•under•Apple's•copyrights•in•¶•this•original•Apple•software•(the•"Apple•Software"),•to•use,•reproduce,•modify•and•¶•redistribute•the•Apple•Software,•with•or•without•modifications,•in•source•and/or•binary•¶•forms;•provided•that•if•you•redistribute•the•Apple•Software•in•its•entirety•and•without•¶•modifications,•you•must•retain•this•notice•and•the•following•text•and•disclaimers•in•all•¶•such•redistributions•of•the•Apple•Software.••Neither•the•name,•trademarks,•service•marks•¶•or•logos•of•Apple•Computer,•Inc.•may•be•used•to•endorse•or•promote•products•derived•from•¶•the•Apple•Software•without•specific•prior•written•permission•from•Apple.•Except•as•expressly¶•stated•in•this•notice,•no•other•rights•or•licenses,•express•or•implied,•are•granted•by•Apple¶•herein,•including•but•not•limited•to•any•patent•rights•that•may•be•infringed•by•your•¶•derivative•works•or•by•other•works•in•which•the•Apple•Software•may•be•incorporated.¶•¶•The•Apple•Software•is•provided•by•Apple•on•an•"AS•IS"•basis.••APPLE•MAKES•NO•WARRANTIES,•¶•EXPRESS•OR•IMPLIED,•INCLUDING•WITHOUT•LIMITATION•THE•IMPLIED•WARRANTIES•OF•NON-INFRINGEMENT,•¶•MERCHANTABILITY•AND•FITNESS•FOR•A•PARTICULAR•PURPOSE,•REGARDING•THE•APPLE•SOFTWARE•OR•ITS•¶•USE•AND•OPERATION•ALONE•OR•IN•COMBINATION•WITH•YOUR•PRODUCTS.¶•¶•IN•NO•EVENT•SHALL•APPLE•BE•LIABLE•FOR•ANY•SPECIAL,•INDIRECT,•INCIDENTAL•OR•CONSEQUENTIAL•¶•DAMAGES•(INCLUDING,•BUT•NOT•LIMITED•TO,•PROCUREMENT•OF•SUBSTITUTE•GOODS•OR•SERVICES;•LOSS•¶•OF•USE,•DATA,•OR•PROFITS;•OR•BUSINESS•INTERRUPTION)•ARISING•IN•ANY•WAY•OUT•OF•THE•USE,•¶•REPRODUCTION,•MODIFICATION•AND/OR•DISTRIBUTION•OF•THE•APPLE•SOFTWARE,•HOWEVER•CAUSED•AND•¶•WHETHER•UNDER•THEORY•OF•CONTRACT,•TORT•(INCLUDING•NEGLIGENCE),•STRICT•LIABILITY•OR•¶•OTHERWISE,•EVEN•IF•APPLE•HAS•BEEN•ADVISED•OF•THE•POSSIBILITY•OF•SUCH•DAMAGE.¶♢
 |    [40:41] <Newline> = ♢¶♢
 |    [41:42] <Newline> = ♢¶♢
 |    [42:42] <ObjCPreprocessorImport>
@@ -5562,41 +5564,49 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [43:43] <Match> = ♢#import♢
 |    |    [43:43] <Whitespace> = ♢•♢
 |    |    [43:43] <CStringDoubleQuote> = ♢"EncodingManager.h"♢
+|    |    + <cleaned> = ♢EncodingManager.h♢
 |    [43:44] <Newline> = ♢¶♢
 |    [44:44] <ObjCPreprocessorImport>
 |    |    [44:44] <Match> = ♢#import♢
 |    |    [44:44] <Whitespace> = ♢•♢
 |    |    [44:44] <CStringDoubleQuote> = ♢"Document.h"♢
+|    |    + <cleaned> = ♢Document.h♢
 |    [44:45] <Newline> = ♢¶♢
 |    [45:45] <ObjCPreprocessorImport>
 |    |    [45:45] <Match> = ♢#import♢
 |    |    [45:45] <Whitespace> = ♢•♢
 |    |    [45:45] <CStringDoubleQuote> = ♢"DocumentController.h"♢
+|    |    + <cleaned> = ♢DocumentController.h♢
 |    [45:46] <Newline> = ♢¶♢
 |    [46:46] <ObjCPreprocessorImport>
 |    |    [46:46] <Match> = ♢#import♢
 |    |    [46:46] <Whitespace> = ♢•♢
 |    |    [46:46] <CStringDoubleQuote> = ♢"DocumentWindowController.h"♢
+|    |    + <cleaned> = ♢DocumentWindowController.h♢
 |    [46:47] <Newline> = ♢¶♢
 |    [47:47] <ObjCPreprocessorImport>
 |    |    [47:47] <Match> = ♢#import♢
 |    |    [47:47] <Whitespace> = ♢•♢
 |    |    [47:47] <CStringDoubleQuote> = ♢"PrintPanelAccessoryController.h"♢
+|    |    + <cleaned> = ♢PrintPanelAccessoryController.h♢
 |    [47:48] <Newline> = ♢¶♢
 |    [48:48] <ObjCPreprocessorImport>
 |    |    [48:48] <Match> = ♢#import♢
 |    |    [48:48] <Whitespace> = ♢•♢
 |    |    [48:48] <CStringDoubleQuote> = ♢"TextEditDefaultsKeys.h"♢
+|    |    + <cleaned> = ♢TextEditDefaultsKeys.h♢
 |    [48:49] <Newline> = ♢¶♢
 |    [49:49] <ObjCPreprocessorImport>
 |    |    [49:49] <Match> = ♢#import♢
 |    |    [49:49] <Whitespace> = ♢•♢
 |    |    [49:49] <CStringDoubleQuote> = ♢"TextEditErrors.h"♢
+|    |    + <cleaned> = ♢TextEditErrors.h♢
 |    [49:50] <Newline> = ♢¶♢
 |    [50:50] <ObjCPreprocessorImport>
 |    |    [50:50] <Match> = ♢#import♢
 |    |    [50:50] <Whitespace> = ♢•♢
 |    |    [50:50] <CStringDoubleQuote> = ♢"TextEditMisc.h"♢
+|    |    + <cleaned> = ♢TextEditMisc.h♢
 |    [50:51] <Newline> = ♢¶♢
 |    [51:52] <Newline> = ♢¶♢
 |    [52:52] <CPreprocessorDefine>
@@ -5615,6 +5625,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    [54:54] <Text> = ♢=♢
 |    [54:54] <Whitespace> = ♢•♢
 |    [54:54] <ObjCString> = ♢@"com.apple.traditional-mac-plain-text"♢
+|    + <cleaned> = ♢com.apple.traditional-mac-plain-text♢
 |    [54:54] <Semicolon> = ♢;♢
 |    [54:55] <Newline> = ♢¶♢
 |    [55:55] <Text> = ♢NSString♢
@@ -5625,6 +5636,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    [55:55] <Text> = ♢=♢
 |    [55:55] <Whitespace> = ♢•♢
 |    [55:55] <ObjCString> = ♢@"com.microsoft.word.doc"♢
+|    + <cleaned> = ♢com.microsoft.word.doc♢
 |    [55:55] <Semicolon> = ♢;♢
 |    [55:56] <Newline> = ♢¶♢
 |    [56:56] <Text> = ♢NSString♢
@@ -5635,6 +5647,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    [56:56] <Text> = ♢=♢
 |    [56:56] <Whitespace> = ♢•♢
 |    [56:56] <ObjCString> = ♢@"org.openxmlformats.wordprocessingml.document"♢
+|    + <cleaned> = ♢org.openxmlformats.wordprocessingml.document♢
 |    [56:56] <Semicolon> = ♢;♢
 |    [56:57] <Newline> = ♢¶♢
 |    [57:57] <Text> = ♢NSString♢
@@ -5645,6 +5658,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    [57:57] <Text> = ♢=♢
 |    [57:57] <Whitespace> = ♢•♢
 |    [57:57] <ObjCString> = ♢@"com.microsoft.word.wordml"♢
+|    + <cleaned> = ♢com.microsoft.word.wordml♢
 |    [57:57] <Semicolon> = ♢;♢
 |    [57:58] <Newline> = ♢¶♢
 |    [58:58] <Text> = ♢NSString♢
@@ -5655,6 +5669,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    [58:58] <Text> = ♢=♢
 |    [58:58] <Whitespace> = ♢•♢
 |    [58:58] <ObjCString> = ♢@"org.oasis-open.opendocument.text"♢
+|    + <cleaned> = ♢org.oasis-open.opendocument.text♢
 |    [58:58] <Semicolon> = ♢;♢
 |    [58:59] <Newline> = ♢¶♢
 |    [59:60] <Newline> = ♢¶♢
@@ -5893,6 +5908,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [85:86] <Newline> = ♢¶♢
 |    |    [86:87] <Newline> = ♢¶♢
 |    |    [87:88] <CComment> = ♢/*•Return•an•NSDictionary•which•maps•Cocoa•text•system•document•identifiers•(as•declared•in•AppKit/NSAttributedString.h)•to•document•types•declared•in•TextEdit's•Info.plist.¶*/♢
+|    |    + <cleaned> = ♢•Return•an•NSDictionary•which•maps•Cocoa•text•system•document•identifiers•(as•declared•in•AppKit/NSAttributedString.h)•to•document•types•declared•in•TextEdit's•Info.plist.¶♢
 |    |    [88:89] <Newline> = ♢¶♢
 |    |    [89:106] <ObjCMethodImplementation>
 |    |    |    [89:89] <Match> = ♢-♢
@@ -6053,6 +6069,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [106:107] <Newline> = ♢¶♢
 |    |    [107:108] <Newline> = ♢¶♢
 |    |    [108:109] <CComment> = ♢/*•This•method•is•called•by•the•document•controller.•The•message•is•passed•on•after•information•about•the•selected•encoding•(from•our•controller•subclass)•and•preference•regarding•HTML•and•RTF•formatting•has•been•added.•-lastSelectedEncodingForURL:•returns•the•encoding•specified•in•the•Open•panel,•or•the•default•encoding•if•the•document•was•opened•without•an•open•panel.¶*/♢
+|    |    + <cleaned> = ♢•This•method•is•called•by•the•document•controller.•The•message•is•passed•on•after•information•about•the•selected•encoding•(from•our•controller•subclass)•and•preference•regarding•HTML•and•RTF•formatting•has•been•added.•-lastSelectedEncodingForURL:•returns•the•encoding•specified•in•the•Open•panel,•or•the•default•encoding•if•the•document•was•opened•without•an•open•panel.¶♢
 |    |    [109:110] <Newline> = ♢¶♢
 |    |    [110:113] <ObjCMethodImplementation>
 |    |    |    [110:110] <Match> = ♢-♢
@@ -6548,6 +6565,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    [137:137] <Text> = ♢setString♢
 |    |    |    |    |    [137:137] <Colon> = ♢:♢
 |    |    |    |    |    [137:137] <ObjCString> = ♢@""♢
+|    |    |    |    |    + <cleaned> = ♢♢
 |    |    |    |    |    [137:137] <Match> = ♢]♢
 |    |    |    |    [137:137] <Semicolon> = ♢;♢
 |    |    |    |    [137:138] <Newline> = ♢¶♢
@@ -6922,6 +6940,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    |    [168:168] <Text> = ♢setString♢
 |    |    |    |    |    |    |    |    |    [168:168] <Colon> = ♢:♢
 |    |    |    |    |    |    |    |    |    [168:168] <ObjCString> = ♢@""♢
+|    |    |    |    |    |    |    |    |    + <cleaned> = ♢♢
 |    |    |    |    |    |    |    |    |    [168:168] <Match> = ♢]♢
 |    |    |    |    |    |    |    |    [168:168] <Semicolon> = ♢;♢
 |    |    |    |    |    |    |    |    [168:169] <Newline> = ♢¶♢
@@ -7305,6 +7324,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    [196:197] <Newline> = ♢¶♢
 |    |    |    |    [197:197] <Indenting> = ♢••••♢
 |    |    |    |    [197:197] <CComment> = ♢/*•If•the•document•has•a•stored•value•for•view•mode,•use•it.•Otherwise•wrap•to•window.•*/♢
+|    |    |    |    + <cleaned> = ♢•If•the•document•has•a•stored•value•for•view•mode,•use•it.•Otherwise•wrap•to•window.•♢
 |    |    |    |    [197:198] <Newline> = ♢¶♢
 |    |    |    |    [198:198] <Indenting> = ♢••••♢
 |    |    |    |    [198:203] <CConditionIf>
@@ -7433,6 +7453,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    [205:205] <Text> = ♢willChangeValueForKey♢
 |    |    |    |    |    [205:205] <Colon> = ♢:♢
 |    |    |    |    |    [205:205] <ObjCString> = ♢@"printInfo"♢
+|    |    |    |    |    + <cleaned> = ♢printInfo♢
 |    |    |    |    |    [205:205] <Match> = ♢]♢
 |    |    |    |    [205:205] <Semicolon> = ♢;♢
 |    |    |    |    [205:206] <Newline> = ♢¶♢
@@ -7616,6 +7637,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    [210:210] <Text> = ♢didChangeValueForKey♢
 |    |    |    |    |    [210:210] <Colon> = ♢:♢
 |    |    |    |    |    [210:210] <ObjCString> = ♢@"printInfo"♢
+|    |    |    |    |    + <cleaned> = ♢printInfo♢
 |    |    |    |    |    [210:210] <Match> = ♢]♢
 |    |    |    |    [210:210] <Semicolon> = ♢;♢
 |    |    |    |    [210:211] <Newline> = ♢¶♢
@@ -7623,6 +7645,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    [211:212] <Newline> = ♢¶♢
 |    |    |    |    [212:212] <Indenting> = ♢••••♢
 |    |    |    |    [212:213] <CComment> = ♢/*•Pre•MacOSX•versions•of•TextEdit•wrote•out•the•view•(window)•size•in•PaperSize.¶→If•we•encounter•a•non-MacOSX•RTF•file,•and•it's•written•by•TextEdit,•use•PaperSize•as•ViewSize•*/♢
+|    |    |    |    + <cleaned> = ♢•Pre•MacOSX•versions•of•TextEdit•wrote•out•the•view•(window)•size•in•PaperSize.¶→If•we•encounter•a•non-MacOSX•RTF•file,•and•it's•written•by•TextEdit,•use•PaperSize•as•ViewSize•♢
 |    |    |    |    [213:214] <Newline> = ♢¶♢
 |    |    |    |    [214:214] <Indenting> = ♢••••♢
 |    |    |    |    [214:214] <Text> = ♢viewSizeVal♢
@@ -8290,6 +8313,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    |    [257:257] <Text> = ♢objectForKey♢
 |    |    |    |    |    |    |    |    |    [257:257] <Colon> = ♢:♢
 |    |    |    |    |    |    |    |    |    [257:257] <ObjCString> = ♢@"AppleMeasurementUnits"♢
+|    |    |    |    |    |    |    |    |    + <cleaned> = ♢AppleMeasurementUnits♢
 |    |    |    |    |    |    |    |    |    [257:257] <Match> = ♢]♢
 |    |    |    |    |    |    |    |    [257:257] <Semicolon> = ♢;♢
 |    |    |    |    |    |    |    |    [257:258] <Newline> = ♢¶♢
@@ -8306,6 +8330,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    |    |    [258:258] <ObjCMethodCall>
 |    |    |    |    |    |    |    |    |    |    |    [258:258] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    |    |    [258:258] <ObjCString> = ♢@"Centimeters"♢
+|    |    |    |    |    |    |    |    |    |    |    + <cleaned> = ♢Centimeters♢
 |    |    |    |    |    |    |    |    |    |    |    [258:258] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    |    |    |    |    [258:258] <Text> = ♢isEqual♢
 |    |    |    |    |    |    |    |    |    |    |    [258:258] <Colon> = ♢:♢
@@ -8561,6 +8586,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [272:272] <ObjCMethodCall>
 |    |    |    |    |    |    |    [272:272] <Match> = ♢[♢
 |    |    |    |    |    |    |    [272:272] <ObjCString> = ♢@"•"♢
+|    |    |    |    |    |    |    + <cleaned> = ♢•♢
 |    |    |    |    |    |    |    [272:272] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    [272:272] <Text> = ♢sizeWithAttributes♢
 |    |    |    |    |    |    |    [272:272] <Colon> = ♢:♢
@@ -9014,6 +9040,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [303:304] <Newline> = ♢¶♢
 |    |    [304:305] <Newline> = ♢¶♢
 |    |    [305:306] <CComment> = ♢/*•This•method•will•return•a•suggested•encoding•for•the•document.•In•Leopard,•unless•the•user•has•specified•a•favorite•encoding•for•saving•that•applies•to•the•document,•we•use•UTF-8.¶*/♢
+|    |    + <cleaned> = ♢•This•method•will•return•a•suggested•encoding•for•the•document.•In•Leopard,•unless•the•user•has•specified•a•favorite•encoding•for•saving•that•applies•to•the•document,•we•use•UTF-8.¶♢
 |    |    [306:307] <Newline> = ♢¶♢
 |    |    [307:318] <ObjCMethodImplementation>
 |    |    |    [307:307] <Match> = ♢-♢
@@ -9205,6 +9232,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [318:319] <Newline> = ♢¶♢
 |    |    [319:320] <Newline> = ♢¶♢
 |    |    [320:321] <CComment> = ♢/*•Returns•an•object•that•represents•the•document•to•be•written•to•file.•¶*/♢
+|    |    + <cleaned> = ♢•Returns•an•object•that•represents•the•document•to•be•written•to•file.•¶♢
 |    |    [321:322] <Newline> = ♢¶♢
 |    |    [322:409] <ObjCMethodImplementation>
 |    |    |    [322:322] <Match> = ♢-♢
@@ -9904,6 +9932,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [356:356] <Text> = ♢format♢
 |    |    |    |    |    |    [356:356] <Colon> = ♢:♢
 |    |    |    |    |    |    [356:356] <ObjCString> = ♢@"%@•is•not•a•recognized•document•type."♢
+|    |    |    |    |    |    + <cleaned> = ♢%@•is•not•a•recognized•document•type.♢
 |    |    |    |    |    |    [356:356] <Text> = ♢,♢
 |    |    |    |    |    |    [356:356] <Whitespace> = ♢•♢
 |    |    |    |    |    |    [356:356] <Text> = ♢typeName♢
@@ -10229,6 +10258,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    [375:375] <Text> = ♢addObject♢
 |    |    |    |    |    |    |    |    [375:375] <Colon> = ♢:♢
 |    |    |    |    |    |    |    |    [375:375] <ObjCString> = ♢@"XML"♢
+|    |    |    |    |    |    |    |    + <cleaned> = ♢XML♢
 |    |    |    |    |    |    |    |    [375:375] <Match> = ♢]♢
 |    |    |    |    |    |    |    [375:375] <Semicolon> = ♢;♢
 |    |    |    |    |    |    [375:376] <Newline> = ♢¶♢
@@ -10262,33 +10292,43 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    |    [376:376] <Text> = ♢arrayWithObjects♢
 |    |    |    |    |    |    |    |    |    [376:376] <Colon> = ♢:♢
 |    |    |    |    |    |    |    |    |    [376:376] <ObjCString> = ♢@"APPLET"♢
+|    |    |    |    |    |    |    |    |    + <cleaned> = ♢APPLET♢
 |    |    |    |    |    |    |    |    |    [376:376] <Text> = ♢,♢
 |    |    |    |    |    |    |    |    |    [376:376] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    |    |    [376:376] <ObjCString> = ♢@"BASEFONT"♢
+|    |    |    |    |    |    |    |    |    + <cleaned> = ♢BASEFONT♢
 |    |    |    |    |    |    |    |    |    [376:376] <Text> = ♢,♢
 |    |    |    |    |    |    |    |    |    [376:376] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    |    |    [376:376] <ObjCString> = ♢@"CENTER"♢
+|    |    |    |    |    |    |    |    |    + <cleaned> = ♢CENTER♢
 |    |    |    |    |    |    |    |    |    [376:376] <Text> = ♢,♢
 |    |    |    |    |    |    |    |    |    [376:376] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    |    |    [376:376] <ObjCString> = ♢@"DIR"♢
+|    |    |    |    |    |    |    |    |    + <cleaned> = ♢DIR♢
 |    |    |    |    |    |    |    |    |    [376:376] <Text> = ♢,♢
 |    |    |    |    |    |    |    |    |    [376:376] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    |    |    [376:376] <ObjCString> = ♢@"FONT"♢
+|    |    |    |    |    |    |    |    |    + <cleaned> = ♢FONT♢
 |    |    |    |    |    |    |    |    |    [376:376] <Text> = ♢,♢
 |    |    |    |    |    |    |    |    |    [376:376] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    |    |    [376:376] <ObjCString> = ♢@"ISINDEX"♢
+|    |    |    |    |    |    |    |    |    + <cleaned> = ♢ISINDEX♢
 |    |    |    |    |    |    |    |    |    [376:376] <Text> = ♢,♢
 |    |    |    |    |    |    |    |    |    [376:376] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    |    |    [376:376] <ObjCString> = ♢@"MENU"♢
+|    |    |    |    |    |    |    |    |    + <cleaned> = ♢MENU♢
 |    |    |    |    |    |    |    |    |    [376:376] <Text> = ♢,♢
 |    |    |    |    |    |    |    |    |    [376:376] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    |    |    [376:376] <ObjCString> = ♢@"S"♢
+|    |    |    |    |    |    |    |    |    + <cleaned> = ♢S♢
 |    |    |    |    |    |    |    |    |    [376:376] <Text> = ♢,♢
 |    |    |    |    |    |    |    |    |    [376:376] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    |    |    [376:376] <ObjCString> = ♢@"STRIKE"♢
+|    |    |    |    |    |    |    |    |    + <cleaned> = ♢STRIKE♢
 |    |    |    |    |    |    |    |    |    [376:376] <Text> = ♢,♢
 |    |    |    |    |    |    |    |    |    [376:376] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    |    |    [376:376] <ObjCString> = ♢@"U"♢
+|    |    |    |    |    |    |    |    |    + <cleaned> = ♢U♢
 |    |    |    |    |    |    |    |    |    [376:376] <Text> = ♢,♢
 |    |    |    |    |    |    |    |    |    [376:376] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    |    |    [376:376] <ObjCNil> = ♢nil♢
@@ -10324,6 +10364,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    |    [378:378] <Text> = ♢addObject♢
 |    |    |    |    |    |    |    |    |    [378:378] <Colon> = ♢:♢
 |    |    |    |    |    |    |    |    |    [378:378] <ObjCString> = ♢@"STYLE"♢
+|    |    |    |    |    |    |    |    |    + <cleaned> = ♢STYLE♢
 |    |    |    |    |    |    |    |    |    [378:378] <Match> = ♢]♢
 |    |    |    |    |    |    |    |    [378:378] <Semicolon> = ♢;♢
 |    |    |    |    |    |    |    |    [378:379] <Newline> = ♢¶♢
@@ -10351,6 +10392,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    |    |    [379:379] <Text> = ♢addObject♢
 |    |    |    |    |    |    |    |    |    |    [379:379] <Colon> = ♢:♢
 |    |    |    |    |    |    |    |    |    |    [379:379] <ObjCString> = ♢@"SPAN"♢
+|    |    |    |    |    |    |    |    |    |    + <cleaned> = ♢SPAN♢
 |    |    |    |    |    |    |    |    |    |    [379:379] <Match> = ♢]♢
 |    |    |    |    |    |    |    |    |    [379:379] <Semicolon> = ♢;♢
 |    |    |    |    |    |    |    |    [379:380] <Newline> = ♢¶♢
@@ -10385,6 +10427,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    |    [382:382] <Text> = ♢addObject♢
 |    |    |    |    |    |    |    |    |    [382:382] <Colon> = ♢:♢
 |    |    |    |    |    |    |    |    |    [382:382] <ObjCString> = ♢@"Apple-converted-space"♢
+|    |    |    |    |    |    |    |    |    + <cleaned> = ♢Apple-converted-space♢
 |    |    |    |    |    |    |    |    |    [382:382] <Match> = ♢]♢
 |    |    |    |    |    |    |    |    [382:382] <Semicolon> = ♢;♢
 |    |    |    |    |    |    |    |    [382:383] <Newline> = ♢¶♢
@@ -10396,6 +10439,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    |    [383:383] <Text> = ♢addObject♢
 |    |    |    |    |    |    |    |    |    [383:383] <Colon> = ♢:♢
 |    |    |    |    |    |    |    |    |    [383:383] <ObjCString> = ♢@"Apple-converted-tab"♢
+|    |    |    |    |    |    |    |    |    + <cleaned> = ♢Apple-converted-tab♢
 |    |    |    |    |    |    |    |    |    [383:383] <Match> = ♢]♢
 |    |    |    |    |    |    |    |    [383:383] <Semicolon> = ♢;♢
 |    |    |    |    |    |    |    |    [383:384] <Newline> = ♢¶♢
@@ -10407,6 +10451,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    |    [384:384] <Text> = ♢addObject♢
 |    |    |    |    |    |    |    |    |    [384:384] <Colon> = ♢:♢
 |    |    |    |    |    |    |    |    |    [384:384] <ObjCString> = ♢@"Apple-interchange-newline"♢
+|    |    |    |    |    |    |    |    |    + <cleaned> = ♢Apple-interchange-newline♢
 |    |    |    |    |    |    |    |    |    [384:384] <Match> = ♢]♢
 |    |    |    |    |    |    |    |    [384:384] <Semicolon> = ♢;♢
 |    |    |    |    |    |    |    |    [384:385] <Newline> = ♢¶♢
@@ -10540,6 +10585,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    |    [394:394] <Text> = ♢isEqual♢
 |    |    |    |    |    |    |    |    |    [394:394] <Colon> = ♢:♢
 |    |    |    |    |    |    |    |    |    [394:394] <ObjCString> = ♢@""♢
+|    |    |    |    |    |    |    |    |    + <cleaned> = ♢♢
 |    |    |    |    |    |    |    |    |    [394:394] <Match> = ♢]♢
 |    |    |    |    |    |    |    |    [394:394] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    |    [394:394] <Ampersand> = ♢&♢
@@ -10801,6 +10847,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [409:410] <Newline> = ♢¶♢
 |    |    [410:411] <Newline> = ♢¶♢
 |    |    [411:412] <CComment> = ♢/*•Clear•the•delegates•of•the•text•views•and•window,•then•release•all•resources•and•go•away...¶*/♢
+|    |    + <cleaned> = ♢•Clear•the•delegates•of•the•text•views•and•window,•then•release•all•resources•and•go•away...¶♢
 |    |    [412:413] <Newline> = ♢¶♢
 |    |    [413:429] <ObjCMethodImplementation>
 |    |    |    [413:413] <Match> = ♢-♢
@@ -11336,6 +11383,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [481:482] <Newline> = ♢¶♢
 |    |    [482:483] <Newline> = ♢¶♢
 |    |    [483:484] <CComment> = ♢/*•Hyphenation•related•methods.¶*/♢
+|    |    + <cleaned> = ♢•Hyphenation•related•methods.¶♢
 |    |    [484:485] <Newline> = ♢¶♢
 |    |    [485:487] <ObjCMethodImplementation>
 |    |    |    [485:485] <Match> = ♢-♢
@@ -11389,6 +11437,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [491:492] <Newline> = ♢¶♢
 |    |    [492:493] <Newline> = ♢¶♢
 |    |    [493:494] <CComment> = ♢/*•Encoding...¶*/♢
+|    |    + <cleaned> = ♢•Encoding...¶♢
 |    |    [494:495] <Newline> = ♢¶♢
 |    |    [495:497] <ObjCMethodImplementation>
 |    |    |    [495:495] <Match> = ♢-♢
@@ -11442,6 +11491,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [501:502] <Newline> = ♢¶♢
 |    |    [502:503] <Newline> = ♢¶♢
 |    |    [503:504] <CComment> = ♢/*•This•is•the•encoding•used•for•saving;•valid•only•during•a•save•operation¶*/♢
+|    |    + <cleaned> = ♢•This•is•the•encoding•used•for•saving;•valid•only•during•a•save•operation¶♢
 |    |    [504:505] <Newline> = ♢¶♢
 |    |    [505:507] <ObjCMethodImplementation>
 |    |    |    [505:505] <Match> = ♢-♢
@@ -11649,6 +11699,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [536:537] <Newline> = ♢¶♢
 |    |    [537:538] <Newline> = ♢¶♢
 |    |    [538:539] <CComment> = ♢/*•A•transient•document•is•an•untitled•document•that•was•opened•automatically.•If•a•real•document•is•opened•before•the•transient•document•is•edited,•the•real•document•should•replace•the•transient.•If•a•transient•document•is•edited,•it•ceases•to•be•transient.•¶*/♢
+|    |    + <cleaned> = ♢•A•transient•document•is•an•untitled•document•that•was•opened•automatically.•If•a•real•document•is•opened•before•the•transient•document•is•edited,•the•real•document•should•replace•the•transient.•If•a•transient•document•is•edited,•it•ceases•to•be•transient.•¶♢
 |    |    [539:540] <Newline> = ♢¶♢
 |    |    [540:542] <ObjCMethodImplementation>
 |    |    |    [540:540] <Match> = ♢-♢
@@ -11702,6 +11753,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [546:547] <Newline> = ♢¶♢
 |    |    [547:548] <Newline> = ♢¶♢
 |    |    [548:549] <CComment> = ♢/*•We•can't•replace•transient•document•that•have•sheets•on•them.¶*/♢
+|    |    + <cleaned> = ♢•We•can't•replace•transient•document•that•have•sheets•on•them.¶♢
 |    |    [549:550] <Newline> = ♢¶♢
 |    |    [550:554] <ObjCMethodImplementation>
 |    |    |    [550:550] <Match> = ♢-♢
@@ -11793,6 +11845,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [555:556] <Newline> = ♢¶♢
 |    |    [556:557] <Newline> = ♢¶♢
 |    |    [557:558] <CComment> = ♢/*•The•rich•text•status•is•dependent•on•the•document•type,•and•vice•versa.•Making•a•plain•document•rich,•will•-setFileType:•to•RTF.•¶*/♢
+|    |    + <cleaned> = ♢•The•rich•text•status•is•dependent•on•the•document•type,•and•vice•versa.•Making•a•plain•document•rich,•will•-setFileType:•to•RTF.•¶♢
 |    |    [558:559] <Newline> = ♢¶♢
 |    |    [559:568] <ObjCMethodImplementation>
 |    |    |    [559:559] <Match> = ♢-♢
@@ -11963,9 +12016,11 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [573:574] <Newline> = ♢¶♢
 |    |    [574:575] <Newline> = ♢¶♢
 |    |    [575:575] <CComment> = ♢/*•Document•properties•management•*/♢
+|    |    + <cleaned> = ♢•Document•properties•management•♢
 |    |    [575:576] <Newline> = ♢¶♢
 |    |    [576:577] <Newline> = ♢¶♢
 |    |    [577:578] <CComment> = ♢/*•Table•mapping•document•property•keys•"company",•etc,•to•text•system•document•attribute•keys•(NSCompanyDocumentAttribute,•etc)¶*/♢
+|    |    + <cleaned> = ♢•Table•mapping•document•property•keys•"company",•etc,•to•text•system•document•attribute•keys•(NSCompanyDocumentAttribute,•etc)¶♢
 |    |    [578:579] <Newline> = ♢¶♢
 |    |    [579:590] <ObjCMethodImplementation>
 |    |    |    [579:579] <Match> = ♢-♢
@@ -12024,6 +12079,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [582:582] <Text> = ♢NSCompanyDocumentAttribute,♢
 |    |    |    |    |    |    [582:582] <Whitespace> = ♢•♢
 |    |    |    |    |    |    [582:582] <ObjCString> = ♢@"company"♢
+|    |    |    |    |    |    + <cleaned> = ♢company♢
 |    |    |    |    |    |    [582:582] <Text> = ♢,♢
 |    |    |    |    |    |    [582:582] <Whitespace> = ♢•♢
 |    |    |    |    |    |    [582:583] <Newline> = ♢¶♢
@@ -12031,6 +12087,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [583:583] <Text> = ♢NSAuthorDocumentAttribute,♢
 |    |    |    |    |    |    [583:583] <Whitespace> = ♢•♢
 |    |    |    |    |    |    [583:583] <ObjCString> = ♢@"author"♢
+|    |    |    |    |    |    + <cleaned> = ♢author♢
 |    |    |    |    |    |    [583:583] <Text> = ♢,♢
 |    |    |    |    |    |    [583:583] <Whitespace> = ♢•♢
 |    |    |    |    |    |    [583:584] <Newline> = ♢¶♢
@@ -12038,6 +12095,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [584:584] <Text> = ♢NSKeywordsDocumentAttribute,♢
 |    |    |    |    |    |    [584:584] <Whitespace> = ♢•♢
 |    |    |    |    |    |    [584:584] <ObjCString> = ♢@"keywords"♢
+|    |    |    |    |    |    + <cleaned> = ♢keywords♢
 |    |    |    |    |    |    [584:584] <Text> = ♢,♢
 |    |    |    |    |    |    [584:584] <Whitespace> = ♢•♢
 |    |    |    |    |    |    [584:585] <Newline> = ♢¶♢
@@ -12045,6 +12103,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [585:585] <Text> = ♢NSCopyrightDocumentAttribute,♢
 |    |    |    |    |    |    [585:585] <Whitespace> = ♢•♢
 |    |    |    |    |    |    [585:585] <ObjCString> = ♢@"copyright"♢
+|    |    |    |    |    |    + <cleaned> = ♢copyright♢
 |    |    |    |    |    |    [585:585] <Text> = ♢,♢
 |    |    |    |    |    |    [585:585] <Whitespace> = ♢•♢
 |    |    |    |    |    |    [585:586] <Newline> = ♢¶♢
@@ -12052,6 +12111,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [586:586] <Text> = ♢NSTitleDocumentAttribute,♢
 |    |    |    |    |    |    [586:586] <Whitespace> = ♢•♢
 |    |    |    |    |    |    [586:586] <ObjCString> = ♢@"title"♢
+|    |    |    |    |    |    + <cleaned> = ♢title♢
 |    |    |    |    |    |    [586:586] <Text> = ♢,♢
 |    |    |    |    |    |    [586:586] <Whitespace> = ♢•♢
 |    |    |    |    |    |    [586:587] <Newline> = ♢¶♢
@@ -12059,6 +12119,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [587:587] <Text> = ♢NSSubjectDocumentAttribute,♢
 |    |    |    |    |    |    [587:587] <Whitespace> = ♢•♢
 |    |    |    |    |    |    [587:587] <ObjCString> = ♢@"subject"♢
+|    |    |    |    |    |    + <cleaned> = ♢subject♢
 |    |    |    |    |    |    [587:587] <Text> = ♢,♢
 |    |    |    |    |    |    [587:587] <Whitespace> = ♢•♢
 |    |    |    |    |    |    [587:588] <Newline> = ♢¶♢
@@ -12066,6 +12127,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [588:588] <Text> = ♢NSCommentDocumentAttribute,♢
 |    |    |    |    |    |    [588:588] <Whitespace> = ♢•♢
 |    |    |    |    |    |    [588:588] <ObjCString> = ♢@"comment"♢
+|    |    |    |    |    |    + <cleaned> = ♢comment♢
 |    |    |    |    |    |    [588:588] <Text> = ♢,♢
 |    |    |    |    |    |    [588:588] <Whitespace> = ♢•♢
 |    |    |    |    |    |    [588:588] <ObjCNil> = ♢nil♢
@@ -12117,6 +12179,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [594:595] <Newline> = ♢¶♢
 |    |    [595:596] <Newline> = ♢¶♢
 |    |    [596:597] <CComment> = ♢/*•If•there•are•document•properties•and•they•are•not•the•same•as•the•defaults•established•in•preferences,•return•YES¶*/♢
+|    |    + <cleaned> = ♢•If•there•are•document•properties•and•they•are•not•the•same•as•the•defaults•established•in•preferences,•return•YES¶♢
 |    |    [597:598] <Newline> = ♢¶♢
 |    |    [598:604] <ObjCMethodImplementation>
 |    |    |    [598:598] <Match> = ♢-♢
@@ -12225,6 +12288,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [604:605] <Newline> = ♢¶♢
 |    |    [605:606] <Newline> = ♢¶♢
 |    |    [606:607] <CComment> = ♢/*•This•actually•clears•all•properties•(rather•than•setting•them•to•default•values•established•in•preferences)¶*/♢
+|    |    + <cleaned> = ♢•This•actually•clears•all•properties•(rather•than•setting•them•to•default•values•established•in•preferences)¶♢
 |    |    [607:608] <Newline> = ♢¶♢
 |    |    [608:610] <ObjCMethodImplementation>
 |    |    |    [608:608] <Match> = ♢-♢
@@ -12277,6 +12341,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [610:611] <Newline> = ♢¶♢
 |    |    [611:612] <Newline> = ♢¶♢
 |    |    [612:613] <CComment> = ♢/*•This•sets•document•properties•to•values•established•in•defaults¶*/♢
+|    |    + <cleaned> = ♢•This•sets•document•properties•to•values•established•in•defaults¶♢
 |    |    [613:614] <Newline> = ♢¶♢
 |    |    [614:616] <ObjCMethodImplementation>
 |    |    |    [614:614] <Match> = ♢-♢
@@ -12341,6 +12406,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [616:617] <Newline> = ♢¶♢
 |    |    [617:618] <Newline> = ♢¶♢
 |    |    [618:619] <CComment> = ♢/*•We•implement•a•setValue:forDocumentProperty:•to•work•around•NSUndoManager•bug•where•prepareWithInvocationTarget:•fails•to•freeze-dry•invocations•with•"known"•methods•such•as•setValue:forKey:.••¶*/♢
+|    |    + <cleaned> = ♢•We•implement•a•setValue:forDocumentProperty:•to•work•around•NSUndoManager•bug•where•prepareWithInvocationTarget:•fails•to•freeze-dry•invocations•with•"known"•methods•such•as•setValue:forKey:.••¶♢
 |    |    [619:620] <Newline> = ♢¶♢
 |    |    [620:627] <ObjCMethodImplementation>
 |    |    |    [620:620] <Match> = ♢-♢
@@ -12433,6 +12499,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    [623:623] <Text> = ♢property,♢
 |    |    |    |    |    |    |    [623:623] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    [623:623] <CStringDoubleQuote> = ♢""♢
+|    |    |    |    |    |    |    + <cleaned> = ♢♢
 |    |    |    |    |    |    |    [623:623] <Match> = ♢)♢
 |    |    |    |    |    [623:623] <Match> = ♢]♢
 |    |    |    |    [623:623] <Semicolon> = ♢;♢
@@ -12564,6 +12631,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [635:636] <Newline> = ♢¶♢
 |    |    [636:637] <Newline> = ♢¶♢
 |    |    [637:645] <CComment> = ♢/*•For•genstrings:¶••••NSLocalizedStringWithDefaultValue(@"author",•@"",•@"",•@"Change•Author",•@"Undo•menu•change•string,•without•the•'Undo'");¶••••NSLocalizedStringWithDefaultValue(@"copyright",•@"",•@"",•@"Change•Copyright",•@"Undo•menu•change•string,•without•the•'Undo'");¶••••NSLocalizedStringWithDefaultValue(@"subject",•@"",•@"",•@"Change•Subject",•@"Undo•menu•change•string,•without•the•'Undo'");¶••••NSLocalizedStringWithDefaultValue(@"title",•@"",•@"",•@"Change•Title",•@"Undo•menu•change•string,•without•the•'Undo'");¶••••NSLocalizedStringWithDefaultValue(@"company",•@"",•@"",•@"Change•Company",•@"Undo•menu•change•string,•without•the•'Undo'");¶••••NSLocalizedStringWithDefaultValue(@"comment",•@"",•@"",•@"Change•Comment",•@"Undo•menu•change•string,•without•the•'Undo'");¶••••NSLocalizedStringWithDefaultValue(@"keywords",•@"",•@"",•@"Change•Keywords",•@"Undo•menu•change•string,•without•the•'Undo'");¶*/♢
+|    |    + <cleaned> = ♢•For•genstrings:¶••••NSLocalizedStringWithDefaultValue(@"author",•@"",•@"",•@"Change•Author",•@"Undo•menu•change•string,•without•the•'Undo'");¶••••NSLocalizedStringWithDefaultValue(@"copyright",•@"",•@"",•@"Change•Copyright",•@"Undo•menu•change•string,•without•the•'Undo'");¶••••NSLocalizedStringWithDefaultValue(@"subject",•@"",•@"",•@"Change•Subject",•@"Undo•menu•change•string,•without•the•'Undo'");¶••••NSLocalizedStringWithDefaultValue(@"title",•@"",•@"",•@"Change•Title",•@"Undo•menu•change•string,•without•the•'Undo'");¶••••NSLocalizedStringWithDefaultValue(@"company",•@"",•@"",•@"Change•Company",•@"Undo•menu•change•string,•without•the•'Undo'");¶••••NSLocalizedStringWithDefaultValue(@"comment",•@"",•@"",•@"Change•Comment",•@"Undo•menu•change•string,•without•the•'Undo'");¶••••NSLocalizedStringWithDefaultValue(@"keywords",•@"",•@"",•@"Change•Keywords",•@"Undo•menu•change•string,•without•the•'Undo'");¶♢
 |    |    [645:646] <Newline> = ♢¶♢
 |    |    [646:647] <Newline> = ♢¶♢
 |    |    [647:648] <Newline> = ♢¶♢
@@ -13106,6 +13174,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [690:691] <Newline> = ♢¶♢
 |    |    [691:692] <Newline> = ♢¶♢
 |    |    [692:693] <CComment> = ♢/*•Toggles•read-only•state•of•the•document¶*/♢
+|    |    + <cleaned> = ♢•Toggles•read-only•state•of•the•document¶♢
 |    |    [693:694] <Newline> = ♢¶♢
 |    |    [694:700] <ObjCMethodImplementation>
 |    |    |    [694:694] <Match> = ♢-♢
@@ -13182,9 +13251,11 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [697:697] <Parenthesis>
 |    |    |    |    |    |    |    [697:697] <Match> = ♢(♢
 |    |    |    |    |    |    |    [697:697] <ObjCString> = ♢@"Allow•Editing"♢
+|    |    |    |    |    |    |    + <cleaned> = ♢Allow•Editing♢
 |    |    |    |    |    |    |    [697:697] <Text> = ♢,♢
 |    |    |    |    |    |    |    [697:697] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    [697:697] <ObjCString> = ♢@"Menu•item•to•make•the•current•document•editable•(not•read-only)"♢
+|    |    |    |    |    |    |    + <cleaned> = ♢Menu•item•to•make•the•current•document•editable•(not•read-only)♢
 |    |    |    |    |    |    |    [697:697] <Match> = ♢)♢
 |    |    |    |    |    [697:697] <Whitespace> = ♢•♢
 |    |    |    |    |    [697:697] <Colon> = ♢:♢
@@ -13195,9 +13266,11 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [698:698] <Parenthesis>
 |    |    |    |    |    |    |    [698:698] <Match> = ♢(♢
 |    |    |    |    |    |    |    [698:698] <ObjCString> = ♢@"Prevent•Editing"♢
+|    |    |    |    |    |    |    + <cleaned> = ♢Prevent•Editing♢
 |    |    |    |    |    |    |    [698:698] <Text> = ♢,♢
 |    |    |    |    |    |    |    [698:698] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    [698:698] <ObjCString> = ♢@"Menu•item•to•make•the•current•document•read-only"♢
+|    |    |    |    |    |    |    + <cleaned> = ♢Menu•item•to•make•the•current•document•read-only♢
 |    |    |    |    |    |    |    [698:698] <Match> = ♢)♢
 |    |    |    |    |    [698:698] <Match> = ♢]♢
 |    |    |    |    [698:698] <Semicolon> = ♢;♢
@@ -13557,11 +13630,13 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    [730:730] <Semicolon> = ♢;♢
 |    |    |    |    [730:730] <Whitespace> = ♢→♢
 |    |    |    |    [730:730] <CComment> = ♢/*•Toggle•between•0.0•and•0.9•*/♢
+|    |    |    |    + <cleaned> = ♢•Toggle•between•0.0•and•0.9•♢
 |    |    |    |    [730:731] <Newline> = ♢¶♢
 |    |    |    |    [731:731] <Match> = ♢}♢
 |    |    [731:732] <Newline> = ♢¶♢
 |    |    [732:733] <Newline> = ♢¶♢
 |    |    [733:734] <CComment> = ♢/*•Action•method•for•the•"Append•'.txt'•extension"•button¶*/♢
+|    |    + <cleaned> = ♢•Action•method•for•the•"Append•'.txt'•extension"•button¶♢
 |    |    [734:735] <Newline> = ♢¶♢
 |    |    [735:739] <ObjCMethodImplementation>
 |    |    |    [735:735] <Match> = ♢-♢
@@ -13709,6 +13784,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [743:744] <Newline> = ♢¶♢
 |    |    [744:745] <Newline> = ♢¶♢
 |    |    [745:745] <CComment> = ♢/*•Menu•validation:•Arbitrary•numbers•to•determine•the•state•of•the•menu•items•whose•titles•change.•Speeds•up•the•validation...•Not•zero.•*/♢
+|    |    + <cleaned> = ♢•Menu•validation:•Arbitrary•numbers•to•determine•the•state•of•the•menu•items•whose•titles•change.•Speeds•up•the•validation...•Not•zero.•♢
 |    |    [745:745] <Whitespace> = ♢•••♢
 |    |    [745:746] <Newline> = ♢¶♢
 |    |    [746:746] <CPreprocessorDefine>
@@ -13877,6 +13953,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [761:762] <Newline> = ♢¶♢
 |    |    [762:763] <Newline> = ♢¶♢
 |    |    [763:764] <CComment> = ♢/*•Menu•validation¶*/♢
+|    |    + <cleaned> = ♢•Menu•validation¶♢
 |    |    [764:765] <Newline> = ♢¶♢
 |    |    [765:778] <ObjCMethodImplementation>
 |    |    |    [765:765] <Match> = ♢-♢
@@ -13957,9 +14034,11 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    |    [769:769] <Parenthesis>
 |    |    |    |    |    |    |    |    |    |    [769:769] <Match> = ♢(♢
 |    |    |    |    |    |    |    |    |    |    [769:769] <ObjCString> = ♢@"Allow•Editing"♢
+|    |    |    |    |    |    |    |    |    |    + <cleaned> = ♢Allow•Editing♢
 |    |    |    |    |    |    |    |    |    |    [769:769] <Text> = ♢,♢
 |    |    |    |    |    |    |    |    |    |    [769:769] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    |    |    |    [769:769] <ObjCString> = ♢@"Menu•item•to•make•the•current•document•editable•(not•read-only)"♢
+|    |    |    |    |    |    |    |    |    |    + <cleaned> = ♢Menu•item•to•make•the•current•document•editable•(not•read-only)♢
 |    |    |    |    |    |    |    |    |    |    [769:769] <Match> = ♢)♢
 |    |    |    |    |    |    |    |    [769:769] <Text> = ♢,♢
 |    |    |    |    |    |    |    |    [769:769] <Whitespace> = ♢•♢
@@ -13968,9 +14047,11 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    |    [769:769] <Parenthesis>
 |    |    |    |    |    |    |    |    |    |    [769:769] <Match> = ♢(♢
 |    |    |    |    |    |    |    |    |    |    [769:769] <ObjCString> = ♢@"Prevent•Editing"♢
+|    |    |    |    |    |    |    |    |    |    + <cleaned> = ♢Prevent•Editing♢
 |    |    |    |    |    |    |    |    |    |    [769:769] <Text> = ♢,♢
 |    |    |    |    |    |    |    |    |    |    [769:769] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    |    |    |    [769:769] <ObjCString> = ♢@"Menu•item•to•make•the•current•document•read-only"♢
+|    |    |    |    |    |    |    |    |    |    + <cleaned> = ♢Menu•item•to•make•the•current•document•read-only♢
 |    |    |    |    |    |    |    |    |    |    [769:769] <Match> = ♢)♢
 |    |    |    |    |    |    |    |    [769:769] <Match> = ♢)♢
 |    |    |    |    |    |    [769:769] <Semicolon> = ♢;♢
@@ -14019,9 +14100,11 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    |    [771:771] <Parenthesis>
 |    |    |    |    |    |    |    |    |    |    [771:771] <Match> = ♢(♢
 |    |    |    |    |    |    |    |    |    |    [771:771] <ObjCString> = ♢@"&Wrap•to•Window"♢
+|    |    |    |    |    |    |    |    |    |    + <cleaned> = ♢&Wrap•to•Window♢
 |    |    |    |    |    |    |    |    |    |    [771:771] <Text> = ♢,♢
 |    |    |    |    |    |    |    |    |    |    [771:771] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    |    |    |    [771:771] <ObjCString> = ♢@"Menu•item•to•cause•text•to•be•laid•out•to•size•of•the•window"♢
+|    |    |    |    |    |    |    |    |    |    + <cleaned> = ♢Menu•item•to•cause•text•to•be•laid•out•to•size•of•the•window♢
 |    |    |    |    |    |    |    |    |    |    [771:771] <Match> = ♢)♢
 |    |    |    |    |    |    |    |    [771:771] <Text> = ♢,♢
 |    |    |    |    |    |    |    |    [771:771] <Whitespace> = ♢•♢
@@ -14030,9 +14113,11 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    |    [771:771] <Parenthesis>
 |    |    |    |    |    |    |    |    |    |    [771:771] <Match> = ♢(♢
 |    |    |    |    |    |    |    |    |    |    [771:771] <ObjCString> = ♢@"&Wrap•to•Page"♢
+|    |    |    |    |    |    |    |    |    |    + <cleaned> = ♢&Wrap•to•Page♢
 |    |    |    |    |    |    |    |    |    |    [771:771] <Text> = ♢,♢
 |    |    |    |    |    |    |    |    |    |    [771:771] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    |    |    |    [771:771] <ObjCString> = ♢@"Menu•item•to•cause•text•to•be•laid•out•to•the•size•of•the•currently•selected•page•type"♢
+|    |    |    |    |    |    |    |    |    |    + <cleaned> = ♢Menu•item•to•cause•text•to•be•laid•out•to•the•size•of•the•currently•selected•page•type♢
 |    |    |    |    |    |    |    |    |    |    [771:771] <Match> = ♢)♢
 |    |    |    |    |    |    |    |    [771:771] <Match> = ♢)♢
 |    |    |    |    |    |    [771:771] <Semicolon> = ♢;♢
@@ -14088,9 +14173,11 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    |    [773:773] <Parenthesis>
 |    |    |    |    |    |    |    |    |    |    [773:773] <Match> = ♢(♢
 |    |    |    |    |    |    |    |    |    |    [773:773] <ObjCString> = ♢@"Do•not•Allow•Hyphenation"♢
+|    |    |    |    |    |    |    |    |    |    + <cleaned> = ♢Do•not•Allow•Hyphenation♢
 |    |    |    |    |    |    |    |    |    |    [773:773] <Text> = ♢,♢
 |    |    |    |    |    |    |    |    |    |    [773:773] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    |    |    |    [773:773] <ObjCString> = ♢@"Menu•item•to•disallow•hyphenation•in•the•document"♢
+|    |    |    |    |    |    |    |    |    |    + <cleaned> = ♢Menu•item•to•disallow•hyphenation•in•the•document♢
 |    |    |    |    |    |    |    |    |    |    [773:773] <Match> = ♢)♢
 |    |    |    |    |    |    |    |    [773:773] <Text> = ♢,♢
 |    |    |    |    |    |    |    |    [773:773] <Whitespace> = ♢•♢
@@ -14099,9 +14186,11 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    |    [773:773] <Parenthesis>
 |    |    |    |    |    |    |    |    |    |    [773:773] <Match> = ♢(♢
 |    |    |    |    |    |    |    |    |    |    [773:773] <ObjCString> = ♢@"Allow•Hyphenation"♢
+|    |    |    |    |    |    |    |    |    |    + <cleaned> = ♢Allow•Hyphenation♢
 |    |    |    |    |    |    |    |    |    |    [773:773] <Text> = ♢,♢
 |    |    |    |    |    |    |    |    |    |    [773:773] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    |    |    |    [773:773] <ObjCString> = ♢@"Menu•item•to•allow•hyphenation•in•the•document"♢
+|    |    |    |    |    |    |    |    |    |    + <cleaned> = ♢Menu•item•to•allow•hyphenation•in•the•document♢
 |    |    |    |    |    |    |    |    |    |    [773:773] <Match> = ♢)♢
 |    |    |    |    |    |    |    |    [773:773] <Match> = ♢)♢
 |    |    |    |    |    |    [773:773] <Semicolon> = ♢;♢
@@ -14610,6 +14699,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [819:820] <Newline> = ♢¶♢
 |    |    [820:821] <Newline> = ♢¶♢
 |    |    [821:822] <CComment> = ♢/*•Target/action•method•for•saving•as•(actually•"saving•to")•PDF.•Note•that•this•approach•of•omitting•the•path•will•not•work•on•Leopard;•see•TextEdit's•README.rtf¶*/♢
+|    |    + <cleaned> = ♢•Target/action•method•for•saving•as•(actually•"saving•to")•PDF.•Note•that•this•approach•of•omitting•the•path•will•not•work•on•Leopard;•see•TextEdit's•README.rtf¶♢
 |    |    [822:823] <Newline> = ♢¶♢
 |    |    [823:825] <ObjCMethodImplementation>
 |    |    |    [823:823] <Match> = ♢-♢
@@ -14675,6 +14765,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    [828:829] <Newline> = ♢¶♢
 |    [829:830] <Newline> = ♢¶♢
 |    [830:831] <CComment> = ♢/*•Returns•the•default•padding•on•the•left/right•edges•of•text•views¶*/♢
+|    + <cleaned> = ♢•Returns•the•default•padding•on•the•left/right•edges•of•text•views¶♢
 |    [831:832] <Newline> = ♢¶♢
 |    [832:840] <CFunctionDefinition>
 |    |    [832:832] <Text> = ♢CGFloat♢
@@ -15117,6 +15208,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    [868:869] <Newline> = ♢¶♢
 |    |    |    |    [869:869] <Indenting> = ♢••••♢
 |    |    |    |    [869:869] <CComment> = ♢/*•If•this•document•displaced•a•transient•document,•it•will•already•have•been•assigned•a•window•controller.•If•that•is•not•the•case,•create•one.•*/♢
+|    |    |    |    + <cleaned> = ♢•If•this•document•displaced•a•transient•document,•it•will•already•have•been•assigned•a•window•controller.•If•that•is•not•the•case,•create•one.•♢
 |    |    |    |    [869:870] <Newline> = ♢¶♢
 |    |    |    |    [870:870] <Indenting> = ♢••••♢
 |    |    |    |    [870:872] <CConditionIf>
@@ -15247,6 +15339,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [877:878] <Newline> = ♢¶♢
 |    |    |    |    |    |    [878:878] <Indenting> = ♢→♢
 |    |    |    |    |    |    [878:878] <CComment> = ♢/*•Rich-text•documents•cannot•be•saved•as•plain•text.•*/♢
+|    |    |    |    |    |    + <cleaned> = ♢•Rich-text•documents•cannot•be•saved•as•plain•text.•♢
 |    |    |    |    |    |    [878:879] <Newline> = ♢¶♢
 |    |    |    |    |    |    [879:879] <Indenting> = ♢→♢
 |    |    |    |    |    |    [879:881] <CConditionIf>
@@ -15289,6 +15382,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [882:883] <Newline> = ♢¶♢
 |    |    |    |    |    |    [883:883] <Indenting> = ♢→♢
 |    |    |    |    |    |    [883:883] <CComment> = ♢/*•Documents•that•contain•attacments•can•only•be•saved•in•formats•that•support•embedded•graphics.•*/♢
+|    |    |    |    |    |    + <cleaned> = ♢•Documents•that•contain•attacments•can•only•be•saved•in•formats•that•support•embedded•graphics.•♢
 |    |    |    |    |    |    [883:884] <Newline> = ♢¶♢
 |    |    |    |    |    |    [884:884] <Indenting> = ♢→♢
 |    |    |    |    |    |    [884:886] <CConditionIf>
@@ -15358,6 +15452,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [889:890] <Newline> = ♢¶♢
 |    |    [890:891] <Newline> = ♢¶♢
 |    |    [891:892] <CComment> = ♢/*•Whether•to•keep•the•backup•file¶*/♢
+|    |    + <cleaned> = ♢•Whether•to•keep•the•backup•file¶♢
 |    |    [892:893] <Newline> = ♢¶♢
 |    |    [893:895] <ObjCMethodImplementation>
 |    |    |    [893:893] <Match> = ♢-♢
@@ -15395,6 +15490,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [895:896] <Newline> = ♢¶♢
 |    |    [896:897] <Newline> = ♢¶♢
 |    |    [897:898] <CComment> = ♢/*•When•a•document•is•changed,•it•ceases•to•be•transient.•¶*/♢
+|    |    + <cleaned> = ♢•When•a•document•is•changed,•it•ceases•to•be•transient.•¶♢
 |    |    [898:899] <Newline> = ♢¶♢
 |    |    [899:902] <ObjCMethodImplementation>
 |    |    |    [899:899] <Match> = ♢-♢
@@ -15440,6 +15536,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [902:903] <Newline> = ♢¶♢
 |    |    [903:904] <Newline> = ♢¶♢
 |    |    [904:909] <CComment> = ♢/*•When•we•save,•we•send•a•notification•so•that•views•that•are•currently•coalescing•undo•actions•can•break•that.•This•is•done•for•two•reasons,•one•technical•and•the•other•HI•oriented.•¶¶Firstly,•since•the•dirty•state•tracking•is•based•on•undo,•for•a•coalesced•set•of•changes•that•span•over•a•save•operation,•the•changes•that•occur•between•the•save•and•the•next•time•the•undo•coalescing•stops•will•not•mark•the•document•as•dirty.•Secondly,•allowing•the•user•to•undo•back•to•the•precise•point•of•a•save•is•good•UI.•¶¶In•addition•we•overwrite•this•method•as•a•way•to•tell•that•the•document•has•been•saved•successfully.•If•so,•we•set•the•save•time•parameters•in•the•document.¶*/♢
+|    |    + <cleaned> = ♢•When•we•save,•we•send•a•notification•so•that•views•that•are•currently•coalescing•undo•actions•can•break•that.•This•is•done•for•two•reasons,•one•technical•and•the•other•HI•oriented.•¶¶Firstly,•since•the•dirty•state•tracking•is•based•on•undo,•for•a•coalesced•set•of•changes•that•span•over•a•save•operation,•the•changes•that•occur•between•the•save•and•the•next•time•the•undo•coalescing•stops•will•not•mark•the•document•as•dirty.•Secondly,•allowing•the•user•to•undo•back•to•the•precise•point•of•a•save•is•good•UI.•¶¶In•addition•we•overwrite•this•method•as•a•way•to•tell•that•the•document•has•been•saved•successfully.•If•so,•we•set•the•save•time•parameters•in•the•document.¶♢
 |    |    [909:910] <Newline> = ♢¶♢
 |    |    [910:920] <ObjCMethodImplementation>
 |    |    |    [910:910] <Match> = ♢-♢
@@ -15643,6 +15740,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [920:921] <Newline> = ♢¶♢
 |    |    [921:922] <Newline> = ♢¶♢
 |    |    [922:923] <CComment> = ♢/*•Since•a•document•into•which•the•user•has•dragged•graphics•should•autosave•as•RTFD,•we•override•this•method•to•return•RTFD,•unless•the•document•was•already•RTFD,•WebArchive,•or•plain•(the•last•one•done•for•optimization,•to•avoid•calling•containsAttachments).¶*/♢
+|    |    + <cleaned> = ♢•Since•a•document•into•which•the•user•has•dragged•graphics•should•autosave•as•RTFD,•we•override•this•method•to•return•RTFD,•unless•the•document•was•already•RTFD,•WebArchive,•or•plain•(the•last•one•done•for•optimization,•to•avoid•calling•containsAttachments).¶♢
 |    |    [923:924] <Newline> = ♢¶♢
 |    |    [924:930] <ObjCMethodImplementation>
 |    |    |    [924:924] <Match> = ♢-♢
@@ -15802,6 +15900,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [931:932] <Newline> = ♢¶♢
 |    |    [932:933] <Newline> = ♢¶♢
 |    |    [933:934] <CComment> = ♢/*•When•the•file•URL•is•set•to•nil,•we•store•away•the•old•URL.•This•happens•when•a•document•is•converted•to•and•from•rich•text.•If•the•document•exists•on•disk,•we•default•to•use•the•same•base•file•when•subsequently•saving•the•document.•¶*/♢
+|    |    + <cleaned> = ♢•When•the•file•URL•is•set•to•nil,•we•store•away•the•old•URL.•This•happens•when•a•document•is•converted•to•and•from•rich•text.•If•the•document•exists•on•disk,•we•default•to•use•the•same•base•file•when•subsequently•saving•the•document.•¶♢
 |    |    [934:935] <Newline> = ♢¶♢
 |    |    [935:942] <ObjCMethodImplementation>
 |    |    |    [935:935] <Match> = ♢-♢
@@ -16410,6 +16509,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    [980:980] <Text> = ♢stringByAppendingPathExtension♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    [980:980] <Colon> = ♢:♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    [980:980] <ObjCString> = ♢@"rtfd"♢
+|    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    + <cleaned> = ♢rtfd♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    [980:980] <Match> = ♢]♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    [980:980] <Match> = ♢]♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    |    [980:980] <Whitespace> = ♢•♢
@@ -16724,9 +16824,11 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    |    [1008:1008] <Parenthesis>
 |    |    |    |    |    |    |    |    |    |    [1008:1008] <Match> = ♢(♢
 |    |    |    |    |    |    |    |    |    |    [1008:1008] <ObjCString> = ♢@"rich•text•with•graphics•(RTFD)"♢
+|    |    |    |    |    |    |    |    |    |    + <cleaned> = ♢rich•text•with•graphics•(RTFD)♢
 |    |    |    |    |    |    |    |    |    |    [1008:1008] <Text> = ♢,♢
 |    |    |    |    |    |    |    |    |    |    [1008:1008] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    |    |    |    [1008:1008] <ObjCString> = ♢@"Rich•text•with•graphics•file•format•name,•displayed•in•alert"♢
+|    |    |    |    |    |    |    |    |    |    + <cleaned> = ♢Rich•text•with•graphics•file•format•name,•displayed•in•alert♢
 |    |    |    |    |    |    |    |    |    |    [1008:1008] <Match> = ♢)♢
 |    |    |    |    |    |    |    |    [1008:1008] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    |    [1008:1009] <Newline> = ♢¶♢
@@ -16738,9 +16840,11 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    |    [1009:1009] <Parenthesis>
 |    |    |    |    |    |    |    |    |    |    [1009:1009] <Match> = ♢(♢
 |    |    |    |    |    |    |    |    |    |    [1009:1009] <ObjCString> = ♢@"rich•text"♢
+|    |    |    |    |    |    |    |    |    |    + <cleaned> = ♢rich•text♢
 |    |    |    |    |    |    |    |    |    |    [1009:1009] <Text> = ♢,♢
 |    |    |    |    |    |    |    |    |    |    [1009:1009] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    |    |    |    [1009:1009] <ObjCString> = ♢@"Rich•text•file•format•name,•displayed•in•alert"♢
+|    |    |    |    |    |    |    |    |    |    + <cleaned> = ♢Rich•text•file•format•name,•displayed•in•alert♢
 |    |    |    |    |    |    |    |    |    |    [1009:1009] <Match> = ♢)♢
 |    |    |    |    |    |    |    |    [1009:1009] <Semicolon> = ♢;♢
 |    |    |    |    |    |    |    |    [1009:1010] <Newline> = ♢¶♢
@@ -16776,9 +16880,11 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    |    |    |    [1011:1011] <Parenthesis>
 |    |    |    |    |    |    |    |    |    |    |    |    [1011:1011] <Match> = ♢(♢
 |    |    |    |    |    |    |    |    |    |    |    |    [1011:1011] <ObjCString> = ♢@"Please•supply•a•new•name."♢
+|    |    |    |    |    |    |    |    |    |    |    |    + <cleaned> = ♢Please•supply•a•new•name.♢
 |    |    |    |    |    |    |    |    |    |    |    |    [1011:1011] <Text> = ♢,♢
 |    |    |    |    |    |    |    |    |    |    |    |    [1011:1011] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    |    |    |    |    |    [1011:1011] <ObjCString> = ♢@"Title•of•alert•panel•which•brings•up•a•warning•while•saving,•asking•for•new•name"♢
+|    |    |    |    |    |    |    |    |    |    |    |    + <cleaned> = ♢Title•of•alert•panel•which•brings•up•a•warning•while•saving,•asking•for•new•name♢
 |    |    |    |    |    |    |    |    |    |    |    |    [1011:1011] <Match> = ♢)♢
 |    |    |    |    |    |    |    |    |    |    [1011:1011] <Text> = ♢,♢
 |    |    |    |    |    |    |    |    |    |    [1011:1011] <Whitespace> = ♢•♢
@@ -16796,9 +16902,11 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    |    |    |    |    [1012:1012] <Parenthesis>
 |    |    |    |    |    |    |    |    |    |    |    |    |    [1012:1012] <Match> = ♢(♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    [1012:1012] <ObjCString> = ♢@"This•document•was•converted•from•a•format•that•TextEdit•cannot•save.•It•will•be•saved•in•%@•format•with•a•new•name."♢
+|    |    |    |    |    |    |    |    |    |    |    |    |    + <cleaned> = ♢This•document•was•converted•from•a•format•that•TextEdit•cannot•save.•It•will•be•saved•in•%@•format•with•a•new•name.♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    [1012:1012] <Text> = ♢,♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    [1012:1012] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    [1012:1012] <ObjCString> = ♢@"Contents•of•alert•panel•informing•user•that•they•need•to•supply•a•new•file•name•because•the•file•needs•to•be•saved•using•a•different•format•than•originally•read•in"♢
+|    |    |    |    |    |    |    |    |    |    |    |    |    + <cleaned> = ♢Contents•of•alert•panel•informing•user•that•they•need•to•supply•a•new•file•name•because•the•file•needs•to•be•saved•using•a•different•format•than•originally•read•in♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    [1012:1012] <Match> = ♢)♢
 |    |    |    |    |    |    |    |    |    |    |    [1012:1012] <Text> = ♢,♢
 |    |    |    |    |    |    |    |    |    |    |    [1012:1012] <Whitespace> = ♢•♢
@@ -16821,9 +16929,11 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    |    |    |    |    [1013:1013] <Parenthesis>
 |    |    |    |    |    |    |    |    |    |    |    |    |    [1013:1013] <Match> = ♢(♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    [1013:1013] <ObjCString> = ♢@"Save•with•new•name"♢
+|    |    |    |    |    |    |    |    |    |    |    |    |    + <cleaned> = ♢Save•with•new•name♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    [1013:1013] <Text> = ♢,♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    [1013:1013] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    [1013:1013] <ObjCString> = ♢@"Button•choice•allowing•user•to•choose•a•new•name"♢
+|    |    |    |    |    |    |    |    |    |    |    |    |    + <cleaned> = ♢Button•choice•allowing•user•to•choose•a•new•name♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    [1013:1013] <Match> = ♢)♢
 |    |    |    |    |    |    |    |    |    |    |    [1013:1013] <Text> = ♢,♢
 |    |    |    |    |    |    |    |    |    |    |    [1013:1013] <Whitespace> = ♢•♢
@@ -16832,9 +16942,11 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    |    |    |    |    [1013:1013] <Parenthesis>
 |    |    |    |    |    |    |    |    |    |    |    |    |    [1013:1013] <Match> = ♢(♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    [1013:1013] <ObjCString> = ♢@"Cancel"♢
+|    |    |    |    |    |    |    |    |    |    |    |    |    + <cleaned> = ♢Cancel♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    [1013:1013] <Text> = ♢,♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    [1013:1013] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    [1013:1013] <ObjCString> = ♢@"Button•choice•allowing•user•to•cancel."♢
+|    |    |    |    |    |    |    |    |    |    |    |    |    + <cleaned> = ♢Button•choice•allowing•user•to•cancel.♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    [1013:1013] <Match> = ♢)♢
 |    |    |    |    |    |    |    |    |    |    |    [1013:1013] <Text> = ♢,♢
 |    |    |    |    |    |    |    |    |    |    |    [1013:1013] <Whitespace> = ♢•♢
@@ -16906,9 +17018,11 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    |    |    |    [1018:1018] <Parenthesis>
 |    |    |    |    |    |    |    |    |    |    |    |    [1018:1018] <Match> = ♢(♢
 |    |    |    |    |    |    |    |    |    |    |    |    [1018:1018] <ObjCString> = ♢@"Are•you•sure•you•want•to•overwrite•the•document?"♢
+|    |    |    |    |    |    |    |    |    |    |    |    + <cleaned> = ♢Are•you•sure•you•want•to•overwrite•the•document?♢
 |    |    |    |    |    |    |    |    |    |    |    |    [1018:1018] <Text> = ♢,♢
 |    |    |    |    |    |    |    |    |    |    |    |    [1018:1018] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    |    |    |    |    |    [1018:1018] <ObjCString> = ♢@"Title•of•alert•panel•which•brings•up•a•warning•about•saving•over•the•same•document"♢
+|    |    |    |    |    |    |    |    |    |    |    |    + <cleaned> = ♢Title•of•alert•panel•which•brings•up•a•warning•about•saving•over•the•same•document♢
 |    |    |    |    |    |    |    |    |    |    |    |    [1018:1018] <Match> = ♢)♢
 |    |    |    |    |    |    |    |    |    |    [1018:1018] <Text> = ♢,♢
 |    |    |    |    |    |    |    |    |    |    [1018:1018] <Whitespace> = ♢•♢
@@ -16920,9 +17034,11 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    |    |    |    [1019:1019] <Parenthesis>
 |    |    |    |    |    |    |    |    |    |    |    |    [1019:1019] <Match> = ♢(♢
 |    |    |    |    |    |    |    |    |    |    |    |    [1019:1019] <ObjCString> = ♢@"Overwriting•this•document•might•cause•you•to•lose•some•of•the•original•formatting.••Would•you•like•to•save•the•document•using•a•new•name?"♢
+|    |    |    |    |    |    |    |    |    |    |    |    + <cleaned> = ♢Overwriting•this•document•might•cause•you•to•lose•some•of•the•original•formatting.••Would•you•like•to•save•the•document•using•a•new•name?♢
 |    |    |    |    |    |    |    |    |    |    |    |    [1019:1019] <Text> = ♢,♢
 |    |    |    |    |    |    |    |    |    |    |    |    [1019:1019] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    |    |    |    |    |    [1019:1019] <ObjCString> = ♢@"Contents•of•alert•panel•informing•user•that•they•need•to•supply•a•new•file•name•because•the•save•might•be•lossy"♢
+|    |    |    |    |    |    |    |    |    |    |    |    + <cleaned> = ♢Contents•of•alert•panel•informing•user•that•they•need•to•supply•a•new•file•name•because•the•save•might•be•lossy♢
 |    |    |    |    |    |    |    |    |    |    |    |    [1019:1019] <Match> = ♢)♢
 |    |    |    |    |    |    |    |    |    |    [1019:1019] <Text> = ♢,♢
 |    |    |    |    |    |    |    |    |    |    [1019:1019] <Whitespace> = ♢•♢
@@ -16940,9 +17056,11 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    |    |    |    |    [1020:1020] <Parenthesis>
 |    |    |    |    |    |    |    |    |    |    |    |    |    [1020:1020] <Match> = ♢(♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    [1020:1020] <ObjCString> = ♢@"Save•with•new•name"♢
+|    |    |    |    |    |    |    |    |    |    |    |    |    + <cleaned> = ♢Save•with•new•name♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    [1020:1020] <Text> = ♢,♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    [1020:1020] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    [1020:1020] <ObjCString> = ♢@"Button•choice•allowing•user•to•choose•a•new•name"♢
+|    |    |    |    |    |    |    |    |    |    |    |    |    + <cleaned> = ♢Button•choice•allowing•user•to•choose•a•new•name♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    [1020:1020] <Match> = ♢)♢
 |    |    |    |    |    |    |    |    |    |    |    [1020:1020] <Text> = ♢,♢
 |    |    |    |    |    |    |    |    |    |    |    [1020:1020] <Whitespace> = ♢•♢
@@ -16951,9 +17069,11 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    |    |    |    |    [1020:1020] <Parenthesis>
 |    |    |    |    |    |    |    |    |    |    |    |    |    [1020:1020] <Match> = ♢(♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    [1020:1020] <ObjCString> = ♢@"Overwrite"♢
+|    |    |    |    |    |    |    |    |    |    |    |    |    + <cleaned> = ♢Overwrite♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    [1020:1020] <Text> = ♢,♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    [1020:1020] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    [1020:1020] <ObjCString> = ♢@"Button•choice•allowing•user•to•overwrite•the•document."♢
+|    |    |    |    |    |    |    |    |    |    |    |    |    + <cleaned> = ♢Button•choice•allowing•user•to•overwrite•the•document.♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    [1020:1020] <Match> = ♢)♢
 |    |    |    |    |    |    |    |    |    |    |    [1020:1020] <Text> = ♢,♢
 |    |    |    |    |    |    |    |    |    |    |    [1020:1020] <Whitespace> = ♢•♢
@@ -16962,9 +17082,11 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    |    |    |    |    [1020:1020] <Parenthesis>
 |    |    |    |    |    |    |    |    |    |    |    |    |    [1020:1020] <Match> = ♢(♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    [1020:1020] <ObjCString> = ♢@"Cancel"♢
+|    |    |    |    |    |    |    |    |    |    |    |    |    + <cleaned> = ♢Cancel♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    [1020:1020] <Text> = ♢,♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    [1020:1020] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    [1020:1020] <ObjCString> = ♢@"Button•choice•allowing•user•to•cancel."♢
+|    |    |    |    |    |    |    |    |    |    |    |    |    + <cleaned> = ♢Button•choice•allowing•user•to•cancel.♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    [1020:1020] <Match> = ♢)♢
 |    |    |    |    |    |    |    |    |    |    |    [1020:1020] <Text> = ♢,♢
 |    |    |    |    |    |    |    |    |    |    |    [1020:1020] <Whitespace> = ♢•♢
@@ -17051,9 +17173,11 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    |    |    |    [1025:1025] <Parenthesis>
 |    |    |    |    |    |    |    |    |    |    |    |    [1025:1025] <Match> = ♢(♢
 |    |    |    |    |    |    |    |    |    |    |    |    [1025:1025] <ObjCString> = ♢@"Are•you•sure•you•want•to•save•using•RTFD•format?"♢
+|    |    |    |    |    |    |    |    |    |    |    |    + <cleaned> = ♢Are•you•sure•you•want•to•save•using•RTFD•format?♢
 |    |    |    |    |    |    |    |    |    |    |    |    [1025:1025] <Text> = ♢,♢
 |    |    |    |    |    |    |    |    |    |    |    |    [1025:1025] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    |    |    |    |    |    [1025:1025] <ObjCString> = ♢@"Title•of•alert•panel•which•brings•up•a•warning•while•saving"♢
+|    |    |    |    |    |    |    |    |    |    |    |    + <cleaned> = ♢Title•of•alert•panel•which•brings•up•a•warning•while•saving♢
 |    |    |    |    |    |    |    |    |    |    |    |    [1025:1025] <Match> = ♢)♢
 |    |    |    |    |    |    |    |    |    |    [1025:1025] <Text> = ♢,♢
 |    |    |    |    |    |    |    |    |    |    [1025:1025] <Whitespace> = ♢•♢
@@ -17065,9 +17189,11 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    |    |    |    [1026:1026] <Parenthesis>
 |    |    |    |    |    |    |    |    |    |    |    |    [1026:1026] <Match> = ♢(♢
 |    |    |    |    |    |    |    |    |    |    |    |    [1026:1026] <ObjCString> = ♢@"This•document•contains•graphics•and•will•be•saved•using•RTFD•(RTF•with•graphics)•format.•RTFD•documents•are•not•compatible•with•some•applications.•Save•anyway?"♢
+|    |    |    |    |    |    |    |    |    |    |    |    + <cleaned> = ♢This•document•contains•graphics•and•will•be•saved•using•RTFD•(RTF•with•graphics)•format.•RTFD•documents•are•not•compatible•with•some•applications.•Save•anyway?♢
 |    |    |    |    |    |    |    |    |    |    |    |    [1026:1026] <Text> = ♢,♢
 |    |    |    |    |    |    |    |    |    |    |    |    [1026:1026] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    |    |    |    |    |    [1026:1026] <ObjCString> = ♢@"Contents•of•alert•panel•informing•user•that•the•document•is•being•converted•from•RTF•to•RTFD,•and•allowing•them•to•cancel,•save•anyway,•or•save•with•new•name"♢
+|    |    |    |    |    |    |    |    |    |    |    |    + <cleaned> = ♢Contents•of•alert•panel•informing•user•that•the•document•is•being•converted•from•RTF•to•RTFD,•and•allowing•them•to•cancel,•save•anyway,•or•save•with•new•name♢
 |    |    |    |    |    |    |    |    |    |    |    |    [1026:1026] <Match> = ♢)♢
 |    |    |    |    |    |    |    |    |    |    [1026:1026] <Text> = ♢,♢
 |    |    |    |    |    |    |    |    |    |    [1026:1026] <Whitespace> = ♢•♢
@@ -17085,9 +17211,11 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    |    |    |    |    [1027:1027] <Parenthesis>
 |    |    |    |    |    |    |    |    |    |    |    |    |    [1027:1027] <Match> = ♢(♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    [1027:1027] <ObjCString> = ♢@"Save•with•new•name"♢
+|    |    |    |    |    |    |    |    |    |    |    |    |    + <cleaned> = ♢Save•with•new•name♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    [1027:1027] <Text> = ♢,♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    [1027:1027] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    [1027:1027] <ObjCString> = ♢@"Button•choice•allowing•user•to•choose•a•new•name"♢
+|    |    |    |    |    |    |    |    |    |    |    |    |    + <cleaned> = ♢Button•choice•allowing•user•to•choose•a•new•name♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    [1027:1027] <Match> = ♢)♢
 |    |    |    |    |    |    |    |    |    |    |    [1027:1027] <Text> = ♢,♢
 |    |    |    |    |    |    |    |    |    |    |    [1027:1027] <Whitespace> = ♢•♢
@@ -17096,9 +17224,11 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    |    |    |    |    [1027:1027] <Parenthesis>
 |    |    |    |    |    |    |    |    |    |    |    |    |    [1027:1027] <Match> = ♢(♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    [1027:1027] <ObjCString> = ♢@"Save"♢
+|    |    |    |    |    |    |    |    |    |    |    |    |    + <cleaned> = ♢Save♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    [1027:1027] <Text> = ♢,♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    [1027:1027] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    [1027:1027] <ObjCString> = ♢@"Button•choice•which•allows•the•user•to•save•the•document."♢
+|    |    |    |    |    |    |    |    |    |    |    |    |    + <cleaned> = ♢Button•choice•which•allows•the•user•to•save•the•document.♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    [1027:1027] <Match> = ♢)♢
 |    |    |    |    |    |    |    |    |    |    |    [1027:1027] <Text> = ♢,♢
 |    |    |    |    |    |    |    |    |    |    |    [1027:1027] <Whitespace> = ♢•♢
@@ -17107,9 +17237,11 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    |    |    |    |    [1027:1027] <Parenthesis>
 |    |    |    |    |    |    |    |    |    |    |    |    |    [1027:1027] <Match> = ♢(♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    [1027:1027] <ObjCString> = ♢@"Cancel"♢
+|    |    |    |    |    |    |    |    |    |    |    |    |    + <cleaned> = ♢Cancel♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    [1027:1027] <Text> = ♢,♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    [1027:1027] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    [1027:1027] <ObjCString> = ♢@"Button•choice•allowing•user•to•cancel."♢
+|    |    |    |    |    |    |    |    |    |    |    |    |    + <cleaned> = ♢Button•choice•allowing•user•to•cancel.♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    [1027:1027] <Match> = ♢)♢
 |    |    |    |    |    |    |    |    |    |    |    [1027:1027] <Text> = ♢,♢
 |    |    |    |    |    |    |    |    |    |    |    [1027:1027] <Whitespace> = ♢•♢
@@ -17253,9 +17385,11 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    |    |    |    |    |    |    [1035:1035] <Parenthesis>
 |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    [1035:1035] <Match> = ♢(♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    [1035:1035] <ObjCString> = ♢@"This•document•can•no•longer•be•saved•using•its•original•%@•encoding."♢
+|    |    |    |    |    |    |    |    |    |    |    |    |    |    |    + <cleaned> = ♢This•document•can•no•longer•be•saved•using•its•original•%@•encoding.♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    [1035:1035] <Text> = ♢,♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    [1035:1035] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    [1035:1035] <ObjCString> = ♢@"Title•of•alert•panel•informing•user•that•the•file's•string•encoding•needs•to•be•changed."♢
+|    |    |    |    |    |    |    |    |    |    |    |    |    |    |    + <cleaned> = ♢Title•of•alert•panel•informing•user•that•the•file's•string•encoding•needs•to•be•changed.♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    [1035:1035] <Match> = ♢)♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    [1035:1035] <Text> = ♢,♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    [1035:1035] <Whitespace> = ♢•♢
@@ -17278,9 +17412,11 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    |    |    |    |    |    [1036:1036] <Parenthesis>
 |    |    |    |    |    |    |    |    |    |    |    |    |    |    [1036:1036] <Match> = ♢(♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    |    [1036:1036] <ObjCString> = ♢@"Please•choose•another•encoding•(such•as•UTF-8)."♢
+|    |    |    |    |    |    |    |    |    |    |    |    |    |    + <cleaned> = ♢Please•choose•another•encoding•(such•as•UTF-8).♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    |    [1036:1036] <Text> = ♢,♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    |    [1036:1036] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    |    [1036:1036] <ObjCString> = ♢@"Subtitle•of•alert•panel•informing•user•that•the•file's•string•encoding•needs•to•be•changed"♢
+|    |    |    |    |    |    |    |    |    |    |    |    |    |    + <cleaned> = ♢Subtitle•of•alert•panel•informing•user•that•the•file's•string•encoding•needs•to•be•changed♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    |    [1036:1036] <Match> = ♢)♢
 |    |    |    |    |    |    |    |    |    |    |    |    [1036:1036] <Text> = ♢,♢
 |    |    |    |    |    |    |    |    |    |    |    |    [1036:1036] <Whitespace> = ♢•♢
@@ -17395,6 +17531,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [1048:1049] <Newline> = ♢¶♢
 |    |    [1049:1050] <Newline> = ♢¶♢
 |    |    [1050:1051] <CComment> = ♢/*•For•plain-text•documents,•we•add•our•own•accessory•view•for•selecting•encodings.•The•plain•text•case•does•not•require•a•format•popup.•¶*/♢
+|    |    + <cleaned> = ♢•For•plain-text•documents,•we•add•our•own•accessory•view•for•selecting•encodings.•The•plain•text•case•does•not•require•a•format•popup.•¶♢
 |    |    [1051:1052] <Newline> = ♢¶♢
 |    |    [1052:1054] <ObjCMethodImplementation>
 |    |    |    [1052:1052] <Match> = ♢-♢
@@ -17424,6 +17561,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [1054:1055] <Newline> = ♢¶♢
 |    |    [1055:1056] <Newline> = ♢¶♢
 |    |    [1056:1057] <CComment> = ♢/*•If•the•document•is•a•converted•version•of•a•document•that•existed•on•disk,•set•the•default•directory•to•the•directory•in•which•the•source•file•(converted•file)•resided•at•the•time•the•document•was•converted.•If•the•document•is•plain•text,•we•additionally•add•an•encoding•popup.•¶*/♢
+|    |    + <cleaned> = ♢•If•the•document•is•a•converted•version•of•a•document•that•existed•on•disk,•set•the•default•directory•to•the•directory•in•which•the•source•file•(converted•file)•resided•at•the•time•the•document•was•converted.•If•the•document•is•plain•text,•we•additionally•add•an•encoding•popup.•¶♢
 |    |    [1057:1058] <Newline> = ♢¶♢
 |    |    [1058:1119] <ObjCMethodImplementation>
 |    |    |    [1058:1058] <Match> = ♢-♢
@@ -17719,9 +17857,11 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    [1080:1080] <Parenthesis>
 |    |    |    |    |    |    |    |    |    [1080:1080] <Match> = ♢(♢
 |    |    |    |    |    |    |    |    |    [1080:1080] <ObjCString> = ♢@"If•no•extension•is•provided,•use•\\U201c.txt\\U201d."♢
+|    |    |    |    |    |    |    |    |    + <cleaned> = ♢If•no•extension•is•provided,•use•\U201c.txt\U201d.♢
 |    |    |    |    |    |    |    |    |    [1080:1080] <Text> = ♢,♢
 |    |    |    |    |    |    |    |    |    [1080:1080] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    |    |    [1080:1080] <ObjCString> = ♢@"Checkbox•indicating•that•if•the•user•does•not•specify•an•extension•when•saving•a•plain•text•file,•.txt•will•be•used"♢
+|    |    |    |    |    |    |    |    |    + <cleaned> = ♢Checkbox•indicating•that•if•the•user•does•not•specify•an•extension•when•saving•a•plain•text•file,•.txt•will•be•used♢
 |    |    |    |    |    |    |    |    |    [1080:1080] <Match> = ♢)♢
 |    |    |    |    |    |    |    [1080:1080] <Match> = ♢]♢
 |    |    |    |    |    |    [1080:1080] <Semicolon> = ♢;♢
@@ -17738,9 +17878,11 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    [1081:1081] <Parenthesis>
 |    |    |    |    |    |    |    |    |    [1081:1081] <Match> = ♢(♢
 |    |    |    |    |    |    |    |    |    [1081:1081] <ObjCString> = ♢@"Automatically•append•\\U201c.txt\\U201d•to•the•file•name•if•no•known•file•name•extension•is•provided."♢
+|    |    |    |    |    |    |    |    |    + <cleaned> = ♢Automatically•append•\U201c.txt\U201d•to•the•file•name•if•no•known•file•name•extension•is•provided.♢
 |    |    |    |    |    |    |    |    |    [1081:1081] <Text> = ♢,♢
 |    |    |    |    |    |    |    |    |    [1081:1081] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    |    |    [1081:1081] <ObjCString> = ♢@"Tooltip•for•checkbox•indicating•that•if•the•user•does•not•specify•an•extension•when•saving•a•plain•text•file,•.txt•will•be•used"♢
+|    |    |    |    |    |    |    |    |    + <cleaned> = ♢Tooltip•for•checkbox•indicating•that•if•the•user•does•not•specify•an•extension•when•saving•a•plain•text•file,•.txt•will•be•used♢
 |    |    |    |    |    |    |    |    |    [1081:1081] <Match> = ♢)♢
 |    |    |    |    |    |    |    [1081:1081] <Match> = ♢]♢
 |    |    |    |    |    |    [1081:1081] <Semicolon> = ♢;♢
@@ -18202,6 +18344,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [1119:1120] <Newline> = ♢¶♢
 |    |    [1120:1121] <Newline> = ♢¶♢
 |    |    [1121:1122] <CComment> = ♢/*•If•the•document•does•not•exist•on•disk,•but•it•has•been•converted•from•a•document•that•existed•on•disk,•return•the•base•file•name•without•the•path•extension.•Otherwise•return•the•default•("Untitled").•This•is•used•for•the•window•title•and•for•the•default•name•when•saving.•¶*/♢
+|    |    + <cleaned> = ♢•If•the•document•does•not•exist•on•disk,•but•it•has•been•converted•from•a•document•that•existed•on•disk,•return•the•base•file•name•without•the•path•extension.•Otherwise•return•the•default•("Untitled").•This•is•used•for•the•window•title•and•for•the•default•name•when•saving.•¶♢
 |    |    [1122:1123] <Newline> = ♢¶♢
 |    |    [1123:1129] <ObjCMethodImplementation>
 |    |    |    [1123:1123] <Match> = ♢-♢
@@ -18301,6 +18444,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    [1132:1133] <Newline> = ♢¶♢
 |    [1133:1134] <Newline> = ♢¶♢
 |    [1134:1135] <CComment> = ♢/*•Truncate•string•to•no•longer•than•truncationLength;•should•be•>•10¶*/♢
+|    + <cleaned> = ♢•Truncate•string•to•no•longer•than•truncationLength;•should•be•>•10¶♢
 |    [1135:1136] <Newline> = ♢¶♢
 |    [1136:1140] <CFunctionDefinition>
 |    |    [1136:1136] <Text> = ♢NSString♢
@@ -18378,6 +18522,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    [1139:1139] <Text> = ♢stringByAppendingString♢
 |    |    |    |    |    [1139:1139] <Colon> = ♢:♢
 |    |    |    |    |    [1139:1139] <ObjCString> = ♢@"\u2026"♢
+|    |    |    |    |    + <cleaned> = ♢…♢
 |    |    |    |    |    [1139:1139] <Match> = ♢]♢
 |    |    |    |    [1139:1139] <Semicolon> = ♢;♢
 |    |    |    [1139:1139] <Whitespace> = ♢→♢

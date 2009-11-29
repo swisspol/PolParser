@@ -40,6 +40,10 @@ typedef SourceNode* (*SourceNodeApplierFunction)(SourceNode* node, void* context
 @property(nonatomic, readonly) NSRange lines;
 @property(nonatomic, readonly) NSString* content;
 
+@property(nonatomic, readonly) NSString* name; //A name for the node whose definition depends on the node class - returns +name by default
+@property(nonatomic, readonly) NSDictionary* attributes; //A dictionary of attributes whose definition depends on the node class - returns nil by default
+@property(nonatomic, readonly) NSString* cleanContent; //A clean version of "content" whose definition depends on the node class - returns "content" by default
+
 @property(nonatomic, readonly) SourceNode* parent;
 @property(nonatomic, readonly) NSArray* children;
 @property(nonatomic, readonly) SourceNode* firstChild;

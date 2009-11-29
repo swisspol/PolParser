@@ -252,7 +252,7 @@ static SourceNode* _ApplierFunction(SourceNode* node, void* context) {
 
 @implementation SourceNodeObjCPreprocessorImport
 
-IS_MATCHING_PREFIX_METHOD_WITH_TRAILING_CHARACTERS(@"#import", false, NULL)
+IS_MATCHING_PREFIX_METHOD_WITH_TRAILING_CHARACTERS("#import", false, NULL)
 
 @end
 
@@ -266,11 +266,15 @@ IS_MATCHING_PREFIX_METHOD_WITH_TRAILING_CHARACTERS(@"#import", false, NULL)
     return (maxLength >= 2) && (string[0] == '@') && (string[1] == '"') ? 2 : NSNotFound;
 }
 
+- (NSString*) cleanContent {
+	return [[super cleanContent] substringFromIndex:1];
+}
+
 @end
 
-KEYWORD_CLASS_IMPLEMENTATION(ObjC, Self, @"self")
-KEYWORD_CLASS_IMPLEMENTATION(ObjC, Super, @"super")
-KEYWORD_CLASS_IMPLEMENTATION(ObjC, Nil, @"nil")
+KEYWORD_CLASS_IMPLEMENTATION(ObjC, Self, "self")
+KEYWORD_CLASS_IMPLEMENTATION(ObjC, Super, "super")
+KEYWORD_CLASS_IMPLEMENTATION(ObjC, Nil, "nil")
 
 #define IMPLEMENTATION(__NAME__, __TOKEN__) \
 @implementation SourceNodeObjC##__NAME__ \
@@ -280,7 +284,7 @@ KEYWORD_CLASS_IMPLEMENTATION(ObjC, Nil, @"nil")
 } \
 \
 + (NSUInteger) isMatchingPrefix:(const unichar*)string maxLength:(NSUInteger)maxLength { \
-    IS_MATCHING(__TOKEN__, true, NULL, string, maxLength) \
+    IS_MATCHING_CHARACTERS_EXTENDED(__TOKEN__, true, NULL, string, maxLength) \
     if(_matching != NSNotFound) { \
         string += _matching; \
         maxLength -= _matching; \
@@ -299,13 +303,13 @@ KEYWORD_CLASS_IMPLEMENTATION(ObjC, Nil, @"nil")
     return _matching; \
 } \
 \
-IS_MATCHING_SUFFIX_METHOD_WITH_TRAILING_CHARACTERS(@"@end", false, NULL) \
+IS_MATCHING_SUFFIX_METHOD_WITH_TRAILING_CHARACTERS("@end", false, NULL) \
 \
 @end
 
-IMPLEMENTATION(Interface, @"@interface")
-IMPLEMENTATION(Implementation, @"@implementation")
-IMPLEMENTATION(Protocol, @"@protocol")
+IMPLEMENTATION(Interface, "@interface")
+IMPLEMENTATION(Implementation, "@implementation")
+IMPLEMENTATION(Protocol, "@protocol")
 
 #undef IMPLEMENTATION
 
@@ -320,21 +324,21 @@ IS_MATCHING_PREFIX_METHOD_WITH_TRAILING_CHARACTERS(__VA_ARGS__) \
 \
 @end
 
-IMPLEMENTATION(Class, @"@class", true, NULL)
-IMPLEMENTATION(Public, @"@public", true, NULL)
-IMPLEMENTATION(Protected, @"@protected", true, NULL)
-IMPLEMENTATION(Private, @"@private", true, NULL)
-IMPLEMENTATION(Required, @"@required", true, NULL)
-IMPLEMENTATION(Optional, @"@optional", true, NULL)
-IMPLEMENTATION(Try, @"@try", true, "{")
-IMPLEMENTATION(Catch, @"@catch", true, "(")
-IMPLEMENTATION(Finally, @"@finally", true, "{")
-IMPLEMENTATION(Throw, @"@throw", false, NULL)
-IMPLEMENTATION(Synchronized, @"@synchronized", true, "(")
-IMPLEMENTATION(Property, @"@property", true, "(")
-IMPLEMENTATION(Synthesize, @"@synthesize", true, "(")
-IMPLEMENTATION(Selector, @"@selector", true, "(")
-IMPLEMENTATION(Encode, @"@encode", true, "(")
+IMPLEMENTATION(Class, "@class", true, NULL)
+IMPLEMENTATION(Public, "@public", true, NULL)
+IMPLEMENTATION(Protected, "@protected", true, NULL)
+IMPLEMENTATION(Private, "@private", true, NULL)
+IMPLEMENTATION(Required, "@required", true, NULL)
+IMPLEMENTATION(Optional, "@optional", true, NULL)
+IMPLEMENTATION(Try, "@try", true, "{")
+IMPLEMENTATION(Catch, "@catch", true, "(")
+IMPLEMENTATION(Finally, "@finally", true, "{")
+IMPLEMENTATION(Throw, "@throw", false, NULL)
+IMPLEMENTATION(Synchronized, "@synchronized", true, "(")
+IMPLEMENTATION(Property, "@property", true, "(")
+IMPLEMENTATION(Synthesize, "@synthesize", true, "(")
+IMPLEMENTATION(Selector, "@selector", true, "(")
+IMPLEMENTATION(Encode, "@encode", true, "(")
 
 #undef IMPLEMENTATION
 

@@ -359,6 +359,11 @@ TOKEN_CLASS_IMPLEMENTATION(Asterisk, "*")
     return (maxLength >= 2) && (string[0] == '*') && (string[1] == '/') ? 2 : NSNotFound;
 }
 
+- (NSString*) cleanContent {
+	NSRange range = self.range;
+    return [self.source substringWithRange:NSMakeRange(range.location + 2, range.length - 4)];
+}
+
 @end
 
 @implementation SourceNodeCPreprocessor
@@ -399,17 +404,17 @@ TOKEN_CLASS_IMPLEMENTATION(Asterisk, "*")
 
 + (NSUInteger) isMatchingSuffix:(const unichar*)string maxLength:(NSUInteger)maxLength {
     {
-        IS_MATCHING(@"#else", true, NULL, string, maxLength);
+        IS_MATCHING_CHARACTERS_EXTENDED("#else", true, NULL, string, maxLength);
         if(_matching != NSNotFound)
             return 0;
     }
     {
-        IS_MATCHING(@"#elseif", true, "(", string, maxLength);
+        IS_MATCHING_CHARACTERS_EXTENDED("#elseif", true, "(", string, maxLength);
         if(_matching != NSNotFound)
             return 0;
     }
     {
-        IS_MATCHING(@"#endif", true, NULL, string, maxLength);
+        IS_MATCHING_CHARACTERS_EXTENDED("#endif", true, NULL, string, maxLength);
         if(_matching != NSNotFound)
             return _matching;
     }
@@ -423,7 +428,7 @@ TOKEN_CLASS_IMPLEMENTATION(Asterisk, "*")
 @implementation SourceNodeCPreprocessorCondition##__NAME__ \
 \
 + (NSUInteger) isMatchingPrefix:(const unichar*)string maxLength:(NSUInteger)maxLength { \
-    IS_MATCHING(__PREFIX__, true, __CHARACTERS__, string, maxLength) \
+    IS_MATCHING_CHARACTERS_EXTENDED(__PREFIX__, true, __CHARACTERS__, string, maxLength) \
     if(_matching != NSNotFound) { \
         string += _matching; \
         maxLength -= _matching; \
@@ -445,29 +450,122 @@ TOKEN_CLASS_IMPLEMENTATION(Asterisk, "*")
 \
 @end
 
-IMPLEMENTATION(If, @"#if", "(")
-IMPLEMENTATION(Ifdef, @"#ifdef", "(")
-IMPLEMENTATION(Ifndef, @"#ifndef", "(")
-IMPLEMENTATION(Else, @"#else", "(")
-IMPLEMENTATION(Elseif, @"#elseif", "(")
+IMPLEMENTATION(If, "#if", "(")
+IMPLEMENTATION(Ifdef, "#ifdef", "(")
+IMPLEMENTATION(Ifndef, "#ifndef", "(")
+IMPLEMENTATION(Else, "#else", "(")
+IMPLEMENTATION(Elseif, "#elseif", "(")
 
 #undef IMPLEMENTATION
 
-#define IMPLEMENTATION(__NAME__, ...) \
+#define IMPLEMENTATION(__NAME__, __CHARACTERS__, ...) \
 @implementation SourceNodeCPreprocessor##__NAME__ \
 \
-IS_MATCHING_PREFIX_METHOD_WITH_TRAILING_CHARACTERS(__VA_ARGS__) \
+IS_MATCHING_PREFIX_METHOD_WITH_TRAILING_CHARACTERS(__CHARACTERS__, __VA_ARGS__) \
 \
 @end
 
-IMPLEMENTATION(Define, @"#define", true, NULL)
-IMPLEMENTATION(Undefine, @"#undef", true, NULL)
-IMPLEMENTATION(Pragma, @"#pragma", true, "(")
-IMPLEMENTATION(Warning, @"#warning", true, "(")
-IMPLEMENTATION(Error, @"#error", true, "(")
-IMPLEMENTATION(Include, @"#include", false, NULL)
+IMPLEMENTATION(Define, "#define", true, NULL)
+IMPLEMENTATION(Undefine, "#undef", true, NULL)
+IMPLEMENTATION(Pragma, "#pragma", true, "(")
+IMPLEMENTATION(Warning, "#warning", true, "(")
+IMPLEMENTATION(Error, "#error", true, "(")
+IMPLEMENTATION(Include, "#include", false, NULL)
 
 #undef IMPLEMENTATION
+
+static NSString* _StringFromHexUnicodeCharacter(NSString* string) {
+    unichar character = 0;
+	NSUInteger length = string.length;
+    unichar buffer[length];
+    [string getCharacters:buffer];
+    for(NSUInteger i = 0; i < length; ++i) {
+    	NSUInteger num = 0;
+        if((buffer[i] >= 'A') && (buffer[i] <= 'F'))
+		num = buffer[i] - 'A' + 10;
+		else if((buffer[i] >= 'a') && (buffer[i] <= 'f'))
+		num = buffer[i] - 'a' + 10;
+		else if((buffer[i] >= '0') && (buffer[i] <= '9'))
+		num = buffer[i] - '0';
+        if(i > 0)
+        	character <<= 4;
+        character |= num;
+    }
+	return [NSString stringWithCharacters:&character length:1];
+}
+
+//FIXME: We don't handle "\nnn = character with octal value nnn"
+static NSString* _CleanString(NSString* string) {
+    NSMutableString* newString = [NSMutableString stringWithString:string];
+    
+    NSRange range = NSMakeRange(0, newString.length);
+    while(1) {
+    	NSRange subrange = [newString rangeOfString:@"\\\\" options:0 range:range];
+        if(subrange.location != NSNotFound) {
+            range.length -= subrange.location + 2 - range.location;
+            range.location = subrange.location + 2;
+            continue;
+        }
+        subrange = [newString rangeOfString:@"\\x" options:0 range:range];
+        if(subrange.location == NSNotFound)
+        	break;
+        if(range.length - subrange.location + range.location < 2)
+        	break;
+        [newString replaceCharactersInRange:NSMakeRange(subrange.location, 4) withString:_StringFromHexUnicodeCharacter([newString substringWithRange:NSMakeRange(subrange.location + 2, 2)])];
+        range.length -= subrange.location + 4 - range.location;
+        range.location = subrange.location + 1;
+    }
+    
+    range = NSMakeRange(0, newString.length);
+    while(1) {
+    	NSRange subrange = [newString rangeOfString:@"\\\\" options:0 range:range];
+        if(subrange.location != NSNotFound) {
+            range.length -= subrange.location + 2 - range.location;
+            range.location = subrange.location + 2;
+            continue;
+        }
+        subrange = [newString rangeOfString:@"\\u" options:0 range:range];
+        if(subrange.location == NSNotFound)
+        	break;
+        if(range.length - subrange.location + range.location < 4)
+        	break;
+        [newString replaceCharactersInRange:NSMakeRange(subrange.location, 6) withString:_StringFromHexUnicodeCharacter([newString substringWithRange:NSMakeRange(subrange.location + 2, 4)])];
+        range.length -= subrange.location + 6 - range.location;
+        range.location = subrange.location + 1;
+    }
+    
+    range = NSMakeRange(0, newString.length);
+    while(1) {
+    	NSRange subrange = [newString rangeOfString:@"\\\\" options:0 range:range];
+        if(subrange.location != NSNotFound) {
+            range.length -= subrange.location + 2 - range.location;
+            range.location = subrange.location + 2;
+            continue;
+        }
+        subrange = [newString rangeOfString:@"\\U" options:0 range:range];
+        if(subrange.location == NSNotFound)
+        	break;
+        if(range.length - subrange.location + range.location < 8)
+        	break;
+        [newString replaceCharactersInRange:NSMakeRange(subrange.location, 10) withString:_StringFromHexUnicodeCharacter([newString substringWithRange:NSMakeRange(subrange.location + 2, 8)])];
+        range.length -= subrange.location + 10 - range.location;
+        range.location = subrange.location + 1;
+    }
+    
+    [newString replaceOccurrencesOfString:@"\\?" withString:@"?" options:0 range:NSMakeRange(0, newString.length)];
+    [newString replaceOccurrencesOfString:@"\\f" withString:@"\f" options:0 range:NSMakeRange(0, newString.length)];
+    [newString replaceOccurrencesOfString:@"\\a" withString:@"\a" options:0 range:NSMakeRange(0, newString.length)];
+    [newString replaceOccurrencesOfString:@"\\v" withString:@"\v" options:0 range:NSMakeRange(0, newString.length)];
+    [newString replaceOccurrencesOfString:@"\\b" withString:@"\b" options:0 range:NSMakeRange(0, newString.length)];
+    [newString replaceOccurrencesOfString:@"\\t" withString:@"\t" options:0 range:NSMakeRange(0, newString.length)];
+    [newString replaceOccurrencesOfString:@"\\n" withString:@"\n" options:0 range:NSMakeRange(0, newString.length)];
+    [newString replaceOccurrencesOfString:@"\\r" withString:@"\r" options:0 range:NSMakeRange(0, newString.length)];
+    [newString replaceOccurrencesOfString:@"\\\"" withString:@"\"" options:0 range:NSMakeRange(0, newString.length)];
+    [newString replaceOccurrencesOfString:@"\\\'" withString:@"\'" options:0 range:NSMakeRange(0, newString.length)];
+    [newString replaceOccurrencesOfString:@"\\\\" withString:@"\\" options:0 range:NSMakeRange(0, newString.length)];
+    
+    return newString;
+}
 
 @implementation SourceNodeCStringSingleQuote
 
@@ -477,6 +575,11 @@ IMPLEMENTATION(Include, @"#include", false, NULL)
 
 + (NSUInteger) isMatchingSuffix:(const unichar*)string maxLength:(NSUInteger)maxLength {
     return maxLength && (*string == '\'') && !((*(string - 1) == '\\') && (*(string - 2) != '\\')) ? 1 : NSNotFound;
+}
+
+- (NSString*) cleanContent {
+	NSRange range = self.range;
+    return _CleanString([self.source substringWithRange:NSMakeRange(range.location + 1, range.length - 2)]);
 }
 
 @end
@@ -491,25 +594,30 @@ IMPLEMENTATION(Include, @"#include", false, NULL)
     return maxLength && (*string == '"') && !((*(string - 1) == '\\') && (*(string - 2) != '\\')) ? 1 : NSNotFound;
 }
 
+- (NSString*) cleanContent {
+	NSRange range = self.range;
+    return _CleanString([self.source substringWithRange:NSMakeRange(range.location + 1, range.length - 2)]);
+}
+
 @end
 
-KEYWORD_CLASS_IMPLEMENTATION(C, NULL, @"NULL")
-KEYWORD_CLASS_IMPLEMENTATION(C, Void, @"void")
-KEYWORD_CLASS_IMPLEMENTATION(C, Auto, @"auto")
-KEYWORD_CLASS_IMPLEMENTATION(C, Static, @"static")
-KEYWORD_CLASS_IMPLEMENTATION(C, Register, @"register")
-KEYWORD_CLASS_IMPLEMENTATION(C, Volatile, @"volatile")
-KEYWORD_CLASS_IMPLEMENTATION(C, Const, @"const")
-KEYWORD_CLASS_IMPLEMENTATION(C, Extern, @"extern")
-KEYWORD_CLASS_IMPLEMENTATION(C, Inline, @"inline")
-KEYWORD_CLASS_IMPLEMENTATION(C, Signed, @"signed")
-KEYWORD_CLASS_IMPLEMENTATION(C, Unsigned, @"unsigned")
-KEYWORD_CLASS_IMPLEMENTATION(C, Char, @"char")
-KEYWORD_CLASS_IMPLEMENTATION(C, Short, @"short")
-KEYWORD_CLASS_IMPLEMENTATION(C, Int, @"int")
-KEYWORD_CLASS_IMPLEMENTATION(C, Long, @"long")
-KEYWORD_CLASS_IMPLEMENTATION(C, Float, @"float")
-KEYWORD_CLASS_IMPLEMENTATION(C, Double, @"double")
+KEYWORD_CLASS_IMPLEMENTATION(C, NULL, "NULL")
+KEYWORD_CLASS_IMPLEMENTATION(C, Void, "void")
+KEYWORD_CLASS_IMPLEMENTATION(C, Auto, "auto")
+KEYWORD_CLASS_IMPLEMENTATION(C, Static, "static")
+KEYWORD_CLASS_IMPLEMENTATION(C, Register, "register")
+KEYWORD_CLASS_IMPLEMENTATION(C, Volatile, "volatile")
+KEYWORD_CLASS_IMPLEMENTATION(C, Const, "const")
+KEYWORD_CLASS_IMPLEMENTATION(C, Extern, "extern")
+KEYWORD_CLASS_IMPLEMENTATION(C, Inline, "inline")
+KEYWORD_CLASS_IMPLEMENTATION(C, Signed, "signed")
+KEYWORD_CLASS_IMPLEMENTATION(C, Unsigned, "unsigned")
+KEYWORD_CLASS_IMPLEMENTATION(C, Char, "char")
+KEYWORD_CLASS_IMPLEMENTATION(C, Short, "short")
+KEYWORD_CLASS_IMPLEMENTATION(C, Int, "int")
+KEYWORD_CLASS_IMPLEMENTATION(C, Long, "long")
+KEYWORD_CLASS_IMPLEMENTATION(C, Float, "float")
+KEYWORD_CLASS_IMPLEMENTATION(C, Double, "double")
 
 #define IMPLEMENTATION(__NAME__, ...) \
 @implementation SourceNodeC##__NAME__ \
@@ -522,24 +630,24 @@ IS_MATCHING_PREFIX_METHOD_WITH_TRAILING_CHARACTERS(__VA_ARGS__) \
 \
 @end
 
-IMPLEMENTATION(ConditionIf, @"if", true, "(")
-IMPLEMENTATION(ConditionElse, @"else", true, "{")
-IMPLEMENTATION(FlowBreak, @"break", true, ";")
-IMPLEMENTATION(FlowContinue, @"continue", true, ";")
-IMPLEMENTATION(FlowSwitch, @"switch", true, "(")
-IMPLEMENTATION(FlowCase, @"case", true, NULL)
-IMPLEMENTATION(FlowDefault, @"default", true, ":")
-IMPLEMENTATION(FlowFor, @"for", true, "(")
-IMPLEMENTATION(FlowDoWhile, @"do", true, "{")
-IMPLEMENTATION(FlowWhile, @"while", true, "(")
-IMPLEMENTATION(FlowGoto, @"goto", true, NULL)
-IMPLEMENTATION(FlowReturn, @"return", true, ";(")
-IMPLEMENTATION(Typedef, @"typedef", true, NULL)
-IMPLEMENTATION(TypeStruct, @"struct", true, "{")
-IMPLEMENTATION(TypeUnion, @"union", true, "{")
-IMPLEMENTATION(TypeEnum, @"enum", true, "{")
-IMPLEMENTATION(SizeOf, @"sizeof", true, "(")
-IMPLEMENTATION(TypeOf, @"typeof", true, "(")
+IMPLEMENTATION(ConditionIf, "if", true, "(")
+IMPLEMENTATION(ConditionElse, "else", true, "{")
+IMPLEMENTATION(FlowBreak, "break", true, ";")
+IMPLEMENTATION(FlowContinue, "continue", true, ";")
+IMPLEMENTATION(FlowSwitch, "switch", true, "(")
+IMPLEMENTATION(FlowCase, "case", true, NULL)
+IMPLEMENTATION(FlowDefault, "default", true, ":")
+IMPLEMENTATION(FlowFor, "for", true, "(")
+IMPLEMENTATION(FlowDoWhile, "do", true, "{")
+IMPLEMENTATION(FlowWhile, "while", true, "(")
+IMPLEMENTATION(FlowGoto, "goto", true, NULL)
+IMPLEMENTATION(FlowReturn, "return", true, ";(")
+IMPLEMENTATION(Typedef, "typedef", true, NULL)
+IMPLEMENTATION(TypeStruct, "struct", true, "{")
+IMPLEMENTATION(TypeUnion, "union", true, "{")
+IMPLEMENTATION(TypeEnum, "enum", true, "{")
+IMPLEMENTATION(SizeOf, "sizeof", true, "(")
+IMPLEMENTATION(TypeOf, "typeof", true, "(")
 
 #undef IMPLEMENTATION
 

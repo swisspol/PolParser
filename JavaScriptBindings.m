@@ -37,13 +37,14 @@ function __wrapper() {\
     return __success;\
 }";
 
-static JSClassRef _class = NULL;
+static JSClassRef _nodeClass = NULL;
+static JSClassRef _dictionaryClass = NULL;
 
 static JSObjectRef _JSObjectFromNode(SourceNode* node, JSContextRef context) {
 	if(node == nil)
     	return (JSObjectRef)JSValueMakeUndefined(context);
     if(node.jsObject == NULL) {
-        node.jsObject = JSObjectMake(context, _class, node);
+        node.jsObject = JSObjectMake(context, _nodeClass, node);
         JSValueProtect(context, node.jsObject);
     }
     
@@ -100,17 +101,23 @@ static JSObjectRef _CallAsConstructorCallback(JSContextRef ctx, JSObjectRef cons
     return JSContextGetGlobalObject(ctx); //FIXME: Returning anything but a JSObjectRef makes JavaScriptCore crash
 }
 
+static JSValueRef _GetPropertyType(JSContextRef ctx, JSObjectRef object, JSStringRef propertyName, JSValueRef* exception) {
+	SourceNode* node = JSObjectGetPrivate(object);
+    return JSValueMakeNumber(ctx, (double)(long)[node class]);
+}
+
 static JSValueRef _GetPropertyName(JSContextRef ctx, JSObjectRef object, JSStringRef propertyName, JSValueRef* exception) {
 	SourceNode* node = JSObjectGetPrivate(object);
-    JSStringRef string = JSStringCreateWithCFString((CFStringRef)[[node class] name]);
+    JSStringRef string = JSStringCreateWithCFString((CFStringRef)node.name);
     JSValueRef value = JSValueMakeString(ctx, string);
     JSStringRelease(string);
     return value;
 }
 
-static JSValueRef _GetPropertyType(JSContextRef ctx, JSObjectRef object, JSStringRef propertyName, JSValueRef* exception) {
+static JSValueRef _GetPropertyAttributes(JSContextRef ctx, JSObjectRef object, JSStringRef propertyName, JSValueRef* exception) {
 	SourceNode* node = JSObjectGetPrivate(object);
-    return JSValueMakeNumber(ctx, (double)(long)[node class]);
+    NSDictionary* attributes = node.attributes;
+    return attributes ? JSObjectMake(ctx, _dictionaryClass, attributes) : JSValueMakeUndefined(ctx);
 }
 
 static JSValueRef _GetPropertyContent(JSContextRef ctx, JSObjectRef object, JSStringRef propertyName, JSValueRef* exception) {
@@ -168,8 +175,9 @@ static JSValueRef _GetPropertyDescription(JSContextRef ctx, JSObjectRef object, 
 }
 
 static JSStaticValue _staticValues[] = {
-	{"name", _GetPropertyName, NULL, kJSPropertyAttributeReadOnly | kJSPropertyAttributeDontDelete | kJSPropertyAttributeDontEnum},
     {"type", _GetPropertyType, NULL, kJSPropertyAttributeReadOnly | kJSPropertyAttributeDontDelete | kJSPropertyAttributeDontEnum},
+	{"name", _GetPropertyName, NULL, kJSPropertyAttributeReadOnly | kJSPropertyAttributeDontDelete | kJSPropertyAttributeDontEnum},
+	{"attributes", _GetPropertyAttributes, NULL, kJSPropertyAttributeReadOnly | kJSPropertyAttributeDontDelete | kJSPropertyAttributeDontEnum},
     {"content", _GetPropertyContent, NULL, kJSPropertyAttributeReadOnly | kJSPropertyAttributeDontDelete | kJSPropertyAttributeDontEnum},
     {"cleanContent", _GetPropertyCleanContent, NULL, kJSPropertyAttributeReadOnly | kJSPropertyAttributeDontDelete | kJSPropertyAttributeDontEnum},
     {"parent", _GetPropertyParent, NULL, kJSPropertyAttributeReadOnly | kJSPropertyAttributeDontDelete | kJSPropertyAttributeDontEnum},
@@ -183,7 +191,7 @@ static JSStaticValue _staticValues[] = {
 };
 
 static JSValueRef _CallFunctionAddChild(JSContextRef ctx, JSObjectRef function, JSObjectRef thisObject, size_t argumentCount, const JSValueRef arguments[], JSValueRef* exception) {
-	if((argumentCount == 1) && JSValueIsObjectOfClass(ctx, arguments[0], _class)) {
+	if((argumentCount == 1) && JSValueIsObjectOfClass(ctx, arguments[0], _nodeClass)) {
     	SourceNode* node = JSObjectGetPrivate(thisObject);
         if(![node isKindOfClass:[SourceNodeText class]]) {
         	SourceNode* child = JSObjectGetPrivate(JSValueToObject(ctx, arguments[0], NULL));
@@ -212,7 +220,7 @@ static JSValueRef _CallFunctionRemoveFromParent(JSContextRef ctx, JSObjectRef fu
 }
 
 static JSValueRef _CallFunctionIndexOfChild(JSContextRef ctx, JSObjectRef function, JSObjectRef thisObject, size_t argumentCount, const JSValueRef arguments[], JSValueRef* exception) {
-	if((argumentCount == 1) && JSValueIsObjectOfClass(ctx, arguments[0], _class)) {
+	if((argumentCount == 1) && JSValueIsObjectOfClass(ctx, arguments[0], _nodeClass)) {
     	SourceNode* node = JSObjectGetPrivate(thisObject);
         SourceNode* child = JSObjectGetPrivate(JSValueToObject(ctx, arguments[0], NULL));
     	if(child.parent == node)
@@ -223,7 +231,7 @@ static JSValueRef _CallFunctionIndexOfChild(JSContextRef ctx, JSObjectRef functi
 }
 
 static JSValueRef _CallFunctionInsertChild(JSContextRef ctx, JSObjectRef function, JSObjectRef thisObject, size_t argumentCount, const JSValueRef arguments[], JSValueRef* exception) {
-	if((argumentCount == 2) && JSValueIsObjectOfClass(ctx, arguments[0], _class) && JSValueIsNumber(ctx, arguments[1])) {
+	if((argumentCount == 2) && JSValueIsObjectOfClass(ctx, arguments[0], _nodeClass) && JSValueIsNumber(ctx, arguments[1])) {
     	SourceNode* node = JSObjectGetPrivate(thisObject);
         if(![node isKindOfClass:[SourceNodeText class]]) {
         	SourceNode* child = JSObjectGetPrivate(JSValueToObject(ctx, arguments[0], NULL));
@@ -254,7 +262,7 @@ static JSValueRef _CallFunctionRemoveChild(JSContextRef ctx, JSObjectRef functio
 }
 
 static JSValueRef _CallFunctionInsertPreviousSibling(JSContextRef ctx, JSObjectRef function, JSObjectRef thisObject, size_t argumentCount, const JSValueRef arguments[], JSValueRef* exception) {
-	if((argumentCount == 1) && JSValueIsObjectOfClass(ctx, arguments[0], _class)) {
+	if((argumentCount == 1) && JSValueIsObjectOfClass(ctx, arguments[0], _nodeClass)) {
     	SourceNode* node = JSObjectGetPrivate(thisObject);
         if(node.parent) {
         	SourceNode* child = JSObjectGetPrivate(JSValueToObject(ctx, arguments[0], NULL));
@@ -267,7 +275,7 @@ static JSValueRef _CallFunctionInsertPreviousSibling(JSContextRef ctx, JSObjectR
 }
 
 static JSValueRef _CallFunctionInsertNextSibling(JSContextRef ctx, JSObjectRef function, JSObjectRef thisObject, size_t argumentCount, const JSValueRef arguments[], JSValueRef* exception) {
-	if((argumentCount == 1) && JSValueIsObjectOfClass(ctx, arguments[0], _class)) {
+	if((argumentCount == 1) && JSValueIsObjectOfClass(ctx, arguments[0], _nodeClass)) {
     	SourceNode* node = JSObjectGetPrivate(thisObject);
         if(node.parent) {
         	SourceNode* child = JSObjectGetPrivate(JSValueToObject(ctx, arguments[0], NULL));
@@ -280,7 +288,7 @@ static JSValueRef _CallFunctionInsertNextSibling(JSContextRef ctx, JSObjectRef f
 }
 
 static JSValueRef _CallFunctionReplaceWithNode(JSContextRef ctx, JSObjectRef function, JSObjectRef thisObject, size_t argumentCount, const JSValueRef arguments[], JSValueRef* exception) {
-	if((argumentCount == 1) && JSValueIsObjectOfClass(ctx, arguments[0], _class)) {
+	if((argumentCount == 1) && JSValueIsObjectOfClass(ctx, arguments[0], _nodeClass)) {
     	SourceNode* node = JSObjectGetPrivate(thisObject);
         if(node.parent) {
         	SourceNode* child = JSObjectGetPrivate(JSValueToObject(ctx, arguments[0], NULL));
@@ -475,7 +483,7 @@ static JSStaticFunction _staticFunctions[] = {
     {NULL, NULL, 0}
 };
 
-static void _GetPropertyNamesCallback(JSContextRef ctx, JSObjectRef object, JSPropertyNameAccumulatorRef propertyNames) {
+static void _NodeGetPropertyNamesCallback(JSContextRef ctx, JSObjectRef object, JSPropertyNameAccumulatorRef propertyNames) {
 	static CFMutableArrayRef cache = NULL;
     if(cache == NULL)
     	cache = CFArrayCreateMutable(kCFAllocatorDefault, 0, &kCFTypeArrayCallBacks);
@@ -496,19 +504,7 @@ static void _GetPropertyNamesCallback(JSContextRef ctx, JSObjectRef object, JSPr
     }
 }
 
-/*
-static bool _HasPropertyCallback(JSContextRef ctx, JSObjectRef object, JSStringRef propertyName) {
-	CFStringRef cfString = JSStringCopyCFString(kCFAllocatorDefault, propertyName);
-    if(cfString) {
-        bool result = CFEqual(cfString, CFSTR("coucou"));
-        CFRelease(cfString);
-        return result;
-    }
-    return false;
-}
-*/
-
-static JSValueRef _GetPropertyCallback(JSContextRef ctx, JSObjectRef object, JSStringRef propertyName, JSValueRef* exception) {
+static JSValueRef _NodeGetPropertyCallback(JSContextRef ctx, JSObjectRef object, JSStringRef propertyName, JSValueRef* exception) {
 	CFStringRef cfString = JSStringCopyCFString(kCFAllocatorDefault, propertyName);
     if(cfString) {
     	SInt32 index = CFStringGetIntValue(cfString);
@@ -521,10 +517,37 @@ static JSValueRef _GetPropertyCallback(JSContextRef ctx, JSObjectRef object, JSS
     return NULL;
 }
 
-static JSValueRef _ConvertToTypeCallback(JSContextRef ctx, JSObjectRef object, JSType type, JSValueRef* exception) {
+static JSValueRef _NodeConvertToTypeCallback(JSContextRef ctx, JSObjectRef object, JSType type, JSValueRef* exception) {
 	if(type == kJSTypeString) {
     	SourceNode* node = JSObjectGetPrivate(object);
         JSStringRef string = JSStringCreateWithCFString((CFStringRef)node.compactDescription);
+        JSValueRef value = JSValueMakeString(ctx, string);
+        JSStringRelease(string);
+        return value;
+    }
+    return JSValueMakeUndefined(ctx);
+}
+
+static JSValueRef _DictionaryGetPropertyCallback(JSContextRef ctx, JSObjectRef object, JSStringRef propertyName, JSValueRef* exception) {
+	CFStringRef cfString = JSStringCopyCFString(kCFAllocatorDefault, propertyName);
+    if(cfString) {
+    	NSDictionary* dictionary = JSObjectGetPrivate(object);
+        id value = [dictionary objectForKey:(id)cfString];
+        CFRelease(cfString);
+        if(value) {
+        	JSStringRef jsString = JSStringCreateWithCFString((CFStringRef)[value description]); //FIXME: We should handle non-string values properly
+            JSValueRef jsValue = JSValueMakeString(ctx, jsString);
+            JSStringRelease(jsString);
+            return jsValue;
+        }
+    }
+    return NULL;
+}
+
+static JSValueRef _DictionaryConvertToTypeCallback(JSContextRef ctx, JSObjectRef object, JSType type, JSValueRef* exception) {
+	if(type == kJSTypeString) {
+    	NSDictionary* dictionary = JSObjectGetPrivate(object);
+        JSStringRef string = JSStringCreateWithCFString((CFStringRef)[dictionary description]);
         JSValueRef value = JSValueMakeString(ctx, string);
         JSStringRelease(string);
         return value;
@@ -549,72 +572,81 @@ BOOL RunJavaScriptOnRootNode(NSString* script, SourceNode* root) {
 	BOOL success = NO;
     NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
     if(script.length && root) {
-        if(_class == NULL) {
+        if(_nodeClass == NULL) {
             JSClassDefinition definition = kJSClassDefinitionEmpty;
             definition.className = "Node";
             definition.staticValues = _staticValues;
             definition.staticFunctions = _staticFunctions;
-            definition.getPropertyNames = _GetPropertyNamesCallback;
-            //definition.hasProperty = _HasPropertyCallback;
-            definition.getProperty = _GetPropertyCallback;
-            definition.convertToType = _ConvertToTypeCallback;
-            _class = JSClassCreate(&definition);
+            definition.getPropertyNames = _NodeGetPropertyNamesCallback;
+            definition.getProperty = _NodeGetPropertyCallback;
+            definition.convertToType = _NodeConvertToTypeCallback;
+            _nodeClass = JSClassCreate(&definition);
+            if(_nodeClass == NULL)
+            	[NSException raise:NSInternalInconsistencyException format:@""];
         }
         
-        if(_class) {
-            JSGlobalContextRef context = JSGlobalContextCreate(NULL);
-            if(context) {
-                JSStringRef jsScript = JSStringCreateWithCFString((CFStringRef)[NSString stringWithFormat:_wrapperScript, script]);
-                if(jsScript) {
-                    JSStringRef jsString;
-                    
-                    jsString = JSStringCreateWithCFString(CFSTR("Log"));
-                    JSObjectSetProperty(context, JSContextGetGlobalObject(context), jsString, JSObjectMakeFunctionWithCallback(context, NULL, _LogFunction), kJSPropertyAttributeReadOnly | kJSPropertyAttributeDontDelete, NULL);
-                    JSStringRelease(jsString);
-                    
-                    JSObjectRef jsNode = JSObjectMakeConstructor(context, _class, _CallAsConstructorCallback);
-					jsString = JSStringCreateWithCFString(CFSTR("Node"));
-                    JSObjectSetProperty(context, JSContextGetGlobalObject(context), jsString, jsNode, kJSPropertyAttributeReadOnly | kJSPropertyAttributeDontDelete, NULL);
-                    JSStringRelease(jsString);
-                    
-                    for(SourceLanguage* language in [SourceLanguage allLanguages]) {
-                    	for(Class nodeClass in language.nodeClasses) {
-                        	jsString = JSStringCreateWithCFString((CFStringRef)[NSString stringWithFormat:@"TYPE_%@", [[nodeClass name] uppercaseString]]);
-                            JSObjectSetProperty(context, jsNode, jsString, JSValueMakeNumber(context, (double)(long)nodeClass), kJSPropertyAttributeReadOnly | kJSPropertyAttributeDontDelete, NULL);
-                            JSStringRelease(jsString);
-                        }
-                    }
-                    
-                    JSValueRef exception = NULL;
-                    JSEvaluateScript(context, jsScript, NULL, NULL, 1, &exception);
-                    if(exception)
-                        printf("<JavaScript Evaluation Failed: %s>\n", [_ExceptionToString(context, exception) UTF8String]);
-                    else {
-                    	jsString = JSStringCreateWithCFString(CFSTR("__wrapper"));
-                        JSObjectRef function = JSValueToObject(context, JSObjectGetProperty(context, JSContextGetGlobalObject(context), jsString, NULL), NULL);
+        if(_dictionaryClass == NULL) {
+            JSClassDefinition definition = kJSClassDefinitionEmpty;
+            definition.className = "Dictionary";
+            definition.getProperty = _DictionaryGetPropertyCallback;
+            definition.convertToType = _DictionaryConvertToTypeCallback;
+            _dictionaryClass = JSClassCreate(&definition);
+            if(_dictionaryClass == NULL)
+            	[NSException raise:NSInternalInconsistencyException format:@""];
+        }
+        
+        JSGlobalContextRef context = JSGlobalContextCreate(NULL);
+        if(context) {
+            JSStringRef jsScript = JSStringCreateWithCFString((CFStringRef)[NSString stringWithFormat:_wrapperScript, script]);
+            if(jsScript) {
+                JSStringRef jsString;
+                
+                jsString = JSStringCreateWithCFString(CFSTR("Log"));
+                JSObjectSetProperty(context, JSContextGetGlobalObject(context), jsString, JSObjectMakeFunctionWithCallback(context, NULL, _LogFunction), kJSPropertyAttributeReadOnly | kJSPropertyAttributeDontDelete, NULL);
+                JSStringRelease(jsString);
+                
+                JSObjectRef jsNode = JSObjectMakeConstructor(context, _nodeClass, _CallAsConstructorCallback);
+                jsString = JSStringCreateWithCFString(CFSTR("Node"));
+                JSObjectSetProperty(context, JSContextGetGlobalObject(context), jsString, jsNode, kJSPropertyAttributeReadOnly | kJSPropertyAttributeDontDelete, NULL);
+                JSStringRelease(jsString);
+                
+                for(SourceLanguage* language in [SourceLanguage allLanguages]) {
+                    for(Class nodeClass in language.nodeClasses) {
+                        jsString = JSStringCreateWithCFString((CFStringRef)[NSString stringWithFormat:@"TYPE_%@", [[nodeClass name] uppercaseString]]);
+                        JSObjectSetProperty(context, jsNode, jsString, JSValueMakeNumber(context, (double)(long)nodeClass), kJSPropertyAttributeReadOnly | kJSPropertyAttributeDontDelete, NULL);
                         JSStringRelease(jsString);
-                        if(function && JSValueIsObject(context, function)) {
-                            success = YES;
-                            void* params[3];
-                            params[0] = context;
-                            params[1] = function;
-                            params[2] = &success;
-                            _JavaScriptFunctionApplier(root, params);
-                            [root applyFunctionOnChildren:_JavaScriptFunctionApplier context:params];
-                        }
                     }
-                    
-#if __UNPROTECT_VALUES__
-                    _NodeApplierFunction(root, (void*)context);
-                    [root applyFunctionOnChildren:_NodeApplierFunction context:(void*)context];
-#endif
-                    
-                    JSStringRelease(jsScript);
                 }
-                JSGarbageCollect(context);
-                JSGlobalContextRelease(context);
-                JSGarbageCollect(context);
+                
+                JSValueRef exception = NULL;
+                JSEvaluateScript(context, jsScript, NULL, NULL, 1, &exception);
+                if(exception)
+                    printf("<JavaScript Evaluation Failed: %s>\n", [_ExceptionToString(context, exception) UTF8String]);
+                else {
+                    jsString = JSStringCreateWithCFString(CFSTR("__wrapper"));
+                    JSObjectRef function = JSValueToObject(context, JSObjectGetProperty(context, JSContextGetGlobalObject(context), jsString, NULL), NULL);
+                    JSStringRelease(jsString);
+                    if(function && JSValueIsObject(context, function)) {
+                        success = YES;
+                        void* params[3];
+                        params[0] = context;
+                        params[1] = function;
+                        params[2] = &success;
+                        _JavaScriptFunctionApplier(root, params);
+                        [root applyFunctionOnChildren:_JavaScriptFunctionApplier context:params];
+                    }
+                }
+                
+#if __UNPROTECT_VALUES__
+                _NodeApplierFunction(root, (void*)context);
+                [root applyFunctionOnChildren:_NodeApplierFunction context:(void*)context];
+#endif
+                
+                JSStringRelease(jsScript);
             }
+            JSGarbageCollect(context);
+            JSGlobalContextRelease(context);
+            JSGarbageCollect(context);
         }
     }
     [pool release];

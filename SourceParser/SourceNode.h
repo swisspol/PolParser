@@ -47,9 +47,9 @@ typedef SourceNode* (*SourceNodeApplierFunction)(SourceNode* node, void* context
 @property(nonatomic, readonly) SourceNode* previousSibling;
 @property(nonatomic, readonly) SourceNode* nextSibling;
 
-@property(nonatomic, readonly) NSString* contentDescription;
+@property(nonatomic, readonly) NSString* contentDescription; //Like "content" but with whitespace and newline replaced with special characters
 @property(nonatomic, readonly) NSString* compactDescription;
-@property(nonatomic, readonly) NSString* fullDescription;
+@property(nonatomic, readonly) NSString* detailedDescription;
 
 - (void) addChild:(SourceNode*)child;
 - (void) removeFromParent;

@@ -359,6 +359,7 @@ static NSString* _FormatString(NSString* string) {
     [(NSMutableString*)string replaceOccurrencesOfString:@"\n" withString:newlineString options:0 range:NSMakeRange(0, string.length)];
     return string;
 }
+
 - (NSString*) contentDescription {
     return _FormatString(self.content);
 }
@@ -413,7 +414,7 @@ static void _AppendNodeFullDescription(SourceNode* node, NSMutableString* string
     }
 }
 
-- (NSString*) fullDescription {
+- (NSString*) detailedDescription {
     NSMutableString* string = [NSMutableString string];
     _AppendNodeFullDescription(self, string, @"");
     [string replaceCharactersInRange:NSMakeRange(string.length - 1, 1) withString:@""];
@@ -421,7 +422,7 @@ static void _AppendNodeFullDescription(SourceNode* node, NSMutableString* string
 }
 
 - (NSString*) description {
-    return [NSString stringWithFormat:@"<%@ = %p | characters = [%i, %i] | lines = [%i:%i]>\n%@", [self class], self, self.range.location, self.range.length, self.lines.location + 1, self.lines.location + self.lines.length, [self isKindOfClass:[SourceNodeRoot class]] ? self.fullDescription : self.contentDescription];
+    return [NSString stringWithFormat:@"<%@ = %p | characters = [%i, %i] | lines = [%i:%i]>", [self class], self, self.range.location, self.range.length, self.lines.location + 1, self.lines.location + self.lines.length];
 }
 
 @end

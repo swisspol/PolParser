@@ -57,9 +57,9 @@ int main(int argc, const char* argv[]) {
     NSMutableSet* filteredFiles = [NSMutableSet set];
     for(int i = 1; i < argc; ++i) {
         if(argv[i][0] == '-') {
-            if(strcmp(argv[i], "-skipParser") == 0)
+            if(strcmp(argv[i], "--skipParser") == 0)
             	skipParser = YES;
-            else if(strcmp(argv[i], "-skipBindings") == 0)
+            else if(strcmp(argv[i], "--skipBindings") == 0)
             	skipBindings = YES;
         } else {
             [filteredFiles addObject:[NSString stringWithUTF8String:argv[i]]];
@@ -103,7 +103,7 @@ int main(int argc, const char* argv[]) {
                                 NSMutableString* expected = [NSMutableString stringWithString:[parts objectAtIndex:2]];
                                 [expected replaceOccurrencesOfString:@"\n" withString:@"" options:NSAnchoredSearch range:NSMakeRange(0, expected.length)];
                                 [expected replaceOccurrencesOfString:@"\n" withString:@"" options:(NSBackwardsSearch | NSAnchoredSearch) range:NSMakeRange(0, expected.length)];
-                                if(!_ValidateResult([path lastPathComponent], root.fullDescription, expected))
+                                if(!_ValidateResult([path lastPathComponent], root.detailedDescription, expected))
                                     success = NO;
                             }
                             if(success)

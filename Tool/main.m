@@ -27,12 +27,17 @@ int main(int argc, const char* argv[]) {
     int result = 1;
     
     if(argc >= 2) {
-        BOOL optionDiff = NO;
         NSString* optionScript = nil;
+        BOOL compactOption = NO;
+        BOOL detailedOption = NO;
         
         int offset = 1;
         while(argv[offset][0] == '-') {
-            if((strcmp(argv[offset], "-refactor") == 0) && (offset + 1 < argc)) {
+            if(strcmp(argv[offset], "--compact") == 0) {
+            	compactOption = YES;
+            } else if(strcmp(argv[offset], "--detailed") == 0) {
+            	detailedOption = YES;
+            } else if((strcmp(argv[offset], "-script") == 0) && (offset + 1 < argc)) {
                 if(argv[offset + 1][0] != '-') {
                 	NSString* path = [[NSString stringWithUTF8String:argv[offset + 1]] stringByStandardizingPath];
                     optionScript = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:NULL];
@@ -44,12 +49,9 @@ int main(int argc, const char* argv[]) {
                     }
                 }
             }
-            else if(strcmp(argv[offset], "-diff") == 0)
-                optionDiff = YES;
             ++offset;
         }
         NSString* inFile = [[NSString stringWithUTF8String:argv[offset]] stringByStandardizingPath];
-        NSString* outFile = (offset + 1 < argc ? [[NSString stringWithUTF8String:argv[offset + 1]] stringByStandardizingPath] : nil);
         
         SourceNodeRoot* root = [SourceLanguage parseSourceFile:inFile encoding:NSUTF8StringEncoding syntaxAnalysis:YES];
         if(root) {
@@ -63,34 +65,18 @@ int main(int argc, const char* argv[]) {
             }
 			
             if(result == 0) {
-                if(outFile) {
-                    NSString* newPath = [[NSString stringWithUTF8String:argv[offset + 1]] stringByStandardizingPath];
-                    if([root writeContentToFile:outFile encoding:NSUTF8StringEncoding]) {
-                        if(optionDiff) {
-                            NSTask* task = [[NSTask alloc] init];
-                            [task setLaunchPath:@"/usr/bin/opendiff"];
-                            [task setArguments:[NSArray arrayWithObjects:inFile, newPath, nil]];
-                            @try {
-                                [task launch];
-                            }
-                            @catch(NSException* exception) {
-                                printf("Failed running %s\n", [[task launchPath] UTF8String]);
-                            }
-                            [task waitUntilExit];
-                            [task release];
-                        }
-                    } else {
-                        printf("Failed writing source file to \"%s\"\n", [outFile UTF8String]);
-                    }
-                } else {
-                    printf("%s\n", [[root fullDescription] UTF8String]);
-                }
+                if(compactOption)
+                	printf("%s\n", [root.compactDescription UTF8String]);
+                else if(detailedOption)
+                    printf("%s\n", [root.detailedDescription UTF8String]);
+                else
+                	printf("%s\n", [root.content UTF8String]);
             }
         } else {
             printf("Failed parsing source file from \"%s\"\n", [inFile UTF8String]);
         }
     } else {
-        printf("%s [-refactor JavaScriptFilePath] [-diff] inFile [outFile]\n", basename((char*)argv[0]));
+        printf("%s [--compact | --detailed] [-script JavaScriptFilePath] inFile\n", basename((char*)argv[0]));
     }
     
 Exit:

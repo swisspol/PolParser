@@ -383,7 +383,7 @@ static inline BOOL _IsKeyword(const unichar* buffer, NSUInteger length, NSUInteg
     }
     
     if(!_CheckTreeConsistency(rootNode, stack)) {
-        NSLog(@"\"%@\" parser failed because resulting tree is not consistent:\n%@\n%@", self.name, [[(SourceNode*)[stack objectAtIndex:0] parent] fullDescription], stack);
+        NSLog(@"\"%@\" parser failed because resulting tree is not consistent:\n%@\n%@", self.name, [[(SourceNode*)[stack objectAtIndex:0] parent] detailedDescription], stack);
         return nil;
     }
     

@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN"
+	"http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+<key>Year Of Birth</key>
+<integer>1965</integer>
+<key>Pets Names</key>
+<array/>
+<key>Picture</key>
+<data>
+	PEKBpYGlmYFCPA==
+</data>
+<key>City of Birth</key>
+<string>Springfield</string>
+<key>Name</key>
+<string>John Doe</string>
+<key>Kids Names</key>
+<array>
+	<string>John</string>
+	<string>Kyra</string>
+</array>
+</dict>
+</plist>
+
+<----->
+
+<Root>
+·  ♢|<?xml•version="1.0"•encoding="UTF-8"?>|♢¶♢|<!DOCTYPE•plist•PUBLIC•"-//Apple•Computer//DTD•PLIST•1.0//EN"¶→"http://www.apple.com/DTDs/PropertyList-1.0.dtd">|♢¶♢
+·  <XMLElement>
+·  ·  ♢|<plist•version="1.0">|♢¶♢
+·  ·  <XMLElement>
+·  ·  ·  ♢|<dict>|♢¶♢
+·  ·  ·  <XMLElement>
+·  ·  ·  ·  ♢|<key>|♢Year♢•♢Of♢•♢Birth♢|</key>|♢
+·  ·  ·  ♢¶♢
+·  ·  ·  <XMLElement>
+·  ·  ·  ·  ♢|<integer>|♢1965♢|</integer>|♢
+·  ·  ·  ♢¶♢
+·  ·  ·  <XMLElement>
+·  ·  ·  ·  ♢|<key>|♢Pets♢•♢Names♢|</key>|♢
+·  ·  ·  ♢¶♢
+·  ·  ·  <XMLElement>
+·  ·  ·  ·  ♢|<array/>|♢
+·  ·  ·  ♢¶♢
+·  ·  ·  <XMLElement>
+·  ·  ·  ·  ♢|<key>|♢Picture♢|</key>|♢
+·  ·  ·  ♢¶♢
+·  ·  ·  <XMLElement>
+·  ·  ·  ·  ♢|<data>|♢¶♢|→|♢PEKBpYGlmYFCPA==♢¶♢|</data>|♢
+·  ·  ·  ♢¶♢
+·  ·  ·  <XMLElement>
+·  ·  ·  ·  ♢|<key>|♢City♢•♢of♢•♢Birth♢|</key>|♢
+·  ·  ·  ♢¶♢
+·  ·  ·  <XMLElement>
+·  ·  ·  ·  ♢|<string>|♢Springfield♢|</string>|♢
+·  ·  ·  ♢¶♢
+·  ·  ·  <XMLElement>
+·  ·  ·  ·  ♢|<key>|♢Name♢|</key>|♢
+·  ·  ·  ♢¶♢
+·  ·  ·  <XMLElement>
+·  ·  ·  ·  ♢|<string>|♢John♢•♢Doe♢|</string>|♢
+·  ·  ·  ♢¶♢
+·  ·  ·  <XMLElement>
+·  ·  ·  ·  ♢|<key>|♢Kids♢•♢Names♢|</key>|♢
+·  ·  ·  ♢¶♢
+·  ·  ·  <XMLElement>
+·  ·  ·  ·  ♢|<array>|♢¶♢|→|♢
+·  ·  ·  ·  <XMLElement>
+·  ·  ·  ·  ·  ♢|<string>|♢John♢|</string>|♢
+·  ·  ·  ·  ♢¶♢|→|♢
+·  ·  ·  ·  <XMLElement>
+·  ·  ·  ·  ·  ♢|<string>|♢Kyra♢|</string>|♢
+·  ·  ·  ·  ♢¶♢|</array>|♢
+·  ·  ·  ♢¶♢|</dict>|♢
+·  ·  ♢¶♢|</plist>|♢
+·  ♢¶♢¶♢
+
+<----->
+
+[1:26] <Root>
+|    [1:1] <XMLDeclaration> = ♢<?xml•version="1.0"•encoding="UTF-8"?>♢
+|    + ♢version♢ = ♢1.0♢
+|    + ♢encoding♢ = ♢UTF-8♢
+|    [1:2] <Newline> = ♢¶♢
+|    [2:3] <XMLDOCTYPE> = ♢<!DOCTYPE•plist•PUBLIC•"-//Apple•Computer//DTD•PLIST•1.0//EN"¶→"http://www.apple.com/DTDs/PropertyList-1.0.dtd">♢
+|    [3:4] <Newline> = ♢¶♢
+|    [4:24] <XMLElement>
+|    + <cleaned> = ♢¶¶♢
+|    |    [4:4] <XMLTag> = ♢<plist•version="1.0">♢
+|    |    + <name> = ♢plist♢
+|    |    + ♢version♢ = ♢1.0♢
+|    |    [4:5] <Newline> = ♢¶♢
+|    |    [5:23] <XMLElement>
+|    |    + <cleaned> = ♢¶¶¶¶¶¶¶¶¶¶¶¶¶♢
+|    |    |    [5:5] <XMLTag> = ♢<dict>♢
+|    |    |    + <name> = ♢dict♢
+|    |    |    [5:6] <Newline> = ♢¶♢
+|    |    |    [6:6] <XMLElement>
+|    |    |    + <cleaned> = ♢Year•Of•Birth♢
+|    |    |    |    [6:6] <XMLTag> = ♢<key>♢
+|    |    |    |    + <name> = ♢key♢
+|    |    |    |    [6:6] <Text> = ♢Year♢
+|    |    |    |    [6:6] <Whitespace> = ♢•♢
+|    |    |    |    [6:6] <Text> = ♢Of♢
+|    |    |    |    [6:6] <Whitespace> = ♢•♢
+|    |    |    |    [6:6] <Text> = ♢Birth♢
+|    |    |    |    [6:6] <XMLTag> = ♢</key>♢
+|    |    |    |    + <name> = ♢key♢
+|    |    |    [6:7] <Newline> = ♢¶♢
+|    |    |    [7:7] <XMLElement>
+|    |    |    + <cleaned> = ♢1965♢
+|    |    |    |    [7:7] <XMLTag> = ♢<integer>♢
+|    |    |    |    + <name> = ♢integer♢
+|    |    |    |    [7:7] <Text> = ♢1965♢
+|    |    |    |    [7:7] <XMLTag> = ♢</integer>♢
+|    |    |    |    + <name> = ♢integer♢
+|    |    |    [7:8] <Newline> = ♢¶♢
+|    |    |    [8:8] <XMLElement>
+|    |    |    + <cleaned> = ♢Pets•Names♢
+|    |    |    |    [8:8] <XMLTag> = ♢<key>♢
+|    |    |    |    + <name> = ♢key♢
+|    |    |    |    [8:8] <Text> = ♢Pets♢
+|    |    |    |    [8:8] <Whitespace> = ♢•♢
+|    |    |    |    [8:8] <Text> = ♢Names♢
+|    |    |    |    [8:8] <XMLTag> = ♢</key>♢
+|    |    |    |    + <name> = ♢key♢
+|    |    |    [8:9] <Newline> = ♢¶♢
+|    |    |    [9:9] <XMLElement>
+|    |    |    + <cleaned> = ♢♢
+|    |    |    |    [9:9] <XMLTag> = ♢<array/>♢
+|    |    |    |    + <name> = ♢array♢
+|    |    |    [9:10] <Newline> = ♢¶♢
+|    |    |    [10:10] <XMLElement>
+|    |    |    + <cleaned> = ♢Picture♢
+|    |    |    |    [10:10] <XMLTag> = ♢<key>♢
+|    |    |    |    + <name> = ♢key♢
+|    |    |    |    [10:10] <Text> = ♢Picture♢
+|    |    |    |    [10:10] <XMLTag> = ♢</key>♢
+|    |    |    |    + <name> = ♢key♢
+|    |    |    [10:11] <Newline> = ♢¶♢
+|    |    |    [11:13] <XMLElement>
+|    |    |    + <cleaned> = ♢¶→PEKBpYGlmYFCPA==¶♢
+|    |    |    |    [11:11] <XMLTag> = ♢<data>♢
+|    |    |    |    + <name> = ♢data♢
+|    |    |    |    [11:12] <Newline> = ♢¶♢
+|    |    |    |    [12:12] <Indenting> = ♢→♢
+|    |    |    |    [12:12] <Text> = ♢PEKBpYGlmYFCPA==♢
+|    |    |    |    [12:13] <Newline> = ♢¶♢
+|    |    |    |    [13:13] <XMLTag> = ♢</data>♢
+|    |    |    |    + <name> = ♢data♢
+|    |    |    [13:14] <Newline> = ♢¶♢
+|    |    |    [14:14] <XMLElement>
+|    |    |    + <cleaned> = ♢City•of•Birth♢
+|    |    |    |    [14:14] <XMLTag> = ♢<key>♢
+|    |    |    |    + <name> = ♢key♢
+|    |    |    |    [14:14] <Text> = ♢City♢
+|    |    |    |    [14:14] <Whitespace> = ♢•♢
+|    |    |    |    [14:14] <Text> = ♢of♢
+|    |    |    |    [14:14] <Whitespace> = ♢•♢
+|    |    |    |    [14:14] <Text> = ♢Birth♢
+|    |    |    |    [14:14] <XMLTag> = ♢</key>♢
+|    |    |    |    + <name> = ♢key♢
+|    |    |    [14:15] <Newline> = ♢¶♢
+|    |    |    [15:15] <XMLElement>
+|    |    |    + <cleaned> = ♢Springfield♢
+|    |    |    |    [15:15] <XMLTag> = ♢<string>♢
+|    |    |    |    + <name> = ♢string♢
+|    |    |    |    [15:15] <Text> = ♢Springfield♢
+|    |    |    |    [15:15] <XMLTag> = ♢</string>♢
+|    |    |    |    + <name> = ♢string♢
+|    |    |    [15:16] <Newline> = ♢¶♢
+|    |    |    [16:16] <XMLElement>
+|    |    |    + <cleaned> = ♢Name♢
+|    |    |    |    [16:16] <XMLTag> = ♢<key>♢
+|    |    |    |    + <name> = ♢key♢
+|    |    |    |    [16:16] <Text> = ♢Name♢
+|    |    |    |    [16:16] <XMLTag> = ♢</key>♢
+|    |    |    |    + <name> = ♢key♢
+|    |    |    [16:17] <Newline> = ♢¶♢
+|    |    |    [17:17] <XMLElement>
+|    |    |    + <cleaned> = ♢John•Doe♢
+|    |    |    |    [17:17] <XMLTag> = ♢<string>♢
+|    |    |    |    + <name> = ♢string♢
+|    |    |    |    [17:17] <Text> = ♢John♢
+|    |    |    |    [17:17] <Whitespace> = ♢•♢
+|    |    |    |    [17:17] <Text> = ♢Doe♢
+|    |    |    |    [17:17] <XMLTag> = ♢</string>♢
+|    |    |    |    + <name> = ♢string♢
+|    |    |    [17:18] <Newline> = ♢¶♢
+|    |    |    [18:18] <XMLElement>
+|    |    |    + <cleaned> = ♢Kids•Names♢
+|    |    |    |    [18:18] <XMLTag> = ♢<key>♢
+|    |    |    |    + <name> = ♢key♢
+|    |    |    |    [18:18] <Text> = ♢Kids♢
+|    |    |    |    [18:18] <Whitespace> = ♢•♢
+|    |    |    |    [18:18] <Text> = ♢Names♢
+|    |    |    |    [18:18] <XMLTag> = ♢</key>♢
+|    |    |    |    + <name> = ♢key♢
+|    |    |    [18:19] <Newline> = ♢¶♢
+|    |    |    [19:22] <XMLElement>
+|    |    |    + <cleaned> = ♢¶→¶→¶♢
+|    |    |    |    [19:19] <XMLTag> = ♢<array>♢
+|    |    |    |    + <name> = ♢array♢
+|    |    |    |    [19:20] <Newline> = ♢¶♢
+|    |    |    |    [20:20] <Indenting> = ♢→♢
+|    |    |    |    [20:20] <XMLElement>
+|    |    |    |    + <cleaned> = ♢John♢
+|    |    |    |    |    [20:20] <XMLTag> = ♢<string>♢
+|    |    |    |    |    + <name> = ♢string♢
+|    |    |    |    |    [20:20] <Text> = ♢John♢
+|    |    |    |    |    [20:20] <XMLTag> = ♢</string>♢
+|    |    |    |    |    + <name> = ♢string♢
+|    |    |    |    [20:21] <Newline> = ♢¶♢
+|    |    |    |    [21:21] <Indenting> = ♢→♢
+|    |    |    |    [21:21] <XMLElement>
+|    |    |    |    + <cleaned> = ♢Kyra♢
+|    |    |    |    |    [21:21] <XMLTag> = ♢<string>♢
+|    |    |    |    |    + <name> = ♢string♢
+|    |    |    |    |    [21:21] <Text> = ♢Kyra♢
+|    |    |    |    |    [21:21] <XMLTag> = ♢</string>♢
+|    |    |    |    |    + <name> = ♢string♢
+|    |    |    |    [21:22] <Newline> = ♢¶♢
+|    |    |    |    [22:22] <XMLTag> = ♢</array>♢
+|    |    |    |    + <name> = ♢array♢
+|    |    |    [22:23] <Newline> = ♢¶♢
+|    |    |    [23:23] <XMLTag> = ♢</dict>♢
+|    |    |    + <name> = ♢dict♢
+|    |    [23:24] <Newline> = ♢¶♢
+|    |    [24:24] <XMLTag> = ♢</plist>♢
+|    |    + <name> = ♢plist♢
+|    [24:25] <Newline> = ♢¶♢
+|    [25:26] <Newline> = ♢¶♢

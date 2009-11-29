@@ -19,7 +19,7 @@
 #import "SourceParser_Internal.h"
 
 @interface SourceNodeXMLTag ()
-@property(nonatomic, readonly) NSUInteger xmlType;
+@property(nonatomic, readonly) NSInteger xmlType;
 @end
 
 @implementation SourceLanguageXML
@@ -62,7 +62,7 @@
             [newNode release];
             
             _RearrangeNodesAsChildren(newNode, node);
-        } else if(xmlNode.xmlType < -1) {
+        } else if(xmlNode.xmlType < 0) {
         	SourceNode* endNode = node;
             while(endNode) {
                 endNode = [endNode findNextSiblingOfClass:[SourceNodeXMLTag class]];
@@ -258,7 +258,7 @@ static NSDictionary* _ParseAttributes(NSString* content) {
         _attributes = [_ParseAttributes([content substringFromIndex:range.location]) retain];
 }
 
-- (NSUInteger) xmlType {
+- (NSInteger) xmlType {
 	if(_name == nil)
     	[self _analyze];
     return _type;

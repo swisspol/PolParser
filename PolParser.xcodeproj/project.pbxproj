@@ -38,7 +38,6 @@
 		E21AAB6F10C0D43F00471B14 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2D08E3F10BEA7C7004151B9 /* JavaScriptCore.framework */; };
 		E21AAB9310C0D46C00471B14 /* JavaScriptBindings in CopyFiles */ = {isa = PBXBuildFile; fileRef = E21AAB7810C0D45000471B14 /* JavaScriptBindings */; };
 		E21AAB9410C0D46C00471B14 /* SourceParser in CopyFiles */ = {isa = PBXBuildFile; fileRef = E21AAB7B10C0D45000471B14 /* SourceParser */; };
-		E21AAC4310C0E13A00471B14 /* SampleSource in CopyFiles */ = {isa = PBXBuildFile; fileRef = E21AABFF10C0DC5000471B14 /* SampleSource */; };
 		E21AADB210C1136A00471B14 /* JavaScriptBindings.m in Sources */ = {isa = PBXBuildFile; fileRef = E21AADB110C1136A00471B14 /* JavaScriptBindings.m */; };
 		E21AADB310C1136A00471B14 /* JavaScriptBindings.m in Sources */ = {isa = PBXBuildFile; fileRef = E21AADB110C1136A00471B14 /* JavaScriptBindings.m */; };
 		E21AAE3110C2397700471B14 /* SourceLanguage_XML.m in Sources */ = {isa = PBXBuildFile; fileRef = E21AAE3010C2397700471B14 /* SourceLanguage_XML.m */; };
@@ -97,7 +96,6 @@
 			dstSubfolderSpec = 16;
 			files = (
 				E21AAB9310C0D46C00471B14 /* JavaScriptBindings in CopyFiles */,
-				E21AAC4310C0E13A00471B14 /* SampleSource in CopyFiles */,
 				E21AAB9410C0D46C00471B14 /* SourceParser in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -114,7 +112,6 @@
 		E213426D10BD054800023F41 /* UnitTests */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = UnitTests; sourceTree = BUILT_PRODUCTS_DIR; };
 		E21AAB7810C0D45000471B14 /* JavaScriptBindings */ = {isa = PBXFileReference; lastKnownFileType = folder; path = JavaScriptBindings; sourceTree = "<group>"; };
 		E21AAB7B10C0D45000471B14 /* SourceParser */ = {isa = PBXFileReference; lastKnownFileType = folder; path = SourceParser; sourceTree = "<group>"; };
-		E21AABFF10C0DC5000471B14 /* SampleSource */ = {isa = PBXFileReference; lastKnownFileType = folder; path = SampleSource; sourceTree = "<group>"; };
 		E21AADB110C1136A00471B14 /* JavaScriptBindings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JavaScriptBindings.m; sourceTree = "<group>"; };
 		E21AAE2F10C2397700471B14 /* SourceLanguage_XML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SourceLanguage_XML.h; sourceTree = "<group>"; };
 		E21AAE3010C2397700471B14 /* SourceLanguage_XML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SourceLanguage_XML.m; sourceTree = "<group>"; };
@@ -214,7 +211,6 @@
 			children = (
 				E213425310BD052800023F41 /* main.m */,
 				E21AAB7810C0D45000471B14 /* JavaScriptBindings */,
-				E21AABFF10C0DC5000471B14 /* SampleSource */,
 				E21AAB7B10C0D45000471B14 /* SourceParser */,
 			);
 			path = UnitTests;

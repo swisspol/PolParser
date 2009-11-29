@@ -20,7 +20,7 @@
 
 @interface SourceNodeXMLTag : SourceNode {
 @private
-	NSUInteger _type;
+	NSInteger _type;
     NSString* _name;
     NSDictionary* _attributes;
 }

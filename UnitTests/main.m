@@ -96,14 +96,14 @@ int main(int argc, const char* argv[]) {
                                 NSMutableString* expected = [NSMutableString stringWithString:[parts objectAtIndex:1]];
                                 [expected replaceOccurrencesOfString:@"\n" withString:@"" options:NSAnchoredSearch range:NSMakeRange(0, expected.length)];
                                 [expected replaceOccurrencesOfString:@"\n" withString:@"" options:(NSBackwardsSearch | NSAnchoredSearch) range:NSMakeRange(0, expected.length)];
-                                if(!_ValidateResult([path lastPathComponent], root.compactDescription, expected))
+                                if(!_ValidateResult([NSString stringWithFormat:@"%@-Compact", [[path lastPathComponent] stringByDeletingPathExtension]], root.compactDescription, expected))
                                     success = NO;
                             }
                             if((parts.count > 2) && [[parts objectAtIndex:2] length]) {
                                 NSMutableString* expected = [NSMutableString stringWithString:[parts objectAtIndex:2]];
                                 [expected replaceOccurrencesOfString:@"\n" withString:@"" options:NSAnchoredSearch range:NSMakeRange(0, expected.length)];
                                 [expected replaceOccurrencesOfString:@"\n" withString:@"" options:(NSBackwardsSearch | NSAnchoredSearch) range:NSMakeRange(0, expected.length)];
-                                if(!_ValidateResult([path lastPathComponent], root.detailedDescription, expected))
+                                if(!_ValidateResult([NSString stringWithFormat:@"%@-Detailed", [[path lastPathComponent] stringByDeletingPathExtension]], root.detailedDescription, expected))
                                     success = NO;
                             }
                             if(success)
@@ -122,73 +122,65 @@ int main(int argc, const char* argv[]) {
     }
     
     if(!skipBindings) {
-        NSMutableDictionary* roots = [NSMutableDictionary dictionary];
-        basePath = @"SampleSource";
-        for(NSString* path in [[NSFileManager defaultManager] contentsOfDirectoryAtPath:basePath error:NULL]) {
-            if([path hasPrefix:@"."])
-                continue;
-            path = [basePath stringByAppendingPathComponent:path];
-            
-            NSAutoreleasePool* localPool = [[NSAutoreleasePool alloc] init];
-            SourceNodeRoot* root = [SourceLanguage parseSourceFile:path encoding:NSUTF8StringEncoding syntaxAnalysis:YES];
-            if(root == nil)
-                NSLog(@"<FAILED PARSING SOURCE \"%@\">", path);
-            else
-                [roots setObject:root forKey:[path lastPathComponent]];
-            [localPool release];
-        }
         basePath = @"JavaScriptBindings";
-        for(NSString* path in [[NSFileManager defaultManager] contentsOfDirectoryAtPath:basePath error:NULL]) {
+        NSArray* files = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:basePath error:NULL];
+        for(NSString* path in files) {
             if([path hasPrefix:@"."])
                 continue;
             if([[path pathExtension] caseInsensitiveCompare:@"js"] != NSOrderedSame) //FIXME: This can't work if we ever support JavaScript parsing
                 continue;
             if(filteredFiles.count && ![filteredFiles containsObject:path])
                 continue;
+            NSString* prefix = [[path componentsSeparatedByString:@"-"] objectAtIndex:0];
             path = [basePath stringByAppendingPathComponent:path];
             
-            NSAutoreleasePool* localPool = [[NSAutoreleasePool alloc] init];
-            NSString* content = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:NULL];
-            if(content == nil) {
-                NSLog(@"<FAILED LOADING TEST CONTENT \"%@\">", path);
-            } else {
-                NSArray* parts = [content componentsSeparatedByString:@"<----->"];
-                if(parts.count == 0) {
-                    NSLog(@"<INVALID TEST CONTENT IN \"%@\">", path);
+            for(NSString* subpath in files) {
+            	if(![[[subpath stringByDeletingPathExtension] pathExtension] isEqualToString:@"in"] || ![subpath hasPrefix:prefix])
+                    continue;
+                subpath = [basePath stringByAppendingPathComponent:subpath];
+                
+            	NSAutoreleasePool* localPool = [[NSAutoreleasePool alloc] init];
+                SourceNodeRoot* root = [SourceLanguage parseSourceFile:subpath encoding:NSUTF8StringEncoding syntaxAnalysis:YES];
+                if(root == nil) {
+                    NSLog(@"<FAILED PARSING SOURCE \"%@\">", path);
                 } else {
-                    for(NSString* name in roots) {
-                        BOOL success = NO;
-                        SourceNodeRoot* root = [[roots objectForKey:name] copy];
-                        if(root) {
+                    NSString* content = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:NULL];
+                    if(content == nil) {
+                        NSLog(@"<FAILED LOADING TEST CONTENT \"%@\">", path);
+                    } else {
+                        NSArray* parts = [content componentsSeparatedByString:@"<----->"];
+                        if(parts.count == 0) {
+                            NSLog(@"<INVALID TEST CONTENT IN \"%@\">", path);
+                        } else {
+                            BOOL success = NO;
                             @try {
                                 success = YES;
                                 for(NSUInteger i = 0; i < parts.count; ++i) {
                                     if(!RunJavaScriptOnRootNode([parts objectAtIndex:i], root)) {
-                                        NSLog(@"<FAILED EXECUTING JAVASCRIPT \"%@\" on \"%@\">", path, name);
+                                        NSLog(@"<FAILED EXECUTING JAVASCRIPT \"%@\" on \"%@\">", path, subpath);
                                         success = NO;
                                         break;
                                     }
                                 }
                                 if(success) {
-                                    NSString* newName = [NSString stringWithFormat:@"%@-%@", [[path lastPathComponent] stringByDeletingPathExtension], name];
-                                    NSString* expected = [NSString stringWithContentsOfFile:[basePath stringByAppendingPathComponent:newName] encoding:NSUTF8StringEncoding error:NULL];
-                                    if(!_ValidateResult(newName, root.content, expected))
+                                    NSString* newPath = [[[[subpath stringByDeletingPathExtension] stringByDeletingPathExtension] stringByAppendingPathExtension:@"out"] stringByAppendingPathExtension:[subpath pathExtension]];
+                                    NSString* expected = [NSString stringWithContentsOfFile:newPath encoding:NSUTF8StringEncoding error:NULL];
+                                    if(!_ValidateResult([newPath lastPathComponent], root.content, expected))
                                         success = NO;
                                 }
                             }
                             @catch(NSException* exception) {
                                 NSLog(@"<EXCEPTION \"%@\">", [exception reason]);
                             }
-                            [root release];
+                            if(success)
+                                printf("%s | %s: ok\n", [path UTF8String], [subpath UTF8String]);
+                            else
+                                printf("%s | %s: FAILED\n", [path UTF8String], [subpath UTF8String]);
                         }
-                        if(success)
-                            printf("%s [%s]: ok\n", [path UTF8String], [name UTF8String]);
-                        else
-                            printf("%s [%s]: FAILED\n", [path UTF8String], [name UTF8String]);
                     }
                 }
+                [localPool drain];
             }
-            [localPool drain];
         }
     }
     

@@ -20,10 +20,7 @@
 
 #import "SourceParser_Internal.h"
 
-#define __MAIN_FUNCTION__ 1
 #define __UNPROTECT_VALUES__ 0
-
-#if __MAIN_FUNCTION__
 
 static NSString* _wrapperScript = @"\
 function __wrapper() {\
@@ -34,12 +31,11 @@ function __wrapper() {\
         __success = true;\
     }\
     catch(__exception) {\
-    	Log(__exception);\
+    	Log(\"JavaScript Exception: '\" + __exception + \"' occured while processing node:\");\
+        Log(\"\t\" + this.description);\
     }\
     return __success;\
 }";
-
-#endif
 
 static JSClassRef _class = NULL;
 
@@ -155,7 +151,6 @@ static JSValueRef _GetPropertyNextSibling(JSContextRef ctx, JSObjectRef object, 
     return _JSObjectFromNode(node.nextSibling, ctx);
 }
 
-/*
 static JSValueRef _GetPropertyDescription(JSContextRef ctx, JSObjectRef object, JSStringRef propertyName, JSValueRef* exception) {
 	SourceNode* node = JSObjectGetPrivate(object);
     JSStringRef string = JSStringCreateWithCFString((CFStringRef)node.description);
@@ -163,7 +158,6 @@ static JSValueRef _GetPropertyDescription(JSContextRef ctx, JSObjectRef object, 
     JSStringRelease(string);
     return value;
 }
-*/
 
 static JSStaticValue _staticValues[] = {
 	{"name", _GetPropertyName, NULL, kJSPropertyAttributeReadOnly | kJSPropertyAttributeDontDelete | kJSPropertyAttributeDontEnum},
@@ -175,7 +169,7 @@ static JSStaticValue _staticValues[] = {
     {"lastChild", _GetPropertyLastChild, NULL, kJSPropertyAttributeReadOnly | kJSPropertyAttributeDontDelete | kJSPropertyAttributeDontEnum},
     {"previousSibling", _GetPropertyPreviousSibling, NULL, kJSPropertyAttributeReadOnly | kJSPropertyAttributeDontDelete | kJSPropertyAttributeDontEnum},
     {"nextSibling", _GetPropertyNextSibling, NULL, kJSPropertyAttributeReadOnly | kJSPropertyAttributeDontDelete | kJSPropertyAttributeDontEnum},
-    //{"description", _GetPropertyDescription, NULL, kJSPropertyAttributeReadOnly | kJSPropertyAttributeDontDelete | kJSPropertyAttributeDontEnum},
+    {"description", _GetPropertyDescription, NULL, kJSPropertyAttributeReadOnly | kJSPropertyAttributeDontDelete | kJSPropertyAttributeDontEnum},
     {NULL, NULL, NULL, 0}
 };
 
@@ -440,39 +434,12 @@ static SourceNode* _JavaScriptFunctionApplier(SourceNode* node, void* context) {
 	void** params = (void**)context;
     JSContextRef ctx = params[0];
     JSObjectRef object = params[1];
-#if __MAIN_FUNCTION__
 	BOOL* successPtr = params[2];
     JSValueRef value = JSObjectCallAsFunction(ctx, object, _JSObjectFromNode(node, ctx), 0, NULL, NULL);
     if(!value || !JSValueIsBoolean(ctx, value) || !JSValueToBoolean(ctx, value))
     	*successPtr = NO;
     return node;
-#else
-    void* recursive = params[2];
-    JSValueRef exception = NULL;
-    JSObjectCallAsFunction(ctx, object, _JSObjectFromNode(node, ctx), 0, NULL, &exception);
-    if(exception)
-    	printf("<JavaScript Exception: %s>\n", [_ExceptionToString(context, exception) UTF8String]);
-    return recursive ? node : nil;
-#endif
 }
-
-#if !__MAIN_FUNCTION__
-
-static JSValueRef _CallFunctionApplyFunctionOnChildren(JSContextRef ctx, JSObjectRef function, JSObjectRef thisObject, size_t argumentCount, const JSValueRef arguments[], JSValueRef* exception) {
-	if(((argumentCount == 1) || (argumentCount == 2)) && JSValueIsObject(ctx, arguments[0]) && ((argumentCount == 1) || JSValueIsBoolean(ctx, arguments[1]))) {
-    	SourceNode* node = JSObjectGetPrivate(thisObject);
-        void* params[3];
-        params[0] = (void*)ctx;
-        params[1] = (void*)arguments[0];
-        params[2] = (argumentCount == 2) && JSValueToBoolean(ctx, arguments[1]) ? (void*)ctx : NULL;
-        [node applyFunctionOnChildren:_JavaScriptFunctionApplier context:params];
-        return JSValueMakeUndefined(ctx);
-    }
-    *exception = _MakeException(ctx, @"Invalid argument(s)");
-    return NULL;
-}
-
-#endif
 
 static JSStaticFunction _staticFunctions[] = {
 	{"addChild", _CallFunctionAddChild, kJSPropertyAttributeReadOnly | kJSPropertyAttributeDontDelete | kJSPropertyAttributeDontEnum},
@@ -496,9 +463,6 @@ static JSStaticFunction _staticFunctions[] = {
     {"isAnyText", _CallFunctionIsAnyText, kJSPropertyAttributeReadOnly | kJSPropertyAttributeDontDelete | kJSPropertyAttributeDontEnum},
     {"isKeyword", _CallFunctionIsKeyword, kJSPropertyAttributeReadOnly | kJSPropertyAttributeDontDelete | kJSPropertyAttributeDontEnum},
     {"isToken", _CallFunctionIsToken, kJSPropertyAttributeReadOnly | kJSPropertyAttributeDontDelete | kJSPropertyAttributeDontEnum},
-#if !__MAIN_FUNCTION__
-    {"applyFunctionOnChildren", _CallFunctionApplyFunctionOnChildren, kJSPropertyAttributeReadOnly | kJSPropertyAttributeDontDelete | kJSPropertyAttributeDontEnum},
-#endif
     {NULL, NULL, 0}
 };
 
@@ -604,12 +568,6 @@ BOOL RunJavaScriptOnRootNode(NSString* script, SourceNode* root) {
                     JSObjectSetProperty(context, JSContextGetGlobalObject(context), jsString, jsNode, kJSPropertyAttributeReadOnly | kJSPropertyAttributeDontDelete, NULL);
                     JSStringRelease(jsString);
                     
-#if !__MAIN_FUNCTION__
-                    jsString = JSStringCreateWithCFString(CFSTR("_root"));
-                    JSObjectSetProperty(context, JSContextGetGlobalObject(context), jsString, _JSObjectFromNode(root, context), kJSPropertyAttributeReadOnly | kJSPropertyAttributeDontDelete, NULL);
-                    JSStringRelease(jsString);
-#endif
-                    
                     for(SourceLanguage* language in [SourceLanguage allLanguages]) {
                     	for(Class nodeClass in language.nodeClasses) {
                         	jsString = JSStringCreateWithCFString((CFStringRef)[NSString stringWithFormat:@"TYPE_%@", [[nodeClass name] uppercaseString]]);
@@ -622,26 +580,20 @@ BOOL RunJavaScriptOnRootNode(NSString* script, SourceNode* root) {
                     JSEvaluateScript(context, jsScript, NULL, NULL, 1, &exception);
                     if(exception)
                         printf("<JavaScript Evaluation Failed: %s>\n", [_ExceptionToString(context, exception) UTF8String]);
-                    else
-                    	success = YES;
-                    
-#if __MAIN_FUNCTION__
-					if(success) {
+                    else {
                     	jsString = JSStringCreateWithCFString(CFSTR("__wrapper"));
                         JSObjectRef function = JSValueToObject(context, JSObjectGetProperty(context, JSContextGetGlobalObject(context), jsString, NULL), NULL);
                         JSStringRelease(jsString);
                         if(function && JSValueIsObject(context, function)) {
+                            success = YES;
                             void* params[3];
                             params[0] = context;
                             params[1] = function;
                             params[2] = &success;
                             _JavaScriptFunctionApplier(root, params);
                             [root applyFunctionOnChildren:_JavaScriptFunctionApplier context:params];
-                        } else {
-                        	success = NO;
                         }
                     }
-#endif
                     
 #if __UNPROTECT_VALUES__
                     _NodeApplierFunction(root, (void*)context);

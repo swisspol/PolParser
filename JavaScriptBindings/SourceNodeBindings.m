@@ -16,90 +16,7 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#import <JavaScriptCore/JavaScriptCore.h>
-
-#import "SourceParser_Internal.h"
-
-#define __UNPROTECT_VALUES__ 0
-
-static NSString* _wrapperScript = @"\
-function __wrapper() {\
-	var __success = false; \
-    try {\
-		%@\
-        \
-        __success = true;\
-    }\
-    catch(__exception) {\
-    	Log(\"JavaScript Exception: '\" + __exception + \"' occured while processing node:\");\
-        Log(\"\t\" + this.description);\
-    }\
-    return __success;\
-}";
-
-static JSClassRef _nodeClass = NULL;
-static JSClassRef _dictionaryClass = NULL;
-
-static JSObjectRef _JSObjectFromNode(SourceNode* node, JSContextRef context) {
-	if(node == nil)
-    	return (JSObjectRef)JSValueMakeUndefined(context);
-    if(node.jsObject == NULL) {
-        node.jsObject = JSObjectMake(context, _nodeClass, node);
-        JSValueProtect(context, node.jsObject);
-    }
-    
-    return node.jsObject;
-}
-
-static JSValueRef _MakeException(JSContextRef context, NSString* format, ...) {
-	va_list args;
-    va_start(args, format);
-    NSString* string = [[NSString alloc] initWithFormat:format arguments:args];
-    va_end(args);
-    JSStringRef jsString = JSStringCreateWithCFString((CFStringRef)string);
-    JSValueRef value = JSValueMakeString(context, jsString);
-    JSStringRelease(jsString);
-    [string release];
-    return value;
-}
-
-static NSString* _ExceptionToString(JSContextRef context, JSValueRef exception) {
-	JSStringRef jsString = JSValueToStringCopy(context, exception, NULL);
-    NSString* string = nil;
-    if(jsString) {
-        string = [NSMakeCollectable(JSStringCopyCFString(kCFAllocatorDefault, jsString)) autorelease];
-        JSStringRelease(jsString);
-    }
-    return string;
-}
-
-#if __UNPROTECT_VALUES__
-
-static SourceNode* _NodeApplierFunction(SourceNode* node, void* context) {
-    if(node.jsObject) {
-    	JSValueUnprotect((JSContextRef)context, node.jsObject);
-        node.jsObject = NULL;
-    }
-    return node;
-}
-
-#endif
-
-static JSObjectRef _CallAsConstructorCallback(JSContextRef ctx, JSObjectRef constructor, size_t argumentCount, const JSValueRef arguments[], JSValueRef* exception) {
-    if((argumentCount == 1) && JSValueIsString(ctx, arguments[0])) {
-        JSStringRef jsString = JSValueToStringCopy(ctx, arguments[0], NULL);
-        CFStringRef cfString = JSStringCopyCFString(kCFAllocatorDefault, jsString);
-        JSStringRelease(jsString);
-        if(cfString) {
-        	SourceNode* node = [[SourceNodeText alloc] initWithText:(NSString*)cfString];
-        	JSObjectRef object = _JSObjectFromNode(node, ctx);
-        	[node autorelease];
-        	CFRelease(cfString); //FIXME: JSValueUnprotect() is never called
-        	return object;
-        }
-    }
-    return JSContextGetGlobalObject(ctx); //FIXME: Returning anything but a JSObjectRef makes JavaScriptCore crash
-}
+#import "JavaScriptBindings_Internal.h"
 
 static JSValueRef _GetPropertyType(JSContextRef ctx, JSObjectRef object, JSStringRef propertyName, JSValueRef* exception) {
 	SourceNode* node = JSObjectGetPrivate(object);
@@ -117,7 +34,7 @@ static JSValueRef _GetPropertyName(JSContextRef ctx, JSObjectRef object, JSStrin
 static JSValueRef _GetPropertyAttributes(JSContextRef ctx, JSObjectRef object, JSStringRef propertyName, JSValueRef* exception) {
 	SourceNode* node = JSObjectGetPrivate(object);
     NSDictionary* attributes = node.attributes;
-    return attributes ? JSObjectMake(ctx, _dictionaryClass, attributes) : JSValueMakeUndefined(ctx);
+    return attributes ? _JSValueMakeDictionary(attributes, ctx) : JSValueMakeUndefined(ctx);
 }
 
 static JSValueRef _GetPropertyContent(JSContextRef ctx, JSObjectRef object, JSStringRef propertyName, JSValueRef* exception) {
@@ -138,7 +55,7 @@ static JSValueRef _GetPropertyCleanContent(JSContextRef ctx, JSObjectRef object,
 
 static JSValueRef _GetPropertyParent(JSContextRef ctx, JSObjectRef object, JSStringRef propertyName, JSValueRef* exception) {
 	SourceNode* node = JSObjectGetPrivate(object);
-    return _JSObjectFromNode(node.parent, ctx);
+    return _JSValueMakeSourceNode(node.parent, ctx);
 }
 
 static JSValueRef _GetPropertyChildrenCount(JSContextRef ctx, JSObjectRef object, JSStringRef propertyName, JSValueRef* exception) {
@@ -148,22 +65,22 @@ static JSValueRef _GetPropertyChildrenCount(JSContextRef ctx, JSObjectRef object
 
 static JSValueRef _GetPropertyFirstChild(JSContextRef ctx, JSObjectRef object, JSStringRef propertyName, JSValueRef* exception) {
 	SourceNode* node = JSObjectGetPrivate(object);
-    return _JSObjectFromNode(node.firstChild, ctx);
+    return _JSValueMakeSourceNode(node.firstChild, ctx);
 }
 
 static JSValueRef _GetPropertyLastChild(JSContextRef ctx, JSObjectRef object, JSStringRef propertyName, JSValueRef* exception) {
 	SourceNode* node = JSObjectGetPrivate(object);
-    return _JSObjectFromNode(node.lastChild, ctx);
+    return _JSValueMakeSourceNode(node.lastChild, ctx);
 }
 
 static JSValueRef _GetPropertyPreviousSibling(JSContextRef ctx, JSObjectRef object, JSStringRef propertyName, JSValueRef* exception) {
 	SourceNode* node = JSObjectGetPrivate(object);
-    return _JSObjectFromNode(node.previousSibling, ctx);
+    return _JSValueMakeSourceNode(node.previousSibling, ctx);
 }
 
 static JSValueRef _GetPropertyNextSibling(JSContextRef ctx, JSObjectRef object, JSStringRef propertyName, JSValueRef* exception) {
 	SourceNode* node = JSObjectGetPrivate(object);
-    return _JSObjectFromNode(node.nextSibling, ctx);
+    return _JSValueMakeSourceNode(node.nextSibling, ctx);
 }
 
 static JSValueRef _GetPropertyDescription(JSContextRef ctx, JSObjectRef object, JSStringRef propertyName, JSValueRef* exception) {
@@ -191,7 +108,7 @@ static JSStaticValue _staticValues[] = {
 };
 
 static JSValueRef _CallFunctionAddChild(JSContextRef ctx, JSObjectRef function, JSObjectRef thisObject, size_t argumentCount, const JSValueRef arguments[], JSValueRef* exception) {
-	if((argumentCount == 1) && JSValueIsObjectOfClass(ctx, arguments[0], _nodeClass)) {
+	if((argumentCount == 1) && JSValueIsObjectOfClass(ctx, arguments[0], _GetSourceNodeJavaScriptClass())) {
     	SourceNode* node = JSObjectGetPrivate(thisObject);
         if(![node isKindOfClass:[SourceNodeText class]]) {
         	SourceNode* child = JSObjectGetPrivate(JSValueToObject(ctx, arguments[0], NULL));
@@ -199,7 +116,7 @@ static JSValueRef _CallFunctionAddChild(JSContextRef ctx, JSObjectRef function, 
             return JSValueMakeUndefined(ctx);
         }
     }
-    *exception = _MakeException(ctx, @"Invalid argument(s)");
+    *exception = _JSValueMakeException(ctx, @"Invalid argument(s)");
     return NULL;
 }
 
@@ -207,31 +124,27 @@ static JSValueRef _CallFunctionRemoveFromParent(JSContextRef ctx, JSObjectRef fu
 	if(argumentCount == 0) {
     	SourceNode* node = JSObjectGetPrivate(thisObject);
         if(node.parent) {
-#if __UNPROTECT_VALUES__
-            _NodeApplierFunction(node, (void*)ctx);
-            [node applyFunctionOnChildren:_NodeApplierFunction context:(void*)ctx];
-#endif
             [node removeFromParent];
             return JSValueMakeUndefined(ctx);
         }
     }
-    *exception = _MakeException(ctx, @"Invalid argument(s)");
+    *exception = _JSValueMakeException(ctx, @"Invalid argument(s)");
     return NULL;
 }
 
 static JSValueRef _CallFunctionIndexOfChild(JSContextRef ctx, JSObjectRef function, JSObjectRef thisObject, size_t argumentCount, const JSValueRef arguments[], JSValueRef* exception) {
-	if((argumentCount == 1) && JSValueIsObjectOfClass(ctx, arguments[0], _nodeClass)) {
+	if((argumentCount == 1) && JSValueIsObjectOfClass(ctx, arguments[0], _GetSourceNodeJavaScriptClass())) {
     	SourceNode* node = JSObjectGetPrivate(thisObject);
         SourceNode* child = JSObjectGetPrivate(JSValueToObject(ctx, arguments[0], NULL));
     	if(child.parent == node)
         	return JSValueMakeNumber(ctx, [node indexOfChild:child]);
     }
-    *exception = _MakeException(ctx, @"Invalid argument(s)");
+    *exception = _JSValueMakeException(ctx, @"Invalid argument(s)");
     return NULL;
 }
 
 static JSValueRef _CallFunctionInsertChild(JSContextRef ctx, JSObjectRef function, JSObjectRef thisObject, size_t argumentCount, const JSValueRef arguments[], JSValueRef* exception) {
-	if((argumentCount == 2) && JSValueIsObjectOfClass(ctx, arguments[0], _nodeClass) && JSValueIsNumber(ctx, arguments[1])) {
+	if((argumentCount == 2) && JSValueIsObjectOfClass(ctx, arguments[0], _GetSourceNodeJavaScriptClass()) && JSValueIsNumber(ctx, arguments[1])) {
     	SourceNode* node = JSObjectGetPrivate(thisObject);
         if(![node isKindOfClass:[SourceNodeText class]]) {
         	SourceNode* child = JSObjectGetPrivate(JSValueToObject(ctx, arguments[0], NULL));
@@ -240,7 +153,7 @@ static JSValueRef _CallFunctionInsertChild(JSContextRef ctx, JSObjectRef functio
             return JSValueMakeUndefined(ctx);
         }
     }
-    *exception = _MakeException(ctx, @"Invalid argument(s)");
+    *exception = _JSValueMakeException(ctx, @"Invalid argument(s)");
     return NULL;
 }
 
@@ -249,20 +162,16 @@ static JSValueRef _CallFunctionRemoveChild(JSContextRef ctx, JSObjectRef functio
     	SourceNode* node = JSObjectGetPrivate(thisObject);
         NSUInteger index = JSValueToNumber(ctx, arguments[0], NULL);
         if(index < node.children.count) {
-#if __UNPROTECT_VALUES__
-            _NodeApplierFunction([node.children objectAtIndex:index], (void*)ctx);
-            [node applyFunctionOnChildren:_NodeApplierFunction context:(void*)ctx];
-#endif
             [node removeChildAtIndex:index];
             return JSValueMakeUndefined(ctx);
         }
     }
-    *exception = _MakeException(ctx, @"Invalid argument(s)");
+    *exception = _JSValueMakeException(ctx, @"Invalid argument(s)");
     return NULL;
 }
 
 static JSValueRef _CallFunctionInsertPreviousSibling(JSContextRef ctx, JSObjectRef function, JSObjectRef thisObject, size_t argumentCount, const JSValueRef arguments[], JSValueRef* exception) {
-	if((argumentCount == 1) && JSValueIsObjectOfClass(ctx, arguments[0], _nodeClass)) {
+	if((argumentCount == 1) && JSValueIsObjectOfClass(ctx, arguments[0], _GetSourceNodeJavaScriptClass())) {
     	SourceNode* node = JSObjectGetPrivate(thisObject);
         if(node.parent) {
         	SourceNode* child = JSObjectGetPrivate(JSValueToObject(ctx, arguments[0], NULL));
@@ -270,12 +179,12 @@ static JSValueRef _CallFunctionInsertPreviousSibling(JSContextRef ctx, JSObjectR
             return JSValueMakeUndefined(ctx);
         }
     }
-    *exception = _MakeException(ctx, @"Invalid argument(s)");
+    *exception = _JSValueMakeException(ctx, @"Invalid argument(s)");
     return NULL;
 }
 
 static JSValueRef _CallFunctionInsertNextSibling(JSContextRef ctx, JSObjectRef function, JSObjectRef thisObject, size_t argumentCount, const JSValueRef arguments[], JSValueRef* exception) {
-	if((argumentCount == 1) && JSValueIsObjectOfClass(ctx, arguments[0], _nodeClass)) {
+	if((argumentCount == 1) && JSValueIsObjectOfClass(ctx, arguments[0], _GetSourceNodeJavaScriptClass())) {
     	SourceNode* node = JSObjectGetPrivate(thisObject);
         if(node.parent) {
         	SourceNode* child = JSObjectGetPrivate(JSValueToObject(ctx, arguments[0], NULL));
@@ -283,24 +192,20 @@ static JSValueRef _CallFunctionInsertNextSibling(JSContextRef ctx, JSObjectRef f
             return JSValueMakeUndefined(ctx);
         }
     }
-    *exception = _MakeException(ctx, @"Invalid argument(s)");
+    *exception = _JSValueMakeException(ctx, @"Invalid argument(s)");
     return NULL;
 }
 
 static JSValueRef _CallFunctionReplaceWithNode(JSContextRef ctx, JSObjectRef function, JSObjectRef thisObject, size_t argumentCount, const JSValueRef arguments[], JSValueRef* exception) {
-	if((argumentCount == 1) && JSValueIsObjectOfClass(ctx, arguments[0], _nodeClass)) {
+	if((argumentCount == 1) && JSValueIsObjectOfClass(ctx, arguments[0], _GetSourceNodeJavaScriptClass())) {
     	SourceNode* node = JSObjectGetPrivate(thisObject);
         if(node.parent) {
         	SourceNode* child = JSObjectGetPrivate(JSValueToObject(ctx, arguments[0], NULL));
-#if __UNPROTECT_VALUES__
-        	_NodeApplierFunction(node, (void*)ctx);
-        	[node applyFunctionOnChildren:_NodeApplierFunction context:(void*)ctx];
-#endif
         	[node replaceWithNode:child];
             return JSValueMakeUndefined(ctx);
         }
     }
-    *exception = _MakeException(ctx, @"Invalid argument(s)");
+    *exception = _JSValueMakeException(ctx, @"Invalid argument(s)");
     return NULL;
 }
 
@@ -308,10 +213,6 @@ static JSValueRef _CallFunctionReplaceWithText(JSContextRef ctx, JSObjectRef fun
 	if((argumentCount == 1) && JSValueIsString(ctx, arguments[0])) {
     	SourceNode* node = JSObjectGetPrivate(thisObject);
         if(node.parent) {
-#if __UNPROTECT_VALUES__
-        	_NodeApplierFunction(node, (void*)ctx);
-        	[node applyFunctionOnChildren:_NodeApplierFunction context:(void*)ctx];
-#endif
         	JSStringRef jsString = JSValueToStringCopy(ctx, arguments[0], NULL);
             CFStringRef cfString = JSStringCopyCFString(kCFAllocatorDefault, jsString);
             [node replaceWithText:(NSString*)cfString];
@@ -320,7 +221,7 @@ static JSValueRef _CallFunctionReplaceWithText(JSContextRef ctx, JSObjectRef fun
             return JSValueMakeUndefined(ctx);
         }
     }
-    *exception = _MakeException(ctx, @"Invalid argument(s)");
+    *exception = _JSValueMakeException(ctx, @"Invalid argument(s)");
     return NULL;
 }
 
@@ -328,9 +229,9 @@ static JSValueRef _CallFunctionFindPreviousSiblingIgnoringWhitespaceAndNewline(J
 	if(argumentCount == 0) {
     	SourceNode* node = JSObjectGetPrivate(thisObject);
         if(node.parent)
-        	return _JSObjectFromNode([node findPreviousSiblingIgnoringWhitespaceAndNewline], ctx);
+        	return _JSValueMakeSourceNode([node findPreviousSiblingIgnoringWhitespaceAndNewline], ctx);
     }
-    *exception = _MakeException(ctx, @"Invalid argument(s)");
+    *exception = _JSValueMakeException(ctx, @"Invalid argument(s)");
     return NULL;
 }
 
@@ -338,9 +239,9 @@ static JSValueRef _CallFunctionFindNextSiblingIgnoringWhitespaceAndNewline(JSCon
 	if(argumentCount == 0) {
     	SourceNode* node = JSObjectGetPrivate(thisObject);
         if(node.parent)
-        	return _JSObjectFromNode([node findNextSiblingIgnoringWhitespaceAndNewline], ctx);
+        	return _JSValueMakeSourceNode([node findNextSiblingIgnoringWhitespaceAndNewline], ctx);
     }
-    *exception = _MakeException(ctx, @"Invalid argument(s)");
+    *exception = _JSValueMakeException(ctx, @"Invalid argument(s)");
     return NULL;
 }
 
@@ -349,10 +250,10 @@ static JSValueRef _CallFunctionFindPreviousSiblingOfType(JSContextRef ctx, JSObj
     	SourceNode* node = JSObjectGetPrivate(thisObject);
         if(node.parent) {
         	Class class = (Class)(long)JSValueToNumber(ctx, arguments[0], NULL);
-        	return _JSObjectFromNode([node findPreviousSiblingOfClass:class], ctx);
+        	return _JSValueMakeSourceNode([node findPreviousSiblingOfClass:class], ctx);
         }
     }
-    *exception = _MakeException(ctx, @"Invalid argument(s)");
+    *exception = _JSValueMakeException(ctx, @"Invalid argument(s)");
     return NULL;
 }
 
@@ -361,10 +262,10 @@ static JSValueRef _CallFunctionFindNextSiblingOfType(JSContextRef ctx, JSObjectR
     	SourceNode* node = JSObjectGetPrivate(thisObject);
         if(node.parent) {
         	Class class = (Class)(long)JSValueToNumber(ctx, arguments[0], NULL);
-        	return _JSObjectFromNode([node findNextSiblingOfClass:class], ctx);
+        	return _JSValueMakeSourceNode([node findNextSiblingOfClass:class], ctx);
         }
     }
-    *exception = _MakeException(ctx, @"Invalid argument(s)");
+    *exception = _JSValueMakeException(ctx, @"Invalid argument(s)");
     return NULL;
 }
 
@@ -373,10 +274,10 @@ static JSValueRef _CallFunctionFindFirstChildOfType(JSContextRef ctx, JSObjectRe
     	SourceNode* node = JSObjectGetPrivate(thisObject);
         if(node.parent) {
         	Class class = (Class)(long)JSValueToNumber(ctx, arguments[0], NULL);
-        	return _JSObjectFromNode([node findFirstChildOfClass:class], ctx);
+        	return _JSValueMakeSourceNode([node findFirstChildOfClass:class], ctx);
         }
     }
-    *exception = _MakeException(ctx, @"Invalid argument(s)");
+    *exception = _JSValueMakeException(ctx, @"Invalid argument(s)");
     return NULL;
 }
 
@@ -385,10 +286,10 @@ static JSValueRef _CallFunctionFindLastChildOfType(JSContextRef ctx, JSObjectRef
     	SourceNode* node = JSObjectGetPrivate(thisObject);
         if(node.parent) {
         	Class class = (Class)(long)JSValueToNumber(ctx, arguments[0], NULL);
-        	return _JSObjectFromNode([node findLastChildOfClass:class], ctx);
+        	return _JSValueMakeSourceNode([node findLastChildOfClass:class], ctx);
         }
     }
-    *exception = _MakeException(ctx, @"Invalid argument(s)");
+    *exception = _JSValueMakeException(ctx, @"Invalid argument(s)");
     return NULL;
 }
 
@@ -398,7 +299,7 @@ static JSValueRef _CallFunctionGetDepthInParentsOfType(JSContextRef ctx, JSObjec
         Class class = (argumentCount == 1 ? (Class)(long)JSValueToNumber(ctx, arguments[0], NULL) : nil);
         return JSValueMakeNumber(ctx, [node getDepthInParentsOfClass:class]);
     }
-    *exception = _MakeException(ctx, @"Invalid argument(s)");
+    *exception = _JSValueMakeException(ctx, @"Invalid argument(s)");
     return NULL;
 }
 
@@ -407,7 +308,7 @@ static JSValueRef _CallFunctionIsWhitespace(JSContextRef ctx, JSObjectRef functi
     	SourceNode* node = JSObjectGetPrivate(thisObject);
         return JSValueMakeBoolean(ctx, [node isKindOfClass:[SourceNodeWhitespace class]]);
     }
-    *exception = _MakeException(ctx, @"Invalid argument(s)");
+    *exception = _JSValueMakeException(ctx, @"Invalid argument(s)");
     return NULL;
 }
 
@@ -416,7 +317,7 @@ static JSValueRef _CallFunctionIsWhitespaceOrNewline(JSContextRef ctx, JSObjectR
     	SourceNode* node = JSObjectGetPrivate(thisObject);
         return JSValueMakeBoolean(ctx, [node isKindOfClass:[SourceNodeWhitespace class]] || [node isKindOfClass:[SourceNodeNewline class]]);
     }
-    *exception = _MakeException(ctx, @"Invalid argument(s)");
+    *exception = _JSValueMakeException(ctx, @"Invalid argument(s)");
     return NULL;
 }
 
@@ -425,7 +326,7 @@ static JSValueRef _CallFunctionIsAnyText(JSContextRef ctx, JSObjectRef function,
     	SourceNode* node = JSObjectGetPrivate(thisObject);
         return JSValueMakeBoolean(ctx, [node isKindOfClass:[SourceNodeText class]]);
     }
-    *exception = _MakeException(ctx, @"Invalid argument(s)");
+    *exception = _JSValueMakeException(ctx, @"Invalid argument(s)");
     return NULL;
 }
 
@@ -434,7 +335,7 @@ static JSValueRef _CallFunctionIsKeyword(JSContextRef ctx, JSObjectRef function,
     	SourceNode* node = JSObjectGetPrivate(thisObject);
         return JSValueMakeBoolean(ctx, [node isKindOfClass:[SourceNodeKeyword class]]);
     }
-    *exception = _MakeException(ctx, @"Invalid argument(s)");
+    *exception = _JSValueMakeException(ctx, @"Invalid argument(s)");
     return NULL;
 }
 
@@ -443,19 +344,8 @@ static JSValueRef _CallFunctionIsToken(JSContextRef ctx, JSObjectRef function, J
     	SourceNode* node = JSObjectGetPrivate(thisObject);
         return JSValueMakeBoolean(ctx, [node isKindOfClass:[SourceNodeToken class]]);
     }
-    *exception = _MakeException(ctx, @"Invalid argument(s)");
+    *exception = _JSValueMakeException(ctx, @"Invalid argument(s)");
     return NULL;
-}
-
-static SourceNode* _JavaScriptFunctionApplier(SourceNode* node, void* context) {
-	void** params = (void**)context;
-    JSContextRef ctx = params[0];
-    JSObjectRef object = params[1];
-	BOOL* successPtr = params[2];
-    JSValueRef value = JSObjectCallAsFunction(ctx, object, _JSObjectFromNode(node, ctx), 0, NULL, NULL);
-    if(!value || !JSValueIsBoolean(ctx, value) || !JSValueToBoolean(ctx, value))
-    	*successPtr = NO;
-    return node;
 }
 
 static JSStaticFunction _staticFunctions[] = {
@@ -483,7 +373,7 @@ static JSStaticFunction _staticFunctions[] = {
     {NULL, NULL, 0}
 };
 
-static void _NodeGetPropertyNamesCallback(JSContextRef ctx, JSObjectRef object, JSPropertyNameAccumulatorRef propertyNames) {
+static void _GetPropertyNamesCallback(JSContextRef ctx, JSObjectRef object, JSPropertyNameAccumulatorRef propertyNames) {
 	static CFMutableArrayRef cache = NULL;
     if(cache == NULL)
     	cache = CFArrayCreateMutable(kCFAllocatorDefault, 0, &kCFTypeArrayCallBacks);
@@ -504,20 +394,20 @@ static void _NodeGetPropertyNamesCallback(JSContextRef ctx, JSObjectRef object, 
     }
 }
 
-static JSValueRef _NodeGetPropertyCallback(JSContextRef ctx, JSObjectRef object, JSStringRef propertyName, JSValueRef* exception) {
+static JSValueRef _GetPropertyCallback(JSContextRef ctx, JSObjectRef object, JSStringRef propertyName, JSValueRef* exception) {
 	CFStringRef cfString = JSStringCopyCFString(kCFAllocatorDefault, propertyName);
     if(cfString) {
     	SInt32 index = CFStringGetIntValue(cfString);
         CFRelease(cfString);
         if(index > 0) {
         	SourceNode* node = JSObjectGetPrivate(object);
-        	return (index <= node.children.count ? _JSObjectFromNode([node.children objectAtIndex:(index - 1)], ctx) : JSValueMakeUndefined(ctx));
+        	return (index <= node.children.count ? _JSValueMakeSourceNode([node.children objectAtIndex:(index - 1)], ctx) : JSValueMakeUndefined(ctx));
         }
     }
     return NULL;
 }
 
-static JSValueRef _NodeConvertToTypeCallback(JSContextRef ctx, JSObjectRef object, JSType type, JSValueRef* exception) {
+static JSValueRef _ConvertToTypeCallback(JSContextRef ctx, JSObjectRef object, JSType type, JSValueRef* exception) {
 	if(type == kJSTypeString) {
     	SourceNode* node = JSObjectGetPrivate(object);
         JSStringRef string = JSStringCreateWithCFString((CFStringRef)node.compactDescription);
@@ -528,127 +418,29 @@ static JSValueRef _NodeConvertToTypeCallback(JSContextRef ctx, JSObjectRef objec
     return JSValueMakeUndefined(ctx);
 }
 
-static JSValueRef _DictionaryGetPropertyCallback(JSContextRef ctx, JSObjectRef object, JSStringRef propertyName, JSValueRef* exception) {
-	CFStringRef cfString = JSStringCopyCFString(kCFAllocatorDefault, propertyName);
-    if(cfString) {
-    	NSDictionary* dictionary = JSObjectGetPrivate(object);
-        id value = [dictionary objectForKey:(id)cfString];
-        CFRelease(cfString);
-        if(value) {
-        	JSStringRef jsString = JSStringCreateWithCFString((CFStringRef)[value description]); //FIXME: We should handle non-string values properly
-            JSValueRef jsValue = JSValueMakeString(ctx, jsString);
-            JSStringRelease(jsString);
-            return jsValue;
-        }
+JSClassRef _GetSourceNodeJavaScriptClass() {
+	static JSClassRef class = NULL;
+	if(class == NULL) {
+        JSClassDefinition definition = kJSClassDefinitionEmpty;
+        definition.className = "Node";
+        definition.staticValues = _staticValues;
+        definition.staticFunctions = _staticFunctions;
+        definition.getPropertyNames = _GetPropertyNamesCallback;
+        definition.getProperty = _GetPropertyCallback;
+        definition.convertToType = _ConvertToTypeCallback;
+        class = JSClassCreate(&definition);
+        if(class == NULL)
+            [NSException raise:NSInternalInconsistencyException format:@""];
     }
-    return NULL;
+    return class;
 }
 
-static JSValueRef _DictionaryConvertToTypeCallback(JSContextRef ctx, JSObjectRef object, JSType type, JSValueRef* exception) {
-	if(type == kJSTypeString) {
-    	NSDictionary* dictionary = JSObjectGetPrivate(object);
-        JSStringRef string = JSStringCreateWithCFString((CFStringRef)[dictionary description]);
-        JSValueRef value = JSValueMakeString(ctx, string);
-        JSStringRelease(string);
-        return value;
+JSValueRef _JSValueMakeSourceNode(SourceNode* node, JSContextRef context) {
+	if(node == nil)
+    	return JSValueMakeUndefined(context);
+    if(node.jsObject == NULL) {
+        node.jsObject = JSObjectMake(context, _GetSourceNodeJavaScriptClass(), node);
+        JSValueProtect(context, node.jsObject);
     }
-    return JSValueMakeUndefined(ctx);
-}
-
-static JSValueRef _LogFunction(JSContextRef ctx, JSObjectRef function, JSObjectRef thisObject, size_t argumentCount, const JSValueRef arguments[], JSValueRef* exception) {
-	if(argumentCount == 1) {
-    	JSStringRef jsString = JSValueToStringCopy(ctx, arguments[0], NULL);
-        CFStringRef cfString = JSStringCopyCFString(kCFAllocatorDefault, jsString);
-        if(cfString) {
-        	printf("%s\n", [(NSString*)cfString UTF8String]);
-        	CFRelease(cfString);
-        }
-        JSStringRelease(jsString);
-    }
-    return JSValueMakeUndefined(ctx);
-}
-
-BOOL RunJavaScriptOnRootNode(NSString* script, SourceNode* root) {
-	BOOL success = NO;
-    NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
-    if(script.length && root) {
-        if(_nodeClass == NULL) {
-            JSClassDefinition definition = kJSClassDefinitionEmpty;
-            definition.className = "Node";
-            definition.staticValues = _staticValues;
-            definition.staticFunctions = _staticFunctions;
-            definition.getPropertyNames = _NodeGetPropertyNamesCallback;
-            definition.getProperty = _NodeGetPropertyCallback;
-            definition.convertToType = _NodeConvertToTypeCallback;
-            _nodeClass = JSClassCreate(&definition);
-            if(_nodeClass == NULL)
-            	[NSException raise:NSInternalInconsistencyException format:@""];
-        }
-        
-        if(_dictionaryClass == NULL) {
-            JSClassDefinition definition = kJSClassDefinitionEmpty;
-            definition.className = "Dictionary";
-            definition.getProperty = _DictionaryGetPropertyCallback;
-            definition.convertToType = _DictionaryConvertToTypeCallback;
-            _dictionaryClass = JSClassCreate(&definition);
-            if(_dictionaryClass == NULL)
-            	[NSException raise:NSInternalInconsistencyException format:@""];
-        }
-        
-        JSGlobalContextRef context = JSGlobalContextCreate(NULL);
-        if(context) {
-            JSStringRef jsScript = JSStringCreateWithCFString((CFStringRef)[NSString stringWithFormat:_wrapperScript, script]);
-            if(jsScript) {
-                JSStringRef jsString;
-                
-                jsString = JSStringCreateWithCFString(CFSTR("Log"));
-                JSObjectSetProperty(context, JSContextGetGlobalObject(context), jsString, JSObjectMakeFunctionWithCallback(context, NULL, _LogFunction), kJSPropertyAttributeReadOnly | kJSPropertyAttributeDontDelete, NULL);
-                JSStringRelease(jsString);
-                
-                JSObjectRef jsNode = JSObjectMakeConstructor(context, _nodeClass, _CallAsConstructorCallback);
-                jsString = JSStringCreateWithCFString(CFSTR("Node"));
-                JSObjectSetProperty(context, JSContextGetGlobalObject(context), jsString, jsNode, kJSPropertyAttributeReadOnly | kJSPropertyAttributeDontDelete, NULL);
-                JSStringRelease(jsString);
-                
-                for(SourceLanguage* language in [SourceLanguage allLanguages]) {
-                    for(Class nodeClass in language.nodeClasses) {
-                        jsString = JSStringCreateWithCFString((CFStringRef)[NSString stringWithFormat:@"TYPE_%@", [[nodeClass name] uppercaseString]]);
-                        JSObjectSetProperty(context, jsNode, jsString, JSValueMakeNumber(context, (double)(long)nodeClass), kJSPropertyAttributeReadOnly | kJSPropertyAttributeDontDelete, NULL);
-                        JSStringRelease(jsString);
-                    }
-                }
-                
-                JSValueRef exception = NULL;
-                JSEvaluateScript(context, jsScript, NULL, NULL, 1, &exception);
-                if(exception)
-                    printf("<JavaScript Evaluation Failed: %s>\n", [_ExceptionToString(context, exception) UTF8String]);
-                else {
-                    jsString = JSStringCreateWithCFString(CFSTR("__wrapper"));
-                    JSObjectRef function = JSValueToObject(context, JSObjectGetProperty(context, JSContextGetGlobalObject(context), jsString, NULL), NULL);
-                    JSStringRelease(jsString);
-                    if(function && JSValueIsObject(context, function)) {
-                        success = YES;
-                        void* params[3];
-                        params[0] = context;
-                        params[1] = function;
-                        params[2] = &success;
-                        _JavaScriptFunctionApplier(root, params);
-                        [root applyFunctionOnChildren:_JavaScriptFunctionApplier context:params];
-                    }
-                }
-                
-#if __UNPROTECT_VALUES__
-                _NodeApplierFunction(root, (void*)context);
-                [root applyFunctionOnChildren:_NodeApplierFunction context:(void*)context];
-#endif
-                
-                JSStringRelease(jsScript);
-            }
-            JSGarbageCollect(context);
-            JSGlobalContextRelease(context);
-            JSGarbageCollect(context);
-        }
-    }
-    [pool release];
-    return success;
+    return node.jsObject;
 }

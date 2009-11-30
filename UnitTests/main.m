@@ -17,8 +17,7 @@
 */
 
 #import "SourceParser.h"
-
-extern BOOL RunJavaScriptOnRootNode(NSString* script, SourceNode* root);
+#import "JavaScriptBindings.h"
 
 static BOOL _ValidateResult(NSString* name, NSString* actualResult, NSString* expectedResult) {
 	if(!actualResult)

@@ -8,7 +8,7 @@ NSString* string3 = [NSUserName() lowercaseString];
 
 NSString* string4 = [[@"~/foo.bar" stringByExpandingTildeInPath] stringByDeletingLastPathComponent];
 
-NSDictionary* dictionary = [[NSProcessInfo processInfo] environment];
+NSDictionary* dictionary = [(NSProcessInfo*)[NSProcessInfo processInfo] environment];
 
 [super test:foo bar:bar];
 
@@ -51,6 +51,9 @@ NSDictionary* dictionary = [[NSProcessInfo processInfo] environment];
 ·  ♢|;|♢¶♢¶♢NSDictionary♢|*|♢•♢dictionary♢•♢=♢•♢
 ·  <ObjCMethodCall>
 ·  ·  ♢|[|♢
+·  ·  <Parenthesis>
+·  ·  ·  ♢|(|♢NSProcessInfo♢|*|♢|)|♢
+·  ·  ♢
 ·  ·  <ObjCMethodCall>
 ·  ·  ·  ♢|[|♢|NSProcessInfo|♢•♢processInfo♢|]|♢
 ·  ·  ♢•♢environment♢|]|♢

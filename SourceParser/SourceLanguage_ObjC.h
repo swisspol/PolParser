@@ -78,13 +78,22 @@
 @interface SourceNodeObjCEncode : SourceNode
 @end
 
-@interface SourceNodeObjCMethodDeclaration : SourceNode
+@interface SourceNodeObjCMethodDeclaration : SourceNode {
+@private
+	NSString* _name;
+}
 @end
 
-@interface SourceNodeObjCMethodImplementation : SourceNode
+@interface SourceNodeObjCMethodImplementation : SourceNode {
+@private
+	NSString* _name;
+}
 @end
 
-@interface SourceNodeObjCMethodCall : SourceNode
+@interface SourceNodeObjCMethodCall : SourceNode {
+@private
+	NSString* _name;
+}
 @end
 
 /* Special Keywords */

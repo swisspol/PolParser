@@ -86,17 +86,20 @@
 |    [2:3] <XMLDOCTYPE> = ♢<!DOCTYPE•plist•PUBLIC•"-//Apple•Computer//DTD•PLIST•1.0//EN"¶→"http://www.apple.com/DTDs/PropertyList-1.0.dtd">♢
 |    [3:4] <Newline> = ♢¶♢
 |    [4:24] <XMLElement>
+|    + <name> = ♢plist♢
 |    + <cleaned> = ♢¶¶♢
 |    |    [4:4] <XMLTag> = ♢<plist•version="1.0">♢
 |    |    + <name> = ♢plist♢
 |    |    + ♢version♢ = ♢1.0♢
 |    |    [4:5] <Newline> = ♢¶♢
 |    |    [5:23] <XMLElement>
+|    |    + <name> = ♢dict♢
 |    |    + <cleaned> = ♢¶¶¶¶¶¶¶¶¶¶¶¶¶♢
 |    |    |    [5:5] <XMLTag> = ♢<dict>♢
 |    |    |    + <name> = ♢dict♢
 |    |    |    [5:6] <Newline> = ♢¶♢
 |    |    |    [6:6] <XMLElement>
+|    |    |    + <name> = ♢key♢
 |    |    |    + <cleaned> = ♢Year•Of•Birth♢
 |    |    |    |    [6:6] <XMLTag> = ♢<key>♢
 |    |    |    |    + <name> = ♢key♢
@@ -109,6 +112,7 @@
 |    |    |    |    + <name> = ♢key♢
 |    |    |    [6:7] <Newline> = ♢¶♢
 |    |    |    [7:7] <XMLElement>
+|    |    |    + <name> = ♢integer♢
 |    |    |    + <cleaned> = ♢1965♢
 |    |    |    |    [7:7] <XMLTag> = ♢<integer>♢
 |    |    |    |    + <name> = ♢integer♢
@@ -117,6 +121,7 @@
 |    |    |    |    + <name> = ♢integer♢
 |    |    |    [7:8] <Newline> = ♢¶♢
 |    |    |    [8:8] <XMLElement>
+|    |    |    + <name> = ♢key♢
 |    |    |    + <cleaned> = ♢Pets•Names♢
 |    |    |    |    [8:8] <XMLTag> = ♢<key>♢
 |    |    |    |    + <name> = ♢key♢
@@ -127,11 +132,13 @@
 |    |    |    |    + <name> = ♢key♢
 |    |    |    [8:9] <Newline> = ♢¶♢
 |    |    |    [9:9] <XMLElement>
+|    |    |    + <name> = ♢array♢
 |    |    |    + <cleaned> = ♢♢
 |    |    |    |    [9:9] <XMLTag> = ♢<array/>♢
 |    |    |    |    + <name> = ♢array♢
 |    |    |    [9:10] <Newline> = ♢¶♢
 |    |    |    [10:10] <XMLElement>
+|    |    |    + <name> = ♢key♢
 |    |    |    + <cleaned> = ♢Picture♢
 |    |    |    |    [10:10] <XMLTag> = ♢<key>♢
 |    |    |    |    + <name> = ♢key♢
@@ -140,6 +147,7 @@
 |    |    |    |    + <name> = ♢key♢
 |    |    |    [10:11] <Newline> = ♢¶♢
 |    |    |    [11:13] <XMLElement>
+|    |    |    + <name> = ♢data♢
 |    |    |    + <cleaned> = ♢¶→PEKBpYGlmYFCPA==¶♢
 |    |    |    |    [11:11] <XMLTag> = ♢<data>♢
 |    |    |    |    + <name> = ♢data♢
@@ -151,6 +159,7 @@
 |    |    |    |    + <name> = ♢data♢
 |    |    |    [13:14] <Newline> = ♢¶♢
 |    |    |    [14:14] <XMLElement>
+|    |    |    + <name> = ♢key♢
 |    |    |    + <cleaned> = ♢City•of•Birth♢
 |    |    |    |    [14:14] <XMLTag> = ♢<key>♢
 |    |    |    |    + <name> = ♢key♢
@@ -163,6 +172,7 @@
 |    |    |    |    + <name> = ♢key♢
 |    |    |    [14:15] <Newline> = ♢¶♢
 |    |    |    [15:15] <XMLElement>
+|    |    |    + <name> = ♢string♢
 |    |    |    + <cleaned> = ♢Springfield♢
 |    |    |    |    [15:15] <XMLTag> = ♢<string>♢
 |    |    |    |    + <name> = ♢string♢
@@ -171,6 +181,7 @@
 |    |    |    |    + <name> = ♢string♢
 |    |    |    [15:16] <Newline> = ♢¶♢
 |    |    |    [16:16] <XMLElement>
+|    |    |    + <name> = ♢key♢
 |    |    |    + <cleaned> = ♢Name♢
 |    |    |    |    [16:16] <XMLTag> = ♢<key>♢
 |    |    |    |    + <name> = ♢key♢
@@ -179,6 +190,7 @@
 |    |    |    |    + <name> = ♢key♢
 |    |    |    [16:17] <Newline> = ♢¶♢
 |    |    |    [17:17] <XMLElement>
+|    |    |    + <name> = ♢string♢
 |    |    |    + <cleaned> = ♢John•Doe♢
 |    |    |    |    [17:17] <XMLTag> = ♢<string>♢
 |    |    |    |    + <name> = ♢string♢
@@ -189,6 +201,7 @@
 |    |    |    |    + <name> = ♢string♢
 |    |    |    [17:18] <Newline> = ♢¶♢
 |    |    |    [18:18] <XMLElement>
+|    |    |    + <name> = ♢key♢
 |    |    |    + <cleaned> = ♢Kids•Names♢
 |    |    |    |    [18:18] <XMLTag> = ♢<key>♢
 |    |    |    |    + <name> = ♢key♢
@@ -199,12 +212,14 @@
 |    |    |    |    + <name> = ♢key♢
 |    |    |    [18:19] <Newline> = ♢¶♢
 |    |    |    [19:22] <XMLElement>
+|    |    |    + <name> = ♢array♢
 |    |    |    + <cleaned> = ♢¶→¶→¶♢
 |    |    |    |    [19:19] <XMLTag> = ♢<array>♢
 |    |    |    |    + <name> = ♢array♢
 |    |    |    |    [19:20] <Newline> = ♢¶♢
 |    |    |    |    [20:20] <Indenting> = ♢→♢
 |    |    |    |    [20:20] <XMLElement>
+|    |    |    |    + <name> = ♢string♢
 |    |    |    |    + <cleaned> = ♢John♢
 |    |    |    |    |    [20:20] <XMLTag> = ♢<string>♢
 |    |    |    |    |    + <name> = ♢string♢
@@ -214,6 +229,7 @@
 |    |    |    |    [20:21] <Newline> = ♢¶♢
 |    |    |    |    [21:21] <Indenting> = ♢→♢
 |    |    |    |    [21:21] <XMLElement>
+|    |    |    |    + <name> = ♢string♢
 |    |    |    |    + <cleaned> = ♢Kyra♢
 |    |    |    |    |    [21:21] <XMLTag> = ♢<string>♢
 |    |    |    |    |    + <name> = ♢string♢

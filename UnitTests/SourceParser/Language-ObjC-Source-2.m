@@ -2198,11 +2198,11 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 ·  ·  ·  ·  ·  ♢
 ·  ·  ·  ·  ·  <Braces>
 ·  ·  ·  ·  ·  ·  ♢|{|♢¶♢|••••••••|♢NSWritingDirection♢•♢writingDirection♢•♢=♢•♢paragraphStyle♢•♢|?|♢•♢
-·  ·  ·  ·  ·  ·  <Brackets>
+·  ·  ·  ·  ·  ·  <ObjCMethodCall>
 ·  ·  ·  ·  ·  ·  ·  ♢|[|♢
 ·  ·  ·  ·  ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ·  ·  ·  ·  ♢|(|♢NSParagraphStyle♢•♢|*|♢|)|♢
-·  ·  ·  ·  ·  ·  ·  ♢paragraphStyle♢•♢baseWritingDirection♢|]|♢
+·  ·  ·  ·  ·  ·  ·  ♢|paragraphStyle|♢•♢baseWritingDirection♢|]|♢
 ·  ·  ·  ·  ·  ·  ♢•♢|:|♢•♢NSWritingDirectionNatural♢|;|♢¶♢|••••••••|♢|//•We•also•preserve•NSWritingDirectionAttributeName•(new•in•10.6)|♢¶♢|••••••••|♢
 ·  ·  ·  ·  ·  ·  <ObjCMethodCall>
 ·  ·  ·  ·  ·  ·  ·  ♢|[|♢|text|♢•♢enumerateAttribute♢|:|♢NSWritingDirectionAttributeName♢•♢inRange♢|:|♢paragraphStyleRange♢•♢options♢|:|♢0♢•♢usingBlock♢|:|♢|^|♢
@@ -5689,6 +5689,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [61:62] <Newline> = ♢¶♢
 |    |    [62:63] <Newline> = ♢¶♢
 |    |    [63:85] <ObjCMethodImplementation>
+|    |    + <name> = ♢init♢
 |    |    |    [63:63] <Match> = ♢-♢
 |    |    |    [63:63] <Whitespace> = ♢•♢
 |    |    |    [63:63] <Parenthesis>
@@ -5711,6 +5712,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [64:64] <Text> = ♢=♢
 |    |    |    |    |    |    [64:64] <Whitespace> = ♢•♢
 |    |    |    |    |    |    [64:64] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢init♢
 |    |    |    |    |    |    |    [64:64] <Match> = ♢[♢
 |    |    |    |    |    |    |    [64:64] <ObjCSuper> = ♢super♢
 |    |    |    |    |    |    |    [64:64] <Whitespace> = ♢•♢
@@ -5723,8 +5725,10 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [64:65] <Newline> = ♢¶♢
 |    |    |    |    |    |    [65:65] <Indenting> = ♢••••••••♢
 |    |    |    |    |    |    [65:65] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢disableUndoRegistration♢
 |    |    |    |    |    |    |    [65:65] <Match> = ♢[♢
 |    |    |    |    |    |    |    [65:65] <ObjCMethodCall>
+|    |    |    |    |    |    |    + <name> = ♢undoManager♢
 |    |    |    |    |    |    |    |    [65:65] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    [65:65] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    |    |    [65:65] <Whitespace> = ♢•♢
@@ -5743,14 +5747,17 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [67:67] <Text> = ♢=♢
 |    |    |    |    |    |    [67:67] <Whitespace> = ♢•♢
 |    |    |    |    |    |    [67:67] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢init♢
 |    |    |    |    |    |    |    [67:67] <Match> = ♢[♢
 |    |    |    |    |    |    |    [67:67] <ObjCMethodCall>
+|    |    |    |    |    |    |    + <name> = ♢allocWithZone:♢
 |    |    |    |    |    |    |    |    [67:67] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    [67:67] <Match> = ♢NSTextStorage♢
 |    |    |    |    |    |    |    |    [67:67] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    |    [67:67] <Text> = ♢allocWithZone♢
 |    |    |    |    |    |    |    |    [67:67] <Colon> = ♢:♢
 |    |    |    |    |    |    |    |    [67:67] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    + <name> = ♢zone♢
 |    |    |    |    |    |    |    |    |    [67:67] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    [67:67] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    |    |    |    [67:67] <Whitespace> = ♢•♢
@@ -5766,12 +5773,14 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [68:69] <Newline> = ♢¶♢
 |    |    |    |    |    |    [69:69] <Indenting> = ♢→♢
 |    |    |    |    |    |    [69:69] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢setBackgroundColor:♢
 |    |    |    |    |    |    |    [69:69] <Match> = ♢[♢
 |    |    |    |    |    |    |    [69:69] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    |    [69:69] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    [69:69] <Text> = ♢setBackgroundColor♢
 |    |    |    |    |    |    |    [69:69] <Colon> = ♢:♢
 |    |    |    |    |    |    |    [69:69] <ObjCMethodCall>
+|    |    |    |    |    |    |    + <name> = ♢whiteColor♢
 |    |    |    |    |    |    |    |    [69:69] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    [69:69] <Match> = ♢NSColor♢
 |    |    |    |    |    |    |    |    [69:69] <Whitespace> = ♢•♢
@@ -5782,6 +5791,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [69:70] <Newline> = ♢¶♢
 |    |    |    |    |    |    [70:70] <Indenting> = ♢→♢
 |    |    |    |    |    |    [70:70] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢setEncoding:♢
 |    |    |    |    |    |    |    [70:70] <Match> = ♢[♢
 |    |    |    |    |    |    |    [70:70] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    |    [70:70] <Whitespace> = ♢•♢
@@ -5793,6 +5803,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [70:71] <Newline> = ♢¶♢
 |    |    |    |    |    |    [71:71] <Indenting> = ♢→♢
 |    |    |    |    |    |    [71:71] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢setEncodingForSaving:♢
 |    |    |    |    |    |    |    [71:71] <Match> = ♢[♢
 |    |    |    |    |    |    |    [71:71] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    |    [71:71] <Whitespace> = ♢•♢
@@ -5804,6 +5815,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [71:72] <Newline> = ♢¶♢
 |    |    |    |    |    |    [72:72] <Indenting> = ♢→♢
 |    |    |    |    |    |    [72:72] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢setScaleFactor:♢
 |    |    |    |    |    |    |    [72:72] <Match> = ♢[♢
 |    |    |    |    |    |    |    [72:72] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    |    [72:72] <Whitespace> = ♢•♢
@@ -5815,6 +5827,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [72:73] <Newline> = ♢¶♢
 |    |    |    |    |    |    [73:73] <Indenting> = ♢→♢
 |    |    |    |    |    |    [73:73] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢setDocumentPropertiesToDefaults♢
 |    |    |    |    |    |    |    [73:73] <Match> = ♢[♢
 |    |    |    |    |    |    |    [73:73] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    |    [73:73] <Whitespace> = ♢•♢
@@ -5829,14 +5842,17 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [75:76] <Newline> = ♢¶♢
 |    |    |    |    |    |    [76:76] <Indenting> = ♢→♢
 |    |    |    |    |    |    [76:76] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢setFileType:♢
 |    |    |    |    |    |    |    [76:76] <Match> = ♢[♢
 |    |    |    |    |    |    |    [76:76] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    |    [76:76] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    [76:76] <Text> = ♢setFileType♢
 |    |    |    |    |    |    |    [76:76] <Colon> = ♢:♢
 |    |    |    |    |    |    |    [76:76] <ObjCMethodCall>
+|    |    |    |    |    |    |    + <name> = ♢defaultType♢
 |    |    |    |    |    |    |    |    [76:76] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    [76:76] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    + <name> = ♢sharedDocumentController♢
 |    |    |    |    |    |    |    |    |    [76:76] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    [76:76] <Match> = ♢NSDocumentController♢
 |    |    |    |    |    |    |    |    |    [76:76] <Whitespace> = ♢•♢
@@ -5852,12 +5868,14 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [77:78] <Newline> = ♢¶♢
 |    |    |    |    |    |    [78:78] <Indenting> = ♢••••••••♢
 |    |    |    |    |    |    [78:78] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢setPrintInfo:♢
 |    |    |    |    |    |    |    [78:78] <Match> = ♢[♢
 |    |    |    |    |    |    |    [78:78] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    |    [78:78] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    [78:78] <Text> = ♢setPrintInfo♢
 |    |    |    |    |    |    |    [78:78] <Colon> = ♢:♢
 |    |    |    |    |    |    |    [78:78] <ObjCMethodCall>
+|    |    |    |    |    |    |    + <name> = ♢printInfo♢
 |    |    |    |    |    |    |    |    [78:78] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    [78:78] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    |    |    [78:78] <Whitespace> = ♢•♢
@@ -5874,8 +5892,10 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [80:80] <Text> = ♢=♢
 |    |    |    |    |    |    [80:80] <Whitespace> = ♢•♢
 |    |    |    |    |    |    [80:80] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢boolForKey:♢
 |    |    |    |    |    |    |    [80:80] <Match> = ♢[♢
 |    |    |    |    |    |    |    [80:80] <ObjCMethodCall>
+|    |    |    |    |    |    |    + <name> = ♢standardUserDefaults♢
 |    |    |    |    |    |    |    |    [80:80] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    [80:80] <Match> = ♢NSUserDefaults♢
 |    |    |    |    |    |    |    |    [80:80] <Whitespace> = ♢•♢
@@ -5892,8 +5912,10 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [81:82] <Newline> = ♢¶♢
 |    |    |    |    |    |    [82:82] <Indenting> = ♢••••••••♢
 |    |    |    |    |    |    [82:82] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢enableUndoRegistration♢
 |    |    |    |    |    |    |    [82:82] <Match> = ♢[♢
 |    |    |    |    |    |    |    [82:82] <ObjCMethodCall>
+|    |    |    |    |    |    |    + <name> = ♢undoManager♢
 |    |    |    |    |    |    |    |    [82:82] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    [82:82] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    |    |    [82:82] <Whitespace> = ♢•♢
@@ -5921,6 +5943,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    + <cleaned> = ♢•Return•an•NSDictionary•which•maps•Cocoa•text•system•document•identifiers•(as•declared•in•AppKit/NSAttributedString.h)•to•document•types•declared•in•TextEdit's•Info.plist.¶♢
 |    |    [88:89] <Newline> = ♢¶♢
 |    |    [89:106] <ObjCMethodImplementation>
+|    |    + <name> = ♢textDocumentTypeToTextEditDocumentTypeMappingTable♢
 |    |    |    [89:89] <Match> = ♢-♢
 |    |    |    [89:89] <Whitespace> = ♢•♢
 |    |    |    [89:89] <Parenthesis>
@@ -5969,8 +5992,10 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [92:92] <Text> = ♢=♢
 |    |    |    |    |    |    [92:92] <Whitespace> = ♢•♢
 |    |    |    |    |    |    [92:103] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢initWithObjectsAndKeys:♢
 |    |    |    |    |    |    |    [92:92] <Match> = ♢[♢
 |    |    |    |    |    |    |    [92:92] <ObjCMethodCall>
+|    |    |    |    |    |    |    + <name> = ♢alloc♢
 |    |    |    |    |    |    |    |    [92:92] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    [92:92] <Match> = ♢NSDictionary♢
 |    |    |    |    |    |    |    |    [92:92] <Whitespace> = ♢•♢
@@ -6082,6 +6107,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    + <cleaned> = ♢•This•method•is•called•by•the•document•controller.•The•message•is•passed•on•after•information•about•the•selected•encoding•(from•our•controller•subclass)•and•preference•regarding•HTML•and•RTF•formatting•has•been•added.•-lastSelectedEncodingForURL:•returns•the•encoding•specified•in•the•Open•panel,•or•the•default•encoding•if•the•document•was•opened•without•an•open•panel.¶♢
 |    |    [109:110] <Newline> = ♢¶♢
 |    |    [110:113] <ObjCMethodImplementation>
+|    |    + <name> = ♢readFromURL:ofType:error:♢
 |    |    |    [110:110] <Match> = ♢-♢
 |    |    |    [110:110] <Whitespace> = ♢•♢
 |    |    |    [110:110] <Parenthesis>
@@ -6131,6 +6157,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    [111:111] <Text> = ♢=♢
 |    |    |    |    [111:111] <Whitespace> = ♢•♢
 |    |    |    |    [111:111] <ObjCMethodCall>
+|    |    |    |    + <name> = ♢sharedDocumentController♢
 |    |    |    |    |    [111:111] <Match> = ♢[♢
 |    |    |    |    |    [111:111] <Match> = ♢DocumentController♢
 |    |    |    |    |    [111:111] <Whitespace> = ♢•♢
@@ -6143,6 +6170,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    [112:112] <Match> = ♢return♢
 |    |    |    |    |    [112:112] <Whitespace> = ♢•♢
 |    |    |    |    |    [112:112] <ObjCMethodCall>
+|    |    |    |    |    + <name> = ♢readFromURL:ofType:encoding:ignoreRTF:ignoreHTML:error:♢
 |    |    |    |    |    |    [112:112] <Match> = ♢[♢
 |    |    |    |    |    |    [112:112] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    [112:112] <Whitespace> = ♢•♢
@@ -6157,6 +6185,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [112:112] <Text> = ♢encoding♢
 |    |    |    |    |    |    [112:112] <Colon> = ♢:♢
 |    |    |    |    |    |    [112:112] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢lastSelectedEncodingForURL:♢
 |    |    |    |    |    |    |    [112:112] <Match> = ♢[♢
 |    |    |    |    |    |    |    [112:112] <Match> = ♢docController♢
 |    |    |    |    |    |    |    [112:112] <Whitespace> = ♢•♢
@@ -6168,6 +6197,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [112:112] <Text> = ♢ignoreRTF♢
 |    |    |    |    |    |    [112:112] <Colon> = ♢:♢
 |    |    |    |    |    |    [112:112] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢lastSelectedIgnoreRichForURL:♢
 |    |    |    |    |    |    |    [112:112] <Match> = ♢[♢
 |    |    |    |    |    |    |    [112:112] <Match> = ♢docController♢
 |    |    |    |    |    |    |    [112:112] <Whitespace> = ♢•♢
@@ -6179,6 +6209,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [112:112] <Text> = ♢ignoreHTML♢
 |    |    |    |    |    |    [112:112] <Colon> = ♢:♢
 |    |    |    |    |    |    [112:112] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢lastSelectedIgnoreHTMLForURL:♢
 |    |    |    |    |    |    |    [112:112] <Match> = ♢[♢
 |    |    |    |    |    |    |    [112:112] <Match> = ♢docController♢
 |    |    |    |    |    |    |    [112:112] <Whitespace> = ♢•♢
@@ -6197,6 +6228,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [113:114] <Newline> = ♢¶♢
 |    |    [114:115] <Newline> = ♢¶♢
 |    |    [115:248] <ObjCMethodImplementation>
+|    |    + <name> = ♢readFromURL:ofType:encoding:ignoreRTF:ignoreHTML:error:♢
 |    |    |    [115:115] <Match> = ♢-♢
 |    |    |    [115:115] <Whitespace> = ♢•♢
 |    |    |    [115:115] <Parenthesis>
@@ -6270,6 +6302,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    [116:116] <Text> = ♢=♢
 |    |    |    |    [116:116] <Whitespace> = ♢•♢
 |    |    |    |    [116:116] <ObjCMethodCall>
+|    |    |    |    + <name> = ♢dictionaryWithCapacity:♢
 |    |    |    |    |    [116:116] <Match> = ♢[♢
 |    |    |    |    |    [116:116] <Match> = ♢NSMutableDictionary♢
 |    |    |    |    |    [116:116] <Whitespace> = ♢•♢
@@ -6305,6 +6338,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    [119:119] <Text> = ♢=♢
 |    |    |    |    [119:119] <Whitespace> = ♢•♢
 |    |    |    |    [119:119] <ObjCMethodCall>
+|    |    |    |    + <name> = ♢textStorage♢
 |    |    |    |    |    [119:119] <Match> = ♢[♢
 |    |    |    |    |    [119:119] <ObjCSelf> = ♢self♢
 |    |    |    |    |    [119:119] <Whitespace> = ♢•♢
@@ -6316,8 +6350,10 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    [120:121] <Newline> = ♢¶♢
 |    |    |    |    [121:121] <Indenting> = ♢••••♢
 |    |    |    |    [121:121] <ObjCMethodCall>
+|    |    |    |    + <name> = ♢disableUndoRegistration♢
 |    |    |    |    |    [121:121] <Match> = ♢[♢
 |    |    |    |    |    [121:121] <ObjCMethodCall>
+|    |    |    |    |    + <name> = ♢undoManager♢
 |    |    |    |    |    |    [121:121] <Match> = ♢[♢
 |    |    |    |    |    |    [121:121] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    [121:121] <Whitespace> = ♢•♢
@@ -6332,6 +6368,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    [122:123] <Newline> = ♢¶♢
 |    |    |    |    [123:123] <Indenting> = ♢••••♢
 |    |    |    |    [123:123] <ObjCMethodCall>
+|    |    |    |    + <name> = ♢setObject:forKey:♢
 |    |    |    |    |    [123:123] <Match> = ♢[♢
 |    |    |    |    |    [123:123] <Match> = ♢options♢
 |    |    |    |    |    [123:123] <Whitespace> = ♢•♢
@@ -6364,12 +6401,14 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [124:125] <Newline> = ♢¶♢
 |    |    |    |    |    |    [125:125] <Indenting> = ♢••••••••♢
 |    |    |    |    |    |    [125:125] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢setObject:forKey:♢
 |    |    |    |    |    |    |    [125:125] <Match> = ♢[♢
 |    |    |    |    |    |    |    [125:125] <Match> = ♢options♢
 |    |    |    |    |    |    |    [125:125] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    [125:125] <Text> = ♢setObject♢
 |    |    |    |    |    |    |    [125:125] <Colon> = ♢:♢
 |    |    |    |    |    |    |    [125:125] <ObjCMethodCall>
+|    |    |    |    |    |    |    + <name> = ♢numberWithUnsignedInteger:♢
 |    |    |    |    |    |    |    |    [125:125] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    [125:125] <Match> = ♢NSNumber♢
 |    |    |    |    |    |    |    |    [125:125] <Whitespace> = ♢•♢
@@ -6389,6 +6428,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    [126:127] <Newline> = ♢¶♢
 |    |    |    |    [127:127] <Indenting> = ♢••••♢
 |    |    |    |    [127:127] <ObjCMethodCall>
+|    |    |    |    + <name> = ♢setEncoding:♢
 |    |    |    |    |    [127:127] <Match> = ♢[♢
 |    |    |    |    |    [127:127] <ObjCSelf> = ♢self♢
 |    |    |    |    |    [127:127] <Whitespace> = ♢•♢
@@ -6412,6 +6452,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    [130:130] <Text> = ♢=♢
 |    |    |    |    [130:130] <Whitespace> = ♢•♢
 |    |    |    |    [130:130] <ObjCMethodCall>
+|    |    |    |    + <name> = ♢sharedWorkspace♢
 |    |    |    |    |    [130:130] <Match> = ♢[♢
 |    |    |    |    |    [130:130] <Match> = ♢NSWorkspace♢
 |    |    |    |    |    [130:130] <Whitespace> = ♢•♢
@@ -6435,6 +6476,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    [131:131] <Parenthesis>
 |    |    |    |    |    |    |    |    [131:131] <Match> = ♢(♢
 |    |    |    |    |    |    |    |    [131:131] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    + <name> = ♢type:conformsToType:♢
 |    |    |    |    |    |    |    |    |    [131:131] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    [131:131] <Match> = ♢workspace♢
 |    |    |    |    |    |    |    |    |    [131:131] <Whitespace> = ♢•♢
@@ -6456,6 +6498,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    [131:131] <Text> = ♢||♢
 |    |    |    |    |    |    |    |    [131:131] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    |    [131:131] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    + <name> = ♢type:conformsToType:♢
 |    |    |    |    |    |    |    |    |    [131:131] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    [131:131] <Match> = ♢workspace♢
 |    |    |    |    |    |    |    |    |    [131:131] <Whitespace> = ♢•♢
@@ -6480,6 +6523,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    [131:131] <Ampersand> = ♢&♢
 |    |    |    |    |    |    |    [131:131] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    [131:131] <ObjCMethodCall>
+|    |    |    |    |    |    |    + <name> = ♢type:conformsToType:♢
 |    |    |    |    |    |    |    |    [131:131] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    [131:131] <Match> = ♢workspace♢
 |    |    |    |    |    |    |    |    [131:131] <Whitespace> = ♢•♢
@@ -6502,6 +6546,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [131:131] <Text> = ♢||♢
 |    |    |    |    |    |    [131:131] <Whitespace> = ♢•♢
 |    |    |    |    |    |    [131:131] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢isOpenedIgnoringRichText♢
 |    |    |    |    |    |    |    [131:131] <Match> = ♢[♢
 |    |    |    |    |    |    |    [131:131] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    |    [131:131] <Whitespace> = ♢•♢
@@ -6514,6 +6559,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [131:132] <Newline> = ♢¶♢
 |    |    |    |    |    |    [132:132] <Indenting> = ♢••••••••♢
 |    |    |    |    |    |    [132:132] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢setObject:forKey:♢
 |    |    |    |    |    |    |    [132:132] <Match> = ♢[♢
 |    |    |    |    |    |    |    [132:132] <Match> = ♢options♢
 |    |    |    |    |    |    |    [132:132] <Whitespace> = ♢•♢
@@ -6531,6 +6577,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [132:133] <Newline> = ♢¶♢
 |    |    |    |    |    |    [133:133] <Indenting> = ♢→♢
 |    |    |    |    |    |    [133:133] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢setFileType:♢
 |    |    |    |    |    |    |    [133:133] <Match> = ♢[♢
 |    |    |    |    |    |    |    [133:133] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    |    [133:133] <Whitespace> = ♢•♢
@@ -6548,6 +6595,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [133:134] <Newline> = ♢¶♢
 |    |    |    |    |    |    [134:134] <Indenting> = ♢→♢
 |    |    |    |    |    |    [134:134] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢setOpenedIgnoringRichText:♢
 |    |    |    |    |    |    |    [134:134] <Match> = ♢[♢
 |    |    |    |    |    |    |    [134:134] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    |    [134:134] <Whitespace> = ♢•♢
@@ -6564,8 +6612,10 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    [136:137] <Newline> = ♢¶♢
 |    |    |    |    [137:137] <Indenting> = ♢••••♢
 |    |    |    |    [137:137] <ObjCMethodCall>
+|    |    |    |    + <name> = ♢setString:♢
 |    |    |    |    |    [137:137] <Match> = ♢[♢
 |    |    |    |    |    [137:137] <ObjCMethodCall>
+|    |    |    |    |    + <name> = ♢mutableString♢
 |    |    |    |    |    |    [137:137] <Match> = ♢[♢
 |    |    |    |    |    |    [137:137] <Match> = ♢text♢
 |    |    |    |    |    |    [137:137] <Whitespace> = ♢•♢
@@ -6591,8 +6641,10 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    [139:139] <Text> = ♢=♢
 |    |    |    |    [139:139] <Whitespace> = ♢•♢
 |    |    |    |    [139:139] <ObjCMethodCall>
+|    |    |    |    + <name> = ♢mutableCopy♢
 |    |    |    |    |    [139:139] <Match> = ♢[♢
 |    |    |    |    |    [139:139] <ObjCMethodCall>
+|    |    |    |    |    + <name> = ♢layoutManagers♢
 |    |    |    |    |    |    [139:139] <Match> = ♢[♢
 |    |    |    |    |    |    [139:139] <Match> = ♢text♢
 |    |    |    |    |    |    [139:139] <Whitespace> = ♢•♢
@@ -6612,6 +6664,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    [140:140] <Text> = ♢=♢
 |    |    |    |    [140:140] <Whitespace> = ♢•♢
 |    |    |    |    [140:140] <ObjCMethodCall>
+|    |    |    |    + <name> = ♢objectEnumerator♢
 |    |    |    |    |    [140:140] <Match> = ♢[♢
 |    |    |    |    |    [140:140] <Match> = ♢layoutMgrs♢
 |    |    |    |    |    [140:140] <Whitespace> = ♢•♢
@@ -6640,6 +6693,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    [142:142] <Text> = ♢=♢
 |    |    |    |    |    [142:142] <Whitespace> = ♢•♢
 |    |    |    |    |    [142:142] <ObjCMethodCall>
+|    |    |    |    |    + <name> = ♢nextObject♢
 |    |    |    |    |    |    [142:142] <Match> = ♢[♢
 |    |    |    |    |    |    [142:142] <Match> = ♢layoutMgrEnum♢
 |    |    |    |    |    |    [142:142] <Whitespace> = ♢•♢
@@ -6648,6 +6702,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    [142:142] <Match> = ♢)♢
 |    |    |    |    [142:142] <Whitespace> = ♢•♢
 |    |    |    |    [142:142] <ObjCMethodCall>
+|    |    |    |    + <name> = ♢removeLayoutManager:♢
 |    |    |    |    |    [142:142] <Match> = ♢[♢
 |    |    |    |    |    [142:142] <Match> = ♢text♢
 |    |    |    |    |    [142:142] <Whitespace> = ♢•♢
@@ -6701,6 +6756,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [151:152] <Newline> = ♢¶♢
 |    |    |    |    |    |    [152:152] <Indenting> = ♢→♢
 |    |    |    |    |    |    [152:152] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢beginEditing♢
 |    |    |    |    |    |    |    [152:152] <Match> = ♢[♢
 |    |    |    |    |    |    |    [152:152] <Match> = ♢text♢
 |    |    |    |    |    |    |    [152:152] <Whitespace> = ♢•♢
@@ -6714,6 +6770,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [153:153] <Text> = ♢=♢
 |    |    |    |    |    |    [153:153] <Whitespace> = ♢•♢
 |    |    |    |    |    |    [153:153] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢readFromURL:options:documentAttributes:error:♢
 |    |    |    |    |    |    |    [153:153] <Match> = ♢[♢
 |    |    |    |    |    |    |    [153:153] <Match> = ♢text♢
 |    |    |    |    |    |    |    [153:153] <Whitespace> = ♢•♢
@@ -6752,6 +6809,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    [155:156] <Newline> = ♢¶♢
 |    |    |    |    |    |    |    |    [156:156] <Indenting> = ♢→••••♢
 |    |    |    |    |    |    |    |    [156:156] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    + <name> = ♢endEditing♢
 |    |    |    |    |    |    |    |    |    [156:156] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    [156:156] <Match> = ♢text♢
 |    |    |    |    |    |    |    |    |    [156:156] <Whitespace> = ♢•♢
@@ -6765,6 +6823,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    [157:157] <Text> = ♢=♢
 |    |    |    |    |    |    |    |    [157:157] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    |    [157:157] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    + <name> = ♢objectEnumerator♢
 |    |    |    |    |    |    |    |    |    [157:157] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    [157:157] <Match> = ♢layoutMgrs♢
 |    |    |    |    |    |    |    |    |    [157:157] <Whitespace> = ♢•♢
@@ -6784,6 +6843,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    |    [158:158] <Text> = ♢=♢
 |    |    |    |    |    |    |    |    |    [158:158] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    |    |    [158:158] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    |    + <name> = ♢nextObject♢
 |    |    |    |    |    |    |    |    |    |    [158:158] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    |    [158:158] <Match> = ♢layoutMgrEnum♢
 |    |    |    |    |    |    |    |    |    |    [158:158] <Whitespace> = ♢•♢
@@ -6792,6 +6852,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    |    [158:158] <Match> = ♢)♢
 |    |    |    |    |    |    |    |    [158:158] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    |    [158:158] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    + <name> = ♢addLayoutManager:♢
 |    |    |    |    |    |    |    |    |    [158:158] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    [158:158] <Match> = ♢text♢
 |    |    |    |    |    |    |    |    |    [158:158] <Whitespace> = ♢•♢
@@ -6805,6 +6866,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    [158:159] <Newline> = ♢¶♢
 |    |    |    |    |    |    |    |    [159:159] <Indenting> = ♢→••••♢
 |    |    |    |    |    |    |    |    [159:159] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    + <name> = ♢release♢
 |    |    |    |    |    |    |    |    |    [159:159] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    [159:159] <Match> = ♢layoutMgrs♢
 |    |    |    |    |    |    |    |    |    [159:159] <Whitespace> = ♢•♢
@@ -6832,6 +6894,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [163:163] <Text> = ♢=♢
 |    |    |    |    |    |    [163:163] <Whitespace> = ♢•♢
 |    |    |    |    |    |    [163:163] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢objectForKey:♢
 |    |    |    |    |    |    |    [163:163] <Match> = ♢[♢
 |    |    |    |    |    |    |    [163:163] <Match> = ♢docAttrs♢
 |    |    |    |    |    |    |    [163:163] <Whitespace> = ♢•♢
@@ -6853,8 +6916,10 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    [166:166] <Match> = ♢(♢
 |    |    |    |    |    |    |    |    [166:166] <ExclamationMark> = ♢!♢
 |    |    |    |    |    |    |    |    [166:166] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    + <name> = ♢isEqualToString:♢
 |    |    |    |    |    |    |    |    |    [166:166] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    [166:166] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    |    + <name> = ♢objectForKey:♢
 |    |    |    |    |    |    |    |    |    |    [166:166] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    |    [166:166] <Match> = ♢options♢
 |    |    |    |    |    |    |    |    |    |    [166:166] <Whitespace> = ♢•♢
@@ -6881,6 +6946,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    |    |    [166:166] <Ampersand> = ♢&♢
 |    |    |    |    |    |    |    |    |    |    [166:166] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    |    |    |    [166:166] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    |    |    + <name> = ♢isEqual:♢
 |    |    |    |    |    |    |    |    |    |    |    [166:166] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    |    |    [166:166] <Match> = ♢docType♢
 |    |    |    |    |    |    |    |    |    |    |    [166:166] <Whitespace> = ♢•♢
@@ -6902,6 +6968,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    |    |    [166:166] <Parenthesis>
 |    |    |    |    |    |    |    |    |    |    |    [166:166] <Match> = ♢(♢
 |    |    |    |    |    |    |    |    |    |    |    [166:166] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    |    |    |    + <name> = ♢isEqual:♢
 |    |    |    |    |    |    |    |    |    |    |    |    [166:166] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    |    |    |    [166:166] <Match> = ♢docType♢
 |    |    |    |    |    |    |    |    |    |    |    |    [166:166] <Whitespace> = ♢•♢
@@ -6913,6 +6980,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    |    |    |    [166:166] <Text> = ♢||♢
 |    |    |    |    |    |    |    |    |    |    |    [166:166] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    |    |    |    |    [166:166] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    |    |    |    + <name> = ♢isEqual:♢
 |    |    |    |    |    |    |    |    |    |    |    |    [166:166] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    |    |    |    [166:166] <Match> = ♢docType♢
 |    |    |    |    |    |    |    |    |    |    |    |    [166:166] <Whitespace> = ♢•♢
@@ -6930,6 +6998,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    [166:167] <Newline> = ♢¶♢
 |    |    |    |    |    |    |    |    [167:167] <Indenting> = ♢→••••♢
 |    |    |    |    |    |    |    |    [167:167] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    + <name> = ♢endEditing♢
 |    |    |    |    |    |    |    |    |    [167:167] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    [167:167] <Match> = ♢text♢
 |    |    |    |    |    |    |    |    |    [167:167] <Whitespace> = ♢•♢
@@ -6939,8 +7008,10 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    [167:168] <Newline> = ♢¶♢
 |    |    |    |    |    |    |    |    [168:168] <Indenting> = ♢→••••♢
 |    |    |    |    |    |    |    |    [168:168] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    + <name> = ♢setString:♢
 |    |    |    |    |    |    |    |    |    [168:168] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    [168:168] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    |    + <name> = ♢mutableString♢
 |    |    |    |    |    |    |    |    |    |    [168:168] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    |    [168:168] <Match> = ♢text♢
 |    |    |    |    |    |    |    |    |    |    [168:168] <Whitespace> = ♢•♢
@@ -6956,6 +7027,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    [168:169] <Newline> = ♢¶♢
 |    |    |    |    |    |    |    |    [169:169] <Indenting> = ♢→••••♢
 |    |    |    |    |    |    |    |    [169:169] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    + <name> = ♢setObject:forKey:♢
 |    |    |    |    |    |    |    |    |    [169:169] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    [169:169] <Match> = ♢options♢
 |    |    |    |    |    |    |    |    |    [169:169] <Whitespace> = ♢•♢
@@ -6971,6 +7043,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    [169:170] <Newline> = ♢¶♢
 |    |    |    |    |    |    |    |    [170:170] <Indenting> = ♢→••••♢
 |    |    |    |    |    |    |    |    [170:170] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    + <name> = ♢setFileType:♢
 |    |    |    |    |    |    |    |    |    [170:170] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    [170:170] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    |    |    |    [170:170] <Whitespace> = ♢•♢
@@ -6988,6 +7061,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    [170:171] <Newline> = ♢¶♢
 |    |    |    |    |    |    |    |    [171:171] <Indenting> = ♢→••••♢
 |    |    |    |    |    |    |    |    [171:171] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    + <name> = ♢setOpenedIgnoringRichText:♢
 |    |    |    |    |    |    |    |    |    [171:171] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    [171:171] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    |    |    |    [171:171] <Whitespace> = ♢•♢
@@ -7023,8 +7097,10 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    [174:174] <Text> = ♢=♢
 |    |    |    |    |    |    |    |    [174:174] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    |    [174:174] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    + <name> = ♢objectForKey:♢
 |    |    |    |    |    |    |    |    |    [174:174] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    [174:174] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    |    + <name> = ♢textDocumentTypeToTextEditDocumentTypeMappingTable♢
 |    |    |    |    |    |    |    |    |    |    [174:174] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    |    [174:174] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    |    |    |    |    [174:174] <Whitespace> = ♢•♢
@@ -7051,6 +7127,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    |    |    [175:176] <Newline> = ♢¶♢
 |    |    |    |    |    |    |    |    |    |    [176:176] <Indenting> = ♢→→♢
 |    |    |    |    |    |    |    |    |    |    [176:176] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    |    |    + <name> = ♢setFileType:♢
 |    |    |    |    |    |    |    |    |    |    |    [176:176] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    |    |    [176:176] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    |    |    |    |    |    [176:176] <Whitespace> = ♢•♢
@@ -7071,6 +7148,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    |    |    [177:178] <Newline> = ♢¶♢
 |    |    |    |    |    |    |    |    |    |    [178:178] <Indenting> = ♢→→♢
 |    |    |    |    |    |    |    |    |    |    [178:178] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    |    |    + <name> = ♢setFileType:♢
 |    |    |    |    |    |    |    |    |    |    |    [178:178] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    |    |    [178:178] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    |    |    |    |    |    [178:178] <Whitespace> = ♢•♢
@@ -7098,12 +7176,14 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    |    [180:180] <Parenthesis>
 |    |    |    |    |    |    |    |    |    |    [180:180] <Match> = ♢(♢
 |    |    |    |    |    |    |    |    |    |    [180:180] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    |    |    + <name> = ♢type:conformsToType:♢
 |    |    |    |    |    |    |    |    |    |    |    [180:180] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    |    |    [180:180] <Match> = ♢workspace♢
 |    |    |    |    |    |    |    |    |    |    |    [180:180] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    |    |    |    |    [180:180] <Text> = ♢type♢
 |    |    |    |    |    |    |    |    |    |    |    [180:180] <Colon> = ♢:♢
 |    |    |    |    |    |    |    |    |    |    |    [180:180] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    |    |    |    + <name> = ♢fileType♢
 |    |    |    |    |    |    |    |    |    |    |    |    [180:180] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    |    |    |    [180:180] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    |    |    |    |    |    |    [180:180] <Whitespace> = ♢•♢
@@ -7123,6 +7203,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    |    |    [180:180] <Match> = ♢)♢
 |    |    |    |    |    |    |    |    |    [180:180] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    |    |    [180:180] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    |    + <name> = ♢applyDefaultTextAttributes:♢
 |    |    |    |    |    |    |    |    |    |    [180:180] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    |    [180:180] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    |    |    |    |    [180:180] <Whitespace> = ♢•♢
@@ -7134,6 +7215,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    [180:181] <Newline> = ♢¶♢
 |    |    |    |    |    |    |    |    [181:181] <Indenting> = ♢→••••♢
 |    |    |    |    |    |    |    |    [181:181] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    + <name> = ♢endEditing♢
 |    |    |    |    |    |    |    |    |    [181:181] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    [181:181] <Match> = ♢text♢
 |    |    |    |    |    |    |    |    |    [181:181] <Whitespace> = ♢•♢
@@ -7161,6 +7243,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    [185:185] <Text> = ♢=♢
 |    |    |    |    [185:185] <Whitespace> = ♢•♢
 |    |    |    |    [185:185] <ObjCMethodCall>
+|    |    |    |    + <name> = ♢objectEnumerator♢
 |    |    |    |    |    [185:185] <Match> = ♢[♢
 |    |    |    |    |    [185:185] <Match> = ♢layoutMgrs♢
 |    |    |    |    |    [185:185] <Whitespace> = ♢•♢
@@ -7180,6 +7263,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    [186:186] <Text> = ♢=♢
 |    |    |    |    |    [186:186] <Whitespace> = ♢•♢
 |    |    |    |    |    [186:186] <ObjCMethodCall>
+|    |    |    |    |    + <name> = ♢nextObject♢
 |    |    |    |    |    |    [186:186] <Match> = ♢[♢
 |    |    |    |    |    |    [186:186] <Match> = ♢layoutMgrEnum♢
 |    |    |    |    |    |    [186:186] <Whitespace> = ♢•♢
@@ -7188,6 +7272,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    [186:186] <Match> = ♢)♢
 |    |    |    |    [186:186] <Whitespace> = ♢•♢
 |    |    |    |    [186:186] <ObjCMethodCall>
+|    |    |    |    + <name> = ♢addLayoutManager:♢
 |    |    |    |    |    [186:186] <Match> = ♢[♢
 |    |    |    |    |    [186:186] <Match> = ♢text♢
 |    |    |    |    |    [186:186] <Whitespace> = ♢•♢
@@ -7201,6 +7286,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    [186:187] <Newline> = ♢¶♢
 |    |    |    |    [187:187] <Indenting> = ♢••••♢
 |    |    |    |    [187:187] <ObjCMethodCall>
+|    |    |    |    + <name> = ♢release♢
 |    |    |    |    |    [187:187] <Match> = ♢[♢
 |    |    |    |    |    [187:187] <Match> = ♢layoutMgrs♢
 |    |    |    |    |    [187:187] <Whitespace> = ♢•♢
@@ -7216,6 +7302,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    [189:189] <Text> = ♢=♢
 |    |    |    |    [189:189] <Whitespace> = ♢•♢
 |    |    |    |    [189:189] <ObjCMethodCall>
+|    |    |    |    + <name> = ♢objectForKey:♢
 |    |    |    |    |    [189:189] <Match> = ♢[♢
 |    |    |    |    |    [189:189] <Match> = ♢docAttrs♢
 |    |    |    |    |    [189:189] <Whitespace> = ♢•♢
@@ -7227,6 +7314,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    [189:190] <Newline> = ♢¶♢
 |    |    |    |    [190:190] <Indenting> = ♢••••♢
 |    |    |    |    [190:190] <ObjCMethodCall>
+|    |    |    |    + <name> = ♢setEncoding:♢
 |    |    |    |    |    [190:190] <Match> = ♢[♢
 |    |    |    |    |    [190:190] <ObjCSelf> = ♢self♢
 |    |    |    |    |    [190:190] <Whitespace> = ♢•♢
@@ -7239,6 +7327,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [190:190] <QuestionMark> = ♢?♢
 |    |    |    |    |    |    [190:190] <Whitespace> = ♢•♢
 |    |    |    |    |    |    [190:190] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢unsignedIntegerValue♢
 |    |    |    |    |    |    |    [190:190] <Match> = ♢[♢
 |    |    |    |    |    |    |    [190:190] <Match> = ♢val♢
 |    |    |    |    |    |    |    [190:190] <Whitespace> = ♢•♢
@@ -7265,6 +7354,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [192:192] <Text> = ♢=♢
 |    |    |    |    |    |    [192:192] <Whitespace> = ♢•♢
 |    |    |    |    |    |    [192:192] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢objectForKey:♢
 |    |    |    |    |    |    |    [192:192] <Match> = ♢[♢
 |    |    |    |    |    |    |    [192:192] <Match> = ♢docAttrs♢
 |    |    |    |    |    |    |    [192:192] <Whitespace> = ♢•♢
@@ -7279,6 +7369,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [192:193] <Newline> = ♢¶♢
 |    |    |    |    |    |    [193:193] <Indenting> = ♢••••••••♢
 |    |    |    |    |    |    [193:193] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢setConverted:♢
 |    |    |    |    |    |    |    [193:193] <Match> = ♢[♢
 |    |    |    |    |    |    |    [193:193] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    |    [193:193] <Whitespace> = ♢•♢
@@ -7287,6 +7378,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    [193:193] <Parenthesis>
 |    |    |    |    |    |    |    |    [193:193] <Match> = ♢(♢
 |    |    |    |    |    |    |    |    [193:193] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    + <name> = ♢integerValue♢
 |    |    |    |    |    |    |    |    |    [193:193] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    [193:193] <Match> = ♢val♢
 |    |    |    |    |    |    |    |    |    [193:193] <Whitespace> = ♢•♢
@@ -7304,6 +7396,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [193:194] <Newline> = ♢¶♢
 |    |    |    |    |    |    [194:194] <Indenting> = ♢••••••••♢
 |    |    |    |    |    |    [194:194] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢setLossy:♢
 |    |    |    |    |    |    |    [194:194] <Match> = ♢[♢
 |    |    |    |    |    |    |    [194:194] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    |    [194:194] <Whitespace> = ♢•♢
@@ -7312,6 +7405,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    [194:194] <Parenthesis>
 |    |    |    |    |    |    |    |    [194:194] <Match> = ♢(♢
 |    |    |    |    |    |    |    |    [194:194] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    + <name> = ♢integerValue♢
 |    |    |    |    |    |    |    |    |    [194:194] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    [194:194] <Match> = ♢val♢
 |    |    |    |    |    |    |    |    |    [194:194] <Whitespace> = ♢•♢
@@ -7349,6 +7443,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    [198:198] <Text> = ♢=♢
 |    |    |    |    |    |    |    [198:198] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    [198:198] <ObjCMethodCall>
+|    |    |    |    |    |    |    + <name> = ♢objectForKey:♢
 |    |    |    |    |    |    |    |    [198:198] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    [198:198] <Match> = ♢docAttrs♢
 |    |    |    |    |    |    |    |    [198:198] <Whitespace> = ♢•♢
@@ -7364,6 +7459,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [198:199] <Newline> = ♢¶♢
 |    |    |    |    |    |    [199:199] <Indenting> = ♢••••••••♢
 |    |    |    |    |    |    [199:199] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢setHasMultiplePages:♢
 |    |    |    |    |    |    |    [199:199] <Match> = ♢[♢
 |    |    |    |    |    |    |    [199:199] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    |    [199:199] <Whitespace> = ♢•♢
@@ -7372,6 +7468,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    [199:199] <Parenthesis>
 |    |    |    |    |    |    |    |    [199:199] <Match> = ♢(♢
 |    |    |    |    |    |    |    |    [199:199] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    + <name> = ♢integerValue♢
 |    |    |    |    |    |    |    |    |    [199:199] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    [199:199] <Match> = ♢val♢
 |    |    |    |    |    |    |    |    |    [199:199] <Whitespace> = ♢•♢
@@ -7398,6 +7495,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    |    [200:200] <Text> = ♢=♢
 |    |    |    |    |    |    |    |    |    [200:200] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    |    |    [200:200] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    |    + <name> = ♢objectForKey:♢
 |    |    |    |    |    |    |    |    |    |    [200:200] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    |    [200:200] <Match> = ♢docAttrs♢
 |    |    |    |    |    |    |    |    |    |    [200:200] <Whitespace> = ♢•♢
@@ -7413,6 +7511,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    [200:201] <Newline> = ♢¶♢
 |    |    |    |    |    |    |    |    [201:201] <Indenting> = ♢••••••••••••♢
 |    |    |    |    |    |    |    |    [201:201] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    + <name> = ♢setScaleFactor:♢
 |    |    |    |    |    |    |    |    |    [201:201] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    [201:201] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    |    |    |    [201:201] <Whitespace> = ♢•♢
@@ -7421,6 +7520,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    |    [201:201] <Parenthesis>
 |    |    |    |    |    |    |    |    |    |    [201:201] <Match> = ♢(♢
 |    |    |    |    |    |    |    |    |    |    [201:201] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    |    |    + <name> = ♢doubleValue♢
 |    |    |    |    |    |    |    |    |    |    |    [201:201] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    |    |    [201:201] <Match> = ♢val♢
 |    |    |    |    |    |    |    |    |    |    |    [201:201] <Whitespace> = ♢•♢
@@ -7444,6 +7544,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    [203:203] <Match> = ♢else♢
 |    |    |    |    |    [203:203] <Whitespace> = ♢•♢
 |    |    |    |    |    [203:203] <ObjCMethodCall>
+|    |    |    |    |    + <name> = ♢setHasMultiplePages:♢
 |    |    |    |    |    |    [203:203] <Match> = ♢[♢
 |    |    |    |    |    |    [203:203] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    [203:203] <Whitespace> = ♢•♢
@@ -7457,6 +7558,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    [204:205] <Newline> = ♢¶♢
 |    |    |    |    [205:205] <Indenting> = ♢••••♢
 |    |    |    |    [205:205] <ObjCMethodCall>
+|    |    |    |    + <name> = ♢willChangeValueForKey:♢
 |    |    |    |    |    [205:205] <Match> = ♢[♢
 |    |    |    |    |    [205:205] <ObjCSelf> = ♢self♢
 |    |    |    |    |    [205:205] <Whitespace> = ♢•♢
@@ -7480,6 +7582,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    [206:206] <Text> = ♢=♢
 |    |    |    |    |    |    |    [206:206] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    [206:206] <ObjCMethodCall>
+|    |    |    |    |    |    |    + <name> = ♢objectForKey:♢
 |    |    |    |    |    |    |    |    [206:206] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    [206:206] <Match> = ♢docAttrs♢
 |    |    |    |    |    |    |    |    [206:206] <Whitespace> = ♢•♢
@@ -7491,8 +7594,10 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [206:206] <Match> = ♢)♢
 |    |    |    |    |    [206:206] <Whitespace> = ♢•♢
 |    |    |    |    |    [206:206] <ObjCMethodCall>
+|    |    |    |    |    + <name> = ♢setLeftMargin:♢
 |    |    |    |    |    |    [206:206] <Match> = ♢[♢
 |    |    |    |    |    |    [206:206] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢printInfo♢
 |    |    |    |    |    |    |    [206:206] <Match> = ♢[♢
 |    |    |    |    |    |    |    [206:206] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    |    [206:206] <Whitespace> = ♢•♢
@@ -7502,6 +7607,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [206:206] <Text> = ♢setLeftMargin♢
 |    |    |    |    |    |    [206:206] <Colon> = ♢:♢
 |    |    |    |    |    |    [206:206] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢doubleValue♢
 |    |    |    |    |    |    |    [206:206] <Match> = ♢[♢
 |    |    |    |    |    |    |    [206:206] <Match> = ♢val♢
 |    |    |    |    |    |    |    [206:206] <Whitespace> = ♢•♢
@@ -7523,6 +7629,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    [207:207] <Text> = ♢=♢
 |    |    |    |    |    |    |    [207:207] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    [207:207] <ObjCMethodCall>
+|    |    |    |    |    |    |    + <name> = ♢objectForKey:♢
 |    |    |    |    |    |    |    |    [207:207] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    [207:207] <Match> = ♢docAttrs♢
 |    |    |    |    |    |    |    |    [207:207] <Whitespace> = ♢•♢
@@ -7534,8 +7641,10 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [207:207] <Match> = ♢)♢
 |    |    |    |    |    [207:207] <Whitespace> = ♢•♢
 |    |    |    |    |    [207:207] <ObjCMethodCall>
+|    |    |    |    |    + <name> = ♢setRightMargin:♢
 |    |    |    |    |    |    [207:207] <Match> = ♢[♢
 |    |    |    |    |    |    [207:207] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢printInfo♢
 |    |    |    |    |    |    |    [207:207] <Match> = ♢[♢
 |    |    |    |    |    |    |    [207:207] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    |    [207:207] <Whitespace> = ♢•♢
@@ -7545,6 +7654,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [207:207] <Text> = ♢setRightMargin♢
 |    |    |    |    |    |    [207:207] <Colon> = ♢:♢
 |    |    |    |    |    |    [207:207] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢doubleValue♢
 |    |    |    |    |    |    |    [207:207] <Match> = ♢[♢
 |    |    |    |    |    |    |    [207:207] <Match> = ♢val♢
 |    |    |    |    |    |    |    [207:207] <Whitespace> = ♢•♢
@@ -7566,6 +7676,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    [208:208] <Text> = ♢=♢
 |    |    |    |    |    |    |    [208:208] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    [208:208] <ObjCMethodCall>
+|    |    |    |    |    |    |    + <name> = ♢objectForKey:♢
 |    |    |    |    |    |    |    |    [208:208] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    [208:208] <Match> = ♢docAttrs♢
 |    |    |    |    |    |    |    |    [208:208] <Whitespace> = ♢•♢
@@ -7577,8 +7688,10 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [208:208] <Match> = ♢)♢
 |    |    |    |    |    [208:208] <Whitespace> = ♢•♢
 |    |    |    |    |    [208:208] <ObjCMethodCall>
+|    |    |    |    |    + <name> = ♢setBottomMargin:♢
 |    |    |    |    |    |    [208:208] <Match> = ♢[♢
 |    |    |    |    |    |    [208:208] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢printInfo♢
 |    |    |    |    |    |    |    [208:208] <Match> = ♢[♢
 |    |    |    |    |    |    |    [208:208] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    |    [208:208] <Whitespace> = ♢•♢
@@ -7588,6 +7701,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [208:208] <Text> = ♢setBottomMargin♢
 |    |    |    |    |    |    [208:208] <Colon> = ♢:♢
 |    |    |    |    |    |    [208:208] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢doubleValue♢
 |    |    |    |    |    |    |    [208:208] <Match> = ♢[♢
 |    |    |    |    |    |    |    [208:208] <Match> = ♢val♢
 |    |    |    |    |    |    |    [208:208] <Whitespace> = ♢•♢
@@ -7609,6 +7723,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    [209:209] <Text> = ♢=♢
 |    |    |    |    |    |    |    [209:209] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    [209:209] <ObjCMethodCall>
+|    |    |    |    |    |    |    + <name> = ♢objectForKey:♢
 |    |    |    |    |    |    |    |    [209:209] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    [209:209] <Match> = ♢docAttrs♢
 |    |    |    |    |    |    |    |    [209:209] <Whitespace> = ♢•♢
@@ -7620,8 +7735,10 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [209:209] <Match> = ♢)♢
 |    |    |    |    |    [209:209] <Whitespace> = ♢•♢
 |    |    |    |    |    [209:209] <ObjCMethodCall>
+|    |    |    |    |    + <name> = ♢setTopMargin:♢
 |    |    |    |    |    |    [209:209] <Match> = ♢[♢
 |    |    |    |    |    |    [209:209] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢printInfo♢
 |    |    |    |    |    |    |    [209:209] <Match> = ♢[♢
 |    |    |    |    |    |    |    [209:209] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    |    [209:209] <Whitespace> = ♢•♢
@@ -7631,6 +7748,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [209:209] <Text> = ♢setTopMargin♢
 |    |    |    |    |    |    [209:209] <Colon> = ♢:♢
 |    |    |    |    |    |    [209:209] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢doubleValue♢
 |    |    |    |    |    |    |    [209:209] <Match> = ♢[♢
 |    |    |    |    |    |    |    [209:209] <Match> = ♢val♢
 |    |    |    |    |    |    |    [209:209] <Whitespace> = ♢•♢
@@ -7641,6 +7759,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    [209:210] <Newline> = ♢¶♢
 |    |    |    |    [210:210] <Indenting> = ♢••••♢
 |    |    |    |    [210:210] <ObjCMethodCall>
+|    |    |    |    + <name> = ♢didChangeValueForKey:♢
 |    |    |    |    |    [210:210] <Match> = ♢[♢
 |    |    |    |    |    [210:210] <ObjCSelf> = ♢self♢
 |    |    |    |    |    [210:210] <Whitespace> = ♢•♢
@@ -7663,6 +7782,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    [214:214] <Text> = ♢=♢
 |    |    |    |    [214:214] <Whitespace> = ♢•♢
 |    |    |    |    [214:214] <ObjCMethodCall>
+|    |    |    |    + <name> = ♢objectForKey:♢
 |    |    |    |    |    [214:214] <Match> = ♢[♢
 |    |    |    |    |    [214:214] <Match> = ♢docAttrs♢
 |    |    |    |    |    [214:214] <Whitespace> = ♢•♢
@@ -7678,6 +7798,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    [215:215] <Text> = ♢=♢
 |    |    |    |    [215:215] <Whitespace> = ♢•♢
 |    |    |    |    [215:215] <ObjCMethodCall>
+|    |    |    |    + <name> = ♢objectForKey:♢
 |    |    |    |    |    [215:215] <Match> = ♢[♢
 |    |    |    |    |    [215:215] <Match> = ♢docAttrs♢
 |    |    |    |    |    [215:215] <Whitespace> = ♢•♢
@@ -7699,10 +7820,12 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [216:216] <Ampersand> = ♢&♢
 |    |    |    |    |    |    [216:216] <Whitespace> = ♢•♢
 |    |    |    |    |    |    [216:216] <CFunctionCall>
+|    |    |    |    |    |    + <name> = ♢NSEqualSizes♢
 |    |    |    |    |    |    |    [216:216] <Match> = ♢NSEqualSizes♢
 |    |    |    |    |    |    |    [216:216] <Parenthesis>
 |    |    |    |    |    |    |    |    [216:216] <Match> = ♢(♢
 |    |    |    |    |    |    |    |    [216:216] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    + <name> = ♢sizeValue♢
 |    |    |    |    |    |    |    |    |    [216:216] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    [216:216] <Match> = ♢paperSizeVal♢
 |    |    |    |    |    |    |    |    |    [216:216] <Whitespace> = ♢•♢
@@ -7739,12 +7862,14 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [218:219] <Newline> = ♢¶♢
 |    |    |    |    |    |    [219:219] <Indenting> = ♢••••••••♢
 |    |    |    |    |    |    [219:219] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢setViewSize:♢
 |    |    |    |    |    |    |    [219:219] <Match> = ♢[♢
 |    |    |    |    |    |    |    [219:219] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    |    [219:219] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    [219:219] <Text> = ♢setViewSize♢
 |    |    |    |    |    |    |    [219:219] <Colon> = ♢:♢
 |    |    |    |    |    |    |    [219:219] <ObjCMethodCall>
+|    |    |    |    |    |    |    + <name> = ♢sizeValue♢
 |    |    |    |    |    |    |    |    [219:219] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    [219:219] <Match> = ♢viewSizeVal♢
 |    |    |    |    |    |    |    |    [219:219] <Whitespace> = ♢•♢
@@ -7763,12 +7888,14 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    [220:220] <Match> = ♢)♢
 |    |    |    |    |    |    |    [220:220] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    [220:220] <ObjCMethodCall>
+|    |    |    |    |    |    |    + <name> = ♢setPaperSize:♢
 |    |    |    |    |    |    |    |    [220:220] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    [220:220] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    |    |    [220:220] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    |    [220:220] <Text> = ♢setPaperSize♢
 |    |    |    |    |    |    |    |    [220:220] <Colon> = ♢:♢
 |    |    |    |    |    |    |    |    [220:220] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    + <name> = ♢sizeValue♢
 |    |    |    |    |    |    |    |    |    [220:220] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    [220:220] <Match> = ♢paperSizeVal♢
 |    |    |    |    |    |    |    |    |    [220:220] <Whitespace> = ♢•♢
@@ -7808,6 +7935,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    [223:223] <Text> = ♢=♢
 |    |    |    |    |    |    |    |    [223:223] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    |    [223:223] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    + <name> = ♢objectForKey:♢
 |    |    |    |    |    |    |    |    |    [223:223] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    [223:223] <Match> = ♢docAttrs♢
 |    |    |    |    |    |    |    |    |    [223:223] <Whitespace> = ♢•♢
@@ -7831,6 +7959,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    |    |    [224:224] <Parenthesis>
 |    |    |    |    |    |    |    |    |    |    |    [224:224] <Match> = ♢(♢
 |    |    |    |    |    |    |    |    |    |    |    [224:224] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    |    |    |    + <name> = ♢integerValue♢
 |    |    |    |    |    |    |    |    |    |    |    |    [224:224] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    |    |    |    [224:224] <Match> = ♢val♢
 |    |    |    |    |    |    |    |    |    |    |    |    [224:224] <Whitespace> = ♢•♢
@@ -7856,6 +7985,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    |    |    [225:225] <Text> = ♢=♢
 |    |    |    |    |    |    |    |    |    |    [225:225] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    |    |    |    [225:225] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    |    |    + <name> = ♢sizeValue♢
 |    |    |    |    |    |    |    |    |    |    |    [225:225] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    |    |    [225:225] <Match> = ♢paperSizeVal♢
 |    |    |    |    |    |    |    |    |    |    |    [225:225] <Whitespace> = ♢•♢
@@ -7889,6 +8019,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    |    |    |    |    [226:226] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    |    |    |    |    |    [226:226] <ExclamationMark> = ♢!♢
 |    |    |    |    |    |    |    |    |    |    |    |    [226:226] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    |    |    |    |    + <name> = ♢hasMultiplePages♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    [226:226] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    [226:226] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    [226:226] <Whitespace> = ♢•♢
@@ -7913,6 +8044,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    |    |    |    |    [227:228] <Newline> = ♢¶♢
 |    |    |    |    |    |    |    |    |    |    |    |    [228:228] <Indenting> = ♢••••••••••••••••••••♢
 |    |    |    |    |    |    |    |    |    |    |    |    [228:228] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    |    |    |    |    + <name> = ♢setViewSize:♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    [228:228] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    [228:228] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    [228:228] <Whitespace> = ♢•♢
@@ -7936,12 +8068,14 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    |    |    [230:231] <Newline> = ♢¶♢
 |    |    |    |    |    |    |    |    |    |    [231:231] <Indenting> = ♢→→♢
 |    |    |    |    |    |    |    |    |    |    [231:231] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    |    |    + <name> = ♢setPaperSize:♢
 |    |    |    |    |    |    |    |    |    |    |    [231:231] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    |    |    [231:231] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    |    |    |    |    |    [231:231] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    |    |    |    |    [231:231] <Text> = ♢setPaperSize♢
 |    |    |    |    |    |    |    |    |    |    |    [231:231] <Colon> = ♢:♢
 |    |    |    |    |    |    |    |    |    |    |    [231:231] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    |    |    |    + <name> = ♢sizeValue♢
 |    |    |    |    |    |    |    |    |    |    |    |    [231:231] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    |    |    |    [231:231] <Match> = ♢paperSizeVal♢
 |    |    |    |    |    |    |    |    |    |    |    |    [231:231] <Whitespace> = ♢•♢
@@ -7963,6 +8097,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    [235:236] <Newline> = ♢¶♢
 |    |    |    |    [236:236] <Indenting> = ♢••••♢
 |    |    |    |    [236:236] <ObjCMethodCall>
+|    |    |    |    + <name> = ♢setHyphenationFactor::♢
 |    |    |    |    |    [236:236] <Match> = ♢[♢
 |    |    |    |    |    [236:236] <ObjCSelf> = ♢self♢
 |    |    |    |    |    [236:236] <Whitespace> = ♢•♢
@@ -7975,6 +8110,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [236:236] <Text> = ♢=♢
 |    |    |    |    |    |    [236:236] <Whitespace> = ♢•♢
 |    |    |    |    |    |    [236:236] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢objectForKey:♢
 |    |    |    |    |    |    |    [236:236] <Match> = ♢[♢
 |    |    |    |    |    |    |    [236:236] <Match> = ♢docAttrs♢
 |    |    |    |    |    |    |    [236:236] <Whitespace> = ♢•♢
@@ -7987,6 +8123,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    [236:236] <QuestionMark> = ♢?♢
 |    |    |    |    |    [236:236] <Whitespace> = ♢•♢
 |    |    |    |    |    [236:236] <ObjCMethodCall>
+|    |    |    |    |    + <name> = ♢floatValue♢
 |    |    |    |    |    |    [236:236] <Match> = ♢[♢
 |    |    |    |    |    |    [236:236] <Match> = ♢val♢
 |    |    |    |    |    |    [236:236] <Whitespace> = ♢•♢
@@ -8001,6 +8138,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    [236:237] <Newline> = ♢¶♢
 |    |    |    |    [237:237] <Indenting> = ♢••••♢
 |    |    |    |    [237:237] <ObjCMethodCall>
+|    |    |    |    + <name> = ♢setBackgroundColor::♢
 |    |    |    |    |    [237:237] <Match> = ♢[♢
 |    |    |    |    |    [237:237] <ObjCSelf> = ♢self♢
 |    |    |    |    |    [237:237] <Whitespace> = ♢•♢
@@ -8013,6 +8151,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [237:237] <Text> = ♢=♢
 |    |    |    |    |    |    [237:237] <Whitespace> = ♢•♢
 |    |    |    |    |    |    [237:237] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢objectForKey:♢
 |    |    |    |    |    |    |    [237:237] <Match> = ♢[♢
 |    |    |    |    |    |    |    [237:237] <Match> = ♢docAttrs♢
 |    |    |    |    |    |    |    [237:237] <Whitespace> = ♢•♢
@@ -8029,6 +8168,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    [237:237] <Colon> = ♢:♢
 |    |    |    |    |    [237:237] <Whitespace> = ♢•♢
 |    |    |    |    |    [237:237] <ObjCMethodCall>
+|    |    |    |    |    + <name> = ♢whiteColor♢
 |    |    |    |    |    |    [237:237] <Match> = ♢[♢
 |    |    |    |    |    |    [237:237] <Match> = ♢NSColor♢
 |    |    |    |    |    |    [237:237] <Whitespace> = ♢•♢
@@ -8051,6 +8191,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    [240:240] <Text> = ♢=♢
 |    |    |    |    [240:240] <Whitespace> = ♢•♢
 |    |    |    |    [240:240] <ObjCMethodCall>
+|    |    |    |    + <name> = ♢documentPropertyToAttributeNameMappings♢
 |    |    |    |    |    [240:240] <Match> = ♢[♢
 |    |    |    |    |    [240:240] <ObjCSelf> = ♢self♢
 |    |    |    |    |    [240:240] <Whitespace> = ♢•♢
@@ -8072,6 +8213,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [241:241] <Text> = ♢in♢
 |    |    |    |    |    |    [241:241] <Whitespace> = ♢•♢
 |    |    |    |    |    |    [241:241] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢knownDocumentProperties♢
 |    |    |    |    |    |    |    [241:241] <Match> = ♢[♢
 |    |    |    |    |    |    |    [241:241] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    |    [241:241] <Whitespace> = ♢•♢
@@ -8080,18 +8222,21 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [241:241] <Match> = ♢)♢
 |    |    |    |    |    [241:241] <Whitespace> = ♢•♢
 |    |    |    |    |    [241:241] <ObjCMethodCall>
+|    |    |    |    |    + <name> = ♢setValue:forKey:♢
 |    |    |    |    |    |    [241:241] <Match> = ♢[♢
 |    |    |    |    |    |    [241:241] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    [241:241] <Whitespace> = ♢•♢
 |    |    |    |    |    |    [241:241] <Text> = ♢setValue♢
 |    |    |    |    |    |    [241:241] <Colon> = ♢:♢
 |    |    |    |    |    |    [241:241] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢objectForKey:♢
 |    |    |    |    |    |    |    [241:241] <Match> = ♢[♢
 |    |    |    |    |    |    |    [241:241] <Match> = ♢docAttrs♢
 |    |    |    |    |    |    |    [241:241] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    [241:241] <Text> = ♢objectForKey♢
 |    |    |    |    |    |    |    [241:241] <Colon> = ♢:♢
 |    |    |    |    |    |    |    [241:241] <ObjCMethodCall>
+|    |    |    |    |    |    |    + <name> = ♢objectForKey:♢
 |    |    |    |    |    |    |    |    [241:241] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    [241:241] <Match> = ♢map♢
 |    |    |    |    |    |    |    |    [241:241] <Whitespace> = ♢•♢
@@ -8113,6 +8258,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    [242:243] <Newline> = ♢¶♢
 |    |    |    |    [243:243] <Indenting> = ♢••••♢
 |    |    |    |    [243:243] <ObjCMethodCall>
+|    |    |    |    + <name> = ♢setReadOnly:♢
 |    |    |    |    |    [243:243] <Match> = ♢[♢
 |    |    |    |    |    [243:243] <ObjCSelf> = ♢self♢
 |    |    |    |    |    [243:243] <Whitespace> = ♢•♢
@@ -8127,6 +8273,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    [243:243] <Text> = ♢=♢
 |    |    |    |    |    |    |    [243:243] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    [243:243] <ObjCMethodCall>
+|    |    |    |    |    |    |    + <name> = ♢objectForKey:♢
 |    |    |    |    |    |    |    |    [243:243] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    [243:243] <Match> = ♢docAttrs♢
 |    |    |    |    |    |    |    |    [243:243] <Whitespace> = ♢•♢
@@ -8142,6 +8289,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [243:243] <Parenthesis>
 |    |    |    |    |    |    |    [243:243] <Match> = ♢(♢
 |    |    |    |    |    |    |    [243:243] <ObjCMethodCall>
+|    |    |    |    |    |    |    + <name> = ♢integerValue♢
 |    |    |    |    |    |    |    |    [243:243] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    [243:243] <Match> = ♢val♢
 |    |    |    |    |    |    |    |    [243:243] <Whitespace> = ♢•♢
@@ -8160,8 +8308,10 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    [244:245] <Newline> = ♢¶♢
 |    |    |    |    [245:245] <Indenting> = ♢••••♢
 |    |    |    |    [245:245] <ObjCMethodCall>
+|    |    |    |    + <name> = ♢enableUndoRegistration♢
 |    |    |    |    |    [245:245] <Match> = ♢[♢
 |    |    |    |    |    [245:245] <ObjCMethodCall>
+|    |    |    |    |    + <name> = ♢undoManager♢
 |    |    |    |    |    |    [245:245] <Match> = ♢[♢
 |    |    |    |    |    |    [245:245] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    [245:245] <Whitespace> = ♢•♢
@@ -8185,6 +8335,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [248:249] <Newline> = ♢¶♢
 |    |    [249:250] <Newline> = ♢¶♢
 |    |    [250:285] <ObjCMethodImplementation>
+|    |    + <name> = ♢defaultTextAttributes:♢
 |    |    |    [250:250] <Match> = ♢-♢
 |    |    |    [250:250] <Whitespace> = ♢•♢
 |    |    |    [250:250] <Parenthesis>
@@ -8226,10 +8377,13 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    [252:252] <Text> = ♢=♢
 |    |    |    |    [252:252] <Whitespace> = ♢•♢
 |    |    |    |    [252:252] <ObjCMethodCall>
+|    |    |    |    + <name> = ♢autorelease♢
 |    |    |    |    |    [252:252] <Match> = ♢[♢
 |    |    |    |    |    [252:252] <ObjCMethodCall>
+|    |    |    |    |    + <name> = ♢initWithCapacity:♢
 |    |    |    |    |    |    [252:252] <Match> = ♢[♢
 |    |    |    |    |    |    [252:252] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢alloc♢
 |    |    |    |    |    |    |    [252:252] <Match> = ♢[♢
 |    |    |    |    |    |    |    [252:252] <Match> = ♢NSMutableDictionary♢
 |    |    |    |    |    |    |    [252:252] <Whitespace> = ♢•♢
@@ -8259,12 +8413,14 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [253:254] <Newline> = ♢¶♢
 |    |    |    |    |    |    [254:254] <Indenting> = ♢→♢
 |    |    |    |    |    |    [254:254] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢setObject:forKey:♢
 |    |    |    |    |    |    |    [254:254] <Match> = ♢[♢
 |    |    |    |    |    |    |    [254:254] <Match> = ♢textAttributes♢
 |    |    |    |    |    |    |    [254:254] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    [254:254] <Text> = ♢setObject♢
 |    |    |    |    |    |    |    [254:254] <Colon> = ♢:♢
 |    |    |    |    |    |    |    [254:254] <ObjCMethodCall>
+|    |    |    |    |    |    |    + <name> = ♢userFontOfSize:♢
 |    |    |    |    |    |    |    |    [254:254] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    [254:254] <Match> = ♢NSFont♢
 |    |    |    |    |    |    |    |    [254:254] <Whitespace> = ♢•♢
@@ -8312,8 +8468,10 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    [257:257] <Text> = ♢=♢
 |    |    |    |    |    |    |    |    [257:257] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    |    [257:257] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    + <name> = ♢objectForKey:♢
 |    |    |    |    |    |    |    |    |    [257:257] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    [257:257] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    |    + <name> = ♢standardUserDefaults♢
 |    |    |    |    |    |    |    |    |    |    [257:257] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    |    [257:257] <Match> = ♢NSUserDefaults♢
 |    |    |    |    |    |    |    |    |    |    [257:257] <Whitespace> = ♢•♢
@@ -8338,6 +8496,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    |    [258:258] <Parenthesis>
 |    |    |    |    |    |    |    |    |    |    [258:258] <Match> = ♢(♢
 |    |    |    |    |    |    |    |    |    |    [258:258] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    |    |    + <name> = ♢isEqual:♢
 |    |    |    |    |    |    |    |    |    |    |    [258:258] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    |    |    [258:258] <ObjCString> = ♢@"Centimeters"♢
 |    |    |    |    |    |    |    |    |    |    |    + <cleaned> = ♢Centimeters♢
@@ -8382,10 +8541,13 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    [259:259] <Text> = ♢=♢
 |    |    |    |    |    |    |    |    [259:259] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    |    [259:259] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    + <name> = ♢autorelease♢
 |    |    |    |    |    |    |    |    |    [259:259] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    [259:259] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    |    + <name> = ♢init♢
 |    |    |    |    |    |    |    |    |    |    [259:259] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    |    [259:259] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    |    |    + <name> = ♢alloc♢
 |    |    |    |    |    |    |    |    |    |    |    [259:259] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    |    |    [259:259] <Match> = ♢NSMutableParagraphStyle♢
 |    |    |    |    |    |    |    |    |    |    |    [259:259] <Whitespace> = ♢•♢
@@ -8401,12 +8563,14 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    [259:260] <Newline> = ♢¶♢
 |    |    |    |    |    |    |    |    [260:260] <Indenting> = ♢→••••♢
 |    |    |    |    |    |    |    |    [260:260] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    + <name> = ♢setTabStops:♢
 |    |    |    |    |    |    |    |    |    [260:260] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    [260:260] <Match> = ♢paraStyle♢
 |    |    |    |    |    |    |    |    |    [260:260] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    |    |    [260:260] <Text> = ♢setTabStops♢
 |    |    |    |    |    |    |    |    |    [260:260] <Colon> = ♢:♢
 |    |    |    |    |    |    |    |    |    [260:260] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    |    + <name> = ♢array♢
 |    |    |    |    |    |    |    |    |    |    [260:260] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    |    [260:260] <Match> = ♢NSArray♢
 |    |    |    |    |    |    |    |    |    |    [260:260] <Whitespace> = ♢•♢
@@ -8454,8 +8618,10 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    |    |    [262:262] <Text> = ♢=♢
 |    |    |    |    |    |    |    |    |    |    [262:262] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    |    |    |    [262:262] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    |    |    + <name> = ♢initWithType:location:♢
 |    |    |    |    |    |    |    |    |    |    |    [262:262] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    |    |    [262:262] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    |    |    |    + <name> = ♢alloc♢
 |    |    |    |    |    |    |    |    |    |    |    |    [262:262] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    |    |    |    [262:262] <Match> = ♢NSTextTab♢
 |    |    |    |    |    |    |    |    |    |    |    |    [262:262] <Whitespace> = ♢•♢
@@ -8485,6 +8651,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    |    |    [262:263] <Newline> = ♢¶♢
 |    |    |    |    |    |    |    |    |    |    [263:263] <Indenting> = ♢→→♢
 |    |    |    |    |    |    |    |    |    |    [263:263] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    |    |    + <name> = ♢addTabStop:♢
 |    |    |    |    |    |    |    |    |    |    |    [263:263] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    |    |    [263:263] <Match> = ♢paraStyle♢
 |    |    |    |    |    |    |    |    |    |    |    [263:263] <Whitespace> = ♢•♢
@@ -8496,6 +8663,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    |    |    [263:264] <Newline> = ♢¶♢
 |    |    |    |    |    |    |    |    |    |    [264:264] <Indenting> = ♢→•→♢
 |    |    |    |    |    |    |    |    |    |    [264:264] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    |    |    + <name> = ♢release♢
 |    |    |    |    |    |    |    |    |    |    |    [264:264] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    |    |    [264:264] <Match> = ♢tabStop♢
 |    |    |    |    |    |    |    |    |    |    |    [264:264] <Whitespace> = ♢•♢
@@ -8512,6 +8680,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    [266:266] <Text> = ♢=♢
 |    |    |    |    |    |    |    |    [266:266] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    |    [266:266] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    + <name> = ♢copy♢
 |    |    |    |    |    |    |    |    |    [266:266] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    [266:266] <Match> = ♢paraStyle♢
 |    |    |    |    |    |    |    |    |    [266:266] <Whitespace> = ♢•♢
@@ -8524,6 +8693,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [267:268] <Newline> = ♢¶♢
 |    |    |    |    |    |    [268:268] <Indenting> = ♢→♢
 |    |    |    |    |    |    [268:268] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢setObject:forKey:♢
 |    |    |    |    |    |    |    [268:268] <Match> = ♢[♢
 |    |    |    |    |    |    |    [268:268] <Match> = ♢textAttributes♢
 |    |    |    |    |    |    |    [268:268] <Whitespace> = ♢•♢
@@ -8555,6 +8725,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [270:270] <Text> = ♢=♢
 |    |    |    |    |    |    [270:270] <Whitespace> = ♢•♢
 |    |    |    |    |    |    [270:270] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢userFixedPitchFontOfSize:♢
 |    |    |    |    |    |    |    [270:270] <Match> = ♢[♢
 |    |    |    |    |    |    |    [270:270] <Match> = ♢NSFont♢
 |    |    |    |    |    |    |    [270:270] <Whitespace> = ♢•♢
@@ -8572,8 +8743,10 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [271:271] <Text> = ♢=♢
 |    |    |    |    |    |    [271:271] <Whitespace> = ♢•♢
 |    |    |    |    |    |    [271:271] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢integerForKey:♢
 |    |    |    |    |    |    |    [271:271] <Match> = ♢[♢
 |    |    |    |    |    |    |    [271:271] <ObjCMethodCall>
+|    |    |    |    |    |    |    + <name> = ♢standardUserDefaults♢
 |    |    |    |    |    |    |    |    [271:271] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    [271:271] <Match> = ♢NSUserDefaults♢
 |    |    |    |    |    |    |    |    [271:271] <Whitespace> = ♢•♢
@@ -8594,6 +8767,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [272:272] <Text> = ♢=♢
 |    |    |    |    |    |    [272:272] <Whitespace> = ♢•♢
 |    |    |    |    |    |    [272:272] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢sizeWithAttributes:♢
 |    |    |    |    |    |    |    [272:272] <Match> = ♢[♢
 |    |    |    |    |    |    |    [272:272] <ObjCString> = ♢@"•"♢
 |    |    |    |    |    |    |    + <cleaned> = ♢•♢
@@ -8601,6 +8775,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    [272:272] <Text> = ♢sizeWithAttributes♢
 |    |    |    |    |    |    |    [272:272] <Colon> = ♢:♢
 |    |    |    |    |    |    |    [272:272] <ObjCMethodCall>
+|    |    |    |    |    |    |    + <name> = ♢dictionaryWithObject:forKey:♢
 |    |    |    |    |    |    |    |    [272:272] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    [272:272] <Match> = ♢NSDictionary♢
 |    |    |    |    |    |    |    |    [272:272] <Whitespace> = ♢•♢
@@ -8634,8 +8809,10 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    [273:273] <Text> = ♢=♢
 |    |    |    |    |    |    |    [273:273] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    [273:273] <ObjCMethodCall>
+|    |    |    |    |    |    |    + <name> = ♢maximumAdvancement♢
 |    |    |    |    |    |    |    |    [273:273] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    [273:273] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    + <name> = ♢screenFontWithRenderingMode:♢
 |    |    |    |    |    |    |    |    |    [273:273] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    [273:273] <Match> = ♢plainFont♢
 |    |    |    |    |    |    |    |    |    [273:273] <Whitespace> = ♢•♢
@@ -8663,10 +8840,13 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [276:276] <Text> = ♢=♢
 |    |    |    |    |    |    [276:276] <Whitespace> = ♢•♢
 |    |    |    |    |    |    [276:276] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢autorelease♢
 |    |    |    |    |    |    |    [276:276] <Match> = ♢[♢
 |    |    |    |    |    |    |    [276:276] <ObjCMethodCall>
+|    |    |    |    |    |    |    + <name> = ♢mutableCopy♢
 |    |    |    |    |    |    |    |    [276:276] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    [276:276] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    + <name> = ♢defaultParagraphStyle♢
 |    |    |    |    |    |    |    |    |    [276:276] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    [276:276] <Match> = ♢NSParagraphStyle♢
 |    |    |    |    |    |    |    |    |    [276:276] <Whitespace> = ♢•♢
@@ -8682,12 +8862,14 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [276:277] <Newline> = ♢¶♢
 |    |    |    |    |    |    [277:277] <Indenting> = ♢→♢
 |    |    |    |    |    |    [277:277] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢setTabStops:♢
 |    |    |    |    |    |    |    [277:277] <Match> = ♢[♢
 |    |    |    |    |    |    |    [277:277] <Match> = ♢mStyle♢
 |    |    |    |    |    |    |    [277:277] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    [277:277] <Text> = ♢setTabStops♢
 |    |    |    |    |    |    |    [277:277] <Colon> = ♢:♢
 |    |    |    |    |    |    |    [277:277] <ObjCMethodCall>
+|    |    |    |    |    |    |    + <name> = ♢array♢
 |    |    |    |    |    |    |    |    [277:277] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    [277:277] <Match> = ♢NSArray♢
 |    |    |    |    |    |    |    |    [277:277] <Whitespace> = ♢•♢
@@ -8698,6 +8880,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [277:278] <Newline> = ♢¶♢
 |    |    |    |    |    |    [278:278] <Indenting> = ♢→♢
 |    |    |    |    |    |    [278:278] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢setDefaultTabInterval:♢
 |    |    |    |    |    |    |    [278:278] <Match> = ♢[♢
 |    |    |    |    |    |    |    [278:278] <Match> = ♢mStyle♢
 |    |    |    |    |    |    |    [278:278] <Whitespace> = ♢•♢
@@ -8716,14 +8899,17 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [278:279] <Newline> = ♢¶♢
 |    |    |    |    |    |    [279:279] <Indenting> = ♢••••••••♢
 |    |    |    |    |    |    [279:279] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢setObject:forKey:♢
 |    |    |    |    |    |    |    [279:279] <Match> = ♢[♢
 |    |    |    |    |    |    |    [279:279] <Match> = ♢textAttributes♢
 |    |    |    |    |    |    |    [279:279] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    [279:279] <Text> = ♢setObject♢
 |    |    |    |    |    |    |    [279:279] <Colon> = ♢:♢
 |    |    |    |    |    |    |    [279:279] <ObjCMethodCall>
+|    |    |    |    |    |    |    + <name> = ♢autorelease♢
 |    |    |    |    |    |    |    |    [279:279] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    [279:279] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    + <name> = ♢copy♢
 |    |    |    |    |    |    |    |    |    [279:279] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    [279:279] <Match> = ♢mStyle♢
 |    |    |    |    |    |    |    |    |    [279:279] <Whitespace> = ♢•♢
@@ -8746,6 +8932,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [281:282] <Newline> = ♢¶♢
 |    |    |    |    |    |    [282:282] <Indenting> = ♢→♢
 |    |    |    |    |    |    [282:282] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢setObject:forKey:♢
 |    |    |    |    |    |    |    [282:282] <Match> = ♢[♢
 |    |    |    |    |    |    |    [282:282] <Match> = ♢textAttributes♢
 |    |    |    |    |    |    |    [282:282] <Whitespace> = ♢•♢
@@ -8773,6 +8960,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [285:286] <Newline> = ♢¶♢
 |    |    [286:287] <Newline> = ♢¶♢
 |    |    [287:302] <ObjCMethodImplementation>
+|    |    + <name> = ♢applyDefaultTextAttributes:♢
 |    |    |    [287:287] <Match> = ♢-♢
 |    |    |    [287:287] <Whitespace> = ♢•♢
 |    |    |    [287:287] <Parenthesis>
@@ -8799,6 +8987,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    [288:288] <Text> = ♢=♢
 |    |    |    |    [288:288] <Whitespace> = ♢•♢
 |    |    |    |    [288:288] <ObjCMethodCall>
+|    |    |    |    + <name> = ♢defaultTextAttributes:♢
 |    |    |    |    |    [288:288] <Match> = ♢[♢
 |    |    |    |    |    [288:288] <ObjCSelf> = ♢self♢
 |    |    |    |    |    [288:288] <Whitespace> = ♢•♢
@@ -8817,6 +9006,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    [289:289] <Text> = ♢=♢
 |    |    |    |    [289:289] <Whitespace> = ♢•♢
 |    |    |    |    [289:289] <ObjCMethodCall>
+|    |    |    |    + <name> = ♢textStorage♢
 |    |    |    |    |    [289:289] <Match> = ♢[♢
 |    |    |    |    |    [289:289] <ObjCSelf> = ♢self♢
 |    |    |    |    |    [289:289] <Whitespace> = ♢•♢
@@ -8829,6 +9019,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    [290:291] <Newline> = ♢¶♢
 |    |    |    |    [291:291] <Indenting> = ♢••••♢
 |    |    |    |    [291:301] <ObjCMethodCall>
+|    |    |    |    + <name> = ♢enumerateAttribute:inRange:options:usingBlock:♢
 |    |    |    |    |    [291:291] <Match> = ♢[♢
 |    |    |    |    |    [291:291] <Match> = ♢text♢
 |    |    |    |    |    [291:291] <Whitespace> = ♢•♢
@@ -8839,12 +9030,14 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    [291:291] <Text> = ♢inRange♢
 |    |    |    |    |    [291:291] <Colon> = ♢:♢
 |    |    |    |    |    [291:291] <CFunctionCall>
+|    |    |    |    |    + <name> = ♢NSMakeRange♢
 |    |    |    |    |    |    [291:291] <Match> = ♢NSMakeRange♢
 |    |    |    |    |    |    [291:291] <Parenthesis>
 |    |    |    |    |    |    |    [291:291] <Match> = ♢(♢
 |    |    |    |    |    |    |    [291:291] <Text> = ♢0,♢
 |    |    |    |    |    |    |    [291:291] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    [291:291] <ObjCMethodCall>
+|    |    |    |    |    |    |    + <name> = ♢length♢
 |    |    |    |    |    |    |    |    [291:291] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    [291:291] <Match> = ♢text♢
 |    |    |    |    |    |    |    |    [291:291] <Whitespace> = ♢•♢
@@ -8888,7 +9081,8 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [292:292] <Whitespace> = ♢•♢
 |    |    |    |    |    |    [292:292] <QuestionMark> = ♢?♢
 |    |    |    |    |    |    [292:292] <Whitespace> = ♢•♢
-|    |    |    |    |    |    [292:292] <Brackets>
+|    |    |    |    |    |    [292:292] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢baseWritingDirection♢
 |    |    |    |    |    |    |    [292:292] <Match> = ♢[♢
 |    |    |    |    |    |    |    [292:292] <Parenthesis>
 |    |    |    |    |    |    |    |    [292:292] <Match> = ♢(♢
@@ -8896,7 +9090,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    [292:292] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    |    [292:292] <Asterisk> = ♢*♢
 |    |    |    |    |    |    |    |    [292:292] <Match> = ♢)♢
-|    |    |    |    |    |    |    [292:292] <Text> = ♢paragraphStyle♢
+|    |    |    |    |    |    |    [292:292] <Match> = ♢paragraphStyle♢
 |    |    |    |    |    |    |    [292:292] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    [292:292] <Text> = ♢baseWritingDirection♢
 |    |    |    |    |    |    |    [292:292] <Match> = ♢]♢
@@ -8911,6 +9105,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [293:294] <Newline> = ♢¶♢
 |    |    |    |    |    |    [294:294] <Indenting> = ♢••••••••♢
 |    |    |    |    |    |    [294:299] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢enumerateAttribute:inRange:options:usingBlock:♢
 |    |    |    |    |    |    |    [294:294] <Match> = ♢[♢
 |    |    |    |    |    |    |    [294:294] <Match> = ♢text♢
 |    |    |    |    |    |    |    [294:294] <Whitespace> = ♢•♢
@@ -8949,6 +9144,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    [294:295] <Newline> = ♢¶♢
 |    |    |    |    |    |    |    |    [295:295] <Indenting> = ♢••••••••••••♢
 |    |    |    |    |    |    |    |    [295:295] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    + <name> = ♢retain♢
 |    |    |    |    |    |    |    |    |    [295:295] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    [295:295] <Match> = ♢value♢
 |    |    |    |    |    |    |    |    |    [295:295] <Whitespace> = ♢•♢
@@ -8958,6 +9154,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    [295:296] <Newline> = ♢¶♢
 |    |    |    |    |    |    |    |    [296:296] <Indenting> = ♢••••••••••••♢
 |    |    |    |    |    |    |    |    [296:296] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    + <name> = ♢setAttributes:range:♢
 |    |    |    |    |    |    |    |    |    [296:296] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    [296:296] <Match> = ♢text♢
 |    |    |    |    |    |    |    |    |    [296:296] <Whitespace> = ♢•♢
@@ -8981,6 +9178,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    |    |    [297:297] <Match> = ♢)♢
 |    |    |    |    |    |    |    |    |    [297:297] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    |    |    [297:297] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    |    + <name> = ♢addAttribute:value:range:♢
 |    |    |    |    |    |    |    |    |    |    [297:297] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    |    [297:297] <Match> = ♢text♢
 |    |    |    |    |    |    |    |    |    |    [297:297] <Whitespace> = ♢•♢
@@ -9000,6 +9198,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    [297:298] <Newline> = ♢¶♢
 |    |    |    |    |    |    |    |    [298:298] <Indenting> = ♢••••••••••••♢
 |    |    |    |    |    |    |    |    [298:298] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    + <name> = ♢release♢
 |    |    |    |    |    |    |    |    |    [298:298] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    [298:298] <Match> = ♢value♢
 |    |    |    |    |    |    |    |    |    [298:298] <Whitespace> = ♢•♢
@@ -9027,6 +9226,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    [300:300] <Match> = ♢)♢
 |    |    |    |    |    |    |    [300:300] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    [300:300] <ObjCMethodCall>
+|    |    |    |    |    |    |    + <name> = ♢setBaseWritingDirection:range:♢
 |    |    |    |    |    |    |    |    [300:300] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    [300:300] <Match> = ♢text♢
 |    |    |    |    |    |    |    |    [300:300] <Whitespace> = ♢•♢
@@ -9053,6 +9253,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    + <cleaned> = ♢•This•method•will•return•a•suggested•encoding•for•the•document.•In•Leopard,•unless•the•user•has•specified•a•favorite•encoding•for•saving•that•applies•to•the•document,•we•use•UTF-8.¶♢
 |    |    [306:307] <Newline> = ♢¶♢
 |    |    [307:318] <ObjCMethodImplementation>
+|    |    + <name> = ♢suggestedDocumentEncoding♢
 |    |    |    [307:307] <Match> = ♢-♢
 |    |    |    [307:307] <Whitespace> = ♢•♢
 |    |    |    [307:307] <Parenthesis>
@@ -9083,8 +9284,10 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    [309:309] <Text> = ♢=♢
 |    |    |    |    [309:309] <Whitespace> = ♢•♢
 |    |    |    |    [309:309] <ObjCMethodCall>
+|    |    |    |    + <name> = ♢objectForKey:♢
 |    |    |    |    |    [309:309] <Match> = ♢[♢
 |    |    |    |    |    [309:309] <ObjCMethodCall>
+|    |    |    |    |    + <name> = ♢standardUserDefaults♢
 |    |    |    |    |    |    [309:309] <Match> = ♢[♢
 |    |    |    |    |    |    [309:309] <Match> = ♢NSUserDefaults♢
 |    |    |    |    |    |    [309:309] <Whitespace> = ♢•♢
@@ -9117,6 +9320,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [311:311] <Text> = ♢=♢
 |    |    |    |    |    |    [311:311] <Whitespace> = ♢•♢
 |    |    |    |    |    |    [311:311] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢unsignedIntegerValue♢
 |    |    |    |    |    |    |    [311:311] <Match> = ♢[♢
 |    |    |    |    |    |    |    [311:311] <Match> = ♢val♢
 |    |    |    |    |    |    |    [311:311] <Whitespace> = ♢•♢
@@ -9177,10 +9381,13 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    |    [313:313] <Parenthesis>
 |    |    |    |    |    |    |    |    |    |    [313:313] <Match> = ♢(♢
 |    |    |    |    |    |    |    |    |    |    [313:313] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    |    |    + <name> = ♢canBeConvertedToEncoding:♢
 |    |    |    |    |    |    |    |    |    |    |    [313:313] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    |    |    [313:313] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    |    |    |    + <name> = ♢string♢
 |    |    |    |    |    |    |    |    |    |    |    |    [313:313] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    |    |    |    [313:313] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    |    |    |    |    + <name> = ♢textStorage♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    [313:313] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    [313:313] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    [313:313] <Whitespace> = ♢•♢
@@ -9245,6 +9452,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    + <cleaned> = ♢•Returns•an•object•that•represents•the•document•to•be•written•to•file.•¶♢
 |    |    [321:322] <Newline> = ♢¶♢
 |    |    [322:409] <ObjCMethodImplementation>
+|    |    + <name> = ♢fileWrapperOfType:error:♢
 |    |    |    [322:322] <Match> = ♢-♢
 |    |    |    [322:322] <Whitespace> = ♢•♢
 |    |    |    [322:322] <Parenthesis>
@@ -9284,6 +9492,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    [323:323] <Text> = ♢=♢
 |    |    |    |    [323:323] <Whitespace> = ♢•♢
 |    |    |    |    [323:323] <ObjCMethodCall>
+|    |    |    |    + <name> = ♢textStorage♢
 |    |    |    |    |    [323:323] <Match> = ♢[♢
 |    |    |    |    |    [323:323] <ObjCSelf> = ♢self♢
 |    |    |    |    |    [323:323] <Whitespace> = ♢•♢
@@ -9299,12 +9508,14 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    [324:324] <Text> = ♢=♢
 |    |    |    |    [324:324] <Whitespace> = ♢•♢
 |    |    |    |    [324:324] <CFunctionCall>
+|    |    |    |    + <name> = ♢NSMakeRange♢
 |    |    |    |    |    [324:324] <Match> = ♢NSMakeRange♢
 |    |    |    |    |    [324:324] <Parenthesis>
 |    |    |    |    |    |    [324:324] <Match> = ♢(♢
 |    |    |    |    |    |    [324:324] <Text> = ♢0,♢
 |    |    |    |    |    |    [324:324] <Whitespace> = ♢•♢
 |    |    |    |    |    |    [324:324] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢length♢
 |    |    |    |    |    |    |    [324:324] <Match> = ♢[♢
 |    |    |    |    |    |    |    [324:324] <Match> = ♢text♢
 |    |    |    |    |    |    |    [324:324] <Whitespace> = ♢•♢
@@ -9323,6 +9534,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    [326:326] <Text> = ♢=♢
 |    |    |    |    [326:326] <Whitespace> = ♢•♢
 |    |    |    |    [326:335] <ObjCMethodCall>
+|    |    |    |    + <name> = ♢dictionaryWithObjectsAndKeys:♢
 |    |    |    |    |    [326:326] <Match> = ♢[♢
 |    |    |    |    |    [326:326] <Match> = ♢NSMutableDictionary♢
 |    |    |    |    |    [326:326] <Whitespace> = ♢•♢
@@ -9331,12 +9543,14 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    [326:327] <Newline> = ♢¶♢
 |    |    |    |    |    [327:327] <Indenting> = ♢→♢
 |    |    |    |    |    [327:327] <ObjCMethodCall>
+|    |    |    |    |    + <name> = ♢valueWithSize:♢
 |    |    |    |    |    |    [327:327] <Match> = ♢[♢
 |    |    |    |    |    |    [327:327] <Match> = ♢NSValue♢
 |    |    |    |    |    |    [327:327] <Whitespace> = ♢•♢
 |    |    |    |    |    |    [327:327] <Text> = ♢valueWithSize♢
 |    |    |    |    |    |    [327:327] <Colon> = ♢:♢
 |    |    |    |    |    |    [327:327] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢paperSize♢
 |    |    |    |    |    |    |    [327:327] <Match> = ♢[♢
 |    |    |    |    |    |    |    [327:327] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    |    [327:327] <Whitespace> = ♢•♢
@@ -9350,12 +9564,14 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    [327:328] <Newline> = ♢¶♢
 |    |    |    |    |    [328:328] <Indenting> = ♢→♢
 |    |    |    |    |    [328:328] <ObjCMethodCall>
+|    |    |    |    |    + <name> = ♢numberWithInteger::♢
 |    |    |    |    |    |    [328:328] <Match> = ♢[♢
 |    |    |    |    |    |    [328:328] <Match> = ♢NSNumber♢
 |    |    |    |    |    |    [328:328] <Whitespace> = ♢•♢
 |    |    |    |    |    |    [328:328] <Text> = ♢numberWithInteger♢
 |    |    |    |    |    |    [328:328] <Colon> = ♢:♢
 |    |    |    |    |    |    [328:328] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢isReadOnly♢
 |    |    |    |    |    |    |    [328:328] <Match> = ♢[♢
 |    |    |    |    |    |    |    [328:328] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    |    [328:328] <Whitespace> = ♢•♢
@@ -9377,12 +9593,14 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    [328:329] <Newline> = ♢¶♢
 |    |    |    |    |    [329:329] <Indenting> = ♢→♢
 |    |    |    |    |    [329:329] <ObjCMethodCall>
+|    |    |    |    |    + <name> = ♢numberWithFloat:♢
 |    |    |    |    |    |    [329:329] <Match> = ♢[♢
 |    |    |    |    |    |    [329:329] <Match> = ♢NSNumber♢
 |    |    |    |    |    |    [329:329] <Whitespace> = ♢•♢
 |    |    |    |    |    |    [329:329] <Text> = ♢numberWithFloat♢
 |    |    |    |    |    |    [329:329] <Colon> = ♢:♢
 |    |    |    |    |    |    [329:329] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢hyphenationFactor♢
 |    |    |    |    |    |    |    [329:329] <Match> = ♢[♢
 |    |    |    |    |    |    |    [329:329] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    |    [329:329] <Whitespace> = ♢•♢
@@ -9396,14 +9614,17 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    [329:330] <Newline> = ♢¶♢
 |    |    |    |    |    [330:330] <Indenting> = ♢→♢
 |    |    |    |    |    [330:330] <ObjCMethodCall>
+|    |    |    |    |    + <name> = ♢numberWithDouble:♢
 |    |    |    |    |    |    [330:330] <Match> = ♢[♢
 |    |    |    |    |    |    [330:330] <Match> = ♢NSNumber♢
 |    |    |    |    |    |    [330:330] <Whitespace> = ♢•♢
 |    |    |    |    |    |    [330:330] <Text> = ♢numberWithDouble♢
 |    |    |    |    |    |    [330:330] <Colon> = ♢:♢
 |    |    |    |    |    |    [330:330] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢leftMargin♢
 |    |    |    |    |    |    |    [330:330] <Match> = ♢[♢
 |    |    |    |    |    |    |    [330:330] <ObjCMethodCall>
+|    |    |    |    |    |    |    + <name> = ♢printInfo♢
 |    |    |    |    |    |    |    |    [330:330] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    [330:330] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    |    |    [330:330] <Whitespace> = ♢•♢
@@ -9420,14 +9641,17 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    [330:331] <Newline> = ♢¶♢
 |    |    |    |    |    [331:331] <Indenting> = ♢→♢
 |    |    |    |    |    [331:331] <ObjCMethodCall>
+|    |    |    |    |    + <name> = ♢numberWithDouble:♢
 |    |    |    |    |    |    [331:331] <Match> = ♢[♢
 |    |    |    |    |    |    [331:331] <Match> = ♢NSNumber♢
 |    |    |    |    |    |    [331:331] <Whitespace> = ♢•♢
 |    |    |    |    |    |    [331:331] <Text> = ♢numberWithDouble♢
 |    |    |    |    |    |    [331:331] <Colon> = ♢:♢
 |    |    |    |    |    |    [331:331] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢rightMargin♢
 |    |    |    |    |    |    |    [331:331] <Match> = ♢[♢
 |    |    |    |    |    |    |    [331:331] <ObjCMethodCall>
+|    |    |    |    |    |    |    + <name> = ♢printInfo♢
 |    |    |    |    |    |    |    |    [331:331] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    [331:331] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    |    |    [331:331] <Whitespace> = ♢•♢
@@ -9444,14 +9668,17 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    [331:332] <Newline> = ♢¶♢
 |    |    |    |    |    [332:332] <Indenting> = ♢→♢
 |    |    |    |    |    [332:332] <ObjCMethodCall>
+|    |    |    |    |    + <name> = ♢numberWithDouble:♢
 |    |    |    |    |    |    [332:332] <Match> = ♢[♢
 |    |    |    |    |    |    [332:332] <Match> = ♢NSNumber♢
 |    |    |    |    |    |    [332:332] <Whitespace> = ♢•♢
 |    |    |    |    |    |    [332:332] <Text> = ♢numberWithDouble♢
 |    |    |    |    |    |    [332:332] <Colon> = ♢:♢
 |    |    |    |    |    |    [332:332] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢bottomMargin♢
 |    |    |    |    |    |    |    [332:332] <Match> = ♢[♢
 |    |    |    |    |    |    |    [332:332] <ObjCMethodCall>
+|    |    |    |    |    |    |    + <name> = ♢printInfo♢
 |    |    |    |    |    |    |    |    [332:332] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    [332:332] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    |    |    [332:332] <Whitespace> = ♢•♢
@@ -9468,14 +9695,17 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    [332:333] <Newline> = ♢¶♢
 |    |    |    |    |    [333:333] <Indenting> = ♢→♢
 |    |    |    |    |    [333:333] <ObjCMethodCall>
+|    |    |    |    |    + <name> = ♢numberWithDouble:♢
 |    |    |    |    |    |    [333:333] <Match> = ♢[♢
 |    |    |    |    |    |    [333:333] <Match> = ♢NSNumber♢
 |    |    |    |    |    |    [333:333] <Whitespace> = ♢•♢
 |    |    |    |    |    |    [333:333] <Text> = ♢numberWithDouble♢
 |    |    |    |    |    |    [333:333] <Colon> = ♢:♢
 |    |    |    |    |    |    [333:333] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢topMargin♢
 |    |    |    |    |    |    |    [333:333] <Match> = ♢[♢
 |    |    |    |    |    |    |    [333:333] <ObjCMethodCall>
+|    |    |    |    |    |    |    + <name> = ♢printInfo♢
 |    |    |    |    |    |    |    |    [333:333] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    [333:333] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    |    |    [333:333] <Whitespace> = ♢•♢
@@ -9492,12 +9722,14 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    [333:334] <Newline> = ♢¶♢
 |    |    |    |    |    [334:334] <Indenting> = ♢→♢
 |    |    |    |    |    [334:334] <ObjCMethodCall>
+|    |    |    |    |    + <name> = ♢numberWithInteger::♢
 |    |    |    |    |    |    [334:334] <Match> = ♢[♢
 |    |    |    |    |    |    [334:334] <Match> = ♢NSNumber♢
 |    |    |    |    |    |    [334:334] <Whitespace> = ♢•♢
 |    |    |    |    |    |    [334:334] <Text> = ♢numberWithInteger♢
 |    |    |    |    |    |    [334:334] <Colon> = ♢:♢
 |    |    |    |    |    |    [334:334] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢hasMultiplePages♢
 |    |    |    |    |    |    |    [334:334] <Match> = ♢[♢
 |    |    |    |    |    |    |    [334:334] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    |    [334:334] <Whitespace> = ♢•♢
@@ -9554,6 +9786,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    [339:339] <Text> = ♢=♢
 |    |    |    |    [339:339] <Whitespace> = ♢•♢
 |    |    |    |    [339:339] <ObjCMethodCall>
+|    |    |    |    + <name> = ♢viewSize♢
 |    |    |    |    |    [339:339] <Match> = ♢[♢
 |    |    |    |    |    [339:339] <ObjCSelf> = ♢self♢
 |    |    |    |    |    [339:339] <Whitespace> = ♢•♢
@@ -9569,6 +9802,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [340:340] <Match> = ♢(♢
 |    |    |    |    |    |    [340:340] <ExclamationMark> = ♢!♢
 |    |    |    |    |    |    [340:340] <CFunctionCall>
+|    |    |    |    |    |    + <name> = ♢NSEqualSizes♢
 |    |    |    |    |    |    |    [340:340] <Match> = ♢NSEqualSizes♢
 |    |    |    |    |    |    |    [340:340] <Parenthesis>
 |    |    |    |    |    |    |    |    [340:340] <Match> = ♢(♢
@@ -9583,12 +9817,14 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [340:341] <Newline> = ♢¶♢
 |    |    |    |    |    |    [341:341] <Indenting> = ♢→♢
 |    |    |    |    |    |    [341:341] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢setObject:forKey:♢
 |    |    |    |    |    |    |    [341:341] <Match> = ♢[♢
 |    |    |    |    |    |    |    [341:341] <Match> = ♢dict♢
 |    |    |    |    |    |    |    [341:341] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    [341:341] <Text> = ♢setObject♢
 |    |    |    |    |    |    |    [341:341] <Colon> = ♢:♢
 |    |    |    |    |    |    |    [341:341] <ObjCMethodCall>
+|    |    |    |    |    |    |    + <name> = ♢valueWithSize:♢
 |    |    |    |    |    |    |    |    [341:341] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    [341:341] <Match> = ♢NSValue♢
 |    |    |    |    |    |    |    |    [341:341] <Whitespace> = ♢•♢
@@ -9620,6 +9856,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    [345:345] <Text> = ♢=♢
 |    |    |    |    [345:345] <Whitespace> = ♢•♢
 |    |    |    |    [345:345] <ObjCMethodCall>
+|    |    |    |    + <name> = ♢sharedWorkspace♢
 |    |    |    |    |    [345:345] <Match> = ♢[♢
 |    |    |    |    |    [345:345] <Match> = ♢NSWorkspace♢
 |    |    |    |    |    [345:345] <Whitespace> = ♢•♢
@@ -9634,6 +9871,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    [346:346] <Parenthesis>
 |    |    |    |    |    |    [346:346] <Match> = ♢(♢
 |    |    |    |    |    |    [346:346] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢type:conformsToType:♢
 |    |    |    |    |    |    |    [346:346] <Match> = ♢[♢
 |    |    |    |    |    |    |    [346:346] <Match> = ♢workspace♢
 |    |    |    |    |    |    |    [346:346] <Whitespace> = ♢•♢
@@ -9667,6 +9905,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    [347:347] <Parenthesis>
 |    |    |    |    |    |    [347:347] <Match> = ♢(♢
 |    |    |    |    |    |    [347:347] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢type:conformsToType:♢
 |    |    |    |    |    |    |    [347:347] <Match> = ♢[♢
 |    |    |    |    |    |    |    [347:347] <Match> = ♢workspace♢
 |    |    |    |    |    |    |    [347:347] <Whitespace> = ♢•♢
@@ -9700,6 +9939,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    [348:348] <Parenthesis>
 |    |    |    |    |    |    [348:348] <Match> = ♢(♢
 |    |    |    |    |    |    [348:348] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢type:conformsToType:♢
 |    |    |    |    |    |    |    [348:348] <Match> = ♢[♢
 |    |    |    |    |    |    |    [348:348] <Match> = ♢workspace♢
 |    |    |    |    |    |    |    [348:348] <Whitespace> = ♢•♢
@@ -9733,6 +9973,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    [349:349] <Parenthesis>
 |    |    |    |    |    |    [349:349] <Match> = ♢(♢
 |    |    |    |    |    |    [349:349] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢type:conformsToType:♢
 |    |    |    |    |    |    |    [349:349] <Match> = ♢[♢
 |    |    |    |    |    |    |    [349:349] <Match> = ♢workspace♢
 |    |    |    |    |    |    |    [349:349] <Whitespace> = ♢•♢
@@ -9760,6 +10001,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    [350:350] <Parenthesis>
 |    |    |    |    |    |    [350:350] <Match> = ♢(♢
 |    |    |    |    |    |    [350:350] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢type:conformsToType:♢
 |    |    |    |    |    |    |    [350:350] <Match> = ♢[♢
 |    |    |    |    |    |    |    [350:350] <Match> = ♢workspace♢
 |    |    |    |    |    |    |    [350:350] <Whitespace> = ♢•♢
@@ -9787,6 +10029,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    [351:351] <Parenthesis>
 |    |    |    |    |    |    [351:351] <Match> = ♢(♢
 |    |    |    |    |    |    [351:351] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢type:conformsToType:♢
 |    |    |    |    |    |    |    [351:351] <Match> = ♢[♢
 |    |    |    |    |    |    |    [351:351] <Match> = ♢workspace♢
 |    |    |    |    |    |    |    [351:351] <Whitespace> = ♢•♢
@@ -9814,6 +10057,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    [352:352] <Parenthesis>
 |    |    |    |    |    |    [352:352] <Match> = ♢(♢
 |    |    |    |    |    |    [352:352] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢type:conformsToType:♢
 |    |    |    |    |    |    |    [352:352] <Match> = ♢[♢
 |    |    |    |    |    |    |    [352:352] <Match> = ♢workspace♢
 |    |    |    |    |    |    |    [352:352] <Whitespace> = ♢•♢
@@ -9841,6 +10085,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    [353:353] <Parenthesis>
 |    |    |    |    |    |    [353:353] <Match> = ♢(♢
 |    |    |    |    |    |    [353:353] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢type:conformsToType:♢
 |    |    |    |    |    |    |    [353:353] <Match> = ♢[♢
 |    |    |    |    |    |    |    [353:353] <Match> = ♢workspace♢
 |    |    |    |    |    |    |    [353:353] <Whitespace> = ♢•♢
@@ -9868,6 +10113,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    [354:354] <Parenthesis>
 |    |    |    |    |    |    [354:354] <Match> = ♢(♢
 |    |    |    |    |    |    [354:354] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢type:conformsToType:♢
 |    |    |    |    |    |    |    [354:354] <Match> = ♢[♢
 |    |    |    |    |    |    |    [354:354] <Match> = ♢workspace♢
 |    |    |    |    |    |    |    [354:354] <Whitespace> = ♢•♢
@@ -9901,6 +10147,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    [355:355] <Parenthesis>
 |    |    |    |    |    |    [355:355] <Match> = ♢(♢
 |    |    |    |    |    |    [355:355] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢type:conformsToType:♢
 |    |    |    |    |    |    |    [355:355] <Match> = ♢[♢
 |    |    |    |    |    |    |    [355:355] <Match> = ♢workspace♢
 |    |    |    |    |    |    |    [355:355] <Whitespace> = ♢•♢
@@ -9932,6 +10179,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    [356:356] <Match> = ♢else♢
 |    |    |    |    |    [356:356] <Whitespace> = ♢•♢
 |    |    |    |    |    [356:356] <ObjCMethodCall>
+|    |    |    |    |    + <name> = ♢raise:format:♢
 |    |    |    |    |    |    [356:356] <Match> = ♢[♢
 |    |    |    |    |    |    [356:356] <Match> = ♢NSException♢
 |    |    |    |    |    |    [356:356] <Whitespace> = ♢•♢
@@ -9961,6 +10209,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [358:358] <Match> = ♢)♢
 |    |    |    |    |    [358:358] <Whitespace> = ♢•♢
 |    |    |    |    |    [358:358] <ObjCMethodCall>
+|    |    |    |    |    + <name> = ♢setObject:forKey:♢
 |    |    |    |    |    |    [358:358] <Match> = ♢[♢
 |    |    |    |    |    |    [358:358] <Match> = ♢dict♢
 |    |    |    |    |    |    [358:358] <Whitespace> = ♢•♢
@@ -9981,6 +10230,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    [359:359] <Parenthesis>
 |    |    |    |    |    |    [359:359] <Match> = ♢(♢
 |    |    |    |    |    |    [359:359] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢hasMultiplePages♢
 |    |    |    |    |    |    |    [359:359] <Match> = ♢[♢
 |    |    |    |    |    |    |    [359:359] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    |    [359:359] <Whitespace> = ♢•♢
@@ -9993,6 +10243,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [359:359] <Parenthesis>
 |    |    |    |    |    |    |    [359:359] <Match> = ♢(♢
 |    |    |    |    |    |    |    [359:359] <ObjCMethodCall>
+|    |    |    |    |    |    |    + <name> = ♢scaleFactor♢
 |    |    |    |    |    |    |    |    [359:359] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    [359:359] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    |    |    [359:359] <Whitespace> = ♢•♢
@@ -10007,18 +10258,21 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [359:359] <Match> = ♢)♢
 |    |    |    |    |    [359:359] <Whitespace> = ♢•♢
 |    |    |    |    |    [359:359] <ObjCMethodCall>
+|    |    |    |    |    + <name> = ♢setObject:forKey:♢
 |    |    |    |    |    |    [359:359] <Match> = ♢[♢
 |    |    |    |    |    |    [359:359] <Match> = ♢dict♢
 |    |    |    |    |    |    [359:359] <Whitespace> = ♢•♢
 |    |    |    |    |    |    [359:359] <Text> = ♢setObject♢
 |    |    |    |    |    |    [359:359] <Colon> = ♢:♢
 |    |    |    |    |    |    [359:359] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢numberWithDouble:♢
 |    |    |    |    |    |    |    [359:359] <Match> = ♢[♢
 |    |    |    |    |    |    |    [359:359] <Match> = ♢NSNumber♢
 |    |    |    |    |    |    |    [359:359] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    [359:359] <Text> = ♢numberWithDouble♢
 |    |    |    |    |    |    |    [359:359] <Colon> = ♢:♢
 |    |    |    |    |    |    |    [359:359] <ObjCMethodCall>
+|    |    |    |    |    |    |    + <name> = ♢scaleFactor♢
 |    |    |    |    |    |    |    |    [359:359] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    [359:359] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    |    |    [359:359] <Whitespace> = ♢•♢
@@ -10047,6 +10301,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [360:360] <Text> = ♢=♢
 |    |    |    |    |    |    [360:360] <Whitespace> = ♢•♢
 |    |    |    |    |    |    [360:360] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢backgroundColor♢
 |    |    |    |    |    |    |    [360:360] <Match> = ♢[♢
 |    |    |    |    |    |    |    [360:360] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    |    [360:360] <Whitespace> = ♢•♢
@@ -10055,6 +10310,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [360:360] <Match> = ♢)♢
 |    |    |    |    |    [360:360] <Whitespace> = ♢•♢
 |    |    |    |    |    [360:360] <ObjCMethodCall>
+|    |    |    |    |    + <name> = ♢setObject:forKey:♢
 |    |    |    |    |    |    [360:360] <Match> = ♢[♢
 |    |    |    |    |    |    [360:360] <Match> = ♢dict♢
 |    |    |    |    |    |    [360:360] <Whitespace> = ♢•♢
@@ -10094,6 +10350,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [363:363] <Text> = ♢=♢
 |    |    |    |    |    |    [363:363] <Whitespace> = ♢•♢
 |    |    |    |    |    |    [363:363] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢encodingForSaving♢
 |    |    |    |    |    |    |    [363:363] <Match> = ♢[♢
 |    |    |    |    |    |    |    [363:363] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    |    [363:363] <Whitespace> = ♢•♢
@@ -10127,6 +10384,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    [367:367] <Text> = ♢=♢
 |    |    |    |    |    |    |    |    [367:367] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    |    [367:367] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    + <name> = ♢encoding♢
 |    |    |    |    |    |    |    |    |    [367:367] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    [367:367] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    |    |    |    [367:367] <Whitespace> = ♢•♢
@@ -10152,6 +10410,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    |    [368:368] <Text> = ♢=♢
 |    |    |    |    |    |    |    |    |    [368:368] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    |    |    [368:368] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    |    + <name> = ♢suggestedDocumentEncoding♢
 |    |    |    |    |    |    |    |    |    |    [368:368] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    |    [368:368] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    |    |    |    |    [368:368] <Whitespace> = ♢•♢
@@ -10164,12 +10423,14 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [369:370] <Newline> = ♢¶♢
 |    |    |    |    |    |    [370:370] <Indenting> = ♢→♢
 |    |    |    |    |    |    [370:370] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢setObject:forKey:♢
 |    |    |    |    |    |    |    [370:370] <Match> = ♢[♢
 |    |    |    |    |    |    |    [370:370] <Match> = ♢dict♢
 |    |    |    |    |    |    |    [370:370] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    [370:370] <Text> = ♢setObject♢
 |    |    |    |    |    |    |    [370:370] <Colon> = ♢:♢
 |    |    |    |    |    |    |    [370:370] <ObjCMethodCall>
+|    |    |    |    |    |    |    + <name> = ♢numberWithUnsignedInteger:♢
 |    |    |    |    |    |    |    |    [370:370] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    [370:370] <Match> = ♢NSNumber♢
 |    |    |    |    |    |    |    |    [370:370] <Whitespace> = ♢•♢
@@ -10219,6 +10480,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [372:372] <Text> = ♢=♢
 |    |    |    |    |    |    [372:372] <Whitespace> = ♢•♢
 |    |    |    |    |    |    [372:372] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢standardUserDefaults♢
 |    |    |    |    |    |    |    [372:372] <Match> = ♢[♢
 |    |    |    |    |    |    |    [372:372] <Match> = ♢NSUserDefaults♢
 |    |    |    |    |    |    |    [372:372] <Whitespace> = ♢•♢
@@ -10237,6 +10499,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [374:374] <Text> = ♢=♢
 |    |    |    |    |    |    [374:374] <Whitespace> = ♢•♢
 |    |    |    |    |    |    [374:374] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢array♢
 |    |    |    |    |    |    |    [374:374] <Match> = ♢[♢
 |    |    |    |    |    |    |    [374:374] <Match> = ♢NSMutableArray♢
 |    |    |    |    |    |    |    [374:374] <Whitespace> = ♢•♢
@@ -10252,6 +10515,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    [375:375] <Match> = ♢(♢
 |    |    |    |    |    |    |    |    [375:375] <ExclamationMark> = ♢!♢
 |    |    |    |    |    |    |    |    [375:375] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    + <name> = ♢boolForKey:♢
 |    |    |    |    |    |    |    |    |    [375:375] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    [375:375] <Match> = ♢defaults♢
 |    |    |    |    |    |    |    |    |    [375:375] <Whitespace> = ♢•♢
@@ -10262,6 +10526,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    [375:375] <Match> = ♢)♢
 |    |    |    |    |    |    |    [375:375] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    [375:375] <ObjCMethodCall>
+|    |    |    |    |    |    |    + <name> = ♢addObject:♢
 |    |    |    |    |    |    |    |    [375:375] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    [375:375] <Match> = ♢excludedElements♢
 |    |    |    |    |    |    |    |    [375:375] <Whitespace> = ♢•♢
@@ -10280,6 +10545,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    [376:376] <Match> = ♢(♢
 |    |    |    |    |    |    |    |    [376:376] <ExclamationMark> = ♢!♢
 |    |    |    |    |    |    |    |    [376:376] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    + <name> = ♢boolForKey:♢
 |    |    |    |    |    |    |    |    |    [376:376] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    [376:376] <Match> = ♢defaults♢
 |    |    |    |    |    |    |    |    |    [376:376] <Whitespace> = ♢•♢
@@ -10290,12 +10556,14 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    [376:376] <Match> = ♢)♢
 |    |    |    |    |    |    |    [376:376] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    [376:376] <ObjCMethodCall>
+|    |    |    |    |    |    |    + <name> = ♢addObjectsFromArray:♢
 |    |    |    |    |    |    |    |    [376:376] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    [376:376] <Match> = ♢excludedElements♢
 |    |    |    |    |    |    |    |    [376:376] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    |    [376:376] <Text> = ♢addObjectsFromArray♢
 |    |    |    |    |    |    |    |    [376:376] <Colon> = ♢:♢
 |    |    |    |    |    |    |    |    [376:376] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    + <name> = ♢arrayWithObjects:♢
 |    |    |    |    |    |    |    |    |    [376:376] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    [376:376] <Match> = ♢NSArray♢
 |    |    |    |    |    |    |    |    |    [376:376] <Whitespace> = ♢•♢
@@ -10354,6 +10622,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    [377:377] <Match> = ♢(♢
 |    |    |    |    |    |    |    |    [377:377] <ExclamationMark> = ♢!♢
 |    |    |    |    |    |    |    |    [377:377] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    + <name> = ♢boolForKey:♢
 |    |    |    |    |    |    |    |    |    [377:377] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    [377:377] <Match> = ♢defaults♢
 |    |    |    |    |    |    |    |    |    [377:377] <Whitespace> = ♢•♢
@@ -10368,6 +10637,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    [377:378] <Newline> = ♢¶♢
 |    |    |    |    |    |    |    |    [378:378] <Indenting> = ♢→••••♢
 |    |    |    |    |    |    |    |    [378:378] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    + <name> = ♢addObject:♢
 |    |    |    |    |    |    |    |    |    [378:378] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    [378:378] <Match> = ♢excludedElements♢
 |    |    |    |    |    |    |    |    |    [378:378] <Whitespace> = ♢•♢
@@ -10386,6 +10656,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    |    |    [379:379] <Match> = ♢(♢
 |    |    |    |    |    |    |    |    |    |    [379:379] <ExclamationMark> = ♢!♢
 |    |    |    |    |    |    |    |    |    |    [379:379] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    |    |    + <name> = ♢boolForKey:♢
 |    |    |    |    |    |    |    |    |    |    |    [379:379] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    |    |    [379:379] <Match> = ♢defaults♢
 |    |    |    |    |    |    |    |    |    |    |    [379:379] <Whitespace> = ♢•♢
@@ -10396,6 +10667,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    |    |    [379:379] <Match> = ♢)♢
 |    |    |    |    |    |    |    |    |    [379:379] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    |    |    [379:379] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    |    + <name> = ♢addObject:♢
 |    |    |    |    |    |    |    |    |    |    [379:379] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    |    [379:379] <Match> = ♢excludedElements♢
 |    |    |    |    |    |    |    |    |    |    [379:379] <Whitespace> = ♢•♢
@@ -10417,6 +10689,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    [381:381] <Match> = ♢(♢
 |    |    |    |    |    |    |    |    [381:381] <ExclamationMark> = ♢!♢
 |    |    |    |    |    |    |    |    [381:381] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    + <name> = ♢boolForKey:♢
 |    |    |    |    |    |    |    |    |    [381:381] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    [381:381] <Match> = ♢defaults♢
 |    |    |    |    |    |    |    |    |    [381:381] <Whitespace> = ♢•♢
@@ -10431,6 +10704,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    [381:382] <Newline> = ♢¶♢
 |    |    |    |    |    |    |    |    [382:382] <Indenting> = ♢→••••♢
 |    |    |    |    |    |    |    |    [382:382] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    + <name> = ♢addObject:♢
 |    |    |    |    |    |    |    |    |    [382:382] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    [382:382] <Match> = ♢excludedElements♢
 |    |    |    |    |    |    |    |    |    [382:382] <Whitespace> = ♢•♢
@@ -10443,6 +10717,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    [382:383] <Newline> = ♢¶♢
 |    |    |    |    |    |    |    |    [383:383] <Indenting> = ♢→••••♢
 |    |    |    |    |    |    |    |    [383:383] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    + <name> = ♢addObject:♢
 |    |    |    |    |    |    |    |    |    [383:383] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    [383:383] <Match> = ♢excludedElements♢
 |    |    |    |    |    |    |    |    |    [383:383] <Whitespace> = ♢•♢
@@ -10455,6 +10730,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    [383:384] <Newline> = ♢¶♢
 |    |    |    |    |    |    |    |    [384:384] <Indenting> = ♢→••••♢
 |    |    |    |    |    |    |    |    [384:384] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    + <name> = ♢addObject:♢
 |    |    |    |    |    |    |    |    |    [384:384] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    [384:384] <Match> = ♢excludedElements♢
 |    |    |    |    |    |    |    |    |    [384:384] <Whitespace> = ♢•♢
@@ -10470,6 +10746,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [385:386] <Newline> = ♢¶♢
 |    |    |    |    |    |    [386:386] <Indenting> = ♢→♢
 |    |    |    |    |    |    [386:386] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢setObject:forKey:♢
 |    |    |    |    |    |    |    [386:386] <Match> = ♢[♢
 |    |    |    |    |    |    |    [386:386] <Match> = ♢dict♢
 |    |    |    |    |    |    |    [386:386] <Whitespace> = ♢•♢
@@ -10485,12 +10762,14 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [386:387] <Newline> = ♢¶♢
 |    |    |    |    |    |    [387:387] <Indenting> = ♢→♢
 |    |    |    |    |    |    [387:387] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢setObject:forKey:♢
 |    |    |    |    |    |    |    [387:387] <Match> = ♢[♢
 |    |    |    |    |    |    |    [387:387] <Match> = ♢dict♢
 |    |    |    |    |    |    |    [387:387] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    [387:387] <Text> = ♢setObject♢
 |    |    |    |    |    |    |    [387:387] <Colon> = ♢:♢
 |    |    |    |    |    |    |    [387:387] <ObjCMethodCall>
+|    |    |    |    |    |    |    + <name> = ♢objectForKey:♢
 |    |    |    |    |    |    |    |    [387:387] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    [387:387] <Match> = ♢defaults♢
 |    |    |    |    |    |    |    |    [387:387] <Whitespace> = ♢•♢
@@ -10507,12 +10786,14 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [387:388] <Newline> = ♢¶♢
 |    |    |    |    |    |    [388:388] <Indenting> = ♢→♢
 |    |    |    |    |    |    [388:388] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢setObject:forKey:♢
 |    |    |    |    |    |    |    [388:388] <Match> = ♢[♢
 |    |    |    |    |    |    |    [388:388] <Match> = ♢dict♢
 |    |    |    |    |    |    |    [388:388] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    [388:388] <Text> = ♢setObject♢
 |    |    |    |    |    |    |    [388:388] <Colon> = ♢:♢
 |    |    |    |    |    |    |    [388:388] <ObjCMethodCall>
+|    |    |    |    |    |    |    + <name> = ♢numberWithInteger:♢
 |    |    |    |    |    |    |    |    [388:388] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    [388:388] <Match> = ♢NSNumber♢
 |    |    |    |    |    |    |    |    [388:388] <Whitespace> = ♢•♢
@@ -10549,6 +10830,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [392:392] <Text> = ♢in♢
 |    |    |    |    |    |    [392:392] <Whitespace> = ♢•♢
 |    |    |    |    |    |    [392:392] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢knownDocumentProperties♢
 |    |    |    |    |    |    |    [392:392] <Match> = ♢[♢
 |    |    |    |    |    |    |    [392:392] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    |    [392:392] <Whitespace> = ♢•♢
@@ -10567,6 +10849,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [393:393] <Text> = ♢=♢
 |    |    |    |    |    |    [393:393] <Whitespace> = ♢•♢
 |    |    |    |    |    |    [393:393] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢valueForKey:♢
 |    |    |    |    |    |    |    [393:393] <Match> = ♢[♢
 |    |    |    |    |    |    |    [393:393] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    |    [393:393] <Whitespace> = ♢•♢
@@ -10589,6 +10872,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    [394:394] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    |    [394:394] <ExclamationMark> = ♢!♢
 |    |    |    |    |    |    |    |    [394:394] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    + <name> = ♢isEqual:♢
 |    |    |    |    |    |    |    |    |    [394:394] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    [394:394] <Match> = ♢value♢
 |    |    |    |    |    |    |    |    |    [394:394] <Whitespace> = ♢•♢
@@ -10603,12 +10887,14 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    [394:394] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    |    [394:394] <ExclamationMark> = ♢!♢
 |    |    |    |    |    |    |    |    [394:394] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    + <name> = ♢isEqual:♢
 |    |    |    |    |    |    |    |    |    [394:394] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    [394:394] <Match> = ♢value♢
 |    |    |    |    |    |    |    |    |    [394:394] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    |    |    [394:394] <Text> = ♢isEqual♢
 |    |    |    |    |    |    |    |    |    [394:394] <Colon> = ♢:♢
 |    |    |    |    |    |    |    |    |    [394:394] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    |    + <name> = ♢array♢
 |    |    |    |    |    |    |    |    |    |    [394:394] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    |    [394:394] <Match> = ♢NSArray♢
 |    |    |    |    |    |    |    |    |    |    [394:394] <Whitespace> = ♢•♢
@@ -10618,6 +10904,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    [394:394] <Match> = ♢)♢
 |    |    |    |    |    |    |    [394:394] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    [394:394] <ObjCMethodCall>
+|    |    |    |    |    |    |    + <name> = ♢setObject:forKey:♢
 |    |    |    |    |    |    |    |    [394:394] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    [394:394] <Match> = ♢dict♢
 |    |    |    |    |    |    |    |    [394:394] <Whitespace> = ♢•♢
@@ -10628,8 +10915,10 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    [394:394] <Text> = ♢forKey♢
 |    |    |    |    |    |    |    |    [394:394] <Colon> = ♢:♢
 |    |    |    |    |    |    |    |    [394:394] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    + <name> = ♢objectForKey:♢
 |    |    |    |    |    |    |    |    |    [394:394] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    [394:394] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    |    + <name> = ♢documentPropertyToAttributeNameMappings♢
 |    |    |    |    |    |    |    |    |    |    [394:394] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    |    [394:394] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    |    |    |    |    [394:394] <Whitespace> = ♢•♢
@@ -10686,6 +10975,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    [398:398] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    [398:398] <ExclamationMark> = ♢!♢
 |    |    |    |    |    |    |    [398:398] <ObjCMethodCall>
+|    |    |    |    |    |    |    + <name> = ♢isOpenedIgnoringRichText♢
 |    |    |    |    |    |    |    |    [398:398] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    [398:398] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    |    |    [398:398] <Whitespace> = ♢•♢
@@ -10705,6 +10995,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [399:399] <Text> = ♢=♢
 |    |    |    |    |    |    [399:399] <Whitespace> = ♢•♢
 |    |    |    |    |    |    [399:399] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢fileWrapperFromRange:documentAttributes:error:♢
 |    |    |    |    |    |    |    [399:399] <Match> = ♢[♢
 |    |    |    |    |    |    |    [399:399] <Match> = ♢text♢
 |    |    |    |    |    |    |    [399:399] <Whitespace> = ♢•♢
@@ -10742,6 +11033,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [401:401] <Text> = ♢=♢
 |    |    |    |    |    |    [401:401] <Whitespace> = ♢•♢
 |    |    |    |    |    |    [401:401] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢dataFromRange:documentAttributes:error:♢
 |    |    |    |    |    |    |    [401:401] <Match> = ♢[♢
 |    |    |    |    |    |    |    [401:401] <Match> = ♢text♢
 |    |    |    |    |    |    |    [401:401] <Whitespace> = ♢•♢
@@ -10779,10 +11071,13 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    [403:403] <Text> = ♢=♢
 |    |    |    |    |    |    |    |    [403:403] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    |    [403:403] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    + <name> = ♢autorelease♢
 |    |    |    |    |    |    |    |    |    [403:403] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    [403:403] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    |    + <name> = ♢initRegularFileWithContents:♢
 |    |    |    |    |    |    |    |    |    |    [403:403] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    |    [403:403] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    |    |    + <name> = ♢alloc♢
 |    |    |    |    |    |    |    |    |    |    |    [403:403] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    |    |    [403:403] <Match> = ♢NSFileWrapper♢
 |    |    |    |    |    |    |    |    |    |    |    [403:403] <Whitespace> = ♢•♢
@@ -10819,6 +11114,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    |    [404:404] <Text> = ♢=♢
 |    |    |    |    |    |    |    |    |    [404:404] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    |    |    [404:404] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    |    + <name> = ♢errorWithDomain:code:userInfo:♢
 |    |    |    |    |    |    |    |    |    |    [404:404] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    |    [404:404] <Match> = ♢NSError♢
 |    |    |    |    |    |    |    |    |    |    [404:404] <Whitespace> = ♢•♢
@@ -10860,6 +11156,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    + <cleaned> = ♢•Clear•the•delegates•of•the•text•views•and•window,•then•release•all•resources•and•go•away...¶♢
 |    |    [412:413] <Newline> = ♢¶♢
 |    |    [413:429] <ObjCMethodImplementation>
+|    |    + <name> = ♢dealloc♢
 |    |    |    [413:413] <Match> = ♢-♢
 |    |    |    [413:413] <Whitespace> = ♢•♢
 |    |    |    [413:413] <Parenthesis>
@@ -10873,6 +11170,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    [413:414] <Newline> = ♢¶♢
 |    |    |    |    [414:414] <Indenting> = ♢••••♢
 |    |    |    |    [414:414] <ObjCMethodCall>
+|    |    |    |    + <name> = ♢release♢
 |    |    |    |    |    [414:414] <Match> = ♢[♢
 |    |    |    |    |    [414:414] <Match> = ♢textStorage♢
 |    |    |    |    |    [414:414] <Whitespace> = ♢•♢
@@ -10882,6 +11180,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    [414:415] <Newline> = ♢¶♢
 |    |    |    |    [415:415] <Indenting> = ♢••••♢
 |    |    |    |    [415:415] <ObjCMethodCall>
+|    |    |    |    + <name> = ♢release♢
 |    |    |    |    |    [415:415] <Match> = ♢[♢
 |    |    |    |    |    [415:415] <Match> = ♢backgroundColor♢
 |    |    |    |    |    [415:415] <Whitespace> = ♢•♢
@@ -10893,6 +11192,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    [416:417] <Newline> = ♢¶♢
 |    |    |    |    [417:417] <Indenting> = ♢••••♢
 |    |    |    |    [417:417] <ObjCMethodCall>
+|    |    |    |    + <name> = ♢release♢
 |    |    |    |    |    [417:417] <Match> = ♢[♢
 |    |    |    |    |    [417:417] <Match> = ♢author♢
 |    |    |    |    |    [417:417] <Whitespace> = ♢•♢
@@ -10902,6 +11202,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    [417:418] <Newline> = ♢¶♢
 |    |    |    |    [418:418] <Indenting> = ♢••••♢
 |    |    |    |    [418:418] <ObjCMethodCall>
+|    |    |    |    + <name> = ♢release♢
 |    |    |    |    |    [418:418] <Match> = ♢[♢
 |    |    |    |    |    [418:418] <Match> = ♢comment♢
 |    |    |    |    |    [418:418] <Whitespace> = ♢•♢
@@ -10911,6 +11212,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    [418:419] <Newline> = ♢¶♢
 |    |    |    |    [419:419] <Indenting> = ♢••••♢
 |    |    |    |    [419:419] <ObjCMethodCall>
+|    |    |    |    + <name> = ♢release♢
 |    |    |    |    |    [419:419] <Match> = ♢[♢
 |    |    |    |    |    [419:419] <Match> = ♢subject♢
 |    |    |    |    |    [419:419] <Whitespace> = ♢•♢
@@ -10920,6 +11222,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    [419:420] <Newline> = ♢¶♢
 |    |    |    |    [420:420] <Indenting> = ♢••••♢
 |    |    |    |    [420:420] <ObjCMethodCall>
+|    |    |    |    + <name> = ♢release♢
 |    |    |    |    |    [420:420] <Match> = ♢[♢
 |    |    |    |    |    [420:420] <Match> = ♢title♢
 |    |    |    |    |    [420:420] <Whitespace> = ♢•♢
@@ -10929,6 +11232,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    [420:421] <Newline> = ♢¶♢
 |    |    |    |    [421:421] <Indenting> = ♢••••♢
 |    |    |    |    [421:421] <ObjCMethodCall>
+|    |    |    |    + <name> = ♢release♢
 |    |    |    |    |    [421:421] <Match> = ♢[♢
 |    |    |    |    |    [421:421] <Match> = ♢keywords♢
 |    |    |    |    |    [421:421] <Whitespace> = ♢•♢
@@ -10938,6 +11242,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    [421:422] <Newline> = ♢¶♢
 |    |    |    |    [422:422] <Indenting> = ♢••••♢
 |    |    |    |    [422:422] <ObjCMethodCall>
+|    |    |    |    + <name> = ♢release♢
 |    |    |    |    |    [422:422] <Match> = ♢[♢
 |    |    |    |    |    [422:422] <Match> = ♢copyright♢
 |    |    |    |    |    [422:422] <Whitespace> = ♢•♢
@@ -10949,6 +11254,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    [423:424] <Newline> = ♢¶♢
 |    |    |    |    [424:424] <Indenting> = ♢••••♢
 |    |    |    |    [424:424] <ObjCMethodCall>
+|    |    |    |    + <name> = ♢release♢
 |    |    |    |    |    [424:424] <Match> = ♢[♢
 |    |    |    |    |    [424:424] <Match> = ♢defaultDestination♢
 |    |    |    |    |    [424:424] <Whitespace> = ♢•♢
@@ -10967,10 +11273,12 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [426:426] <Match> = ♢)♢
 |    |    |    |    |    [426:426] <Whitespace> = ♢•♢
 |    |    |    |    |    [426:426] <CFunctionCall>
+|    |    |    |    |    + <name> = ♢NSRecycleZone♢
 |    |    |    |    |    |    [426:426] <Match> = ♢NSRecycleZone♢
 |    |    |    |    |    |    [426:426] <Parenthesis>
 |    |    |    |    |    |    |    [426:426] <Match> = ♢(♢
 |    |    |    |    |    |    |    [426:426] <ObjCMethodCall>
+|    |    |    |    |    |    |    + <name> = ♢zone♢
 |    |    |    |    |    |    |    |    [426:426] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    [426:426] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    |    |    [426:426] <Whitespace> = ♢•♢
@@ -10982,6 +11290,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    [427:428] <Newline> = ♢¶♢
 |    |    |    |    [428:428] <Indenting> = ♢••••♢
 |    |    |    |    [428:428] <ObjCMethodCall>
+|    |    |    |    + <name> = ♢dealloc♢
 |    |    |    |    |    [428:428] <Match> = ♢[♢
 |    |    |    |    |    [428:428] <ObjCSuper> = ♢super♢
 |    |    |    |    |    [428:428] <Whitespace> = ♢•♢
@@ -10993,6 +11302,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [429:430] <Newline> = ♢¶♢
 |    |    [430:431] <Newline> = ♢¶♢
 |    |    [431:433] <ObjCMethodImplementation>
+|    |    + <name> = ♢scaleFactor♢
 |    |    |    [431:431] <Match> = ♢-♢
 |    |    |    [431:431] <Whitespace> = ♢•♢
 |    |    |    [431:431] <Parenthesis>
@@ -11015,6 +11325,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [433:434] <Newline> = ♢¶♢
 |    |    [434:435] <Newline> = ♢¶♢
 |    |    [435:437] <ObjCMethodImplementation>
+|    |    + <name> = ♢setScaleFactor:♢
 |    |    |    [435:435] <Match> = ♢-♢
 |    |    |    [435:435] <Whitespace> = ♢•♢
 |    |    |    [435:435] <Parenthesis>
@@ -11044,6 +11355,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [437:438] <Newline> = ♢¶♢
 |    |    [438:439] <Newline> = ♢¶♢
 |    |    [439:441] <ObjCMethodImplementation>
+|    |    + <name> = ♢viewSize♢
 |    |    |    [439:439] <Match> = ♢-♢
 |    |    |    [439:439] <Whitespace> = ♢•♢
 |    |    |    [439:439] <Parenthesis>
@@ -11066,6 +11378,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [441:442] <Newline> = ♢¶♢
 |    |    [442:443] <Newline> = ♢¶♢
 |    |    [443:445] <ObjCMethodImplementation>
+|    |    + <name> = ♢setViewSize:♢
 |    |    |    [443:443] <Match> = ♢-♢
 |    |    |    [443:443] <Whitespace> = ♢•♢
 |    |    |    [443:443] <Parenthesis>
@@ -11095,6 +11408,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [445:446] <Newline> = ♢¶♢
 |    |    [446:447] <Newline> = ♢¶♢
 |    |    [447:449] <ObjCMethodImplementation>
+|    |    + <name> = ♢setReadOnly:♢
 |    |    |    [447:447] <Match> = ♢-♢
 |    |    |    [447:447] <Whitespace> = ♢•♢
 |    |    |    [447:447] <Parenthesis>
@@ -11124,6 +11438,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [449:450] <Newline> = ♢¶♢
 |    |    [450:451] <Newline> = ♢¶♢
 |    |    [451:453] <ObjCMethodImplementation>
+|    |    + <name> = ♢isReadOnly♢
 |    |    |    [451:451] <Match> = ♢-♢
 |    |    |    [451:451] <Whitespace> = ♢•♢
 |    |    |    [451:451] <Parenthesis>
@@ -11146,6 +11461,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [453:454] <Newline> = ♢¶♢
 |    |    [454:455] <Newline> = ♢¶♢
 |    |    [455:459] <ObjCMethodImplementation>
+|    |    + <name> = ♢setBackgroundColor:♢
 |    |    |    [455:455] <Match> = ♢-♢
 |    |    |    [455:455] <Whitespace> = ♢•♢
 |    |    |    [455:455] <Parenthesis>
@@ -11181,6 +11497,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    [457:457] <Text> = ♢=♢
 |    |    |    |    [457:457] <Whitespace> = ♢•♢
 |    |    |    |    [457:457] <ObjCMethodCall>
+|    |    |    |    + <name> = ♢copy♢
 |    |    |    |    |    [457:457] <Match> = ♢[♢
 |    |    |    |    |    [457:457] <Match> = ♢color♢
 |    |    |    |    |    [457:457] <Whitespace> = ♢•♢
@@ -11190,6 +11507,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    [457:458] <Newline> = ♢¶♢
 |    |    |    |    [458:458] <Indenting> = ♢••••♢
 |    |    |    |    [458:458] <ObjCMethodCall>
+|    |    |    |    + <name> = ♢release♢
 |    |    |    |    |    [458:458] <Match> = ♢[♢
 |    |    |    |    |    [458:458] <Match> = ♢oldCol♢
 |    |    |    |    |    [458:458] <Whitespace> = ♢•♢
@@ -11201,6 +11519,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [459:460] <Newline> = ♢¶♢
 |    |    [460:461] <Newline> = ♢¶♢
 |    |    [461:463] <ObjCMethodImplementation>
+|    |    + <name> = ♢backgroundColor♢
 |    |    |    [461:461] <Match> = ♢-♢
 |    |    |    [461:461] <Whitespace> = ♢•♢
 |    |    |    [461:461] <Parenthesis>
@@ -11225,6 +11544,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [463:464] <Newline> = ♢¶♢
 |    |    [464:465] <Newline> = ♢¶♢
 |    |    [465:467] <ObjCMethodImplementation>
+|    |    + <name> = ♢textStorage♢
 |    |    |    [465:465] <Match> = ♢-♢
 |    |    |    [465:465] <Whitespace> = ♢•♢
 |    |    |    [465:465] <Parenthesis>
@@ -11249,6 +11569,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [467:468] <Newline> = ♢¶♢
 |    |    [468:469] <Newline> = ♢¶♢
 |    |    [469:471] <ObjCMethodImplementation>
+|    |    + <name> = ♢paperSize♢
 |    |    |    [469:469] <Match> = ♢-♢
 |    |    |    [469:469] <Whitespace> = ♢•♢
 |    |    |    [469:469] <Parenthesis>
@@ -11265,8 +11586,10 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    [470:470] <Match> = ♢return♢
 |    |    |    |    |    [470:470] <Whitespace> = ♢•♢
 |    |    |    |    |    [470:470] <ObjCMethodCall>
+|    |    |    |    |    + <name> = ♢paperSize♢
 |    |    |    |    |    |    [470:470] <Match> = ♢[♢
 |    |    |    |    |    |    [470:470] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢printInfo♢
 |    |    |    |    |    |    |    [470:470] <Match> = ♢[♢
 |    |    |    |    |    |    |    [470:470] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    |    [470:470] <Whitespace> = ♢•♢
@@ -11281,6 +11604,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [471:472] <Newline> = ♢¶♢
 |    |    [472:473] <Newline> = ♢¶♢
 |    |    [473:481] <ObjCMethodImplementation>
+|    |    + <name> = ♢setPaperSize:♢
 |    |    |    [473:473] <Match> = ♢-♢
 |    |    |    [473:473] <Whitespace> = ♢•♢
 |    |    |    [473:473] <Parenthesis>
@@ -11307,6 +11631,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    [474:474] <Text> = ♢=♢
 |    |    |    |    [474:474] <Whitespace> = ♢•♢
 |    |    |    |    [474:474] <ObjCMethodCall>
+|    |    |    |    + <name> = ♢printInfo♢
 |    |    |    |    |    [474:474] <Match> = ♢[♢
 |    |    |    |    |    [474:474] <ObjCSelf> = ♢self♢
 |    |    |    |    |    [474:474] <Whitespace> = ♢•♢
@@ -11322,12 +11647,14 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [475:475] <Match> = ♢(♢
 |    |    |    |    |    |    [475:475] <ExclamationMark> = ♢!♢
 |    |    |    |    |    |    [475:475] <CFunctionCall>
+|    |    |    |    |    |    + <name> = ♢NSEqualSizes♢
 |    |    |    |    |    |    |    [475:475] <Match> = ♢NSEqualSizes♢
 |    |    |    |    |    |    |    [475:475] <Parenthesis>
 |    |    |    |    |    |    |    |    [475:475] <Match> = ♢(♢
 |    |    |    |    |    |    |    |    [475:475] <Text> = ♢size,♢
 |    |    |    |    |    |    |    |    [475:475] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    |    [475:475] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    + <name> = ♢paperSize♢
 |    |    |    |    |    |    |    |    |    [475:475] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    [475:475] <Match> = ♢oldPrintInfo♢
 |    |    |    |    |    |    |    |    |    [475:475] <Whitespace> = ♢•♢
@@ -11348,6 +11675,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [476:476] <Text> = ♢=♢
 |    |    |    |    |    |    [476:476] <Whitespace> = ♢•♢
 |    |    |    |    |    |    [476:476] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢copy♢
 |    |    |    |    |    |    |    [476:476] <Match> = ♢[♢
 |    |    |    |    |    |    |    [476:476] <Match> = ♢oldPrintInfo♢
 |    |    |    |    |    |    |    [476:476] <Whitespace> = ♢•♢
@@ -11357,6 +11685,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [476:477] <Newline> = ♢¶♢
 |    |    |    |    |    |    [477:477] <Indenting> = ♢→♢
 |    |    |    |    |    |    [477:477] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢setPaperSize:♢
 |    |    |    |    |    |    |    [477:477] <Match> = ♢[♢
 |    |    |    |    |    |    |    [477:477] <Match> = ♢newPrintInfo♢
 |    |    |    |    |    |    |    [477:477] <Whitespace> = ♢•♢
@@ -11368,6 +11697,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [477:478] <Newline> = ♢¶♢
 |    |    |    |    |    |    [478:478] <Indenting> = ♢→♢
 |    |    |    |    |    |    [478:478] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢setPrintInfo:♢
 |    |    |    |    |    |    |    [478:478] <Match> = ♢[♢
 |    |    |    |    |    |    |    [478:478] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    |    [478:478] <Whitespace> = ♢•♢
@@ -11379,6 +11709,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [478:479] <Newline> = ♢¶♢
 |    |    |    |    |    |    [479:479] <Indenting> = ♢→♢
 |    |    |    |    |    |    [479:479] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢release♢
 |    |    |    |    |    |    |    [479:479] <Match> = ♢[♢
 |    |    |    |    |    |    |    [479:479] <Match> = ♢newPrintInfo♢
 |    |    |    |    |    |    |    [479:479] <Whitespace> = ♢•♢
@@ -11396,6 +11727,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    + <cleaned> = ♢•Hyphenation•related•methods.¶♢
 |    |    [484:485] <Newline> = ♢¶♢
 |    |    [485:487] <ObjCMethodImplementation>
+|    |    + <name> = ♢setHyphenationFactor:♢
 |    |    |    [485:485] <Match> = ♢-♢
 |    |    |    [485:485] <Whitespace> = ♢•♢
 |    |    |    [485:485] <Parenthesis>
@@ -11425,6 +11757,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [487:488] <Newline> = ♢¶♢
 |    |    [488:489] <Newline> = ♢¶♢
 |    |    [489:491] <ObjCMethodImplementation>
+|    |    + <name> = ♢hyphenationFactor♢
 |    |    |    [489:489] <Match> = ♢-♢
 |    |    |    [489:489] <Whitespace> = ♢•♢
 |    |    |    [489:489] <Parenthesis>
@@ -11450,6 +11783,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    + <cleaned> = ♢•Encoding...¶♢
 |    |    [494:495] <Newline> = ♢¶♢
 |    |    [495:497] <ObjCMethodImplementation>
+|    |    + <name> = ♢encoding♢
 |    |    |    [495:495] <Match> = ♢-♢
 |    |    |    [495:495] <Whitespace> = ♢•♢
 |    |    |    [495:495] <Parenthesis>
@@ -11472,6 +11806,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [497:498] <Newline> = ♢¶♢
 |    |    [498:499] <Newline> = ♢¶♢
 |    |    [499:501] <ObjCMethodImplementation>
+|    |    + <name> = ♢setEncoding:♢
 |    |    |    [499:499] <Match> = ♢-♢
 |    |    |    [499:499] <Whitespace> = ♢•♢
 |    |    |    [499:499] <Parenthesis>
@@ -11504,6 +11839,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    + <cleaned> = ♢•This•is•the•encoding•used•for•saving;•valid•only•during•a•save•operation¶♢
 |    |    [504:505] <Newline> = ♢¶♢
 |    |    [505:507] <ObjCMethodImplementation>
+|    |    + <name> = ♢encodingForSaving♢
 |    |    |    [505:505] <Match> = ♢-♢
 |    |    |    [505:505] <Whitespace> = ♢•♢
 |    |    |    [505:505] <Parenthesis>
@@ -11526,6 +11862,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [507:508] <Newline> = ♢¶♢
 |    |    [508:509] <Newline> = ♢¶♢
 |    |    [509:511] <ObjCMethodImplementation>
+|    |    + <name> = ♢setEncodingForSaving:♢
 |    |    |    [509:509] <Match> = ♢-♢
 |    |    |    [509:509] <Whitespace> = ♢•♢
 |    |    |    [509:509] <Parenthesis>
@@ -11556,6 +11893,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [512:513] <Newline> = ♢¶♢
 |    |    [513:514] <Newline> = ♢¶♢
 |    |    [514:516] <ObjCMethodImplementation>
+|    |    + <name> = ♢isConverted♢
 |    |    |    [514:514] <Match> = ♢-♢
 |    |    |    [514:514] <Whitespace> = ♢•♢
 |    |    |    [514:514] <Parenthesis>
@@ -11578,6 +11916,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [516:517] <Newline> = ♢¶♢
 |    |    [517:518] <Newline> = ♢¶♢
 |    |    [518:520] <ObjCMethodImplementation>
+|    |    + <name> = ♢setConverted:♢
 |    |    |    [518:518] <Match> = ♢-♢
 |    |    |    [518:518] <Whitespace> = ♢•♢
 |    |    |    [518:518] <Parenthesis>
@@ -11607,6 +11946,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [520:521] <Newline> = ♢¶♢
 |    |    [521:522] <Newline> = ♢¶♢
 |    |    [522:524] <ObjCMethodImplementation>
+|    |    + <name> = ♢isLossy♢
 |    |    |    [522:522] <Match> = ♢-♢
 |    |    |    [522:522] <Whitespace> = ♢•♢
 |    |    |    [522:522] <Parenthesis>
@@ -11629,6 +11969,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [524:525] <Newline> = ♢¶♢
 |    |    [525:526] <Newline> = ♢¶♢
 |    |    [526:528] <ObjCMethodImplementation>
+|    |    + <name> = ♢setLossy:♢
 |    |    |    [526:526] <Match> = ♢-♢
 |    |    |    [526:526] <Whitespace> = ♢•♢
 |    |    |    [526:526] <Parenthesis>
@@ -11658,6 +11999,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [528:529] <Newline> = ♢¶♢
 |    |    [529:530] <Newline> = ♢¶♢
 |    |    [530:532] <ObjCMethodImplementation>
+|    |    + <name> = ♢isOpenedIgnoringRichText♢
 |    |    |    [530:530] <Match> = ♢-♢
 |    |    |    [530:530] <Whitespace> = ♢•♢
 |    |    |    [530:530] <Parenthesis>
@@ -11680,6 +12022,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [532:533] <Newline> = ♢¶♢
 |    |    [533:534] <Newline> = ♢¶♢
 |    |    [534:536] <ObjCMethodImplementation>
+|    |    + <name> = ♢setOpenedIgnoringRichText:♢
 |    |    |    [534:534] <Match> = ♢-♢
 |    |    |    [534:534] <Whitespace> = ♢•♢
 |    |    |    [534:534] <Parenthesis>
@@ -11712,6 +12055,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    + <cleaned> = ♢•A•transient•document•is•an•untitled•document•that•was•opened•automatically.•If•a•real•document•is•opened•before•the•transient•document•is•edited,•the•real•document•should•replace•the•transient.•If•a•transient•document•is•edited,•it•ceases•to•be•transient.•¶♢
 |    |    [539:540] <Newline> = ♢¶♢
 |    |    [540:542] <ObjCMethodImplementation>
+|    |    + <name> = ♢isTransient♢
 |    |    |    [540:540] <Match> = ♢-♢
 |    |    |    [540:540] <Whitespace> = ♢•♢
 |    |    |    [540:540] <Parenthesis>
@@ -11734,6 +12078,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [542:543] <Newline> = ♢¶♢
 |    |    [543:544] <Newline> = ♢¶♢
 |    |    [544:546] <ObjCMethodImplementation>
+|    |    + <name> = ♢setTransient:♢
 |    |    |    [544:544] <Match> = ♢-♢
 |    |    |    [544:544] <Whitespace> = ♢•♢
 |    |    |    [544:544] <Parenthesis>
@@ -11766,6 +12111,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    + <cleaned> = ♢•We•can't•replace•transient•document•that•have•sheets•on•them.¶♢
 |    |    [549:550] <Newline> = ♢¶♢
 |    |    [550:554] <ObjCMethodImplementation>
+|    |    + <name> = ♢isTransientAndCanBeReplaced♢
 |    |    |    [550:550] <Match> = ♢-♢
 |    |    |    [550:550] <Whitespace> = ♢•♢
 |    |    |    [550:550] <Parenthesis>
@@ -11785,6 +12131,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [551:551] <Match> = ♢(♢
 |    |    |    |    |    |    [551:551] <ExclamationMark> = ♢!♢
 |    |    |    |    |    |    [551:551] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢isTransient♢
 |    |    |    |    |    |    |    [551:551] <Match> = ♢[♢
 |    |    |    |    |    |    |    [551:551] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    |    [551:551] <Whitespace> = ♢•♢
@@ -11812,6 +12159,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [552:552] <Text> = ♢in♢
 |    |    |    |    |    |    [552:552] <Whitespace> = ♢•♢
 |    |    |    |    |    |    [552:552] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢windowControllers♢
 |    |    |    |    |    |    |    [552:552] <Match> = ♢[♢
 |    |    |    |    |    |    |    [552:552] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    |    [552:552] <Whitespace> = ♢•♢
@@ -11825,8 +12173,10 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [552:552] <Parenthesis>
 |    |    |    |    |    |    |    [552:552] <Match> = ♢(♢
 |    |    |    |    |    |    |    [552:552] <ObjCMethodCall>
+|    |    |    |    |    |    |    + <name> = ♢attachedSheet♢
 |    |    |    |    |    |    |    |    [552:552] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    [552:552] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    + <name> = ♢window♢
 |    |    |    |    |    |    |    |    |    [552:552] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    [552:552] <Match> = ♢controller♢
 |    |    |    |    |    |    |    |    |    [552:552] <Whitespace> = ♢•♢
@@ -11858,6 +12208,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    + <cleaned> = ♢•The•rich•text•status•is•dependent•on•the•document•type,•and•vice•versa.•Making•a•plain•document•rich,•will•-setFileType:•to•RTF.•¶♢
 |    |    [558:559] <Newline> = ♢¶♢
 |    |    [559:568] <ObjCMethodImplementation>
+|    |    + <name> = ♢setRichText:♢
 |    |    |    [559:559] <Match> = ♢-♢
 |    |    |    [559:559] <Whitespace> = ♢•♢
 |    |    |    [559:559] <Parenthesis>
@@ -11887,6 +12238,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [560:560] <Text> = ♢=♢
 |    |    |    |    |    |    [560:560] <Whitespace> = ♢•♢
 |    |    |    |    |    |    [560:560] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢isRichText♢
 |    |    |    |    |    |    |    [560:560] <Match> = ♢[♢
 |    |    |    |    |    |    |    [560:560] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    |    [560:560] <Whitespace> = ♢•♢
@@ -11899,6 +12251,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [560:561] <Newline> = ♢¶♢
 |    |    |    |    |    |    [561:561] <Indenting> = ♢→♢
 |    |    |    |    |    |    [561:561] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢setFileType:♢
 |    |    |    |    |    |    |    [561:561] <Match> = ♢[♢
 |    |    |    |    |    |    |    [561:561] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    |    [561:561] <Whitespace> = ♢•♢
@@ -11940,6 +12293,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    [562:563] <Newline> = ♢¶♢
 |    |    |    |    |    |    |    |    [563:563] <Indenting> = ♢→••••♢
 |    |    |    |    |    |    |    |    [563:563] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    + <name> = ♢setDocumentPropertiesToDefaults♢
 |    |    |    |    |    |    |    |    |    [563:563] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    [563:563] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    |    |    |    [563:563] <Whitespace> = ♢•♢
@@ -11958,6 +12312,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    [564:565] <Newline> = ♢¶♢
 |    |    |    |    |    |    |    |    [565:565] <Indenting> = ♢→••••♢
 |    |    |    |    |    |    |    |    [565:565] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    + <name> = ♢clearDocumentProperties♢
 |    |    |    |    |    |    |    |    |    [565:565] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    [565:565] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    |    |    |    [565:565] <Whitespace> = ♢•♢
@@ -11975,6 +12330,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [568:569] <Newline> = ♢¶♢
 |    |    [569:570] <Newline> = ♢¶♢
 |    |    [570:572] <ObjCMethodImplementation>
+|    |    + <name> = ♢isRichText♢
 |    |    |    [570:570] <Match> = ♢-♢
 |    |    |    [570:570] <Whitespace> = ♢•♢
 |    |    |    [570:570] <Parenthesis>
@@ -11992,8 +12348,10 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    [571:571] <Whitespace> = ♢•♢
 |    |    |    |    |    [571:571] <ExclamationMark> = ♢!♢
 |    |    |    |    |    [571:571] <ObjCMethodCall>
+|    |    |    |    |    + <name> = ♢type:conformsToType:♢
 |    |    |    |    |    |    [571:571] <Match> = ♢[♢
 |    |    |    |    |    |    [571:571] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢sharedWorkspace♢
 |    |    |    |    |    |    |    [571:571] <Match> = ♢[♢
 |    |    |    |    |    |    |    [571:571] <Match> = ♢NSWorkspace♢
 |    |    |    |    |    |    |    [571:571] <Whitespace> = ♢•♢
@@ -12003,6 +12361,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [571:571] <Text> = ♢type♢
 |    |    |    |    |    |    [571:571] <Colon> = ♢:♢
 |    |    |    |    |    |    [571:571] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢fileType♢
 |    |    |    |    |    |    |    [571:571] <Match> = ♢[♢
 |    |    |    |    |    |    |    [571:571] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    |    [571:571] <Whitespace> = ♢•♢
@@ -12033,6 +12392,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    + <cleaned> = ♢•Table•mapping•document•property•keys•"company",•etc,•to•text•system•document•attribute•keys•(NSCompanyDocumentAttribute,•etc)¶♢
 |    |    [578:579] <Newline> = ♢¶♢
 |    |    [579:590] <ObjCMethodImplementation>
+|    |    + <name> = ♢documentPropertyToAttributeNameMappings♢
 |    |    |    [579:579] <Match> = ♢-♢
 |    |    |    [579:579] <Whitespace> = ♢•♢
 |    |    |    [579:579] <Parenthesis>
@@ -12074,8 +12434,10 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    [581:581] <Text> = ♢=♢
 |    |    |    |    |    [581:581] <Whitespace> = ♢•♢
 |    |    |    |    |    [581:588] <ObjCMethodCall>
+|    |    |    |    |    + <name> = ♢initWithObjectsAndKeys:♢
 |    |    |    |    |    |    [581:581] <Match> = ♢[♢
 |    |    |    |    |    |    [581:581] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢alloc♢
 |    |    |    |    |    |    |    [581:581] <Match> = ♢[♢
 |    |    |    |    |    |    |    [581:581] <Match> = ♢NSDictionary♢
 |    |    |    |    |    |    |    [581:581] <Whitespace> = ♢•♢
@@ -12155,6 +12517,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [590:591] <Newline> = ♢¶♢
 |    |    [591:592] <Newline> = ♢¶♢
 |    |    [592:594] <ObjCMethodImplementation>
+|    |    + <name> = ♢knownDocumentProperties♢
 |    |    |    [592:592] <Match> = ♢-♢
 |    |    |    [592:592] <Whitespace> = ♢•♢
 |    |    |    [592:592] <Parenthesis>
@@ -12173,8 +12536,10 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    [593:593] <Match> = ♢return♢
 |    |    |    |    |    [593:593] <Whitespace> = ♢•♢
 |    |    |    |    |    [593:593] <ObjCMethodCall>
+|    |    |    |    |    + <name> = ♢allKeys♢
 |    |    |    |    |    |    [593:593] <Match> = ♢[♢
 |    |    |    |    |    |    [593:593] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢documentPropertyToAttributeNameMappings♢
 |    |    |    |    |    |    |    [593:593] <Match> = ♢[♢
 |    |    |    |    |    |    |    [593:593] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    |    [593:593] <Whitespace> = ♢•♢
@@ -12192,6 +12557,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    + <cleaned> = ♢•If•there•are•document•properties•and•they•are•not•the•same•as•the•defaults•established•in•preferences,•return•YES¶♢
 |    |    [597:598] <Newline> = ♢¶♢
 |    |    [598:604] <ObjCMethodImplementation>
+|    |    + <name> = ♢hasDocumentProperties♢
 |    |    |    [598:598] <Match> = ♢-♢
 |    |    |    [598:598] <Whitespace> = ♢•♢
 |    |    |    [598:598] <Parenthesis>
@@ -12217,6 +12583,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [599:599] <Text> = ♢in♢
 |    |    |    |    |    |    [599:599] <Whitespace> = ♢•♢
 |    |    |    |    |    |    [599:599] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢knownDocumentProperties♢
 |    |    |    |    |    |    |    [599:599] <Match> = ♢[♢
 |    |    |    |    |    |    |    [599:599] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    |    [599:599] <Whitespace> = ♢•♢
@@ -12235,6 +12602,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [600:600] <Text> = ♢=♢
 |    |    |    |    |    |    [600:600] <Whitespace> = ♢•♢
 |    |    |    |    |    |    [600:600] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢valueForKey:♢
 |    |    |    |    |    |    |    [600:600] <Match> = ♢[♢
 |    |    |    |    |    |    |    [600:600] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    |    [600:600] <Whitespace> = ♢•♢
@@ -12257,14 +12625,17 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    [601:601] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    |    [601:601] <ExclamationMark> = ♢!♢
 |    |    |    |    |    |    |    |    [601:601] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    + <name> = ♢isEqual:♢
 |    |    |    |    |    |    |    |    |    [601:601] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    [601:601] <Match> = ♢value♢
 |    |    |    |    |    |    |    |    |    [601:601] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    |    |    [601:601] <Text> = ♢isEqual♢
 |    |    |    |    |    |    |    |    |    [601:601] <Colon> = ♢:♢
 |    |    |    |    |    |    |    |    |    [601:601] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    |    + <name> = ♢objectForKey:♢
 |    |    |    |    |    |    |    |    |    |    [601:601] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    |    [601:601] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    |    |    + <name> = ♢standardUserDefaults♢
 |    |    |    |    |    |    |    |    |    |    |    [601:601] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    |    |    [601:601] <Match> = ♢NSUserDefaults♢
 |    |    |    |    |    |    |    |    |    |    |    [601:601] <Whitespace> = ♢•♢
@@ -12301,6 +12672,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    + <cleaned> = ♢•This•actually•clears•all•properties•(rather•than•setting•them•to•default•values•established•in•preferences)¶♢
 |    |    [607:608] <Newline> = ♢¶♢
 |    |    [608:610] <ObjCMethodImplementation>
+|    |    + <name> = ♢clearDocumentProperties♢
 |    |    |    [608:608] <Match> = ♢-♢
 |    |    |    [608:608] <Whitespace> = ♢•♢
 |    |    |    [608:608] <Parenthesis>
@@ -12326,6 +12698,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [609:609] <Text> = ♢in♢
 |    |    |    |    |    |    [609:609] <Whitespace> = ♢•♢
 |    |    |    |    |    |    [609:609] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢knownDocumentProperties♢
 |    |    |    |    |    |    |    [609:609] <Match> = ♢[♢
 |    |    |    |    |    |    |    [609:609] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    |    [609:609] <Whitespace> = ♢•♢
@@ -12334,6 +12707,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [609:609] <Match> = ♢)♢
 |    |    |    |    |    [609:609] <Whitespace> = ♢•♢
 |    |    |    |    |    [609:609] <ObjCMethodCall>
+|    |    |    |    |    + <name> = ♢setValue:forKey:♢
 |    |    |    |    |    |    [609:609] <Match> = ♢[♢
 |    |    |    |    |    |    [609:609] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    [609:609] <Whitespace> = ♢•♢
@@ -12354,6 +12728,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    + <cleaned> = ♢•This•sets•document•properties•to•values•established•in•defaults¶♢
 |    |    [613:614] <Newline> = ♢¶♢
 |    |    [614:616] <ObjCMethodImplementation>
+|    |    + <name> = ♢setDocumentPropertiesToDefaults♢
 |    |    |    [614:614] <Match> = ♢-♢
 |    |    |    [614:614] <Whitespace> = ♢•♢
 |    |    |    [614:614] <Parenthesis>
@@ -12379,6 +12754,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [615:615] <Text> = ♢in♢
 |    |    |    |    |    |    [615:615] <Whitespace> = ♢•♢
 |    |    |    |    |    |    [615:615] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢knownDocumentProperties♢
 |    |    |    |    |    |    |    [615:615] <Match> = ♢[♢
 |    |    |    |    |    |    |    [615:615] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    |    [615:615] <Whitespace> = ♢•♢
@@ -12387,14 +12763,17 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [615:615] <Match> = ♢)♢
 |    |    |    |    |    [615:615] <Whitespace> = ♢•♢
 |    |    |    |    |    [615:615] <ObjCMethodCall>
+|    |    |    |    |    + <name> = ♢setValue:forKey:♢
 |    |    |    |    |    |    [615:615] <Match> = ♢[♢
 |    |    |    |    |    |    [615:615] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    [615:615] <Whitespace> = ♢•♢
 |    |    |    |    |    |    [615:615] <Text> = ♢setValue♢
 |    |    |    |    |    |    [615:615] <Colon> = ♢:♢
 |    |    |    |    |    |    [615:615] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢objectForKey:♢
 |    |    |    |    |    |    |    [615:615] <Match> = ♢[♢
 |    |    |    |    |    |    |    [615:615] <ObjCMethodCall>
+|    |    |    |    |    |    |    + <name> = ♢standardUserDefaults♢
 |    |    |    |    |    |    |    |    [615:615] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    [615:615] <Match> = ♢NSUserDefaults♢
 |    |    |    |    |    |    |    |    [615:615] <Whitespace> = ♢•♢
@@ -12419,6 +12798,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    + <cleaned> = ♢•We•implement•a•setValue:forDocumentProperty:•to•work•around•NSUndoManager•bug•where•prepareWithInvocationTarget:•fails•to•freeze-dry•invocations•with•"known"•methods•such•as•setValue:forKey:.••¶♢
 |    |    [619:620] <Newline> = ♢¶♢
 |    |    [620:627] <ObjCMethodImplementation>
+|    |    + <name> = ♢setValue:forDocumentProperty:♢
 |    |    |    [620:620] <Match> = ♢-♢
 |    |    |    [620:620] <Whitespace> = ♢•♢
 |    |    |    [620:620] <Parenthesis>
@@ -12454,6 +12834,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    [621:621] <Text> = ♢=♢
 |    |    |    |    [621:621] <Whitespace> = ♢•♢
 |    |    |    |    [621:621] <ObjCMethodCall>
+|    |    |    |    + <name> = ♢valueForKey:♢
 |    |    |    |    |    [621:621] <Match> = ♢[♢
 |    |    |    |    |    [621:621] <ObjCSelf> = ♢self♢
 |    |    |    |    |    [621:621] <Whitespace> = ♢•♢
@@ -12465,10 +12846,13 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    [621:622] <Newline> = ♢¶♢
 |    |    |    |    [622:622] <Indenting> = ♢••••♢
 |    |    |    |    [622:622] <ObjCMethodCall>
+|    |    |    |    + <name> = ♢setValue:forDocumentProperty:♢
 |    |    |    |    |    [622:622] <Match> = ♢[♢
 |    |    |    |    |    [622:622] <ObjCMethodCall>
+|    |    |    |    |    + <name> = ♢prepareWithInvocationTarget:♢
 |    |    |    |    |    |    [622:622] <Match> = ♢[♢
 |    |    |    |    |    |    [622:622] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢undoManager♢
 |    |    |    |    |    |    |    [622:622] <Match> = ♢[♢
 |    |    |    |    |    |    |    [622:622] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    |    [622:622] <Whitespace> = ♢•♢
@@ -12492,8 +12876,10 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    [622:623] <Newline> = ♢¶♢
 |    |    |    |    [623:623] <Indenting> = ♢••••♢
 |    |    |    |    [623:623] <ObjCMethodCall>
+|    |    |    |    + <name> = ♢setActionName:♢
 |    |    |    |    |    [623:623] <Match> = ♢[♢
 |    |    |    |    |    [623:623] <ObjCMethodCall>
+|    |    |    |    |    + <name> = ♢undoManager♢
 |    |    |    |    |    |    [623:623] <Match> = ♢[♢
 |    |    |    |    |    |    [623:623] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    [623:623] <Whitespace> = ♢•♢
@@ -12503,6 +12889,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    [623:623] <Text> = ♢setActionName♢
 |    |    |    |    |    [623:623] <Colon> = ♢:♢
 |    |    |    |    |    [623:623] <CFunctionCall>
+|    |    |    |    |    + <name> = ♢NSLocalizedString♢
 |    |    |    |    |    |    [623:623] <Match> = ♢NSLocalizedString♢
 |    |    |    |    |    |    [623:623] <Parenthesis>
 |    |    |    |    |    |    |    [623:623] <Match> = ♢(♢
@@ -12522,6 +12909,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    [625:626] <Newline> = ♢¶♢
 |    |    |    |    [626:626] <Indenting> = ♢••••♢
 |    |    |    |    [626:626] <ObjCMethodCall>
+|    |    |    |    + <name> = ♢setValue:forKey:♢
 |    |    |    |    |    [626:626] <Match> = ♢[♢
 |    |    |    |    |    [626:626] <ObjCSuper> = ♢super♢
 |    |    |    |    |    [626:626] <Whitespace> = ♢•♢
@@ -12539,6 +12927,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [627:628] <Newline> = ♢¶♢
 |    |    [628:629] <Newline> = ♢¶♢
 |    |    [629:635] <ObjCMethodImplementation>
+|    |    + <name> = ♢setValue:forKey:♢
 |    |    |    [629:629] <Match> = ♢-♢
 |    |    |    [629:629] <Whitespace> = ♢•♢
 |    |    |    [629:629] <Parenthesis>
@@ -12573,8 +12962,10 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    [630:630] <Parenthesis>
 |    |    |    |    |    |    [630:630] <Match> = ♢(♢
 |    |    |    |    |    |    [630:630] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢containsObject:♢
 |    |    |    |    |    |    |    [630:630] <Match> = ♢[♢
 |    |    |    |    |    |    |    [630:630] <ObjCMethodCall>
+|    |    |    |    |    |    |    + <name> = ♢knownDocumentProperties♢
 |    |    |    |    |    |    |    |    [630:630] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    [630:630] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    |    |    [630:630] <Whitespace> = ♢•♢
@@ -12593,6 +12984,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [630:631] <Newline> = ♢¶♢
 |    |    |    |    |    |    [631:631] <Indenting> = ♢→♢
 |    |    |    |    |    |    [631:631] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢setValue:forDocumentProperty:♢
 |    |    |    |    |    |    |    [631:631] <Match> = ♢[♢
 |    |    |    |    |    |    |    [631:631] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    |    [631:631] <Whitespace> = ♢•♢
@@ -12619,6 +13011,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [632:633] <Newline> = ♢¶♢
 |    |    |    |    |    |    [633:633] <Indenting> = ♢→♢
 |    |    |    |    |    |    [633:633] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢setValue:forKey:♢
 |    |    |    |    |    |    |    [633:633] <Match> = ♢[♢
 |    |    |    |    |    |    |    [633:633] <ObjCSuper> = ♢super♢
 |    |    |    |    |    |    |    [633:633] <Whitespace> = ♢•♢
@@ -12647,6 +13040,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [647:648] <Newline> = ♢¶♢
 |    |    [648:649] <Newline> = ♢¶♢
 |    |    [649:675] <ObjCMethodImplementation>
+|    |    + <name> = ♢printOperationWithSettings:error:♢
 |    |    |    [649:649] <Match> = ♢-♢
 |    |    |    [649:649] <Whitespace> = ♢•♢
 |    |    |    [649:649] <Parenthesis>
@@ -12688,6 +13082,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    [650:650] <Text> = ♢=♢
 |    |    |    |    [650:650] <Whitespace> = ♢•♢
 |    |    |    |    [650:650] <ObjCMethodCall>
+|    |    |    |    + <name> = ♢printInfo♢
 |    |    |    |    |    [650:650] <Match> = ♢[♢
 |    |    |    |    |    [650:650] <ObjCSelf> = ♢self♢
 |    |    |    |    |    [650:650] <Whitespace> = ♢•♢
@@ -12703,8 +13098,10 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    [651:651] <Text> = ♢=♢
 |    |    |    |    [651:651] <Whitespace> = ♢•♢
 |    |    |    |    [651:651] <ObjCMethodCall>
+|    |    |    |    + <name> = ♢boolForKey:♢
 |    |    |    |    |    [651:651] <Match> = ♢[♢
 |    |    |    |    |    [651:651] <ObjCMethodCall>
+|    |    |    |    |    + <name> = ♢standardUserDefaults♢
 |    |    |    |    |    |    [651:651] <Match> = ♢[♢
 |    |    |    |    |    |    [651:651] <Match> = ♢NSUserDefaults♢
 |    |    |    |    |    |    [651:651] <Whitespace> = ♢•♢
@@ -12724,6 +13121,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    [652:652] <Parenthesis>
 |    |    |    |    |    |    [652:652] <Match> = ♢(♢
 |    |    |    |    |    |    [652:652] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢count♢
 |    |    |    |    |    |    |    [652:652] <Match> = ♢[♢
 |    |    |    |    |    |    |    [652:652] <Match> = ♢printSettings♢
 |    |    |    |    |    |    |    [652:652] <Whitespace> = ♢•♢
@@ -12744,8 +13142,10 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [653:653] <Text> = ♢=♢
 |    |    |    |    |    |    [653:653] <Whitespace> = ♢•♢
 |    |    |    |    |    |    [653:653] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢autorelease♢
 |    |    |    |    |    |    |    [653:653] <Match> = ♢[♢
 |    |    |    |    |    |    |    [653:653] <ObjCMethodCall>
+|    |    |    |    |    |    |    + <name> = ♢copy♢
 |    |    |    |    |    |    |    |    [653:653] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    [653:653] <Match> = ♢tempPrintInfo♢
 |    |    |    |    |    |    |    |    [653:653] <Whitespace> = ♢•♢
@@ -12758,8 +13158,10 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [653:654] <Newline> = ♢¶♢
 |    |    |    |    |    |    [654:654] <Indenting> = ♢→♢
 |    |    |    |    |    |    [654:654] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢addEntriesFromDictionary:♢
 |    |    |    |    |    |    |    [654:654] <Match> = ♢[♢
 |    |    |    |    |    |    |    [654:654] <ObjCMethodCall>
+|    |    |    |    |    |    |    + <name> = ♢dictionary♢
 |    |    |    |    |    |    |    |    [654:654] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    [654:654] <Match> = ♢tempPrintInfo♢
 |    |    |    |    |    |    |    |    [654:654] <Whitespace> = ♢•♢
@@ -12786,8 +13188,10 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    [655:656] <Newline> = ♢¶♢
 |    |    |    |    |    |    |    |    [656:656] <Indenting> = ♢→••••♢
 |    |    |    |    |    |    |    |    [656:656] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    + <name> = ♢setValue:forKey:♢
 |    |    |    |    |    |    |    |    |    [656:656] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    [656:656] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    |    + <name> = ♢dictionary♢
 |    |    |    |    |    |    |    |    |    |    [656:656] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    |    [656:656] <Match> = ♢tempPrintInfo♢
 |    |    |    |    |    |    |    |    |    |    [656:656] <Whitespace> = ♢•♢
@@ -12797,6 +13201,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    |    [656:656] <Text> = ♢setValue♢
 |    |    |    |    |    |    |    |    |    [656:656] <Colon> = ♢:♢
 |    |    |    |    |    |    |    |    |    [656:656] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    |    + <name> = ♢numberWithBool:♢
 |    |    |    |    |    |    |    |    |    |    [656:656] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    |    [656:656] <Match> = ♢NSNumber♢
 |    |    |    |    |    |    |    |    |    |    [656:656] <Whitespace> = ♢•♢
@@ -12824,8 +13229,10 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    [659:659] <Parenthesis>
 |    |    |    |    |    |    [659:659] <Match> = ♢(♢
 |    |    |    |    |    |    [659:659] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢count♢
 |    |    |    |    |    |    |    [659:659] <Match> = ♢[♢
 |    |    |    |    |    |    |    [659:659] <ObjCMethodCall>
+|    |    |    |    |    |    |    + <name> = ♢windowControllers♢
 |    |    |    |    |    |    |    |    [659:659] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    [659:659] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    |    |    [659:659] <Whitespace> = ♢•♢
@@ -12845,6 +13252,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [659:660] <Newline> = ♢¶♢
 |    |    |    |    |    |    [660:660] <Indenting> = ♢→♢
 |    |    |    |    |    |    [660:660] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢makeWindowControllers♢
 |    |    |    |    |    |    |    [660:660] <Match> = ♢[♢
 |    |    |    |    |    |    |    [660:660] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    |    [660:660] <Whitespace> = ♢•♢
@@ -12866,16 +13274,20 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    [663:663] <Text> = ♢=♢
 |    |    |    |    [663:663] <Whitespace> = ♢•♢
 |    |    |    |    [663:663] <ObjCMethodCall>
+|    |    |    |    + <name> = ♢printOperationWithView:printInfo:♢
 |    |    |    |    |    [663:663] <Match> = ♢[♢
 |    |    |    |    |    [663:663] <Match> = ♢NSPrintOperation♢
 |    |    |    |    |    [663:663] <Whitespace> = ♢•♢
 |    |    |    |    |    [663:663] <Text> = ♢printOperationWithView♢
 |    |    |    |    |    [663:663] <Colon> = ♢:♢
 |    |    |    |    |    [663:663] <ObjCMethodCall>
+|    |    |    |    |    + <name> = ♢documentView♢
 |    |    |    |    |    |    [663:663] <Match> = ♢[♢
 |    |    |    |    |    |    [663:663] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢objectAtIndex:♢
 |    |    |    |    |    |    |    [663:663] <Match> = ♢[♢
 |    |    |    |    |    |    |    [663:663] <ObjCMethodCall>
+|    |    |    |    |    |    |    + <name> = ♢windowControllers♢
 |    |    |    |    |    |    |    |    [663:663] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    [663:663] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    |    |    [663:663] <Whitespace> = ♢•♢
@@ -12898,6 +13310,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    [663:664] <Newline> = ♢¶♢
 |    |    |    |    [664:664] <Indenting> = ♢••••♢
 |    |    |    |    [664:664] <ObjCMethodCall>
+|    |    |    |    + <name> = ♢setShowsPrintPanel:♢
 |    |    |    |    |    [664:664] <Match> = ♢[♢
 |    |    |    |    |    [664:664] <Match> = ♢op♢
 |    |    |    |    |    [664:664] <Whitespace> = ♢•♢
@@ -12909,6 +13322,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    [664:665] <Newline> = ♢¶♢
 |    |    |    |    [665:665] <Indenting> = ♢••••♢
 |    |    |    |    [665:665] <ObjCMethodCall>
+|    |    |    |    + <name> = ♢setShowsProgressPanel:♢
 |    |    |    |    |    [665:665] <Match> = ♢[♢
 |    |    |    |    |    [665:665] <Match> = ♢op♢
 |    |    |    |    |    [665:665] <Whitespace> = ♢•♢
@@ -12922,10 +13336,13 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    [666:667] <Newline> = ♢¶♢
 |    |    |    |    [667:667] <Indenting> = ♢••••♢
 |    |    |    |    [667:667] <ObjCMethodCall>
+|    |    |    |    + <name> = ♢doForegroundLayoutToCharacterIndex:♢
 |    |    |    |    |    [667:667] <Match> = ♢[♢
 |    |    |    |    |    [667:667] <ObjCMethodCall>
+|    |    |    |    |    + <name> = ♢objectAtIndex:♢
 |    |    |    |    |    |    [667:667] <Match> = ♢[♢
 |    |    |    |    |    |    [667:667] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢windowControllers♢
 |    |    |    |    |    |    |    [667:667] <Match> = ♢[♢
 |    |    |    |    |    |    |    [667:667] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    |    [667:667] <Whitespace> = ♢•♢
@@ -12956,6 +13373,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    [669:669] <Text> = ♢=♢
 |    |    |    |    [669:669] <Whitespace> = ♢•♢
 |    |    |    |    [669:669] <ObjCMethodCall>
+|    |    |    |    + <name> = ♢printPanel♢
 |    |    |    |    |    [669:669] <Match> = ♢[♢
 |    |    |    |    |    [669:669] <Match> = ♢op♢
 |    |    |    |    |    [669:669] <Whitespace> = ♢•♢
@@ -12965,16 +13383,20 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    [669:670] <Newline> = ♢¶♢
 |    |    |    |    [670:670] <Indenting> = ♢••••♢
 |    |    |    |    [670:670] <ObjCMethodCall>
+|    |    |    |    + <name> = ♢addAccessoryController:♢
 |    |    |    |    |    [670:670] <Match> = ♢[♢
 |    |    |    |    |    [670:670] <Match> = ♢printPanel♢
 |    |    |    |    |    [670:670] <Whitespace> = ♢•♢
 |    |    |    |    |    [670:670] <Text> = ♢addAccessoryController♢
 |    |    |    |    |    [670:670] <Colon> = ♢:♢
 |    |    |    |    |    [670:670] <ObjCMethodCall>
+|    |    |    |    |    + <name> = ♢autorelease♢
 |    |    |    |    |    |    [670:670] <Match> = ♢[♢
 |    |    |    |    |    |    [670:670] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢init♢
 |    |    |    |    |    |    |    [670:670] <Match> = ♢[♢
 |    |    |    |    |    |    |    [670:670] <ObjCMethodCall>
+|    |    |    |    |    |    |    + <name> = ♢alloc♢
 |    |    |    |    |    |    |    |    [670:670] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    [670:670] <Match> = ♢PrintPanelAccessoryController♢
 |    |    |    |    |    |    |    |    [670:670] <Whitespace> = ♢•♢
@@ -13000,6 +13422,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [672:672] <Match> = ♢(♢
 |    |    |    |    |    |    [672:672] <ExclamationMark> = ♢!♢
 |    |    |    |    |    |    [672:672] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢hasMultiplePages♢
 |    |    |    |    |    |    |    [672:672] <Match> = ♢[♢
 |    |    |    |    |    |    |    [672:672] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    |    [672:672] <Whitespace> = ♢•♢
@@ -13008,12 +13431,14 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [672:672] <Match> = ♢)♢
 |    |    |    |    |    [672:672] <Whitespace> = ♢•♢
 |    |    |    |    |    [672:672] <ObjCMethodCall>
+|    |    |    |    |    + <name> = ♢setOptions:♢
 |    |    |    |    |    |    [672:672] <Match> = ♢[♢
 |    |    |    |    |    |    [672:672] <Match> = ♢printPanel♢
 |    |    |    |    |    |    [672:672] <Whitespace> = ♢•♢
 |    |    |    |    |    |    [672:672] <Text> = ♢setOptions♢
 |    |    |    |    |    |    [672:672] <Colon> = ♢:♢
 |    |    |    |    |    |    [672:672] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢options♢
 |    |    |    |    |    |    |    [672:672] <Match> = ♢[♢
 |    |    |    |    |    |    |    [672:672] <Match> = ♢printPanel♢
 |    |    |    |    |    |    |    [672:672] <Whitespace> = ♢•♢
@@ -13043,6 +13468,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [675:676] <Newline> = ♢¶♢
 |    |    [676:677] <Newline> = ♢¶♢
 |    |    [677:690] <ObjCMethodImplementation>
+|    |    + <name> = ♢printInfo♢
 |    |    |    [677:677] <Match> = ♢-♢
 |    |    |    [677:677] <Whitespace> = ♢•♢
 |    |    |    [677:677] <Parenthesis>
@@ -13065,6 +13491,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    [678:678] <Text> = ♢=♢
 |    |    |    |    [678:678] <Whitespace> = ♢•♢
 |    |    |    |    [678:678] <ObjCMethodCall>
+|    |    |    |    + <name> = ♢printInfo♢
 |    |    |    |    |    [678:678] <Match> = ♢[♢
 |    |    |    |    |    [678:678] <ObjCSuper> = ♢super♢
 |    |    |    |    |    [678:678] <Whitespace> = ♢•♢
@@ -13095,6 +13522,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [680:681] <Newline> = ♢¶♢
 |    |    |    |    |    |    [681:681] <Indenting> = ♢→♢
 |    |    |    |    |    |    [681:681] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢setHorizontalPagination:♢
 |    |    |    |    |    |    |    [681:681] <Match> = ♢[♢
 |    |    |    |    |    |    |    [681:681] <Match> = ♢printInfo♢
 |    |    |    |    |    |    |    [681:681] <Whitespace> = ♢•♢
@@ -13106,6 +13534,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [681:682] <Newline> = ♢¶♢
 |    |    |    |    |    |    [682:682] <Indenting> = ♢→♢
 |    |    |    |    |    |    [682:682] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢setHorizontallyCentered:♢
 |    |    |    |    |    |    |    [682:682] <Match> = ♢[♢
 |    |    |    |    |    |    |    [682:682] <Match> = ♢printInfo♢
 |    |    |    |    |    |    |    [682:682] <Whitespace> = ♢•♢
@@ -13117,6 +13546,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [682:683] <Newline> = ♢¶♢
 |    |    |    |    |    |    [683:683] <Indenting> = ♢→♢
 |    |    |    |    |    |    [683:683] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢setVerticallyCentered:♢
 |    |    |    |    |    |    |    [683:683] <Match> = ♢[♢
 |    |    |    |    |    |    |    [683:683] <Match> = ♢printInfo♢
 |    |    |    |    |    |    |    [683:683] <Whitespace> = ♢•♢
@@ -13128,6 +13558,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [683:684] <Newline> = ♢¶♢
 |    |    |    |    |    |    [684:684] <Indenting> = ♢→♢
 |    |    |    |    |    |    [684:684] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢setLeftMargin:♢
 |    |    |    |    |    |    |    [684:684] <Match> = ♢[♢
 |    |    |    |    |    |    |    [684:684] <Match> = ♢printInfo♢
 |    |    |    |    |    |    |    [684:684] <Whitespace> = ♢•♢
@@ -13139,6 +13570,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [684:685] <Newline> = ♢¶♢
 |    |    |    |    |    |    [685:685] <Indenting> = ♢→♢
 |    |    |    |    |    |    [685:685] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢setRightMargin:♢
 |    |    |    |    |    |    |    [685:685] <Match> = ♢[♢
 |    |    |    |    |    |    |    [685:685] <Match> = ♢printInfo♢
 |    |    |    |    |    |    |    [685:685] <Whitespace> = ♢•♢
@@ -13150,6 +13582,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [685:686] <Newline> = ♢¶♢
 |    |    |    |    |    |    [686:686] <Indenting> = ♢→♢
 |    |    |    |    |    |    [686:686] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢setTopMargin:♢
 |    |    |    |    |    |    |    [686:686] <Match> = ♢[♢
 |    |    |    |    |    |    |    [686:686] <Match> = ♢printInfo♢
 |    |    |    |    |    |    |    [686:686] <Whitespace> = ♢•♢
@@ -13161,6 +13594,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [686:687] <Newline> = ♢¶♢
 |    |    |    |    |    |    [687:687] <Indenting> = ♢→♢
 |    |    |    |    |    |    [687:687] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢setBottomMargin:♢
 |    |    |    |    |    |    |    [687:687] <Match> = ♢[♢
 |    |    |    |    |    |    |    [687:687] <Match> = ♢printInfo♢
 |    |    |    |    |    |    |    [687:687] <Whitespace> = ♢•♢
@@ -13187,6 +13621,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    + <cleaned> = ♢•Toggles•read-only•state•of•the•document¶♢
 |    |    [693:694] <Newline> = ♢¶♢
 |    |    [694:700] <ObjCMethodImplementation>
+|    |    + <name> = ♢toggleReadOnly:♢
 |    |    |    [694:694] <Match> = ♢-♢
 |    |    |    [694:694] <Whitespace> = ♢•♢
 |    |    |    [694:694] <Parenthesis>
@@ -13206,8 +13641,10 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    [694:695] <Newline> = ♢¶♢
 |    |    |    |    [695:695] <Indenting> = ♢••••♢
 |    |    |    |    [695:695] <ObjCMethodCall>
+|    |    |    |    + <name> = ♢registerUndoWithTarget:selector:object:♢
 |    |    |    |    |    [695:695] <Match> = ♢[♢
 |    |    |    |    |    [695:695] <ObjCMethodCall>
+|    |    |    |    |    + <name> = ♢undoManager♢
 |    |    |    |    |    |    [695:695] <Match> = ♢[♢
 |    |    |    |    |    |    [695:695] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    [695:695] <Whitespace> = ♢•♢
@@ -13236,8 +13673,10 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    [695:696] <Newline> = ♢¶♢
 |    |    |    |    [696:696] <Indenting> = ♢••••♢
 |    |    |    |    [696:698] <ObjCMethodCall>
+|    |    |    |    + <name> = ♢setActionName::♢
 |    |    |    |    |    [696:696] <Match> = ♢[♢
 |    |    |    |    |    [696:696] <ObjCMethodCall>
+|    |    |    |    |    + <name> = ♢undoManager♢
 |    |    |    |    |    |    [696:696] <Match> = ♢[♢
 |    |    |    |    |    |    [696:696] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    [696:696] <Whitespace> = ♢•♢
@@ -13247,6 +13686,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    [696:696] <Text> = ♢setActionName♢
 |    |    |    |    |    [696:696] <Colon> = ♢:♢
 |    |    |    |    |    [696:696] <ObjCMethodCall>
+|    |    |    |    |    + <name> = ♢isReadOnly♢
 |    |    |    |    |    |    [696:696] <Match> = ♢[♢
 |    |    |    |    |    |    [696:696] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    [696:696] <Whitespace> = ♢•♢
@@ -13257,6 +13697,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    [696:697] <Newline> = ♢¶♢
 |    |    |    |    |    [697:697] <Indenting> = ♢••••••••♢
 |    |    |    |    |    [697:697] <CFunctionCall>
+|    |    |    |    |    + <name> = ♢NSLocalizedString♢
 |    |    |    |    |    |    [697:697] <Match> = ♢NSLocalizedString♢
 |    |    |    |    |    |    [697:697] <Parenthesis>
 |    |    |    |    |    |    |    [697:697] <Match> = ♢(♢
@@ -13272,6 +13713,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    [697:698] <Newline> = ♢¶♢
 |    |    |    |    |    [698:698] <Indenting> = ♢••••••••♢
 |    |    |    |    |    [698:698] <CFunctionCall>
+|    |    |    |    |    + <name> = ♢NSLocalizedString♢
 |    |    |    |    |    |    [698:698] <Match> = ♢NSLocalizedString♢
 |    |    |    |    |    |    [698:698] <Parenthesis>
 |    |    |    |    |    |    |    [698:698] <Match> = ♢(♢
@@ -13287,6 +13729,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    [698:699] <Newline> = ♢¶♢
 |    |    |    |    [699:699] <Indenting> = ♢••••♢
 |    |    |    |    [699:699] <ObjCMethodCall>
+|    |    |    |    + <name> = ♢setReadOnly:♢
 |    |    |    |    |    [699:699] <Match> = ♢[♢
 |    |    |    |    |    [699:699] <ObjCSelf> = ♢self♢
 |    |    |    |    |    [699:699] <Whitespace> = ♢•♢
@@ -13294,6 +13737,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    [699:699] <Colon> = ♢:♢
 |    |    |    |    |    [699:699] <ExclamationMark> = ♢!♢
 |    |    |    |    |    [699:699] <ObjCMethodCall>
+|    |    |    |    |    + <name> = ♢isReadOnly♢
 |    |    |    |    |    |    [699:699] <Match> = ♢[♢
 |    |    |    |    |    |    [699:699] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    [699:699] <Whitespace> = ♢•♢
@@ -13306,6 +13750,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [700:701] <Newline> = ♢¶♢
 |    |    [701:702] <Newline> = ♢¶♢
 |    |    [702:713] <ObjCMethodImplementation>
+|    |    + <name> = ♢toggleRichWillLoseInformation♢
 |    |    |    [702:702] <Match> = ♢-♢
 |    |    |    [702:702] <Whitespace> = ♢•♢
 |    |    |    [702:702] <Parenthesis>
@@ -13325,6 +13770,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    [703:703] <Text> = ♢=♢
 |    |    |    |    [703:703] <Whitespace> = ♢•♢
 |    |    |    |    [703:703] <ObjCMethodCall>
+|    |    |    |    + <name> = ♢length♢
 |    |    |    |    |    [703:703] <Match> = ♢[♢
 |    |    |    |    |    [703:703] <Match> = ♢textStorage♢
 |    |    |    |    |    [703:703] <Whitespace> = ♢•♢
@@ -13353,6 +13799,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [706:706] <Match> = ♢(♢
 |    |    |    |    |    |    [706:706] <Whitespace> = ♢•♢
 |    |    |    |    |    |    [706:706] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢isRichText♢
 |    |    |    |    |    |    |    [706:706] <Match> = ♢[♢
 |    |    |    |    |    |    |    [706:706] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    |    [706:706] <Whitespace> = ♢•♢
@@ -13389,6 +13836,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    [708:708] <Text> = ♢=♢
 |    |    |    |    |    |    |    |    [708:708] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    |    [708:708] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    + <name> = ♢attributesAtIndex:effectiveRange:♢
 |    |    |    |    |    |    |    |    |    [708:708] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    [708:708] <Match> = ♢textStorage♢
 |    |    |    |    |    |    |    |    |    [708:708] <Whitespace> = ♢•♢
@@ -13427,8 +13875,10 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    [710:710] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    |    [710:710] <ExclamationMark> = ♢!♢
 |    |    |    |    |    |    |    |    [710:710] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    + <name> = ♢isEqual:♢
 |    |    |    |    |    |    |    |    |    [710:710] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    [710:710] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    |    + <name> = ♢defaultTextAttributes:♢
 |    |    |    |    |    |    |    |    |    |    [710:710] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    |    [710:710] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    |    |    |    |    [710:710] <Whitespace> = ♢•♢
@@ -13454,6 +13904,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [712:712] <Text> = ♢||♢
 |    |    |    |    |    |    [712:712] <Whitespace> = ♢•♢
 |    |    |    |    |    |    [712:712] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢hasDocumentProperties♢
 |    |    |    |    |    |    |    [712:712] <Match> = ♢[♢
 |    |    |    |    |    |    |    [712:712] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    |    [712:712] <Whitespace> = ♢•♢
@@ -13468,6 +13919,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [713:714] <Newline> = ♢¶♢
 |    |    [714:715] <Newline> = ♢¶♢
 |    |    [715:717] <ObjCMethodImplementation>
+|    |    + <name> = ♢hasMultiplePages♢
 |    |    |    [715:715] <Match> = ♢-♢
 |    |    |    [715:715] <Whitespace> = ♢•♢
 |    |    |    [715:715] <Parenthesis>
@@ -13490,6 +13942,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [717:718] <Newline> = ♢¶♢
 |    |    [718:719] <Newline> = ♢¶♢
 |    |    [719:721] <ObjCMethodImplementation>
+|    |    + <name> = ♢setHasMultiplePages:♢
 |    |    |    [719:719] <Match> = ♢-♢
 |    |    |    [719:719] <Whitespace> = ♢•♢
 |    |    |    [719:719] <Parenthesis>
@@ -13519,6 +13972,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [721:722] <Newline> = ♢¶♢
 |    |    [722:723] <Newline> = ♢¶♢
 |    |    [723:725] <ObjCMethodImplementation>
+|    |    + <name> = ♢togglePageBreaks:♢
 |    |    |    [723:723] <Match> = ♢-♢
 |    |    |    [723:723] <Whitespace> = ♢•♢
 |    |    |    [723:723] <Parenthesis>
@@ -13538,6 +13992,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    [723:724] <Newline> = ♢¶♢
 |    |    |    |    [724:724] <Indenting> = ♢••••♢
 |    |    |    |    [724:724] <ObjCMethodCall>
+|    |    |    |    + <name> = ♢setHasMultiplePages:♢
 |    |    |    |    |    [724:724] <Match> = ♢[♢
 |    |    |    |    |    [724:724] <ObjCSelf> = ♢self♢
 |    |    |    |    |    [724:724] <Whitespace> = ♢•♢
@@ -13545,6 +14000,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    [724:724] <Colon> = ♢:♢
 |    |    |    |    |    [724:724] <ExclamationMark> = ♢!♢
 |    |    |    |    |    [724:724] <ObjCMethodCall>
+|    |    |    |    |    + <name> = ♢hasMultiplePages♢
 |    |    |    |    |    |    [724:724] <Match> = ♢[♢
 |    |    |    |    |    |    [724:724] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    [724:724] <Whitespace> = ♢•♢
@@ -13557,6 +14013,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [725:726] <Newline> = ♢¶♢
 |    |    [726:727] <Newline> = ♢¶♢
 |    |    [727:731] <ObjCMethodImplementation>
+|    |    + <name> = ♢toggleHyphenation:♢
 |    |    |    [727:727] <Match> = ♢-♢
 |    |    |    [727:727] <Whitespace> = ♢•♢
 |    |    |    [727:727] <Parenthesis>
@@ -13582,6 +14039,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    [728:728] <Text> = ♢=♢
 |    |    |    |    [728:728] <Whitespace> = ♢•♢
 |    |    |    |    [728:728] <ObjCMethodCall>
+|    |    |    |    + <name> = ♢hyphenationFactor♢
 |    |    |    |    |    [728:728] <Match> = ♢[♢
 |    |    |    |    |    [728:728] <ObjCSelf> = ♢self♢
 |    |    |    |    |    [728:728] <Whitespace> = ♢•♢
@@ -13591,10 +14049,13 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    [728:729] <Newline> = ♢¶♢
 |    |    |    |    [729:729] <Indenting> = ♢••••♢
 |    |    |    |    [729:729] <ObjCMethodCall>
+|    |    |    |    + <name> = ♢setHyphenationFactor:♢
 |    |    |    |    |    [729:729] <Match> = ♢[♢
 |    |    |    |    |    [729:729] <ObjCMethodCall>
+|    |    |    |    |    + <name> = ♢prepareWithInvocationTarget:♢
 |    |    |    |    |    |    [729:729] <Match> = ♢[♢
 |    |    |    |    |    |    [729:729] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢undoManager♢
 |    |    |    |    |    |    |    [729:729] <Match> = ♢[♢
 |    |    |    |    |    |    |    [729:729] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    |    [729:729] <Whitespace> = ♢•♢
@@ -13614,6 +14075,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    [729:730] <Newline> = ♢¶♢
 |    |    |    |    [730:730] <Indenting> = ♢••••♢
 |    |    |    |    [730:730] <ObjCMethodCall>
+|    |    |    |    + <name> = ♢setHyphenationFactor:♢
 |    |    |    |    |    [730:730] <Match> = ♢[♢
 |    |    |    |    |    [730:730] <ObjCSelf> = ♢self♢
 |    |    |    |    |    [730:730] <Whitespace> = ♢•♢
@@ -13649,6 +14111,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    + <cleaned> = ♢•Action•method•for•the•"Append•'.txt'•extension"•button¶♢
 |    |    [734:735] <Newline> = ♢¶♢
 |    |    [735:739] <ObjCMethodImplementation>
+|    |    + <name> = ♢appendPlainTextExtensionChanged:♢
 |    |    |    [735:735] <Match> = ♢-♢
 |    |    |    [735:735] <Whitespace> = ♢•♢
 |    |    |    [735:735] <Parenthesis>
@@ -13681,6 +14144,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    [736:736] <Asterisk> = ♢*♢
 |    |    |    |    |    [736:736] <Match> = ♢)♢
 |    |    |    |    [736:736] <ObjCMethodCall>
+|    |    |    |    + <name> = ♢window♢
 |    |    |    |    |    [736:736] <Match> = ♢[♢
 |    |    |    |    |    [736:736] <Match> = ♢sender♢
 |    |    |    |    |    [736:736] <Whitespace> = ♢•♢
@@ -13690,12 +14154,14 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    [736:737] <Newline> = ♢¶♢
 |    |    |    |    [737:737] <Indenting> = ♢••••♢
 |    |    |    |    [737:737] <ObjCMethodCall>
+|    |    |    |    + <name> = ♢setAllowsOtherFileTypes:♢
 |    |    |    |    |    [737:737] <Match> = ♢[♢
 |    |    |    |    |    [737:737] <Match> = ♢panel♢
 |    |    |    |    |    [737:737] <Whitespace> = ♢•♢
 |    |    |    |    |    [737:737] <Text> = ♢setAllowsOtherFileTypes♢
 |    |    |    |    |    [737:737] <Colon> = ♢:♢
 |    |    |    |    |    [737:737] <ObjCMethodCall>
+|    |    |    |    |    + <name> = ♢state♢
 |    |    |    |    |    |    [737:737] <Match> = ♢[♢
 |    |    |    |    |    |    [737:737] <Match> = ♢sender♢
 |    |    |    |    |    |    [737:737] <Whitespace> = ♢•♢
@@ -13706,12 +14172,14 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    [737:738] <Newline> = ♢¶♢
 |    |    |    |    [738:738] <Indenting> = ♢••••♢
 |    |    |    |    [738:738] <ObjCMethodCall>
+|    |    |    |    + <name> = ♢setAllowedFileTypes::♢
 |    |    |    |    |    [738:738] <Match> = ♢[♢
 |    |    |    |    |    [738:738] <Match> = ♢panel♢
 |    |    |    |    |    [738:738] <Whitespace> = ♢•♢
 |    |    |    |    |    [738:738] <Text> = ♢setAllowedFileTypes♢
 |    |    |    |    |    [738:738] <Colon> = ♢:♢
 |    |    |    |    |    [738:738] <ObjCMethodCall>
+|    |    |    |    |    + <name> = ♢state♢
 |    |    |    |    |    |    [738:738] <Match> = ♢[♢
 |    |    |    |    |    |    [738:738] <Match> = ♢sender♢
 |    |    |    |    |    |    [738:738] <Whitespace> = ♢•♢
@@ -13721,6 +14189,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    [738:738] <QuestionMark> = ♢?♢
 |    |    |    |    |    [738:738] <Whitespace> = ♢•♢
 |    |    |    |    |    [738:738] <ObjCMethodCall>
+|    |    |    |    |    + <name> = ♢arrayWithObject:♢
 |    |    |    |    |    |    [738:738] <Match> = ♢[♢
 |    |    |    |    |    |    [738:738] <Match> = ♢NSArray♢
 |    |    |    |    |    |    [738:738] <Whitespace> = ♢•♢
@@ -13745,6 +14214,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [739:740] <Newline> = ♢¶♢
 |    |    [740:741] <Newline> = ♢¶♢
 |    |    [741:743] <ObjCMethodImplementation>
+|    |    + <name> = ♢encodingPopupChanged:♢
 |    |    |    [741:741] <Match> = ♢-♢
 |    |    |    [741:741] <Whitespace> = ♢•♢
 |    |    |    [741:741] <Parenthesis>
@@ -13766,16 +14236,20 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    [741:742] <Newline> = ♢¶♢
 |    |    |    |    [742:742] <Indenting> = ♢••••♢
 |    |    |    |    [742:742] <ObjCMethodCall>
+|    |    |    |    + <name> = ♢setEncodingForSaving:♢
 |    |    |    |    |    [742:742] <Match> = ♢[♢
 |    |    |    |    |    [742:742] <ObjCSelf> = ♢self♢
 |    |    |    |    |    [742:742] <Whitespace> = ♢•♢
 |    |    |    |    |    [742:742] <Text> = ♢setEncodingForSaving♢
 |    |    |    |    |    [742:742] <Colon> = ♢:♢
 |    |    |    |    |    [742:742] <ObjCMethodCall>
+|    |    |    |    |    + <name> = ♢unsignedIntegerValue♢
 |    |    |    |    |    |    [742:742] <Match> = ♢[♢
 |    |    |    |    |    |    [742:742] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢representedObject♢
 |    |    |    |    |    |    |    [742:742] <Match> = ♢[♢
 |    |    |    |    |    |    |    [742:742] <ObjCMethodCall>
+|    |    |    |    |    |    |    + <name> = ♢selectedItem♢
 |    |    |    |    |    |    |    |    [742:742] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    [742:742] <Match> = ♢popup♢
 |    |    |    |    |    |    |    |    [742:742] <Whitespace> = ♢•♢
@@ -13815,6 +14289,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [747:748] <Newline> = ♢¶♢
 |    |    [748:749] <Newline> = ♢¶♢
 |    |    [749:761] <CFunctionDefinition>
+|    |    + <name> = ♢validateToggleItem♢
 |    |    |    [749:749] <CVoid> = ♢void♢
 |    |    |    [749:749] <Whitespace> = ♢•♢
 |    |    |    [749:749] <Match> = ♢validateToggleItem♢
@@ -13862,6 +14337,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    [751:751] <Parenthesis>
 |    |    |    |    |    |    |    |    [751:751] <Match> = ♢(♢
 |    |    |    |    |    |    |    |    [751:751] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    + <name> = ♢tag♢
 |    |    |    |    |    |    |    |    |    [751:751] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    [751:751] <Match> = ♢aCell♢
 |    |    |    |    |    |    |    |    |    [751:751] <Whitespace> = ♢•♢
@@ -13879,6 +14355,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    [751:752] <Newline> = ♢¶♢
 |    |    |    |    |    |    |    |    [752:752] <Indenting> = ♢••••••••••••♢
 |    |    |    |    |    |    |    |    [752:752] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    + <name> = ♢setTitleWithMnemonic:♢
 |    |    |    |    |    |    |    |    |    [752:752] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    [752:752] <Match> = ♢aCell♢
 |    |    |    |    |    |    |    |    |    [752:752] <Whitespace> = ♢•♢
@@ -13890,6 +14367,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    [752:753] <Newline> = ♢¶♢
 |    |    |    |    |    |    |    |    [753:753] <Indenting> = ♢••••••••••••♢
 |    |    |    |    |    |    |    |    [753:753] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    + <name> = ♢setTag:♢
 |    |    |    |    |    |    |    |    |    [753:753] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    [753:753] <Match> = ♢aCell♢
 |    |    |    |    |    |    |    |    |    [753:753] <Whitespace> = ♢•♢
@@ -13918,6 +14396,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    [756:756] <Parenthesis>
 |    |    |    |    |    |    |    |    [756:756] <Match> = ♢(♢
 |    |    |    |    |    |    |    |    [756:756] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    + <name> = ♢tag♢
 |    |    |    |    |    |    |    |    |    [756:756] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    [756:756] <Match> = ♢aCell♢
 |    |    |    |    |    |    |    |    |    [756:756] <Whitespace> = ♢•♢
@@ -13935,6 +14414,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    [756:757] <Newline> = ♢¶♢
 |    |    |    |    |    |    |    |    [757:757] <Indenting> = ♢••••••••••••♢
 |    |    |    |    |    |    |    |    [757:757] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    + <name> = ♢setTitleWithMnemonic:♢
 |    |    |    |    |    |    |    |    |    [757:757] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    [757:757] <Match> = ♢aCell♢
 |    |    |    |    |    |    |    |    |    [757:757] <Whitespace> = ♢•♢
@@ -13946,6 +14426,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    [757:758] <Newline> = ♢¶♢
 |    |    |    |    |    |    |    |    [758:758] <Indenting> = ♢••••••••••••♢
 |    |    |    |    |    |    |    |    [758:758] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    + <name> = ♢setTag:♢
 |    |    |    |    |    |    |    |    |    [758:758] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    [758:758] <Match> = ♢aCell♢
 |    |    |    |    |    |    |    |    |    [758:758] <Whitespace> = ♢•♢
@@ -13968,6 +14449,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    + <cleaned> = ♢•Menu•validation¶♢
 |    |    [764:765] <Newline> = ♢¶♢
 |    |    [765:778] <ObjCMethodImplementation>
+|    |    + <name> = ♢validateMenuItem:♢
 |    |    |    [765:765] <Match> = ♢-♢
 |    |    |    [765:765] <Whitespace> = ♢•♢
 |    |    |    [765:765] <Parenthesis>
@@ -13995,6 +14477,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    [766:766] <Text> = ♢=♢
 |    |    |    |    [766:766] <Whitespace> = ♢•♢
 |    |    |    |    [766:766] <ObjCMethodCall>
+|    |    |    |    + <name> = ♢action♢
 |    |    |    |    |    [766:766] <Match> = ♢[♢
 |    |    |    |    |    [766:766] <Match> = ♢aCell♢
 |    |    |    |    |    [766:766] <Whitespace> = ♢•♢
@@ -14028,12 +14511,14 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [768:769] <Newline> = ♢¶♢
 |    |    |    |    |    |    [769:769] <Indenting> = ♢→♢
 |    |    |    |    |    |    [769:769] <CFunctionCall>
+|    |    |    |    |    |    + <name> = ♢validateToggleItem♢
 |    |    |    |    |    |    |    [769:769] <Match> = ♢validateToggleItem♢
 |    |    |    |    |    |    |    [769:769] <Parenthesis>
 |    |    |    |    |    |    |    |    [769:769] <Match> = ♢(♢
 |    |    |    |    |    |    |    |    [769:769] <Text> = ♢aCell,♢
 |    |    |    |    |    |    |    |    [769:769] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    |    [769:769] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    + <name> = ♢isReadOnly♢
 |    |    |    |    |    |    |    |    |    [769:769] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    [769:769] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    |    |    |    [769:769] <Whitespace> = ♢•♢
@@ -14042,6 +14527,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    [769:769] <Text> = ♢,♢
 |    |    |    |    |    |    |    |    [769:769] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    |    [769:769] <CFunctionCall>
+|    |    |    |    |    |    |    |    + <name> = ♢NSLocalizedString♢
 |    |    |    |    |    |    |    |    |    [769:769] <Match> = ♢NSLocalizedString♢
 |    |    |    |    |    |    |    |    |    [769:769] <Parenthesis>
 |    |    |    |    |    |    |    |    |    |    [769:769] <Match> = ♢(♢
@@ -14055,6 +14541,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    [769:769] <Text> = ♢,♢
 |    |    |    |    |    |    |    |    [769:769] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    |    [769:769] <CFunctionCall>
+|    |    |    |    |    |    |    |    + <name> = ♢NSLocalizedString♢
 |    |    |    |    |    |    |    |    |    [769:769] <Match> = ♢NSLocalizedString♢
 |    |    |    |    |    |    |    |    |    [769:769] <Parenthesis>
 |    |    |    |    |    |    |    |    |    |    [769:769] <Match> = ♢(♢
@@ -14094,12 +14581,14 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [770:771] <Newline> = ♢¶♢
 |    |    |    |    |    |    [771:771] <Indenting> = ♢••••••••♢
 |    |    |    |    |    |    [771:771] <CFunctionCall>
+|    |    |    |    |    |    + <name> = ♢validateToggleItem♢
 |    |    |    |    |    |    |    [771:771] <Match> = ♢validateToggleItem♢
 |    |    |    |    |    |    |    [771:771] <Parenthesis>
 |    |    |    |    |    |    |    |    [771:771] <Match> = ♢(♢
 |    |    |    |    |    |    |    |    [771:771] <Text> = ♢aCell,♢
 |    |    |    |    |    |    |    |    [771:771] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    |    [771:771] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    + <name> = ♢hasMultiplePages♢
 |    |    |    |    |    |    |    |    |    [771:771] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    [771:771] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    |    |    |    [771:771] <Whitespace> = ♢•♢
@@ -14108,6 +14597,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    [771:771] <Text> = ♢,♢
 |    |    |    |    |    |    |    |    [771:771] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    |    [771:771] <CFunctionCall>
+|    |    |    |    |    |    |    |    + <name> = ♢NSLocalizedString♢
 |    |    |    |    |    |    |    |    |    [771:771] <Match> = ♢NSLocalizedString♢
 |    |    |    |    |    |    |    |    |    [771:771] <Parenthesis>
 |    |    |    |    |    |    |    |    |    |    [771:771] <Match> = ♢(♢
@@ -14121,6 +14611,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    [771:771] <Text> = ♢,♢
 |    |    |    |    |    |    |    |    [771:771] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    |    [771:771] <CFunctionCall>
+|    |    |    |    |    |    |    |    + <name> = ♢NSLocalizedString♢
 |    |    |    |    |    |    |    |    |    [771:771] <Match> = ♢NSLocalizedString♢
 |    |    |    |    |    |    |    |    |    [771:771] <Parenthesis>
 |    |    |    |    |    |    |    |    |    |    [771:771] <Match> = ♢(♢
@@ -14160,6 +14651,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [772:773] <Newline> = ♢¶♢
 |    |    |    |    |    |    [773:773] <Indenting> = ♢••••••••♢
 |    |    |    |    |    |    [773:773] <CFunctionCall>
+|    |    |    |    |    |    + <name> = ♢validateToggleItem♢
 |    |    |    |    |    |    |    [773:773] <Match> = ♢validateToggleItem♢
 |    |    |    |    |    |    |    [773:773] <Parenthesis>
 |    |    |    |    |    |    |    |    [773:773] <Match> = ♢(♢
@@ -14168,6 +14660,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    [773:773] <Parenthesis>
 |    |    |    |    |    |    |    |    |    [773:773] <Match> = ♢(♢
 |    |    |    |    |    |    |    |    |    [773:773] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    |    + <name> = ♢hyphenationFactor♢
 |    |    |    |    |    |    |    |    |    |    [773:773] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    |    [773:773] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    |    |    |    |    [773:773] <Whitespace> = ♢•♢
@@ -14181,6 +14674,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    [773:773] <Text> = ♢,♢
 |    |    |    |    |    |    |    |    [773:773] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    |    [773:773] <CFunctionCall>
+|    |    |    |    |    |    |    |    + <name> = ♢NSLocalizedString♢
 |    |    |    |    |    |    |    |    |    [773:773] <Match> = ♢NSLocalizedString♢
 |    |    |    |    |    |    |    |    |    [773:773] <Parenthesis>
 |    |    |    |    |    |    |    |    |    |    [773:773] <Match> = ♢(♢
@@ -14194,6 +14688,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    [773:773] <Text> = ♢,♢
 |    |    |    |    |    |    |    |    [773:773] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    |    [773:773] <CFunctionCall>
+|    |    |    |    |    |    |    |    + <name> = ♢NSLocalizedString♢
 |    |    |    |    |    |    |    |    |    [773:773] <Match> = ♢NSLocalizedString♢
 |    |    |    |    |    |    |    |    |    [773:773] <Parenthesis>
 |    |    |    |    |    |    |    |    |    |    [773:773] <Match> = ♢(♢
@@ -14214,6 +14709,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    [774:774] <Parenthesis>
 |    |    |    |    |    |    |    |    [774:774] <Match> = ♢(♢
 |    |    |    |    |    |    |    |    [774:774] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    + <name> = ♢isReadOnly♢
 |    |    |    |    |    |    |    |    |    [774:774] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    [774:774] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    |    |    |    [774:774] <Whitespace> = ♢•♢
@@ -14245,6 +14741,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [780:780] <CPPComment> = ♢//•For•scripting.•We•already•have•a•-textStorage•method•implemented•above.♢
 |    |    [780:781] <Newline> = ♢¶♢
 |    |    [781:793] <ObjCMethodImplementation>
+|    |    + <name> = ♢setTextStorage:♢
 |    |    |    [781:781] <Match> = ♢-♢
 |    |    |    [781:781] <Whitespace> = ♢•♢
 |    |    |    [781:781] <Parenthesis>
@@ -14274,8 +14771,10 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    [783:783] <Text> = ♢=♢
 |    |    |    |    [783:783] <Whitespace> = ♢•♢
 |    |    |    |    [783:783] <ObjCMethodCall>
+|    |    |    |    + <name> = ♢copy♢
 |    |    |    |    |    [783:783] <Match> = ♢[♢
 |    |    |    |    |    [783:783] <ObjCMethodCall>
+|    |    |    |    |    + <name> = ♢textStorage♢
 |    |    |    |    |    |    [783:783] <Match> = ♢[♢
 |    |    |    |    |    |    [783:783] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    [783:783] <Whitespace> = ♢•♢
@@ -14288,8 +14787,10 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    [783:784] <Newline> = ♢¶♢
 |    |    |    |    [784:784] <Indenting> = ♢••••♢
 |    |    |    |    [784:784] <ObjCMethodCall>
+|    |    |    |    + <name> = ♢registerUndoWithTarget:selector:object:♢
 |    |    |    |    |    [784:784] <Match> = ♢[♢
 |    |    |    |    |    [784:784] <ObjCMethodCall>
+|    |    |    |    |    + <name> = ♢undoManager♢
 |    |    |    |    |    |    [784:784] <Match> = ♢[♢
 |    |    |    |    |    |    [784:784] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    [784:784] <Whitespace> = ♢•♢
@@ -14318,6 +14819,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    [784:785] <Newline> = ♢¶♢
 |    |    |    |    [785:785] <Indenting> = ♢••••♢
 |    |    |    |    [785:785] <ObjCMethodCall>
+|    |    |    |    + <name> = ♢release♢
 |    |    |    |    |    [785:785] <Match> = ♢[♢
 |    |    |    |    |    [785:785] <Match> = ♢textStorageCopy♢
 |    |    |    |    |    [785:785] <Whitespace> = ♢•♢
@@ -14336,12 +14838,14 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    [788:788] <Parenthesis>
 |    |    |    |    |    |    [788:788] <Match> = ♢(♢
 |    |    |    |    |    |    [788:788] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢isKindOfClass:♢
 |    |    |    |    |    |    |    [788:788] <Match> = ♢[♢
 |    |    |    |    |    |    |    [788:788] <Match> = ♢ts♢
 |    |    |    |    |    |    |    [788:788] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    [788:788] <Text> = ♢isKindOfClass♢
 |    |    |    |    |    |    |    [788:788] <Colon> = ♢:♢
 |    |    |    |    |    |    |    [788:788] <ObjCMethodCall>
+|    |    |    |    |    |    |    + <name> = ♢class♢
 |    |    |    |    |    |    |    |    [788:788] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    [788:788] <Match> = ♢NSAttributedString♢
 |    |    |    |    |    |    |    |    [788:788] <Whitespace> = ♢•♢
@@ -14355,8 +14859,10 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [788:789] <Newline> = ♢¶♢
 |    |    |    |    |    |    [789:789] <Indenting> = ♢••••••••♢
 |    |    |    |    |    |    [789:789] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢replaceCharactersInRange:withAttributedString:♢
 |    |    |    |    |    |    |    [789:789] <Match> = ♢[♢
 |    |    |    |    |    |    |    [789:789] <ObjCMethodCall>
+|    |    |    |    |    |    |    + <name> = ♢textStorage♢
 |    |    |    |    |    |    |    |    [789:789] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    [789:789] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    |    |    [789:789] <Whitespace> = ♢•♢
@@ -14366,14 +14872,17 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    [789:789] <Text> = ♢replaceCharactersInRange♢
 |    |    |    |    |    |    |    [789:789] <Colon> = ♢:♢
 |    |    |    |    |    |    |    [789:789] <CFunctionCall>
+|    |    |    |    |    |    |    + <name> = ♢NSMakeRange♢
 |    |    |    |    |    |    |    |    [789:789] <Match> = ♢NSMakeRange♢
 |    |    |    |    |    |    |    |    [789:789] <Parenthesis>
 |    |    |    |    |    |    |    |    |    [789:789] <Match> = ♢(♢
 |    |    |    |    |    |    |    |    |    [789:789] <Text> = ♢0,♢
 |    |    |    |    |    |    |    |    |    [789:789] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    |    |    [789:789] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    |    + <name> = ♢length♢
 |    |    |    |    |    |    |    |    |    |    [789:789] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    |    [789:789] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    |    |    + <name> = ♢textStorage♢
 |    |    |    |    |    |    |    |    |    |    |    [789:789] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    |    |    [789:789] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    |    |    |    |    |    [789:789] <Whitespace> = ♢•♢
@@ -14401,8 +14910,10 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [790:791] <Newline> = ♢¶♢
 |    |    |    |    |    |    [791:791] <Indenting> = ♢••••••••♢
 |    |    |    |    |    |    [791:791] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢replaceCharactersInRange:withString:♢
 |    |    |    |    |    |    |    [791:791] <Match> = ♢[♢
 |    |    |    |    |    |    |    [791:791] <ObjCMethodCall>
+|    |    |    |    |    |    |    + <name> = ♢textStorage♢
 |    |    |    |    |    |    |    |    [791:791] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    [791:791] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    |    |    [791:791] <Whitespace> = ♢•♢
@@ -14412,14 +14923,17 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    [791:791] <Text> = ♢replaceCharactersInRange♢
 |    |    |    |    |    |    |    [791:791] <Colon> = ♢:♢
 |    |    |    |    |    |    |    [791:791] <CFunctionCall>
+|    |    |    |    |    |    |    + <name> = ♢NSMakeRange♢
 |    |    |    |    |    |    |    |    [791:791] <Match> = ♢NSMakeRange♢
 |    |    |    |    |    |    |    |    [791:791] <Parenthesis>
 |    |    |    |    |    |    |    |    |    [791:791] <Match> = ♢(♢
 |    |    |    |    |    |    |    |    |    [791:791] <Text> = ♢0,♢
 |    |    |    |    |    |    |    |    |    [791:791] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    |    |    [791:791] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    |    + <name> = ♢length♢
 |    |    |    |    |    |    |    |    |    |    [791:791] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    |    [791:791] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    |    |    + <name> = ♢textStorage♢
 |    |    |    |    |    |    |    |    |    |    |    [791:791] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    |    |    [791:791] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    |    |    |    |    |    [791:791] <Whitespace> = ♢•♢
@@ -14443,6 +14957,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [793:794] <Newline> = ♢¶♢
 |    |    [794:795] <Newline> = ♢¶♢
 |    |    [795:802] <ObjCMethodImplementation>
+|    |    + <name> = ♢revertDocumentToSaved:♢
 |    |    |    [795:795] <Match> = ♢-♢
 |    |    |    [795:795] <Whitespace> = ♢•♢
 |    |    |    [795:795] <Parenthesis>
@@ -14473,6 +14988,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [798:798] <Match> = ♢(♢
 |    |    |    |    |    |    [798:798] <Whitespace> = ♢•♢
 |    |    |    |    |    |    [798:798] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢fileURL♢
 |    |    |    |    |    |    |    [798:798] <Match> = ♢[♢
 |    |    |    |    |    |    |    [798:798] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    |    [798:798] <Whitespace> = ♢•♢
@@ -14500,6 +15016,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [798:799] <Newline> = ♢¶♢
 |    |    |    |    |    |    [799:799] <Indenting> = ♢••••••••♢
 |    |    |    |    |    |    [799:799] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢setFileURL:♢
 |    |    |    |    |    |    |    [799:799] <Match> = ♢[♢
 |    |    |    |    |    |    |    [799:799] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    |    [799:799] <Whitespace> = ♢•♢
@@ -14515,6 +15032,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    [800:801] <Newline> = ♢¶♢
 |    |    |    |    [801:801] <Indenting> = ♢••••♢
 |    |    |    |    [801:801] <ObjCMethodCall>
+|    |    |    |    + <name> = ♢revertDocumentToSaved:♢
 |    |    |    |    |    [801:801] <Match> = ♢[♢
 |    |    |    |    |    [801:801] <ObjCSuper> = ♢super♢
 |    |    |    |    |    [801:801] <Whitespace> = ♢•♢
@@ -14528,6 +15046,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [802:803] <Newline> = ♢¶♢
 |    |    [803:804] <Newline> = ♢¶♢
 |    |    [804:819] <ObjCMethodImplementation>
+|    |    + <name> = ♢revertToContentsOfURL:ofType:error:♢
 |    |    |    [804:804] <Match> = ♢-♢
 |    |    |    [804:804] <Whitespace> = ♢•♢
 |    |    |    [804:804] <Parenthesis>
@@ -14579,6 +15098,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    [806:806] <Text> = ♢=♢
 |    |    |    |    [806:806] <Whitespace> = ♢•♢
 |    |    |    |    [806:806] <ObjCMethodCall>
+|    |    |    |    + <name> = ♢revertToContentsOfURL:ofType:error:♢
 |    |    |    |    |    [806:806] <Match> = ♢[♢
 |    |    |    |    |    [806:806] <ObjCSuper> = ♢super♢
 |    |    |    |    |    [806:806] <Whitespace> = ♢•♢
@@ -14610,6 +15130,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [807:808] <Newline> = ♢¶♢
 |    |    |    |    |    |    [808:808] <Indenting> = ♢••••••••♢
 |    |    |    |    |    |    [808:808] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢release♢
 |    |    |    |    |    |    |    [808:808] <Match> = ♢[♢
 |    |    |    |    |    |    |    [808:808] <Match> = ♢defaultDestination♢
 |    |    |    |    |    |    |    [808:808] <Whitespace> = ♢•♢
@@ -14627,6 +15148,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [809:810] <Newline> = ♢¶♢
 |    |    |    |    |    |    [810:810] <Indenting> = ♢••••••••♢
 |    |    |    |    |    |    [810:810] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢setHasMultiplePages:♢
 |    |    |    |    |    |    |    [810:810] <Match> = ♢[♢
 |    |    |    |    |    |    |    [810:810] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    |    [810:810] <Whitespace> = ♢•♢
@@ -14638,8 +15160,10 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [810:811] <Newline> = ♢¶♢
 |    |    |    |    |    |    [811:811] <Indenting> = ♢••••••••♢
 |    |    |    |    |    |    [811:811] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢makeObjectsPerformSelector:♢
 |    |    |    |    |    |    |    [811:811] <Match> = ♢[♢
 |    |    |    |    |    |    |    [811:811] <ObjCMethodCall>
+|    |    |    |    |    |    |    + <name> = ♢windowControllers♢
 |    |    |    |    |    |    |    |    [811:811] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    [811:811] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    |    |    [811:811] <Whitespace> = ♢•♢
@@ -14659,8 +15183,10 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [811:812] <Newline> = ♢¶♢
 |    |    |    |    |    |    [812:812] <Indenting> = ♢••••••••♢
 |    |    |    |    |    |    [812:812] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢removeAllActions♢
 |    |    |    |    |    |    |    [812:812] <Match> = ♢[♢
 |    |    |    |    |    |    |    [812:812] <ObjCMethodCall>
+|    |    |    |    |    |    |    + <name> = ♢undoManager♢
 |    |    |    |    |    |    |    |    [812:812] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    [812:812] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    |    |    [812:812] <Whitespace> = ♢•♢
@@ -14688,6 +15214,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [815:816] <Newline> = ♢¶♢
 |    |    |    |    |    |    [816:816] <Indenting> = ♢••••••••♢
 |    |    |    |    |    |    [816:816] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢setFileURL:♢
 |    |    |    |    |    |    |    [816:816] <Match> = ♢[♢
 |    |    |    |    |    |    |    [816:816] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    |    [816:816] <Whitespace> = ♢•♢
@@ -14714,6 +15241,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    + <cleaned> = ♢•Target/action•method•for•saving•as•(actually•"saving•to")•PDF.•Note•that•this•approach•of•omitting•the•path•will•not•work•on•Leopard;•see•TextEdit's•README.rtf¶♢
 |    |    [822:823] <Newline> = ♢¶♢
 |    |    [823:825] <ObjCMethodImplementation>
+|    |    + <name> = ♢saveDocumentAsPDFTo:♢
 |    |    |    [823:823] <Match> = ♢-♢
 |    |    |    [823:823] <Whitespace> = ♢•♢
 |    |    |    [823:823] <Parenthesis>
@@ -14733,12 +15261,14 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    [823:824] <Newline> = ♢¶♢
 |    |    |    |    [824:824] <Indenting> = ♢••••♢
 |    |    |    |    [824:824] <ObjCMethodCall>
+|    |    |    |    + <name> = ♢printDocumentWithSettings:showPrintPanel:delegate:didPrintSelector:contextInfo:♢
 |    |    |    |    |    [824:824] <Match> = ♢[♢
 |    |    |    |    |    [824:824] <ObjCSelf> = ♢self♢
 |    |    |    |    |    [824:824] <Whitespace> = ♢•♢
 |    |    |    |    |    [824:824] <Text> = ♢printDocumentWithSettings♢
 |    |    |    |    |    [824:824] <Colon> = ♢:♢
 |    |    |    |    |    [824:824] <ObjCMethodCall>
+|    |    |    |    |    + <name> = ♢dictionaryWithObjectsAndKeys:♢
 |    |    |    |    |    |    [824:824] <Match> = ♢[♢
 |    |    |    |    |    |    [824:824] <Match> = ♢NSDictionary♢
 |    |    |    |    |    |    [824:824] <Whitespace> = ♢•♢
@@ -14780,6 +15310,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    + <cleaned> = ♢•Returns•the•default•padding•on•the•left/right•edges•of•text•views¶♢
 |    [831:832] <Newline> = ♢¶♢
 |    [832:840] <CFunctionDefinition>
+|    + <name> = ♢defaultTextPadding♢
 |    |    [832:832] <Text> = ♢CGFloat♢
 |    |    [832:832] <Whitespace> = ♢•♢
 |    |    [832:832] <Match> = ♢defaultTextPadding♢
@@ -14828,8 +15359,10 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    [835:835] <Text> = ♢=♢
 |    |    |    |    |    [835:835] <Whitespace> = ♢•♢
 |    |    |    |    |    [835:835] <ObjCMethodCall>
+|    |    |    |    |    + <name> = ♢init♢
 |    |    |    |    |    |    [835:835] <Match> = ♢[♢
 |    |    |    |    |    |    [835:835] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢alloc♢
 |    |    |    |    |    |    |    [835:835] <Match> = ♢[♢
 |    |    |    |    |    |    |    [835:835] <Match> = ♢NSTextContainer♢
 |    |    |    |    |    |    |    [835:835] <Whitespace> = ♢•♢
@@ -14846,6 +15379,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    [836:836] <Text> = ♢=♢
 |    |    |    |    |    [836:836] <Whitespace> = ♢•♢
 |    |    |    |    |    [836:836] <ObjCMethodCall>
+|    |    |    |    |    + <name> = ♢lineFragmentPadding♢
 |    |    |    |    |    |    [836:836] <Match> = ♢[♢
 |    |    |    |    |    |    [836:836] <Match> = ♢container♢
 |    |    |    |    |    |    [836:836] <Whitespace> = ♢•♢
@@ -14855,6 +15389,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    [836:837] <Newline> = ♢¶♢
 |    |    |    |    |    [837:837] <Indenting> = ♢••••••••♢
 |    |    |    |    |    [837:837] <ObjCMethodCall>
+|    |    |    |    |    + <name> = ♢release♢
 |    |    |    |    |    |    [837:837] <Match> = ♢[♢
 |    |    |    |    |    |    [837:837] <Match> = ♢container♢
 |    |    |    |    |    |    [837:837] <Whitespace> = ♢•♢
@@ -14880,6 +15415,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [842:843] <Newline> = ♢¶♢
 |    |    [843:844] <Newline> = ♢¶♢
 |    |    [844:847] <ObjCMethodImplementation>
+|    |    + <name> = ♢canConcurrentlyReadDocumentsOfType:♢
 |    |    |    [844:844] <Match> = ♢+♢
 |    |    |    [844:844] <Whitespace> = ♢•♢
 |    |    |    [844:844] <Parenthesis>
@@ -14908,6 +15444,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    [845:845] <Text> = ♢=♢
 |    |    |    |    [845:845] <Whitespace> = ♢•♢
 |    |    |    |    [845:845] <ObjCMethodCall>
+|    |    |    |    + <name> = ♢sharedWorkspace♢
 |    |    |    |    |    [845:845] <Match> = ♢[♢
 |    |    |    |    |    [845:845] <Match> = ♢NSWorkspace♢
 |    |    |    |    |    [845:845] <Whitespace> = ♢•♢
@@ -14923,6 +15460,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    [846:846] <Parenthesis>
 |    |    |    |    |    |    [846:846] <Match> = ♢(♢
 |    |    |    |    |    |    [846:846] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢type:conformsToType:♢
 |    |    |    |    |    |    |    [846:846] <Match> = ♢[♢
 |    |    |    |    |    |    |    [846:846] <Match> = ♢workspace♢
 |    |    |    |    |    |    |    [846:846] <Whitespace> = ♢•♢
@@ -14944,6 +15482,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [846:846] <Text> = ♢||♢
 |    |    |    |    |    |    [846:846] <Whitespace> = ♢•♢
 |    |    |    |    |    |    [846:846] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢type:conformsToType:♢
 |    |    |    |    |    |    |    [846:846] <Match> = ♢[♢
 |    |    |    |    |    |    |    [846:846] <Match> = ♢workspace♢
 |    |    |    |    |    |    |    [846:846] <Whitespace> = ♢•♢
@@ -14968,6 +15507,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [847:848] <Newline> = ♢¶♢
 |    |    [848:849] <Newline> = ♢¶♢
 |    |    [849:864] <ObjCMethodImplementation>
+|    |    + <name> = ♢initForURL:withContentsOfURL:ofType:error:♢
 |    |    |    [849:849] <Match> = ♢-♢
 |    |    |    [849:849] <Whitespace> = ♢•♢
 |    |    |    [849:849] <Parenthesis>
@@ -15042,8 +15582,10 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [852:852] <Text> = ♢=♢
 |    |    |    |    |    |    [852:852] <Whitespace> = ♢•♢
 |    |    |    |    |    |    [852:852] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢typeForContentsOfURL:error:♢
 |    |    |    |    |    |    |    [852:852] <Match> = ♢[♢
 |    |    |    |    |    |    |    [852:852] <ObjCMethodCall>
+|    |    |    |    |    |    |    + <name> = ♢sharedDocumentController♢
 |    |    |    |    |    |    |    |    [852:852] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    [852:852] <Match> = ♢NSDocumentController♢
 |    |    |    |    |    |    |    |    [852:852] <Whitespace> = ♢•♢
@@ -15078,6 +15620,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    [854:854] <Text> = ♢=♢
 |    |    |    |    |    |    |    |    [854:854] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    |    [854:854] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    + <name> = ♢initForURL:withContentsOfURL:ofType:error:♢
 |    |    |    |    |    |    |    |    |    [854:854] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    [854:854] <ObjCSuper> = ♢super♢
 |    |    |    |    |    |    |    |    |    [854:854] <Whitespace> = ♢•♢
@@ -15101,6 +15644,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    [854:855] <Newline> = ♢¶♢
 |    |    |    |    |    |    |    |    [855:855] <Indenting> = ♢→••••♢
 |    |    |    |    |    |    |    |    [855:855] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    + <name> = ♢setFileType:♢
 |    |    |    |    |    |    |    |    |    [855:855] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    [855:855] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    |    |    |    [855:855] <Whitespace> = ♢•♢
@@ -15121,6 +15665,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    [856:857] <Newline> = ♢¶♢
 |    |    |    |    |    |    |    |    [857:857] <Indenting> = ♢→••••♢
 |    |    |    |    |    |    |    |    [857:857] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    + <name> = ♢release♢
 |    |    |    |    |    |    |    |    |    [857:857] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    [857:857] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    |    |    |    [857:857] <Whitespace> = ♢•♢
@@ -15154,6 +15699,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [861:861] <Text> = ♢=♢
 |    |    |    |    |    |    [861:861] <Whitespace> = ♢•♢
 |    |    |    |    |    |    [861:861] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢initForURL:withContentsOfURL:ofType:error:♢
 |    |    |    |    |    |    |    [861:861] <Match> = ♢[♢
 |    |    |    |    |    |    |    [861:861] <ObjCSuper> = ♢super♢
 |    |    |    |    |    |    |    [861:861] <Whitespace> = ♢•♢
@@ -15189,6 +15735,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [864:865] <Newline> = ♢¶♢
 |    |    [865:866] <Newline> = ♢¶♢
 |    |    [866:873] <ObjCMethodImplementation>
+|    |    + <name> = ♢makeWindowControllers♢
 |    |    |    [866:866] <Match> = ♢-♢
 |    |    |    [866:866] <Whitespace> = ♢•♢
 |    |    |    [866:866] <Parenthesis>
@@ -15209,6 +15756,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    [867:867] <Text> = ♢=♢
 |    |    |    |    [867:867] <Whitespace> = ♢•♢
 |    |    |    |    [867:867] <ObjCMethodCall>
+|    |    |    |    + <name> = ♢windowControllers♢
 |    |    |    |    |    [867:867] <Match> = ♢[♢
 |    |    |    |    |    [867:867] <ObjCSelf> = ♢self♢
 |    |    |    |    |    [867:867] <Whitespace> = ♢•♢
@@ -15229,6 +15777,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    [870:870] <Parenthesis>
 |    |    |    |    |    |    [870:870] <Match> = ♢(♢
 |    |    |    |    |    |    [870:870] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢count♢
 |    |    |    |    |    |    |    [870:870] <Match> = ♢[♢
 |    |    |    |    |    |    |    [870:870] <Match> = ♢myControllers♢
 |    |    |    |    |    |    |    [870:870] <Whitespace> = ♢•♢
@@ -15245,22 +15794,27 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [870:871] <Newline> = ♢¶♢
 |    |    |    |    |    |    [871:871] <Indenting> = ♢••••••••♢
 |    |    |    |    |    |    [871:871] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢addWindowController:♢
 |    |    |    |    |    |    |    [871:871] <Match> = ♢[♢
 |    |    |    |    |    |    |    [871:871] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    |    [871:871] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    [871:871] <Text> = ♢addWindowController♢
 |    |    |    |    |    |    |    [871:871] <Colon> = ♢:♢
 |    |    |    |    |    |    |    [871:871] <ObjCMethodCall>
+|    |    |    |    |    |    |    + <name> = ♢autorelease♢
 |    |    |    |    |    |    |    |    [871:871] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    [871:871] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    + <name> = ♢init♢
 |    |    |    |    |    |    |    |    |    [871:871] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    [871:871] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    |    + <name> = ♢allocWithZone:♢
 |    |    |    |    |    |    |    |    |    |    [871:871] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    |    [871:871] <Match> = ♢DocumentWindowController♢
 |    |    |    |    |    |    |    |    |    |    [871:871] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    |    |    |    [871:871] <Text> = ♢allocWithZone♢
 |    |    |    |    |    |    |    |    |    |    [871:871] <Colon> = ♢:♢
 |    |    |    |    |    |    |    |    |    |    [871:871] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    |    |    + <name> = ♢zone♢
 |    |    |    |    |    |    |    |    |    |    |    [871:871] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    |    |    [871:871] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    |    |    |    |    |    [871:871] <Whitespace> = ♢•♢
@@ -15283,6 +15837,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [873:874] <Newline> = ♢¶♢
 |    |    [874:875] <Newline> = ♢¶♢
 |    |    [875:889] <ObjCMethodImplementation>
+|    |    + <name> = ♢writableTypesForSaveOperation:♢
 |    |    |    [875:875] <Match> = ♢-♢
 |    |    |    [875:875] <Whitespace> = ♢•♢
 |    |    |    [875:875] <Parenthesis>
@@ -15311,12 +15866,16 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    [876:876] <Text> = ♢=♢
 |    |    |    |    [876:876] <Whitespace> = ♢•♢
 |    |    |    |    [876:876] <ObjCMethodCall>
+|    |    |    |    + <name> = ♢autorelease♢
 |    |    |    |    |    [876:876] <Match> = ♢[♢
 |    |    |    |    |    [876:876] <ObjCMethodCall>
+|    |    |    |    |    + <name> = ♢mutableCopy♢
 |    |    |    |    |    |    [876:876] <Match> = ♢[♢
 |    |    |    |    |    |    [876:876] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢writableTypes♢
 |    |    |    |    |    |    |    [876:876] <Match> = ♢[♢
 |    |    |    |    |    |    |    [876:876] <ObjCMethodCall>
+|    |    |    |    |    |    |    + <name> = ♢class♢
 |    |    |    |    |    |    |    |    [876:876] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    [876:876] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    |    |    [876:876] <Whitespace> = ♢•♢
@@ -15360,6 +15919,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    [879:879] <Parenthesis>
 |    |    |    |    |    |    |    |    [879:879] <Match> = ♢(♢
 |    |    |    |    |    |    |    |    [879:879] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    + <name> = ♢isRichText♢
 |    |    |    |    |    |    |    |    |    [879:879] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    [879:879] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    |    |    |    [879:879] <Whitespace> = ♢•♢
@@ -15372,6 +15932,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    [879:880] <Newline> = ♢¶♢
 |    |    |    |    |    |    |    |    [880:880] <Indenting> = ♢→••••♢
 |    |    |    |    |    |    |    |    [880:880] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    + <name> = ♢removeObject:♢
 |    |    |    |    |    |    |    |    |    [880:880] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    [880:880] <Match> = ♢outArray♢
 |    |    |    |    |    |    |    |    |    [880:880] <Whitespace> = ♢•♢
@@ -15403,6 +15964,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    [884:884] <Parenthesis>
 |    |    |    |    |    |    |    |    [884:884] <Match> = ♢(♢
 |    |    |    |    |    |    |    |    [884:884] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    + <name> = ♢containsAttachments♢
 |    |    |    |    |    |    |    |    |    [884:884] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    [884:884] <Match> = ♢textStorage♢
 |    |    |    |    |    |    |    |    |    [884:884] <Whitespace> = ♢•♢
@@ -15415,12 +15977,14 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    [884:885] <Newline> = ♢¶♢
 |    |    |    |    |    |    |    |    [885:885] <Indenting> = ♢→••••♢
 |    |    |    |    |    |    |    |    [885:885] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    + <name> = ♢setArray:♢
 |    |    |    |    |    |    |    |    |    [885:885] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    [885:885] <Match> = ♢outArray♢
 |    |    |    |    |    |    |    |    |    [885:885] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    |    |    [885:885] <Text> = ♢setArray♢
 |    |    |    |    |    |    |    |    |    [885:885] <Colon> = ♢:♢
 |    |    |    |    |    |    |    |    |    [885:885] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    |    + <name> = ♢arrayWithObjects:♢
 |    |    |    |    |    |    |    |    |    |    [885:885] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    |    [885:885] <Match> = ♢NSArray♢
 |    |    |    |    |    |    |    |    |    |    [885:885] <Whitespace> = ♢•♢
@@ -15467,6 +16031,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    + <cleaned> = ♢•Whether•to•keep•the•backup•file¶♢
 |    |    [892:893] <Newline> = ♢¶♢
 |    |    [893:895] <ObjCMethodImplementation>
+|    |    + <name> = ♢keepBackupFile♢
 |    |    |    [893:893] <Match> = ♢-♢
 |    |    |    [893:893] <Whitespace> = ♢•♢
 |    |    |    [893:893] <Parenthesis>
@@ -15484,8 +16049,10 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    [894:894] <Whitespace> = ♢•♢
 |    |    |    |    |    [894:894] <ExclamationMark> = ♢!♢
 |    |    |    |    |    [894:894] <ObjCMethodCall>
+|    |    |    |    |    + <name> = ♢boolForKey:♢
 |    |    |    |    |    |    [894:894] <Match> = ♢[♢
 |    |    |    |    |    |    [894:894] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢standardUserDefaults♢
 |    |    |    |    |    |    |    [894:894] <Match> = ♢[♢
 |    |    |    |    |    |    |    [894:894] <Match> = ♢NSUserDefaults♢
 |    |    |    |    |    |    |    [894:894] <Whitespace> = ♢•♢
@@ -15505,6 +16072,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    + <cleaned> = ♢•When•a•document•is•changed,•it•ceases•to•be•transient.•¶♢
 |    |    [898:899] <Newline> = ♢¶♢
 |    |    [899:902] <ObjCMethodImplementation>
+|    |    + <name> = ♢updateChangeCount:♢
 |    |    |    [899:899] <Match> = ♢-♢
 |    |    |    [899:899] <Whitespace> = ♢•♢
 |    |    |    [899:899] <Parenthesis>
@@ -15524,6 +16092,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    [899:900] <Newline> = ♢¶♢
 |    |    |    |    [900:900] <Indenting> = ♢••••♢
 |    |    |    |    [900:900] <ObjCMethodCall>
+|    |    |    |    + <name> = ♢setTransient:♢
 |    |    |    |    |    [900:900] <Match> = ♢[♢
 |    |    |    |    |    [900:900] <ObjCSelf> = ♢self♢
 |    |    |    |    |    [900:900] <Whitespace> = ♢•♢
@@ -15535,6 +16104,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    [900:901] <Newline> = ♢¶♢
 |    |    |    |    [901:901] <Indenting> = ♢••••♢
 |    |    |    |    [901:901] <ObjCMethodCall>
+|    |    |    |    + <name> = ♢updateChangeCount:♢
 |    |    |    |    |    [901:901] <Match> = ♢[♢
 |    |    |    |    |    [901:901] <ObjCSuper> = ♢super♢
 |    |    |    |    |    [901:901] <Whitespace> = ♢•♢
@@ -15551,6 +16121,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    + <cleaned> = ♢•When•we•save,•we•send•a•notification•so•that•views•that•are•currently•coalescing•undo•actions•can•break•that.•This•is•done•for•two•reasons,•one•technical•and•the•other•HI•oriented.•¶¶Firstly,•since•the•dirty•state•tracking•is•based•on•undo,•for•a•coalesced•set•of•changes•that•span•over•a•save•operation,•the•changes•that•occur•between•the•save•and•the•next•time•the•undo•coalescing•stops•will•not•mark•the•document•as•dirty.•Secondly,•allowing•the•user•to•undo•back•to•the•precise•point•of•a•save•is•good•UI.•¶¶In•addition•we•overwrite•this•method•as•a•way•to•tell•that•the•document•has•been•saved•successfully.•If•so,•we•set•the•save•time•parameters•in•the•document.¶♢
 |    |    [909:910] <Newline> = ♢¶♢
 |    |    [910:920] <ObjCMethodImplementation>
+|    |    + <name> = ♢saveToURL:ofType:forSaveOperation:error:♢
 |    |    |    [910:910] <Match> = ♢-♢
 |    |    |    [910:910] <Whitespace> = ♢•♢
 |    |    |    [910:910] <Parenthesis>
@@ -15604,8 +16175,10 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    [911:912] <Newline> = ♢¶♢
 |    |    |    |    [912:912] <Indenting> = ♢••••♢
 |    |    |    |    [912:912] <ObjCMethodCall>
+|    |    |    |    + <name> = ♢makeObjectsPerformSelector:♢
 |    |    |    |    |    [912:912] <Match> = ♢[♢
 |    |    |    |    |    [912:912] <ObjCMethodCall>
+|    |    |    |    |    + <name> = ♢windowControllers♢
 |    |    |    |    |    |    [912:912] <Match> = ♢[♢
 |    |    |    |    |    |    [912:912] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    [912:912] <Whitespace> = ♢•♢
@@ -15632,6 +16205,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    [914:914] <Text> = ♢=♢
 |    |    |    |    [914:914] <Whitespace> = ♢•♢
 |    |    |    |    [914:914] <ObjCMethodCall>
+|    |    |    |    + <name> = ♢saveToURL:ofType:forSaveOperation:error:♢
 |    |    |    |    |    [914:914] <Match> = ♢[♢
 |    |    |    |    |    [914:914] <ObjCSuper> = ♢super♢
 |    |    |    |    |    [914:914] <Whitespace> = ♢•♢
@@ -15697,6 +16271,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    [916:916] <Parenthesis>
 |    |    |    |    |    |    |    |    [916:916] <Match> = ♢(♢
 |    |    |    |    |    |    |    |    [916:916] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    + <name> = ♢encodingForSaving♢
 |    |    |    |    |    |    |    |    |    [916:916] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    [916:916] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    |    |    |    [916:916] <Whitespace> = ♢•♢
@@ -15710,12 +16285,14 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    [916:916] <Match> = ♢)♢
 |    |    |    |    |    |    |    [916:916] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    [916:916] <ObjCMethodCall>
+|    |    |    |    |    |    |    + <name> = ♢setEncoding:♢
 |    |    |    |    |    |    |    |    [916:916] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    [916:916] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    |    |    [916:916] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    |    [916:916] <Text> = ♢setEncoding♢
 |    |    |    |    |    |    |    |    [916:916] <Colon> = ♢:♢
 |    |    |    |    |    |    |    |    [916:916] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    + <name> = ♢encodingForSaving♢
 |    |    |    |    |    |    |    |    |    [916:916] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    [916:916] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    |    |    |    [916:916] <Whitespace> = ♢•♢
@@ -15729,6 +16306,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    [917:918] <Newline> = ♢¶♢
 |    |    |    |    [918:918] <Indenting> = ♢••••♢
 |    |    |    |    [918:918] <ObjCMethodCall>
+|    |    |    |    + <name> = ♢setEncodingForSaving:♢
 |    |    |    |    |    [918:918] <Match> = ♢[♢
 |    |    |    |    |    [918:918] <ObjCSelf> = ♢self♢
 |    |    |    |    |    [918:918] <Whitespace> = ♢•♢
@@ -15755,6 +16333,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    + <cleaned> = ♢•Since•a•document•into•which•the•user•has•dragged•graphics•should•autosave•as•RTFD,•we•override•this•method•to•return•RTFD,•unless•the•document•was•already•RTFD,•WebArchive,•or•plain•(the•last•one•done•for•optimization,•to•avoid•calling•containsAttachments).¶♢
 |    |    [923:924] <Newline> = ♢¶♢
 |    |    [924:930] <ObjCMethodImplementation>
+|    |    + <name> = ♢autosavingFileType♢
 |    |    |    [924:924] <Match> = ♢-♢
 |    |    |    [924:924] <Whitespace> = ♢•♢
 |    |    |    [924:924] <Parenthesis>
@@ -15777,6 +16356,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    [925:925] <Text> = ♢=♢
 |    |    |    |    [925:925] <Whitespace> = ♢•♢
 |    |    |    |    [925:925] <ObjCMethodCall>
+|    |    |    |    + <name> = ♢sharedWorkspace♢
 |    |    |    |    |    [925:925] <Match> = ♢[♢
 |    |    |    |    |    [925:925] <Match> = ♢NSWorkspace♢
 |    |    |    |    |    [925:925] <Whitespace> = ♢•♢
@@ -15793,6 +16373,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    [926:926] <Text> = ♢=♢
 |    |    |    |    [926:926] <Whitespace> = ♢•♢
 |    |    |    |    [926:926] <ObjCMethodCall>
+|    |    |    |    + <name> = ♢autosavingFileType♢
 |    |    |    |    |    [926:926] <Match> = ♢[♢
 |    |    |    |    |    [926:926] <ObjCSuper> = ♢super♢
 |    |    |    |    |    [926:926] <Whitespace> = ♢•♢
@@ -15807,6 +16388,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    [927:927] <Parenthesis>
 |    |    |    |    |    |    [927:927] <Match> = ♢(♢
 |    |    |    |    |    |    [927:927] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢type:conformsToType:♢
 |    |    |    |    |    |    |    [927:927] <Match> = ♢[♢
 |    |    |    |    |    |    |    [927:927] <Match> = ♢workspace♢
 |    |    |    |    |    |    |    [927:927] <Whitespace> = ♢•♢
@@ -15828,6 +16410,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [927:927] <Text> = ♢||♢
 |    |    |    |    |    |    [927:927] <Whitespace> = ♢•♢
 |    |    |    |    |    |    [927:927] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢type:conformsToType:♢
 |    |    |    |    |    |    |    [927:927] <Match> = ♢[♢
 |    |    |    |    |    |    |    [927:927] <Match> = ♢workspace♢
 |    |    |    |    |    |    |    [927:927] <Whitespace> = ♢•♢
@@ -15849,6 +16432,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [927:927] <Text> = ♢||♢
 |    |    |    |    |    |    [927:927] <Whitespace> = ♢•♢
 |    |    |    |    |    |    [927:927] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢type:conformsToType:♢
 |    |    |    |    |    |    |    [927:927] <Match> = ♢[♢
 |    |    |    |    |    |    |    [927:927] <Match> = ♢workspace♢
 |    |    |    |    |    |    |    [927:927] <Whitespace> = ♢•♢
@@ -15881,6 +16465,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    [928:928] <Parenthesis>
 |    |    |    |    |    |    [928:928] <Match> = ♢(♢
 |    |    |    |    |    |    [928:928] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢containsAttachments♢
 |    |    |    |    |    |    |    [928:928] <Match> = ♢[♢
 |    |    |    |    |    |    |    [928:928] <Match> = ♢textStorage♢
 |    |    |    |    |    |    |    [928:928] <Whitespace> = ♢•♢
@@ -15915,6 +16500,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    + <cleaned> = ♢•When•the•file•URL•is•set•to•nil,•we•store•away•the•old•URL.•This•happens•when•a•document•is•converted•to•and•from•rich•text.•If•the•document•exists•on•disk,•we•default•to•use•the•same•base•file•when•subsequently•saving•the•document.•¶♢
 |    |    [934:935] <Newline> = ♢¶♢
 |    |    [935:942] <ObjCMethodImplementation>
+|    |    + <name> = ♢setFileURL:♢
 |    |    |    [935:935] <Match> = ♢-♢
 |    |    |    [935:935] <Whitespace> = ♢•♢
 |    |    |    [935:935] <Parenthesis>
@@ -15943,6 +16529,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    [936:936] <Text> = ♢=♢
 |    |    |    |    [936:936] <Whitespace> = ♢•♢
 |    |    |    |    [936:936] <ObjCMethodCall>
+|    |    |    |    + <name> = ♢fileURL♢
 |    |    |    |    |    [936:936] <Match> = ♢[♢
 |    |    |    |    |    [936:936] <ObjCSelf> = ♢self♢
 |    |    |    |    |    [936:936] <Whitespace> = ♢•♢
@@ -15970,6 +16557,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [937:938] <Newline> = ♢¶♢
 |    |    |    |    |    |    [938:938] <Indenting> = ♢→♢
 |    |    |    |    |    |    [938:938] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢release♢
 |    |    |    |    |    |    |    [938:938] <Match> = ♢[♢
 |    |    |    |    |    |    |    [938:938] <Match> = ♢defaultDestination♢
 |    |    |    |    |    |    |    [938:938] <Whitespace> = ♢•♢
@@ -15983,6 +16571,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [939:939] <Text> = ♢=♢
 |    |    |    |    |    |    [939:939] <Whitespace> = ♢•♢
 |    |    |    |    |    |    [939:939] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢copy♢
 |    |    |    |    |    |    |    [939:939] <Match> = ♢[♢
 |    |    |    |    |    |    |    [939:939] <Match> = ♢previousURL♢
 |    |    |    |    |    |    |    [939:939] <Whitespace> = ♢•♢
@@ -15995,6 +16584,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    [940:941] <Newline> = ♢¶♢
 |    |    |    |    [941:941] <Indenting> = ♢••••♢
 |    |    |    |    [941:941] <ObjCMethodCall>
+|    |    |    |    + <name> = ♢setFileURL:♢
 |    |    |    |    |    [941:941] <Match> = ♢[♢
 |    |    |    |    |    [941:941] <ObjCSuper> = ♢super♢
 |    |    |    |    |    [941:941] <Whitespace> = ♢•♢
@@ -16008,6 +16598,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [942:943] <Newline> = ♢¶♢
 |    |    [943:944] <Newline> = ♢¶♢
 |    |    [944:948] <ObjCMethodImplementation>
+|    |    + <name> = ♢didPresentErrorWithRecovery:contextInfo:♢
 |    |    |    [944:944] <Match> = ♢-♢
 |    |    |    [944:944] <Whitespace> = ♢•♢
 |    |    |    [944:944] <Parenthesis>
@@ -16049,6 +16640,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [945:946] <Newline> = ♢¶♢
 |    |    |    |    |    |    [946:946] <Indenting> = ♢→♢
 |    |    |    |    |    |    [946:946] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢performSelector:withObject:afterDelay:♢
 |    |    |    |    |    |    |    [946:946] <Match> = ♢[♢
 |    |    |    |    |    |    |    [946:946] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    |    [946:946] <Whitespace> = ♢•♢
@@ -16079,6 +16671,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [948:949] <Newline> = ♢¶♢
 |    |    [949:950] <Newline> = ♢¶♢
 |    |    [950:999] <ObjCMethodImplementation>
+|    |    + <name> = ♢attemptRecoveryFromError:optionIndex:delegate:didRecoverSelector:contextInfo:♢
 |    |    |    [950:950] <Match> = ♢-♢
 |    |    |    [950:950] <Whitespace> = ♢•♢
 |    |    |    [950:950] <Parenthesis>
@@ -16149,8 +16742,10 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    [952:952] <Parenthesis>
 |    |    |    |    |    |    [952:952] <Match> = ♢(♢
 |    |    |    |    |    |    [952:952] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢isEqualToString:♢
 |    |    |    |    |    |    |    [952:952] <Match> = ♢[♢
 |    |    |    |    |    |    |    [952:952] <ObjCMethodCall>
+|    |    |    |    |    |    |    + <name> = ♢domain♢
 |    |    |    |    |    |    |    |    [952:952] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    [952:952] <Match> = ♢error♢
 |    |    |    |    |    |    |    |    [952:952] <Whitespace> = ♢•♢
@@ -16173,6 +16768,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    [953:953] <Parenthesis>
 |    |    |    |    |    |    |    |    [953:953] <Match> = ♢(♢
 |    |    |    |    |    |    |    |    [953:953] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    + <name> = ♢code♢
 |    |    |    |    |    |    |    |    |    [953:953] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    [953:953] <Match> = ♢error♢
 |    |    |    |    |    |    |    |    |    [953:953] <Whitespace> = ♢•♢
@@ -16210,6 +16806,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    |    |    |    [955:956] <Newline> = ♢¶♢
 |    |    |    |    |    |    |    |    |    |    |    [956:956] <Indenting> = ♢→→••••♢
 |    |    |    |    |    |    |    |    |    |    |    [956:956] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    |    |    |    + <name> = ♢setFileType:♢
 |    |    |    |    |    |    |    |    |    |    |    |    [956:956] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    |    |    |    [956:956] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    |    |    |    |    |    |    [956:956] <Whitespace> = ♢•♢
@@ -16224,6 +16821,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    |    |    |    |    [956:956] <Parenthesis>
 |    |    |    |    |    |    |    |    |    |    |    |    |    [956:956] <Match> = ♢(♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    [956:956] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    |    |    |    |    |    + <name> = ♢containsAttachments♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    |    [956:956] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    |    [956:956] <Match> = ♢textStorage♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    |    [956:956] <Whitespace> = ♢•♢
@@ -16243,6 +16841,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    |    |    |    [956:957] <Newline> = ♢¶♢
 |    |    |    |    |    |    |    |    |    |    |    [957:957] <Indenting> = ♢→→••••♢
 |    |    |    |    |    |    |    |    |    |    |    [957:957] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    |    |    |    + <name> = ♢setFileURL:♢
 |    |    |    |    |    |    |    |    |    |    |    |    [957:957] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    |    |    |    [957:957] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    |    |    |    |    |    |    [957:957] <Whitespace> = ♢•♢
@@ -16254,6 +16853,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    |    |    |    [957:958] <Newline> = ♢¶♢
 |    |    |    |    |    |    |    |    |    |    |    [958:958] <Indenting> = ♢→→••••♢
 |    |    |    |    |    |    |    |    |    |    |    [958:958] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    |    |    |    + <name> = ♢setConverted:♢
 |    |    |    |    |    |    |    |    |    |    |    |    [958:958] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    |    |    |    [958:958] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    |    |    |    |    |    |    [958:958] <Whitespace> = ♢•♢
@@ -16306,6 +16906,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    |    |    |    [963:964] <Newline> = ♢¶♢
 |    |    |    |    |    |    |    |    |    |    |    [964:964] <Indenting> = ♢→→••••♢
 |    |    |    |    |    |    |    |    |    |    |    [964:964] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    |    |    |    + <name> = ♢setFileURL:♢
 |    |    |    |    |    |    |    |    |    |    |    |    [964:964] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    |    |    |    [964:964] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    |    |    |    |    |    |    [964:964] <Whitespace> = ♢•♢
@@ -16317,6 +16918,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    |    |    |    [964:965] <Newline> = ♢¶♢
 |    |    |    |    |    |    |    |    |    |    |    [965:965] <Indenting> = ♢→→••••♢
 |    |    |    |    |    |    |    |    |    |    |    [965:965] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    |    |    |    + <name> = ♢setLossy:♢
 |    |    |    |    |    |    |    |    |    |    |    |    [965:965] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    |    |    |    [965:965] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    |    |    |    |    |    |    [965:965] <Whitespace> = ♢•♢
@@ -16356,6 +16958,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    |    |    |    [967:968] <Newline> = ♢¶♢
 |    |    |    |    |    |    |    |    |    |    |    [968:968] <Indenting> = ♢→→••••♢
 |    |    |    |    |    |    |    |    |    |    |    [968:968] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    |    |    |    + <name> = ♢setLossy:♢
 |    |    |    |    |    |    |    |    |    |    |    |    [968:968] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    |    |    |    [968:968] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    |    |    |    |    |    |    [968:968] <Whitespace> = ♢•♢
@@ -16408,6 +17011,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    |    |    |    [973:974] <Newline> = ♢¶♢
 |    |    |    |    |    |    |    |    |    |    |    [974:974] <Indenting> = ♢→→••••♢
 |    |    |    |    |    |    |    |    |    |    |    [974:974] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    |    |    |    + <name> = ♢setFileType:♢
 |    |    |    |    |    |    |    |    |    |    |    |    [974:974] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    |    |    |    [974:974] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    |    |    |    |    |    |    [974:974] <Whitespace> = ♢•♢
@@ -16425,6 +17029,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    |    |    |    [974:975] <Newline> = ♢¶♢
 |    |    |    |    |    |    |    |    |    |    |    [975:975] <Indenting> = ♢→→••••♢
 |    |    |    |    |    |    |    |    |    |    |    [975:975] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    |    |    |    + <name> = ♢setFileURL:♢
 |    |    |    |    |    |    |    |    |    |    |    |    [975:975] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    |    |    |    [975:975] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    |    |    |    |    |    |    [975:975] <Whitespace> = ♢•♢
@@ -16471,8 +17076,10 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    |    |    |    [978:978] <Text> = ♢=♢
 |    |    |    |    |    |    |    |    |    |    |    [978:978] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    |    |    |    |    [978:978] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    |    |    |    + <name> = ♢path♢
 |    |    |    |    |    |    |    |    |    |    |    |    [978:978] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    |    |    |    [978:978] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    |    |    |    |    + <name> = ♢fileURL♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    [978:978] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    [978:978] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    [978:978] <Whitespace> = ♢•♢
@@ -16498,20 +17105,24 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    |    |    |    |    |    [980:980] <Match> = ♢(♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    [980:980] <ExclamationMark> = ♢!♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    [980:980] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    |    |    |    |    |    + <name> = ♢saveToURL:ofType:forSaveOperation:error:♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    |    [980:980] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    |    [980:980] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    |    [980:980] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    |    [980:980] <Text> = ♢saveToURL♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    |    [980:980] <Colon> = ♢:♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    |    [980:980] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    |    |    |    |    |    |    + <name> = ♢fileURLWithPath:♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    [980:980] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    [980:980] <Match> = ♢NSURL♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    [980:980] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    [980:980] <Text> = ♢fileURLWithPath♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    [980:980] <Colon> = ♢:♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    [980:980] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    |    |    |    |    |    |    |    + <name> = ♢stringByAppendingPathExtension:♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    [980:980] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    [980:980] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    + <name> = ♢stringByDeletingPathExtension♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    [980:980] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    [980:980] <Match> = ♢oldFilename♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    [980:980] <Whitespace> = ♢•♢
@@ -16554,6 +17165,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    |    |    |    |    |    [981:982] <Newline> = ♢¶♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    [982:982] <Indenting> = ♢→→→♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    [982:982] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    |    |    |    |    |    + <name> = ♢presentError:modalForWindow:delegate:didPresentSelector:contextInfo:♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    |    [982:982] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    |    [982:982] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    |    [982:982] <Whitespace> = ♢•♢
@@ -16564,6 +17176,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    |    |    |    |    |    |    [982:982] <Text> = ♢modalForWindow♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    |    [982:982] <Colon> = ♢:♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    |    [982:982] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    |    |    |    |    |    |    + <name> = ♢windowForSheet♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    [982:982] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    [982:982] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    [982:982] <Whitespace> = ♢•♢
@@ -16602,8 +17215,10 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    |    |    |    |    |    |    [985:985] <CVoid> = ♢void♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    |    [985:985] <Match> = ♢)♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    [985:985] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    |    |    |    |    |    + <name> = ♢removeItemAtPath:error:♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    |    [985:985] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    |    [985:985] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    |    |    |    |    |    |    + <name> = ♢defaultManager♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    [985:985] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    [985:985] <Match> = ♢NSFileManager♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    [985:985] <Whitespace> = ♢•♢
@@ -16648,6 +17263,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    |    [990:991] <Newline> = ♢¶♢
 |    |    |    |    |    |    |    |    |    [991:991] <Indenting> = ♢→→♢
 |    |    |    |    |    |    |    |    |    [991:991] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    |    + <name> = ♢setEncodingForSaving:♢
 |    |    |    |    |    |    |    |    |    |    [991:991] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    |    [991:991] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    |    |    |    |    [991:991] <Whitespace> = ♢•♢
@@ -16659,6 +17275,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    |    [991:992] <Newline> = ♢¶♢
 |    |    |    |    |    |    |    |    |    [992:992] <Indenting> = ♢→→♢
 |    |    |    |    |    |    |    |    |    [992:992] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    |    + <name> = ♢setFileURL:♢
 |    |    |    |    |    |    |    |    |    |    [992:992] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    |    [992:992] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    |    |    |    |    [992:992] <Whitespace> = ♢•♢
@@ -16689,6 +17306,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    [997:998] <Newline> = ♢¶♢
 |    |    |    |    [998:998] <Indenting> = ♢••••♢
 |    |    |    |    [998:998] <ObjCMethodCall>
+|    |    |    |    + <name> = ♢didPresentErrorWithRecovery:contextInfo:♢
 |    |    |    |    |    [998:998] <Match> = ♢[♢
 |    |    |    |    |    [998:998] <Match> = ♢delegate♢
 |    |    |    |    |    [998:998] <Whitespace> = ♢•♢
@@ -16706,6 +17324,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [999:1000] <Newline> = ♢¶♢
 |    |    [1000:1001] <Newline> = ♢¶♢
 |    |    [1001:1048] <ObjCMethodImplementation>
+|    |    + <name> = ♢saveDocumentWithDelegate:didSaveSelector:contextInfo:♢
 |    |    |    [1001:1001] <Match> = ♢-♢
 |    |    |    [1001:1001] <Whitespace> = ♢•♢
 |    |    |    [1001:1001] <Parenthesis>
@@ -16750,6 +17369,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    [1002:1002] <Text> = ♢=♢
 |    |    |    |    [1002:1002] <Whitespace> = ♢•♢
 |    |    |    |    [1002:1002] <ObjCMethodCall>
+|    |    |    |    + <name> = ♢fileType♢
 |    |    |    |    |    [1002:1002] <Match> = ♢[♢
 |    |    |    |    |    [1002:1002] <ObjCSelf> = ♢self♢
 |    |    |    |    |    [1002:1002] <Whitespace> = ♢•♢
@@ -16776,6 +17396,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    [1004:1004] <Text> = ♢=♢
 |    |    |    |    [1004:1004] <Whitespace> = ♢•♢
 |    |    |    |    [1004:1004] <ObjCMethodCall>
+|    |    |    |    + <name> = ♢containsAttachments♢
 |    |    |    |    |    [1004:1004] <Match> = ♢[♢
 |    |    |    |    |    [1004:1004] <Match> = ♢textStorage♢
 |    |    |    |    |    [1004:1004] <Whitespace> = ♢•♢
@@ -16792,6 +17413,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    [1006:1006] <Parenthesis>
 |    |    |    |    |    |    [1006:1006] <Match> = ♢(♢
 |    |    |    |    |    |    [1006:1006] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢fileURL♢
 |    |    |    |    |    |    |    [1006:1006] <Match> = ♢[♢
 |    |    |    |    |    |    |    [1006:1006] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    |    [1006:1006] <Whitespace> = ♢•♢
@@ -16809,6 +17431,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    [1007:1007] <Parenthesis>
 |    |    |    |    |    |    |    |    [1007:1007] <Match> = ♢(♢
 |    |    |    |    |    |    |    |    [1007:1007] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    + <name> = ♢isConverted♢
 |    |    |    |    |    |    |    |    |    [1007:1007] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    [1007:1007] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    |    |    |    [1007:1007] <Whitespace> = ♢•♢
@@ -16832,6 +17455,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    [1008:1008] <QuestionMark> = ♢?♢
 |    |    |    |    |    |    |    |    [1008:1008] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    |    [1008:1008] <CFunctionCall>
+|    |    |    |    |    |    |    |    + <name> = ♢NSLocalizedString♢
 |    |    |    |    |    |    |    |    |    [1008:1008] <Match> = ♢NSLocalizedString♢
 |    |    |    |    |    |    |    |    |    [1008:1008] <Parenthesis>
 |    |    |    |    |    |    |    |    |    |    [1008:1008] <Match> = ♢(♢
@@ -16848,6 +17472,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    [1009:1009] <Colon> = ♢:♢
 |    |    |    |    |    |    |    |    [1009:1009] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    |    [1009:1009] <CFunctionCall>
+|    |    |    |    |    |    |    |    + <name> = ♢NSLocalizedString♢
 |    |    |    |    |    |    |    |    |    [1009:1009] <Match> = ♢NSLocalizedString♢
 |    |    |    |    |    |    |    |    |    [1009:1009] <Parenthesis>
 |    |    |    |    |    |    |    |    |    |    [1009:1009] <Match> = ♢(♢
@@ -16866,6 +17491,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    [1010:1010] <Text> = ♢=♢
 |    |    |    |    |    |    |    |    [1010:1010] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    |    [1010:1015] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    + <name> = ♢errorWithDomain:code:userInfo:♢
 |    |    |    |    |    |    |    |    |    [1010:1010] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    [1010:1010] <Match> = ♢NSError♢
 |    |    |    |    |    |    |    |    |    [1010:1010] <Whitespace> = ♢•♢
@@ -16880,6 +17506,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    |    [1010:1010] <Text> = ♢userInfo♢
 |    |    |    |    |    |    |    |    |    [1010:1010] <Colon> = ♢:♢
 |    |    |    |    |    |    |    |    |    [1010:1015] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    |    + <name> = ♢dictionaryWithObjectsAndKeys:♢
 |    |    |    |    |    |    |    |    |    |    [1010:1010] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    |    [1010:1010] <Match> = ♢NSDictionary♢
 |    |    |    |    |    |    |    |    |    |    [1010:1010] <Whitespace> = ♢•♢
@@ -16888,6 +17515,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    |    |    [1010:1011] <Newline> = ♢¶♢
 |    |    |    |    |    |    |    |    |    |    [1011:1011] <Indenting> = ♢→→♢
 |    |    |    |    |    |    |    |    |    |    [1011:1011] <CFunctionCall>
+|    |    |    |    |    |    |    |    |    |    + <name> = ♢NSLocalizedString♢
 |    |    |    |    |    |    |    |    |    |    |    [1011:1011] <Match> = ♢NSLocalizedString♢
 |    |    |    |    |    |    |    |    |    |    |    [1011:1011] <Parenthesis>
 |    |    |    |    |    |    |    |    |    |    |    |    [1011:1011] <Match> = ♢(♢
@@ -16904,12 +17532,14 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    |    |    [1011:1012] <Newline> = ♢¶♢
 |    |    |    |    |    |    |    |    |    |    [1012:1012] <Indenting> = ♢→→♢
 |    |    |    |    |    |    |    |    |    |    [1012:1012] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    |    |    + <name> = ♢stringWithFormat:♢
 |    |    |    |    |    |    |    |    |    |    |    [1012:1012] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    |    |    [1012:1012] <Match> = ♢NSString♢
 |    |    |    |    |    |    |    |    |    |    |    [1012:1012] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    |    |    |    |    [1012:1012] <Text> = ♢stringWithFormat♢
 |    |    |    |    |    |    |    |    |    |    |    [1012:1012] <Colon> = ♢:♢
 |    |    |    |    |    |    |    |    |    |    |    [1012:1012] <CFunctionCall>
+|    |    |    |    |    |    |    |    |    |    |    + <name> = ♢NSLocalizedString♢
 |    |    |    |    |    |    |    |    |    |    |    |    [1012:1012] <Match> = ♢NSLocalizedString♢
 |    |    |    |    |    |    |    |    |    |    |    |    [1012:1012] <Parenthesis>
 |    |    |    |    |    |    |    |    |    |    |    |    |    [1012:1012] <Match> = ♢(♢
@@ -16931,12 +17561,14 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    |    |    [1012:1013] <Newline> = ♢¶♢
 |    |    |    |    |    |    |    |    |    |    [1013:1013] <Indenting> = ♢→→♢
 |    |    |    |    |    |    |    |    |    |    [1013:1013] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    |    |    + <name> = ♢arrayWithObjects:♢
 |    |    |    |    |    |    |    |    |    |    |    [1013:1013] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    |    |    [1013:1013] <Match> = ♢NSArray♢
 |    |    |    |    |    |    |    |    |    |    |    [1013:1013] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    |    |    |    |    [1013:1013] <Text> = ♢arrayWithObjects♢
 |    |    |    |    |    |    |    |    |    |    |    [1013:1013] <Colon> = ♢:♢
 |    |    |    |    |    |    |    |    |    |    |    [1013:1013] <CFunctionCall>
+|    |    |    |    |    |    |    |    |    |    |    + <name> = ♢NSLocalizedString♢
 |    |    |    |    |    |    |    |    |    |    |    |    [1013:1013] <Match> = ♢NSLocalizedString♢
 |    |    |    |    |    |    |    |    |    |    |    |    [1013:1013] <Parenthesis>
 |    |    |    |    |    |    |    |    |    |    |    |    |    [1013:1013] <Match> = ♢(♢
@@ -16950,6 +17582,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    |    |    |    [1013:1013] <Text> = ♢,♢
 |    |    |    |    |    |    |    |    |    |    |    [1013:1013] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    |    |    |    |    [1013:1013] <CFunctionCall>
+|    |    |    |    |    |    |    |    |    |    |    + <name> = ♢NSLocalizedString♢
 |    |    |    |    |    |    |    |    |    |    |    |    [1013:1013] <Match> = ♢NSLocalizedString♢
 |    |    |    |    |    |    |    |    |    |    |    |    [1013:1013] <Parenthesis>
 |    |    |    |    |    |    |    |    |    |    |    |    |    [1013:1013] <Match> = ♢(♢
@@ -16988,6 +17621,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    [1016:1016] <Parenthesis>
 |    |    |    |    |    |    |    |    [1016:1016] <Match> = ♢(♢
 |    |    |    |    |    |    |    |    [1016:1016] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    + <name> = ♢isLossy♢
 |    |    |    |    |    |    |    |    |    [1016:1016] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    [1016:1016] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    |    |    |    [1016:1016] <Whitespace> = ♢•♢
@@ -17004,6 +17638,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    [1017:1017] <Text> = ♢=♢
 |    |    |    |    |    |    |    |    [1017:1017] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    |    [1017:1022] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    + <name> = ♢errorWithDomain:code:userInfo:♢
 |    |    |    |    |    |    |    |    |    [1017:1017] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    [1017:1017] <Match> = ♢NSError♢
 |    |    |    |    |    |    |    |    |    [1017:1017] <Whitespace> = ♢•♢
@@ -17018,6 +17653,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    |    [1017:1017] <Text> = ♢userInfo♢
 |    |    |    |    |    |    |    |    |    [1017:1017] <Colon> = ♢:♢
 |    |    |    |    |    |    |    |    |    [1017:1022] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    |    + <name> = ♢dictionaryWithObjectsAndKeys:♢
 |    |    |    |    |    |    |    |    |    |    [1017:1017] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    |    [1017:1017] <Match> = ♢NSDictionary♢
 |    |    |    |    |    |    |    |    |    |    [1017:1017] <Whitespace> = ♢•♢
@@ -17026,6 +17662,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    |    |    [1017:1018] <Newline> = ♢¶♢
 |    |    |    |    |    |    |    |    |    |    [1018:1018] <Indenting> = ♢→→♢
 |    |    |    |    |    |    |    |    |    |    [1018:1018] <CFunctionCall>
+|    |    |    |    |    |    |    |    |    |    + <name> = ♢NSLocalizedString♢
 |    |    |    |    |    |    |    |    |    |    |    [1018:1018] <Match> = ♢NSLocalizedString♢
 |    |    |    |    |    |    |    |    |    |    |    [1018:1018] <Parenthesis>
 |    |    |    |    |    |    |    |    |    |    |    |    [1018:1018] <Match> = ♢(♢
@@ -17042,6 +17679,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    |    |    [1018:1019] <Newline> = ♢¶♢
 |    |    |    |    |    |    |    |    |    |    [1019:1019] <Indenting> = ♢→→♢
 |    |    |    |    |    |    |    |    |    |    [1019:1019] <CFunctionCall>
+|    |    |    |    |    |    |    |    |    |    + <name> = ♢NSLocalizedString♢
 |    |    |    |    |    |    |    |    |    |    |    [1019:1019] <Match> = ♢NSLocalizedString♢
 |    |    |    |    |    |    |    |    |    |    |    [1019:1019] <Parenthesis>
 |    |    |    |    |    |    |    |    |    |    |    |    [1019:1019] <Match> = ♢(♢
@@ -17058,12 +17696,14 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    |    |    [1019:1020] <Newline> = ♢¶♢
 |    |    |    |    |    |    |    |    |    |    [1020:1020] <Indenting> = ♢→→♢
 |    |    |    |    |    |    |    |    |    |    [1020:1020] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    |    |    + <name> = ♢arrayWithObjects:♢
 |    |    |    |    |    |    |    |    |    |    |    [1020:1020] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    |    |    [1020:1020] <Match> = ♢NSArray♢
 |    |    |    |    |    |    |    |    |    |    |    [1020:1020] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    |    |    |    |    [1020:1020] <Text> = ♢arrayWithObjects♢
 |    |    |    |    |    |    |    |    |    |    |    [1020:1020] <Colon> = ♢:♢
 |    |    |    |    |    |    |    |    |    |    |    [1020:1020] <CFunctionCall>
+|    |    |    |    |    |    |    |    |    |    |    + <name> = ♢NSLocalizedString♢
 |    |    |    |    |    |    |    |    |    |    |    |    [1020:1020] <Match> = ♢NSLocalizedString♢
 |    |    |    |    |    |    |    |    |    |    |    |    [1020:1020] <Parenthesis>
 |    |    |    |    |    |    |    |    |    |    |    |    |    [1020:1020] <Match> = ♢(♢
@@ -17077,6 +17717,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    |    |    |    [1020:1020] <Text> = ♢,♢
 |    |    |    |    |    |    |    |    |    |    |    [1020:1020] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    |    |    |    |    [1020:1020] <CFunctionCall>
+|    |    |    |    |    |    |    |    |    |    |    + <name> = ♢NSLocalizedString♢
 |    |    |    |    |    |    |    |    |    |    |    |    [1020:1020] <Match> = ♢NSLocalizedString♢
 |    |    |    |    |    |    |    |    |    |    |    |    [1020:1020] <Parenthesis>
 |    |    |    |    |    |    |    |    |    |    |    |    |    [1020:1020] <Match> = ♢(♢
@@ -17090,6 +17731,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    |    |    |    [1020:1020] <Text> = ♢,♢
 |    |    |    |    |    |    |    |    |    |    |    [1020:1020] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    |    |    |    |    [1020:1020] <CFunctionCall>
+|    |    |    |    |    |    |    |    |    |    |    + <name> = ♢NSLocalizedString♢
 |    |    |    |    |    |    |    |    |    |    |    |    [1020:1020] <Match> = ♢NSLocalizedString♢
 |    |    |    |    |    |    |    |    |    |    |    |    [1020:1020] <Parenthesis>
 |    |    |    |    |    |    |    |    |    |    |    |    |    [1020:1020] <Match> = ♢(♢
@@ -17134,8 +17776,10 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    [1023:1023] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    |    [1023:1023] <ExclamationMark> = ♢!♢
 |    |    |    |    |    |    |    |    [1023:1023] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    + <name> = ♢containsObject:♢
 |    |    |    |    |    |    |    |    |    [1023:1023] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    [1023:1023] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    |    + <name> = ♢writableTypesForSaveOperation:♢
 |    |    |    |    |    |    |    |    |    |    [1023:1023] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    |    [1023:1023] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    |    |    |    |    [1023:1023] <Whitespace> = ♢•♢
@@ -17159,6 +17803,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    [1024:1024] <Text> = ♢=♢
 |    |    |    |    |    |    |    |    [1024:1024] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    |    [1024:1029] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    + <name> = ♢errorWithDomain:code:userInfo:♢
 |    |    |    |    |    |    |    |    |    [1024:1024] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    [1024:1024] <Match> = ♢NSError♢
 |    |    |    |    |    |    |    |    |    [1024:1024] <Whitespace> = ♢•♢
@@ -17173,6 +17818,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    |    [1024:1024] <Text> = ♢userInfo♢
 |    |    |    |    |    |    |    |    |    [1024:1024] <Colon> = ♢:♢
 |    |    |    |    |    |    |    |    |    [1024:1029] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    |    + <name> = ♢dictionaryWithObjectsAndKeys:♢
 |    |    |    |    |    |    |    |    |    |    [1024:1024] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    |    [1024:1024] <Match> = ♢NSDictionary♢
 |    |    |    |    |    |    |    |    |    |    [1024:1024] <Whitespace> = ♢•♢
@@ -17181,6 +17827,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    |    |    [1024:1025] <Newline> = ♢¶♢
 |    |    |    |    |    |    |    |    |    |    [1025:1025] <Indenting> = ♢→→♢
 |    |    |    |    |    |    |    |    |    |    [1025:1025] <CFunctionCall>
+|    |    |    |    |    |    |    |    |    |    + <name> = ♢NSLocalizedString♢
 |    |    |    |    |    |    |    |    |    |    |    [1025:1025] <Match> = ♢NSLocalizedString♢
 |    |    |    |    |    |    |    |    |    |    |    [1025:1025] <Parenthesis>
 |    |    |    |    |    |    |    |    |    |    |    |    [1025:1025] <Match> = ♢(♢
@@ -17197,6 +17844,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    |    |    [1025:1026] <Newline> = ♢¶♢
 |    |    |    |    |    |    |    |    |    |    [1026:1026] <Indenting> = ♢→→♢
 |    |    |    |    |    |    |    |    |    |    [1026:1026] <CFunctionCall>
+|    |    |    |    |    |    |    |    |    |    + <name> = ♢NSLocalizedString♢
 |    |    |    |    |    |    |    |    |    |    |    [1026:1026] <Match> = ♢NSLocalizedString♢
 |    |    |    |    |    |    |    |    |    |    |    [1026:1026] <Parenthesis>
 |    |    |    |    |    |    |    |    |    |    |    |    [1026:1026] <Match> = ♢(♢
@@ -17213,12 +17861,14 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    |    |    [1026:1027] <Newline> = ♢¶♢
 |    |    |    |    |    |    |    |    |    |    [1027:1027] <Indenting> = ♢→→♢
 |    |    |    |    |    |    |    |    |    |    [1027:1027] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    |    |    + <name> = ♢arrayWithObjects:♢
 |    |    |    |    |    |    |    |    |    |    |    [1027:1027] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    |    |    [1027:1027] <Match> = ♢NSArray♢
 |    |    |    |    |    |    |    |    |    |    |    [1027:1027] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    |    |    |    |    [1027:1027] <Text> = ♢arrayWithObjects♢
 |    |    |    |    |    |    |    |    |    |    |    [1027:1027] <Colon> = ♢:♢
 |    |    |    |    |    |    |    |    |    |    |    [1027:1027] <CFunctionCall>
+|    |    |    |    |    |    |    |    |    |    |    + <name> = ♢NSLocalizedString♢
 |    |    |    |    |    |    |    |    |    |    |    |    [1027:1027] <Match> = ♢NSLocalizedString♢
 |    |    |    |    |    |    |    |    |    |    |    |    [1027:1027] <Parenthesis>
 |    |    |    |    |    |    |    |    |    |    |    |    |    [1027:1027] <Match> = ♢(♢
@@ -17232,6 +17882,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    |    |    |    [1027:1027] <Text> = ♢,♢
 |    |    |    |    |    |    |    |    |    |    |    [1027:1027] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    |    |    |    |    [1027:1027] <CFunctionCall>
+|    |    |    |    |    |    |    |    |    |    |    + <name> = ♢NSLocalizedString♢
 |    |    |    |    |    |    |    |    |    |    |    |    [1027:1027] <Match> = ♢NSLocalizedString♢
 |    |    |    |    |    |    |    |    |    |    |    |    [1027:1027] <Parenthesis>
 |    |    |    |    |    |    |    |    |    |    |    |    |    [1027:1027] <Match> = ♢(♢
@@ -17245,6 +17896,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    |    |    |    [1027:1027] <Text> = ♢,♢
 |    |    |    |    |    |    |    |    |    |    |    [1027:1027] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    |    |    |    |    [1027:1027] <CFunctionCall>
+|    |    |    |    |    |    |    |    |    |    |    + <name> = ♢NSLocalizedString♢
 |    |    |    |    |    |    |    |    |    |    |    |    [1027:1027] <Match> = ♢NSLocalizedString♢
 |    |    |    |    |    |    |    |    |    |    |    |    [1027:1027] <Parenthesis>
 |    |    |    |    |    |    |    |    |    |    |    |    |    [1027:1027] <Match> = ♢(♢
@@ -17284,6 +17936,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    [1030:1030] <Match> = ♢(♢
 |    |    |    |    |    |    |    |    [1030:1030] <ExclamationMark> = ♢!♢
 |    |    |    |    |    |    |    |    [1030:1030] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    + <name> = ♢isRichText♢
 |    |    |    |    |    |    |    |    |    [1030:1030] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    [1030:1030] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    |    |    |    [1030:1030] <Whitespace> = ♢•♢
@@ -17302,6 +17955,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    [1031:1031] <Text> = ♢=♢
 |    |    |    |    |    |    |    |    [1031:1031] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    |    [1031:1031] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    + <name> = ♢encodingForSaving♢
 |    |    |    |    |    |    |    |    |    [1031:1031] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    [1031:1031] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    |    |    |    [1031:1031] <Whitespace> = ♢•♢
@@ -17327,6 +17981,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    |    [1032:1032] <Text> = ♢=♢
 |    |    |    |    |    |    |    |    |    [1032:1032] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    |    |    [1032:1032] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    |    + <name> = ♢encoding♢
 |    |    |    |    |    |    |    |    |    |    [1032:1032] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    |    [1032:1032] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    |    |    |    |    [1032:1032] <Whitespace> = ♢•♢
@@ -17342,8 +17997,10 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    |    |    [1033:1033] <Match> = ♢(♢
 |    |    |    |    |    |    |    |    |    |    [1033:1033] <ExclamationMark> = ♢!♢
 |    |    |    |    |    |    |    |    |    |    [1033:1033] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    |    |    + <name> = ♢canBeConvertedToEncoding:♢
 |    |    |    |    |    |    |    |    |    |    |    [1033:1033] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    |    |    [1033:1033] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    |    |    |    + <name> = ♢string♢
 |    |    |    |    |    |    |    |    |    |    |    |    [1033:1033] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    |    |    |    [1033:1033] <Match> = ♢textStorage♢
 |    |    |    |    |    |    |    |    |    |    |    |    [1033:1033] <Whitespace> = ♢•♢
@@ -17365,6 +18022,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    |    |    [1034:1034] <Text> = ♢=♢
 |    |    |    |    |    |    |    |    |    |    [1034:1034] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    |    |    |    [1034:1038] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    |    |    + <name> = ♢errorWithDomain:code:userInfo:♢
 |    |    |    |    |    |    |    |    |    |    |    [1034:1034] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    |    |    [1034:1034] <Match> = ♢NSError♢
 |    |    |    |    |    |    |    |    |    |    |    [1034:1034] <Whitespace> = ♢•♢
@@ -17379,6 +18037,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    |    |    |    [1034:1034] <Text> = ♢userInfo♢
 |    |    |    |    |    |    |    |    |    |    |    [1034:1034] <Colon> = ♢:♢
 |    |    |    |    |    |    |    |    |    |    |    [1034:1038] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    |    |    |    + <name> = ♢dictionaryWithObjectsAndKeys:♢
 |    |    |    |    |    |    |    |    |    |    |    |    [1034:1034] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    |    |    |    [1034:1034] <Match> = ♢NSDictionary♢
 |    |    |    |    |    |    |    |    |    |    |    |    [1034:1034] <Whitespace> = ♢•♢
@@ -17387,12 +18046,14 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    |    |    |    |    [1034:1035] <Newline> = ♢¶♢
 |    |    |    |    |    |    |    |    |    |    |    |    [1035:1035] <Indenting> = ♢→→••••♢
 |    |    |    |    |    |    |    |    |    |    |    |    [1035:1035] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    |    |    |    |    + <name> = ♢stringWithFormat:♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    [1035:1035] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    [1035:1035] <Match> = ♢NSString♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    [1035:1035] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    [1035:1035] <Text> = ♢stringWithFormat♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    [1035:1035] <Colon> = ♢:♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    [1035:1035] <CFunctionCall>
+|    |    |    |    |    |    |    |    |    |    |    |    |    + <name> = ♢NSLocalizedString♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    |    [1035:1035] <Match> = ♢NSLocalizedString♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    |    [1035:1035] <Parenthesis>
 |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    [1035:1035] <Match> = ♢(♢
@@ -17406,6 +18067,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    |    |    |    |    |    [1035:1035] <Text> = ♢,♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    [1035:1035] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    [1035:1035] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    |    |    |    |    |    + <name> = ♢localizedNameOfStringEncoding:♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    |    [1035:1035] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    |    [1035:1035] <Match> = ♢NSString♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    |    [1035:1035] <Whitespace> = ♢•♢
@@ -17420,6 +18082,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    |    |    |    |    [1035:1036] <Newline> = ♢¶♢
 |    |    |    |    |    |    |    |    |    |    |    |    [1036:1036] <Indenting> = ♢→→••••♢
 |    |    |    |    |    |    |    |    |    |    |    |    [1036:1036] <CFunctionCall>
+|    |    |    |    |    |    |    |    |    |    |    |    + <name> = ♢NSLocalizedString♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    [1036:1036] <Match> = ♢NSLocalizedString♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    [1036:1036] <Parenthesis>
 |    |    |    |    |    |    |    |    |    |    |    |    |    |    [1036:1036] <Match> = ♢(♢
@@ -17470,6 +18133,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [1043:1044] <Newline> = ♢¶♢
 |    |    |    |    |    |    [1044:1044] <Indenting> = ♢→♢
 |    |    |    |    |    |    [1044:1044] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢presentError:modalForWindow:delegate:didPresentSelector:contextInfo:♢
 |    |    |    |    |    |    |    [1044:1044] <Match> = ♢[♢
 |    |    |    |    |    |    |    [1044:1044] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    |    [1044:1044] <Whitespace> = ♢•♢
@@ -17480,6 +18144,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    [1044:1044] <Text> = ♢modalForWindow♢
 |    |    |    |    |    |    |    [1044:1044] <Colon> = ♢:♢
 |    |    |    |    |    |    |    [1044:1044] <ObjCMethodCall>
+|    |    |    |    |    |    |    + <name> = ♢windowForSheet♢
 |    |    |    |    |    |    |    |    [1044:1044] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    [1044:1044] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    |    |    [1044:1044] <Whitespace> = ♢•♢
@@ -17519,6 +18184,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [1045:1046] <Newline> = ♢¶♢
 |    |    |    |    |    |    [1046:1046] <Indenting> = ♢→♢
 |    |    |    |    |    |    [1046:1046] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢saveDocumentWithDelegate:didSaveSelector:contextInfo:♢
 |    |    |    |    |    |    |    [1046:1046] <Match> = ♢[♢
 |    |    |    |    |    |    |    [1046:1046] <ObjCSuper> = ♢super♢
 |    |    |    |    |    |    |    [1046:1046] <Whitespace> = ♢•♢
@@ -17546,6 +18212,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    + <cleaned> = ♢•For•plain-text•documents,•we•add•our•own•accessory•view•for•selecting•encodings.•The•plain•text•case•does•not•require•a•format•popup.•¶♢
 |    |    [1051:1052] <Newline> = ♢¶♢
 |    |    [1052:1054] <ObjCMethodImplementation>
+|    |    + <name> = ♢shouldRunSavePanelWithAccessoryView♢
 |    |    |    [1052:1052] <Match> = ♢-♢
 |    |    |    [1052:1052] <Whitespace> = ♢•♢
 |    |    |    [1052:1052] <Parenthesis>
@@ -17562,6 +18229,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    [1053:1053] <Match> = ♢return♢
 |    |    |    |    |    [1053:1053] <Whitespace> = ♢•♢
 |    |    |    |    |    [1053:1053] <ObjCMethodCall>
+|    |    |    |    |    + <name> = ♢isRichText♢
 |    |    |    |    |    |    [1053:1053] <Match> = ♢[♢
 |    |    |    |    |    |    [1053:1053] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    [1053:1053] <Whitespace> = ♢•♢
@@ -17576,6 +18244,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    + <cleaned> = ♢•If•the•document•is•a•converted•version•of•a•document•that•existed•on•disk,•set•the•default•directory•to•the•directory•in•which•the•source•file•(converted•file)•resided•at•the•time•the•document•was•converted.•If•the•document•is•plain•text,•we•additionally•add•an•encoding•popup.•¶♢
 |    |    [1057:1058] <Newline> = ♢¶♢
 |    |    [1058:1119] <ObjCMethodImplementation>
+|    |    + <name> = ♢prepareSavePanel:♢
 |    |    |    [1058:1058] <Match> = ♢-♢
 |    |    |    [1058:1058] <Whitespace> = ♢•♢
 |    |    |    [1058:1058] <Parenthesis>
@@ -17645,8 +18314,10 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [1065:1065] <Text> = ♢=♢
 |    |    |    |    |    |    [1065:1065] <Whitespace> = ♢•♢
 |    |    |    |    |    |    [1065:1065] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢stringByDeletingPathExtension♢
 |    |    |    |    |    |    |    [1065:1065] <Match> = ♢[♢
 |    |    |    |    |    |    |    [1065:1065] <ObjCMethodCall>
+|    |    |    |    |    |    |    + <name> = ♢path♢
 |    |    |    |    |    |    |    |    [1065:1065] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    [1065:1065] <Match> = ♢defaultDestination♢
 |    |    |    |    |    |    |    |    [1065:1065] <Whitespace> = ♢•♢
@@ -17670,8 +18341,10 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    [1067:1067] <Parenthesis>
 |    |    |    |    |    |    |    |    [1067:1067] <Match> = ♢(♢
 |    |    |    |    |    |    |    |    [1067:1067] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    + <name> = ♢fileExistsAtPath:isDirectory:♢
 |    |    |    |    |    |    |    |    |    [1067:1067] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    [1067:1067] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    |    + <name> = ♢defaultManager♢
 |    |    |    |    |    |    |    |    |    |    [1067:1067] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    |    [1067:1067] <Match> = ♢NSFileManager♢
 |    |    |    |    |    |    |    |    |    |    [1067:1067] <Whitespace> = ♢•♢
@@ -17699,6 +18372,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    [1067:1068] <Newline> = ♢¶♢
 |    |    |    |    |    |    |    |    [1068:1068] <Indenting> = ♢→••••♢
 |    |    |    |    |    |    |    |    [1068:1068] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    + <name> = ♢setDirectory:♢
 |    |    |    |    |    |    |    |    |    [1068:1068] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    [1068:1068] <Match> = ♢savePanel♢
 |    |    |    |    |    |    |    |    |    [1068:1068] <Whitespace> = ♢•♢
@@ -17724,6 +18398,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [1072:1072] <Match> = ♢(♢
 |    |    |    |    |    |    [1072:1072] <ExclamationMark> = ♢!♢
 |    |    |    |    |    |    [1072:1072] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢isRichText♢
 |    |    |    |    |    |    |    [1072:1072] <Match> = ♢[♢
 |    |    |    |    |    |    |    [1072:1072] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    |    [1072:1072] <Whitespace> = ♢•♢
@@ -17742,8 +18417,10 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [1073:1073] <Text> = ♢=♢
 |    |    |    |    |    |    [1073:1073] <Whitespace> = ♢•♢
 |    |    |    |    |    |    [1073:1073] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢boolForKey:♢
 |    |    |    |    |    |    |    [1073:1073] <Match> = ♢[♢
 |    |    |    |    |    |    |    [1073:1073] <ObjCMethodCall>
+|    |    |    |    |    |    |    + <name> = ♢standardUserDefaults♢
 |    |    |    |    |    |    |    |    [1073:1073] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    [1073:1073] <Match> = ♢NSUserDefaults♢
 |    |    |    |    |    |    |    |    [1073:1073] <Whitespace> = ♢•♢
@@ -17767,6 +18444,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [1075:1075] <Text> = ♢=♢
 |    |    |    |    |    |    [1075:1075] <Whitespace> = ♢•♢
 |    |    |    |    |    |    [1075:1075] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢encoding♢
 |    |    |    |    |    |    |    [1075:1075] <Match> = ♢[♢
 |    |    |    |    |    |    |    [1075:1075] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    |    [1075:1075] <Whitespace> = ♢•♢
@@ -17776,6 +18454,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [1075:1076] <Newline> = ♢¶♢
 |    |    |    |    |    |    [1076:1076] <Indenting> = ♢→♢
 |    |    |    |    |    |    [1076:1076] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢setEncodingForSaving::♢
 |    |    |    |    |    |    |    [1076:1076] <Match> = ♢[♢
 |    |    |    |    |    |    |    [1076:1076] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    |    [1076:1076] <Whitespace> = ♢•♢
@@ -17793,6 +18472,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    [1076:1076] <QuestionMark> = ♢?♢
 |    |    |    |    |    |    |    [1076:1076] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    [1076:1076] <ObjCMethodCall>
+|    |    |    |    |    |    |    + <name> = ♢suggestedDocumentEncoding♢
 |    |    |    |    |    |    |    |    [1076:1076] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    [1076:1076] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    |    |    [1076:1076] <Whitespace> = ♢•♢
@@ -17807,16 +18487,20 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [1076:1077] <Newline> = ♢¶♢
 |    |    |    |    |    |    [1077:1077] <Indenting> = ♢→♢
 |    |    |    |    |    |    [1077:1077] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢setAccessoryView:♢
 |    |    |    |    |    |    |    [1077:1077] <Match> = ♢[♢
 |    |    |    |    |    |    |    [1077:1077] <Match> = ♢savePanel♢
 |    |    |    |    |    |    |    [1077:1077] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    [1077:1077] <Text> = ♢setAccessoryView♢
 |    |    |    |    |    |    |    [1077:1077] <Colon> = ♢:♢
 |    |    |    |    |    |    |    [1077:1077] <ObjCMethodCall>
+|    |    |    |    |    |    |    + <name> = ♢encodingAccessory:includeDefaultEntry:encodingPopUp:checkBox:♢
 |    |    |    |    |    |    |    |    [1077:1077] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    [1077:1077] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    + <name> = ♢class♢
 |    |    |    |    |    |    |    |    |    [1077:1077] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    [1077:1077] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    |    + <name> = ♢sharedDocumentController♢
 |    |    |    |    |    |    |    |    |    |    [1077:1077] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    |    [1077:1077] <Match> = ♢NSDocumentController♢
 |    |    |    |    |    |    |    |    |    |    [1077:1077] <Whitespace> = ♢•♢
@@ -17829,6 +18513,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    [1077:1077] <Text> = ♢encodingAccessory♢
 |    |    |    |    |    |    |    |    [1077:1077] <Colon> = ♢:♢
 |    |    |    |    |    |    |    |    [1077:1077] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    + <name> = ♢encodingForSaving♢
 |    |    |    |    |    |    |    |    |    [1077:1077] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    [1077:1077] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    |    |    |    [1077:1077] <Whitespace> = ♢•♢
@@ -17859,12 +18544,14 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [1079:1080] <Newline> = ♢¶♢
 |    |    |    |    |    |    [1080:1080] <Indenting> = ♢→♢
 |    |    |    |    |    |    [1080:1080] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢setTitle:♢
 |    |    |    |    |    |    |    [1080:1080] <Match> = ♢[♢
 |    |    |    |    |    |    |    [1080:1080] <Match> = ♢extCheckbox♢
 |    |    |    |    |    |    |    [1080:1080] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    [1080:1080] <Text> = ♢setTitle♢
 |    |    |    |    |    |    |    [1080:1080] <Colon> = ♢:♢
 |    |    |    |    |    |    |    [1080:1080] <CFunctionCall>
+|    |    |    |    |    |    |    + <name> = ♢NSLocalizedString♢
 |    |    |    |    |    |    |    |    [1080:1080] <Match> = ♢NSLocalizedString♢
 |    |    |    |    |    |    |    |    [1080:1080] <Parenthesis>
 |    |    |    |    |    |    |    |    |    [1080:1080] <Match> = ♢(♢
@@ -17880,12 +18567,14 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [1080:1081] <Newline> = ♢¶♢
 |    |    |    |    |    |    [1081:1081] <Indenting> = ♢→♢
 |    |    |    |    |    |    [1081:1081] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢setToolTip:♢
 |    |    |    |    |    |    |    [1081:1081] <Match> = ♢[♢
 |    |    |    |    |    |    |    [1081:1081] <Match> = ♢extCheckbox♢
 |    |    |    |    |    |    |    [1081:1081] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    [1081:1081] <Text> = ♢setToolTip♢
 |    |    |    |    |    |    |    [1081:1081] <Colon> = ♢:♢
 |    |    |    |    |    |    |    [1081:1081] <CFunctionCall>
+|    |    |    |    |    |    |    + <name> = ♢NSLocalizedString♢
 |    |    |    |    |    |    |    |    [1081:1081] <Match> = ♢NSLocalizedString♢
 |    |    |    |    |    |    |    |    [1081:1081] <Parenthesis>
 |    |    |    |    |    |    |    |    |    [1081:1081] <Match> = ♢(♢
@@ -17901,6 +18590,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [1081:1082] <Newline> = ♢¶♢
 |    |    |    |    |    |    [1082:1082] <Indenting> = ♢→♢
 |    |    |    |    |    |    [1082:1082] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢setState:♢
 |    |    |    |    |    |    |    [1082:1082] <Match> = ♢[♢
 |    |    |    |    |    |    |    [1082:1082] <Match> = ♢extCheckbox♢
 |    |    |    |    |    |    |    [1082:1082] <Whitespace> = ♢•♢
@@ -17912,6 +18602,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [1082:1083] <Newline> = ♢¶♢
 |    |    |    |    |    |    [1083:1083] <Indenting> = ♢→♢
 |    |    |    |    |    |    [1083:1083] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢setAction:♢
 |    |    |    |    |    |    |    [1083:1083] <Match> = ♢[♢
 |    |    |    |    |    |    |    [1083:1083] <Match> = ♢extCheckbox♢
 |    |    |    |    |    |    |    [1083:1083] <Whitespace> = ♢•♢
@@ -17929,6 +18620,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [1083:1084] <Newline> = ♢¶♢
 |    |    |    |    |    |    [1084:1084] <Indenting> = ♢→♢
 |    |    |    |    |    |    [1084:1084] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢setTarget:♢
 |    |    |    |    |    |    |    [1084:1084] <Match> = ♢[♢
 |    |    |    |    |    |    |    [1084:1084] <Match> = ♢extCheckbox♢
 |    |    |    |    |    |    |    [1084:1084] <Whitespace> = ♢•♢
@@ -17952,12 +18644,14 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    [1085:1086] <Newline> = ♢¶♢
 |    |    |    |    |    |    |    |    [1086:1086] <Indenting> = ♢→••••♢
 |    |    |    |    |    |    |    |    [1086:1086] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    + <name> = ♢setAllowedFileTypes:♢
 |    |    |    |    |    |    |    |    |    [1086:1086] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    [1086:1086] <Match> = ♢savePanel♢
 |    |    |    |    |    |    |    |    |    [1086:1086] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    |    |    [1086:1086] <Text> = ♢setAllowedFileTypes♢
 |    |    |    |    |    |    |    |    |    [1086:1086] <Colon> = ♢:♢
 |    |    |    |    |    |    |    |    |    [1086:1086] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    |    + <name> = ♢arrayWithObject:♢
 |    |    |    |    |    |    |    |    |    |    [1086:1086] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    |    [1086:1086] <Match> = ♢NSArray♢
 |    |    |    |    |    |    |    |    |    |    [1086:1086] <Whitespace> = ♢•♢
@@ -17976,6 +18670,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    [1086:1087] <Newline> = ♢¶♢
 |    |    |    |    |    |    |    |    [1087:1087] <Indenting> = ♢→••••♢
 |    |    |    |    |    |    |    |    [1087:1087] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    + <name> = ♢setAllowsOtherFileTypes:♢
 |    |    |    |    |    |    |    |    |    [1087:1087] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    [1087:1087] <Match> = ♢savePanel♢
 |    |    |    |    |    |    |    |    |    [1087:1087] <Whitespace> = ♢•♢
@@ -18002,6 +18697,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    [1090:1091] <Newline> = ♢¶♢
 |    |    |    |    |    |    |    |    [1091:1091] <Indenting> = ♢••••••••••••♢
 |    |    |    |    |    |    |    |    [1091:1091] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    + <name> = ♢setAllowedFileTypes:♢
 |    |    |    |    |    |    |    |    |    [1091:1091] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    [1091:1091] <Match> = ♢savePanel♢
 |    |    |    |    |    |    |    |    |    [1091:1091] <Whitespace> = ♢•♢
@@ -18029,8 +18725,10 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    [1094:1094] <Text> = ♢=♢
 |    |    |    |    |    |    |    |    [1094:1094] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    |    [1094:1094] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    + <name> = ♢getResourceValue:forKey:error:♢
 |    |    |    |    |    |    |    |    |    [1094:1094] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    [1094:1094] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    |    + <name> = ♢fileURL♢
 |    |    |    |    |    |    |    |    |    |    [1094:1094] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    |    [1094:1094] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    |    |    |    |    [1094:1094] <Whitespace> = ♢•♢
@@ -18083,6 +18781,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    |    |    [1097:1097] <Text> = ♢=♢
 |    |    |    |    |    |    |    |    |    |    [1097:1097] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    |    |    |    [1097:1097] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    |    |    + <name> = ♢displayName♢
 |    |    |    |    |    |    |    |    |    |    |    [1097:1097] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    |    |    [1097:1097] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    |    |    |    |    |    [1097:1097] <Whitespace> = ♢•♢
@@ -18095,6 +18794,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    [1098:1099] <Newline> = ♢¶♢
 |    |    |    |    |    |    |    |    [1099:1099] <Indenting> = ♢••••••••••••♢
 |    |    |    |    |    |    |    |    [1099:1099] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    + <name> = ♢setNameFieldStringValue:♢
 |    |    |    |    |    |    |    |    |    [1099:1099] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    [1099:1099] <Match> = ♢savePanel♢
 |    |    |    |    |    |    |    |    |    [1099:1099] <Whitespace> = ♢•♢
@@ -18118,6 +18818,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [1103:1103] <Text> = ♢=♢
 |    |    |    |    |    |    [1103:1103] <Whitespace> = ♢•♢
 |    |    |    |    |    |    [1103:1103] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢numberOfItems♢
 |    |    |    |    |    |    |    [1103:1103] <Match> = ♢[♢
 |    |    |    |    |    |    |    [1103:1103] <Match> = ♢encodingPopup♢
 |    |    |    |    |    |    |    [1103:1103] <Whitespace> = ♢•♢
@@ -18131,6 +18832,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [1104:1104] <Text> = ♢=♢
 |    |    |    |    |    |    [1104:1104] <Whitespace> = ♢•♢
 |    |    |    |    |    |    [1104:1104] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢string♢
 |    |    |    |    |    |    |    [1104:1104] <Match> = ♢[♢
 |    |    |    |    |    |    |    [1104:1104] <Match> = ♢textStorage♢
 |    |    |    |    |    |    |    [1104:1104] <Whitespace> = ♢•♢
@@ -18149,6 +18851,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    [1105:1105] <Asterisk> = ♢*♢
 |    |    |    |    |    |    |    |    [1105:1105] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    |    [1105:1105] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    + <name> = ♢length♢
 |    |    |    |    |    |    |    |    |    [1105:1105] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    [1105:1105] <Match> = ♢string♢
 |    |    |    |    |    |    |    |    |    [1105:1105] <Whitespace> = ♢•♢
@@ -18191,10 +18894,13 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    |    |    |    [1107:1107] <Text> = ♢NSStringEncoding♢
 |    |    |    |    |    |    |    |    |    |    |    [1107:1107] <Match> = ♢)♢
 |    |    |    |    |    |    |    |    |    |    [1107:1107] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    |    |    + <name> = ♢unsignedIntegerValue♢
 |    |    |    |    |    |    |    |    |    |    |    [1107:1107] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    |    |    [1107:1107] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    |    |    |    + <name> = ♢representedObject♢
 |    |    |    |    |    |    |    |    |    |    |    |    [1107:1107] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    |    |    |    [1107:1107] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    |    |    |    |    + <name> = ♢itemAtIndex:♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    [1107:1107] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    [1107:1107] <Match> = ♢encodingPopup♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    [1107:1107] <Whitespace> = ♢•♢
@@ -18273,6 +18979,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    |    |    |    |    [1109:1109] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    |    |    |    |    |    [1109:1109] <ExclamationMark> = ♢!♢
 |    |    |    |    |    |    |    |    |    |    |    |    [1109:1109] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    |    |    |    |    + <name> = ♢canBeConvertedToEncoding:♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    [1109:1109] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    [1109:1109] <Match> = ♢string♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    [1109:1109] <Whitespace> = ♢•♢
@@ -18287,8 +18994,10 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    |    |    |    |    [1109:1110] <Newline> = ♢¶♢
 |    |    |    |    |    |    |    |    |    |    |    |    [1110:1110] <Indenting> = ♢→→••••♢
 |    |    |    |    |    |    |    |    |    |    |    |    [1110:1110] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    |    |    |    |    + <name> = ♢setEnabled:♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    [1110:1110] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    [1110:1110] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    |    |    |    |    |    + <name> = ♢itemAtIndex:♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    |    [1110:1110] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    |    [1110:1110] <Match> = ♢encodingPopup♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    |    [1110:1110] <Whitespace> = ♢•♢
@@ -18314,6 +19023,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [1113:1114] <Newline> = ♢¶♢
 |    |    |    |    |    |    [1114:1114] <Indenting> = ♢→♢
 |    |    |    |    |    |    [1114:1114] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢setAction:♢
 |    |    |    |    |    |    |    [1114:1114] <Match> = ♢[♢
 |    |    |    |    |    |    |    [1114:1114] <Match> = ♢encodingPopup♢
 |    |    |    |    |    |    |    [1114:1114] <Whitespace> = ♢•♢
@@ -18331,6 +19041,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [1114:1115] <Newline> = ♢¶♢
 |    |    |    |    |    |    [1115:1115] <Indenting> = ♢→♢
 |    |    |    |    |    |    [1115:1115] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢setTarget:♢
 |    |    |    |    |    |    |    [1115:1115] <Match> = ♢[♢
 |    |    |    |    |    |    |    [1115:1115] <Match> = ♢encodingPopup♢
 |    |    |    |    |    |    |    [1115:1115] <Whitespace> = ♢•♢
@@ -18359,6 +19070,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    + <cleaned> = ♢•If•the•document•does•not•exist•on•disk,•but•it•has•been•converted•from•a•document•that•existed•on•disk,•return•the•base•file•name•without•the•path•extension.•Otherwise•return•the•default•("Untitled").•This•is•used•for•the•window•title•and•for•the•default•name•when•saving.•¶♢
 |    |    [1122:1123] <Newline> = ♢¶♢
 |    |    [1123:1129] <ObjCMethodImplementation>
+|    |    + <name> = ♢displayName♢
 |    |    |    [1123:1123] <Match> = ♢-♢
 |    |    |    [1123:1123] <Whitespace> = ♢•♢
 |    |    |    [1123:1123] <Parenthesis>
@@ -18380,6 +19092,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [1124:1124] <Match> = ♢(♢
 |    |    |    |    |    |    [1124:1124] <ExclamationMark> = ♢!♢
 |    |    |    |    |    |    [1124:1124] <ObjCMethodCall>
+|    |    |    |    |    |    + <name> = ♢fileURL♢
 |    |    |    |    |    |    |    [1124:1124] <Match> = ♢[♢
 |    |    |    |    |    |    |    [1124:1124] <ObjCSelf> = ♢self♢
 |    |    |    |    |    |    |    [1124:1124] <Whitespace> = ♢•♢
@@ -18400,10 +19113,13 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    [1125:1125] <Match> = ♢return♢
 |    |    |    |    |    |    |    [1125:1125] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    [1125:1125] <ObjCMethodCall>
+|    |    |    |    |    |    |    + <name> = ♢stringByDeletingPathExtension♢
 |    |    |    |    |    |    |    |    [1125:1125] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    [1125:1125] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    + <name> = ♢displayNameAtPath:♢
 |    |    |    |    |    |    |    |    |    [1125:1125] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    [1125:1125] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    |    + <name> = ♢defaultManager♢
 |    |    |    |    |    |    |    |    |    |    [1125:1125] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    |    [1125:1125] <Match> = ♢NSFileManager♢
 |    |    |    |    |    |    |    |    |    |    [1125:1125] <Whitespace> = ♢•♢
@@ -18413,6 +19129,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    |    [1125:1125] <Text> = ♢displayNameAtPath♢
 |    |    |    |    |    |    |    |    |    [1125:1125] <Colon> = ♢:♢
 |    |    |    |    |    |    |    |    |    [1125:1125] <ObjCMethodCall>
+|    |    |    |    |    |    |    |    |    + <name> = ♢path♢
 |    |    |    |    |    |    |    |    |    |    [1125:1125] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    |    |    [1125:1125] <Match> = ♢defaultDestination♢
 |    |    |    |    |    |    |    |    |    |    [1125:1125] <Whitespace> = ♢•♢
@@ -18438,6 +19155,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    [1127:1127] <Match> = ♢return♢
 |    |    |    |    |    |    |    [1127:1127] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    [1127:1127] <ObjCMethodCall>
+|    |    |    |    |    |    |    + <name> = ♢displayName♢
 |    |    |    |    |    |    |    |    [1127:1127] <Match> = ♢[♢
 |    |    |    |    |    |    |    |    [1127:1127] <ObjCSuper> = ♢super♢
 |    |    |    |    |    |    |    |    [1127:1127] <Whitespace> = ♢•♢
@@ -18459,6 +19177,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    + <cleaned> = ♢•Truncate•string•to•no•longer•than•truncationLength;•should•be•>•10¶♢
 |    [1135:1136] <Newline> = ♢¶♢
 |    [1136:1140] <CFunctionDefinition>
+|    + <name> = ♢truncatedString♢
 |    |    [1136:1136] <Text> = ♢NSString♢
 |    |    [1136:1136] <Whitespace> = ♢•♢
 |    |    [1136:1136] <Asterisk> = ♢*♢
@@ -18486,6 +19205,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    [1137:1137] <Text> = ♢=♢
 |    |    |    [1137:1137] <Whitespace> = ♢•♢
 |    |    |    [1137:1137] <ObjCMethodCall>
+|    |    |    + <name> = ♢length♢
 |    |    |    |    [1137:1137] <Match> = ♢[♢
 |    |    |    |    [1137:1137] <Match> = ♢str♢
 |    |    |    |    [1137:1137] <Whitespace> = ♢•♢
@@ -18517,8 +19237,10 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    [1139:1139] <Match> = ♢return♢
 |    |    |    |    [1139:1139] <Whitespace> = ♢•♢
 |    |    |    |    [1139:1139] <ObjCMethodCall>
+|    |    |    |    + <name> = ♢stringByAppendingString:♢
 |    |    |    |    |    [1139:1139] <Match> = ♢[♢
 |    |    |    |    |    [1139:1139] <ObjCMethodCall>
+|    |    |    |    |    + <name> = ♢substringToIndex:♢
 |    |    |    |    |    |    [1139:1139] <Match> = ♢[♢
 |    |    |    |    |    |    [1139:1139] <Match> = ♢str♢
 |    |    |    |    |    |    [1139:1139] <Whitespace> = ♢•♢

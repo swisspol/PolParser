@@ -701,10 +701,25 @@ IMPLEMENTATION(TypeOf, "typeof", true, "(")
 @end
 
 @implementation SourceNodeCFunctionPrototype
+
+- (NSString*) name {
+	return [self findFirstChildOfClass:[SourceNodeMatch class]].content;
+}
+
 @end
 
 @implementation SourceNodeCFunctionDefinition
+
+- (NSString*) name {
+	return [self findFirstChildOfClass:[SourceNodeMatch class]].content;
+}
+
 @end
 
 @implementation SourceNodeCFunctionCall
+
+- (NSString*) name {
+	return [self findFirstChildOfClass:[SourceNodeMatch class]].content;
+}
+
 @end

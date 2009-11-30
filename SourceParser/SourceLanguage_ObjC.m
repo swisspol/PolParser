@@ -222,6 +222,8 @@ static SourceNode* _ApplierFunction(SourceNode* node, void* context) {
         
         // "[foo bar:baz]"
         SourceNode* target = [node.firstChild findNextSiblingIgnoringWhitespaceAndNewline];
+        if([target isKindOfClass:[SourceNodeParenthesis class]])
+        	target = [target findNextSiblingIgnoringWhitespaceAndNewline];
         if([target isMemberOfClass:[SourceNodeText class]] || [target isKindOfClass:[SourceNodeObjCSelf class]] || [target isKindOfClass:[SourceNodeObjCSuper class]]
         	|| [target isKindOfClass:[SourceNodeBrackets class]] || [target isKindOfClass:[SourceNodeCFunctionCall class]] || [target isKindOfClass:[SourceNodeObjCString class]]) {
         	if([target.nextSibling isKindOfClass:[SourceNodeWhitespace class]] || [target.nextSibling isKindOfClass:[SourceNodeNewline class]]) {
@@ -357,11 +359,75 @@ IMPLEMENTATION(Encode, "@encode", true, "(")
 
 #undef IMPLEMENTATION
 
+static NSString* _SelectorFromMethod(SourceNode* node) {
+	NSMutableString* string = [NSMutableString string];
+    node = [node findNextSiblingIgnoringWhitespaceAndNewline];
+    if([node isKindOfClass:[SourceNodeParenthesis class]])
+        node = [node findNextSiblingIgnoringWhitespaceAndNewline];
+    SourceNode* colonNode = [node findNextSiblingOfClass:[SourceNodeColon class]];
+    if(colonNode) {
+        node = colonNode;
+        while(node) {
+            if(![node.previousSibling isKindOfClass:[SourceNodeWhitespace class]] && ![node.previousSibling isKindOfClass:[SourceNodeNewline class]])
+                [string appendString:node.previousSibling.content];
+            [string appendString:node.content];
+            node = [node findNextSiblingOfClass:[SourceNodeColon class]];
+        }
+    } else {
+        [string appendString:node.content];
+    }
+    return string;
+}
+
 @implementation SourceNodeObjCMethodDeclaration
+
+- (void) dealloc {
+	[_name release];
+    
+    [super dealloc];
+}
+
+- (NSString*) name {
+	if(_name == nil)
+    	_name = [_SelectorFromMethod(self.firstChild) retain];
+    return _name;
+}
+
 @end
 
 @implementation SourceNodeObjCMethodImplementation
+
+- (void) dealloc {
+	[_name release];
+    
+    [super dealloc];
+}
+
+- (NSString*) name {
+	if(_name == nil)
+    	_name = [_SelectorFromMethod(self.firstChild) retain];
+    return _name;
+}
+
 @end
 
 @implementation SourceNodeObjCMethodCall
+
+- (void) dealloc {
+	[_name release];
+    
+    [super dealloc];
+}
+
+- (NSString*) name {
+	if(_name == nil) {
+    	SourceNode* node = self.firstChild;
+        node = [node findNextSiblingIgnoringWhitespaceAndNewline];
+    	if([node isKindOfClass:[SourceNodeParenthesis class]])
+        	node = [node findNextSiblingIgnoringWhitespaceAndNewline];
+    	_name = [_SelectorFromMethod(node) retain];
+    }
+    return _name;
+}
+
 @end

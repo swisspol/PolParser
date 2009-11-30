@@ -307,6 +307,10 @@ static NSDictionary* _ParseAttributes(NSString* content) {
     return string;
 }
 
+- (NSString*) name {
+	return [(SourceNodeXMLTag*)self.firstChild name];
+}
+
 /*
 - (NSDictionary*) attributes {
 	return [(SourceNodeXMLTag*)self.firstChild attributes];

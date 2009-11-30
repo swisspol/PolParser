@@ -43,6 +43,7 @@
 |    + <cleaned> = ♢xml-stylesheet•type="text/xsl"•href="formatting.xsl"♢
 |    [2:3] <Newline> = ♢¶♢
 |    [3:10] <XMLElement>
+|    + <name> = ♢painting♢
 |    + <cleaned> = ♢¶••¶••¶••¶••¶♢
 |    |    [3:3] <XMLTag> = ♢<painting>♢
 |    |    + <name> = ♢painting♢
@@ -53,6 +54,7 @@
 |    |    [4:5] <Newline> = ♢¶♢
 |    |    [5:5] <Indenting> = ♢••♢
 |    |    [5:5] <XMLElement>
+|    |    + <name> = ♢img♢
 |    |    + <cleaned> = ♢♢
 |    |    |    [5:5] <XMLTag> = ♢<img•src="madonna.jpg"•alt•=•'Foligno•Madonna,•by•Raphael'•/>♢
 |    |    |    + <name> = ♢img♢
@@ -61,6 +63,7 @@
 |    |    [5:6] <Newline> = ♢¶♢
 |    |    [6:6] <Indenting> = ♢••♢
 |    |    [6:8] <XMLElement>
+|    |    + <name> = ♢caption♢
 |    |    + <cleaned> = ♢This•is•Raphael's•"Foligno"•<Madonna>,•painted•in¶••¶••-.♢
 |    |    |    [6:6] <XMLTag> = ♢<caption>♢
 |    |    |    + <name> = ♢caption♢
@@ -85,12 +88,14 @@
 |    |    |    [6:7] <Newline> = ♢¶♢
 |    |    |    [7:7] <Indenting> = ♢••♢
 |    |    |    [7:7] <XMLElement>
+|    |    |    + <name> = ♢true♢
 |    |    |    + <cleaned> = ♢♢
 |    |    |    |    [7:7] <XMLTag> = ♢<true/>♢
 |    |    |    |    + <name> = ♢true♢
 |    |    |    [7:8] <Newline> = ♢¶♢
 |    |    |    [8:8] <Indenting> = ♢••♢
 |    |    |    [8:8] <XMLElement>
+|    |    |    + <name> = ♢date♢
 |    |    |    + <cleaned> = ♢1511♢
 |    |    |    |    [8:8] <XMLTag> = ♢<date>♢
 |    |    |    |    + <name> = ♢date♢
@@ -99,6 +104,7 @@
 |    |    |    |    + <name> = ♢date♢
 |    |    |    [8:8] <Text> = ♢-♢
 |    |    |    [8:8] <XMLElement>
+|    |    |    + <name> = ♢date♢
 |    |    |    + <cleaned> = ♢1512♢
 |    |    |    |    [8:8] <XMLTag> = ♢<date>♢
 |    |    |    |    + <name> = ♢date♢

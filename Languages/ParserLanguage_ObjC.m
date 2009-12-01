@@ -16,12 +16,12 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#import "SourceParser_Internal.h"
+#import "Parser_Internal.h"
 
-@interface SourceLanguageObjC : SourceLanguage
+@interface ParserLanguageObjC : ParserLanguage
 @end
 
-@implementation SourceLanguageObjC
+@implementation ParserLanguageObjC
 
 + (NSArray*) languageDependencies {
 	return [NSArray arrayWithObjects:@"Base", @"C", nil];
@@ -37,38 +37,38 @@
 + (NSArray*) languageNodeClasses {
 	NSMutableArray* classes = [NSMutableArray arrayWithArray:[super languageNodeClasses]];
     
-    [classes addObject:[SourceNodeCPPComment class]]; //From C++ language
+    [classes addObject:[ParserNodeCPPComment class]]; //From C++ language
     
-    [classes addObject:[SourceNodeObjCString class]];
-    [classes addObject:[SourceNodeObjCPreprocessorImport class]];
-    [classes addObject:[SourceNodeObjCInterface class]];
-    [classes addObject:[SourceNodeObjCImplementation class]];
-    [classes addObject:[SourceNodeObjCProtocol class]];
-    [classes addObject:[SourceNodeObjCClass class]];
-    [classes addObject:[SourceNodeObjCPublic class]];
-    [classes addObject:[SourceNodeObjCProtected class]];
-    [classes addObject:[SourceNodeObjCPrivate class]];
-    [classes addObject:[SourceNodeObjCOptional class]];
-    [classes addObject:[SourceNodeObjCRequired class]];
-    [classes addObject:[SourceNodeObjCProperty class]];
-    [classes addObject:[SourceNodeObjCSynthesize class]];
-    [classes addObject:[SourceNodeObjCTry class]];
-    [classes addObject:[SourceNodeObjCCatch class]];
-    [classes addObject:[SourceNodeObjCFinally class]];
-    [classes addObject:[SourceNodeObjCThrow class]];
-    [classes addObject:[SourceNodeObjCSynchronized class]];
-    [classes addObject:[SourceNodeObjCSelector class]];
-    [classes addObject:[SourceNodeObjCEncode class]];
+    [classes addObject:[ParserNodeObjCString class]];
+    [classes addObject:[ParserNodeObjCPreprocessorImport class]];
+    [classes addObject:[ParserNodeObjCInterface class]];
+    [classes addObject:[ParserNodeObjCImplementation class]];
+    [classes addObject:[ParserNodeObjCProtocol class]];
+    [classes addObject:[ParserNodeObjCClass class]];
+    [classes addObject:[ParserNodeObjCPublic class]];
+    [classes addObject:[ParserNodeObjCProtected class]];
+    [classes addObject:[ParserNodeObjCPrivate class]];
+    [classes addObject:[ParserNodeObjCOptional class]];
+    [classes addObject:[ParserNodeObjCRequired class]];
+    [classes addObject:[ParserNodeObjCProperty class]];
+    [classes addObject:[ParserNodeObjCSynthesize class]];
+    [classes addObject:[ParserNodeObjCTry class]];
+    [classes addObject:[ParserNodeObjCCatch class]];
+    [classes addObject:[ParserNodeObjCFinally class]];
+    [classes addObject:[ParserNodeObjCThrow class]];
+    [classes addObject:[ParserNodeObjCSynchronized class]];
+    [classes addObject:[ParserNodeObjCSelector class]];
+    [classes addObject:[ParserNodeObjCEncode class]];
     
-    [classes addObject:[SourceNodeObjCMethodDeclaration class]];
-    [classes addObject:[SourceNodeObjCMethodImplementation class]];
-    [classes addObject:[SourceNodeObjCMethodCall class]];
+    [classes addObject:[ParserNodeObjCMethodDeclaration class]];
+    [classes addObject:[ParserNodeObjCMethodImplementation class]];
+    [classes addObject:[ParserNodeObjCMethodCall class]];
     
     return classes;
 }
 
 + (NSSet*) languageTopLevelNodeClasses {
-	return [NSSet setWithObjects:[SourceNodeObjCInterface class], [SourceNodeObjCImplementation class], nil];
+	return [NSSet setWithObjects:[ParserNodeObjCInterface class], [ParserNodeObjCImplementation class], nil];
 }
 
 - (NSString*) name {
@@ -79,143 +79,143 @@
     return [NSSet setWithObject:@"m"];
 }
 
-static BOOL _HasInterfaceOrProtocolParent(SourceNode* node) {
-    if([node.parent isKindOfClass:[SourceNodeObjCInterface class]] || [node.parent isKindOfClass:[SourceNodeObjCPrivate class]] || [node.parent isKindOfClass:[SourceNodeObjCProtected class]] || [node.parent isKindOfClass:[SourceNodeObjCPublic class]]
-    	|| [node.parent isKindOfClass:[SourceNodeObjCProtocol class]] || [node.parent isKindOfClass:[SourceNodeObjCProtected class]] || [node.parent isKindOfClass:[SourceNodeObjCOptional class]])
+static BOOL _HasInterfaceOrProtocolParent(ParserNode* node) {
+    if([node.parent isKindOfClass:[ParserNodeObjCInterface class]] || [node.parent isKindOfClass:[ParserNodeObjCPrivate class]] || [node.parent isKindOfClass:[ParserNodeObjCProtected class]] || [node.parent isKindOfClass:[ParserNodeObjCPublic class]]
+    	|| [node.parent isKindOfClass:[ParserNodeObjCProtocol class]] || [node.parent isKindOfClass:[ParserNodeObjCProtected class]] || [node.parent isKindOfClass:[ParserNodeObjCOptional class]])
         return YES;
     
-    return [node.parent isKindOfClass:[SourceNodeCPreprocessorCondition class]] ? _HasInterfaceOrProtocolParent(node.parent) : NO;
+    return [node.parent isKindOfClass:[ParserNodeCPreprocessorCondition class]] ? _HasInterfaceOrProtocolParent(node.parent) : NO;
 }
 
-static BOOL _HasImplementationParent(SourceNode* node) {
-    if([node.parent isKindOfClass:[SourceNodeObjCImplementation class]])
+static BOOL _HasImplementationParent(ParserNode* node) {
+    if([node.parent isKindOfClass:[ParserNodeObjCImplementation class]])
         return YES;
     
-    return [node.parent isKindOfClass:[SourceNodeCPreprocessorCondition class]] ? _HasImplementationParent(node.parent) : NO;
+    return [node.parent isKindOfClass:[ParserNodeCPreprocessorCondition class]] ? _HasImplementationParent(node.parent) : NO;
 }
 
-static SourceNode* _ApplierFunction(SourceNode* node, void* context) {
+static ParserNode* _ApplierFunction(ParserNode* node, void* context) {
 	[node removeFromParent];
-	[(SourceNode*)context addChild:node];
+	[(ParserNode*)context addChild:node];
     return nil;
 }
 
-- (SourceNode*) performSyntaxAnalysisForNode:(SourceNode*)node sourceBuffer:(const unichar*)sourceBuffer topLevelNodeClasses:(NSSet*)nodeClasses {
+- (ParserNode*) performSyntaxAnalysisForNode:(ParserNode*)node textBuffer:(const unichar*)textBuffer topLevelNodeClasses:(NSSet*)nodeClasses {
     
-    if([node isKindOfClass:[SourceNodeBraces class]]) {
-        SourceNode* previousNode = [node findPreviousSiblingIgnoringWhitespaceAndNewline];
+    if([node isKindOfClass:[ParserNodeBraces class]]) {
+        ParserNode* previousNode = [node findPreviousSiblingIgnoringWhitespaceAndNewline];
         
         // "@catch() {}" "@synchronized() {}"
-        if([previousNode isKindOfClass:[SourceNodeParenthesis class]]) {
+        if([previousNode isKindOfClass:[ParserNodeParenthesis class]]) {
             previousNode = [previousNode findPreviousSiblingIgnoringWhitespaceAndNewline];
-            if([previousNode isKindOfClass:[SourceNodeObjCCatch class]] || [previousNode isKindOfClass:[SourceNodeObjCSynchronized class]])
+            if([previousNode isKindOfClass:[ParserNodeObjCCatch class]] || [previousNode isKindOfClass:[ParserNodeObjCSynchronized class]])
                 _RearrangeNodesAsChildren(previousNode, node);
         }
         
         // "@try {}" "@finally {}"
-        else if([previousNode isKindOfClass:[SourceNodeObjCTry class]] || [previousNode isKindOfClass:[SourceNodeObjCFinally class]]) {
+        else if([previousNode isKindOfClass:[ParserNodeObjCTry class]] || [previousNode isKindOfClass:[ParserNodeObjCFinally class]]) {
             _RearrangeNodesAsChildren(previousNode, node);
         }
         
-    } else if([node isKindOfClass:[SourceNodeObjCSelector class]] || [node isKindOfClass:[SourceNodeObjCEncode class]]) {
+    } else if([node isKindOfClass:[ParserNodeObjCSelector class]] || [node isKindOfClass:[ParserNodeObjCEncode class]]) {
         
         // "@selector()" "@encode()"
-        SourceNode* nextNode = [node findNextSiblingIgnoringWhitespaceAndNewline];
-        if([nextNode isKindOfClass:[SourceNodeParenthesis class]])
+        ParserNode* nextNode = [node findNextSiblingIgnoringWhitespaceAndNewline];
+        if([nextNode isKindOfClass:[ParserNodeParenthesis class]])
             _RearrangeNodesAsChildren(node, nextNode);
         
-    } else if([node isKindOfClass:[SourceNodeObjCThrow class]]) {
+    } else if([node isKindOfClass:[ParserNodeObjCThrow class]]) {
         
         // "@throw" "@throw foo"
-        SourceNode* semicolonNode = [node findNextSiblingOfClass:[SourceNodeSemicolon class]];
+        ParserNode* semicolonNode = [node findNextSiblingOfClass:[ParserNodeSemicolon class]];
         if(semicolonNode) {
         	if(semicolonNode.previousSibling != node)
                 _RearrangeNodesAsChildren(node, semicolonNode);
         } else {
-            if([node.parent isKindOfClass:[SourceNodeCConditionIf class]] || [node.parent isKindOfClass:[SourceNodeCConditionElse class]] || [node.parent isKindOfClass:[SourceNodeCConditionElseIf class]]
-            	|| [node.parent isKindOfClass:[SourceNodeCFlowFor class]] || [node.parent isKindOfClass:[SourceNodeCFlowWhile class]])
+            if([node.parent isKindOfClass:[ParserNodeCConditionIf class]] || [node.parent isKindOfClass:[ParserNodeCConditionElse class]] || [node.parent isKindOfClass:[ParserNodeCConditionElseIf class]]
+            	|| [node.parent isKindOfClass:[ParserNodeCFlowFor class]] || [node.parent isKindOfClass:[ParserNodeCFlowWhile class]])
             	_RearrangeNodesAsChildren(node, node.parent.lastChild);
         }
         
-    } else if([node isKindOfClass:[SourceNodeObjCProperty class]] && _HasInterfaceOrProtocolParent(node)) {
+    } else if([node isKindOfClass:[ParserNodeObjCProperty class]] && _HasInterfaceOrProtocolParent(node)) {
         
         // "@property" "@property()"
-        SourceNode* semicolonNode = [node findNextSiblingOfClass:[SourceNodeSemicolon class]];
+        ParserNode* semicolonNode = [node findNextSiblingOfClass:[ParserNodeSemicolon class]];
         if(semicolonNode)
             _RearrangeNodesAsChildren(node, semicolonNode);
         
-    } else if([node isKindOfClass:[SourceNodeObjCSynthesize class]] && _HasImplementationParent(node)) {
+    } else if([node isKindOfClass:[ParserNodeObjCSynthesize class]] && _HasImplementationParent(node)) {
         
         // "@synthesize"
-        SourceNode* semicolonNode = [node findNextSiblingOfClass:[SourceNodeSemicolon class]];
+        ParserNode* semicolonNode = [node findNextSiblingOfClass:[ParserNodeSemicolon class]];
         if(semicolonNode)
             _RearrangeNodesAsChildren(node, semicolonNode);
         
-    } else if([node isMemberOfClass:[SourceNodeObjCPrivate class]] || [node isMemberOfClass:[SourceNodeObjCProtected class]] || [node isMemberOfClass:[SourceNodeObjCPublic class]]) {
+    } else if([node isMemberOfClass:[ParserNodeObjCPrivate class]] || [node isMemberOfClass:[ParserNodeObjCProtected class]] || [node isMemberOfClass:[ParserNodeObjCPublic class]]) {
         
         // "@private ..." "@protected ..." "@public ..."
-    	SourceNode* endNode = [node.parent.lastChild findPreviousSiblingIgnoringWhitespaceAndNewline]; //Last child is guaranted to be @end
-        SourceNode* otherNode = [node findNextSiblingOfClass:[SourceNodeObjCPrivate class]];
+    	ParserNode* endNode = [node.parent.lastChild findPreviousSiblingIgnoringWhitespaceAndNewline]; //Last child is guaranted to be @end
+        ParserNode* otherNode = [node findNextSiblingOfClass:[ParserNodeObjCPrivate class]];
         if(otherNode && (otherNode.range.location < endNode.range.location))
         	endNode = otherNode.previousSibling;
-        otherNode = [node findNextSiblingOfClass:[SourceNodeObjCProtected class]];
+        otherNode = [node findNextSiblingOfClass:[ParserNodeObjCProtected class]];
         if(otherNode && (otherNode.range.location < endNode.range.location))
         	endNode = otherNode.previousSibling;
-        otherNode = [node findNextSiblingOfClass:[SourceNodeObjCPublic class]];
+        otherNode = [node findNextSiblingOfClass:[ParserNodeObjCPublic class]];
         if(otherNode && (otherNode.range.location < endNode.range.location))
         	endNode = otherNode.previousSibling;
-        if([endNode isKindOfClass:[SourceNodeWhitespace class]] || [endNode isKindOfClass:[SourceNodeNewline class]])
+        if([endNode isKindOfClass:[ParserNodeWhitespace class]] || [endNode isKindOfClass:[ParserNodeNewline class]])
         	endNode = [endNode findPreviousSiblingIgnoringWhitespaceAndNewline];
         _RearrangeNodesAsChildren(node, endNode);
         
-    } else if([node isMemberOfClass:[SourceNodeObjCRequired class]] || [node isMemberOfClass:[SourceNodeObjCOptional class]]) {
+    } else if([node isMemberOfClass:[ParserNodeObjCRequired class]] || [node isMemberOfClass:[ParserNodeObjCOptional class]]) {
         
         // "@required ..." @"@optional ..."
-    	SourceNode* endNode = [node.parent.lastChild findPreviousSiblingIgnoringWhitespaceAndNewline]; //Last child is guaranted to be @end
-        SourceNode* otherNode = [node findNextSiblingOfClass:[SourceNodeObjCRequired class]];
+    	ParserNode* endNode = [node.parent.lastChild findPreviousSiblingIgnoringWhitespaceAndNewline]; //Last child is guaranted to be @end
+        ParserNode* otherNode = [node findNextSiblingOfClass:[ParserNodeObjCRequired class]];
         if(otherNode && (otherNode.range.location < endNode.range.location))
         	endNode = otherNode.previousSibling;
-        otherNode = [node findNextSiblingOfClass:[SourceNodeObjCOptional class]];
+        otherNode = [node findNextSiblingOfClass:[ParserNodeObjCOptional class]];
         if(otherNode && (otherNode.range.location < endNode.range.location))
         	endNode = otherNode.previousSibling;
-        if([endNode isKindOfClass:[SourceNodeWhitespace class]] || [endNode isKindOfClass:[SourceNodeNewline class]])
+        if([endNode isKindOfClass:[ParserNodeWhitespace class]] || [endNode isKindOfClass:[ParserNodeNewline class]])
         	endNode = [endNode findPreviousSiblingIgnoringWhitespaceAndNewline];
         _RearrangeNodesAsChildren(node, endNode);
         
-    } else if([node isMemberOfClass:[SourceNodeText class]] && _HasInterfaceOrProtocolParent(node)) {
+    } else if([node isMemberOfClass:[ParserNodeText class]] && _HasInterfaceOrProtocolParent(node)) {
         
         // "-(foo)bar" "+(foo)bar" "-bar" "+bar"
         NSString* content = node.content;
         if([content isEqualToString:@"-"] || [content isEqualToString:@"+"]) {
-            SourceNode* semicolonNode = [node findNextSiblingOfClass:[SourceNodeSemicolon class]];
+            ParserNode* semicolonNode = [node findNextSiblingOfClass:[ParserNodeSemicolon class]];
             if(semicolonNode) {
-                SourceNode* newNode = [[SourceNodeMatch alloc] initWithSource:node.source range:node.range];
+                ParserNode* newNode = [[ParserNodeMatch alloc] initWithText:node.text range:node.range];
                 newNode.lines = node.lines;
                 [node replaceWithNode:newNode];
                 [newNode release];
                 node = newNode;
                 
-                newNode = [[SourceNodeObjCMethodDeclaration alloc] initWithSource:node.source range:NSMakeRange(node.range.location, 0)];
+                newNode = [[ParserNodeObjCMethodDeclaration alloc] initWithText:node.text range:NSMakeRange(node.range.location, 0)];
                 [node insertPreviousSibling:newNode];
                 [newNode release];
                 _RearrangeNodesAsChildren(newNode, semicolonNode);
             }
         }
         
-    } else if([node isMemberOfClass:[SourceNodeText class]] && _HasImplementationParent(node)) {
+    } else if([node isMemberOfClass:[ParserNodeText class]] && _HasImplementationParent(node)) {
         
         // "-(foo)bar" "+(foo)bar" "-bar" "+bar"
         NSString* content = node.content;
         if([content isEqualToString:@"-"] || [content isEqualToString:@"+"]) {
-            SourceNode* nextNode = [node findNextSiblingOfClass:[SourceNodeBraces class]];
+            ParserNode* nextNode = [node findNextSiblingOfClass:[ParserNodeBraces class]];
             if(nextNode) {
-                SourceNode* newNode = [[SourceNodeMatch alloc] initWithSource:node.source range:node.range];
+                ParserNode* newNode = [[ParserNodeMatch alloc] initWithText:node.text range:node.range];
                 newNode.lines = node.lines;
                 [node replaceWithNode:newNode];
                 [newNode release];
                 node = newNode;
                 
-                newNode = [[SourceNodeObjCMethodImplementation alloc] initWithSource:node.source range:NSMakeRange(node.range.location, 0)];
+                newNode = [[ParserNodeObjCMethodImplementation alloc] initWithText:node.text range:NSMakeRange(node.range.location, 0)];
                 [node insertPreviousSibling:newNode];
                 [newNode release];
                 _RearrangeNodesAsChildren(newNode, nextNode);
@@ -223,25 +223,25 @@ static SourceNode* _ApplierFunction(SourceNode* node, void* context) {
         }
         
     }
-    else if([node isKindOfClass:[SourceNodeBrackets class]] && node.children) {
+    else if([node isKindOfClass:[ParserNodeBrackets class]] && node.children) {
         
         // "[foo bar:baz]"
-        SourceNode* target = [node.firstChild findNextSiblingIgnoringWhitespaceAndNewline];
-        if([target isKindOfClass:[SourceNodeParenthesis class]])
+        ParserNode* target = [node.firstChild findNextSiblingIgnoringWhitespaceAndNewline];
+        if([target isKindOfClass:[ParserNodeParenthesis class]])
         	target = [target findNextSiblingIgnoringWhitespaceAndNewline];
-        if([target isMemberOfClass:[SourceNodeText class]] || [target isKindOfClass:[SourceNodeObjCSelf class]] || [target isKindOfClass:[SourceNodeObjCSuper class]]
-        	|| [target isKindOfClass:[SourceNodeBrackets class]] || [target isKindOfClass:[SourceNodeCFunctionCall class]] || [target isKindOfClass:[SourceNodeObjCString class]]) {
-        	if([target.nextSibling isKindOfClass:[SourceNodeWhitespace class]] || [target.nextSibling isKindOfClass:[SourceNodeNewline class]]) {
-                SourceNode* nextNode = [target findNextSiblingIgnoringWhitespaceAndNewline];
-                if([nextNode isMemberOfClass:[SourceNodeText class]]) {
-                	if([target isMemberOfClass:[SourceNodeText class]]) {
-						SourceNode* newNode = [[SourceNodeMatch alloc] initWithSource:target.source range:target.range];
+        if([target isMemberOfClass:[ParserNodeText class]] || [target isKindOfClass:[ParserNodeObjCSelf class]] || [target isKindOfClass:[ParserNodeObjCSuper class]]
+        	|| [target isKindOfClass:[ParserNodeBrackets class]] || [target isKindOfClass:[ParserNodeCFunctionCall class]] || [target isKindOfClass:[ParserNodeObjCString class]]) {
+        	if([target.nextSibling isKindOfClass:[ParserNodeWhitespace class]] || [target.nextSibling isKindOfClass:[ParserNodeNewline class]]) {
+                ParserNode* nextNode = [target findNextSiblingIgnoringWhitespaceAndNewline];
+                if([nextNode isMemberOfClass:[ParserNodeText class]]) {
+                	if([target isMemberOfClass:[ParserNodeText class]]) {
+						ParserNode* newNode = [[ParserNodeMatch alloc] initWithText:target.text range:target.range];
                         newNode.lines = target.lines;
                         [target replaceWithNode:newNode];
                         [newNode release];
 					}
                     
-                    SourceNode* newNode = [[SourceNodeObjCMethodCall alloc] initWithSource:node.source range:node.range];
+                    ParserNode* newNode = [[ParserNodeObjCMethodCall alloc] initWithText:node.text range:node.range];
                     [node applyFunctionOnChildren:_ApplierFunction context:newNode];
                     newNode.lines = node.lines;
                     [node replaceWithNode:newNode];
@@ -260,7 +260,7 @@ static SourceNode* _ApplierFunction(SourceNode* node, void* context) {
 @end
 
 /* WARNING: Keep in sync with C #include */
-@implementation SourceNodeObjCPreprocessorImport
+@implementation ParserNodeObjCPreprocessorImport
 
 IS_MATCHING_PREFIX_METHOD_WITH_TRAILING_CHARACTERS("#import", true, NULL)
 
@@ -280,10 +280,10 @@ IS_MATCHING_PREFIX_METHOD_WITH_TRAILING_CHARACTERS("#import", true, NULL)
 
 @end
 
-@implementation SourceNodeObjCString
+@implementation ParserNodeObjCString
 
 + (NSArray*) patchedClasses {
-	return [NSArray arrayWithObject:[SourceNodeCStringDoubleQuote class]];
+	return [NSArray arrayWithObject:[ParserNodeCStringDoubleQuote class]];
 }
 
 + (NSUInteger) isMatchingPrefix:(const unichar*)string maxLength:(NSUInteger)maxLength {
@@ -301,7 +301,7 @@ KEYWORD_CLASS_IMPLEMENTATION(ObjC, Super, "super")
 KEYWORD_CLASS_IMPLEMENTATION(ObjC, Nil, "nil")
 
 #define IMPLEMENTATION(__NAME__, __TOKEN__) \
-@implementation SourceNodeObjC##__NAME__ \
+@implementation ParserNodeObjC##__NAME__ \
 \
 + (BOOL) isAtomic { \
     return NO; \
@@ -338,7 +338,7 @@ IMPLEMENTATION(Protocol, "@protocol")
 #undef IMPLEMENTATION
 
 #define IMPLEMENTATION(__NAME__, ...) \
-@implementation SourceNodeObjC##__NAME__ \
+@implementation ParserNodeObjC##__NAME__ \
 \
 IS_MATCHING_PREFIX_METHOD_WITH_TRAILING_CHARACTERS(__VA_ARGS__) \
 \
@@ -366,19 +366,19 @@ IMPLEMENTATION(Encode, "@encode", true, "(")
 
 #undef IMPLEMENTATION
 
-static NSString* _SelectorFromMethod(SourceNode* node) {
+static NSString* _SelectorFromMethod(ParserNode* node) {
 	NSMutableString* string = [NSMutableString string];
     node = [node findNextSiblingIgnoringWhitespaceAndNewline];
-    if([node isKindOfClass:[SourceNodeParenthesis class]])
+    if([node isKindOfClass:[ParserNodeParenthesis class]])
         node = [node findNextSiblingIgnoringWhitespaceAndNewline];
-    SourceNode* colonNode = [node findNextSiblingOfClass:[SourceNodeColon class]];
+    ParserNode* colonNode = [node findNextSiblingOfClass:[ParserNodeColon class]];
     if(colonNode) {
         node = colonNode;
         while(node) {
-            if(![node.previousSibling isKindOfClass:[SourceNodeWhitespace class]] && ![node.previousSibling isKindOfClass:[SourceNodeNewline class]])
+            if(![node.previousSibling isKindOfClass:[ParserNodeWhitespace class]] && ![node.previousSibling isKindOfClass:[ParserNodeNewline class]])
                 [string appendString:node.previousSibling.content];
             [string appendString:node.content];
-            node = [node findNextSiblingOfClass:[SourceNodeColon class]];
+            node = [node findNextSiblingOfClass:[ParserNodeColon class]];
         }
     } else {
         [string appendString:node.content];
@@ -386,7 +386,7 @@ static NSString* _SelectorFromMethod(SourceNode* node) {
     return string;
 }
 
-@implementation SourceNodeObjCMethodDeclaration
+@implementation ParserNodeObjCMethodDeclaration
 
 - (void) dealloc {
 	[_name release];
@@ -402,7 +402,7 @@ static NSString* _SelectorFromMethod(SourceNode* node) {
 
 @end
 
-@implementation SourceNodeObjCMethodImplementation
+@implementation ParserNodeObjCMethodImplementation
 
 - (void) dealloc {
 	[_name release];
@@ -418,7 +418,7 @@ static NSString* _SelectorFromMethod(SourceNode* node) {
 
 @end
 
-@implementation SourceNodeObjCMethodCall
+@implementation ParserNodeObjCMethodCall
 
 - (void) dealloc {
 	[_name release];
@@ -428,9 +428,9 @@ static NSString* _SelectorFromMethod(SourceNode* node) {
 
 - (NSString*) name {
 	if(_name == nil) {
-    	SourceNode* node = self.firstChild;
+    	ParserNode* node = self.firstChild;
         node = [node findNextSiblingIgnoringWhitespaceAndNewline];
-    	if([node isKindOfClass:[SourceNodeParenthesis class]])
+    	if([node isKindOfClass:[ParserNodeParenthesis class]])
         	node = [node findNextSiblingIgnoringWhitespaceAndNewline];
     	_name = [_SelectorFromMethod(node) retain];
     }

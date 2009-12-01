@@ -16,17 +16,24 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#import "SourceLanguage.h"
+#import "ParserLanguage.h"
 
-@interface SourceNodeCPPComment : SourceNode //Leaf
+@interface ParserNodeHTMLTag : ParserNode {
+@private
+	NSInteger _type;
+    NSString* _name;
+    NSDictionary* _attributes;
+}
 @end
 
-/* Special Keywords */
-
-@interface SourceNodeCPPThis : SourceNodeKeyword //Leaf
+@interface ParserNodeHTMLComment : ParserNode //Leaf
 @end
 
-/* Special Tokens */
+@interface ParserNodeHTMLCDATA : ParserNode //Leaf
+@end
 
-@interface SourceNodeDoubleSemicolon : SourceNodeToken //Leaf
+@interface ParserNodeHTMLDOCTYPE : ParserNode
+@end
+
+@interface ParserNodeHTMLElement : ParserNode
 @end

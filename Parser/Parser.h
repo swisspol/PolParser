@@ -16,4 +16,12 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#import "SourceLanguage.h"
+#import "ParserNode.h"
+#import "ParserLanguage.h"
+#import "ParserLanguage_Base.h"
+#import "ParserLanguage_C.h"
+#import "ParserLanguage_CPP.h"
+#import "ParserLanguage_ObjC.h"
+#import "ParserLanguage_ObjCPP.h"
+#import "ParserLanguage_XML.h"
+#import "ParserLanguage_HTML.h"

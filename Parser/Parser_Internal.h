@@ -16,7 +16,7 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#import "SourceParser.h"
+#import "Parser.h"
 
 #define IsNewline(C) ((C == '\r') || (C == '\n'))
 #define IsWhitespace(C) ((C == ' ') || (C == '\t'))
@@ -59,7 +59,7 @@
 }
 
 #define KEYWORD_CLASS_IMPLEMENTATION(__LANGUAGE__, __NAME__, __MATCH__) \
-@implementation SourceNode##__LANGUAGE__##__NAME__ \
+@implementation ParserNode##__LANGUAGE__##__NAME__ \
 \
 + (NSUInteger) isMatchingPrefix:(const unichar*)string maxLength:(NSUInteger)maxLength { \
     IS_MATCHING_CHARACTERS_EXTENDED(__MATCH__, true, ";)]}*", string, maxLength) \
@@ -69,7 +69,7 @@
 @end
 
 #define TOKEN_CLASS_IMPLEMENTATION(__NAME__, __CHARACTERS__) \
-@implementation SourceNode##__NAME__ \
+@implementation ParserNode##__NAME__ \
 \
 + (NSUInteger) isMatchingPrefix:(const unichar*)string maxLength:(NSUInteger)maxLength { \
     IS_MATCHING_CHARACTERS(__CHARACTERS__, string, maxLength); \
@@ -95,33 +95,33 @@ static inline BOOL _EqualsCharacters(const unichar* string, const char* array, N
     return YES;
 }
 
-void _RearrangeNodesAsChildren(SourceNode* startNode, SourceNode* endNode);
+void _RearrangeNodesAsChildren(ParserNode* startNode, ParserNode* endNode);
 
-@interface SourceNode ()
+@interface ParserNode ()
 + (BOOL) isAtomic;
 + (NSArray*) patchedClasses;
 + (NSUInteger) isMatchingPrefix:(const unichar*)string maxLength:(NSUInteger)maxLength; //"maxLength" is guaranteed to be at least 1
 + (NSUInteger) isMatchingSuffix:(const unichar*)string maxLength:(NSUInteger)maxLength; //"maxLength" may be 0 for atomic classes
 @property(nonatomic) NSRange range;
 @property(nonatomic) NSRange lines;
-@property(nonatomic, assign) SourceNode* parent;
+@property(nonatomic, assign) ParserNode* parent;
 @property(nonatomic, readonly) NSMutableArray* mutableChildren;
 @property(nonatomic) NSUInteger revision;
 @property(nonatomic) void* jsObject;
-- (id) initWithSource:(NSString*)source range:(NSRange)range;
+- (id) initWithText:(NSString*)text range:(NSRange)range;
 @end
 
-@interface SourceNodeRoot ()
-@property(nonatomic, assign) SourceLanguage* language;
+@interface ParserNodeRoot ()
+@property(nonatomic, assign) ParserLanguage* language;
 @end
 
-@interface SourceLanguage ()
+@interface ParserLanguage ()
 + (NSArray*) languageDependencies;
 + (NSSet*) languageReservedKeywords;
 + (NSArray*) languageNodeClasses;
 + (NSSet*) languageTopLevelNodeClasses;
-+ (SourceNodeRoot*) newNodeTreeFromSource:(NSString*)string range:(NSRange)range buffer:(const unichar*)buffer withNodeClasses:(NSArray*)nodeClasses;
++ (ParserNodeRoot*) newNodeTreeFromText:(NSString*)text range:(NSRange)range textBuffer:(const unichar*)textBuffer withNodeClasses:(NSArray*)nodeClasses;
 @property(nonatomic, readonly) NSSet* topLevelNodeClasses;
-- (SourceNodeRoot*) parseSourceString:(NSString*)source range:(NSRange)range buffer:(const unichar*)buffer syntaxAnalysis:(BOOL)syntaxAnalysis;
-- (SourceNode*) performSyntaxAnalysisForNode:(SourceNode*)node sourceBuffer:(const unichar*)sourceBuffer topLevelNodeClasses:(NSSet*)nodeClasses; //Override point to perform language dependent source tree refactoring after parsing
+- (ParserNodeRoot*) parseText:(NSString*)text range:(NSRange)range textBuffer:(const unichar*)textBuffer syntaxAnalysis:(BOOL)syntaxAnalysis;
+- (ParserNode*) performSyntaxAnalysisForNode:(ParserNode*)node textBuffer:(const unichar*)textBuffer topLevelNodeClasses:(NSSet*)nodeClasses; //Override point to perform language dependent string tree refactoring after parsing
 @end

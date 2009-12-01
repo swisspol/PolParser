@@ -16,24 +16,4 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#import "SourceLanguage.h"
-
-@interface SourceNodeHTMLTag : SourceNode {
-@private
-	NSInteger _type;
-    NSString* _name;
-    NSDictionary* _attributes;
-}
-@end
-
-@interface SourceNodeHTMLComment : SourceNode //Leaf
-@end
-
-@interface SourceNodeHTMLCDATA : SourceNode //Leaf
-@end
-
-@interface SourceNodeHTMLDOCTYPE : SourceNode
-@end
-
-@interface SourceNodeHTMLElement : SourceNode
-@end
+#import "ParserLanguage.h"

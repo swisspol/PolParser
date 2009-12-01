@@ -16,26 +16,26 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#import "SourceParser_Internal.h"
+#import "Parser_Internal.h"
 
 static IMP _nameMethod = NULL;
 static IMP _cleanContentMethod = NULL;
 
-@implementation SourceNode
+@implementation ParserNode
 
-@synthesize source=_source, range=_range, lines=_lines, parent=_parent, children=_children, revision=_revision, jsObject=_jsObject;
+@synthesize text=_text, range=_range, lines=_lines, parent=_parent, children=_children, revision=_revision, jsObject=_jsObject;
 
 + (void) initialize {
-	if(self == [SourceNode class]) {
-    	_nameMethod = [SourceNode instanceMethodForSelector:@selector(name)];
-        _cleanContentMethod = [SourceNode instanceMethodForSelector:@selector(cleanContent)];
+	if(self == [ParserNode class]) {
+    	_nameMethod = [ParserNode instanceMethodForSelector:@selector(name)];
+        _cleanContentMethod = [ParserNode instanceMethodForSelector:@selector(cleanContent)];
     }
 }
 
 + (id) allocWithZone:(NSZone*)zone
 {
-    if(self == [SourceNode class])
-        [NSException raise:NSInternalInconsistencyException format:@"SourceNode is an abstract class"];
+    if(self == [ParserNode class])
+        [NSException raise:NSInternalInconsistencyException format:@"ParserNode is an abstract class"];
     
     return [super allocWithZone:zone];
 }
@@ -57,12 +57,12 @@ static IMP _cleanContentMethod = NULL;
 }
 
 + (NSString*) name {
-    return [NSStringFromClass(self) substringFromIndex:[@"SourceNode" length]];
+    return [NSStringFromClass(self) substringFromIndex:[@"ParserNode" length]];
 }
 
-- (id) initWithSource:(NSString*)source range:(NSRange)range {
+- (id) initWithText:(NSString*)text range:(NSRange)range {
     if((self = [super init])) {
-        _source = [source copy];
+        _text = [text copy];
         _range = range;
     }
     
@@ -70,27 +70,27 @@ static IMP _cleanContentMethod = NULL;
 }
 
 - (void) dealloc {
-    for(SourceNode* node in _children)
+    for(ParserNode* node in _children)
         node.parent = nil;
     [_children release];
     
-    [_source release];
+    [_text release];
     
     [super dealloc];
 }
 
 - (id) copyWithZone:(NSZone*)zone {
-	SourceNode* copy = [[[self class] alloc] init];
+	ParserNode* copy = [[[self class] alloc] init];
     if(copy) {
-    	copy->_source = [_source retain];
+    	copy->_text = [_text retain];
         copy->_range = _range;
         copy->_lines = _lines;
         //node->_parent = nil;
         //node->_children = nil;
         //node->_revision = 0;
         //node->_jsObject = NULL;
-        for(SourceNode* node in _children) {
-        	SourceNode* child = [node copyWithZone:zone];
+        for(ParserNode* node in _children) {
+        	ParserNode* child = [node copyWithZone:zone];
             if(child) {
             	[copy addChild:child];
                 [child release];
@@ -107,15 +107,15 @@ static IMP _cleanContentMethod = NULL;
     return _children;
 }
 
-- (SourceNode*) firstChild {
+- (ParserNode*) firstChild {
     return [_children objectAtIndex:0];
 }
 
-- (SourceNode*) lastChild {
+- (ParserNode*) lastChild {
     return [_children objectAtIndex:(_children.count - 1)];
 }
 
-- (SourceNode*) previousSibling {
+- (ParserNode*) previousSibling {
     if(_parent == nil)
         [NSException raise:NSInternalInconsistencyException format:@"%@ has no parent", self];
     
@@ -124,7 +124,7 @@ static IMP _cleanContentMethod = NULL;
     return index > 0 ? [children objectAtIndex:(index - 1)] : nil;
 }
 
-- (SourceNode*) nextSibling {
+- (ParserNode*) nextSibling {
     if(_parent == nil)
         [NSException raise:NSInternalInconsistencyException format:@"%@ has no parent", self];
     
@@ -133,12 +133,12 @@ static IMP _cleanContentMethod = NULL;
     return index < children.count - 1 ? [children objectAtIndex:(index + 1)] : nil;
 }
 
-static void _MergeChildrenContent(SourceNode* node, NSMutableString* string) {
+static void _MergeChildrenContent(ParserNode* node, NSMutableString* string) {
     for(node in node.children) {
         if(node.children)
             _MergeChildrenContent(node, string);
         else
-            [string appendString:[node.source substringWithRange:node.range]];
+            [string appendString:[node.text substringWithRange:node.range]];
     }
 }
 
@@ -149,7 +149,7 @@ static void _MergeChildrenContent(SourceNode* node, NSMutableString* string) {
         return string;
     }
     
-    return [_source substringWithRange:_range];
+    return [_text substringWithRange:_range];
 }
 
 - (NSString*) cleanContent {
@@ -164,7 +164,7 @@ static void _MergeChildrenContent(SourceNode* node, NSMutableString* string) {
     return nil;
 }
 
-- (void) addChild:(SourceNode*)child {
+- (void) addChild:(ParserNode*)child {
     [self insertChild:child atIndex:_children.count];
 }
 
@@ -175,14 +175,14 @@ static void _MergeChildrenContent(SourceNode* node, NSMutableString* string) {
     [_parent removeChildAtIndex:[_parent indexOfChild:self]];
 }
 
-- (NSUInteger) indexOfChild:(SourceNode*)child {
+- (NSUInteger) indexOfChild:(ParserNode*)child {
     if(child.parent != self)
         [NSException raise:NSInternalInconsistencyException format:@"%@ is not a child of %@", child, self];
     
     return [_children indexOfObject:child];
 }
 
-- (void) insertChild:(SourceNode*)child atIndex:(NSUInteger)index {
+- (void) insertChild:(ParserNode*)child atIndex:(NSUInteger)index {
     if(child.parent)
         [NSException raise:NSInternalInconsistencyException format:@"%@ already has a parent", child];
     
@@ -194,7 +194,7 @@ static void _MergeChildrenContent(SourceNode* node, NSMutableString* string) {
 }
 
 - (void) removeChildAtIndex:(NSUInteger)index {
-    SourceNode* node = [_children objectAtIndex:index];
+    ParserNode* node = [_children objectAtIndex:index];
     [node retain];
     node.parent = nil;
     [_children removeObjectAtIndex:index];
@@ -206,33 +206,33 @@ static void _MergeChildrenContent(SourceNode* node, NSMutableString* string) {
     }
 }
 
-- (void) insertPreviousSibling:(SourceNode*)sibling {
+- (void) insertPreviousSibling:(ParserNode*)sibling {
     if(_parent == nil)
         [NSException raise:NSInternalInconsistencyException format:@"%@ has no parent", self];
     
     [_parent insertChild:sibling atIndex:[_parent indexOfChild:self]];
 }
 
-- (void) insertNextSibling:(SourceNode*)sibling {
+- (void) insertNextSibling:(ParserNode*)sibling {
     if(_parent == nil)
         [NSException raise:NSInternalInconsistencyException format:@"%@ has no parent", self];
     
     [_parent insertChild:sibling atIndex:([_parent indexOfChild:self] + 1)];
 }
 
-- (void) replaceWithNode:(SourceNode*)node {
+- (void) replaceWithNode:(ParserNode*)node {
     if(_parent == nil)
         [NSException raise:NSInternalInconsistencyException format:@"%@ has no parent", self];
     
-    SourceNode* parent = _parent;
+    ParserNode* parent = _parent;
     NSUInteger index = [parent indexOfChild:self];
     [parent removeChildAtIndex:index];
     if(node)
         [parent insertChild:node atIndex:index];
 }
 
-- (SourceNode*) findPreviousSiblingOfClass:(Class)class {
-    SourceNode* node = self.previousSibling;
+- (ParserNode*) findPreviousSiblingOfClass:(Class)class {
+    ParserNode* node = self.previousSibling;
     while(node) {
         if([node isKindOfClass:class])
             return node;
@@ -241,8 +241,8 @@ static void _MergeChildrenContent(SourceNode* node, NSMutableString* string) {
     return nil;
 }
 
-- (SourceNode*) findNextSiblingOfClass:(Class)class {
-    SourceNode* node = self.nextSibling;
+- (ParserNode*) findNextSiblingOfClass:(Class)class {
+    ParserNode* node = self.nextSibling;
     while(node) {
         if([node isKindOfClass:class])
             return node;
@@ -251,8 +251,8 @@ static void _MergeChildrenContent(SourceNode* node, NSMutableString* string) {
     return nil;
 }
 
-- (SourceNode*) findFirstChildOfClass:(Class)class {
-	SourceNode* node = self.firstChild;
+- (ParserNode*) findFirstChildOfClass:(Class)class {
+	ParserNode* node = self.firstChild;
     while(node) {
         if([node isKindOfClass:class])
             return node;
@@ -261,8 +261,8 @@ static void _MergeChildrenContent(SourceNode* node, NSMutableString* string) {
     return nil;
 }
 
-- (SourceNode*) findLastChildOfClass:(Class)class {
-	SourceNode* node = self.lastChild;
+- (ParserNode*) findLastChildOfClass:(Class)class {
+	ParserNode* node = self.lastChild;
     while(node) {
         if([node isKindOfClass:class])
             return node;
@@ -273,7 +273,7 @@ static void _MergeChildrenContent(SourceNode* node, NSMutableString* string) {
 
 - (NSUInteger) getDepthInParentsOfClass:(Class)class {
 	NSUInteger depth = 0;
-    SourceNode* node = self;
+    ParserNode* node = self;
     while(node.parent) {
     	if(!class || [node.parent isKindOfClass:class])
         	++depth;
@@ -283,9 +283,9 @@ static void _MergeChildrenContent(SourceNode* node, NSMutableString* string) {
 }
 
 /* WARNING: Keep in sync with _ApplyBlock() */
-static void _ApplyFunction(SourceNode* node, NSUInteger revision, SourceNodeApplierFunction function, void* context) {
+static void _ApplyFunction(ParserNode* node, NSUInteger revision, ParserNodeApplierFunction function, void* context) {
     NSUInteger count = node.children.count;
-    SourceNode* nodes[count];
+    ParserNode* nodes[count];
     [node.children getObjects:nodes];
     
     for(NSUInteger i = 0; i < count; ++i) {
@@ -304,7 +304,7 @@ static void _ApplyFunction(SourceNode* node, NSUInteger revision, SourceNodeAppl
 
 static NSUInteger _globalRevision = 0;
 
-- (void) applyFunctionOnChildren:(SourceNodeApplierFunction)function context:(void*)context {
+- (void) applyFunctionOnChildren:(ParserNodeApplierFunction)function context:(void*)context {
     NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
     if(_children)
     	_ApplyFunction(self, ++_globalRevision, function, context);
@@ -314,9 +314,9 @@ static NSUInteger _globalRevision = 0;
 #if NS_BLOCKS_AVAILABLE
 
 /* WARNING: Keep in sync with _ApplyFunction() */
-static void _ApplyBlock(SourceNode* node, NSUInteger revision, void (^block)(SourceNode* node)) {
+static void _ApplyBlock(ParserNode* node, NSUInteger revision, void (^block)(ParserNode* node)) {
     NSUInteger count = node.children.count;
-    SourceNode* nodes[count];
+    ParserNode* nodes[count];
     [node.children getObjects:nodes];
     
     for(NSUInteger i = 0; i < count; ++i) {
@@ -333,7 +333,7 @@ static void _ApplyBlock(SourceNode* node, NSUInteger revision, void (^block)(Sou
     }
 }
 
-- (void) enumerateChildrenUsingBlock:(BOOL (^)(SourceNode* node))block {
+- (void) enumerateChildrenUsingBlock:(BOOL (^)(ParserNode* node))block {
     NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
     if(_children)
     	_ApplyBlock(self, ++_globalRevision, block);
@@ -359,12 +359,12 @@ static NSString* _FormatString(NSString* string) {
     return _FormatString(self.content);
 }
 
-static void _AppendChildrenCompactDescription(SourceNode* node, NSMutableString* string, NSString* prefix) {
+static void _AppendChildrenCompactDescription(ParserNode* node, NSMutableString* string, NSString* prefix) {
     static NSString* separator = @"♢"; //0x2662
     prefix = [prefix stringByAppendingString:@"·  "]; //0x00B7
     [string appendFormat:@"<%@>\n", [[node class] name]];
-    SourceNode* firstNode = node.firstChild;
-    SourceNode* lastNode = node.lastChild;
+    ParserNode* firstNode = node.firstChild;
+    ParserNode* lastNode = node.lastChild;
     for(node in node.children) {
     	if(node.children) {
         	if(node == firstNode)
@@ -377,7 +377,7 @@ static void _AppendChildrenCompactDescription(SourceNode* node, NSMutableString*
         } else {
         	if(node == firstNode)
             	[string appendFormat:@"%@%@", prefix, separator];
-            if([node isMemberOfClass:[SourceNodeWhitespace class]] || [node isMemberOfClass:[SourceNodeNewline class]] || [node isMemberOfClass:[SourceNodeText class]])
+            if([node isMemberOfClass:[ParserNodeWhitespace class]] || [node isMemberOfClass:[ParserNodeNewline class]] || [node isMemberOfClass:[ParserNodeText class]])
                 [string appendFormat:@"%@%@", _FormatString(node.content), separator];
             else
             	[string appendFormat:@"|%@|%@", _FormatString(node.content), separator];
@@ -394,7 +394,7 @@ static void _AppendChildrenCompactDescription(SourceNode* node, NSMutableString*
     return string;
 }
 
-static void _AppendNodeFullDescription(SourceNode* node, NSMutableString* string, NSString* prefix) {
+static void _AppendNodeFullDescription(ParserNode* node, NSMutableString* string, NSString* prefix) {
     static NSString* separator = @"♢"; //0x2662
     NSString* content = (node.children ? nil : _FormatString(node.content));
     if(content.length)

@@ -16,22 +16,22 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#import "SourceParser_Internal.h"
+#import "Parser_Internal.h"
 
-@interface SourceLanguageBase : SourceLanguage
+@interface ParserLanguageBase : ParserLanguage
 @end
 
-@implementation SourceLanguageBase
+@implementation ParserLanguageBase
 
 + (NSArray*) languageNodeClasses {
 	NSMutableArray* classes = [NSMutableArray arrayWithArray:[super languageNodeClasses]];
     
-    [classes addObject:[SourceNodeNewline class]];
-    [classes addObject:[SourceNodeIndenting class]]; //Must be before SourceNodeWhitespace
-    [classes addObject:[SourceNodeWhitespace class]];
-    [classes addObject:[SourceNodeBraces class]];
-    [classes addObject:[SourceNodeParenthesis class]];
-    [classes addObject:[SourceNodeBrackets class]];
+    [classes addObject:[ParserNodeNewline class]];
+    [classes addObject:[ParserNodeIndenting class]]; //Must be before ParserNodeWhitespace
+    [classes addObject:[ParserNodeWhitespace class]];
+    [classes addObject:[ParserNodeBraces class]];
+    [classes addObject:[ParserNodeParenthesis class]];
+    [classes addObject:[ParserNodeBrackets class]];
     
     return classes;
 }
@@ -46,22 +46,22 @@
 
 @end
 
-@implementation SourceNode (SourceLanguageExtensions)
+@implementation ParserNode (ParserLanguageExtensions)
 
-- (SourceNode*) findPreviousSiblingIgnoringWhitespaceAndNewline {
-    SourceNode* node = self.previousSibling;
+- (ParserNode*) findPreviousSiblingIgnoringWhitespaceAndNewline {
+    ParserNode* node = self.previousSibling;
     while(node) {
-        if(![node isKindOfClass:[SourceNodeWhitespace class]] && ![node isKindOfClass:[SourceNodeNewline class]])
+        if(![node isKindOfClass:[ParserNodeWhitespace class]] && ![node isKindOfClass:[ParserNodeNewline class]])
             return node;
         node = node.previousSibling;
     }
     return nil;
 }
 
-- (SourceNode*) findNextSiblingIgnoringWhitespaceAndNewline {
-    SourceNode* node = self.nextSibling;
+- (ParserNode*) findNextSiblingIgnoringWhitespaceAndNewline {
+    ParserNode* node = self.nextSibling;
     while(node) {
-        if(![node isKindOfClass:[SourceNodeWhitespace class]] && ![node isKindOfClass:[SourceNodeNewline class]])
+        if(![node isKindOfClass:[ParserNodeWhitespace class]] && ![node isKindOfClass:[ParserNodeNewline class]])
             return node;
         node = node.nextSibling;
     }
@@ -70,7 +70,7 @@
 
 @end
 
-@implementation SourceNodeWhitespace
+@implementation ParserNodeWhitespace
 
 + (NSUInteger) isMatchingPrefix:(const unichar*)string maxLength:(NSUInteger)maxLength {
     return IsWhitespace(*string) ? 1 : NSNotFound;
@@ -80,29 +80,29 @@
     return maxLength && !IsWhitespace(*string) ? 0 : NSNotFound;
 }
 
-- (void) insertChild:(SourceNode*)child atIndex:(NSUInteger)index {
+- (void) insertChild:(ParserNode*)child atIndex:(NSUInteger)index {
     [self doesNotRecognizeSelector:_cmd];
 }
 
 @end
 
-@implementation SourceNodeIndenting
+@implementation ParserNodeIndenting
 
 + (NSUInteger) isMatchingPrefix:(const unichar*)string maxLength:(NSUInteger)maxLength {
-    return IsWhitespace(*string) && ((*(string - 1) == 0) || IsNewline(*(string - 1))) ? 1 : NSNotFound; //The source buffer starts with a padding zero (see SourceLanguage.m)
+    return IsWhitespace(*string) && ((*(string - 1) == 0) || IsNewline(*(string - 1))) ? 1 : NSNotFound; //The string buffer starts with a padding zero (see ParserLanguage.m)
 }
 
 + (NSUInteger) isMatchingSuffix:(const unichar*)string maxLength:(NSUInteger)maxLength {
     return maxLength && !IsWhitespace(*string) ? 0 : NSNotFound;
 }
 
-- (void) insertChild:(SourceNode*)child atIndex:(NSUInteger)index {
+- (void) insertChild:(ParserNode*)child atIndex:(NSUInteger)index {
     [self doesNotRecognizeSelector:_cmd];
 }
 
 @end
 
-@implementation SourceNodeNewline
+@implementation ParserNodeNewline
 
 + (NSUInteger) isMatchingPrefix:(const unichar*)string maxLength:(NSUInteger)maxLength {
     return (*string == '\r') && (*(string + 1) == '\n') ? 2 : ((*string == '\r') || (*string == '\n') ? 1 : NSNotFound);
@@ -112,14 +112,14 @@
     return 0;
 }
 
-- (void) insertChild:(SourceNode*)child atIndex:(NSUInteger)index {
+- (void) insertChild:(ParserNode*)child atIndex:(NSUInteger)index {
     [self doesNotRecognizeSelector:_cmd];
 }
 
 @end
 
 #define IMPLEMENTATION(__NAME__, __OPEN__, __CLOSE__) \
-@implementation SourceNode##__NAME__ \
+@implementation ParserNode##__NAME__ \
 \
 + (BOOL) isAtomic { \
     return NO; \

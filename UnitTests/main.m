@@ -16,7 +16,7 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#import "SourceParser.h"
+#import "Parser.h"
 #import "JavaScriptBindings.h"
 
 static BOOL _ValidateResult(NSString* name, NSString* actualResult, NSString* expectedResult) {
@@ -66,7 +66,7 @@ int main(int argc, const char* argv[]) {
     }
     
     if(!skipParser) {
-        basePath = @"SourceParser";
+        basePath = @"Parser";
         for(NSString* path in [[NSFileManager defaultManager] contentsOfDirectoryAtPath:basePath error:NULL]) {
             if([path hasPrefix:@"."])
                 continue;
@@ -84,9 +84,9 @@ int main(int argc, const char* argv[]) {
                     NSLog(@"<INVALID TEST CONTENT IN \"%@\">", path);
                 } else {
                     @try {
-                        NSString* source = [parts objectAtIndex:0];
-                        SourceLanguage* language = [SourceLanguage defaultLanguageForFileExtension:[path pathExtension]];
-                        SourceNodeRoot* root = [language parseSourceString:source syntaxAnalysis:YES];
+                        NSString* string = [parts objectAtIndex:0];
+                        ParserLanguage* language = [ParserLanguage defaultLanguageForFileExtension:[path pathExtension]];
+                        ParserNodeRoot* root = [language parseText:string syntaxAnalysis:YES];
                         if(root == nil) {
                             NSLog(@"<FAILED PARSING SOURCE FROM \"%@\">", path);
                         } else {
@@ -143,7 +143,7 @@ int main(int argc, const char* argv[]) {
                 subpath = [basePath stringByAppendingPathComponent:subpath];
                 
             	NSAutoreleasePool* localPool = [[NSAutoreleasePool alloc] init];
-                SourceNodeRoot* root = [SourceLanguage parseSourceFile:subpath encoding:NSUTF8StringEncoding syntaxAnalysis:YES];
+                ParserNodeRoot* root = [ParserLanguage parseTextFile:subpath encoding:NSUTF8StringEncoding syntaxAnalysis:YES];
                 if(root == nil) {
                     NSLog(@"<FAILED PARSING SOURCE \"%@\">", path);
                 } else {

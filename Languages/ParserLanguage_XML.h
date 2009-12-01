@@ -16,9 +16,9 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#import "SourceLanguage.h"
+#import "ParserLanguage.h"
 
-@interface SourceNodeXMLTag : SourceNode {
+@interface ParserNodeXMLTag : ParserNode {
 @private
 	NSInteger _type;
     NSString* _name;
@@ -26,26 +26,26 @@
 }
 @end
 
-@interface SourceNodeXMLDeclaration : SourceNode {
+@interface ParserNodeXMLDeclaration : ParserNode {
 @private
 	NSDictionary* _attributes;
 }
 @end
 
-@interface SourceNodeXMLProcessingInstructions : SourceNode
+@interface ParserNodeXMLProcessingInstructions : ParserNode
 @end
 
-@interface SourceNodeXMLDOCTYPE : SourceNode
+@interface ParserNodeXMLDOCTYPE : ParserNode
 @end
 
-@interface SourceNodeXMLComment : SourceNode //Leaf
+@interface ParserNodeXMLComment : ParserNode //Leaf
 @end
 
-@interface SourceNodeXMLCDATA : SourceNode //Leaf
+@interface ParserNodeXMLCDATA : ParserNode //Leaf
 @end
 
-@interface SourceNodeXMLEntity : SourceNode //Leaf
+@interface ParserNodeXMLEntity : ParserNode //Leaf
 @end
 
-@interface SourceNodeXMLElement : SourceNode
+@interface ParserNodeXMLElement : ParserNode
 @end

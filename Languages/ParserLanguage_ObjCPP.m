@@ -16,12 +16,29 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#import "SourceNode.h"
-#import "SourceLanguage.h"
-#import "SourceLanguage_Base.h"
-#import "SourceLanguage_C.h"
-#import "SourceLanguage_CPP.h"
-#import "SourceLanguage_ObjC.h"
-#import "SourceLanguage_ObjCPP.h"
-#import "SourceLanguage_XML.h"
-#import "SourceLanguage_HTML.h"
+#import "Parser_Internal.h"
+
+@interface ParserLanguageObjCPP : ParserLanguage
+@end
+
+@implementation ParserLanguageObjCPP
+
++ (NSArray*) languageDependencies {
+	return [NSArray arrayWithObjects:@"Base", @"C", @"C++", @"Obj-C", nil];
+}
+
+- (NSString*) name {
+    return @"Obj-C++";
+}
+
+- (NSSet*) fileExtensions {
+    return [NSSet setWithObjects:@"h", @"mm", nil]; //FIXME: We assume .h to be in the "superset" language
+}
+
+- (ParserNodeRoot*) parseText:(NSString*)text range:(NSRange)range textBuffer:(const unichar*)textBuffer syntaxAnalysis:(BOOL)syntaxAnalysis {
+    NSLog(@"%@ parsing is not fully implemented", self.name);
+    
+    return [super parseText:text range:range textBuffer:textBuffer syntaxAnalysis:syntaxAnalysis];
+}
+
+@end

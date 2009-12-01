@@ -22,7 +22,7 @@
 extern "C" {
 #endif
 
-BOOL RunJavaScriptOnRootNode(NSString* script, SourceNode* root);
+BOOL RunJavaScriptOnRootNode(NSString* script, ParserNode* root);
 
 #ifdef __cplusplus
 }

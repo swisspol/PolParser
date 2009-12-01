@@ -18,12 +18,12 @@
 
 #import <JavaScriptCore/JavaScriptCore.h>
 
-#import "SourceParser_Internal.h"
+#import "Parser_Internal.h"
 
 extern JSValueRef _JSValueMakeException(JSContextRef context, NSString* format, ...);
 
 extern JSClassRef _GetDictionaryJavaScriptClass();
-extern JSValueRef _JSValueMakeSourceNode(SourceNode* node, JSContextRef context);
+extern JSValueRef _JSValueMakeParserNode(ParserNode* node, JSContextRef context);
 
-extern JSClassRef _GetSourceNodeJavaScriptClass();
+extern JSClassRef _GetParserNodeJavaScriptClass();
 extern JSValueRef _JSValueMakeDictionary(NSDictionary* dictionary, JSContextRef context);

@@ -16,56 +16,56 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#import "SourceNode.h"
+#import "ParserNode.h"
 
-@class SourceNodeRoot;
+@class ParserNodeRoot;
 
 /* Abstract class: do not instantiate */
-@interface SourceLanguage : NSObject {
+@interface ParserLanguage : NSObject {
 @private
 	NSMutableSet* _keywords;
 	NSMutableArray* _nodeClasses;
     NSMutableSet* _topLevelClasses;
 }
 + (NSSet*) allLanguages;
-+ (SourceLanguage*) languageWithName:(NSString*)name;
-+ (SourceLanguage*) defaultLanguageForFileExtension:(NSString*)extension;
-+ (SourceNodeRoot*) parseSourceFile:(NSString*)path encoding:(NSStringEncoding)encoding syntaxAnalysis:(BOOL)syntaxAnalysis;
++ (ParserLanguage*) languageWithName:(NSString*)name;
++ (ParserLanguage*) defaultLanguageForFileExtension:(NSString*)extension;
++ (ParserNodeRoot*) parseTextFile:(NSString*)path encoding:(NSStringEncoding)encoding syntaxAnalysis:(BOOL)syntaxAnalysis;
 
 @property(nonatomic, readonly) NSString* name;
 @property(nonatomic, readonly) NSSet* fileExtensions;
 @property(nonatomic, readonly) NSSet* reservedKeywords;
 @property(nonatomic, readonly) NSArray* nodeClasses;
 
-- (SourceNodeRoot*) parseSourceString:(NSString*)source syntaxAnalysis:(BOOL)syntaxAnalysis;
+- (ParserNodeRoot*) parseText:(NSString*)text syntaxAnalysis:(BOOL)syntaxAnalysis;
 @end
 
-@interface SourceNodeRoot : SourceNode {
+@interface ParserNodeRoot : ParserNode {
 @private
-    SourceLanguage* _language;
+    ParserLanguage* _language;
 }
-@property(nonatomic, readonly) SourceLanguage* language;
+@property(nonatomic, readonly) ParserLanguage* language;
 
 - (BOOL) writeContentToFile:(NSString*)path encoding:(NSStringEncoding)encoding;
 @end
 
 /* This class cannot have children */
-@interface SourceNodeText : SourceNode //Leaf
-+ (SourceNodeText*) sourceNodeWithText:(NSString*)text;
+@interface ParserNodeText : ParserNode //Leaf
++ (ParserNodeText*) parserNodeWithText:(NSString*)text;
 - (id) initWithText:(NSString*)text;
 @end
 
 /* Abstract class: do not instantiate */
-@interface SourceNodeKeyword : SourceNodeText //Leaf
+@interface ParserNodeKeyword : ParserNodeText //Leaf
 @end
 
 /* Abstract class: do not instantiate */
-@interface SourceNodeToken : SourceNodeText //Leaf
+@interface ParserNodeToken : ParserNodeText //Leaf
 @end
 
-@interface SourceNodeMatch : SourceNodeText //Leaf
+@interface ParserNodeMatch : ParserNodeText //Leaf
 @end
 
-@interface SourceNode (SourceNodeTextExtensions)
-- (void) replaceWithText:(NSString*)text; //Replaces self by a SourceNodeText instance with the given text (passing an empty text just removes the node from the tree)
+@interface ParserNode (ParserNodeTextExtensions)
+- (void) replaceWithText:(NSString*)text; //Replaces self by a ParserNodeText instance with the given text (passing an empty text just removes the node from the tree)
 @end

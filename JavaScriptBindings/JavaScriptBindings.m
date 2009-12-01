@@ -18,7 +18,7 @@
 
 #import <JavaScriptCore/JavaScriptCore.h>
 
-#import "SourceParser_Internal.h"
+#import "Parser_Internal.h"
 #import "JavaScriptBindings_Internal.h"
 
 static NSString* _wrapperScript = @"\
@@ -77,10 +77,10 @@ static JSObjectRef _CallAsConstructorCallback(JSContextRef ctx, JSObjectRef cons
         CFStringRef cfString = JSStringCopyCFString(kCFAllocatorDefault, jsString);
         JSStringRelease(jsString);
         if(cfString) {
-        	SourceNode* node = [[SourceNodeText alloc] initWithText:(NSString*)cfString];
+        	ParserNode* node = [[ParserNodeText alloc] initWithText:(NSString*)cfString];
             if(node == nil)
                 goto Fail;
-            JSObjectRef object = (JSObjectRef)_JSValueMakeSourceNode(node, ctx);
+            JSObjectRef object = (JSObjectRef)_JSValueMakeParserNode(node, ctx);
         	[node autorelease];
         	CFRelease(cfString);
         	return object;
@@ -91,18 +91,18 @@ Fail:
     return JSContextGetGlobalObject(ctx); //FIXME: Returning anything but a JSObjectRef makes JavaScriptCore crash
 }
 
-static SourceNode* _NodeFunctionApplier(SourceNode* node, void* context) {
+static ParserNode* _NodeFunctionApplier(ParserNode* node, void* context) {
 	void** params = (void**)context;
     JSContextRef ctx = params[0];
     JSObjectRef object = params[1];
 	BOOL* successPtr = params[2];
-    JSValueRef value = JSObjectCallAsFunction(ctx, object, (JSObjectRef)_JSValueMakeSourceNode(node, ctx), 0, NULL, NULL);
+    JSValueRef value = JSObjectCallAsFunction(ctx, object, (JSObjectRef)_JSValueMakeParserNode(node, ctx), 0, NULL, NULL);
     if(!value || !JSValueIsBoolean(ctx, value) || !JSValueToBoolean(ctx, value))
     	*successPtr = NO;
     return node;
 }
 
-BOOL RunJavaScriptOnRootNode(NSString* script, SourceNode* root) {
+BOOL RunJavaScriptOnRootNode(NSString* script, ParserNode* root) {
 	BOOL success = NO;
     NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
     if(script.length && root) {
@@ -116,12 +116,12 @@ BOOL RunJavaScriptOnRootNode(NSString* script, SourceNode* root) {
                 JSObjectSetProperty(context, JSContextGetGlobalObject(context), jsString, JSObjectMakeFunctionWithCallback(context, NULL, _LogFunction), kJSPropertyAttributeReadOnly | kJSPropertyAttributeDontDelete, NULL);
                 JSStringRelease(jsString);
                 
-                JSObjectRef jsNode = JSObjectMakeConstructor(context, _GetSourceNodeJavaScriptClass(), _CallAsConstructorCallback);
+                JSObjectRef jsNode = JSObjectMakeConstructor(context, _GetParserNodeJavaScriptClass(), _CallAsConstructorCallback);
                 jsString = JSStringCreateWithCFString(CFSTR("Node"));
                 JSObjectSetProperty(context, JSContextGetGlobalObject(context), jsString, jsNode, kJSPropertyAttributeReadOnly | kJSPropertyAttributeDontDelete, NULL);
                 JSStringRelease(jsString);
                 
-                for(SourceLanguage* language in [SourceLanguage allLanguages]) {
+                for(ParserLanguage* language in [ParserLanguage allLanguages]) {
                     for(Class nodeClass in language.nodeClasses) {
                         jsString = JSStringCreateWithCFString((CFStringRef)[NSString stringWithFormat:@"TYPE_%@", [[nodeClass name] uppercaseString]]);
                         JSObjectSetProperty(context, jsNode, jsString, JSValueMakeNumber(context, (double)(long)nodeClass), kJSPropertyAttributeReadOnly | kJSPropertyAttributeDontDelete, NULL);

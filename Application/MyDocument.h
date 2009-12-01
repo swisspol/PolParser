@@ -18,7 +18,7 @@
 
 #import <Cocoa/Cocoa.h>
 
-#import "SourceParser.h"
+#import "Parser.h"
 
 @interface MyDocument : NSDocument
 {
@@ -26,7 +26,7 @@
     NSPathControl* _pathControl;
     NSButton* _coloringButton;
     
-    SourceNodeRoot* _sourceRoot;
+    ParserNodeRoot* _parserRoot;
     NSMutableArray* _buttons;
     NSMutableDictionary* _colors;
     //NSRange _lastRange;

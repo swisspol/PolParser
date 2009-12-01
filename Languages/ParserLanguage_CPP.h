@@ -16,29 +16,17 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#import "SourceParser_Internal.h"
+#import "ParserLanguage.h"
 
-@interface SourceLanguageObjCPP : SourceLanguage
+@interface ParserNodeCPPComment : ParserNode //Leaf
 @end
 
-@implementation SourceLanguageObjCPP
+/* Special Keywords */
 
-+ (NSArray*) languageDependencies {
-	return [NSArray arrayWithObjects:@"Base", @"C", @"C++", @"Obj-C", nil];
-}
+@interface ParserNodeCPPThis : ParserNodeKeyword //Leaf
+@end
 
-- (NSString*) name {
-    return @"Obj-C++";
-}
+/* Special Tokens */
 
-- (NSSet*) fileExtensions {
-    return [NSSet setWithObjects:@"h", @"mm", nil]; //FIXME: We assume .h to be in the "superset" language
-}
-
-- (SourceNodeRoot*) parseSourceString:(NSString*)source range:(NSRange)range buffer:(const unichar*)buffer syntaxAnalysis:(BOOL)syntaxAnalysis {
-    NSLog(@"%@ parsing is not fully implemented", self.name);
-    
-    return [super parseSourceString:source range:range buffer:buffer syntaxAnalysis:syntaxAnalysis];
-}
-
+@interface ParserNodeDoubleSemicolon : ParserNodeToken //Leaf
 @end

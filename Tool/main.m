@@ -18,9 +18,9 @@
 
 #import <libgen.h>
 
-#import "SourceParser.h"
+#import "Parser.h"
 
-extern BOOL RunJavaScriptOnRootNode(NSString* script, SourceNode* root);
+extern BOOL RunJavaScriptOnRootNode(NSString* script, ParserNode* root);
 
 int main(int argc, const char* argv[]) {
     NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
@@ -61,7 +61,7 @@ int main(int argc, const char* argv[]) {
         goto Exit;
     }
     
-    SourceNodeRoot* root = [SourceLanguage parseSourceFile:inFile encoding:NSUTF8StringEncoding syntaxAnalysis:YES];
+    ParserNodeRoot* root = [ParserLanguage parseTextFile:inFile encoding:NSUTF8StringEncoding syntaxAnalysis:YES];
     if(root) {
         if(optionScript) {
             if(RunJavaScriptOnRootNode(optionScript, root))
@@ -81,7 +81,7 @@ int main(int argc, const char* argv[]) {
                 printf("%s\n", [root.content UTF8String]);
         }
     } else {
-        printf("Failed parsing source file from \"%s\"\n", [inFile UTF8String]);
+        printf("Failed parsing string file from \"%s\"\n", [inFile UTF8String]);
     }
     
 Exit:

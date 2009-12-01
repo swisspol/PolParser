@@ -16,12 +16,12 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#import "SourceParser_Internal.h"
+#import "Parser_Internal.h"
 
-@interface SourceLanguageCPP : SourceLanguage
+@interface ParserLanguageCPP : ParserLanguage
 @end
 
-@implementation SourceLanguageCPP
+@implementation ParserLanguageCPP
 
 + (NSArray*) languageDependencies {
 	return [NSArray arrayWithObjects:@"Base", @"C", nil];
@@ -34,9 +34,9 @@
 + (NSArray*) languageNodeClasses {
 	NSMutableArray* classes = [NSMutableArray arrayWithArray:[super languageNodeClasses]];
     
-    [classes addObject:[SourceNodeDoubleSemicolon class]];
+    [classes addObject:[ParserNodeDoubleSemicolon class]];
     
-    [classes addObject:[SourceNodeCPPComment class]];
+    [classes addObject:[ParserNodeCPPComment class]];
     
     return classes;
 }
@@ -49,15 +49,15 @@
     return [NSSet setWithObjects:@"cc", @"cp", @"cpp", nil];
 }
 
-- (SourceNodeRoot*) parseSourceString:(NSString*)source range:(NSRange)range buffer:(const unichar*)buffer syntaxAnalysis:(BOOL)syntaxAnalysis {
+- (ParserNodeRoot*) parseText:(NSString*)text range:(NSRange)range textBuffer:(const unichar*)textBuffer syntaxAnalysis:(BOOL)syntaxAnalysis {
     NSLog(@"%@ parsing is not fully implemented", self.name);
     
-    return [super parseSourceString:source range:range buffer:buffer syntaxAnalysis:syntaxAnalysis];
+    return [super parseText:text range:range textBuffer:textBuffer syntaxAnalysis:syntaxAnalysis];
 }
 
 @end
 
-@implementation SourceNodeCPPComment
+@implementation ParserNodeCPPComment
 
 + (NSUInteger) isMatchingPrefix:(const unichar*)string maxLength:(NSUInteger)maxLength {
     return (string[0] == '/') && (string[1] == '/') ? 2 : NSNotFound;
@@ -85,10 +85,10 @@
 
 TOKEN_CLASS_IMPLEMENTATION(DoubleSemicolon, "::")
 
-@implementation SourceNodeDoubleSemicolon (Patch)
+@implementation ParserNodeDoubleSemicolon (Patch)
 
 + (NSArray*) patchedClasses {
-	return [NSArray arrayWithObject:[SourceNodeColon class]];
+	return [NSArray arrayWithObject:[ParserNodeColon class]];
 }
 
 @end

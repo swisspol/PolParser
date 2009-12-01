@@ -16,27 +16,27 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#import "SourceLanguage.h"
+#import "ParserLanguage.h"
 
-@interface SourceNode (SourceLanguageExtensions)
-- (SourceNode*) findPreviousSiblingIgnoringWhitespaceAndNewline;
-- (SourceNode*) findNextSiblingIgnoringWhitespaceAndNewline;
+@interface ParserNode (ParserLanguageExtensions)
+- (ParserNode*) findPreviousSiblingIgnoringWhitespaceAndNewline;
+- (ParserNode*) findNextSiblingIgnoringWhitespaceAndNewline;
 @end
 
-@interface SourceNodeWhitespace : SourceNode //Leaf
+@interface ParserNodeWhitespace : ParserNode //Leaf
 @end
 
-@interface SourceNodeIndenting : SourceNodeWhitespace //Leaf
+@interface ParserNodeIndenting : ParserNodeWhitespace //Leaf
 @end
 
-@interface SourceNodeNewline : SourceNode //Leaf
+@interface ParserNodeNewline : ParserNode //Leaf
 @end
 
-@interface SourceNodeBraces : SourceNode
+@interface ParserNodeBraces : ParserNode
 @end
 
-@interface SourceNodeParenthesis : SourceNode
+@interface ParserNodeParenthesis : ParserNode
 @end
 
-@interface SourceNodeBrackets : SourceNode
+@interface ParserNodeBrackets : ParserNode
 @end

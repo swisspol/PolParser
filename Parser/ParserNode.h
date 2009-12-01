@@ -18,24 +18,24 @@
 
 #import <Foundation/Foundation.h>
 
-@class SourceNode;
+@class ParserNode;
 
-typedef SourceNode* (*SourceNodeApplierFunction)(SourceNode* node, void* context); //Return a node whose children to process for recursive operations
+typedef ParserNode* (*ParserNodeApplierFunction)(ParserNode* node, void* context); //Return a node whose children to process for recursive operations
 
 /* Abstract class: do not instantiate */
-@interface SourceNode : NSObject <NSCopying> {
+@interface ParserNode : NSObject <NSCopying> {
 @private
-    NSString* _source;
+    NSString* _text;
     NSRange _range;
     NSRange _lines;
-    SourceNode* _parent;
+    ParserNode* _parent;
     NSMutableArray* _children;
     NSUInteger _revision;
     void* _jsObject;
 }
 + (NSString*) name;
 
-@property(nonatomic, readonly) NSString* source;
+@property(nonatomic, readonly) NSString* text;
 @property(nonatomic, readonly) NSRange range;
 @property(nonatomic, readonly) NSRange lines;
 @property(nonatomic, readonly) NSString* content;
@@ -44,34 +44,34 @@ typedef SourceNode* (*SourceNodeApplierFunction)(SourceNode* node, void* context
 @property(nonatomic, readonly) NSDictionary* attributes; //A dictionary of attributes whose definition depends on the node class - returns nil by default
 @property(nonatomic, readonly) NSString* cleanContent; //A clean version of "content" whose definition depends on the node class - returns "content" by default
 
-@property(nonatomic, readonly) SourceNode* parent;
+@property(nonatomic, readonly) ParserNode* parent;
 @property(nonatomic, readonly) NSArray* children;
-@property(nonatomic, readonly) SourceNode* firstChild;
-@property(nonatomic, readonly) SourceNode* lastChild;
-@property(nonatomic, readonly) SourceNode* previousSibling;
-@property(nonatomic, readonly) SourceNode* nextSibling;
+@property(nonatomic, readonly) ParserNode* firstChild;
+@property(nonatomic, readonly) ParserNode* lastChild;
+@property(nonatomic, readonly) ParserNode* previousSibling;
+@property(nonatomic, readonly) ParserNode* nextSibling;
 
 @property(nonatomic, readonly) NSString* contentDescription; //Like "content" but with whitespace and newline replaced with special characters
 @property(nonatomic, readonly) NSString* compactDescription;
 @property(nonatomic, readonly) NSString* detailedDescription;
 
-- (void) addChild:(SourceNode*)child;
+- (void) addChild:(ParserNode*)child;
 - (void) removeFromParent;
-- (NSUInteger) indexOfChild:(SourceNode*)child;
-- (void) insertChild:(SourceNode*)child atIndex:(NSUInteger)index;
+- (NSUInteger) indexOfChild:(ParserNode*)child;
+- (void) insertChild:(ParserNode*)child atIndex:(NSUInteger)index;
 - (void) removeChildAtIndex:(NSUInteger)index;
-- (void) insertPreviousSibling:(SourceNode*)sibling;
-- (void) insertNextSibling:(SourceNode*)sibling;
-- (void) replaceWithNode:(SourceNode*)node; //Replaces self by "node" (passing nil just removes the node from the tree)
+- (void) insertPreviousSibling:(ParserNode*)sibling;
+- (void) insertNextSibling:(ParserNode*)sibling;
+- (void) replaceWithNode:(ParserNode*)node; //Replaces self by "node" (passing nil just removes the node from the tree)
 
-- (SourceNode*) findPreviousSiblingOfClass:(Class)class;
-- (SourceNode*) findNextSiblingOfClass:(Class)class;
-- (SourceNode*) findFirstChildOfClass:(Class)class;
-- (SourceNode*) findLastChildOfClass:(Class)class;
+- (ParserNode*) findPreviousSiblingOfClass:(Class)class;
+- (ParserNode*) findNextSiblingOfClass:(Class)class;
+- (ParserNode*) findFirstChildOfClass:(Class)class;
+- (ParserNode*) findLastChildOfClass:(Class)class;
 - (NSUInteger) getDepthInParentsOfClass:(Class)class; //Passing nil returns the absolute depth
 
-- (void) applyFunctionOnChildren:(SourceNodeApplierFunction)function context:(void*)context;
+- (void) applyFunctionOnChildren:(ParserNodeApplierFunction)function context:(void*)context;
 #if NS_BLOCKS_AVAILABLE
-- (void) enumerateChildrenUsingBlock:(SourceNode* (^)(SourceNode* node))block;
+- (void) enumerateChildrenUsingBlock:(ParserNode* (^)(ParserNode* node))block;
 #endif
 @end

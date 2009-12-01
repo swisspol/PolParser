@@ -16,16 +16,16 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#import "SourceParser_Internal.h"
+#import "Parser_Internal.h"
 
-@interface SourceLanguageXML : SourceLanguage
+@interface ParserLanguageXML : ParserLanguage
 @end
 
-@interface SourceNodeXMLTag ()
+@interface ParserNodeXMLTag ()
 @property(nonatomic, readonly) NSInteger xmlType;
 @end
 
-@implementation SourceLanguageXML
+@implementation ParserLanguageXML
 
 + (NSArray*) languageDependencies {
 	return [NSArray arrayWithObject:@"Base"];
@@ -34,15 +34,15 @@
 + (NSArray*) languageNodeClasses {
 	NSMutableArray* classes = [NSMutableArray arrayWithArray:[super languageNodeClasses]];
     
-    [classes addObject:[SourceNodeXMLDeclaration class]]; //Must be before SourceNodeXMLProcessingInstructions
-    [classes addObject:[SourceNodeXMLProcessingInstructions class]]; //Must be before SourceNodeXMLTag
-    [classes addObject:[SourceNodeXMLDOCTYPE class]]; //Must be before SourceNodeXMLTag
-    [classes addObject:[SourceNodeXMLComment class]]; //Must be before SourceNodeXMLTag
-    [classes addObject:[SourceNodeXMLCDATA class]]; //Must be before SourceNodeXMLTag
-    [classes addObject:[SourceNodeXMLTag class]];
-    [classes addObject:[SourceNodeXMLEntity class]];
+    [classes addObject:[ParserNodeXMLDeclaration class]]; //Must be before ParserNodeXMLProcessingInstructions
+    [classes addObject:[ParserNodeXMLProcessingInstructions class]]; //Must be before ParserNodeXMLTag
+    [classes addObject:[ParserNodeXMLDOCTYPE class]]; //Must be before ParserNodeXMLTag
+    [classes addObject:[ParserNodeXMLComment class]]; //Must be before ParserNodeXMLTag
+    [classes addObject:[ParserNodeXMLCDATA class]]; //Must be before ParserNodeXMLTag
+    [classes addObject:[ParserNodeXMLTag class]];
+    [classes addObject:[ParserNodeXMLEntity class]];
     
-    [classes addObject:[SourceNodeXMLElement class]];
+    [classes addObject:[ParserNodeXMLElement class]];
     
     return classes;
 }
@@ -55,25 +55,25 @@
     return [NSSet setWithObjects:@"xml", @"plist", nil];
 }
 
-- (SourceNode*) performSyntaxAnalysisForNode:(SourceNode*)node sourceBuffer:(const unichar*)sourceBuffer topLevelNodeClasses:(NSSet*)nodeClasses {
+- (ParserNode*) performSyntaxAnalysisForNode:(ParserNode*)node textBuffer:(const unichar*)textBuffer topLevelNodeClasses:(NSSet*)nodeClasses {
 	
-    if([node isKindOfClass:[SourceNodeXMLTag class]]) {
-    	SourceNodeXMLTag* xmlNode = (SourceNodeXMLTag*)node;
+    if([node isKindOfClass:[ParserNodeXMLTag class]]) {
+    	ParserNodeXMLTag* xmlNode = (ParserNodeXMLTag*)node;
         if(xmlNode.xmlType == 0) {
-        	SourceNode* newNode = [[SourceNodeXMLElement alloc] initWithSource:node.source range:NSMakeRange(node.range.location, 0)];
+        	ParserNode* newNode = [[ParserNodeXMLElement alloc] initWithText:node.text range:NSMakeRange(node.range.location, 0)];
             [node insertPreviousSibling:newNode];
             [newNode release];
             
             _RearrangeNodesAsChildren(newNode, node);
         } else if(xmlNode.xmlType < 0) {
-        	SourceNode* endNode = node;
+        	ParserNode* endNode = node;
             while(endNode) {
-                endNode = [endNode findNextSiblingOfClass:[SourceNodeXMLTag class]];
+                endNode = [endNode findNextSiblingOfClass:[ParserNodeXMLTag class]];
                 if([endNode.name isEqualToString:xmlNode.name])
                 	break;
             }
             if(endNode) {
-            	SourceNode* newNode = [[SourceNodeXMLElement alloc] initWithSource:node.source range:NSMakeRange(node.range.location, 0)];
+            	ParserNode* newNode = [[ParserNodeXMLElement alloc] initWithText:node.text range:NSMakeRange(node.range.location, 0)];
                 [node insertPreviousSibling:newNode];
                 [newNode release];
                 
@@ -88,7 +88,7 @@
 @end
 
 #define IMPLEMENTATION(__NAME__, __START__, __END__) \
-@implementation SourceNodeXML##__NAME__ \
+@implementation ParserNodeXML##__NAME__ \
 \
 + (NSUInteger) isMatchingPrefix:(const unichar*)string maxLength:(NSUInteger)maxLength { \
     IS_MATCHING_CHARACTERS(__START__, string, maxLength); \
@@ -120,29 +120,29 @@ static NSString* _StringWithReplacedEntities(NSString* string) {
     return newString;
 }
 
-@implementation SourceNodeXMLProcessingInstructions (Internal)
+@implementation ParserNodeXMLProcessingInstructions (Internal)
 
 - (NSString*) cleanContent {
 	NSRange range = self.range;
-    return _StringWithReplacedEntities([self.source substringWithRange:NSMakeRange(range.location + 2, range.length - 4)]);
+    return _StringWithReplacedEntities([self.text substringWithRange:NSMakeRange(range.location + 2, range.length - 4)]);
 }
 
 @end
 
-@implementation SourceNodeXMLComment (Internal)
+@implementation ParserNodeXMLComment (Internal)
 
 - (NSString*) cleanContent {
 	NSRange range = self.range;
-    return _StringWithReplacedEntities([self.source substringWithRange:NSMakeRange(range.location + 4, range.length - 7)]);
+    return _StringWithReplacedEntities([self.text substringWithRange:NSMakeRange(range.location + 4, range.length - 7)]);
 }
 
 @end
 
-@implementation SourceNodeXMLCDATA (Internal)
+@implementation ParserNodeXMLCDATA (Internal)
 
 - (NSString*) cleanContent {
 	NSRange range = self.range;
-    return [self.source substringWithRange:NSMakeRange(range.location + 9, range.length - 12)];
+    return [self.text substringWithRange:NSMakeRange(range.location + 9, range.length - 12)];
 }
 
 @end
@@ -192,7 +192,7 @@ static NSDictionary* _ParseAttributes(NSString* content) {
 	return attributes;
 }
 
-@implementation SourceNodeXMLDeclaration (Internal)
+@implementation ParserNodeXMLDeclaration (Internal)
 
 - (void) dealloc {
 	[_attributes release];
@@ -210,7 +210,7 @@ static NSDictionary* _ParseAttributes(NSString* content) {
 
 @end
 
-@implementation SourceNodeXMLTag
+@implementation ParserNodeXMLTag
 
 + (NSUInteger) isMatchingPrefix:(const unichar*)string maxLength:(NSUInteger)maxLength {
     if(*string != '<')
@@ -282,7 +282,7 @@ static NSDictionary* _ParseAttributes(NSString* content) {
 
 @end
 
-@implementation SourceNodeXMLEntity
+@implementation ParserNodeXMLEntity
 
 + (NSUInteger) isMatchingPrefix:(const unichar*)string maxLength:(NSUInteger)maxLength {
     return *string == '&' ? 1 : NSNotFound;
@@ -293,18 +293,18 @@ static NSDictionary* _ParseAttributes(NSString* content) {
 }
 
 - (NSString*) cleanContent {
-    return _StringWithReplacedEntities([self.source substringWithRange:self.range]);
+    return _StringWithReplacedEntities([self.text substringWithRange:self.range]);
 }
 
 @end
 
-@implementation SourceNodeXMLElement
+@implementation ParserNodeXMLElement
 
 - (NSString*) cleanContent {
     NSMutableString* string = [NSMutableString string];
-    for(SourceNode* node in self.children) {
-    	if([node isKindOfClass:[SourceNodeXMLTag class]] || [node isKindOfClass:[SourceNodeXMLElement class]]
-        	|| [node isKindOfClass:[SourceNodeXMLComment class]]|| [node isKindOfClass:[SourceNodeXMLCDATA class]])
+    for(ParserNode* node in self.children) {
+    	if([node isKindOfClass:[ParserNodeXMLTag class]] || [node isKindOfClass:[ParserNodeXMLElement class]]
+        	|| [node isKindOfClass:[ParserNodeXMLComment class]]|| [node isKindOfClass:[ParserNodeXMLCDATA class]])
         	continue;
         [string appendString:node.cleanContent];
     }
@@ -312,12 +312,12 @@ static NSDictionary* _ParseAttributes(NSString* content) {
 }
 
 - (NSString*) name {
-	return [(SourceNodeXMLTag*)self.firstChild name];
+	return [(ParserNodeXMLTag*)self.firstChild name];
 }
 
 /*
 - (NSDictionary*) attributes {
-	return [(SourceNodeXMLTag*)self.firstChild attributes];
+	return [(ParserNodeXMLTag*)self.firstChild attributes];
 }
 */
 

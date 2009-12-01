@@ -16,25 +16,23 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#import "SourceParser_Internal.h"
+#import "Parser_Internal.h"
 
 #warning SGML (abstract)
-#warning Create Language directory
-#warning Rename TextParser & Language
 #warning MiniParser
 
-@interface SourceNodeHTMLEqual : SourceNodeToken
+@interface ParserNodeHTMLEqual : ParserNodeToken
 @end
 
-@interface SourceLanguageHTML : SourceLanguage
+@interface ParserLanguageHTML : ParserLanguage
 @end
 
-@interface SourceNodeHTMLTag ()
+@interface ParserNodeHTMLTag ()
 @property(nonatomic, readonly) NSInteger htmlType;
 @property(nonatomic, retain) NSDictionary* attributes;
 @end
 
-@implementation SourceLanguageHTML
+@implementation ParserLanguageHTML
 
 + (NSArray*) languageDependencies {
 	return [NSArray arrayWithObject:@"Base"];
@@ -43,12 +41,12 @@
 + (NSArray*) languageNodeClasses {
 	NSMutableArray* classes = [NSMutableArray arrayWithArray:[super languageNodeClasses]];
     
-    [classes addObject:[SourceNodeHTMLDOCTYPE class]]; //Must be before SourceNodeHTMLTag
-    [classes addObject:[SourceNodeHTMLComment class]]; //Must be before SourceNodeHTMLTag
-    [classes addObject:[SourceNodeHTMLCDATA class]]; //Must be before SourceNodeXMLTag
-    [classes addObject:[SourceNodeHTMLTag class]];
+    [classes addObject:[ParserNodeHTMLDOCTYPE class]]; //Must be before ParserNodeHTMLTag
+    [classes addObject:[ParserNodeHTMLComment class]]; //Must be before ParserNodeHTMLTag
+    [classes addObject:[ParserNodeHTMLCDATA class]]; //Must be before ParserNodeXMLTag
+    [classes addObject:[ParserNodeHTMLTag class]];
     
-    [classes addObject:[SourceNodeHTMLElement class]];
+    [classes addObject:[ParserNodeHTMLElement class]];
     
     return classes;
 }
@@ -72,25 +70,25 @@ static NSString* _StringWithReplacedEntities(NSString* string) {
     return newString;
 }
 
-- (SourceNode*) performSyntaxAnalysisForNode:(SourceNode*)node sourceBuffer:(const unichar*)sourceBuffer topLevelNodeClasses:(NSSet*)nodeClasses {
+- (ParserNode*) performSyntaxAnalysisForNode:(ParserNode*)node textBuffer:(const unichar*)textBuffer topLevelNodeClasses:(NSSet*)nodeClasses {
 	
-    if([node isKindOfClass:[SourceNodeHTMLTag class]]) {
-    	SourceNodeHTMLTag* htmlNode = (SourceNodeHTMLTag*)node;
+    if([node isKindOfClass:[ParserNodeHTMLTag class]]) {
+    	ParserNodeHTMLTag* htmlNode = (ParserNodeHTMLTag*)node;
         if(htmlNode.htmlType == 0) {
-        	SourceNode* newNode = [[SourceNodeHTMLElement alloc] initWithSource:node.source range:NSMakeRange(node.range.location, 0)];
+        	ParserNode* newNode = [[ParserNodeHTMLElement alloc] initWithText:node.text range:NSMakeRange(node.range.location, 0)];
             [node insertPreviousSibling:newNode];
             [newNode release];
             
             _RearrangeNodesAsChildren(newNode, node);
         } else if(htmlNode.htmlType < 0) {
-        	SourceNode* endNode = node;
+        	ParserNode* endNode = node;
             while(endNode) {
-                endNode = [endNode findNextSiblingOfClass:[SourceNodeHTMLTag class]];
+                endNode = [endNode findNextSiblingOfClass:[ParserNodeHTMLTag class]];
                 if([endNode.name isEqualToString:htmlNode.name])
                 	break;
             }
             if(endNode) {
-            	SourceNode* newNode = [[SourceNodeHTMLElement alloc] initWithSource:node.source range:NSMakeRange(node.range.location, 0)];
+            	ParserNode* newNode = [[ParserNodeHTMLElement alloc] initWithText:node.text range:NSMakeRange(node.range.location, 0)];
                 [node insertPreviousSibling:newNode];
                 [newNode release];
                 
@@ -104,22 +102,22 @@ static NSString* _StringWithReplacedEntities(NSString* string) {
             	static NSMutableArray* classes = nil;
                 if(classes == nil) {
                     classes = [[NSMutableArray alloc] init];
-                    [classes addObjectsFromArray:[NSClassFromString(@"SourceLanguageBase") languageNodeClasses]];
-                    [classes addObject:NSClassFromString(@"SourceNodeCStringSingleQuote")];
-                    [classes addObject:NSClassFromString(@"SourceNodeCStringDoubleQuote")];
-                    [classes addObject:[SourceNodeHTMLEqual class]];
+                    [classes addObjectsFromArray:[NSClassFromString(@"ParserLanguageBase") languageNodeClasses]];
+                    [classes addObject:NSClassFromString(@"ParserNodeCStringSingleQuote")];
+                    [classes addObject:NSClassFromString(@"ParserNodeCStringDoubleQuote")];
+                    [classes addObject:[ParserNodeHTMLEqual class]];
                 }
-                SourceNodeRoot* root = [SourceLanguage newNodeTreeFromSource:htmlNode.source range:range buffer:sourceBuffer withNodeClasses:classes];
+                ParserNodeRoot* root = [ParserLanguage newNodeTreeFromText:htmlNode.text range:range textBuffer:textBuffer withNodeClasses:classes];
                 if(root) {
-                    SourceNode* attributeNode = [root.firstChild findNextSiblingIgnoringWhitespaceAndNewline];
+                    ParserNode* attributeNode = [root.firstChild findNextSiblingIgnoringWhitespaceAndNewline];
                     NSMutableDictionary* dictionary = nil;
-                    while([attributeNode isKindOfClass:[SourceNodeText class]]) {
+                    while([attributeNode isKindOfClass:[ParserNodeText class]]) {
                         NSString* name = attributeNode.content;
                         attributeNode = [attributeNode findNextSiblingIgnoringWhitespaceAndNewline];
                         if(attributeNode == nil)
                         	break;
                         NSString* value;
-                        if([attributeNode isKindOfClass:[SourceNodeHTMLEqual class]]) {
+                        if([attributeNode isKindOfClass:[ParserNodeHTMLEqual class]]) {
                         	attributeNode = [attributeNode findNextSiblingIgnoringWhitespaceAndNewline];
                             value = attributeNode.cleanContent;
                             attributeNode = [attributeNode findNextSiblingIgnoringWhitespaceAndNewline];
@@ -146,7 +144,7 @@ static NSString* _StringWithReplacedEntities(NSString* string) {
 TOKEN_CLASS_IMPLEMENTATION(HTMLEqual, "=")
 
 #define IMPLEMENTATION(__NAME__, __START__, __END__) \
-@implementation SourceNodeHTML##__NAME__ \
+@implementation ParserNodeHTML##__NAME__ \
 \
 + (NSUInteger) isMatchingPrefix:(const unichar*)string maxLength:(NSUInteger)maxLength { \
     IS_MATCHING_CHARACTERS(__START__, string, maxLength); \
@@ -166,25 +164,25 @@ IMPLEMENTATION(CDATA, "<![CDATA[", "]]>")
 
 #undef IMPLEMENTATION
 
-@implementation SourceNodeHTMLComment (Internal)
+@implementation ParserNodeHTMLComment (Internal)
 
 - (NSString*) cleanContent {
 	NSRange range = self.range;
-    return _StringWithReplacedEntities([self.source substringWithRange:NSMakeRange(range.location + 4, range.length - 7)]);
+    return _StringWithReplacedEntities([self.text substringWithRange:NSMakeRange(range.location + 4, range.length - 7)]);
 }
 
 @end
 
-@implementation SourceNodeHTMLCDATA (Internal)
+@implementation ParserNodeHTMLCDATA (Internal)
 
 - (NSString*) cleanContent {
 	NSRange range = self.range;
-    return [self.source substringWithRange:NSMakeRange(range.location + 9, range.length - 12)];
+    return [self.text substringWithRange:NSMakeRange(range.location + 9, range.length - 12)];
 }
 
 @end
 
-@implementation SourceNodeHTMLTag
+@implementation ParserNodeHTMLTag
 
 @synthesize attributes=_attributes;
 
@@ -249,13 +247,13 @@ IMPLEMENTATION(CDATA, "<![CDATA[", "]]>")
 
 @end
 
-@implementation SourceNodeHTMLElement
+@implementation ParserNodeHTMLElement
 
 - (NSString*) cleanContent {
     NSMutableString* string = [NSMutableString string];
-    for(SourceNode* node in self.children) {
-    	if([node isKindOfClass:[SourceNodeHTMLTag class]] || [node isKindOfClass:[SourceNodeHTMLElement class]]
-        	|| [node isKindOfClass:[SourceNodeHTMLComment class]]|| [node isKindOfClass:[SourceNodeHTMLCDATA class]])
+    for(ParserNode* node in self.children) {
+    	if([node isKindOfClass:[ParserNodeHTMLTag class]] || [node isKindOfClass:[ParserNodeHTMLElement class]]
+        	|| [node isKindOfClass:[ParserNodeHTMLComment class]]|| [node isKindOfClass:[ParserNodeHTMLCDATA class]])
         	continue;
         [string appendString:node.cleanContent];
     }
@@ -263,12 +261,12 @@ IMPLEMENTATION(CDATA, "<![CDATA[", "]]>")
 }
 
 - (NSString*) name {
-	return [(SourceNodeHTMLTag*)self.firstChild name];
+	return [(ParserNodeHTMLTag*)self.firstChild name];
 }
 
 /*
 - (NSDictionary*) attributes {
-	return [(SourceNodeHTMLTag*)self.firstChild attributes];
+	return [(ParserNodeHTMLTag*)self.firstChild attributes];
 }
 */
 

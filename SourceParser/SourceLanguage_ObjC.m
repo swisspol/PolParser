@@ -18,6 +18,9 @@
 
 #import "SourceParser_Internal.h"
 
+@interface SourceLanguageObjC : SourceLanguage
+@end
+
 @implementation SourceLanguageObjC
 
 + (NSArray*) languageDependencies {
@@ -187,6 +190,7 @@ static SourceNode* _ApplierFunction(SourceNode* node, void* context) {
             SourceNode* semicolonNode = [node findNextSiblingOfClass:[SourceNodeSemicolon class]];
             if(semicolonNode) {
                 SourceNode* newNode = [[SourceNodeMatch alloc] initWithSource:node.source range:node.range];
+                newNode.lines = node.lines;
                 [node replaceWithNode:newNode];
                 [newNode release];
                 node = newNode;
@@ -206,6 +210,7 @@ static SourceNode* _ApplierFunction(SourceNode* node, void* context) {
             SourceNode* nextNode = [node findNextSiblingOfClass:[SourceNodeBraces class]];
             if(nextNode) {
                 SourceNode* newNode = [[SourceNodeMatch alloc] initWithSource:node.source range:node.range];
+                newNode.lines = node.lines;
                 [node replaceWithNode:newNode];
                 [newNode release];
                 node = newNode;
@@ -231,12 +236,14 @@ static SourceNode* _ApplierFunction(SourceNode* node, void* context) {
                 if([nextNode isMemberOfClass:[SourceNodeText class]]) {
                 	if([target isMemberOfClass:[SourceNodeText class]]) {
 						SourceNode* newNode = [[SourceNodeMatch alloc] initWithSource:target.source range:target.range];
+                        newNode.lines = target.lines;
                         [target replaceWithNode:newNode];
                         [newNode release];
 					}
                     
                     SourceNode* newNode = [[SourceNodeObjCMethodCall alloc] initWithSource:node.source range:node.range];
                     [node applyFunctionOnChildren:_ApplierFunction context:newNode];
+                    newNode.lines = node.lines;
                     [node replaceWithNode:newNode];
                     [newNode release];
                     
@@ -280,7 +287,7 @@ IS_MATCHING_PREFIX_METHOD_WITH_TRAILING_CHARACTERS("#import", true, NULL)
 }
 
 + (NSUInteger) isMatchingPrefix:(const unichar*)string maxLength:(NSUInteger)maxLength {
-    return (maxLength >= 2) && (string[0] == '@') && (string[1] == '"') ? 2 : NSNotFound;
+    return (string[0] == '@') && (string[1] == '"') ? 2 : NSNotFound;
 }
 
 - (NSString*) cleanContent {
@@ -306,7 +313,7 @@ KEYWORD_CLASS_IMPLEMENTATION(ObjC, Nil, "nil")
         string += _matching; \
         maxLength -= _matching; \
         while(maxLength) { \
-            if(IsNewline(*string) || (*string == '{') || ((maxLength >= 2) && (string[0] == '/') && ((string[1] == '*') || (string[1] == '/')))) { \
+            if(IsNewline(*string) || (*string == '{') || ((string[0] == '/') && ((string[1] == '*') || (string[1] == '/')))) { \
                 do { \
                     --string; \
                 } while(IsWhitespace(*string)); \

@@ -18,6 +18,9 @@
 
 #import "SourceParser_Internal.h"
 
+@interface SourceLanguageC : SourceLanguage
+@end
+
 @implementation SourceLanguageC
 
 + (NSArray*) languageDependencies {
@@ -153,6 +156,7 @@ static inline BOOL _IsNodeAtTopLevel(SourceNode* node, NSSet* topLevelClasses) {
                     _RearrangeNodesAsChildren(previousNode, nextNextNode);
                     
                     SourceNode* newWhile = [[SourceNodeMatch alloc] initWithSource:nextNode.source range:nextNode.range];
+                    newWhile.lines = nextNode.lines;
                     [nextNode replaceWithNode:newWhile];
                     [newWhile release];
                 }
@@ -297,6 +301,7 @@ static inline BOOL _IsNodeAtTopLevel(SourceNode* node, NSSet* topLevelClasses) {
                 SourceNode* previousNode = [node findPreviousSiblingIgnoringWhitespaceAndNewline];
                 if([previousNode isMemberOfClass:[SourceNodeText class]] && _IsIdentifier(sourceBuffer + previousNode.range.location, previousNode.range.length)) {
                     SourceNode* newNode = [[SourceNodeMatch alloc] initWithSource:previousNode.source range:previousNode.range];
+                    newNode.lines = previousNode.lines;
                     [previousNode replaceWithNode:newNode];
                     [newNode release];
                     previousNode = newNode;
@@ -319,6 +324,7 @@ static inline BOOL _IsNodeAtTopLevel(SourceNode* node, NSSet* topLevelClasses) {
             SourceNode* previousNode = [node findPreviousSiblingIgnoringWhitespaceAndNewline];
             if([previousNode isMemberOfClass:[SourceNodeText class]] && _IsIdentifier(sourceBuffer + previousNode.range.location, previousNode.range.length)) {
             	SourceNode* newNode = [[SourceNodeMatch alloc] initWithSource:previousNode.source range:previousNode.range];
+                newNode.lines = previousNode.lines;
                 [previousNode replaceWithNode:newNode];
                 [newNode release];
                 previousNode = newNode;
@@ -352,11 +358,11 @@ TOKEN_CLASS_IMPLEMENTATION(Asterisk, "*")
 @implementation SourceNodeCComment
 
 + (NSUInteger) isMatchingPrefix:(const unichar*)string maxLength:(NSUInteger)maxLength {
-    return (maxLength >= 2) && (string[0] == '/') && (string[1] == '*') ? 2 : NSNotFound;
+    return (string[0] == '/') && (string[1] == '*') ? 2 : NSNotFound;
 }
 
 + (NSUInteger) isMatchingSuffix:(const unichar*)string maxLength:(NSUInteger)maxLength {
-    return (maxLength >= 2) && (string[0] == '*') && (string[1] == '/') ? 2 : NSNotFound;
+    return (string[0] == '*') && (string[1] == '/') ? 2 : NSNotFound;
 }
 
 - (NSString*) cleanContent {
@@ -382,7 +388,7 @@ TOKEN_CLASS_IMPLEMENTATION(Asterisk, "*")
 
 + (NSUInteger) isMatchingSuffix:(const unichar*)string maxLength:(NSUInteger)maxLength {
     while(maxLength) {
-        if(IsNewline(*string) || (*string == '#') || ((maxLength >= 2) && (string[0] == '/') && ((string[1] == '*') || (string[1] == '/')))) {
+        if(IsNewline(*string) || (*string == '#') || ((string[0] == '/') && ((string[1] == '*') || (string[1] == '/')))) {
             do {
                 --string;
             } while(IsWhitespace(*string));
@@ -433,7 +439,7 @@ TOKEN_CLASS_IMPLEMENTATION(Asterisk, "*")
         string += _matching; \
         maxLength -= _matching; \
         while(maxLength) { \
-            if(IsNewline(*string) || (*string == '#') || ((maxLength >= 2) && (string[0] == '/') && ((string[1] == '*') || (string[1] == '/')))) { \
+            if(IsNewline(*string) || (*string == '#') || ((string[0] == '/') && ((string[1] == '*') || (string[1] == '/')))) { \
                 do { \
                     --string; \
                 } while(IsWhitespace(*string)); \

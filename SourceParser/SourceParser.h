@@ -24,3 +24,4 @@
 #import "SourceLanguage_ObjC.h"
 #import "SourceLanguage_ObjCPP.h"
 #import "SourceLanguage_XML.h"
+#import "SourceLanguage_HTML.h"

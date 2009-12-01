@@ -18,6 +18,9 @@
 
 #import "SourceParser_Internal.h"
 
+@interface SourceLanguageObjCPP : SourceLanguage
+@end
+
 @implementation SourceLanguageObjCPP
 
 + (NSArray*) languageDependencies {

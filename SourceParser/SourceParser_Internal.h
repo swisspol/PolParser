@@ -18,9 +18,9 @@
 
 #import "SourceParser.h"
 
-#define IsNewline(C) (C == '\n')
+#define IsNewline(C) ((C == '\r') || (C == '\n'))
 #define IsWhitespace(C) ((C == ' ') || (C == '\t'))
-#define IsWhitespaceOrNewline(C) ((C == ' ') || (C == '\t') || (C == '\n'))
+#define IsWhitespaceOrNewline(C) (IsWhitespace(C) || IsNewline(C))
 
 #define IS_MATCHING_CHARACTERS(__CHARACTERS__, __STRING__, __MAXLENGTH__) \
 	const char* __characters = __CHARACTERS__; \
@@ -103,6 +103,7 @@ void _RearrangeNodesAsChildren(SourceNode* startNode, SourceNode* endNode);
 + (NSUInteger) isMatchingPrefix:(const unichar*)string maxLength:(NSUInteger)maxLength; //"maxLength" is guaranteed to be at least 1
 + (NSUInteger) isMatchingSuffix:(const unichar*)string maxLength:(NSUInteger)maxLength; //"maxLength" may be 0 for atomic classes
 @property(nonatomic) NSRange range;
+@property(nonatomic) NSRange lines;
 @property(nonatomic, assign) SourceNode* parent;
 @property(nonatomic, readonly) NSMutableArray* mutableChildren;
 @property(nonatomic) NSUInteger revision;
@@ -111,7 +112,7 @@ void _RearrangeNodesAsChildren(SourceNode* startNode, SourceNode* endNode);
 @end
 
 @interface SourceNodeRoot ()
-- (id) initWithSource:(NSString*)source language:(SourceLanguage*)language;
+@property(nonatomic, assign) SourceLanguage* language;
 @end
 
 @interface SourceLanguage ()
@@ -119,25 +120,8 @@ void _RearrangeNodesAsChildren(SourceNode* startNode, SourceNode* endNode);
 + (NSSet*) languageReservedKeywords;
 + (NSArray*) languageNodeClasses;
 + (NSSet*) languageTopLevelNodeClasses;
++ (SourceNodeRoot*) newNodeTreeFromSource:(NSString*)string range:(NSRange)range buffer:(const unichar*)buffer withNodeClasses:(NSArray*)nodeClasses;
 @property(nonatomic, readonly) NSSet* topLevelNodeClasses;
 - (SourceNodeRoot*) parseSourceString:(NSString*)source range:(NSRange)range buffer:(const unichar*)buffer syntaxAnalysis:(BOOL)syntaxAnalysis;
 - (SourceNode*) performSyntaxAnalysisForNode:(SourceNode*)node sourceBuffer:(const unichar*)sourceBuffer topLevelNodeClasses:(NSSet*)nodeClasses; //Override point to perform language dependent source tree refactoring after parsing
-@end
-
-@interface SourceLanguageBase : SourceLanguage
-@end
-
-@interface SourceLanguageC : SourceLanguage
-@end
-
-@interface SourceLanguageCPP : SourceLanguage
-@end
-
-@interface SourceLanguageObjC : SourceLanguage
-@end
-
-@interface SourceLanguageObjCPP : SourceLanguage
-@end
-
-@interface SourceLanguageXML : SourceLanguage
 @end

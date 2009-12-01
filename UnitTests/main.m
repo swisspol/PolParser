@@ -93,6 +93,8 @@ int main(int argc, const char* argv[]) {
                             BOOL success = YES;
                             if((parts.count > 1) && [[parts objectAtIndex:1] length]) {
                                 NSMutableString* expected = [NSMutableString stringWithString:[parts objectAtIndex:1]];
+                                [expected replaceOccurrencesOfString:@"\r\n" withString:@"\n" options:0 range:NSMakeRange(0, expected.length)];
+                                [expected replaceOccurrencesOfString:@"\r" withString:@"\n" options:0 range:NSMakeRange(0, expected.length)];
                                 [expected replaceOccurrencesOfString:@"\n" withString:@"" options:NSAnchoredSearch range:NSMakeRange(0, expected.length)];
                                 [expected replaceOccurrencesOfString:@"\n" withString:@"" options:(NSBackwardsSearch | NSAnchoredSearch) range:NSMakeRange(0, expected.length)];
                                 if(!_ValidateResult([NSString stringWithFormat:@"%@-Compact", [[path lastPathComponent] stringByDeletingPathExtension]], root.compactDescription, expected))
@@ -100,6 +102,8 @@ int main(int argc, const char* argv[]) {
                             }
                             if((parts.count > 2) && [[parts objectAtIndex:2] length]) {
                                 NSMutableString* expected = [NSMutableString stringWithString:[parts objectAtIndex:2]];
+                                [expected replaceOccurrencesOfString:@"\r\n" withString:@"\n" options:0 range:NSMakeRange(0, expected.length)];
+                                [expected replaceOccurrencesOfString:@"\r" withString:@"\n" options:0 range:NSMakeRange(0, expected.length)];
                                 [expected replaceOccurrencesOfString:@"\n" withString:@"" options:NSAnchoredSearch range:NSMakeRange(0, expected.length)];
                                 [expected replaceOccurrencesOfString:@"\n" withString:@"" options:(NSBackwardsSearch | NSAnchoredSearch) range:NSMakeRange(0, expected.length)];
                                 if(!_ValidateResult([NSString stringWithFormat:@"%@-Detailed", [[path lastPathComponent] stringByDeletingPathExtension]], root.detailedDescription, expected))

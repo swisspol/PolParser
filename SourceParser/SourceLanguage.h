@@ -18,11 +18,6 @@
 
 #import "SourceNode.h"
 
-/* IMPORTANT REQUIREMENTS:
-- The source must have Unix line-endings
-- The source is assumed to compile
-*/
-
 @class SourceNodeRoot;
 
 /* Abstract class: do not instantiate */

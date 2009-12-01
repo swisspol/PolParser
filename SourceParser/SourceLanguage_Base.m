@@ -18,6 +18,9 @@
 
 #import "SourceParser_Internal.h"
 
+@interface SourceLanguageBase : SourceLanguage
+@end
+
 @implementation SourceLanguageBase
 
 + (NSArray*) languageNodeClasses {
@@ -102,7 +105,7 @@
 @implementation SourceNodeNewline
 
 + (NSUInteger) isMatchingPrefix:(const unichar*)string maxLength:(NSUInteger)maxLength {
-    return IsNewline(*string) ? 1 : NSNotFound;
+    return (*string == '\r') && (*(string + 1) == '\n') ? 2 : ((*string == '\r') || (*string == '\n') ? 1 : NSNotFound);
 }
 
 + (NSUInteger) isMatchingSuffix:(const unichar*)string maxLength:(NSUInteger)maxLength {

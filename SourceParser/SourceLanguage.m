@@ -16,7 +16,11 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+#import <objc/runtime.h>
+
 #import "SourceParser_Internal.h"
+
+#define SourceLanguagePrefix "SourceLanguage"
 
 void _RearrangeNodesAsChildren(SourceNode* startNode, SourceNode* endNode) {
     if(startNode == endNode)
@@ -25,10 +29,12 @@ void _RearrangeNodesAsChildren(SourceNode* startNode, SourceNode* endNode) {
     SourceNode* node;
     if(startNode.range.length) {
         node = [[SourceNodeMatch alloc] initWithSource:startNode.source range:startNode.range];
+        node.lines = startNode.lines;
         [startNode addChild:node];
         [node release];
     }
-    node = startNode.nextSibling;
+    SourceNode* sibling = startNode.nextSibling;
+    node = sibling;
     do {
         SourceNode* sibling = node.nextSibling; //This will not be available afterwards
         [node removeFromParent];
@@ -36,25 +42,10 @@ void _RearrangeNodesAsChildren(SourceNode* startNode, SourceNode* endNode) {
         node = (node == endNode ? nil : sibling);
     } while(node);
     startNode.range = NSMakeRange(startNode.range.location, endNode.range.location + endNode.range.length - startNode.range.location);
+    startNode.lines = NSMakeRange(sibling.lines.location, endNode.lines.location + endNode.lines.length - sibling.lines.location);
 }
 
 @implementation SourceLanguage
-
-static NSMutableSet* _languageCache = nil;
-
-+ (void) initialize {
-    if(_languageCache == nil) {
-        _languageCache = [[NSMutableSet alloc] init];
-        [_languageCache addObject:[[[SourceLanguageBase alloc] init] autorelease]];
-        [_languageCache addObject:[[[SourceLanguageC alloc] init] autorelease]];
-        [_languageCache addObject:[[[SourceLanguageCPP alloc] init] autorelease]];
-        [_languageCache addObject:[[[SourceLanguageObjC alloc] init] autorelease]];
-        [_languageCache addObject:[[[SourceLanguageObjCPP alloc] init] autorelease]];
-        [_languageCache addObject:[[[SourceLanguageXML alloc] init] autorelease]];
-    }
-    
-    [super initialize];
-}
 
 + (id) allocWithZone:(NSZone*)zone
 {
@@ -65,11 +56,27 @@ static NSMutableSet* _languageCache = nil;
 }
 
 + (NSSet*) allLanguages {
-    return _languageCache;
+    static NSMutableSet* set = nil;
+	if(set == nil) {
+    	set = [[NSMutableSet alloc] init];
+        int count = objc_getClassList(NULL, 0);
+        if(count > 0) {
+            Class* list = malloc(count * sizeof(Class));
+            count = objc_getClassList(list, count);
+            for(int i = 0; i < count; ++i) {
+                if(strncmp(class_getName(list[i]), SourceLanguagePrefix, sizeof(SourceLanguagePrefix) - 1) == 0) {
+                	if(list[i] != [SourceLanguage class])
+                    	[set addObject:[[[list[i] alloc] init] autorelease]];
+                }
+            }
+            free(list);
+        }
+    }
+	return set;
 }
 
 + (SourceLanguage*) languageWithName:(NSString*)name {
-    for(SourceLanguage* language in _languageCache) {
+    for(SourceLanguage* language in [SourceLanguage allLanguages]) {
         if([[language name] caseInsensitiveCompare:name] == NSOrderedSame)
             return language;
     }
@@ -109,11 +116,9 @@ static NSMutableSet* _languageCache = nil;
 }
 
 + (NSArray*) languageNodeClasses {
-    if(self == [SourceLanguage class])
-    	return [NSArray arrayWithObjects:[SourceNodeText class], [SourceNodeMatch class], nil]; //Special-cased by parser
+    NSMutableArray* classes = [NSMutableArray arrayWithObjects:[SourceNodeText class], [SourceNodeMatch class], nil]; //Special-cased by parser
     
-    NSString* prefix = [NSStringFromClass(self) substringFromIndex:[@"SourceLanguage" length]];
-    NSMutableArray* classes = [NSMutableArray array];
+    NSString* prefix = [NSStringFromClass(self) substringFromIndex:[@SourceLanguagePrefix length]];
     for(NSString* keyword in [self languageReservedKeywords]) {
     	Class class = NSClassFromString([NSString stringWithFormat:@"SourceNode%@%@%@", prefix, [[keyword substringToIndex:1]uppercaseString], [keyword substringFromIndex:1]]);
         if(class)
@@ -192,6 +197,175 @@ static NSMutableSet* _languageCache = nil;
     return _topLevelClasses;
 }
 
+static SourceNode* _ApplierFunction(SourceNode* node, void* context) {
+    void** params = (void**)context;
+    SourceLanguage* language = params[0];
+    const unichar* buffer = params[1];
+    NSSet* nodeClasses = params[2];
+    return [language performSyntaxAnalysisForNode:node sourceBuffer:buffer topLevelNodeClasses:nodeClasses];
+}
+
++ (SourceNodeRoot*) newNodeTreeFromSource:(NSString*)source range:(NSRange)range buffer:(const unichar*)buffer withNodeClasses:(NSArray*)nodeClasses {
+    SourceNodeRoot* rootNode = [[SourceNodeRoot alloc] initWithSource:source range:range];
+    if(rootNode == nil)
+    	return nil;
+    
+    NSMutableArray* stack = [NSMutableArray array];
+    [stack addObject:rootNode];
+    NSUInteger lastLine = 0;
+    NSUInteger currentLine = 0;
+    NSUInteger rawLength = 0;
+    while(range.length) {
+        if(stack.count > 1) {
+            SourceNode* parentNode = [stack lastObject];
+            NSUInteger suffixLength;
+            suffixLength = [[parentNode class] isMatchingSuffix:(buffer + range.location + rawLength) maxLength:(range.length - rawLength)];
+            if(suffixLength != NSNotFound) {
+                if(rawLength > 0) {
+                    for(NSUInteger i = 0; i < rawLength; ++i) {
+                    	if((*(buffer + range.location + i) == '\n') || ((*(buffer + range.location + i) == '\r') && (*(buffer + range.location + i + 1) != '\n')))
+                            ++currentLine;
+                    }
+                    
+                    SourceNode* node = [[SourceNodeText alloc] initWithSource:source range:NSMakeRange(range.location, rawLength)];
+                    node.lines = NSMakeRange(lastLine, currentLine - lastLine + 1);
+                    lastLine = currentLine;
+                    [parentNode addChild:node];
+                    [node release];
+                    
+                    range.location += rawLength;
+                    range.length -= rawLength;
+                    rawLength = 0;
+                }
+                
+                parentNode.range = NSMakeRange(parentNode.range.location, range.location + suffixLength - parentNode.range.location);
+                
+                if(suffixLength > 0) {
+                    for(NSUInteger i = 0; i < suffixLength; ++i) {
+                    	if((*(buffer + range.location + i) == '\n') || ((*(buffer + range.location + i) == '\r') && (*(buffer + range.location + i + 1) != '\n')))
+                            ++currentLine;
+                    }
+                    
+                    SourceNode* node = [[SourceNodeMatch alloc] initWithSource:source range:NSMakeRange(parentNode.range.location + parentNode.range.length - suffixLength, suffixLength)];
+                    node.lines = NSMakeRange(lastLine, currentLine - lastLine + 1);
+                    lastLine = currentLine;
+                    [parentNode addChild:node];
+                    [node release];
+                }
+                
+                parentNode.lines = NSMakeRange(parentNode.lines.location, currentLine - parentNode.lines.location + 1);
+                
+                [stack removeLastObject];
+                range.location += suffixLength;
+                range.length -= suffixLength;
+                continue;
+            }
+        }
+        
+        Class prefixClass;
+        NSUInteger prefixLength;
+        for(prefixClass in nodeClasses) {
+            if((prefixClass == [SourceNodeText class]) || (prefixClass == [SourceNodeMatch class]))
+                continue;
+            prefixLength = [prefixClass isMatchingPrefix:(buffer + range.location + rawLength) maxLength:(range.length - rawLength)];
+            if(prefixLength != NSNotFound)
+                break;
+        }
+        if(prefixClass) {
+            if(rawLength > 0) {
+                for(NSUInteger i = 0; i < rawLength; ++i) {
+                    if((*(buffer + range.location + i) == '\n') || ((*(buffer + range.location + i) == '\r') && (*(buffer + range.location + i + 1) != '\n')))
+                        ++currentLine;
+                }
+                
+                SourceNode* node = [[SourceNodeText alloc] initWithSource:source range:NSMakeRange(range.location, rawLength)];
+                [(SourceNode*)[stack lastObject] addChild:node];
+                node.lines = NSMakeRange(lastLine, currentLine - lastLine + 1);
+                lastLine = currentLine;
+                [node release];
+                
+                range.location += rawLength;
+                range.length -= rawLength;
+                rawLength = 0;
+            }
+            if([prefixClass isAtomic]) {
+                NSUInteger length = prefixLength;
+                NSUInteger suffixLength = NSNotFound;
+                while(1) {
+                    suffixLength = [prefixClass isMatchingSuffix:(buffer + range.location + length) maxLength:(range.length - length)];
+                    if(suffixLength != NSNotFound)
+                        break;
+                    if(length == range.length)
+                        break;
+                    ++length;
+                }
+                if(suffixLength == NSNotFound) {
+                    prefixClass = [SourceNodeText class];
+                    suffixLength = 0;
+                }
+                length = length + suffixLength;
+                
+                for(NSUInteger i = 0; i < length; ++i) {
+                    if((*(buffer + range.location + i) == '\n') || ((*(buffer + range.location + i) == '\r') && (*(buffer + range.location + i + 1) != '\n')))
+                        ++currentLine;
+                }
+                
+                SourceNode* node = [[prefixClass alloc] initWithSource:source range:NSMakeRange(range.location, length)];
+                node.lines = NSMakeRange(lastLine, currentLine - lastLine + 1);
+                lastLine = currentLine;
+                [(SourceNode*)[stack lastObject] addChild:node];
+                [node release];
+                
+                range.location += length;
+                range.length -= length;
+            } else {
+                SourceNode* node = [[prefixClass alloc] initWithSource:source range:NSMakeRange(range.location, 0)];
+                node.lines = NSMakeRange(currentLine, 0);
+                [(SourceNode*)[stack lastObject] addChild:node];
+                [stack addObject:node];
+                [node release];
+                
+                for(NSUInteger i = 0; i < prefixLength; ++i) {
+                    if((*(buffer + range.location + i) == '\n') || ((*(buffer + range.location + i) == '\r') && (*(buffer + range.location + i + 1) != '\n')))
+                        ++currentLine;
+                }
+                
+                node = [[SourceNodeMatch alloc] initWithSource:source range:NSMakeRange(range.location, prefixLength)];
+                node.lines = NSMakeRange(lastLine, currentLine - lastLine + 1);
+                lastLine = currentLine;
+                [(SourceNode*)[stack lastObject] addChild:node];
+                [node release];
+                
+                range.location += prefixLength;
+                range.length -= prefixLength;
+            }
+            continue;
+        }
+        
+        ++rawLength;
+        if(rawLength == range.length) {
+            SourceNode* node = [[SourceNodeText alloc] initWithSource:source range:range];
+            node.lines = NSMakeRange(lastLine, currentLine - lastLine + 1);
+            [(SourceNode*)[stack lastObject] addChild:node];
+            [node release];
+            break;
+        }
+    }
+    
+    [stack removeObjectAtIndex:0];
+    if(stack.count > 0) {
+        NSLog(@"Parser failed because some branch nodes are still opened at the end of the source:");
+        for(SourceNode* node in stack)
+            NSLog(@"\t%@", node);
+        [rootNode release];
+        return nil;
+    }
+    
+    rootNode.lines = NSMakeRange(0, currentLine + 1);
+    
+    return rootNode;
+}
+
 static BOOL _CheckTreeConsistency(SourceNode* node, NSMutableArray* stack) {
     NSRange range = node.range;
     for(SourceNode* subnode in node.children) {
@@ -218,153 +392,11 @@ static BOOL _CheckTreeConsistency(SourceNode* node, NSMutableArray* stack) {
     return YES;
 }
 
-static SourceNode* _ApplierFunction(SourceNode* node, void* context) {
-    void** params = (void**)context;
-    SourceLanguage* language = params[0];
-    const unichar* buffer = params[1];
-    NSSet* nodeClasses = params[2];
-    return [language performSyntaxAnalysisForNode:node sourceBuffer:buffer topLevelNodeClasses:nodeClasses];
-}
-
-static inline BOOL _IsKeyword(const unichar* buffer, NSUInteger length, NSUInteger keywordCount, unichar** keywordBuffers, NSUInteger* keywordLengths) {
-	for(NSUInteger i = 0; i < keywordCount; ++i) {
-    	if((length == keywordLengths[i]) && (memcmp(buffer, keywordBuffers[i], length * sizeof(unichar)) == 0))
-        	return YES;
-    }
-    
-    return NO;
-}
-
 - (SourceNodeRoot*) parseSourceString:(NSString*)source range:(NSRange)range buffer:(const unichar*)buffer syntaxAnalysis:(BOOL)syntaxAnalysis {
-    SourceNodeRoot* rootNode = [[[SourceNodeRoot alloc] initWithSource:source language:self] autorelease];
+	SourceNodeRoot* rootNode = [[[self class] newNodeTreeFromSource:source range:range buffer:buffer withNodeClasses:self.nodeClasses] autorelease];
     if(rootNode == nil)
     	return nil;
-    
-    NSUInteger keywordCount = self.reservedKeywords.count;
-    NSUInteger* keywordLengths = malloc(keywordCount * sizeof(NSUInteger));
-    unichar** keywordBuffers = malloc(keywordCount * sizeof(unichar*));
-    NSUInteger index = 0;
-    for(NSString* keyword in self.reservedKeywords) {
-    	keywordLengths[index] = keyword.length;
-        keywordBuffers[index] = malloc(keywordLengths[index] * sizeof(unichar));
-        [keyword getCharacters:keywordBuffers[index]];
-        ++index;
-    }
-    
-    NSMutableArray* stack = [NSMutableArray array];
-    [stack addObject:rootNode];
-    NSUInteger rawLength = 0;
-    while(range.length) {
-        if(stack.count > 1) {
-            SourceNode* parentNode = [stack lastObject];
-            NSUInteger suffixLength;
-            suffixLength = [[parentNode class] isMatchingSuffix:(buffer + range.location + rawLength) maxLength:(range.length - rawLength)];
-            if(suffixLength != NSNotFound) {
-                if(rawLength > 0) {
-                    SourceNode* node = [[SourceNodeText alloc] initWithSource:source range:NSMakeRange(range.location, rawLength)];
-                    [parentNode addChild:node];
-                    [node release];
-                    
-                    range.location += rawLength;
-                    range.length -= rawLength;
-                    rawLength = 0;
-                }
-                
-                parentNode.range = NSMakeRange(parentNode.range.location, range.location + suffixLength - parentNode.range.location);
-                
-                if(suffixLength > 0) {
-                    SourceNode* node = [[SourceNodeMatch alloc] initWithSource:source range:NSMakeRange(parentNode.range.location + parentNode.range.length - suffixLength, suffixLength)];
-                    [parentNode addChild:node];
-                    [node release];
-                }
-                
-                [stack removeLastObject];
-                range.location += suffixLength;
-                range.length -= suffixLength;
-                continue;
-            }
-        }
-        
-        Class prefixClass;
-        NSUInteger prefixLength;
-        for(prefixClass in self.nodeClasses) {
-            if((prefixClass == [SourceNodeText class]) || (prefixClass == [SourceNodeMatch class]))
-                continue;
-            prefixLength = [prefixClass isMatchingPrefix:(buffer + range.location + rawLength) maxLength:(range.length - rawLength)];
-            if(prefixLength != NSNotFound)
-                break;
-        }
-        if(prefixClass) {
-            if(rawLength > 0) {
-                SourceNode* node = [[SourceNodeText alloc] initWithSource:source range:NSMakeRange(range.location, rawLength)];
-                [(SourceNode*)[stack lastObject] addChild:node];
-                [node release];
-                
-                range.location += rawLength;
-                range.length -= rawLength;
-                rawLength = 0;
-            }
-            if([prefixClass isAtomic]) {
-                NSUInteger length = prefixLength;
-                NSUInteger suffixLength = NSNotFound;
-                while(1) {
-                    suffixLength = [prefixClass isMatchingSuffix:(buffer + range.location + length) maxLength:(range.length - length)];
-                    if(suffixLength != NSNotFound)
-                        break;
-                    if(length == range.length)
-                        break;
-                    ++length;
-                }
-                if(suffixLength == NSNotFound) {
-                    prefixClass = [SourceNodeText class];
-                    suffixLength = 0;
-                }
-                
-                length = length + suffixLength;
-                SourceNode* node = [[prefixClass alloc] initWithSource:source range:NSMakeRange(range.location, length)];
-                [(SourceNode*)[stack lastObject] addChild:node];
-                [node release];
-                
-                range.location += length;
-                range.length -= length;
-            } else {
-                SourceNode* node = [[prefixClass alloc] initWithSource:source range:NSMakeRange(range.location, prefixLength)];
-                [(SourceNode*)[stack lastObject] addChild:node];
-                [stack addObject:node];
-                [node release];
-                
-                node = [[SourceNodeMatch alloc] initWithSource:source range:NSMakeRange(range.location, prefixLength)];
-                [(SourceNode*)[stack lastObject] addChild:node];
-                [node release];
-                
-                range.location += prefixLength;
-                range.length -= prefixLength;
-            }
-            continue;
-        }
-        
-        ++rawLength;
-        if(rawLength == range.length) {
-            SourceNode* node = [[SourceNodeText alloc] initWithSource:source range:range];
-            [(SourceNode*)[stack lastObject] addChild:node];
-            [node release];
-            
-            break;
-        }
-    }
-    
-    for(NSUInteger i = 0; i < keywordCount; ++i)
-    	free(keywordBuffers[i]);
-    free(keywordBuffers);
-    free(keywordLengths);
-    
-    [stack removeObjectAtIndex:0];
-    if(stack.count > 0) {
-        NSLog(@"\"%@\" parser failed because some branch nodes are still opened at the end of the source:", self.name);
-        for(SourceNode* node in stack)
-            NSLog(@"\t%@", node);
-        return nil;
-    }
+    rootNode.language = self;
     
     if(syntaxAnalysis) {
     	NSMutableArray* array = [NSMutableArray array];
@@ -383,8 +415,9 @@ static inline BOOL _IsKeyword(const unichar* buffer, NSUInteger length, NSUInteg
         }
     }
     
+    NSMutableArray* stack = [NSMutableArray array];
     if(!_CheckTreeConsistency(rootNode, stack)) {
-        NSLog(@"\"%@\" parser failed because resulting tree is not consistent:\n%@\n%@", self.name, [[(SourceNode*)[stack objectAtIndex:0] parent] detailedDescription], stack);
+        NSLog(@"Parser failed because resulting tree is not consistent:\n%@\n%@", [[(SourceNode*)[stack objectAtIndex:0] parent] detailedDescription], stack);
         return nil;
     }
     
@@ -395,11 +428,12 @@ static inline BOOL _IsKeyword(const unichar* buffer, NSUInteger length, NSUInteg
     NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
     source = [source copy];
     NSRange range = NSMakeRange(0, source.length);
-    unichar* buffer = malloc((range.length + 1) * sizeof(unichar));
+    unichar* buffer = malloc((range.length + 2) * sizeof(unichar));
     buffer[0] = 0x0000; //We need one-character padding at the start since some nodes look at buffer[index - 1]
+    buffer[range.length + 1] = 0x0000; //We need one-character padding at the end since some nodes look at buffer[index + 1]
     [source getCharacters:(buffer + 1)];
     
-    SourceNodeRoot* root = [[self parseSourceString:source range:range buffer:buffer + 1 syntaxAnalysis:syntaxAnalysis] retain];
+    SourceNodeRoot* root = [[self parseSourceString:source range:range buffer:(buffer + 1) syntaxAnalysis:syntaxAnalysis] retain];
     
     free(buffer);
     [source release];
@@ -422,23 +456,10 @@ static inline BOOL _IsKeyword(const unichar* buffer, NSUInteger length, NSUInteg
     return NO;
 }
 
-- (id) initWithSource:(NSString*)source language:(SourceLanguage*)language {
-    if((self = [super initWithSource:source range:NSMakeRange(0, source.length)]))
-        _language = [language retain];
-        
-    return self;
-}
-
-- (void) dealloc {
-    [_language release];
-    
-    [super dealloc];
-}
-
 - (id) copyWithZone:(NSZone*)zone {
 	SourceNodeRoot* copy = [super copyWithZone:zone];
     if(copy)
-    	[copy->_language retain];
+    	copy->_language = _language;
     return copy;
 }
 

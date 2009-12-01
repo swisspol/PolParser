@@ -23,7 +23,7 @@ static IMP _cleanContentMethod = NULL;
 
 @implementation SourceNode
 
-@synthesize source=_source, range=_range, parent=_parent, children=_children, revision=_revision, jsObject=_jsObject;
+@synthesize source=_source, range=_range, lines=_lines, parent=_parent, children=_children, revision=_revision, jsObject=_jsObject;
 
 + (void) initialize {
 	if(self == [SourceNode class]) {
@@ -101,35 +101,6 @@ static IMP _cleanContentMethod = NULL;
         }
     }
     return copy;
-}
-
-static NSRange _LineNumbersForRange(NSString* string, NSRange range) {
-    NSRange lines = NSMakeRange(0, 1);
-    NSRange subrange = NSMakeRange(0, 0);
-    while(1) {
-        subrange = [string rangeOfString:@"\n" options:0 range:NSMakeRange(subrange.location, string.length - subrange.location)];
-        if(subrange.location == NSNotFound)
-            break;
-        if(subrange.location < range.location) {
-            lines.location += 1;
-        }
-        else {
-            if(subrange.location < range.location + range.length)
-                lines.length += 1;
-            else
-                break;
-        }
-        subrange.location += subrange.length;
-    }
-    
-    return lines;
-}
-
-- (NSRange) lines {
-    if(_lines.length == 0)
-        _lines = _LineNumbersForRange(_source, _range);
-        
-    return _lines;
 }
 
 - (NSMutableArray*) mutableChildren {
@@ -378,6 +349,8 @@ static NSString* _FormatString(NSString* string) {
     string = [NSMutableString stringWithString:string];
     [(NSMutableString*)string replaceOccurrencesOfString:@" " withString:spaceString options:0 range:NSMakeRange(0, string.length)];
     [(NSMutableString*)string replaceOccurrencesOfString:@"\t" withString:tabString options:0 range:NSMakeRange(0, string.length)];
+    [(NSMutableString*)string replaceOccurrencesOfString:@"\r\n" withString:newlineString options:0 range:NSMakeRange(0, string.length)];
+    [(NSMutableString*)string replaceOccurrencesOfString:@"\r" withString:newlineString options:0 range:NSMakeRange(0, string.length)];
     [(NSMutableString*)string replaceOccurrencesOfString:@"\n" withString:newlineString options:0 range:NSMakeRange(0, string.length)];
     return string;
 }

@@ -47,6 +47,9 @@
 		E236882010C427E100F5F923 /* SourceNodeBindings.m in Sources */ = {isa = PBXBuildFile; fileRef = E236881E10C427E100F5F923 /* SourceNodeBindings.m */; };
 		E236882B10C42A9F00F5F923 /* DictionaryBindings.m in Sources */ = {isa = PBXBuildFile; fileRef = E236882A10C42A9F00F5F923 /* DictionaryBindings.m */; };
 		E236882C10C42A9F00F5F923 /* DictionaryBindings.m in Sources */ = {isa = PBXBuildFile; fileRef = E236882A10C42A9F00F5F923 /* DictionaryBindings.m */; };
+		E2903B6A10C50B1D00CE0DD9 /* SourceLanguage_HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = E2903B6910C50B1D00CE0DD9 /* SourceLanguage_HTML.m */; };
+		E2903B6B10C50B1D00CE0DD9 /* SourceLanguage_HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = E2903B6910C50B1D00CE0DD9 /* SourceLanguage_HTML.m */; };
+		E2903B6C10C50B1D00CE0DD9 /* SourceLanguage_HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = E2903B6910C50B1D00CE0DD9 /* SourceLanguage_HTML.m */; };
 		E2B6368D10BA46C800BF43E7 /* SourceLanguage_C.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B6368310BA46C800BF43E7 /* SourceLanguage_C.m */; };
 		E2B6368E10BA46C800BF43E7 /* SourceLanguage_CPP.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B6368510BA46C800BF43E7 /* SourceLanguage_CPP.m */; };
 		E2B6368F10BA46C800BF43E7 /* SourceLanguage_ObjC.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B6368710BA46C800BF43E7 /* SourceLanguage_ObjC.m */; };
@@ -123,6 +126,8 @@
 		E236881E10C427E100F5F923 /* SourceNodeBindings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SourceNodeBindings.m; sourceTree = "<group>"; };
 		E236882A10C42A9F00F5F923 /* DictionaryBindings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DictionaryBindings.m; sourceTree = "<group>"; };
 		E236883710C42BD900F5F923 /* JavaScriptBindings_Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JavaScriptBindings_Internal.h; sourceTree = "<group>"; };
+		E2903B6810C50B1D00CE0DD9 /* SourceLanguage_HTML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SourceLanguage_HTML.h; sourceTree = "<group>"; };
+		E2903B6910C50B1D00CE0DD9 /* SourceLanguage_HTML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SourceLanguage_HTML.m; sourceTree = "<group>"; };
 		E2B6368210BA46C800BF43E7 /* SourceLanguage_C.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SourceLanguage_C.h; sourceTree = "<group>"; };
 		E2B6368310BA46C800BF43E7 /* SourceLanguage_C.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SourceLanguage_C.m; sourceTree = "<group>"; };
 		E2B6368410BA46C800BF43E7 /* SourceLanguage_CPP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SourceLanguage_CPP.h; sourceTree = "<group>"; };
@@ -257,6 +262,8 @@
 				E213417E10BCF9B800023F41 /* SourceLanguage_ObjCPP.m */,
 				E21AAE2F10C2397700471B14 /* SourceLanguage_XML.h */,
 				E21AAE3010C2397700471B14 /* SourceLanguage_XML.m */,
+				E2903B6810C50B1D00CE0DD9 /* SourceLanguage_HTML.h */,
+				E2903B6910C50B1D00CE0DD9 /* SourceLanguage_HTML.m */,
 			);
 			path = SourceParser;
 			sourceTree = "<group>";
@@ -386,6 +393,7 @@
 				E236880310C426FC00F5F923 /* JavaScriptBindings.m in Sources */,
 				E236881F10C427E100F5F923 /* SourceNodeBindings.m in Sources */,
 				E236882B10C42A9F00F5F923 /* DictionaryBindings.m in Sources */,
+				E2903B6B10C50B1D00CE0DD9 /* SourceLanguage_HTML.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -405,6 +413,7 @@
 				E236880210C426FC00F5F923 /* JavaScriptBindings.m in Sources */,
 				E236882010C427E100F5F923 /* SourceNodeBindings.m in Sources */,
 				E236882C10C42A9F00F5F923 /* DictionaryBindings.m in Sources */,
+				E2903B6A10C50B1D00CE0DD9 /* SourceLanguage_HTML.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -422,6 +431,7 @@
 				E2E5BC0E10BB986B004E3745 /* SourceLanguage_Base.m in Sources */,
 				E213418010BCF9B800023F41 /* SourceLanguage_ObjCPP.m in Sources */,
 				E21AAE3310C2397700471B14 /* SourceLanguage_XML.m in Sources */,
+				E2903B6C10C50B1D00CE0DD9 /* SourceLanguage_HTML.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

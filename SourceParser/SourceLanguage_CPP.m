@@ -18,6 +18,9 @@
 
 #import "SourceParser_Internal.h"
 
+@interface SourceLanguageCPP : SourceLanguage
+@end
+
 @implementation SourceLanguageCPP
 
 + (NSArray*) languageDependencies {
@@ -57,7 +60,7 @@
 @implementation SourceNodeCPPComment
 
 + (NSUInteger) isMatchingPrefix:(const unichar*)string maxLength:(NSUInteger)maxLength {
-    return (maxLength >= 2) && (string[0] == '/') && (string[1] == '/') ? 2 : NSNotFound;
+    return (string[0] == '/') && (string[1] == '/') ? 2 : NSNotFound;
 }
 
 + (NSUInteger) isMatchingSuffix:(const unichar*)string maxLength:(NSUInteger)maxLength {

@@ -18,6 +18,9 @@
 
 #import "SourceParser_Internal.h"
 
+@interface SourceLanguageXML : SourceLanguage
+@end
+
 @interface SourceNodeXMLTag ()
 @property(nonatomic, readonly) NSInteger xmlType;
 @end
@@ -223,11 +226,12 @@ static NSDictionary* _ParseAttributes(NSString* content) {
 }
 
 + (NSUInteger) isMatchingSuffix:(const unichar*)string maxLength:(NSUInteger)maxLength {
-    return *string == '>' ? 1 : ((maxLength >= 2) && (*string == '/') && (*(string + 1) == '>') ? 2 : NSNotFound);
+    return *string == '>' ? 1 : ((*string == '/') && (*(string + 1) == '>') ? 2 : NSNotFound);
 }
 
 - (void) dealloc {
 	[_name release];
+    [_attributes release];
     
     [super dealloc];
 }

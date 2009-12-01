@@ -120,8 +120,14 @@ void _RearrangeNodesAsChildren(ParserNode* startNode, ParserNode* endNode);
 + (NSSet*) languageReservedKeywords;
 + (NSArray*) languageNodeClasses;
 + (NSSet*) languageTopLevelNodeClasses;
++ (ParserNodeRoot*) newNodeTreeFromText:(NSString*)text withNodeClasses:(NSArray*)nodeClasses;
 + (ParserNodeRoot*) newNodeTreeFromText:(NSString*)text range:(NSRange)range textBuffer:(const unichar*)textBuffer withNodeClasses:(NSArray*)nodeClasses;
 @property(nonatomic, readonly) NSSet* topLevelNodeClasses;
 - (ParserNodeRoot*) parseText:(NSString*)text range:(NSRange)range textBuffer:(const unichar*)textBuffer syntaxAnalysis:(BOOL)syntaxAnalysis;
 - (ParserNode*) performSyntaxAnalysisForNode:(ParserNode*)node textBuffer:(const unichar*)textBuffer topLevelNodeClasses:(NSSet*)nodeClasses; //Override point to perform language dependent string tree refactoring after parsing
+@end
+
+/* Workaround some compiler warnings */
+@interface NSObject (ParserNode)
+- (void) setName:(NSString*)name;
 @end

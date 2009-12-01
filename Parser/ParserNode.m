@@ -138,7 +138,7 @@ static void _MergeChildrenContent(ParserNode* node, NSMutableString* string) {
         if(node.children)
             _MergeChildrenContent(node, string);
         else
-            [string appendString:[node.text substringWithRange:node.range]];
+            [string appendString:node.content];
     }
 }
 
@@ -152,7 +152,22 @@ static void _MergeChildrenContent(ParserNode* node, NSMutableString* string) {
     return [_text substringWithRange:_range];
 }
 
+static void _MergeChildrenCleanContent(ParserNode* node, NSMutableString* string) {
+    for(node in node.children) {
+        if(node.children)
+            _MergeChildrenCleanContent(node, string);
+        else
+            [string appendString:node.cleanContent];
+    }
+}
+
 - (NSString*) cleanContent {
+    if(_children) {
+        NSMutableString* string = [NSMutableString stringWithCapacity:_range.length];
+        _MergeChildrenCleanContent(self, string);
+        return string;
+    }
+    
     return self.content;
 }
 

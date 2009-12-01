@@ -19,10 +19,6 @@
 #import "Parser_Internal.h"
 
 #warning SGML (abstract)
-#warning MiniParser
-
-@interface ParserNodeHTMLEqual : ParserNodeToken
-@end
 
 @interface ParserLanguageHTML : ParserLanguage
 @end
@@ -30,6 +26,15 @@
 @interface ParserNodeHTMLTag ()
 @property(nonatomic, readonly) NSInteger htmlType;
 @property(nonatomic, retain) NSDictionary* attributes;
+@end
+
+@interface ParserNodeHTMLEqual : ParserNodeToken
+@end
+
+@interface ParserNodeHTMLValueSingleQuote : ParserNode
+@end
+
+@interface ParserNodeHTMLValueDoubleQuote : ParserNode
 @end
 
 @implementation ParserLanguageHTML
@@ -102,9 +107,10 @@ static NSString* _StringWithReplacedEntities(NSString* string) {
             	static NSMutableArray* classes = nil;
                 if(classes == nil) {
                     classes = [[NSMutableArray alloc] init];
-                    [classes addObjectsFromArray:[NSClassFromString(@"ParserLanguageBase") languageNodeClasses]];
-                    [classes addObject:NSClassFromString(@"ParserNodeCStringSingleQuote")];
-                    [classes addObject:NSClassFromString(@"ParserNodeCStringDoubleQuote")];
+                    [classes addObject:NSClassFromString(@"ParserNodeWhitespace")];
+                    [classes addObject:NSClassFromString(@"ParserNodeNewline")];
+                    [classes addObject:[ParserNodeHTMLValueSingleQuote class]];
+                    [classes addObject:[ParserNodeHTMLValueDoubleQuote class]];
                     [classes addObject:[ParserNodeHTMLEqual class]];
                 }
                 ParserNodeRoot* root = [ParserLanguage newNodeTreeFromText:htmlNode.text range:range textBuffer:textBuffer withNodeClasses:classes];
@@ -140,8 +146,6 @@ static NSString* _StringWithReplacedEntities(NSString* string) {
 }
 
 @end
-
-TOKEN_CLASS_IMPLEMENTATION(HTMLEqual, "=")
 
 #define IMPLEMENTATION(__NAME__, __START__, __END__) \
 @implementation ParserNodeHTML##__NAME__ \
@@ -269,5 +273,41 @@ IMPLEMENTATION(CDATA, "<![CDATA[", "]]>")
 	return [(ParserNodeHTMLTag*)self.firstChild attributes];
 }
 */
+
+@end
+
+TOKEN_CLASS_IMPLEMENTATION(HTMLEqual, "=")
+
+@implementation ParserNodeHTMLValueSingleQuote
+
++ (NSUInteger) isMatchingPrefix:(const unichar*)string maxLength:(NSUInteger)maxLength {
+    return (*string == '\'') ? 1 : NSNotFound;
+}
+
++ (NSUInteger) isMatchingSuffix:(const unichar*)string maxLength:(NSUInteger)maxLength {
+    return *string == '\'' ? 1 : NSNotFound;
+}
+
+- (NSString*) cleanContent {
+	NSRange range = self.range;
+    return [self.text substringWithRange:NSMakeRange(range.location + 1, range.length - 2)];
+}
+
+@end
+
+@implementation ParserNodeHTMLValueDoubleQuote
+
++ (NSUInteger) isMatchingPrefix:(const unichar*)string maxLength:(NSUInteger)maxLength {
+    return (*string == '"') ? 1 : NSNotFound;
+}
+
++ (NSUInteger) isMatchingSuffix:(const unichar*)string maxLength:(NSUInteger)maxLength {
+    return *string == '"' ? 1 : NSNotFound;
+}
+
+- (NSString*) cleanContent {
+	NSRange range = self.range;
+    return [self.text substringWithRange:NSMakeRange(range.location + 1, range.length - 2)];
+}
 
 @end

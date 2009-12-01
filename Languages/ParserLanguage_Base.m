@@ -77,7 +77,7 @@
 }
 
 + (NSUInteger) isMatchingSuffix:(const unichar*)string maxLength:(NSUInteger)maxLength {
-    return maxLength && !IsWhitespace(*string) ? 0 : NSNotFound;
+    return !IsWhitespace(*string) ? 0 : NSNotFound;
 }
 
 - (void) insertChild:(ParserNode*)child atIndex:(NSUInteger)index {
@@ -93,7 +93,7 @@
 }
 
 + (NSUInteger) isMatchingSuffix:(const unichar*)string maxLength:(NSUInteger)maxLength {
-    return maxLength && !IsWhitespace(*string) ? 0 : NSNotFound;
+    return !IsWhitespace(*string) ? 0 : NSNotFound;
 }
 
 - (void) insertChild:(ParserNode*)child atIndex:(NSUInteger)index {

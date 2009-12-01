@@ -366,6 +366,32 @@ static ParserNode* _ApplierFunction(ParserNode* node, void* context) {
     return rootNode;
 }
 
+static ParserNodeRoot* _NewNodeTreeFromText(id self, NSString* text, NSArray* nodeClasses, BOOL syntaxAnalysis) {
+	NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+    text = [text copy];
+    NSRange range = NSMakeRange(0, text.length);
+    unichar* buffer = malloc((range.length + 2) * sizeof(unichar));
+    buffer[0] = 0x0000; //We need one-character padding at the start since some nodes look at buffer[index - 1]
+    buffer[range.length + 1] = 0x0000; //We need one-character padding at the end since some nodes look at buffer[index + 1]
+    [text getCharacters:(buffer + 1)];
+    
+    ParserNodeRoot* root;
+    if([self isKindOfClass:[ParserLanguage class]])
+        root = [[self parseText:text range:range textBuffer:(buffer + 1) syntaxAnalysis:syntaxAnalysis] retain];
+    else
+    	root = [self newNodeTreeFromText:text range:range textBuffer:(buffer + 1) withNodeClasses:nodeClasses];
+    
+    free(buffer);
+    [text release];
+    [pool drain];
+    
+    return root;
+}
+
++ (ParserNodeRoot*) newNodeTreeFromText:(NSString*)text withNodeClasses:(NSArray*)nodeClasses {
+	return _NewNodeTreeFromText(self, text, nodeClasses, NO);
+}
+
 static BOOL _CheckTreeConsistency(ParserNode* node, NSMutableArray* stack) {
     NSRange range = node.range;
     for(ParserNode* subnode in node.children) {
@@ -425,21 +451,7 @@ static BOOL _CheckTreeConsistency(ParserNode* node, NSMutableArray* stack) {
 }
 
 - (ParserNodeRoot*) parseText:(NSString*)text syntaxAnalysis:(BOOL)syntaxAnalysis {
-    NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
-    text = [text copy];
-    NSRange range = NSMakeRange(0, text.length);
-    unichar* buffer = malloc((range.length + 2) * sizeof(unichar));
-    buffer[0] = 0x0000; //We need one-character padding at the start since some nodes look at buffer[index - 1]
-    buffer[range.length + 1] = 0x0000; //We need one-character padding at the end since some nodes look at buffer[index + 1]
-    [text getCharacters:(buffer + 1)];
-    
-    ParserNodeRoot* root = [[self parseText:text range:range textBuffer:(buffer + 1) syntaxAnalysis:syntaxAnalysis] retain];
-    
-    free(buffer);
-    [text release];
-    [pool drain];
-    
-    return [root autorelease];
+    return [_NewNodeTreeFromText(self, text, nil, syntaxAnalysis) autorelease];
 }
 
 - (ParserNode*) performSyntaxAnalysisForNode:(ParserNode*)node textBuffer:(const unichar*)textBuffer topLevelNodeClasses:(NSSet*)nodeClasses {

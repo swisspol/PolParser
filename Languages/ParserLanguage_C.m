@@ -21,6 +21,12 @@
 @interface ParserLanguageC : ParserLanguage
 @end
 
+@interface ParserNodeCEscapedCharacter : ParserNode
+@end
+
+@interface ParserNodeCUnicodeCharacter : ParserNode
+@end
+
 @implementation ParserLanguageC
 
 + (NSArray*) languageDependencies {
@@ -135,7 +141,10 @@ static inline BOOL _IsNodeAtTopLevel(ParserNode* node, NSSet* topLevelClasses) {
 
 - (ParserNode*) performSyntaxAnalysisForNode:(ParserNode*)node textBuffer:(const unichar*)textBuffer topLevelNodeClasses:(NSSet*)nodeClasses {
     
-    if([node isKindOfClass:[ParserNodeBraces class]]) {
+    if([node isKindOfClass:[ParserNodeCPreprocessorDefine class]] || [node isKindOfClass:[ParserNodeCPreprocessorUndefine class]] || [node isKindOfClass:[ParserNodeCPreprocessorWarning class]]
+    	|| [node isKindOfClass:[ParserNodeCPreprocessorError class]] || [node isKindOfClass:[ParserNodeCPreprocessorInclude class]] || [node isKindOfClass:[ParserNodeCPreprocessorPragma class]]) {
+    	[node setName:[[node.firstChild findNextSiblingIgnoringWhitespaceAndNewline] content]];
+    } else if([node isKindOfClass:[ParserNodeBraces class]]) {
         ParserNode* previousNode = [node findPreviousSiblingIgnoringWhitespaceAndNewline];
         
         // "if() {}" "else if() {}" "for() {}" "switch() {}" "while() {}"
@@ -466,22 +475,20 @@ IMPLEMENTATION(Elseif, "#elseif", "(")
 
 /* WARNING: Keep in sync with Obj-C #import */
 #define IMPLEMENTATION(__NAME__, __CHARACTERS__, ...) \
+@interface ParserNodeCPreprocessor##__NAME__ () \
+@property(nonatomic, retain) NSString* name; \
+@end \
+\
 @implementation ParserNodeCPreprocessor##__NAME__ \
+\
+@synthesize name=_name; \
 \
 IS_MATCHING_PREFIX_METHOD_WITH_TRAILING_CHARACTERS(__CHARACTERS__, __VA_ARGS__) \
 \
-- (NSString*) name { \
-	NSUInteger count = sizeof(__CHARACTERS__) - 1; \
-    NSString* name = self.content; \
-    name = [name substringWithRange:NSMakeRange(count, name.length - count)]; \
-    NSRange range = [name rangeOfCharacterFromSet:[[NSCharacterSet whitespaceAndNewlineCharacterSet] invertedSet]]; \
-    if(range.location != NSNotFound) { \
-    	name = [name substringWithRange:NSMakeRange(range.location, name.length - range.location)]; \
-        range = [name rangeOfCharacterFromSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]; \
-        if(range.location != NSNotFound) \
-        	name = [name substringWithRange:NSMakeRange(0, range.location)];\
-    } \
-    return name; \
+- (void) dealloc { \
+	[_name release]; \
+    \
+    [super dealloc]; \
 } \
 \
 @end
@@ -495,97 +502,28 @@ IMPLEMENTATION(Include, "#include", true, NULL)
 
 #undef IMPLEMENTATION
 
-static NSString* _StringFromHexUnicodeCharacter(NSString* string) {
-    unichar character = 0;
-	NSUInteger length = string.length;
-    unichar buffer[length];
-    [string getCharacters:buffer];
-    for(NSUInteger i = 0; i < length; ++i) {
-    	NSUInteger num = 0;
-        if((buffer[i] >= 'A') && (buffer[i] <= 'F'))
-		num = buffer[i] - 'A' + 10;
-		else if((buffer[i] >= 'a') && (buffer[i] <= 'f'))
-		num = buffer[i] - 'a' + 10;
-		else if((buffer[i] >= '0') && (buffer[i] <= '9'))
-		num = buffer[i] - '0';
-        if(i > 0)
-        	character <<= 4;
-        character |= num;
-    }
-	return [NSString stringWithCharacters:&character length:1];
-}
-
-//FIXME: We don't handle "\nnn = character with octal value nnn"
 static NSString* _CleanString(NSString* string) {
-    NSMutableString* newString = [NSMutableString stringWithString:string];
-    
-    NSRange range = NSMakeRange(0, newString.length);
-    while(1) {
-    	NSRange subrange = [newString rangeOfString:@"\\\\" options:0 range:range];
-        if(subrange.location != NSNotFound) {
-            range.length -= subrange.location + 2 - range.location;
-            range.location = subrange.location + 2;
-            continue;
-        }
-        subrange = [newString rangeOfString:@"\\x" options:0 range:range];
-        if(subrange.location == NSNotFound)
-        	break;
-        if(range.length - subrange.location + range.location < 2)
-        	break;
-        [newString replaceCharactersInRange:NSMakeRange(subrange.location, 4) withString:_StringFromHexUnicodeCharacter([newString substringWithRange:NSMakeRange(subrange.location + 2, 2)])];
-        range.length -= subrange.location + 4 - range.location;
-        range.location = subrange.location + 1;
+    static NSMutableArray* classes = nil;
+    if(classes == nil) {
+        classes = [[NSMutableArray alloc] init];
+        [classes addObject:NSClassFromString(@"ParserNodeWhitespace")];
+        [classes addObject:NSClassFromString(@"ParserNodeNewline")];
+        [classes addObject:[ParserNodeCUnicodeCharacter class]]; //Must be before ParserNodeCEscapedCharacter
+        [classes addObject:[ParserNodeCEscapedCharacter class]];
     }
-    
-    range = NSMakeRange(0, newString.length);
-    while(1) {
-    	NSRange subrange = [newString rangeOfString:@"\\\\" options:0 range:range];
-        if(subrange.location != NSNotFound) {
-            range.length -= subrange.location + 2 - range.location;
-            range.location = subrange.location + 2;
-            continue;
-        }
-        subrange = [newString rangeOfString:@"\\u" options:0 range:range];
-        if(subrange.location == NSNotFound)
-        	break;
-        if(range.length - subrange.location + range.location < 4)
-        	break;
-        [newString replaceCharactersInRange:NSMakeRange(subrange.location, 6) withString:_StringFromHexUnicodeCharacter([newString substringWithRange:NSMakeRange(subrange.location + 2, 4)])];
-        range.length -= subrange.location + 6 - range.location;
-        range.location = subrange.location + 1;
+    ParserNodeRoot* root = [ParserLanguage newNodeTreeFromText:string withNodeClasses:classes];
+    if(root.children) {
+        ParserNode* node = root.firstChild;
+        do {
+        	ParserNode* nextNode = node.nextSibling;
+            if([node isKindOfClass:[ParserNodeNewline class]])
+            	[node removeFromParent];
+            node = nextNode;
+        } while(node);
+        string = root.cleanContent;
+        [root release];
     }
-    
-    range = NSMakeRange(0, newString.length);
-    while(1) {
-    	NSRange subrange = [newString rangeOfString:@"\\\\" options:0 range:range];
-        if(subrange.location != NSNotFound) {
-            range.length -= subrange.location + 2 - range.location;
-            range.location = subrange.location + 2;
-            continue;
-        }
-        subrange = [newString rangeOfString:@"\\U" options:0 range:range];
-        if(subrange.location == NSNotFound)
-        	break;
-        if(range.length - subrange.location + range.location < 8)
-        	break;
-        [newString replaceCharactersInRange:NSMakeRange(subrange.location, 10) withString:_StringFromHexUnicodeCharacter([newString substringWithRange:NSMakeRange(subrange.location + 2, 8)])];
-        range.length -= subrange.location + 10 - range.location;
-        range.location = subrange.location + 1;
-    }
-    
-    [newString replaceOccurrencesOfString:@"\\?" withString:@"?" options:0 range:NSMakeRange(0, newString.length)];
-    [newString replaceOccurrencesOfString:@"\\f" withString:@"\f" options:0 range:NSMakeRange(0, newString.length)];
-    [newString replaceOccurrencesOfString:@"\\a" withString:@"\a" options:0 range:NSMakeRange(0, newString.length)];
-    [newString replaceOccurrencesOfString:@"\\v" withString:@"\v" options:0 range:NSMakeRange(0, newString.length)];
-    [newString replaceOccurrencesOfString:@"\\b" withString:@"\b" options:0 range:NSMakeRange(0, newString.length)];
-    [newString replaceOccurrencesOfString:@"\\t" withString:@"\t" options:0 range:NSMakeRange(0, newString.length)];
-    [newString replaceOccurrencesOfString:@"\\n" withString:@"\n" options:0 range:NSMakeRange(0, newString.length)];
-    [newString replaceOccurrencesOfString:@"\\r" withString:@"\r" options:0 range:NSMakeRange(0, newString.length)];
-    [newString replaceOccurrencesOfString:@"\\\"" withString:@"\"" options:0 range:NSMakeRange(0, newString.length)];
-    [newString replaceOccurrencesOfString:@"\\\'" withString:@"\'" options:0 range:NSMakeRange(0, newString.length)];
-    [newString replaceOccurrencesOfString:@"\\\\" withString:@"\\" options:0 range:NSMakeRange(0, newString.length)];
-    
-    return newString;
+    return string;
 }
 
 @implementation ParserNodeCStringSingleQuote
@@ -595,7 +533,7 @@ static NSString* _CleanString(NSString* string) {
 }
 
 + (NSUInteger) isMatchingSuffix:(const unichar*)string maxLength:(NSUInteger)maxLength {
-    return maxLength && (*string == '\'') && !((*(string - 1) == '\\') && (*(string - 2) != '\\')) ? 1 : NSNotFound;
+    return (*string == '\'') && !((*(string - 1) == '\\') && (*(string - 2) != '\\')) ? 1 : NSNotFound;
 }
 
 - (NSString*) cleanContent {
@@ -612,7 +550,7 @@ static NSString* _CleanString(NSString* string) {
 }
 
 + (NSUInteger) isMatchingSuffix:(const unichar*)string maxLength:(NSUInteger)maxLength {
-    return maxLength && (*string == '"') && !((*(string - 1) == '\\') && (*(string - 2) != '\\')) ? 1 : NSNotFound;
+    return (*string == '"') && !((*(string - 1) == '\\') && (*(string - 2) != '\\')) ? 1 : NSNotFound;
 }
 
 - (NSString*) cleanContent {
@@ -726,6 +664,81 @@ IMPLEMENTATION(TypeOf, "typeof", true, "(")
 
 - (NSString*) name {
 	return [self findFirstChildOfClass:[ParserNodeMatch class]].content;
+}
+
+@end
+
+@implementation ParserNodeCEscapedCharacter
+
++ (NSUInteger) isMatchingPrefix:(const unichar*)string maxLength:(NSUInteger)maxLength {
+	return (maxLength >= 2) && (*string == '\\') ? 2 : NSNotFound;
+}
+
++ (NSUInteger) isMatchingSuffix:(const unichar*)string maxLength:(NSUInteger)maxLength {
+	return 0;
+}
+
+- (NSString*) cleanContent {
+	unichar character = [self.content characterAtIndex:1];
+    switch(character) {
+        //case '?': character = '?'; break;
+        case 'f': character = '\f'; break;
+        case 'a': character = '\a'; break;
+        case 'v': character = '\v'; break;
+        case 'b': character = '\b'; break;
+        case 't': character = '\t'; break;
+        case 'n': character = '\n'; break;
+        case 'r': character = '\r'; break;
+        //case '\'': character = '\''; break;
+        //case '"': character = '"'; break;
+        //case '\\': character = '\\'; break;
+    }
+    return [NSString stringWithCharacters:&character length:1];
+}
+
+@end
+
+//FIXME: We don't handle "\nnn = character with octal value nnn"
+@implementation ParserNodeCUnicodeCharacter
+
++ (NSUInteger) isMatchingPrefix:(const unichar*)string maxLength:(NSUInteger)maxLength {
+	if((maxLength >= 2) && (*string == '\\') && (*(string + 1) != '\\')) {
+    	if((*(string + 1) == 'x') && (maxLength >= 4))
+        	return 4;
+        if((*(string + 1) == 'u') && (maxLength >= 6))
+        	return 6;
+        if((*(string + 1) == 'U') && (maxLength >= 10))
+        	return 10;
+    }
+    return NSNotFound;
+}
+
++ (NSUInteger) isMatchingSuffix:(const unichar*)string maxLength:(NSUInteger)maxLength {
+	return 0;
+}
+
+static NSString* _StringFromHexUnicodeCharacter(NSString* string) {
+    unichar character = 0;
+	NSUInteger length = string.length;
+    unichar buffer[length];
+    [string getCharacters:buffer];
+    for(NSUInteger i = 0; i < length; ++i) {
+    	NSUInteger num = 0;
+        if((buffer[i] >= 'A') && (buffer[i] <= 'F'))
+		num = buffer[i] - 'A' + 10;
+		else if((buffer[i] >= 'a') && (buffer[i] <= 'f'))
+		num = buffer[i] - 'a' + 10;
+		else if((buffer[i] >= '0') && (buffer[i] <= '9'))
+		num = buffer[i] - '0';
+        if(i > 0)
+        	character <<= 4;
+        character |= num;
+    }
+	return [NSString stringWithCharacters:&character length:1];
+}
+
+- (NSString*) cleanContent {
+    return _StringFromHexUnicodeCharacter([self.content substringFromIndex:2]);
 }
 
 @end

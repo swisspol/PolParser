@@ -18,7 +18,10 @@
 
 #import "ParserLanguage.h"
 
-@interface ParserNodeObjCPreprocessorImport : ParserNodeCPreprocessor
+@interface ParserNodeObjCPreprocessorImport : ParserNodeCPreprocessor {
+@private
+	NSString* _name;
+}
 @end
 
 @interface ParserNodeObjCString : ParserNodeCStringDoubleQuote //Leaf

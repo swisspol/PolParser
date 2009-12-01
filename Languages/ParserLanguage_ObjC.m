@@ -21,6 +21,11 @@
 @interface ParserLanguageObjC : ParserLanguage
 @end
 
+/* WARNING: Keep in sync with C #include */
+@interface ParserNodeObjCPreprocessorImport ()
+@property(nonatomic, retain) NSString* name;
+@end
+
 @implementation ParserLanguageObjC
 
 + (NSArray*) languageDependencies {
@@ -102,7 +107,9 @@ static ParserNode* _ApplierFunction(ParserNode* node, void* context) {
 
 - (ParserNode*) performSyntaxAnalysisForNode:(ParserNode*)node textBuffer:(const unichar*)textBuffer topLevelNodeClasses:(NSSet*)nodeClasses {
     
-    if([node isKindOfClass:[ParserNodeBraces class]]) {
+    if([node isKindOfClass:[ParserNodeObjCPreprocessorImport class]]) {
+    	[node setName:[[node.firstChild findNextSiblingIgnoringWhitespaceAndNewline] content]];
+    } else if([node isKindOfClass:[ParserNodeBraces class]]) {
         ParserNode* previousNode = [node findPreviousSiblingIgnoringWhitespaceAndNewline];
         
         // "@catch() {}" "@synchronized() {}"
@@ -262,20 +269,14 @@ static ParserNode* _ApplierFunction(ParserNode* node, void* context) {
 /* WARNING: Keep in sync with C #include */
 @implementation ParserNodeObjCPreprocessorImport
 
+@synthesize name=_name;
+
 IS_MATCHING_PREFIX_METHOD_WITH_TRAILING_CHARACTERS("#import", true, NULL)
 
-- (NSString*) name {
-	NSUInteger count = sizeof("#import") - 1;
-    NSString* name = self.content;
-    name = [name substringWithRange:NSMakeRange(count, name.length - count)];
-    NSRange range = [name rangeOfCharacterFromSet:[[NSCharacterSet whitespaceAndNewlineCharacterSet] invertedSet]];
-    if(range.location != NSNotFound) {
-    	name = [name substringWithRange:NSMakeRange(range.location, name.length - range.location)];
-        range = [name rangeOfCharacterFromSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-        if(range.location != NSNotFound)
-        	name = [name substringWithRange:NSMakeRange(0, range.location)];
-    }
-    return name;
+- (void) dealloc {
+	[_name release];
+    
+    [super dealloc];
 }
 
 @end

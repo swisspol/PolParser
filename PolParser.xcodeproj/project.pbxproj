@@ -251,14 +251,14 @@
 				E2903E2A10C53F5100CE0DD9 /* ParserLanguage_C.m */,
 				E2903E2B10C53F5100CE0DD9 /* ParserLanguage_CPP.h */,
 				E2903E2C10C53F5100CE0DD9 /* ParserLanguage_CPP.m */,
-				E2903E2D10C53F5100CE0DD9 /* ParserLanguage_HTML.h */,
-				E2903E2E10C53F5100CE0DD9 /* ParserLanguage_HTML.m */,
 				E2903E2F10C53F5100CE0DD9 /* ParserLanguage_ObjC.h */,
 				E2903E3010C53F5100CE0DD9 /* ParserLanguage_ObjC.m */,
 				E2903E3110C53F5100CE0DD9 /* ParserLanguage_ObjCPP.h */,
 				E2903E3210C53F5100CE0DD9 /* ParserLanguage_ObjCPP.m */,
 				E2903E3310C53F5100CE0DD9 /* ParserLanguage_XML.h */,
 				E2903E3410C53F5100CE0DD9 /* ParserLanguage_XML.m */,
+				E2903E2D10C53F5100CE0DD9 /* ParserLanguage_HTML.h */,
+				E2903E2E10C53F5100CE0DD9 /* ParserLanguage_HTML.m */,
 			);
 			path = Languages;
 			sourceTree = "<group>";

@@ -44,22 +44,40 @@
 @interface ParserNodeCPreprocessorConditionElseif : ParserNodeCPreprocessorCondition
 @end
 
-@interface ParserNodeCPreprocessorDefine : ParserNodeCPreprocessor
+@interface ParserNodeCPreprocessorDefine : ParserNodeCPreprocessor {
+@private
+	NSString* _name;
+}
 @end
 
-@interface ParserNodeCPreprocessorUndefine : ParserNodeCPreprocessor
+@interface ParserNodeCPreprocessorUndefine : ParserNodeCPreprocessor {
+@private
+	NSString* _name;
+}
 @end
 
-@interface ParserNodeCPreprocessorPragma : ParserNodeCPreprocessor
+@interface ParserNodeCPreprocessorPragma : ParserNodeCPreprocessor {
+@private
+	NSString* _name;
+}
 @end
 
-@interface ParserNodeCPreprocessorWarning : ParserNodeCPreprocessor
+@interface ParserNodeCPreprocessorWarning : ParserNodeCPreprocessor {
+@private
+	NSString* _name;
+}
 @end
 
-@interface ParserNodeCPreprocessorError : ParserNodeCPreprocessor
+@interface ParserNodeCPreprocessorError : ParserNodeCPreprocessor {
+@private
+	NSString* _name;
+}
 @end
 
-@interface ParserNodeCPreprocessorInclude : ParserNodeCPreprocessor
+@interface ParserNodeCPreprocessorInclude : ParserNodeCPreprocessor {
+@private
+	NSString* _name;
+}
 @end
 
 @interface ParserNodeCStringSingleQuote : ParserNode //Leaf

@@ -80,7 +80,7 @@
 \
 @end
 
-#define SGML_CLASS_IMPLEMENTATION(__NAME__, __START__, __END__) \
+#define PREFIX_SUFFIX_CLASS_IMPLEMENTATION(__NAME__, __START__, __END__) \
 @implementation ParserNode##__NAME__ \
 \
 + (NSUInteger) isMatchingPrefix:(const unichar*)string maxLength:(NSUInteger)maxLength { \

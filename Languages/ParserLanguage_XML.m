@@ -101,8 +101,8 @@
 
 @end
 
-SGML_CLASS_IMPLEMENTATION(XMLDeclaration, "<?xml ", "?>")
-SGML_CLASS_IMPLEMENTATION(XMLProcessingInstructions, "<?", "?>")
+PREFIX_SUFFIX_CLASS_IMPLEMENTATION(XMLDeclaration, "<?xml ", "?>")
+PREFIX_SUFFIX_CLASS_IMPLEMENTATION(XMLProcessingInstructions, "<?", "?>")
 
 @implementation ParserNodeXMLProcessingInstructions (Internal)
 

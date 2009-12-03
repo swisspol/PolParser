@@ -9,10 +9,7 @@ if(this.type == Node.TYPE_NEWLINE) {
 }
 // Reformat C++ comments as "  // Comment"
 else if(this.type == Node.TYPE_CPPCOMMENT) {
-	var comment = this.content.substr(2);
-    while(comment.length && (comment.charAt(0) == ' ')) {
-    	comment = comment.substr(1);
-    }
+	var comment = this.cleanContent;
     if(this.previousSibling && (this.previousSibling.type == Node.TYPE_WHITESPACE))
     	this.previousSibling.removeFromParent();
     if(comment.length) {

@@ -1,0 +1,1280 @@
+<rss version="2.0">
+  <channel>
+    <description>Current headlines from the Dallas Times-Herald newspaper</description>
+    <link>http://dallas.example.com</link>
+    <title>Dallas Times-Herald</title>
+    <category>Media</category>
+    <category domain="Newspapers/Regional/United_States">Texas</category>
+    <cloud domain="server.example.com" path="/rpc" port="80" protocol="xml-rpc" registerProcedure="cloud.notify" />
+    <copyright>Copyright 2006 Dallas Times-Herald</copyright>
+    <docs>http://www.rssboard.org/rss-specification</docs>
+    <generator>Radio UserLand v8.2.1</generator>
+    <image>
+      <link>http://dallas.example.com</link>
+      <title>Dallas Times-Herald</title>
+      <url>http://dallas.example.com/masthead.gif</url>
+      <description>Read the Dallas Times-Herald</description>
+      <height>32</height>
+      <width>96</width>
+    </image>
+    <language>epo</language>
+    <lastBuildDate>Sun, 29 Jan 2006 17:17:44 GMT</lastBuildDate>
+    <managingEditor>jlehrer@dallas.example.com (Jim Lehrer)</managingEditor>
+    <pubDate>Sun, 29 Jan 2006 05:00:00 GMT</pubDate>
+    <rating>(PICS-1.1 "http://www.rsac.org/ratingsv01.html" l by "webmaster@example.com" on "2006.01.29T10:09-0800" r (n 0 s 0 v 0 l 0))</rating>
+    <skipDays>
+      <day>Saturday</day>
+      <day>Sunday</day>
+    </skipDays>
+    <skipHours>
+      <hour>0</hour>
+      <hour>1</hour>
+      <hour>2</hour>
+      <hour>22</hour>
+      <hour>23</hour>
+    </skipHours>
+    <textInput>
+      <description>Your aggregator supports the textInput element. What software are you using?</description>
+      <link>http://www.cadenhead.org/textinput.php</link>
+      <name>query</name>
+      <title>TextInput Inquiry</title>
+    </textInput>
+    <ttl>60</ttl>
+    <webMaster>helpdesk@dallas.example.com</webMaster>
+    <item>
+      <title>Seventh Heaven! Ryan Hurls Another No Hitter</title>
+      <link>http://dallas.example.com/1991/05/02/nolan.htm</link>
+      <description>Texas Rangers pitcher Nolan Ryan hurled the seventh no-hitter of his legendary career on Arlington Appreciation Night, defeating the Toronto Blue Jays 3-0. The 44-year-old struck out 16 batters before a crowd of 33,439.</description>
+      <guid>http://dallas.example.com/1991/05/02/nolan.htm</guid>      
+    </item>
+    <item>
+      <author>jbb@dallas.example.com (Joe Bob Briggs)</author>
+      <category>rec.arts.movies.reviews</category>
+      <comments>http://dallas.example.com/feedback/1983/06/joebob.htm</comments>
+      <description>I'm headed for France. I wasn't gonna go this year, but then last week "Valley Girl" came out and I said to myself, Joe Bob, you gotta get out of the country for a while.</description>
+      <enclosure length="24986239" type="audio/mpeg" url="http://dallas.example.com/joebob_050689.mp3" />
+      <guid>http://dallas.example.com/1983/05/06/joebob.htm</guid>
+      <link>http://dallas.example.com/1983/05/06/joebob.htm</link>
+      <pubDate>Fri, 06 May 1983 09:00:00 CST</pubDate>
+      <source url="http://la.example.com/rss.xml">Los Angeles Herald-Examiner</source>
+      <title>Joe Bob Goes to the Drive-In</title>
+    </item>
+    <item>
+      <description>I'm headed for France. I wasn't gonna go this year, but then last week &lt;a href="http://www.imdb.com/title/tt0086525/"&gt;Valley Girl&lt;/a&gt; came out and I said to myself, Joe Bob, you gotta get out of the country for a while.</description>
+      <guid isPermaLink="false">tag:dallas.example.com,4131:news</guid>
+    </item>
+    <item>
+      <description><![CDATA[I'm headed for France. I wasn't gonna go this year, but then last week <a href="http://www.imdb.com/title/tt0086525/">Valley Girl</a> came out and I said to myself, Joe Bob, you gotta get out of the country for a while.]]></description>      
+      <guid isPermaLink="false">1983-05-06+lifestyle+joebob+2</guid>
+    </item>    
+  </channel>
+</rss>
+
+<----->
+
+<Root>
+·  <XMLElement>
+·  ·  ♢|<rss•version="2.0">|♢¶♢|••|♢
+·  ·  <XMLElement>
+·  ·  ·  ♢|<channel>|♢¶♢|••••|♢
+·  ·  ·  <XMLElement>
+·  ·  ·  ·  ♢|<description>|♢Current♢•♢headlines♢•♢from♢•♢the♢•♢Dallas♢•♢Times-Herald♢•♢newspaper♢|</description>|♢
+·  ·  ·  ♢¶♢|••••|♢
+·  ·  ·  <XMLElement>
+·  ·  ·  ·  ♢|<link>|♢http://dallas.example.com♢|</link>|♢
+·  ·  ·  ♢¶♢|••••|♢
+·  ·  ·  <XMLElement>
+·  ·  ·  ·  ♢|<title>|♢Dallas♢•♢Times-Herald♢|</title>|♢
+·  ·  ·  ♢¶♢|••••|♢
+·  ·  ·  <XMLElement>
+·  ·  ·  ·  ♢|<category>|♢Media♢|</category>|♢
+·  ·  ·  ♢¶♢|••••|♢
+·  ·  ·  <XMLElement>
+·  ·  ·  ·  ♢|<category•domain="Newspapers/Regional/United_States">|♢Texas♢|</category>|♢
+·  ·  ·  ♢¶♢|••••|♢
+·  ·  ·  <XMLElement>
+·  ·  ·  ·  ♢|<cloud•domain="server.example.com"•path="/rpc"•port="80"•protocol="xml-rpc"•registerProcedure="cloud.notify"•/>|♢
+·  ·  ·  ♢¶♢|••••|♢
+·  ·  ·  <XMLElement>
+·  ·  ·  ·  ♢|<copyright>|♢Copyright♢•♢2006♢•♢Dallas♢•♢Times-Herald♢|</copyright>|♢
+·  ·  ·  ♢¶♢|••••|♢
+·  ·  ·  <XMLElement>
+·  ·  ·  ·  ♢|<docs>|♢http://www.rssboard.org/rss-specification♢|</docs>|♢
+·  ·  ·  ♢¶♢|••••|♢
+·  ·  ·  <XMLElement>
+·  ·  ·  ·  ♢|<generator>|♢Radio♢•♢UserLand♢•♢v8.2.1♢|</generator>|♢
+·  ·  ·  ♢¶♢|••••|♢
+·  ·  ·  <XMLElement>
+·  ·  ·  ·  ♢|<image>|♢¶♢|••••••|♢
+·  ·  ·  ·  <XMLElement>
+·  ·  ·  ·  ·  ♢|<link>|♢http://dallas.example.com♢|</link>|♢
+·  ·  ·  ·  ♢¶♢|••••••|♢
+·  ·  ·  ·  <XMLElement>
+·  ·  ·  ·  ·  ♢|<title>|♢Dallas♢•♢Times-Herald♢|</title>|♢
+·  ·  ·  ·  ♢¶♢|••••••|♢
+·  ·  ·  ·  <XMLElement>
+·  ·  ·  ·  ·  ♢|<url>|♢http://dallas.example.com/masthead.gif♢|</url>|♢
+·  ·  ·  ·  ♢¶♢|••••••|♢
+·  ·  ·  ·  <XMLElement>
+·  ·  ·  ·  ·  ♢|<description>|♢Read♢•♢the♢•♢Dallas♢•♢Times-Herald♢|</description>|♢
+·  ·  ·  ·  ♢¶♢|••••••|♢
+·  ·  ·  ·  <XMLElement>
+·  ·  ·  ·  ·  ♢|<height>|♢32♢|</height>|♢
+·  ·  ·  ·  ♢¶♢|••••••|♢
+·  ·  ·  ·  <XMLElement>
+·  ·  ·  ·  ·  ♢|<width>|♢96♢|</width>|♢
+·  ·  ·  ·  ♢¶♢|••••|♢|</image>|♢
+·  ·  ·  ♢¶♢|••••|♢
+·  ·  ·  <XMLElement>
+·  ·  ·  ·  ♢|<language>|♢epo♢|</language>|♢
+·  ·  ·  ♢¶♢|••••|♢
+·  ·  ·  <XMLElement>
+·  ·  ·  ·  ♢|<lastBuildDate>|♢Sun,♢•♢29♢•♢Jan♢•♢2006♢•♢17:17:44♢•♢GMT♢|</lastBuildDate>|♢
+·  ·  ·  ♢¶♢|••••|♢
+·  ·  ·  <XMLElement>
+·  ·  ·  ·  ♢|<managingEditor>|♢jlehrer@dallas.example.com♢•♢
+·  ·  ·  ·  <Parenthesis>
+·  ·  ·  ·  ·  ♢|(|♢Jim♢•♢Lehrer♢|)|♢
+·  ·  ·  ·  ♢|</managingEditor>|♢
+·  ·  ·  ♢¶♢|••••|♢
+·  ·  ·  <XMLElement>
+·  ·  ·  ·  ♢|<pubDate>|♢Sun,♢•♢29♢•♢Jan♢•♢2006♢•♢05:00:00♢•♢GMT♢|</pubDate>|♢
+·  ·  ·  ♢¶♢|••••|♢
+·  ·  ·  <XMLElement>
+·  ·  ·  ·  ♢|<rating>|♢
+·  ·  ·  ·  <Parenthesis>
+·  ·  ·  ·  ·  ♢|(|♢PICS-1.1♢•♢"http://www.rsac.org/ratingsv01.html"♢•♢l♢•♢by♢•♢"webmaster@example.com"♢•♢on♢•♢"2006.01.29T10:09-0800"♢•♢r♢•♢
+·  ·  ·  ·  ·  <Parenthesis>
+·  ·  ·  ·  ·  ·  ♢|(|♢n♢•♢0♢•♢s♢•♢0♢•♢v♢•♢0♢•♢l♢•♢0♢|)|♢
+·  ·  ·  ·  ·  ♢|)|♢
+·  ·  ·  ·  ♢|</rating>|♢
+·  ·  ·  ♢¶♢|••••|♢
+·  ·  ·  <XMLElement>
+·  ·  ·  ·  ♢|<skipDays>|♢¶♢|••••••|♢
+·  ·  ·  ·  <XMLElement>
+·  ·  ·  ·  ·  ♢|<day>|♢Saturday♢|</day>|♢
+·  ·  ·  ·  ♢¶♢|••••••|♢
+·  ·  ·  ·  <XMLElement>
+·  ·  ·  ·  ·  ♢|<day>|♢Sunday♢|</day>|♢
+·  ·  ·  ·  ♢¶♢|••••|♢|</skipDays>|♢
+·  ·  ·  ♢¶♢|••••|♢
+·  ·  ·  <XMLElement>
+·  ·  ·  ·  ♢|<skipHours>|♢¶♢|••••••|♢
+·  ·  ·  ·  <XMLElement>
+·  ·  ·  ·  ·  ♢|<hour>|♢0♢|</hour>|♢
+·  ·  ·  ·  ♢¶♢|••••••|♢
+·  ·  ·  ·  <XMLElement>
+·  ·  ·  ·  ·  ♢|<hour>|♢1♢|</hour>|♢
+·  ·  ·  ·  ♢¶♢|••••••|♢
+·  ·  ·  ·  <XMLElement>
+·  ·  ·  ·  ·  ♢|<hour>|♢2♢|</hour>|♢
+·  ·  ·  ·  ♢¶♢|••••••|♢
+·  ·  ·  ·  <XMLElement>
+·  ·  ·  ·  ·  ♢|<hour>|♢22♢|</hour>|♢
+·  ·  ·  ·  ♢¶♢|••••••|♢
+·  ·  ·  ·  <XMLElement>
+·  ·  ·  ·  ·  ♢|<hour>|♢23♢|</hour>|♢
+·  ·  ·  ·  ♢¶♢|••••|♢|</skipHours>|♢
+·  ·  ·  ♢¶♢|••••|♢
+·  ·  ·  <XMLElement>
+·  ·  ·  ·  ♢|<textInput>|♢¶♢|••••••|♢
+·  ·  ·  ·  <XMLElement>
+·  ·  ·  ·  ·  ♢|<description>|♢Your♢•♢aggregator♢•♢supports♢•♢the♢•♢textInput♢•♢element.♢•♢What♢•♢software♢•♢are♢•♢you♢•♢using?♢|</description>|♢
+·  ·  ·  ·  ♢¶♢|••••••|♢
+·  ·  ·  ·  <XMLElement>
+·  ·  ·  ·  ·  ♢|<link>|♢http://www.cadenhead.org/textinput.php♢|</link>|♢
+·  ·  ·  ·  ♢¶♢|••••••|♢
+·  ·  ·  ·  <XMLElement>
+·  ·  ·  ·  ·  ♢|<name>|♢query♢|</name>|♢
+·  ·  ·  ·  ♢¶♢|••••••|♢
+·  ·  ·  ·  <XMLElement>
+·  ·  ·  ·  ·  ♢|<title>|♢TextInput♢•♢Inquiry♢|</title>|♢
+·  ·  ·  ·  ♢¶♢|••••|♢|</textInput>|♢
+·  ·  ·  ♢¶♢|••••|♢
+·  ·  ·  <XMLElement>
+·  ·  ·  ·  ♢|<ttl>|♢60♢|</ttl>|♢
+·  ·  ·  ♢¶♢|••••|♢
+·  ·  ·  <XMLElement>
+·  ·  ·  ·  ♢|<webMaster>|♢helpdesk@dallas.example.com♢|</webMaster>|♢
+·  ·  ·  ♢¶♢|••••|♢
+·  ·  ·  <XMLElement>
+·  ·  ·  ·  ♢|<item>|♢¶♢|••••••|♢
+·  ·  ·  ·  <XMLElement>
+·  ·  ·  ·  ·  ♢|<title>|♢Seventh♢•♢Heaven!♢•♢Ryan♢•♢Hurls♢•♢Another♢•♢No♢•♢Hitter♢|</title>|♢
+·  ·  ·  ·  ♢¶♢|••••••|♢
+·  ·  ·  ·  <XMLElement>
+·  ·  ·  ·  ·  ♢|<link>|♢http://dallas.example.com/1991/05/02/nolan.htm♢|</link>|♢
+·  ·  ·  ·  ♢¶♢|••••••|♢
+·  ·  ·  ·  <XMLElement>
+·  ·  ·  ·  ·  ♢|<description>|♢Texas♢•♢Rangers♢•♢pitcher♢•♢Nolan♢•♢Ryan♢•♢hurled♢•♢the♢•♢seventh♢•♢no-hitter♢•♢of♢•♢his♢•♢legendary♢•♢career♢•♢on♢•♢Arlington♢•♢Appreciation♢•♢Night,♢•♢defeating♢•♢the♢•♢Toronto♢•♢Blue♢•♢Jays♢•♢3-0.♢•♢The♢•♢44-year-old♢•♢struck♢•♢out♢•♢16♢•♢batters♢•♢before♢•♢a♢•♢crowd♢•♢of♢•♢33,439.♢|</description>|♢
+·  ·  ·  ·  ♢¶♢|••••••|♢
+·  ·  ·  ·  <XMLElement>
+·  ·  ·  ·  ·  ♢|<guid>|♢http://dallas.example.com/1991/05/02/nolan.htm♢|</guid>|♢
+·  ·  ·  ·  ♢••••••♢¶♢|••••|♢|</item>|♢
+·  ·  ·  ♢¶♢|••••|♢
+·  ·  ·  <XMLElement>
+·  ·  ·  ·  ♢|<item>|♢¶♢|••••••|♢
+·  ·  ·  ·  <XMLElement>
+·  ·  ·  ·  ·  ♢|<author>|♢jbb@dallas.example.com♢•♢
+·  ·  ·  ·  ·  <Parenthesis>
+·  ·  ·  ·  ·  ·  ♢|(|♢Joe♢•♢Bob♢•♢Briggs♢|)|♢
+·  ·  ·  ·  ·  ♢|</author>|♢
+·  ·  ·  ·  ♢¶♢|••••••|♢
+·  ·  ·  ·  <XMLElement>
+·  ·  ·  ·  ·  ♢|<category>|♢rec.arts.movies.reviews♢|</category>|♢
+·  ·  ·  ·  ♢¶♢|••••••|♢
+·  ·  ·  ·  <XMLElement>
+·  ·  ·  ·  ·  ♢|<comments>|♢http://dallas.example.com/feedback/1983/06/joebob.htm♢|</comments>|♢
+·  ·  ·  ·  ♢¶♢|••••••|♢
+·  ·  ·  ·  <XMLElement>
+·  ·  ·  ·  ·  ♢|<description>|♢I'm♢•♢headed♢•♢for♢•♢France.♢•♢I♢•♢wasn't♢•♢gonna♢•♢go♢•♢this♢•♢year,♢•♢but♢•♢then♢•♢last♢•♢week♢•♢"Valley♢•♢Girl"♢•♢came♢•♢out♢•♢and♢•♢I♢•♢said♢•♢to♢•♢myself,♢•♢Joe♢•♢Bob,♢•♢you♢•♢gotta♢•♢get♢•♢out♢•♢of♢•♢the♢•♢country♢•♢for♢•♢a♢•♢while.♢|</description>|♢
+·  ·  ·  ·  ♢¶♢|••••••|♢
+·  ·  ·  ·  <XMLElement>
+·  ·  ·  ·  ·  ♢|<enclosure•length="24986239"•type="audio/mpeg"•url="http://dallas.example.com/joebob_050689.mp3"•/>|♢
+·  ·  ·  ·  ♢¶♢|••••••|♢
+·  ·  ·  ·  <XMLElement>
+·  ·  ·  ·  ·  ♢|<guid>|♢http://dallas.example.com/1983/05/06/joebob.htm♢|</guid>|♢
+·  ·  ·  ·  ♢¶♢|••••••|♢
+·  ·  ·  ·  <XMLElement>
+·  ·  ·  ·  ·  ♢|<link>|♢http://dallas.example.com/1983/05/06/joebob.htm♢|</link>|♢
+·  ·  ·  ·  ♢¶♢|••••••|♢
+·  ·  ·  ·  <XMLElement>
+·  ·  ·  ·  ·  ♢|<pubDate>|♢Fri,♢•♢06♢•♢May♢•♢1983♢•♢09:00:00♢•♢CST♢|</pubDate>|♢
+·  ·  ·  ·  ♢¶♢|••••••|♢
+·  ·  ·  ·  <XMLElement>
+·  ·  ·  ·  ·  ♢|<source•url="http://la.example.com/rss.xml">|♢Los♢•♢Angeles♢•♢Herald-Examiner♢|</source>|♢
+·  ·  ·  ·  ♢¶♢|••••••|♢
+·  ·  ·  ·  <XMLElement>
+·  ·  ·  ·  ·  ♢|<title>|♢Joe♢•♢Bob♢•♢Goes♢•♢to♢•♢the♢•♢Drive-In♢|</title>|♢
+·  ·  ·  ·  ♢¶♢|••••|♢|</item>|♢
+·  ·  ·  ♢¶♢|••••|♢
+·  ·  ·  <XMLElement>
+·  ·  ·  ·  ♢|<item>|♢¶♢|••••••|♢
+·  ·  ·  ·  <XMLElement>
+·  ·  ·  ·  ·  ♢|<description>|♢I'm♢•♢headed♢•♢for♢•♢France.♢•♢I♢•♢wasn't♢•♢gonna♢•♢go♢•♢this♢•♢year,♢•♢but♢•♢then♢•♢last♢•♢week♢•♢|&lt;|♢a♢•♢href="http://www.imdb.com/title/tt0086525/"♢|&gt;|♢Valley♢•♢Girl♢|&lt;|♢/a♢|&gt;|♢•♢came♢•♢out♢•♢and♢•♢I♢•♢said♢•♢to♢•♢myself,♢•♢Joe♢•♢Bob,♢•♢you♢•♢gotta♢•♢get♢•♢out♢•♢of♢•♢the♢•♢country♢•♢for♢•♢a♢•♢while.♢|</description>|♢
+·  ·  ·  ·  ♢¶♢|••••••|♢
+·  ·  ·  ·  <XMLElement>
+·  ·  ·  ·  ·  ♢|<guid•isPermaLink="false">|♢tag:dallas.example.com,4131:news♢|</guid>|♢
+·  ·  ·  ·  ♢¶♢|••••|♢|</item>|♢
+·  ·  ·  ♢¶♢|••••|♢
+·  ·  ·  <XMLElement>
+·  ·  ·  ·  ♢|<item>|♢¶♢|••••••|♢
+·  ·  ·  ·  <XMLElement>
+·  ·  ·  ·  ·  ♢|<description>|♢|<![CDATA[I'm•headed•for•France.•I•wasn't•gonna•go•this•year,•but•then•last•week•<a•href="http://www.imdb.com/title/tt0086525/">Valley•Girl</a>•came•out•and•I•said•to•myself,•Joe•Bob,•you•gotta•get•out•of•the•country•for•a•while.]]>|♢|</description>|♢
+·  ·  ·  ·  ♢••••••♢¶♢|••••••|♢
+·  ·  ·  ·  <XMLElement>
+·  ·  ·  ·  ·  ♢|<guid•isPermaLink="false">|♢1983-05-06+lifestyle+joebob+2♢|</guid>|♢
+·  ·  ·  ·  ♢¶♢|••••|♢|</item>|♢
+·  ·  ·  ♢••••♢¶♢|••|♢|</channel>|♢
+·  ·  ♢¶♢|</rss>|♢
+·  ♢¶♢¶♢
+
+<----->
+
+[1:73] <Root>
+|    [1:71] <XMLElement>
+|    + <name> = ♢rss♢
+|    + <cleaned> = ♢¶••¶♢
+|    |    [1:1] <XMLTag> = ♢<rss•version="2.0">♢
+|    |    + <name> = ♢rss♢
+|    |    + ♢version♢ = ♢2.0♢
+|    |    [1:2] <Newline> = ♢¶♢
+|    |    [2:2] <Indenting> = ♢••♢
+|    |    [2:70] <XMLElement>
+|    |    + <name> = ♢channel♢
+|    |    + <cleaned> = ♢¶••••¶••••¶••••¶••••¶••••¶••••¶••••¶••••¶••••¶••••¶••••¶••••¶••••¶••••¶••••¶••••¶••••¶••••¶••••¶••••¶••••¶••••¶••••¶••••••••¶••♢
+|    |    |    [2:2] <XMLTag> = ♢<channel>♢
+|    |    |    + <name> = ♢channel♢
+|    |    |    [2:3] <Newline> = ♢¶♢
+|    |    |    [3:3] <Indenting> = ♢••••♢
+|    |    |    [3:3] <XMLElement>
+|    |    |    + <name> = ♢description♢
+|    |    |    + <cleaned> = ♢Current•headlines•from•the•Dallas•Times-Herald•newspaper♢
+|    |    |    |    [3:3] <XMLTag> = ♢<description>♢
+|    |    |    |    + <name> = ♢description♢
+|    |    |    |    [3:3] <Text> = ♢Current♢
+|    |    |    |    [3:3] <Whitespace> = ♢•♢
+|    |    |    |    [3:3] <Text> = ♢headlines♢
+|    |    |    |    [3:3] <Whitespace> = ♢•♢
+|    |    |    |    [3:3] <Text> = ♢from♢
+|    |    |    |    [3:3] <Whitespace> = ♢•♢
+|    |    |    |    [3:3] <Text> = ♢the♢
+|    |    |    |    [3:3] <Whitespace> = ♢•♢
+|    |    |    |    [3:3] <Text> = ♢Dallas♢
+|    |    |    |    [3:3] <Whitespace> = ♢•♢
+|    |    |    |    [3:3] <Text> = ♢Times-Herald♢
+|    |    |    |    [3:3] <Whitespace> = ♢•♢
+|    |    |    |    [3:3] <Text> = ♢newspaper♢
+|    |    |    |    [3:3] <XMLTag> = ♢</description>♢
+|    |    |    |    + <name> = ♢description♢
+|    |    |    [3:4] <Newline> = ♢¶♢
+|    |    |    [4:4] <Indenting> = ♢••••♢
+|    |    |    [4:4] <XMLElement>
+|    |    |    + <name> = ♢link♢
+|    |    |    + <cleaned> = ♢http://dallas.example.com♢
+|    |    |    |    [4:4] <XMLTag> = ♢<link>♢
+|    |    |    |    + <name> = ♢link♢
+|    |    |    |    [4:4] <Text> = ♢http://dallas.example.com♢
+|    |    |    |    [4:4] <XMLTag> = ♢</link>♢
+|    |    |    |    + <name> = ♢link♢
+|    |    |    [4:5] <Newline> = ♢¶♢
+|    |    |    [5:5] <Indenting> = ♢••••♢
+|    |    |    [5:5] <XMLElement>
+|    |    |    + <name> = ♢title♢
+|    |    |    + <cleaned> = ♢Dallas•Times-Herald♢
+|    |    |    |    [5:5] <XMLTag> = ♢<title>♢
+|    |    |    |    + <name> = ♢title♢
+|    |    |    |    [5:5] <Text> = ♢Dallas♢
+|    |    |    |    [5:5] <Whitespace> = ♢•♢
+|    |    |    |    [5:5] <Text> = ♢Times-Herald♢
+|    |    |    |    [5:5] <XMLTag> = ♢</title>♢
+|    |    |    |    + <name> = ♢title♢
+|    |    |    [5:6] <Newline> = ♢¶♢
+|    |    |    [6:6] <Indenting> = ♢••••♢
+|    |    |    [6:6] <XMLElement>
+|    |    |    + <name> = ♢category♢
+|    |    |    + <cleaned> = ♢Media♢
+|    |    |    |    [6:6] <XMLTag> = ♢<category>♢
+|    |    |    |    + <name> = ♢category♢
+|    |    |    |    [6:6] <Text> = ♢Media♢
+|    |    |    |    [6:6] <XMLTag> = ♢</category>♢
+|    |    |    |    + <name> = ♢category♢
+|    |    |    [6:7] <Newline> = ♢¶♢
+|    |    |    [7:7] <Indenting> = ♢••••♢
+|    |    |    [7:7] <XMLElement>
+|    |    |    + <name> = ♢category♢
+|    |    |    + <cleaned> = ♢Texas♢
+|    |    |    |    [7:7] <XMLTag> = ♢<category•domain="Newspapers/Regional/United_States">♢
+|    |    |    |    + <name> = ♢category♢
+|    |    |    |    + ♢domain♢ = ♢Newspapers/Regional/United_States♢
+|    |    |    |    [7:7] <Text> = ♢Texas♢
+|    |    |    |    [7:7] <XMLTag> = ♢</category>♢
+|    |    |    |    + <name> = ♢category♢
+|    |    |    [7:8] <Newline> = ♢¶♢
+|    |    |    [8:8] <Indenting> = ♢••••♢
+|    |    |    [8:8] <XMLElement>
+|    |    |    + <name> = ♢cloud♢
+|    |    |    + <cleaned> = ♢♢
+|    |    |    |    [8:8] <XMLTag> = ♢<cloud•domain="server.example.com"•path="/rpc"•port="80"•protocol="xml-rpc"•registerProcedure="cloud.notify"•/>♢
+|    |    |    |    + <name> = ♢cloud♢
+|    |    |    |    + ♢path♢ = ♢/rpc♢
+|    |    |    |    + ♢registerProcedure♢ = ♢cloud.notify♢
+|    |    |    |    + ♢protocol♢ = ♢xml-rpc♢
+|    |    |    |    + ♢domain♢ = ♢server.example.com♢
+|    |    |    |    + ♢port♢ = ♢80♢
+|    |    |    [8:9] <Newline> = ♢¶♢
+|    |    |    [9:9] <Indenting> = ♢••••♢
+|    |    |    [9:9] <XMLElement>
+|    |    |    + <name> = ♢copyright♢
+|    |    |    + <cleaned> = ♢Copyright•2006•Dallas•Times-Herald♢
+|    |    |    |    [9:9] <XMLTag> = ♢<copyright>♢
+|    |    |    |    + <name> = ♢copyright♢
+|    |    |    |    [9:9] <Text> = ♢Copyright♢
+|    |    |    |    [9:9] <Whitespace> = ♢•♢
+|    |    |    |    [9:9] <Text> = ♢2006♢
+|    |    |    |    [9:9] <Whitespace> = ♢•♢
+|    |    |    |    [9:9] <Text> = ♢Dallas♢
+|    |    |    |    [9:9] <Whitespace> = ♢•♢
+|    |    |    |    [9:9] <Text> = ♢Times-Herald♢
+|    |    |    |    [9:9] <XMLTag> = ♢</copyright>♢
+|    |    |    |    + <name> = ♢copyright♢
+|    |    |    [9:10] <Newline> = ♢¶♢
+|    |    |    [10:10] <Indenting> = ♢••••♢
+|    |    |    [10:10] <XMLElement>
+|    |    |    + <name> = ♢docs♢
+|    |    |    + <cleaned> = ♢http://www.rssboard.org/rss-specification♢
+|    |    |    |    [10:10] <XMLTag> = ♢<docs>♢
+|    |    |    |    + <name> = ♢docs♢
+|    |    |    |    [10:10] <Text> = ♢http://www.rssboard.org/rss-specification♢
+|    |    |    |    [10:10] <XMLTag> = ♢</docs>♢
+|    |    |    |    + <name> = ♢docs♢
+|    |    |    [10:11] <Newline> = ♢¶♢
+|    |    |    [11:11] <Indenting> = ♢••••♢
+|    |    |    [11:11] <XMLElement>
+|    |    |    + <name> = ♢generator♢
+|    |    |    + <cleaned> = ♢Radio•UserLand•v8.2.1♢
+|    |    |    |    [11:11] <XMLTag> = ♢<generator>♢
+|    |    |    |    + <name> = ♢generator♢
+|    |    |    |    [11:11] <Text> = ♢Radio♢
+|    |    |    |    [11:11] <Whitespace> = ♢•♢
+|    |    |    |    [11:11] <Text> = ♢UserLand♢
+|    |    |    |    [11:11] <Whitespace> = ♢•♢
+|    |    |    |    [11:11] <Text> = ♢v8.2.1♢
+|    |    |    |    [11:11] <XMLTag> = ♢</generator>♢
+|    |    |    |    + <name> = ♢generator♢
+|    |    |    [11:12] <Newline> = ♢¶♢
+|    |    |    [12:12] <Indenting> = ♢••••♢
+|    |    |    [12:19] <XMLElement>
+|    |    |    + <name> = ♢image♢
+|    |    |    + <cleaned> = ♢¶••••••¶••••••¶••••••¶••••••¶••••••¶••••••¶••••♢
+|    |    |    |    [12:12] <XMLTag> = ♢<image>♢
+|    |    |    |    + <name> = ♢image♢
+|    |    |    |    [12:13] <Newline> = ♢¶♢
+|    |    |    |    [13:13] <Indenting> = ♢••••••♢
+|    |    |    |    [13:13] <XMLElement>
+|    |    |    |    + <name> = ♢link♢
+|    |    |    |    + <cleaned> = ♢http://dallas.example.com♢
+|    |    |    |    |    [13:13] <XMLTag> = ♢<link>♢
+|    |    |    |    |    + <name> = ♢link♢
+|    |    |    |    |    [13:13] <Text> = ♢http://dallas.example.com♢
+|    |    |    |    |    [13:13] <XMLTag> = ♢</link>♢
+|    |    |    |    |    + <name> = ♢link♢
+|    |    |    |    [13:14] <Newline> = ♢¶♢
+|    |    |    |    [14:14] <Indenting> = ♢••••••♢
+|    |    |    |    [14:14] <XMLElement>
+|    |    |    |    + <name> = ♢title♢
+|    |    |    |    + <cleaned> = ♢Dallas•Times-Herald♢
+|    |    |    |    |    [14:14] <XMLTag> = ♢<title>♢
+|    |    |    |    |    + <name> = ♢title♢
+|    |    |    |    |    [14:14] <Text> = ♢Dallas♢
+|    |    |    |    |    [14:14] <Whitespace> = ♢•♢
+|    |    |    |    |    [14:14] <Text> = ♢Times-Herald♢
+|    |    |    |    |    [14:14] <XMLTag> = ♢</title>♢
+|    |    |    |    |    + <name> = ♢title♢
+|    |    |    |    [14:15] <Newline> = ♢¶♢
+|    |    |    |    [15:15] <Indenting> = ♢••••••♢
+|    |    |    |    [15:15] <XMLElement>
+|    |    |    |    + <name> = ♢url♢
+|    |    |    |    + <cleaned> = ♢http://dallas.example.com/masthead.gif♢
+|    |    |    |    |    [15:15] <XMLTag> = ♢<url>♢
+|    |    |    |    |    + <name> = ♢url♢
+|    |    |    |    |    [15:15] <Text> = ♢http://dallas.example.com/masthead.gif♢
+|    |    |    |    |    [15:15] <XMLTag> = ♢</url>♢
+|    |    |    |    |    + <name> = ♢url♢
+|    |    |    |    [15:16] <Newline> = ♢¶♢
+|    |    |    |    [16:16] <Indenting> = ♢••••••♢
+|    |    |    |    [16:16] <XMLElement>
+|    |    |    |    + <name> = ♢description♢
+|    |    |    |    + <cleaned> = ♢Read•the•Dallas•Times-Herald♢
+|    |    |    |    |    [16:16] <XMLTag> = ♢<description>♢
+|    |    |    |    |    + <name> = ♢description♢
+|    |    |    |    |    [16:16] <Text> = ♢Read♢
+|    |    |    |    |    [16:16] <Whitespace> = ♢•♢
+|    |    |    |    |    [16:16] <Text> = ♢the♢
+|    |    |    |    |    [16:16] <Whitespace> = ♢•♢
+|    |    |    |    |    [16:16] <Text> = ♢Dallas♢
+|    |    |    |    |    [16:16] <Whitespace> = ♢•♢
+|    |    |    |    |    [16:16] <Text> = ♢Times-Herald♢
+|    |    |    |    |    [16:16] <XMLTag> = ♢</description>♢
+|    |    |    |    |    + <name> = ♢description♢
+|    |    |    |    [16:17] <Newline> = ♢¶♢
+|    |    |    |    [17:17] <Indenting> = ♢••••••♢
+|    |    |    |    [17:17] <XMLElement>
+|    |    |    |    + <name> = ♢height♢
+|    |    |    |    + <cleaned> = ♢32♢
+|    |    |    |    |    [17:17] <XMLTag> = ♢<height>♢
+|    |    |    |    |    + <name> = ♢height♢
+|    |    |    |    |    [17:17] <Text> = ♢32♢
+|    |    |    |    |    [17:17] <XMLTag> = ♢</height>♢
+|    |    |    |    |    + <name> = ♢height♢
+|    |    |    |    [17:18] <Newline> = ♢¶♢
+|    |    |    |    [18:18] <Indenting> = ♢••••••♢
+|    |    |    |    [18:18] <XMLElement>
+|    |    |    |    + <name> = ♢width♢
+|    |    |    |    + <cleaned> = ♢96♢
+|    |    |    |    |    [18:18] <XMLTag> = ♢<width>♢
+|    |    |    |    |    + <name> = ♢width♢
+|    |    |    |    |    [18:18] <Text> = ♢96♢
+|    |    |    |    |    [18:18] <XMLTag> = ♢</width>♢
+|    |    |    |    |    + <name> = ♢width♢
+|    |    |    |    [18:19] <Newline> = ♢¶♢
+|    |    |    |    [19:19] <Indenting> = ♢••••♢
+|    |    |    |    [19:19] <XMLTag> = ♢</image>♢
+|    |    |    |    + <name> = ♢image♢
+|    |    |    [19:20] <Newline> = ♢¶♢
+|    |    |    [20:20] <Indenting> = ♢••••♢
+|    |    |    [20:20] <XMLElement>
+|    |    |    + <name> = ♢language♢
+|    |    |    + <cleaned> = ♢epo♢
+|    |    |    |    [20:20] <XMLTag> = ♢<language>♢
+|    |    |    |    + <name> = ♢language♢
+|    |    |    |    [20:20] <Text> = ♢epo♢
+|    |    |    |    [20:20] <XMLTag> = ♢</language>♢
+|    |    |    |    + <name> = ♢language♢
+|    |    |    [20:21] <Newline> = ♢¶♢
+|    |    |    [21:21] <Indenting> = ♢••••♢
+|    |    |    [21:21] <XMLElement>
+|    |    |    + <name> = ♢lastBuildDate♢
+|    |    |    + <cleaned> = ♢Sun,•29•Jan•2006•17:17:44•GMT♢
+|    |    |    |    [21:21] <XMLTag> = ♢<lastBuildDate>♢
+|    |    |    |    + <name> = ♢lastBuildDate♢
+|    |    |    |    [21:21] <Text> = ♢Sun,♢
+|    |    |    |    [21:21] <Whitespace> = ♢•♢
+|    |    |    |    [21:21] <Text> = ♢29♢
+|    |    |    |    [21:21] <Whitespace> = ♢•♢
+|    |    |    |    [21:21] <Text> = ♢Jan♢
+|    |    |    |    [21:21] <Whitespace> = ♢•♢
+|    |    |    |    [21:21] <Text> = ♢2006♢
+|    |    |    |    [21:21] <Whitespace> = ♢•♢
+|    |    |    |    [21:21] <Text> = ♢17:17:44♢
+|    |    |    |    [21:21] <Whitespace> = ♢•♢
+|    |    |    |    [21:21] <Text> = ♢GMT♢
+|    |    |    |    [21:21] <XMLTag> = ♢</lastBuildDate>♢
+|    |    |    |    + <name> = ♢lastBuildDate♢
+|    |    |    [21:22] <Newline> = ♢¶♢
+|    |    |    [22:22] <Indenting> = ♢••••♢
+|    |    |    [22:22] <XMLElement>
+|    |    |    + <name> = ♢managingEditor♢
+|    |    |    + <cleaned> = ♢jlehrer@dallas.example.com•(Jim•Lehrer)♢
+|    |    |    |    [22:22] <XMLTag> = ♢<managingEditor>♢
+|    |    |    |    + <name> = ♢managingEditor♢
+|    |    |    |    [22:22] <Text> = ♢jlehrer@dallas.example.com♢
+|    |    |    |    [22:22] <Whitespace> = ♢•♢
+|    |    |    |    [22:22] <Parenthesis>
+|    |    |    |    |    [22:22] <Match> = ♢(♢
+|    |    |    |    |    [22:22] <Text> = ♢Jim♢
+|    |    |    |    |    [22:22] <Whitespace> = ♢•♢
+|    |    |    |    |    [22:22] <Text> = ♢Lehrer♢
+|    |    |    |    |    [22:22] <Match> = ♢)♢
+|    |    |    |    [22:22] <XMLTag> = ♢</managingEditor>♢
+|    |    |    |    + <name> = ♢managingEditor♢
+|    |    |    [22:23] <Newline> = ♢¶♢
+|    |    |    [23:23] <Indenting> = ♢••••♢
+|    |    |    [23:23] <XMLElement>
+|    |    |    + <name> = ♢pubDate♢
+|    |    |    + <cleaned> = ♢Sun,•29•Jan•2006•05:00:00•GMT♢
+|    |    |    |    [23:23] <XMLTag> = ♢<pubDate>♢
+|    |    |    |    + <name> = ♢pubDate♢
+|    |    |    |    [23:23] <Text> = ♢Sun,♢
+|    |    |    |    [23:23] <Whitespace> = ♢•♢
+|    |    |    |    [23:23] <Text> = ♢29♢
+|    |    |    |    [23:23] <Whitespace> = ♢•♢
+|    |    |    |    [23:23] <Text> = ♢Jan♢
+|    |    |    |    [23:23] <Whitespace> = ♢•♢
+|    |    |    |    [23:23] <Text> = ♢2006♢
+|    |    |    |    [23:23] <Whitespace> = ♢•♢
+|    |    |    |    [23:23] <Text> = ♢05:00:00♢
+|    |    |    |    [23:23] <Whitespace> = ♢•♢
+|    |    |    |    [23:23] <Text> = ♢GMT♢
+|    |    |    |    [23:23] <XMLTag> = ♢</pubDate>♢
+|    |    |    |    + <name> = ♢pubDate♢
+|    |    |    [23:24] <Newline> = ♢¶♢
+|    |    |    [24:24] <Indenting> = ♢••••♢
+|    |    |    [24:24] <XMLElement>
+|    |    |    + <name> = ♢rating♢
+|    |    |    + <cleaned> = ♢(PICS-1.1•"http://www.rsac.org/ratingsv01.html"•l•by•"webmaster@example.com"•on•"2006.01.29T10:09-0800"•r•(n•0•s•0•v•0•l•0))♢
+|    |    |    |    [24:24] <XMLTag> = ♢<rating>♢
+|    |    |    |    + <name> = ♢rating♢
+|    |    |    |    [24:24] <Parenthesis>
+|    |    |    |    |    [24:24] <Match> = ♢(♢
+|    |    |    |    |    [24:24] <Text> = ♢PICS-1.1♢
+|    |    |    |    |    [24:24] <Whitespace> = ♢•♢
+|    |    |    |    |    [24:24] <Text> = ♢"http://www.rsac.org/ratingsv01.html"♢
+|    |    |    |    |    [24:24] <Whitespace> = ♢•♢
+|    |    |    |    |    [24:24] <Text> = ♢l♢
+|    |    |    |    |    [24:24] <Whitespace> = ♢•♢
+|    |    |    |    |    [24:24] <Text> = ♢by♢
+|    |    |    |    |    [24:24] <Whitespace> = ♢•♢
+|    |    |    |    |    [24:24] <Text> = ♢"webmaster@example.com"♢
+|    |    |    |    |    [24:24] <Whitespace> = ♢•♢
+|    |    |    |    |    [24:24] <Text> = ♢on♢
+|    |    |    |    |    [24:24] <Whitespace> = ♢•♢
+|    |    |    |    |    [24:24] <Text> = ♢"2006.01.29T10:09-0800"♢
+|    |    |    |    |    [24:24] <Whitespace> = ♢•♢
+|    |    |    |    |    [24:24] <Text> = ♢r♢
+|    |    |    |    |    [24:24] <Whitespace> = ♢•♢
+|    |    |    |    |    [24:24] <Parenthesis>
+|    |    |    |    |    |    [24:24] <Match> = ♢(♢
+|    |    |    |    |    |    [24:24] <Text> = ♢n♢
+|    |    |    |    |    |    [24:24] <Whitespace> = ♢•♢
+|    |    |    |    |    |    [24:24] <Text> = ♢0♢
+|    |    |    |    |    |    [24:24] <Whitespace> = ♢•♢
+|    |    |    |    |    |    [24:24] <Text> = ♢s♢
+|    |    |    |    |    |    [24:24] <Whitespace> = ♢•♢
+|    |    |    |    |    |    [24:24] <Text> = ♢0♢
+|    |    |    |    |    |    [24:24] <Whitespace> = ♢•♢
+|    |    |    |    |    |    [24:24] <Text> = ♢v♢
+|    |    |    |    |    |    [24:24] <Whitespace> = ♢•♢
+|    |    |    |    |    |    [24:24] <Text> = ♢0♢
+|    |    |    |    |    |    [24:24] <Whitespace> = ♢•♢
+|    |    |    |    |    |    [24:24] <Text> = ♢l♢
+|    |    |    |    |    |    [24:24] <Whitespace> = ♢•♢
+|    |    |    |    |    |    [24:24] <Text> = ♢0♢
+|    |    |    |    |    |    [24:24] <Match> = ♢)♢
+|    |    |    |    |    [24:24] <Match> = ♢)♢
+|    |    |    |    [24:24] <XMLTag> = ♢</rating>♢
+|    |    |    |    + <name> = ♢rating♢
+|    |    |    [24:25] <Newline> = ♢¶♢
+|    |    |    [25:25] <Indenting> = ♢••••♢
+|    |    |    [25:28] <XMLElement>
+|    |    |    + <name> = ♢skipDays♢
+|    |    |    + <cleaned> = ♢¶••••••¶••••••¶••••♢
+|    |    |    |    [25:25] <XMLTag> = ♢<skipDays>♢
+|    |    |    |    + <name> = ♢skipDays♢
+|    |    |    |    [25:26] <Newline> = ♢¶♢
+|    |    |    |    [26:26] <Indenting> = ♢••••••♢
+|    |    |    |    [26:26] <XMLElement>
+|    |    |    |    + <name> = ♢day♢
+|    |    |    |    + <cleaned> = ♢Saturday♢
+|    |    |    |    |    [26:26] <XMLTag> = ♢<day>♢
+|    |    |    |    |    + <name> = ♢day♢
+|    |    |    |    |    [26:26] <Text> = ♢Saturday♢
+|    |    |    |    |    [26:26] <XMLTag> = ♢</day>♢
+|    |    |    |    |    + <name> = ♢day♢
+|    |    |    |    [26:27] <Newline> = ♢¶♢
+|    |    |    |    [27:27] <Indenting> = ♢••••••♢
+|    |    |    |    [27:27] <XMLElement>
+|    |    |    |    + <name> = ♢day♢
+|    |    |    |    + <cleaned> = ♢Sunday♢
+|    |    |    |    |    [27:27] <XMLTag> = ♢<day>♢
+|    |    |    |    |    + <name> = ♢day♢
+|    |    |    |    |    [27:27] <Text> = ♢Sunday♢
+|    |    |    |    |    [27:27] <XMLTag> = ♢</day>♢
+|    |    |    |    |    + <name> = ♢day♢
+|    |    |    |    [27:28] <Newline> = ♢¶♢
+|    |    |    |    [28:28] <Indenting> = ♢••••♢
+|    |    |    |    [28:28] <XMLTag> = ♢</skipDays>♢
+|    |    |    |    + <name> = ♢skipDays♢
+|    |    |    [28:29] <Newline> = ♢¶♢
+|    |    |    [29:29] <Indenting> = ♢••••♢
+|    |    |    [29:35] <XMLElement>
+|    |    |    + <name> = ♢skipHours♢
+|    |    |    + <cleaned> = ♢¶••••••¶••••••¶••••••¶••••••¶••••••¶••••♢
+|    |    |    |    [29:29] <XMLTag> = ♢<skipHours>♢
+|    |    |    |    + <name> = ♢skipHours♢
+|    |    |    |    [29:30] <Newline> = ♢¶♢
+|    |    |    |    [30:30] <Indenting> = ♢••••••♢
+|    |    |    |    [30:30] <XMLElement>
+|    |    |    |    + <name> = ♢hour♢
+|    |    |    |    + <cleaned> = ♢0♢
+|    |    |    |    |    [30:30] <XMLTag> = ♢<hour>♢
+|    |    |    |    |    + <name> = ♢hour♢
+|    |    |    |    |    [30:30] <Text> = ♢0♢
+|    |    |    |    |    [30:30] <XMLTag> = ♢</hour>♢
+|    |    |    |    |    + <name> = ♢hour♢
+|    |    |    |    [30:31] <Newline> = ♢¶♢
+|    |    |    |    [31:31] <Indenting> = ♢••••••♢
+|    |    |    |    [31:31] <XMLElement>
+|    |    |    |    + <name> = ♢hour♢
+|    |    |    |    + <cleaned> = ♢1♢
+|    |    |    |    |    [31:31] <XMLTag> = ♢<hour>♢
+|    |    |    |    |    + <name> = ♢hour♢
+|    |    |    |    |    [31:31] <Text> = ♢1♢
+|    |    |    |    |    [31:31] <XMLTag> = ♢</hour>♢
+|    |    |    |    |    + <name> = ♢hour♢
+|    |    |    |    [31:32] <Newline> = ♢¶♢
+|    |    |    |    [32:32] <Indenting> = ♢••••••♢
+|    |    |    |    [32:32] <XMLElement>
+|    |    |    |    + <name> = ♢hour♢
+|    |    |    |    + <cleaned> = ♢2♢
+|    |    |    |    |    [32:32] <XMLTag> = ♢<hour>♢
+|    |    |    |    |    + <name> = ♢hour♢
+|    |    |    |    |    [32:32] <Text> = ♢2♢
+|    |    |    |    |    [32:32] <XMLTag> = ♢</hour>♢
+|    |    |    |    |    + <name> = ♢hour♢
+|    |    |    |    [32:33] <Newline> = ♢¶♢
+|    |    |    |    [33:33] <Indenting> = ♢••••••♢
+|    |    |    |    [33:33] <XMLElement>
+|    |    |    |    + <name> = ♢hour♢
+|    |    |    |    + <cleaned> = ♢22♢
+|    |    |    |    |    [33:33] <XMLTag> = ♢<hour>♢
+|    |    |    |    |    + <name> = ♢hour♢
+|    |    |    |    |    [33:33] <Text> = ♢22♢
+|    |    |    |    |    [33:33] <XMLTag> = ♢</hour>♢
+|    |    |    |    |    + <name> = ♢hour♢
+|    |    |    |    [33:34] <Newline> = ♢¶♢
+|    |    |    |    [34:34] <Indenting> = ♢••••••♢
+|    |    |    |    [34:34] <XMLElement>
+|    |    |    |    + <name> = ♢hour♢
+|    |    |    |    + <cleaned> = ♢23♢
+|    |    |    |    |    [34:34] <XMLTag> = ♢<hour>♢
+|    |    |    |    |    + <name> = ♢hour♢
+|    |    |    |    |    [34:34] <Text> = ♢23♢
+|    |    |    |    |    [34:34] <XMLTag> = ♢</hour>♢
+|    |    |    |    |    + <name> = ♢hour♢
+|    |    |    |    [34:35] <Newline> = ♢¶♢
+|    |    |    |    [35:35] <Indenting> = ♢••••♢
+|    |    |    |    [35:35] <XMLTag> = ♢</skipHours>♢
+|    |    |    |    + <name> = ♢skipHours♢
+|    |    |    [35:36] <Newline> = ♢¶♢
+|    |    |    [36:36] <Indenting> = ♢••••♢
+|    |    |    [36:41] <XMLElement>
+|    |    |    + <name> = ♢textInput♢
+|    |    |    + <cleaned> = ♢¶••••••¶••••••¶••••••¶••••••¶••••♢
+|    |    |    |    [36:36] <XMLTag> = ♢<textInput>♢
+|    |    |    |    + <name> = ♢textInput♢
+|    |    |    |    [36:37] <Newline> = ♢¶♢
+|    |    |    |    [37:37] <Indenting> = ♢••••••♢
+|    |    |    |    [37:37] <XMLElement>
+|    |    |    |    + <name> = ♢description♢
+|    |    |    |    + <cleaned> = ♢Your•aggregator•supports•the•textInput•element.•What•software•are•you•using?♢
+|    |    |    |    |    [37:37] <XMLTag> = ♢<description>♢
+|    |    |    |    |    + <name> = ♢description♢
+|    |    |    |    |    [37:37] <Text> = ♢Your♢
+|    |    |    |    |    [37:37] <Whitespace> = ♢•♢
+|    |    |    |    |    [37:37] <Text> = ♢aggregator♢
+|    |    |    |    |    [37:37] <Whitespace> = ♢•♢
+|    |    |    |    |    [37:37] <Text> = ♢supports♢
+|    |    |    |    |    [37:37] <Whitespace> = ♢•♢
+|    |    |    |    |    [37:37] <Text> = ♢the♢
+|    |    |    |    |    [37:37] <Whitespace> = ♢•♢
+|    |    |    |    |    [37:37] <Text> = ♢textInput♢
+|    |    |    |    |    [37:37] <Whitespace> = ♢•♢
+|    |    |    |    |    [37:37] <Text> = ♢element.♢
+|    |    |    |    |    [37:37] <Whitespace> = ♢•♢
+|    |    |    |    |    [37:37] <Text> = ♢What♢
+|    |    |    |    |    [37:37] <Whitespace> = ♢•♢
+|    |    |    |    |    [37:37] <Text> = ♢software♢
+|    |    |    |    |    [37:37] <Whitespace> = ♢•♢
+|    |    |    |    |    [37:37] <Text> = ♢are♢
+|    |    |    |    |    [37:37] <Whitespace> = ♢•♢
+|    |    |    |    |    [37:37] <Text> = ♢you♢
+|    |    |    |    |    [37:37] <Whitespace> = ♢•♢
+|    |    |    |    |    [37:37] <Text> = ♢using?♢
+|    |    |    |    |    [37:37] <XMLTag> = ♢</description>♢
+|    |    |    |    |    + <name> = ♢description♢
+|    |    |    |    [37:38] <Newline> = ♢¶♢
+|    |    |    |    [38:38] <Indenting> = ♢••••••♢
+|    |    |    |    [38:38] <XMLElement>
+|    |    |    |    + <name> = ♢link♢
+|    |    |    |    + <cleaned> = ♢http://www.cadenhead.org/textinput.php♢
+|    |    |    |    |    [38:38] <XMLTag> = ♢<link>♢
+|    |    |    |    |    + <name> = ♢link♢
+|    |    |    |    |    [38:38] <Text> = ♢http://www.cadenhead.org/textinput.php♢
+|    |    |    |    |    [38:38] <XMLTag> = ♢</link>♢
+|    |    |    |    |    + <name> = ♢link♢
+|    |    |    |    [38:39] <Newline> = ♢¶♢
+|    |    |    |    [39:39] <Indenting> = ♢••••••♢
+|    |    |    |    [39:39] <XMLElement>
+|    |    |    |    + <name> = ♢name♢
+|    |    |    |    + <cleaned> = ♢query♢
+|    |    |    |    |    [39:39] <XMLTag> = ♢<name>♢
+|    |    |    |    |    + <name> = ♢name♢
+|    |    |    |    |    [39:39] <Text> = ♢query♢
+|    |    |    |    |    [39:39] <XMLTag> = ♢</name>♢
+|    |    |    |    |    + <name> = ♢name♢
+|    |    |    |    [39:40] <Newline> = ♢¶♢
+|    |    |    |    [40:40] <Indenting> = ♢••••••♢
+|    |    |    |    [40:40] <XMLElement>
+|    |    |    |    + <name> = ♢title♢
+|    |    |    |    + <cleaned> = ♢TextInput•Inquiry♢
+|    |    |    |    |    [40:40] <XMLTag> = ♢<title>♢
+|    |    |    |    |    + <name> = ♢title♢
+|    |    |    |    |    [40:40] <Text> = ♢TextInput♢
+|    |    |    |    |    [40:40] <Whitespace> = ♢•♢
+|    |    |    |    |    [40:40] <Text> = ♢Inquiry♢
+|    |    |    |    |    [40:40] <XMLTag> = ♢</title>♢
+|    |    |    |    |    + <name> = ♢title♢
+|    |    |    |    [40:41] <Newline> = ♢¶♢
+|    |    |    |    [41:41] <Indenting> = ♢••••♢
+|    |    |    |    [41:41] <XMLTag> = ♢</textInput>♢
+|    |    |    |    + <name> = ♢textInput♢
+|    |    |    [41:42] <Newline> = ♢¶♢
+|    |    |    [42:42] <Indenting> = ♢••••♢
+|    |    |    [42:42] <XMLElement>
+|    |    |    + <name> = ♢ttl♢
+|    |    |    + <cleaned> = ♢60♢
+|    |    |    |    [42:42] <XMLTag> = ♢<ttl>♢
+|    |    |    |    + <name> = ♢ttl♢
+|    |    |    |    [42:42] <Text> = ♢60♢
+|    |    |    |    [42:42] <XMLTag> = ♢</ttl>♢
+|    |    |    |    + <name> = ♢ttl♢
+|    |    |    [42:43] <Newline> = ♢¶♢
+|    |    |    [43:43] <Indenting> = ♢••••♢
+|    |    |    [43:43] <XMLElement>
+|    |    |    + <name> = ♢webMaster♢
+|    |    |    + <cleaned> = ♢helpdesk@dallas.example.com♢
+|    |    |    |    [43:43] <XMLTag> = ♢<webMaster>♢
+|    |    |    |    + <name> = ♢webMaster♢
+|    |    |    |    [43:43] <Text> = ♢helpdesk@dallas.example.com♢
+|    |    |    |    [43:43] <XMLTag> = ♢</webMaster>♢
+|    |    |    |    + <name> = ♢webMaster♢
+|    |    |    [43:44] <Newline> = ♢¶♢
+|    |    |    [44:44] <Indenting> = ♢••••♢
+|    |    |    [44:49] <XMLElement>
+|    |    |    + <name> = ♢item♢
+|    |    |    + <cleaned> = ♢¶••••••¶••••••¶••••••¶••••••••••••¶••••♢
+|    |    |    |    [44:44] <XMLTag> = ♢<item>♢
+|    |    |    |    + <name> = ♢item♢
+|    |    |    |    [44:45] <Newline> = ♢¶♢
+|    |    |    |    [45:45] <Indenting> = ♢••••••♢
+|    |    |    |    [45:45] <XMLElement>
+|    |    |    |    + <name> = ♢title♢
+|    |    |    |    + <cleaned> = ♢Seventh•Heaven!•Ryan•Hurls•Another•No•Hitter♢
+|    |    |    |    |    [45:45] <XMLTag> = ♢<title>♢
+|    |    |    |    |    + <name> = ♢title♢
+|    |    |    |    |    [45:45] <Text> = ♢Seventh♢
+|    |    |    |    |    [45:45] <Whitespace> = ♢•♢
+|    |    |    |    |    [45:45] <Text> = ♢Heaven!♢
+|    |    |    |    |    [45:45] <Whitespace> = ♢•♢
+|    |    |    |    |    [45:45] <Text> = ♢Ryan♢
+|    |    |    |    |    [45:45] <Whitespace> = ♢•♢
+|    |    |    |    |    [45:45] <Text> = ♢Hurls♢
+|    |    |    |    |    [45:45] <Whitespace> = ♢•♢
+|    |    |    |    |    [45:45] <Text> = ♢Another♢
+|    |    |    |    |    [45:45] <Whitespace> = ♢•♢
+|    |    |    |    |    [45:45] <Text> = ♢No♢
+|    |    |    |    |    [45:45] <Whitespace> = ♢•♢
+|    |    |    |    |    [45:45] <Text> = ♢Hitter♢
+|    |    |    |    |    [45:45] <XMLTag> = ♢</title>♢
+|    |    |    |    |    + <name> = ♢title♢
+|    |    |    |    [45:46] <Newline> = ♢¶♢
+|    |    |    |    [46:46] <Indenting> = ♢••••••♢
+|    |    |    |    [46:46] <XMLElement>
+|    |    |    |    + <name> = ♢link♢
+|    |    |    |    + <cleaned> = ♢http://dallas.example.com/1991/05/02/nolan.htm♢
+|    |    |    |    |    [46:46] <XMLTag> = ♢<link>♢
+|    |    |    |    |    + <name> = ♢link♢
+|    |    |    |    |    [46:46] <Text> = ♢http://dallas.example.com/1991/05/02/nolan.htm♢
+|    |    |    |    |    [46:46] <XMLTag> = ♢</link>♢
+|    |    |    |    |    + <name> = ♢link♢
+|    |    |    |    [46:47] <Newline> = ♢¶♢
+|    |    |    |    [47:47] <Indenting> = ♢••••••♢
+|    |    |    |    [47:47] <XMLElement>
+|    |    |    |    + <name> = ♢description♢
+|    |    |    |    + <cleaned> = ♢Texas•Rangers•pitcher•Nolan•Ryan•hurled•the•seventh•no-hitter•of•his•legendary•career•on•Arlington•Appreciation•Night,•defeating•the•Toronto•Blue•Jays•3-0.•The•44-year-old•struck•out•16•batters•before•a•crowd•of•33,439.♢
+|    |    |    |    |    [47:47] <XMLTag> = ♢<description>♢
+|    |    |    |    |    + <name> = ♢description♢
+|    |    |    |    |    [47:47] <Text> = ♢Texas♢
+|    |    |    |    |    [47:47] <Whitespace> = ♢•♢
+|    |    |    |    |    [47:47] <Text> = ♢Rangers♢
+|    |    |    |    |    [47:47] <Whitespace> = ♢•♢
+|    |    |    |    |    [47:47] <Text> = ♢pitcher♢
+|    |    |    |    |    [47:47] <Whitespace> = ♢•♢
+|    |    |    |    |    [47:47] <Text> = ♢Nolan♢
+|    |    |    |    |    [47:47] <Whitespace> = ♢•♢
+|    |    |    |    |    [47:47] <Text> = ♢Ryan♢
+|    |    |    |    |    [47:47] <Whitespace> = ♢•♢
+|    |    |    |    |    [47:47] <Text> = ♢hurled♢
+|    |    |    |    |    [47:47] <Whitespace> = ♢•♢
+|    |    |    |    |    [47:47] <Text> = ♢the♢
+|    |    |    |    |    [47:47] <Whitespace> = ♢•♢
+|    |    |    |    |    [47:47] <Text> = ♢seventh♢
+|    |    |    |    |    [47:47] <Whitespace> = ♢•♢
+|    |    |    |    |    [47:47] <Text> = ♢no-hitter♢
+|    |    |    |    |    [47:47] <Whitespace> = ♢•♢
+|    |    |    |    |    [47:47] <Text> = ♢of♢
+|    |    |    |    |    [47:47] <Whitespace> = ♢•♢
+|    |    |    |    |    [47:47] <Text> = ♢his♢
+|    |    |    |    |    [47:47] <Whitespace> = ♢•♢
+|    |    |    |    |    [47:47] <Text> = ♢legendary♢
+|    |    |    |    |    [47:47] <Whitespace> = ♢•♢
+|    |    |    |    |    [47:47] <Text> = ♢career♢
+|    |    |    |    |    [47:47] <Whitespace> = ♢•♢
+|    |    |    |    |    [47:47] <Text> = ♢on♢
+|    |    |    |    |    [47:47] <Whitespace> = ♢•♢
+|    |    |    |    |    [47:47] <Text> = ♢Arlington♢
+|    |    |    |    |    [47:47] <Whitespace> = ♢•♢
+|    |    |    |    |    [47:47] <Text> = ♢Appreciation♢
+|    |    |    |    |    [47:47] <Whitespace> = ♢•♢
+|    |    |    |    |    [47:47] <Text> = ♢Night,♢
+|    |    |    |    |    [47:47] <Whitespace> = ♢•♢
+|    |    |    |    |    [47:47] <Text> = ♢defeating♢
+|    |    |    |    |    [47:47] <Whitespace> = ♢•♢
+|    |    |    |    |    [47:47] <Text> = ♢the♢
+|    |    |    |    |    [47:47] <Whitespace> = ♢•♢
+|    |    |    |    |    [47:47] <Text> = ♢Toronto♢
+|    |    |    |    |    [47:47] <Whitespace> = ♢•♢
+|    |    |    |    |    [47:47] <Text> = ♢Blue♢
+|    |    |    |    |    [47:47] <Whitespace> = ♢•♢
+|    |    |    |    |    [47:47] <Text> = ♢Jays♢
+|    |    |    |    |    [47:47] <Whitespace> = ♢•♢
+|    |    |    |    |    [47:47] <Text> = ♢3-0.♢
+|    |    |    |    |    [47:47] <Whitespace> = ♢•♢
+|    |    |    |    |    [47:47] <Text> = ♢The♢
+|    |    |    |    |    [47:47] <Whitespace> = ♢•♢
+|    |    |    |    |    [47:47] <Text> = ♢44-year-old♢
+|    |    |    |    |    [47:47] <Whitespace> = ♢•♢
+|    |    |    |    |    [47:47] <Text> = ♢struck♢
+|    |    |    |    |    [47:47] <Whitespace> = ♢•♢
+|    |    |    |    |    [47:47] <Text> = ♢out♢
+|    |    |    |    |    [47:47] <Whitespace> = ♢•♢
+|    |    |    |    |    [47:47] <Text> = ♢16♢
+|    |    |    |    |    [47:47] <Whitespace> = ♢•♢
+|    |    |    |    |    [47:47] <Text> = ♢batters♢
+|    |    |    |    |    [47:47] <Whitespace> = ♢•♢
+|    |    |    |    |    [47:47] <Text> = ♢before♢
+|    |    |    |    |    [47:47] <Whitespace> = ♢•♢
+|    |    |    |    |    [47:47] <Text> = ♢a♢
+|    |    |    |    |    [47:47] <Whitespace> = ♢•♢
+|    |    |    |    |    [47:47] <Text> = ♢crowd♢
+|    |    |    |    |    [47:47] <Whitespace> = ♢•♢
+|    |    |    |    |    [47:47] <Text> = ♢of♢
+|    |    |    |    |    [47:47] <Whitespace> = ♢•♢
+|    |    |    |    |    [47:47] <Text> = ♢33,439.♢
+|    |    |    |    |    [47:47] <XMLTag> = ♢</description>♢
+|    |    |    |    |    + <name> = ♢description♢
+|    |    |    |    [47:48] <Newline> = ♢¶♢
+|    |    |    |    [48:48] <Indenting> = ♢••••••♢
+|    |    |    |    [48:48] <XMLElement>
+|    |    |    |    + <name> = ♢guid♢
+|    |    |    |    + <cleaned> = ♢http://dallas.example.com/1991/05/02/nolan.htm♢
+|    |    |    |    |    [48:48] <XMLTag> = ♢<guid>♢
+|    |    |    |    |    + <name> = ♢guid♢
+|    |    |    |    |    [48:48] <Text> = ♢http://dallas.example.com/1991/05/02/nolan.htm♢
+|    |    |    |    |    [48:48] <XMLTag> = ♢</guid>♢
+|    |    |    |    |    + <name> = ♢guid♢
+|    |    |    |    [48:48] <Whitespace> = ♢••••••♢
+|    |    |    |    [48:49] <Newline> = ♢¶♢
+|    |    |    |    [49:49] <Indenting> = ♢••••♢
+|    |    |    |    [49:49] <XMLTag> = ♢</item>♢
+|    |    |    |    + <name> = ♢item♢
+|    |    |    [49:50] <Newline> = ♢¶♢
+|    |    |    [50:50] <Indenting> = ♢••••♢
+|    |    |    [50:61] <XMLElement>
+|    |    |    + <name> = ♢item♢
+|    |    |    + <cleaned> = ♢¶••••••¶••••••¶••••••¶••••••¶••••••¶••••••¶••••••¶••••••¶••••••¶••••••¶••••♢
+|    |    |    |    [50:50] <XMLTag> = ♢<item>♢
+|    |    |    |    + <name> = ♢item♢
+|    |    |    |    [50:51] <Newline> = ♢¶♢
+|    |    |    |    [51:51] <Indenting> = ♢••••••♢
+|    |    |    |    [51:51] <XMLElement>
+|    |    |    |    + <name> = ♢author♢
+|    |    |    |    + <cleaned> = ♢jbb@dallas.example.com•(Joe•Bob•Briggs)♢
+|    |    |    |    |    [51:51] <XMLTag> = ♢<author>♢
+|    |    |    |    |    + <name> = ♢author♢
+|    |    |    |    |    [51:51] <Text> = ♢jbb@dallas.example.com♢
+|    |    |    |    |    [51:51] <Whitespace> = ♢•♢
+|    |    |    |    |    [51:51] <Parenthesis>
+|    |    |    |    |    |    [51:51] <Match> = ♢(♢
+|    |    |    |    |    |    [51:51] <Text> = ♢Joe♢
+|    |    |    |    |    |    [51:51] <Whitespace> = ♢•♢
+|    |    |    |    |    |    [51:51] <Text> = ♢Bob♢
+|    |    |    |    |    |    [51:51] <Whitespace> = ♢•♢
+|    |    |    |    |    |    [51:51] <Text> = ♢Briggs♢
+|    |    |    |    |    |    [51:51] <Match> = ♢)♢
+|    |    |    |    |    [51:51] <XMLTag> = ♢</author>♢
+|    |    |    |    |    + <name> = ♢author♢
+|    |    |    |    [51:52] <Newline> = ♢¶♢
+|    |    |    |    [52:52] <Indenting> = ♢••••••♢
+|    |    |    |    [52:52] <XMLElement>
+|    |    |    |    + <name> = ♢category♢
+|    |    |    |    + <cleaned> = ♢rec.arts.movies.reviews♢
+|    |    |    |    |    [52:52] <XMLTag> = ♢<category>♢
+|    |    |    |    |    + <name> = ♢category♢
+|    |    |    |    |    [52:52] <Text> = ♢rec.arts.movies.reviews♢
+|    |    |    |    |    [52:52] <XMLTag> = ♢</category>♢
+|    |    |    |    |    + <name> = ♢category♢
+|    |    |    |    [52:53] <Newline> = ♢¶♢
+|    |    |    |    [53:53] <Indenting> = ♢••••••♢
+|    |    |    |    [53:53] <XMLElement>
+|    |    |    |    + <name> = ♢comments♢
+|    |    |    |    + <cleaned> = ♢http://dallas.example.com/feedback/1983/06/joebob.htm♢
+|    |    |    |    |    [53:53] <XMLTag> = ♢<comments>♢
+|    |    |    |    |    + <name> = ♢comments♢
+|    |    |    |    |    [53:53] <Text> = ♢http://dallas.example.com/feedback/1983/06/joebob.htm♢
+|    |    |    |    |    [53:53] <XMLTag> = ♢</comments>♢
+|    |    |    |    |    + <name> = ♢comments♢
+|    |    |    |    [53:54] <Newline> = ♢¶♢
+|    |    |    |    [54:54] <Indenting> = ♢••••••♢
+|    |    |    |    [54:54] <XMLElement>
+|    |    |    |    + <name> = ♢description♢
+|    |    |    |    + <cleaned> = ♢I'm•headed•for•France.•I•wasn't•gonna•go•this•year,•but•then•last•week•"Valley•Girl"•came•out•and•I•said•to•myself,•Joe•Bob,•you•gotta•get•out•of•the•country•for•a•while.♢
+|    |    |    |    |    [54:54] <XMLTag> = ♢<description>♢
+|    |    |    |    |    + <name> = ♢description♢
+|    |    |    |    |    [54:54] <Text> = ♢I'm♢
+|    |    |    |    |    [54:54] <Whitespace> = ♢•♢
+|    |    |    |    |    [54:54] <Text> = ♢headed♢
+|    |    |    |    |    [54:54] <Whitespace> = ♢•♢
+|    |    |    |    |    [54:54] <Text> = ♢for♢
+|    |    |    |    |    [54:54] <Whitespace> = ♢•♢
+|    |    |    |    |    [54:54] <Text> = ♢France.♢
+|    |    |    |    |    [54:54] <Whitespace> = ♢•♢
+|    |    |    |    |    [54:54] <Text> = ♢I♢
+|    |    |    |    |    [54:54] <Whitespace> = ♢•♢
+|    |    |    |    |    [54:54] <Text> = ♢wasn't♢
+|    |    |    |    |    [54:54] <Whitespace> = ♢•♢
+|    |    |    |    |    [54:54] <Text> = ♢gonna♢
+|    |    |    |    |    [54:54] <Whitespace> = ♢•♢
+|    |    |    |    |    [54:54] <Text> = ♢go♢
+|    |    |    |    |    [54:54] <Whitespace> = ♢•♢
+|    |    |    |    |    [54:54] <Text> = ♢this♢
+|    |    |    |    |    [54:54] <Whitespace> = ♢•♢
+|    |    |    |    |    [54:54] <Text> = ♢year,♢
+|    |    |    |    |    [54:54] <Whitespace> = ♢•♢
+|    |    |    |    |    [54:54] <Text> = ♢but♢
+|    |    |    |    |    [54:54] <Whitespace> = ♢•♢
+|    |    |    |    |    [54:54] <Text> = ♢then♢
+|    |    |    |    |    [54:54] <Whitespace> = ♢•♢
+|    |    |    |    |    [54:54] <Text> = ♢last♢
+|    |    |    |    |    [54:54] <Whitespace> = ♢•♢
+|    |    |    |    |    [54:54] <Text> = ♢week♢
+|    |    |    |    |    [54:54] <Whitespace> = ♢•♢
+|    |    |    |    |    [54:54] <Text> = ♢"Valley♢
+|    |    |    |    |    [54:54] <Whitespace> = ♢•♢
+|    |    |    |    |    [54:54] <Text> = ♢Girl"♢
+|    |    |    |    |    [54:54] <Whitespace> = ♢•♢
+|    |    |    |    |    [54:54] <Text> = ♢came♢
+|    |    |    |    |    [54:54] <Whitespace> = ♢•♢
+|    |    |    |    |    [54:54] <Text> = ♢out♢
+|    |    |    |    |    [54:54] <Whitespace> = ♢•♢
+|    |    |    |    |    [54:54] <Text> = ♢and♢
+|    |    |    |    |    [54:54] <Whitespace> = ♢•♢
+|    |    |    |    |    [54:54] <Text> = ♢I♢
+|    |    |    |    |    [54:54] <Whitespace> = ♢•♢
+|    |    |    |    |    [54:54] <Text> = ♢said♢
+|    |    |    |    |    [54:54] <Whitespace> = ♢•♢
+|    |    |    |    |    [54:54] <Text> = ♢to♢
+|    |    |    |    |    [54:54] <Whitespace> = ♢•♢
+|    |    |    |    |    [54:54] <Text> = ♢myself,♢
+|    |    |    |    |    [54:54] <Whitespace> = ♢•♢
+|    |    |    |    |    [54:54] <Text> = ♢Joe♢
+|    |    |    |    |    [54:54] <Whitespace> = ♢•♢
+|    |    |    |    |    [54:54] <Text> = ♢Bob,♢
+|    |    |    |    |    [54:54] <Whitespace> = ♢•♢
+|    |    |    |    |    [54:54] <Text> = ♢you♢
+|    |    |    |    |    [54:54] <Whitespace> = ♢•♢
+|    |    |    |    |    [54:54] <Text> = ♢gotta♢
+|    |    |    |    |    [54:54] <Whitespace> = ♢•♢
+|    |    |    |    |    [54:54] <Text> = ♢get♢
+|    |    |    |    |    [54:54] <Whitespace> = ♢•♢
+|    |    |    |    |    [54:54] <Text> = ♢out♢
+|    |    |    |    |    [54:54] <Whitespace> = ♢•♢
+|    |    |    |    |    [54:54] <Text> = ♢of♢
+|    |    |    |    |    [54:54] <Whitespace> = ♢•♢
+|    |    |    |    |    [54:54] <Text> = ♢the♢
+|    |    |    |    |    [54:54] <Whitespace> = ♢•♢
+|    |    |    |    |    [54:54] <Text> = ♢country♢
+|    |    |    |    |    [54:54] <Whitespace> = ♢•♢
+|    |    |    |    |    [54:54] <Text> = ♢for♢
+|    |    |    |    |    [54:54] <Whitespace> = ♢•♢
+|    |    |    |    |    [54:54] <Text> = ♢a♢
+|    |    |    |    |    [54:54] <Whitespace> = ♢•♢
+|    |    |    |    |    [54:54] <Text> = ♢while.♢
+|    |    |    |    |    [54:54] <XMLTag> = ♢</description>♢
+|    |    |    |    |    + <name> = ♢description♢
+|    |    |    |    [54:55] <Newline> = ♢¶♢
+|    |    |    |    [55:55] <Indenting> = ♢••••••♢
+|    |    |    |    [55:55] <XMLElement>
+|    |    |    |    + <name> = ♢enclosure♢
+|    |    |    |    + <cleaned> = ♢♢
+|    |    |    |    |    [55:55] <XMLTag> = ♢<enclosure•length="24986239"•type="audio/mpeg"•url="http://dallas.example.com/joebob_050689.mp3"•/>♢
+|    |    |    |    |    + <name> = ♢enclosure♢
+|    |    |    |    |    + ♢type♢ = ♢audio/mpeg♢
+|    |    |    |    |    + ♢url♢ = ♢http://dallas.example.com/joebob_050689.mp3♢
+|    |    |    |    |    + ♢length♢ = ♢24986239♢
+|    |    |    |    [55:56] <Newline> = ♢¶♢
+|    |    |    |    [56:56] <Indenting> = ♢••••••♢
+|    |    |    |    [56:56] <XMLElement>
+|    |    |    |    + <name> = ♢guid♢
+|    |    |    |    + <cleaned> = ♢http://dallas.example.com/1983/05/06/joebob.htm♢
+|    |    |    |    |    [56:56] <XMLTag> = ♢<guid>♢
+|    |    |    |    |    + <name> = ♢guid♢
+|    |    |    |    |    [56:56] <Text> = ♢http://dallas.example.com/1983/05/06/joebob.htm♢
+|    |    |    |    |    [56:56] <XMLTag> = ♢</guid>♢
+|    |    |    |    |    + <name> = ♢guid♢
+|    |    |    |    [56:57] <Newline> = ♢¶♢
+|    |    |    |    [57:57] <Indenting> = ♢••••••♢
+|    |    |    |    [57:57] <XMLElement>
+|    |    |    |    + <name> = ♢link♢
+|    |    |    |    + <cleaned> = ♢http://dallas.example.com/1983/05/06/joebob.htm♢
+|    |    |    |    |    [57:57] <XMLTag> = ♢<link>♢
+|    |    |    |    |    + <name> = ♢link♢
+|    |    |    |    |    [57:57] <Text> = ♢http://dallas.example.com/1983/05/06/joebob.htm♢
+|    |    |    |    |    [57:57] <XMLTag> = ♢</link>♢
+|    |    |    |    |    + <name> = ♢link♢
+|    |    |    |    [57:58] <Newline> = ♢¶♢
+|    |    |    |    [58:58] <Indenting> = ♢••••••♢
+|    |    |    |    [58:58] <XMLElement>
+|    |    |    |    + <name> = ♢pubDate♢
+|    |    |    |    + <cleaned> = ♢Fri,•06•May•1983•09:00:00•CST♢
+|    |    |    |    |    [58:58] <XMLTag> = ♢<pubDate>♢
+|    |    |    |    |    + <name> = ♢pubDate♢
+|    |    |    |    |    [58:58] <Text> = ♢Fri,♢
+|    |    |    |    |    [58:58] <Whitespace> = ♢•♢
+|    |    |    |    |    [58:58] <Text> = ♢06♢
+|    |    |    |    |    [58:58] <Whitespace> = ♢•♢
+|    |    |    |    |    [58:58] <Text> = ♢May♢
+|    |    |    |    |    [58:58] <Whitespace> = ♢•♢
+|    |    |    |    |    [58:58] <Text> = ♢1983♢
+|    |    |    |    |    [58:58] <Whitespace> = ♢•♢
+|    |    |    |    |    [58:58] <Text> = ♢09:00:00♢
+|    |    |    |    |    [58:58] <Whitespace> = ♢•♢
+|    |    |    |    |    [58:58] <Text> = ♢CST♢
+|    |    |    |    |    [58:58] <XMLTag> = ♢</pubDate>♢
+|    |    |    |    |    + <name> = ♢pubDate♢
+|    |    |    |    [58:59] <Newline> = ♢¶♢
+|    |    |    |    [59:59] <Indenting> = ♢••••••♢
+|    |    |    |    [59:59] <XMLElement>
+|    |    |    |    + <name> = ♢source♢
+|    |    |    |    + <cleaned> = ♢Los•Angeles•Herald-Examiner♢
+|    |    |    |    |    [59:59] <XMLTag> = ♢<source•url="http://la.example.com/rss.xml">♢
+|    |    |    |    |    + <name> = ♢source♢
+|    |    |    |    |    + ♢url♢ = ♢http://la.example.com/rss.xml♢
+|    |    |    |    |    [59:59] <Text> = ♢Los♢
+|    |    |    |    |    [59:59] <Whitespace> = ♢•♢
+|    |    |    |    |    [59:59] <Text> = ♢Angeles♢
+|    |    |    |    |    [59:59] <Whitespace> = ♢•♢
+|    |    |    |    |    [59:59] <Text> = ♢Herald-Examiner♢
+|    |    |    |    |    [59:59] <XMLTag> = ♢</source>♢
+|    |    |    |    |    + <name> = ♢source♢
+|    |    |    |    [59:60] <Newline> = ♢¶♢
+|    |    |    |    [60:60] <Indenting> = ♢••••••♢
+|    |    |    |    [60:60] <XMLElement>
+|    |    |    |    + <name> = ♢title♢
+|    |    |    |    + <cleaned> = ♢Joe•Bob•Goes•to•the•Drive-In♢
+|    |    |    |    |    [60:60] <XMLTag> = ♢<title>♢
+|    |    |    |    |    + <name> = ♢title♢
+|    |    |    |    |    [60:60] <Text> = ♢Joe♢
+|    |    |    |    |    [60:60] <Whitespace> = ♢•♢
+|    |    |    |    |    [60:60] <Text> = ♢Bob♢
+|    |    |    |    |    [60:60] <Whitespace> = ♢•♢
+|    |    |    |    |    [60:60] <Text> = ♢Goes♢
+|    |    |    |    |    [60:60] <Whitespace> = ♢•♢
+|    |    |    |    |    [60:60] <Text> = ♢to♢
+|    |    |    |    |    [60:60] <Whitespace> = ♢•♢
+|    |    |    |    |    [60:60] <Text> = ♢the♢
+|    |    |    |    |    [60:60] <Whitespace> = ♢•♢
+|    |    |    |    |    [60:60] <Text> = ♢Drive-In♢
+|    |    |    |    |    [60:60] <XMLTag> = ♢</title>♢
+|    |    |    |    |    + <name> = ♢title♢
+|    |    |    |    [60:61] <Newline> = ♢¶♢
+|    |    |    |    [61:61] <Indenting> = ♢••••♢
+|    |    |    |    [61:61] <XMLTag> = ♢</item>♢
+|    |    |    |    + <name> = ♢item♢
+|    |    |    [61:62] <Newline> = ♢¶♢
+|    |    |    [62:62] <Indenting> = ♢••••♢
+|    |    |    [62:65] <XMLElement>
+|    |    |    + <name> = ♢item♢
+|    |    |    + <cleaned> = ♢¶••••••¶••••••¶••••♢
+|    |    |    |    [62:62] <XMLTag> = ♢<item>♢
+|    |    |    |    + <name> = ♢item♢
+|    |    |    |    [62:63] <Newline> = ♢¶♢
+|    |    |    |    [63:63] <Indenting> = ♢••••••♢
+|    |    |    |    [63:63] <XMLElement>
+|    |    |    |    + <name> = ♢description♢
+|    |    |    |    + <cleaned> = ♢I'm•headed•for•France.•I•wasn't•gonna•go•this•year,•but•then•last•week•<a•href="http://www.imdb.com/title/tt0086525/">Valley•Girl</a>•came•out•and•I•said•to•myself,•Joe•Bob,•you•gotta•get•out•of•the•country•for•a•while.♢
+|    |    |    |    |    [63:63] <XMLTag> = ♢<description>♢
+|    |    |    |    |    + <name> = ♢description♢
+|    |    |    |    |    [63:63] <Text> = ♢I'm♢
+|    |    |    |    |    [63:63] <Whitespace> = ♢•♢
+|    |    |    |    |    [63:63] <Text> = ♢headed♢
+|    |    |    |    |    [63:63] <Whitespace> = ♢•♢
+|    |    |    |    |    [63:63] <Text> = ♢for♢
+|    |    |    |    |    [63:63] <Whitespace> = ♢•♢
+|    |    |    |    |    [63:63] <Text> = ♢France.♢
+|    |    |    |    |    [63:63] <Whitespace> = ♢•♢
+|    |    |    |    |    [63:63] <Text> = ♢I♢
+|    |    |    |    |    [63:63] <Whitespace> = ♢•♢
+|    |    |    |    |    [63:63] <Text> = ♢wasn't♢
+|    |    |    |    |    [63:63] <Whitespace> = ♢•♢
+|    |    |    |    |    [63:63] <Text> = ♢gonna♢
+|    |    |    |    |    [63:63] <Whitespace> = ♢•♢
+|    |    |    |    |    [63:63] <Text> = ♢go♢
+|    |    |    |    |    [63:63] <Whitespace> = ♢•♢
+|    |    |    |    |    [63:63] <Text> = ♢this♢
+|    |    |    |    |    [63:63] <Whitespace> = ♢•♢
+|    |    |    |    |    [63:63] <Text> = ♢year,♢
+|    |    |    |    |    [63:63] <Whitespace> = ♢•♢
+|    |    |    |    |    [63:63] <Text> = ♢but♢
+|    |    |    |    |    [63:63] <Whitespace> = ♢•♢
+|    |    |    |    |    [63:63] <Text> = ♢then♢
+|    |    |    |    |    [63:63] <Whitespace> = ♢•♢
+|    |    |    |    |    [63:63] <Text> = ♢last♢
+|    |    |    |    |    [63:63] <Whitespace> = ♢•♢
+|    |    |    |    |    [63:63] <Text> = ♢week♢
+|    |    |    |    |    [63:63] <Whitespace> = ♢•♢
+|    |    |    |    |    [63:63] <XMLEntity> = ♢&lt;♢
+|    |    |    |    |    + <cleaned> = ♢<♢
+|    |    |    |    |    [63:63] <Text> = ♢a♢
+|    |    |    |    |    [63:63] <Whitespace> = ♢•♢
+|    |    |    |    |    [63:63] <Text> = ♢href="http://www.imdb.com/title/tt0086525/"♢
+|    |    |    |    |    [63:63] <XMLEntity> = ♢&gt;♢
+|    |    |    |    |    + <cleaned> = ♢>♢
+|    |    |    |    |    [63:63] <Text> = ♢Valley♢
+|    |    |    |    |    [63:63] <Whitespace> = ♢•♢
+|    |    |    |    |    [63:63] <Text> = ♢Girl♢
+|    |    |    |    |    [63:63] <XMLEntity> = ♢&lt;♢
+|    |    |    |    |    + <cleaned> = ♢<♢
+|    |    |    |    |    [63:63] <Text> = ♢/a♢
+|    |    |    |    |    [63:63] <XMLEntity> = ♢&gt;♢
+|    |    |    |    |    + <cleaned> = ♢>♢
+|    |    |    |    |    [63:63] <Whitespace> = ♢•♢
+|    |    |    |    |    [63:63] <Text> = ♢came♢
+|    |    |    |    |    [63:63] <Whitespace> = ♢•♢
+|    |    |    |    |    [63:63] <Text> = ♢out♢
+|    |    |    |    |    [63:63] <Whitespace> = ♢•♢
+|    |    |    |    |    [63:63] <Text> = ♢and♢
+|    |    |    |    |    [63:63] <Whitespace> = ♢•♢
+|    |    |    |    |    [63:63] <Text> = ♢I♢
+|    |    |    |    |    [63:63] <Whitespace> = ♢•♢
+|    |    |    |    |    [63:63] <Text> = ♢said♢
+|    |    |    |    |    [63:63] <Whitespace> = ♢•♢
+|    |    |    |    |    [63:63] <Text> = ♢to♢
+|    |    |    |    |    [63:63] <Whitespace> = ♢•♢
+|    |    |    |    |    [63:63] <Text> = ♢myself,♢
+|    |    |    |    |    [63:63] <Whitespace> = ♢•♢
+|    |    |    |    |    [63:63] <Text> = ♢Joe♢
+|    |    |    |    |    [63:63] <Whitespace> = ♢•♢
+|    |    |    |    |    [63:63] <Text> = ♢Bob,♢
+|    |    |    |    |    [63:63] <Whitespace> = ♢•♢
+|    |    |    |    |    [63:63] <Text> = ♢you♢
+|    |    |    |    |    [63:63] <Whitespace> = ♢•♢
+|    |    |    |    |    [63:63] <Text> = ♢gotta♢
+|    |    |    |    |    [63:63] <Whitespace> = ♢•♢
+|    |    |    |    |    [63:63] <Text> = ♢get♢
+|    |    |    |    |    [63:63] <Whitespace> = ♢•♢
+|    |    |    |    |    [63:63] <Text> = ♢out♢
+|    |    |    |    |    [63:63] <Whitespace> = ♢•♢
+|    |    |    |    |    [63:63] <Text> = ♢of♢
+|    |    |    |    |    [63:63] <Whitespace> = ♢•♢
+|    |    |    |    |    [63:63] <Text> = ♢the♢
+|    |    |    |    |    [63:63] <Whitespace> = ♢•♢
+|    |    |    |    |    [63:63] <Text> = ♢country♢
+|    |    |    |    |    [63:63] <Whitespace> = ♢•♢
+|    |    |    |    |    [63:63] <Text> = ♢for♢
+|    |    |    |    |    [63:63] <Whitespace> = ♢•♢
+|    |    |    |    |    [63:63] <Text> = ♢a♢
+|    |    |    |    |    [63:63] <Whitespace> = ♢•♢
+|    |    |    |    |    [63:63] <Text> = ♢while.♢
+|    |    |    |    |    [63:63] <XMLTag> = ♢</description>♢
+|    |    |    |    |    + <name> = ♢description♢
+|    |    |    |    [63:64] <Newline> = ♢¶♢
+|    |    |    |    [64:64] <Indenting> = ♢••••••♢
+|    |    |    |    [64:64] <XMLElement>
+|    |    |    |    + <name> = ♢guid♢
+|    |    |    |    + <cleaned> = ♢tag:dallas.example.com,4131:news♢
+|    |    |    |    |    [64:64] <XMLTag> = ♢<guid•isPermaLink="false">♢
+|    |    |    |    |    + <name> = ♢guid♢
+|    |    |    |    |    + ♢isPermaLink♢ = ♢false♢
+|    |    |    |    |    [64:64] <Text> = ♢tag:dallas.example.com,4131:news♢
+|    |    |    |    |    [64:64] <XMLTag> = ♢</guid>♢
+|    |    |    |    |    + <name> = ♢guid♢
+|    |    |    |    [64:65] <Newline> = ♢¶♢
+|    |    |    |    [65:65] <Indenting> = ♢••••♢
+|    |    |    |    [65:65] <XMLTag> = ♢</item>♢
+|    |    |    |    + <name> = ♢item♢
+|    |    |    [65:66] <Newline> = ♢¶♢
+|    |    |    [66:66] <Indenting> = ♢••••♢
+|    |    |    [66:69] <XMLElement>
+|    |    |    + <name> = ♢item♢
+|    |    |    + <cleaned> = ♢¶••••••••••••¶••••••¶••••♢
+|    |    |    |    [66:66] <XMLTag> = ♢<item>♢
+|    |    |    |    + <name> = ♢item♢
+|    |    |    |    [66:67] <Newline> = ♢¶♢
+|    |    |    |    [67:67] <Indenting> = ♢••••••♢
+|    |    |    |    [67:67] <XMLElement>
+|    |    |    |    + <name> = ♢description♢
+|    |    |    |    + <cleaned> = ♢♢
+|    |    |    |    |    [67:67] <XMLTag> = ♢<description>♢
+|    |    |    |    |    + <name> = ♢description♢
+|    |    |    |    |    [67:67] <XMLCDATA> = ♢<![CDATA[I'm•headed•for•France.•I•wasn't•gonna•go•this•year,•but•then•last•week•<a•href="http://www.imdb.com/title/tt0086525/">Valley•Girl</a>•came•out•and•I•said•to•myself,•Joe•Bob,•you•gotta•get•out•of•the•country•for•a•while.]]>♢
+|    |    |    |    |    + <cleaned> = ♢I'm•headed•for•France.•I•wasn't•gonna•go•this•year,•but•then•last•week•<a•href="http://www.imdb.com/title/tt0086525/">Valley•Girl</a>•came•out•and•I•said•to•myself,•Joe•Bob,•you•gotta•get•out•of•the•country•for•a•while.♢
+|    |    |    |    |    [67:67] <XMLTag> = ♢</description>♢
+|    |    |    |    |    + <name> = ♢description♢
+|    |    |    |    [67:67] <Whitespace> = ♢••••••♢
+|    |    |    |    [67:68] <Newline> = ♢¶♢
+|    |    |    |    [68:68] <Indenting> = ♢••••••♢
+|    |    |    |    [68:68] <XMLElement>
+|    |    |    |    + <name> = ♢guid♢
+|    |    |    |    + <cleaned> = ♢1983-05-06+lifestyle+joebob+2♢
+|    |    |    |    |    [68:68] <XMLTag> = ♢<guid•isPermaLink="false">♢
+|    |    |    |    |    + <name> = ♢guid♢
+|    |    |    |    |    + ♢isPermaLink♢ = ♢false♢
+|    |    |    |    |    [68:68] <Text> = ♢1983-05-06+lifestyle+joebob+2♢
+|    |    |    |    |    [68:68] <XMLTag> = ♢</guid>♢
+|    |    |    |    |    + <name> = ♢guid♢
+|    |    |    |    [68:69] <Newline> = ♢¶♢
+|    |    |    |    [69:69] <Indenting> = ♢••••♢
+|    |    |    |    [69:69] <XMLTag> = ♢</item>♢
+|    |    |    |    + <name> = ♢item♢
+|    |    |    [69:69] <Whitespace> = ♢••••♢
+|    |    |    [69:70] <Newline> = ♢¶♢
+|    |    |    [70:70] <Indenting> = ♢••♢
+|    |    |    [70:70] <XMLTag> = ♢</channel>♢
+|    |    |    + <name> = ♢channel♢
+|    |    [70:71] <Newline> = ♢¶♢
+|    |    [71:71] <XMLTag> = ♢</rss>♢
+|    |    + <name> = ♢rss♢
+|    [71:72] <Newline> = ♢¶♢
+|    [72:73] <Newline> = ♢¶♢

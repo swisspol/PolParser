@@ -66,7 +66,7 @@
 }
 
 - (NSSet*) fileExtensions {
-    return [NSSet setWithObjects:@"xml", @"plist", nil];
+    return [NSSet setWithObjects:@"xml", @"rss", @"plist", nil];
 }
 
 @end

@@ -60,6 +60,8 @@
 |    |    [5:5] <XMLElement>
 |    |    + <name> = ♢img♢
 |    |    + <cleaned> = ♢♢
+|    |    + ♢src♢ = ♢madonna.jpg♢
+|    |    + ♢alt♢ = ♢Foligno•Madonna,•by•Raphael♢
 |    |    |    [5:5] <XMLTag> = ♢<img•src="madonna.jpg"•alt•=•'Foligno•Madonna,•by•Raphael'•/>♢
 |    |    |    + <name> = ♢img♢
 |    |    |    + ♢src♢ = ♢madonna.jpg♢

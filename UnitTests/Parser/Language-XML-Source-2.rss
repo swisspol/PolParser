@@ -97,6 +97,7 @@
 |    [3:26] <XMLElement>
 |    + <name> = ♢feed♢
 |    + <cleaned> = ♢¶•¶→¶→¶→¶→¶→¶→¶→¶•¶→¶•¶♢
+|    + ♢xmlns♢ = ♢http://www.w3.org/2005/Atom♢
 |    |    [3:3] <XMLTag> = ♢<feed•xmlns="http://www.w3.org/2005/Atom">♢
 |    |    + <name> = ♢feed♢
 |    |    + ♢xmlns♢ = ♢http://www.w3.org/2005/Atom♢
@@ -131,6 +132,8 @@
 |    |    [7:7] <XMLElement>
 |    |    + <name> = ♢link♢
 |    |    + <cleaned> = ♢♢
+|    |    + ♢rel♢ = ♢self♢
+|    |    + ♢href♢ = ♢http://example.org/feed/♢
 |    |    |    [7:7] <XMLTag> = ♢<link•href="http://example.org/feed/"•rel="self"•/>♢
 |    |    |    + <name> = ♢link♢
 |    |    |    + ♢rel♢ = ♢self♢
@@ -140,6 +143,7 @@
 |    |    [8:8] <XMLElement>
 |    |    + <name> = ♢link♢
 |    |    + <cleaned> = ♢♢
+|    |    + ♢href♢ = ♢http://example.org/♢
 |    |    |    [8:8] <XMLTag> = ♢<link•href="http://example.org/"•/>♢
 |    |    |    + <name> = ♢link♢
 |    |    |    + ♢href♢ = ♢http://example.org/♢
@@ -226,6 +230,7 @@
 |    |    |    [18:18] <XMLElement>
 |    |    |    + <name> = ♢link♢
 |    |    |    + <cleaned> = ♢♢
+|    |    |    + ♢href♢ = ♢http://example.org/2003/12/13/atom03♢
 |    |    |    |    [18:18] <XMLTag> = ♢<link•href="http://example.org/2003/12/13/atom03"•/>♢
 |    |    |    |    + <name> = ♢link♢
 |    |    |    |    + ♢href♢ = ♢http://example.org/2003/12/13/atom03♢
@@ -234,6 +239,9 @@
 |    |    |    [19:19] <XMLElement>
 |    |    |    + <name> = ♢link♢
 |    |    |    + <cleaned> = ♢♢
+|    |    |    + ♢rel♢ = ♢alternate♢
+|    |    |    + ♢type♢ = ♢text/html♢
+|    |    |    + ♢href♢ = ♢http://example.org/2003/12/13/atom03.html♢
 |    |    |    |    [19:19] <XMLTag> = ♢<link•rel="alternate"•type="text/html"•href="http://example.org/2003/12/13/atom03.html"/>♢
 |    |    |    |    + <name> = ♢link♢
 |    |    |    |    + ♢rel♢ = ♢alternate♢
@@ -244,6 +252,8 @@
 |    |    |    [20:20] <XMLElement>
 |    |    |    + <name> = ♢link♢
 |    |    |    + <cleaned> = ♢♢
+|    |    |    + ♢rel♢ = ♢edit♢
+|    |    |    + ♢href♢ = ♢http://example.org/2003/12/13/atom03/edit♢
 |    |    |    |    [20:20] <XMLTag> = ♢<link•rel="edit"•href="http://example.org/2003/12/13/atom03/edit"/>♢
 |    |    |    |    + <name> = ♢link♢
 |    |    |    |    + ♢rel♢ = ♢edit♢

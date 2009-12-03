@@ -275,6 +275,7 @@
 |    [1:71] <XMLElement>
 |    + <name> = ♢rss♢
 |    + <cleaned> = ♢¶••¶♢
+|    + ♢version♢ = ♢2.0♢
 |    |    [1:1] <XMLTag> = ♢<rss•version="2.0">♢
 |    |    + <name> = ♢rss♢
 |    |    + ♢version♢ = ♢2.0♢
@@ -344,6 +345,7 @@
 |    |    |    [7:7] <XMLElement>
 |    |    |    + <name> = ♢category♢
 |    |    |    + <cleaned> = ♢Texas♢
+|    |    |    + ♢domain♢ = ♢Newspapers/Regional/United_States♢
 |    |    |    |    [7:7] <XMLTag> = ♢<category•domain="Newspapers/Regional/United_States">♢
 |    |    |    |    + <name> = ♢category♢
 |    |    |    |    + ♢domain♢ = ♢Newspapers/Regional/United_States♢
@@ -355,6 +357,11 @@
 |    |    |    [8:8] <XMLElement>
 |    |    |    + <name> = ♢cloud♢
 |    |    |    + <cleaned> = ♢♢
+|    |    |    + ♢path♢ = ♢/rpc♢
+|    |    |    + ♢registerProcedure♢ = ♢cloud.notify♢
+|    |    |    + ♢protocol♢ = ♢xml-rpc♢
+|    |    |    + ♢domain♢ = ♢server.example.com♢
+|    |    |    + ♢port♢ = ♢80♢
 |    |    |    |    [8:8] <XMLTag> = ♢<cloud•domain="server.example.com"•path="/rpc"•port="80"•protocol="xml-rpc"•registerProcedure="cloud.notify"•/>♢
 |    |    |    |    + <name> = ♢cloud♢
 |    |    |    |    + ♢path♢ = ♢/rpc♢
@@ -1038,6 +1045,9 @@
 |    |    |    |    [55:55] <XMLElement>
 |    |    |    |    + <name> = ♢enclosure♢
 |    |    |    |    + <cleaned> = ♢♢
+|    |    |    |    + ♢type♢ = ♢audio/mpeg♢
+|    |    |    |    + ♢url♢ = ♢http://dallas.example.com/joebob_050689.mp3♢
+|    |    |    |    + ♢length♢ = ♢24986239♢
 |    |    |    |    |    [55:55] <XMLTag> = ♢<enclosure•length="24986239"•type="audio/mpeg"•url="http://dallas.example.com/joebob_050689.mp3"•/>♢
 |    |    |    |    |    + <name> = ♢enclosure♢
 |    |    |    |    |    + ♢type♢ = ♢audio/mpeg♢
@@ -1088,6 +1098,7 @@
 |    |    |    |    [59:59] <XMLElement>
 |    |    |    |    + <name> = ♢source♢
 |    |    |    |    + <cleaned> = ♢Los•Angeles•Herald-Examiner♢
+|    |    |    |    + ♢url♢ = ♢http://la.example.com/rss.xml♢
 |    |    |    |    |    [59:59] <XMLTag> = ♢<source•url="http://la.example.com/rss.xml">♢
 |    |    |    |    |    + <name> = ♢source♢
 |    |    |    |    |    + ♢url♢ = ♢http://la.example.com/rss.xml♢
@@ -1224,6 +1235,7 @@
 |    |    |    |    [64:64] <XMLElement>
 |    |    |    |    + <name> = ♢guid♢
 |    |    |    |    + <cleaned> = ♢tag:dallas.example.com,4131:news♢
+|    |    |    |    + ♢isPermaLink♢ = ♢false♢
 |    |    |    |    |    [64:64] <XMLTag> = ♢<guid•isPermaLink="false">♢
 |    |    |    |    |    + <name> = ♢guid♢
 |    |    |    |    |    + ♢isPermaLink♢ = ♢false♢
@@ -1258,6 +1270,7 @@
 |    |    |    |    [68:68] <XMLElement>
 |    |    |    |    + <name> = ♢guid♢
 |    |    |    |    + <cleaned> = ♢1983-05-06+lifestyle+joebob+2♢
+|    |    |    |    + ♢isPermaLink♢ = ♢false♢
 |    |    |    |    |    [68:68] <XMLTag> = ♢<guid•isPermaLink="false">♢
 |    |    |    |    |    + <name> = ♢guid♢
 |    |    |    |    |    + ♢isPermaLink♢ = ♢false♢

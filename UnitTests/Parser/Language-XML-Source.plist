@@ -89,6 +89,7 @@
 |    [4:24] <XMLElement>
 |    + <name> = ♢plist♢
 |    + <cleaned> = ♢¶¶♢
+|    + ♢version♢ = ♢1.0♢
 |    |    [4:4] <XMLTag> = ♢<plist•version="1.0">♢
 |    |    + <name> = ♢plist♢
 |    |    + ♢version♢ = ♢1.0♢

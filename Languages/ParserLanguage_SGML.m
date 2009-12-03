@@ -260,11 +260,9 @@ SGML_CLASS_IMPLEMENTATION(SGMLCDATA, "<![CDATA[", "]]>")
 	return [(ParserNodeSGMLTag*)self.firstChild name];
 }
 
-/*
 - (NSDictionary*) attributes {
 	return [(ParserNodeSGMLTag*)self.firstChild attributes];
 }
-*/
 
 @end
 

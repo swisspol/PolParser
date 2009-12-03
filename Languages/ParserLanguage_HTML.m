@@ -18,42 +18,292 @@
 
 #import "Parser_Internal.h"
 
-#warning SGML (abstract)
-
-@interface ParserLanguageHTML : ParserLanguage
-@end
-
-@interface ParserNodeHTMLTag ()
-@property(nonatomic, readonly) NSInteger htmlType;
-@property(nonatomic, retain) NSDictionary* attributes;
-@end
-
-@interface ParserNodeHTMLEqual : ParserNodeToken
-@end
-
-@interface ParserNodeHTMLValueSingleQuote : ParserNode
-@end
-
-@interface ParserNodeHTMLValueDoubleQuote : ParserNode
+@interface ParserLanguageHTML : ParserLanguageSGML
 @end
 
 @implementation ParserLanguageHTML
-
-+ (NSArray*) languageDependencies {
-	return [NSArray arrayWithObject:@"Base"];
-}
 
 + (NSArray*) languageNodeClasses {
 	NSMutableArray* classes = [NSMutableArray arrayWithArray:[super languageNodeClasses]];
     
     [classes addObject:[ParserNodeHTMLDOCTYPE class]]; //Must be before ParserNodeHTMLTag
     [classes addObject:[ParserNodeHTMLComment class]]; //Must be before ParserNodeHTMLTag
-    [classes addObject:[ParserNodeHTMLCDATA class]]; //Must be before ParserNodeXMLTag
+    [classes addObject:[ParserNodeHTMLCDATA class]]; //Must be before ParserNodeHTMLTag
     [classes addObject:[ParserNodeHTMLTag class]];
-    
+    [classes addObject:[ParserNodeHTMLEntity class]];
     [classes addObject:[ParserNodeHTMLElement class]];
     
     return classes;
+}
+
++ (NSString*) stringWithReplacedEntities:(NSString*)string {
+	static NSDictionary* entities = nil;
+    if(entities == nil) {
+    	entities = [[NSDictionary alloc] initWithObjectsAndKeys:
+        	@"&quot;", @"\x22",
+            @"&amp;", @"\x26",
+            @"&apos;", @"\x27",
+            @"&lt;", @"\x3C",
+            @"&gt;", @"\x3E",
+            
+            @"&nbsp;", @"\u00A0",
+            @"&iexcl;", @"\u00A1",
+            @"&cent;", @"\u00A2",
+            @"&pound;", @"\u00A3",
+            @"&curren;", @"\u00A4",
+            @"&yen;", @"\u00A5",
+            @"&brvbar;", @"\u00A6",
+            @"&sect;", @"\u00A7",
+            @"&uml;", @"\u00A8",
+            @"&copy;", @"\u00A9",
+            @"&ordf;", @"\u00AA",
+            @"&laquo;", @"\u00AB",
+            @"&not;", @"\u00AC",
+            @"&shy;", @"\u00AD",
+            @"&reg;", @"\u00AE",
+            @"&macr;", @"\u00AF",
+            @"&deg;", @"\u00B0",
+            @"&plusmn;", @"\u00B1",
+            @"&sup2;", @"\u00B2",
+            @"&sup3;", @"\u00B3",
+            @"&acute;", @"\u00B4",
+            @"&micro;", @"\u00B5",
+            @"&para;", @"\u00B6",
+            @"&middot;", @"\u00B7",
+            @"&cedil;", @"\u00B8",
+            @"&sup1;", @"\u00B9",
+            @"&ordm;", @"\u00BA",
+            @"&raquo;", @"\u00BB",
+            @"&frac14;", @"\u00BC",
+            @"&frac12;", @"\u00BD",
+            @"&frac34;", @"\u00BE",
+            @"&iquest;", @"\u00BF",
+            @"&Agrave;", @"\u00C0",
+            @"&Aacute;", @"\u00C1",
+            @"&Acirc;", @"\u00C2",
+            @"&Atilde;", @"\u00C3",
+            @"&Auml;", @"\u00C4",
+            @"&Aring;", @"\u00C5",
+            @"&AElig;", @"\u00C6",
+            @"&Ccedil;", @"\u00C7",
+            @"&Egrave;", @"\u00C8",
+            @"&Eacute;", @"\u00C9",
+            @"&Ecirc;", @"\u00CA",
+            @"&Euml;", @"\u00CB",
+            @"&Igrave;", @"\u00CC",
+            @"&Iacute;", @"\u00CD",
+            @"&Icirc;", @"\u00CE",
+            @"&Iuml;", @"\u00CF",
+            @"&ETH;", @"\u00D0",
+            @"&Ntilde;", @"\u00D1",
+            @"&Ograve;", @"\u00D2",
+            @"&Oacute;", @"\u00D3",
+            @"&Ocirc;", @"\u00D4",
+            @"&Otilde;", @"\u00D5",
+            @"&Ouml;", @"\u00D6",
+            @"&times;", @"\u00D7",
+            @"&Oslash;", @"\u00D8",
+            @"&Ugrave;", @"\u00D9",
+            @"&Uacute;", @"\u00DA",
+            @"&Ucirc;", @"\u00DB",
+            @"&Uuml;", @"\u00DC",
+            @"&Yacute;", @"\u00DD",
+            @"&THORN;", @"\u00DE",
+            @"&szlig;", @"\u00DF",
+            @"&agrave;", @"\u00E0",
+            @"&aacute;", @"\u00E1",
+            @"&acirc;", @"\u00E2",
+            @"&atilde;", @"\u00E3",
+            @"&auml;", @"\u00E4",
+            @"&aring;", @"\u00E5",
+            @"&aelig;", @"\u00E6",
+            @"&ccedil;", @"\u00E7",
+            @"&egrave;", @"\u00E8",
+            @"&eacute;", @"\u00E9",
+            @"&ecirc;", @"\u00EA",
+            @"&euml;", @"\u00EB",
+            @"&igrave;", @"\u00EC",
+            @"&iacute;", @"\u00ED",
+            @"&icirc;", @"\u00EE",
+            @"&iuml;", @"\u00EF",
+            @"&eth;", @"\u00F0",
+            @"&ntilde;", @"\u00F1",
+            @"&ograve;", @"\u00F2",
+            @"&oacute;", @"\u00F3",
+            @"&ocirc;", @"\u00F4",
+            @"&otilde;", @"\u00F5",
+            @"&ouml;", @"\u00F6",
+            @"&divide;", @"\u00F7",
+            @"&oslash;", @"\u00F8",
+            @"&ugrave;", @"\u00F9",
+            @"&uacute;", @"\u00FA",
+            @"&ucirc;", @"\u00FB",
+            @"&uuml;", @"\u00FC",
+            @"&yacute;", @"\u00FD",
+            @"&thorn;", @"\u00FE",
+            @"&yuml;", @"\u00FF",
+            @"&OElig;", @"\u0152",
+            @"&oelig;", @"\u0153",
+            @"&Scaron;", @"\u0160",
+            @"&scaron;", @"\u0161",
+            @"&Yuml;", @"\u0178",
+            @"&fnof;", @"\u0192",
+            @"&circ;", @"\u02C6",
+            @"&tilde;", @"\u02DC",
+            @"&Alpha;", @"\u0391",
+            @"&Beta;", @"\u0392",
+            @"&Gamma;", @"\u0393",
+            @"&Delta;", @"\u0394",
+            @"&Epsilon;", @"\u0395",
+            @"&Zeta;", @"\u0396",
+            @"&Eta;", @"\u0397",
+            @"&Theta;", @"\u0398",
+            @"&Iota;", @"\u0399",
+            @"&Kappa;", @"\u039A",
+            @"&Lambda;", @"\u039B",
+            @"&Mu;", @"\u039C",
+            @"&Nu;", @"\u039D",
+            @"&Xi;", @"\u039E",
+            @"&Omicron;", @"\u039F",
+            @"&Pi;", @"\u03A0",
+            @"&Rho;", @"\u03A1",
+            @"&Sigma;", @"\u03A3",
+            @"&Tau;", @"\u03A4",
+            @"&Upsilon;", @"\u03A5",
+            @"&Phi;", @"\u03A6",
+            @"&Chi;", @"\u03A7",
+            @"&Psi;", @"\u03A8",
+            @"&Omega;", @"\u03A9",
+            @"&alpha;", @"\u03B1",
+            @"&beta;", @"\u03B2",
+            @"&gamma;", @"\u03B3",
+            @"&delta;", @"\u03B4",
+            @"&epsilon;", @"\u03B5",
+            @"&zeta;", @"\u03B6",
+            @"&eta;", @"\u03B7",
+            @"&theta;", @"\u03B8",
+            @"&iota;", @"\u03B9",
+            @"&kappa;", @"\u03BA",
+            @"&lambda;", @"\u03BB",
+            @"&mu;", @"\u03BC",
+            @"&nu;", @"\u03BD",
+            @"&xi;", @"\u03BE",
+            @"&omicron;", @"\u03BF",
+            @"&pi;", @"\u03C0",
+            @"&rho;", @"\u03C1",
+            @"&sigmaf;", @"\u03C2",
+            @"&sigma;", @"\u03C3",
+            @"&tau;", @"\u03C4",
+            @"&upsilon;", @"\u03C5",
+            @"&phi;", @"\u03C6",
+            @"&chi;", @"\u03C7",
+            @"&psi;", @"\u03C8",
+            @"&omega;", @"\u03C9",
+            @"&thetasym;", @"\u03D1",
+            @"&upsih;", @"\u03D2",
+            @"&piv;", @"\u03D6",
+            @"&ensp;", @"\u2002",
+            @"&emsp;", @"\u2003",
+            @"&thinsp;", @"\u2009",
+            @"&zwnj;", @"\u200C",
+            @"&zwj;", @"\u200D",
+            @"&lrm;", @"\u200E",
+            @"&rlm;", @"\u200F",
+            @"&ndash;", @"\u2013",
+            @"&mdash;", @"\u2014",
+            @"&lsquo;", @"\u2018",
+            @"&rsquo;", @"\u2019",
+            @"&sbquo;", @"\u201A",
+            @"&ldquo;", @"\u201C",
+            @"&rdquo;", @"\u201D",
+            @"&bdquo;", @"\u201E",
+            @"&dagger;", @"\u2020",
+            @"&Dagger;", @"\u2021",
+            @"&bull;", @"\u2022",
+            @"&hellip;", @"\u2026",
+            @"&permil;", @"\u2030",
+            @"&prime;", @"\u2032",
+            @"&Prime;", @"\u2033",
+            @"&lsaquo;", @"\u2039",
+            @"&rsaquo;", @"\u203A",
+            @"&oline;", @"\u203E",
+            @"&frasl;", @"\u2044",
+            @"&euro;", @"\u20AC",
+            @"&image;", @"\u2111",
+            @"&weierp;", @"\u2118",
+            @"&real;", @"\u211C",
+            @"&trade;", @"\u2122",
+            @"&alefsym;", @"\u2135",
+            @"&larr;", @"\u2190",
+            @"&uarr;", @"\u2191",
+            @"&rarr;", @"\u2192",
+            @"&darr;", @"\u2193",
+            @"&harr;", @"\u2194",
+            @"&crarr;", @"\u21B5",
+            @"&lArr;", @"\u21D0",
+            @"&uArr;", @"\u21D1",
+            @"&rArr;", @"\u21D2",
+            @"&dArr;", @"\u21D3",
+            @"&hArr;", @"\u21D4",
+            @"&forall;", @"\u2200",
+            @"&part;", @"\u2202",
+            @"&exist;", @"\u2203",
+            @"&empty;", @"\u2205",
+            @"&nabla;", @"\u2207",
+            @"&isin;", @"\u2208",
+            @"&notin;", @"\u2209",
+            @"&ni;", @"\u220B",
+            @"&prod;", @"\u220F",
+            @"&sum;", @"\u2211",
+            @"&minus;", @"\u2212",
+            @"&lowast;", @"\u2217",
+            @"&radic;", @"\u221A",
+            @"&prop;", @"\u221D",
+            @"&infin;", @"\u221E",
+            @"&ang;", @"\u2220",
+            @"&and;", @"\u2227",
+            @"&or;", @"\u2228",
+            @"&cap;", @"\u2229",
+            @"&cup;", @"\u222A",
+            @"&int;", @"\u222B",
+            @"&there4;", @"\u2234",
+            @"&sim;", @"\u223C",
+            @"&cong;", @"\u2245",
+            @"&asymp;", @"\u2248",
+            @"&ne;", @"\u2260",
+            @"&equiv;", @"\u2261",
+            @"&le;", @"\u2264",
+            @"&ge;", @"\u2265",
+            @"&sub;", @"\u2282",
+            @"&sup;", @"\u2283",
+            @"&nsub;", @"\u2284",
+            @"&sube;", @"\u2286",
+            @"&supe;", @"\u2287",
+            @"&oplus;", @"\u2295",
+            @"&otimes;", @"\u2297",
+            @"&perp;", @"\u22A5",
+            @"&sdot;", @"\u22C5",
+            @"&lceil;", @"\u2308",
+            @"&rceil;", @"\u2309",
+            @"&lfloor;", @"\u230A",
+            @"&rfloor;", @"\u230B",
+            @"&lang;", @"\u2329",
+            @"&rang;", @"\u232A",
+            @"&loz;", @"\u25CA",
+            @"&spades;", @"\u2660",
+            @"&clubs;", @"\u2663",
+            @"&hearts;", @"\u2665",
+            @"&diams;", @"\u2666",
+        nil];
+    }
+    NSMutableString* newString = [NSMutableString stringWithString:string];
+    for(NSString* key in entities)
+    	[newString replaceOccurrencesOfString:[entities objectForKey:key] withString:key options:0 range:NSMakeRange(0, newString.length)];
+    return newString;
+}
+
++ (Class) SGMLElementClass {
+	return [ParserNodeHTMLElement class];
 }
 
 - (NSString*) name {
@@ -64,250 +314,33 @@
     return [NSSet setWithObjects:@"htm", @"html", nil];
 }
 
-static NSString* _StringWithReplacedEntities(NSString* string) {
-#warning FIXME
-	NSMutableString* newString = [NSMutableString stringWithString:string];
-    [newString replaceOccurrencesOfString:@"&lt;" withString:@"<" options:0 range:NSMakeRange(0, newString.length)];
-    [newString replaceOccurrencesOfString:@"&gt;" withString:@">" options:0 range:NSMakeRange(0, newString.length)];
-    [newString replaceOccurrencesOfString:@"&amp;" withString:@"&" options:0 range:NSMakeRange(0, newString.length)];
-    [newString replaceOccurrencesOfString:@"&apos;" withString:@"'" options:0 range:NSMakeRange(0, newString.length)];
-    [newString replaceOccurrencesOfString:@"&quot;" withString:@"\"" options:0 range:NSMakeRange(0, newString.length)];
-    return newString;
-}
-
-- (ParserNode*) performSyntaxAnalysisForNode:(ParserNode*)node textBuffer:(const unichar*)textBuffer topLevelNodeClasses:(NSSet*)nodeClasses {
-	
-    if([node isKindOfClass:[ParserNodeHTMLTag class]]) {
-    	ParserNodeHTMLTag* htmlNode = (ParserNodeHTMLTag*)node;
-        if(htmlNode.htmlType == 0) {
-        	ParserNode* newNode = [[ParserNodeHTMLElement alloc] initWithText:node.text range:NSMakeRange(node.range.location, 0)];
-            [node insertPreviousSibling:newNode];
-            [newNode release];
-            
-            _RearrangeNodesAsChildren(newNode, node);
-        } else if(htmlNode.htmlType < 0) {
-        	ParserNode* endNode = node;
-            while(endNode) {
-                endNode = [endNode findNextSiblingOfClass:[ParserNodeHTMLTag class]];
-                if([endNode.name isEqualToString:htmlNode.name])
-                	break;
-            }
-            if(endNode) {
-            	ParserNode* newNode = [[ParserNodeHTMLElement alloc] initWithText:node.text range:NSMakeRange(node.range.location, 0)];
-                [node insertPreviousSibling:newNode];
-                [newNode release];
-                
-                _RearrangeNodesAsChildren(newNode, endNode);
-            }
-        }
-        
-        if(htmlNode.htmlType <= 0) {
-        	NSRange range = NSMakeRange(htmlNode.range.location + 1 + htmlNode.name.length, htmlNode.range.length - htmlNode.name.length - (htmlNode.htmlType ? 2 : 3));
-            if(range.length > 0) {
-            	static NSMutableArray* classes = nil;
-                if(classes == nil) {
-                    classes = [[NSMutableArray alloc] init];
-                    [classes addObject:NSClassFromString(@"ParserNodeWhitespace")];
-                    [classes addObject:NSClassFromString(@"ParserNodeNewline")];
-                    [classes addObject:[ParserNodeHTMLValueSingleQuote class]];
-                    [classes addObject:[ParserNodeHTMLValueDoubleQuote class]];
-                    [classes addObject:[ParserNodeHTMLEqual class]];
-                }
-                ParserNodeRoot* root = [ParserLanguage newNodeTreeFromText:htmlNode.text range:range textBuffer:textBuffer withNodeClasses:classes];
-                if(root) {
-                    ParserNode* attributeNode = [root.firstChild findNextSiblingIgnoringWhitespaceAndNewline];
-                    NSMutableDictionary* dictionary = nil;
-                    while([attributeNode isKindOfClass:[ParserNodeText class]]) {
-                        NSString* name = attributeNode.content;
-                        attributeNode = [attributeNode findNextSiblingIgnoringWhitespaceAndNewline];
-                        if(attributeNode == nil)
-                        	break;
-                        NSString* value;
-                        if([attributeNode isKindOfClass:[ParserNodeHTMLEqual class]]) {
-                        	attributeNode = [attributeNode findNextSiblingIgnoringWhitespaceAndNewline];
-                            value = attributeNode.cleanContent;
-                            attributeNode = [attributeNode findNextSiblingIgnoringWhitespaceAndNewline];
-                        } else {
-                            value = @""; //FIXME: Is this the best placeholder?
-                        }
-						if(dictionary == nil)
-                        	dictionary = [[NSMutableDictionary alloc] init];
-                        [dictionary setObject:_StringWithReplacedEntities(value) forKey:_StringWithReplacedEntities(name)];
-                    }
-                    htmlNode.attributes = dictionary;
-                    [dictionary release];
-                    [root release];
-                }
-            }
-        }
-    }
-    
-    return node;
-}
-
-@end
-
-#define IMPLEMENTATION(__NAME__, __START__, __END__) \
-@implementation ParserNodeHTML##__NAME__ \
-\
-+ (NSUInteger) isMatchingPrefix:(const unichar*)string maxLength:(NSUInteger)maxLength { \
-    IS_MATCHING_CHARACTERS(__START__, string, maxLength); \
-    return _matching; \
-} \
-\
-+ (NSUInteger) isMatchingSuffix:(const unichar*)string maxLength:(NSUInteger)maxLength { \
-	IS_MATCHING_CHARACTERS(__END__, string, maxLength); \
-    return _matching; \
-} \
-\
-@end
-
-IMPLEMENTATION(DOCTYPE, "<!DOCTYPE", ">")
-IMPLEMENTATION(Comment, "<!--", "-->")
-IMPLEMENTATION(CDATA, "<![CDATA[", "]]>")
-
-#undef IMPLEMENTATION
-
-@implementation ParserNodeHTMLComment (Internal)
-
-- (NSString*) cleanContent {
-	NSRange range = self.range;
-    return _StringWithReplacedEntities([self.text substringWithRange:NSMakeRange(range.location + 4, range.length - 7)]);
-}
-
-@end
-
-@implementation ParserNodeHTMLCDATA (Internal)
-
-- (NSString*) cleanContent {
-	NSRange range = self.range;
-    return [self.text substringWithRange:NSMakeRange(range.location + 9, range.length - 12)];
-}
-
 @end
 
 @implementation ParserNodeHTMLTag
+@end
 
-@synthesize attributes=_attributes;
+@implementation ParserNodeHTMLComment
 
-+ (NSUInteger) isMatchingPrefix:(const unichar*)string maxLength:(NSUInteger)maxLength {
-    if(*string != '<')
-    	return NSNotFound;
-    
-    NSUInteger length = 0;
-    do {
-    	++string;
-        --maxLength;
-        ++length;
-    } while(maxLength && !IsWhitespaceOrNewline(*string) && (*string != '>') && !((maxLength > 1) && (*string == '/') && (*(string + 1) == '>')));
-    return length;
+- (NSString*) cleanContent {
+	NSRange range = self.range;
+    return [ParserLanguageHTML stringWithReplacedEntities:[self.text substringWithRange:NSMakeRange(range.location + 4, range.length - 7)]];
 }
 
-+ (NSUInteger) isMatchingSuffix:(const unichar*)string maxLength:(NSUInteger)maxLength {
-    return *string == '>' ? 1 : ((*string == '/') && (*(string + 1) == '>') ? 2 : NSNotFound);
-}
+@end
 
-- (void) dealloc {
-	[_name release];
-    [_attributes release];
-    
-    [super dealloc];
-}
+@implementation ParserNodeHTMLCDATA
+@end
 
-- (void) _analyze {
-	NSString* content = self.content;
-    
-    if([content hasSuffix:@"/>"]) {
-        _type = 0;
-        content = [content substringWithRange:NSMakeRange(1, content.length - 3)];
-    }
-    else if([content hasPrefix:@"</"]) {
-    	_type = 1;
-        content = [content substringWithRange:NSMakeRange(2, content.length - 3)];
-    }
-    else {
-    	_type = -1;
-        content = [content substringWithRange:NSMakeRange(1, content.length - 2)];
-    }
-    
-    NSRange range = [content rangeOfCharacterFromSet:[NSCharacterSet whitespaceAndNewlineCharacterSet] options:0 range:NSMakeRange(0, content.length)];
-    if(range.location != NSNotFound)
-        _name = [[content substringWithRange:NSMakeRange(0, range.location)] retain];
-    else
-        _name = [content retain];
-}
-
-- (NSInteger) htmlType {
-	if(_name == nil)
-    	[self _analyze];
-    return _type;
-}
-
-- (NSString*) name {
-	if(_name == nil)
-    	[self _analyze];
-    return _name;
-}
-
+@implementation ParserNodeHTMLDOCTYPE
 @end
 
 @implementation ParserNodeHTMLElement
-
-- (NSString*) cleanContent {
-    NSMutableString* string = [NSMutableString string];
-    for(ParserNode* node in self.children) {
-    	if([node isKindOfClass:[ParserNodeHTMLTag class]] || [node isKindOfClass:[ParserNodeHTMLElement class]]
-        	|| [node isKindOfClass:[ParserNodeHTMLComment class]]|| [node isKindOfClass:[ParserNodeHTMLCDATA class]])
-        	continue;
-        [string appendString:node.cleanContent];
-    }
-    return string;
-}
-
-- (NSString*) name {
-	return [(ParserNodeHTMLTag*)self.firstChild name];
-}
-
-/*
-- (NSDictionary*) attributes {
-	return [(ParserNodeHTMLTag*)self.firstChild attributes];
-}
-*/
-
 @end
 
-TOKEN_CLASS_IMPLEMENTATION(HTMLEqual, "=")
-
-@implementation ParserNodeHTMLValueSingleQuote
-
-+ (NSUInteger) isMatchingPrefix:(const unichar*)string maxLength:(NSUInteger)maxLength {
-    return (*string == '\'') ? 1 : NSNotFound;
-}
-
-+ (NSUInteger) isMatchingSuffix:(const unichar*)string maxLength:(NSUInteger)maxLength {
-    return *string == '\'' ? 1 : NSNotFound;
-}
+@implementation ParserNodeHTMLEntity
 
 - (NSString*) cleanContent {
-	NSRange range = self.range;
-    return [self.text substringWithRange:NSMakeRange(range.location + 1, range.length - 2)];
-}
-
-@end
-
-@implementation ParserNodeHTMLValueDoubleQuote
-
-+ (NSUInteger) isMatchingPrefix:(const unichar*)string maxLength:(NSUInteger)maxLength {
-    return (*string == '"') ? 1 : NSNotFound;
-}
-
-+ (NSUInteger) isMatchingSuffix:(const unichar*)string maxLength:(NSUInteger)maxLength {
-    return *string == '"' ? 1 : NSNotFound;
-}
-
-- (NSString*) cleanContent {
-	NSRange range = self.range;
-    return [self.text substringWithRange:NSMakeRange(range.location + 1, range.length - 2)];
+    return [ParserLanguageHTML stringWithReplacedEntities:[self.text substringWithRange:self.range]];
 }
 
 @end

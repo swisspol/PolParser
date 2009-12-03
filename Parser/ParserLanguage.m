@@ -50,7 +50,7 @@ void _RearrangeNodesAsChildren(ParserNode* startNode, ParserNode* endNode) {
 + (id) allocWithZone:(NSZone*)zone
 {
     if(self == [ParserLanguage class])
-        [NSException raise:NSInternalInconsistencyException format:@"ParserNode is an abstract class"];
+        [NSException raise:NSInternalInconsistencyException format:@"ParserLanguage is an abstract class"];
     
     return [super allocWithZone:zone];
 }
@@ -85,17 +85,15 @@ void _RearrangeNodesAsChildren(ParserNode* startNode, ParserNode* endNode) {
 
 + (ParserLanguage*) defaultLanguageForFileExtension:(NSString*)extension {
 	extension = [extension lowercaseString];
-    ParserLanguage* language = nil;
-    for(language in [ParserLanguage allLanguages]) {
+    for(ParserLanguage* language in [ParserLanguage allLanguages]) {
         if([[language fileExtensions] containsObject:extension])
-            break;
+            return language;
     }
-    if(language == nil) {
-        language = [ParserLanguage languageWithName:@"Base"];
-        if(language == nil)
-            [NSException raise:NSInternalInconsistencyException format:@"No language found for file extension \"%@\"", extension];
+    for(ParserLanguage* language in [ParserLanguage allLanguages]) { //FIXME: We pick a random one since this is a set
+        if(![language fileExtensions])
+            return language;
     }
-    return language;
+    return nil;
 }
 
 + (ParserNodeRoot*) parseTextFile:(NSString*)path encoding:(NSStringEncoding)encoding syntaxAnalysis:(BOOL)syntaxAnalysis {

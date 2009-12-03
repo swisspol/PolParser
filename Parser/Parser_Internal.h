@@ -78,6 +78,21 @@
 \
 @end
 
+#define SGML_CLASS_IMPLEMENTATION(__NAME__, __START__, __END__) \
+@implementation ParserNode##__NAME__ \
+\
++ (NSUInteger) isMatchingPrefix:(const unichar*)string maxLength:(NSUInteger)maxLength { \
+    IS_MATCHING_CHARACTERS(__START__, string, maxLength); \
+    return _matching; \
+} \
+\
++ (NSUInteger) isMatchingSuffix:(const unichar*)string maxLength:(NSUInteger)maxLength { \
+	IS_MATCHING_CHARACTERS(__END__, string, maxLength); \
+    return _matching; \
+} \
+\
+@end
+
 static inline BOOL _IsCharacterInSet(const unichar character, const char* set, NSUInteger count) {
 	for(NSUInteger i = 0; i < count; ++i) {
     	if(character == set[i])
@@ -125,6 +140,11 @@ void _RearrangeNodesAsChildren(ParserNode* startNode, ParserNode* endNode);
 @property(nonatomic, readonly) NSSet* topLevelNodeClasses;
 - (ParserNodeRoot*) parseText:(NSString*)text range:(NSRange)range textBuffer:(const unichar*)textBuffer syntaxAnalysis:(BOOL)syntaxAnalysis;
 - (ParserNode*) performSyntaxAnalysisForNode:(ParserNode*)node textBuffer:(const unichar*)textBuffer topLevelNodeClasses:(NSSet*)nodeClasses; //Override point to perform language dependent string tree refactoring after parsing
+@end
+
+@interface ParserLanguageSGML : ParserLanguage
++ (NSString*) stringWithReplacedEntities:(NSString*)string;
++ (Class) SGMLElementClass;
 @end
 
 /* Workaround some compiler warnings */

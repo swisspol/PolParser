@@ -36,11 +36,15 @@
 
 [1:12] <Root>
 |    [1:1] <XMLDeclaration> = ♢<?xml•version="1.0"•encoding='UTF-8'?>♢
+|    + <name> = ♢?xml♢
 |    + ♢version♢ = ♢1.0♢
 |    + ♢encoding♢ = ♢UTF-8♢
 |    [1:2] <Newline> = ♢¶♢
 |    [2:2] <XMLProcessingInstructions> = ♢<?xml-stylesheet•type="text/xsl"•href="formatting.xsl"?>♢
+|    + <name> = ♢?xml-stylesheet♢
 |    + <cleaned> = ♢xml-stylesheet•type="text/xsl"•href="formatting.xsl"♢
+|    + ♢type♢ = ♢text/xsl♢
+|    + ♢href♢ = ♢formatting.xsl♢
 |    [2:3] <Newline> = ♢¶♢
 |    [3:10] <XMLElement>
 |    + <name> = ♢painting♢

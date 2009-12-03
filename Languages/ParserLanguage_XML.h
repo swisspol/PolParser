@@ -16,36 +16,28 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#import "ParserLanguage.h"
+#import "ParserLanguage_SGML.h"
 
-@interface ParserNodeXMLTag : ParserNode {
-@private
-	NSInteger _type;
-    NSString* _name;
-    NSDictionary* _attributes;
-}
+@interface ParserNodeXMLTag : ParserNodeSGMLTag
 @end
 
-@interface ParserNodeXMLDeclaration : ParserNode {
-@private
-	NSDictionary* _attributes;
-}
+@interface ParserNodeXMLComment : ParserNodeSGMLComment
 @end
 
-@interface ParserNodeXMLProcessingInstructions : ParserNode
+@interface ParserNodeXMLCDATA : ParserNodeSGMLCDATA
 @end
 
-@interface ParserNodeXMLDOCTYPE : ParserNode
+@interface ParserNodeXMLDOCTYPE : ParserNodeSGMLDOCTYPE
 @end
 
-@interface ParserNodeXMLComment : ParserNode //Leaf
+@interface ParserNodeXMLEntity : ParserNodeSGMLEntity
 @end
 
-@interface ParserNodeXMLCDATA : ParserNode //Leaf
+@interface ParserNodeXMLElement : ParserNodeSGMLElement
 @end
 
-@interface ParserNodeXMLEntity : ParserNode //Leaf
+@interface ParserNodeXMLDeclaration : ParserNodeSGMLTag //Leaf
 @end
 
-@interface ParserNodeXMLElement : ParserNode
+@interface ParserNodeXMLProcessingInstructions : ParserNodeSGMLTag //Leaf
 @end

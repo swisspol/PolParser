@@ -38,7 +38,7 @@
 ·  ·  <HTMLElement>
 ·  ·  ·  ♢|<body>|♢••♢¶♢|<IMG•src="image"•ismap•alt="target">|♢|</A>|♢¶♢|<H1•id=section1>|♢¶♢
 ·  ·  ·  <HTMLElement>
-·  ·  ·  ·  ♢|<p>|♢You♢•♢have♢•♢reached♢•♢this♢•♢web♢•♢page♢•♢by♢•♢typing♢•♢&quot;example.com&quot;,♢¶♢&quot;example.net&quot;,♢¶♢|••|♢or♢•♢&quot;example.org&quot;♢•♢into♢•♢your♢•♢web♢•♢browser.♢|</p>|♢
+·  ·  ·  ·  ♢|<p>|♢You♢•♢have♢•♢reached♢•♢this♢•♢web♢•♢page♢•♢by♢•♢typing♢•♢|&quot;|♢example.com♢|&quot;|♢,♢¶♢|&quot;|♢example.net♢|&quot;|♢,♢¶♢|••|♢or♢•♢|&quot;|♢example.org♢|&quot;|♢•♢into♢•♢your♢•♢web♢•♢browser.♢|</p>|♢
 ·  ·  ·  ♢¶♢|</h1>|♢¶♢
 ·  ·  ·  <HTMLElement>
 ·  ·  ·  ·  ♢|<p>|♢These♢•♢domain♢•♢names♢•♢are♢•♢reserved♢•♢for♢•♢use♢•♢in♢•♢documentation♢•♢and♢•♢are♢•♢not♢•♢available♢•♢¶♢|••|♢for♢•♢registration.♢•♢See♢•♢
@@ -115,7 +115,7 @@
 |    |    |    [11:12] <Newline> = ♢¶♢
 |    |    |    [12:14] <HTMLElement>
 |    |    |    + <name> = ♢p♢
-|    |    |    + <cleaned> = ♢You•have•reached•this•web•page•by•typing•&quot;example.com&quot;,¶&quot;example.net&quot;,¶••or•&quot;example.org&quot;•into•your•web•browser.♢
+|    |    |    + <cleaned> = ♢You•have•reached•this•web•page•by•typing•"example.com",¶"example.net",¶••or•"example.org"•into•your•web•browser.♢
 |    |    |    |    [12:12] <HTMLTag> = ♢<p>♢
 |    |    |    |    + <name> = ♢p♢
 |    |    |    |    [12:12] <Text> = ♢You♢
@@ -134,14 +134,28 @@
 |    |    |    |    [12:12] <Whitespace> = ♢•♢
 |    |    |    |    [12:12] <Text> = ♢typing♢
 |    |    |    |    [12:12] <Whitespace> = ♢•♢
-|    |    |    |    [12:12] <Text> = ♢&quot;example.com&quot;,♢
+|    |    |    |    [12:12] <HTMLEntity> = ♢&quot;♢
+|    |    |    |    + <cleaned> = ♢"♢
+|    |    |    |    [12:12] <Text> = ♢example.com♢
+|    |    |    |    [12:12] <HTMLEntity> = ♢&quot;♢
+|    |    |    |    + <cleaned> = ♢"♢
+|    |    |    |    [12:12] <Text> = ♢,♢
 |    |    |    |    [12:13] <Newline> = ♢¶♢
-|    |    |    |    [13:13] <Text> = ♢&quot;example.net&quot;,♢
+|    |    |    |    [13:13] <HTMLEntity> = ♢&quot;♢
+|    |    |    |    + <cleaned> = ♢"♢
+|    |    |    |    [13:13] <Text> = ♢example.net♢
+|    |    |    |    [13:13] <HTMLEntity> = ♢&quot;♢
+|    |    |    |    + <cleaned> = ♢"♢
+|    |    |    |    [13:13] <Text> = ♢,♢
 |    |    |    |    [13:14] <Newline> = ♢¶♢
 |    |    |    |    [14:14] <Indenting> = ♢••♢
 |    |    |    |    [14:14] <Text> = ♢or♢
 |    |    |    |    [14:14] <Whitespace> = ♢•♢
-|    |    |    |    [14:14] <Text> = ♢&quot;example.org&quot;♢
+|    |    |    |    [14:14] <HTMLEntity> = ♢&quot;♢
+|    |    |    |    + <cleaned> = ♢"♢
+|    |    |    |    [14:14] <Text> = ♢example.org♢
+|    |    |    |    [14:14] <HTMLEntity> = ♢&quot;♢
+|    |    |    |    + <cleaned> = ♢"♢
 |    |    |    |    [14:14] <Whitespace> = ♢•♢
 |    |    |    |    [14:14] <Text> = ♢into♢
 |    |    |    |    [14:14] <Whitespace> = ♢•♢

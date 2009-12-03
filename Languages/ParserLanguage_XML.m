@@ -18,33 +18,46 @@
 
 #import "Parser_Internal.h"
 
-@interface ParserLanguageXML : ParserLanguage
-@end
-
-@interface ParserNodeXMLTag ()
-@property(nonatomic, readonly) NSInteger xmlType;
+@interface ParserLanguageXML : ParserLanguageSGML
 @end
 
 @implementation ParserLanguageXML
-
-+ (NSArray*) languageDependencies {
-	return [NSArray arrayWithObject:@"Base"];
-}
 
 + (NSArray*) languageNodeClasses {
 	NSMutableArray* classes = [NSMutableArray arrayWithArray:[super languageNodeClasses]];
     
     [classes addObject:[ParserNodeXMLDeclaration class]]; //Must be before ParserNodeXMLProcessingInstructions
     [classes addObject:[ParserNodeXMLProcessingInstructions class]]; //Must be before ParserNodeXMLTag
+    
     [classes addObject:[ParserNodeXMLDOCTYPE class]]; //Must be before ParserNodeXMLTag
     [classes addObject:[ParserNodeXMLComment class]]; //Must be before ParserNodeXMLTag
     [classes addObject:[ParserNodeXMLCDATA class]]; //Must be before ParserNodeXMLTag
     [classes addObject:[ParserNodeXMLTag class]];
     [classes addObject:[ParserNodeXMLEntity class]];
-    
     [classes addObject:[ParserNodeXMLElement class]];
     
     return classes;
+}
+
++ (NSString*) stringWithReplacedEntities:(NSString*)string {
+	static NSDictionary* entities = nil;
+    if(entities == nil) {
+    	entities = [[NSDictionary alloc] initWithObjectsAndKeys:
+        	@"&quot;", @"\x22",
+            @"&amp;", @"\x26",
+            @"&apos;", @"\x27",
+            @"&lt;", @"\x3C",
+            @"&gt;", @"\x3E",
+        nil];
+    }
+    NSMutableString* newString = [NSMutableString stringWithString:string];
+    for(NSString* key in entities)
+    	[newString replaceOccurrencesOfString:[entities objectForKey:key] withString:key options:0 range:NSMakeRange(0, newString.length)];
+    return newString;
+}
+
++ (Class) SGMLElementClass {
+	return [ParserNodeXMLElement class];
 }
 
 - (NSString*) name {
@@ -55,270 +68,45 @@
     return [NSSet setWithObjects:@"xml", @"plist", nil];
 }
 
-- (ParserNode*) performSyntaxAnalysisForNode:(ParserNode*)node textBuffer:(const unichar*)textBuffer topLevelNodeClasses:(NSSet*)nodeClasses {
-	
-    if([node isKindOfClass:[ParserNodeXMLTag class]]) {
-    	ParserNodeXMLTag* xmlNode = (ParserNodeXMLTag*)node;
-        if(xmlNode.xmlType == 0) {
-        	ParserNode* newNode = [[ParserNodeXMLElement alloc] initWithText:node.text range:NSMakeRange(node.range.location, 0)];
-            [node insertPreviousSibling:newNode];
-            [newNode release];
-            
-            _RearrangeNodesAsChildren(newNode, node);
-        } else if(xmlNode.xmlType < 0) {
-        	ParserNode* endNode = node;
-            while(endNode) {
-                endNode = [endNode findNextSiblingOfClass:[ParserNodeXMLTag class]];
-                if([endNode.name isEqualToString:xmlNode.name])
-                	break;
-            }
-            if(endNode) {
-            	ParserNode* newNode = [[ParserNodeXMLElement alloc] initWithText:node.text range:NSMakeRange(node.range.location, 0)];
-                [node insertPreviousSibling:newNode];
-                [newNode release];
-                
-                _RearrangeNodesAsChildren(newNode, endNode);
-            }
-        }
-    }
-    
-    return node;
+@end
+
+@implementation ParserNodeXMLTag
+@end
+
+@implementation ParserNodeXMLComment
+
+- (NSString*) cleanContent {
+	NSRange range = self.range;
+    return [ParserLanguageXML stringWithReplacedEntities:[self.text substringWithRange:NSMakeRange(range.location + 4, range.length - 7)]];
 }
 
 @end
 
-#define IMPLEMENTATION(__NAME__, __START__, __END__) \
-@implementation ParserNodeXML##__NAME__ \
-\
-+ (NSUInteger) isMatchingPrefix:(const unichar*)string maxLength:(NSUInteger)maxLength { \
-    IS_MATCHING_CHARACTERS(__START__, string, maxLength); \
-    return _matching; \
-} \
-\
-+ (NSUInteger) isMatchingSuffix:(const unichar*)string maxLength:(NSUInteger)maxLength { \
-	IS_MATCHING_CHARACTERS(__END__, string, maxLength); \
-    return _matching; \
-} \
-\
+@implementation ParserNodeXMLCDATA
 @end
 
-IMPLEMENTATION(Declaration, "<?xml ", "?>")
-IMPLEMENTATION(ProcessingInstructions, "<?", "?>")
-IMPLEMENTATION(DOCTYPE, "<!DOCTYPE", ">")
-IMPLEMENTATION(Comment, "<!--", "-->")
-IMPLEMENTATION(CDATA, "<![CDATA[", "]]>")
+@implementation ParserNodeXMLDOCTYPE
+@end
 
-#undef IMPLEMENTATION
+@implementation ParserNodeXMLElement
+@end
 
-static NSString* _StringWithReplacedEntities(NSString* string) {
-	NSMutableString* newString = [NSMutableString stringWithString:string];
-    [newString replaceOccurrencesOfString:@"&lt;" withString:@"<" options:0 range:NSMakeRange(0, newString.length)];
-    [newString replaceOccurrencesOfString:@"&gt;" withString:@">" options:0 range:NSMakeRange(0, newString.length)];
-    [newString replaceOccurrencesOfString:@"&amp;" withString:@"&" options:0 range:NSMakeRange(0, newString.length)];
-    [newString replaceOccurrencesOfString:@"&apos;" withString:@"'" options:0 range:NSMakeRange(0, newString.length)];
-    [newString replaceOccurrencesOfString:@"&quot;" withString:@"\"" options:0 range:NSMakeRange(0, newString.length)];
-    return newString;
+@implementation ParserNodeXMLEntity
+
+- (NSString*) cleanContent {
+    return [ParserLanguageXML stringWithReplacedEntities:[self.text substringWithRange:self.range]];
 }
+
+@end
+
+SGML_CLASS_IMPLEMENTATION(XMLDeclaration, "<?xml ", "?>")
+SGML_CLASS_IMPLEMENTATION(XMLProcessingInstructions, "<?", "?>")
 
 @implementation ParserNodeXMLProcessingInstructions (Internal)
 
 - (NSString*) cleanContent {
 	NSRange range = self.range;
-    return _StringWithReplacedEntities([self.text substringWithRange:NSMakeRange(range.location + 2, range.length - 4)]);
+    return [ParserLanguageXML stringWithReplacedEntities:[self.text substringWithRange:NSMakeRange(range.location + 2, range.length - 4)]];
 }
-
-@end
-
-@implementation ParserNodeXMLComment (Internal)
-
-- (NSString*) cleanContent {
-	NSRange range = self.range;
-    return _StringWithReplacedEntities([self.text substringWithRange:NSMakeRange(range.location + 4, range.length - 7)]);
-}
-
-@end
-
-@implementation ParserNodeXMLCDATA (Internal)
-
-- (NSString*) cleanContent {
-	NSRange range = self.range;
-    return [self.text substringWithRange:NSMakeRange(range.location + 9, range.length - 12)];
-}
-
-@end
-
-static NSDictionary* _ParseAttributes(NSString* content) {
-	NSMutableDictionary* attributes = nil;
-   	NSRange range = NSMakeRange(0, content.length);
-    while(range.length) {
-    	NSRange subrange = [content rangeOfCharacterFromSet:[[NSCharacterSet whitespaceAndNewlineCharacterSet] invertedSet] options:0 range:range];
-        if(subrange.location == NSNotFound)
-        	break;
-        range.length -= subrange.location - range.location;
-        range.location = subrange.location;
-        
-        subrange = [content rangeOfString:@"=" options:0 range:range];
-        if(subrange.location == NSNotFound)
-        	break;
-        NSRange aRange = [content rangeOfCharacterFromSet:[NSCharacterSet whitespaceAndNewlineCharacterSet] options:0 range:range];
-        if(aRange.location > subrange.location)
-        	aRange.location = subrange.location;
-        NSString* name = [content substringWithRange:NSMakeRange(range.location, aRange.location - range.location)];
-        range.length -= subrange.location + 1 - range.location;
-        range.location = subrange.location + 1;
-        
-        subrange = [content rangeOfCharacterFromSet:[[NSCharacterSet whitespaceAndNewlineCharacterSet] invertedSet] options:0 range:range];
-        if(subrange.location == NSNotFound)
-        	break;
-        range.length -= subrange.location - range.location;
-        range.location = subrange.location;
-        
-        if([content characterAtIndex:range.location] == '"')
-        	subrange = [content rangeOfString:@"\"" options:0 range:NSMakeRange(range.location + 1, range.length - 1)];
-        else if([content characterAtIndex:range.location] == '\'')
-        	subrange = [content rangeOfString:@"'" options:0 range:NSMakeRange(range.location + 1, range.length - 1)];
-        else
-        	break;
-        if(subrange.location == NSNotFound)
-        	break;
-        NSString* value = [content substringWithRange:NSMakeRange(range.location + 1, subrange.location + 1 - range.location - 2)];
-        range.length -= subrange.location + 1 - range.location;
-        range.location = subrange.location + 1;
-        
-        if(attributes == nil)
-        	attributes = [NSMutableDictionary dictionary];
-        [attributes setObject:_StringWithReplacedEntities(value) forKey:_StringWithReplacedEntities(name)];
-    }
-	return attributes;
-}
-
-@implementation ParserNodeXMLDeclaration (Internal)
-
-- (void) dealloc {
-	[_attributes release];
-    
-    [super dealloc];
-}
-
-- (NSDictionary*) attributes {
-	if(_attributes == nil) {
-    	NSString* content = self.content;
-        _attributes = [_ParseAttributes([content substringWithRange:NSMakeRange(5, content.length - 5 - 2)]) retain];
-    }
-    return _attributes;
-}
-
-@end
-
-@implementation ParserNodeXMLTag
-
-+ (NSUInteger) isMatchingPrefix:(const unichar*)string maxLength:(NSUInteger)maxLength {
-    if(*string != '<')
-    	return NSNotFound;
-    
-    NSUInteger length = 0;
-    do {
-    	++string;
-        --maxLength;
-        ++length;
-    } while(maxLength && !IsWhitespaceOrNewline(*string) && (*string != '>') && !((maxLength > 1) && (*string == '/') && (*(string + 1) == '>')));
-    return length;
-}
-
-+ (NSUInteger) isMatchingSuffix:(const unichar*)string maxLength:(NSUInteger)maxLength {
-    return *string == '>' ? 1 : ((*string == '/') && (*(string + 1) == '>') ? 2 : NSNotFound);
-}
-
-- (void) dealloc {
-	[_name release];
-    [_attributes release];
-    
-    [super dealloc];
-}
-
-- (void) _analyze {
-	NSString* content = self.content;
-    
-    if([content hasSuffix:@"/>"]) {
-        _type = 0;
-        content = [content substringWithRange:NSMakeRange(1, content.length - 3)];
-    }
-    else if([content hasPrefix:@"</"]) {
-    	_type = 1;
-        content = [content substringWithRange:NSMakeRange(2, content.length - 3)];
-    }
-    else {
-    	_type = -1;
-        content = [content substringWithRange:NSMakeRange(1, content.length - 2)];
-    }
-    
-    NSRange range = [content rangeOfCharacterFromSet:[NSCharacterSet whitespaceAndNewlineCharacterSet] options:0 range:NSMakeRange(0, content.length)];
-    if(range.location != NSNotFound)
-        _name = [[content substringWithRange:NSMakeRange(0, range.location)] retain];
-    else
-        _name = [content retain];
-    
-    if(((_type == 0) || (_type < 0)) && (range.location != NSNotFound))
-        _attributes = [_ParseAttributes([content substringFromIndex:range.location]) retain];
-}
-
-- (NSInteger) xmlType {
-	if(_name == nil)
-    	[self _analyze];
-    return _type;
-}
-
-- (NSString*) name {
-	if(_name == nil)
-    	[self _analyze];
-    return _name;
-}
-
-- (NSDictionary*) attributes {
-	if(_name == nil)
-    	[self _analyze];
-    return _attributes;
-}
-
-@end
-
-@implementation ParserNodeXMLEntity
-
-+ (NSUInteger) isMatchingPrefix:(const unichar*)string maxLength:(NSUInteger)maxLength {
-    return *string == '&' ? 1 : NSNotFound;
-}
-
-+ (NSUInteger) isMatchingSuffix:(const unichar*)string maxLength:(NSUInteger)maxLength {
-    return *string == ';' ? 1 : NSNotFound;
-}
-
-- (NSString*) cleanContent {
-    return _StringWithReplacedEntities([self.text substringWithRange:self.range]);
-}
-
-@end
-
-@implementation ParserNodeXMLElement
-
-- (NSString*) cleanContent {
-    NSMutableString* string = [NSMutableString string];
-    for(ParserNode* node in self.children) {
-    	if([node isKindOfClass:[ParserNodeXMLTag class]] || [node isKindOfClass:[ParserNodeXMLElement class]]
-        	|| [node isKindOfClass:[ParserNodeXMLComment class]]|| [node isKindOfClass:[ParserNodeXMLCDATA class]])
-        	continue;
-        [string appendString:node.cleanContent];
-    }
-    return string;
-}
-
-- (NSString*) name {
-	return [(ParserNodeXMLTag*)self.firstChild name];
-}
-
-/*
-- (NSDictionary*) attributes {
-	return [(ParserNodeXMLTag*)self.firstChild attributes];
-}
-*/
 
 @end

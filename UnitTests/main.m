@@ -97,7 +97,7 @@ int main(int argc, const char* argv[]) {
                                 [expected replaceOccurrencesOfString:@"\r" withString:@"\n" options:0 range:NSMakeRange(0, expected.length)];
                                 [expected replaceOccurrencesOfString:@"\n" withString:@"" options:NSAnchoredSearch range:NSMakeRange(0, expected.length)];
                                 [expected replaceOccurrencesOfString:@"\n" withString:@"" options:(NSBackwardsSearch | NSAnchoredSearch) range:NSMakeRange(0, expected.length)];
-                                if(!_ValidateResult([NSString stringWithFormat:@"%@-Compact", [[path lastPathComponent] stringByDeletingPathExtension]], root.compactDescription, expected))
+                                if(!_ValidateResult([NSString stringWithFormat:@"%@-Compact", [path lastPathComponent]], root.compactDescription, expected))
                                     success = NO;
                             }
                             if((parts.count > 2) && [[parts objectAtIndex:2] length]) {
@@ -106,7 +106,7 @@ int main(int argc, const char* argv[]) {
                                 [expected replaceOccurrencesOfString:@"\r" withString:@"\n" options:0 range:NSMakeRange(0, expected.length)];
                                 [expected replaceOccurrencesOfString:@"\n" withString:@"" options:NSAnchoredSearch range:NSMakeRange(0, expected.length)];
                                 [expected replaceOccurrencesOfString:@"\n" withString:@"" options:(NSBackwardsSearch | NSAnchoredSearch) range:NSMakeRange(0, expected.length)];
-                                if(!_ValidateResult([NSString stringWithFormat:@"%@-Detailed", [[path lastPathComponent] stringByDeletingPathExtension]], root.detailedDescription, expected))
+                                if(!_ValidateResult([NSString stringWithFormat:@"%@-Detailed", [path lastPathComponent]], root.detailedDescription, expected))
                                     success = NO;
                             }
                             if(success)

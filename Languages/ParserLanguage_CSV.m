@@ -57,11 +57,13 @@
             endNode = endNode.nextSibling;
         }
         
-        ParserNode* newNode = [[ParserNodeCSVRecord alloc] initWithText:node.text range:NSMakeRange(node.range.location, 0)];
-        [node insertPreviousSibling:newNode];
-        [newNode release];
-        
-        _RearrangeNodesAsChildren(newNode, endNode);
+        if(endNode != node) {
+            ParserNode* newNode = [[ParserNodeCSVRecord alloc] initWithText:node.text range:NSMakeRange(node.range.location, 0)];
+            [node insertPreviousSibling:newNode];
+            [newNode release];
+            
+            _RearrangeNodesAsChildren(newNode, endNode);
+        }
     }
     
     return node;

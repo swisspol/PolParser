@@ -2195,7 +2195,6 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 ·  ·  ·  ·  ·  ♢•♢options♢|:|♢0♢•♢usingBlock♢|:|♢|^|♢
 ·  ·  ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ·  ·  ♢|(|♢id♢•♢paragraphStyle,♢•♢NSRange♢•♢paragraphStyleRange,♢•♢BOOL♢•♢|*|♢stop♢|)|♢
-·  ·  ·  ·  ·  ♢
 ·  ·  ·  ·  ·  <Braces>
 ·  ·  ·  ·  ·  ·  ♢|{|♢¶♢|••••••••|♢NSWritingDirection♢•♢writingDirection♢•♢=♢•♢paragraphStyle♢•♢|?|♢•♢
 ·  ·  ·  ·  ·  ·  <ObjCMethodCall>
@@ -2208,7 +2207,6 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 ·  ·  ·  ·  ·  ·  ·  ♢|[|♢|text|♢•♢enumerateAttribute♢|:|♢NSWritingDirectionAttributeName♢•♢inRange♢|:|♢paragraphStyleRange♢•♢options♢|:|♢0♢•♢usingBlock♢|:|♢|^|♢
 ·  ·  ·  ·  ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ·  ·  ·  ·  ♢|(|♢id♢•♢value,♢•♢NSRange♢•♢attributeRange,♢•♢BOOL♢•♢|*|♢stop♢|)|♢
-·  ·  ·  ·  ·  ·  ·  ♢
 ·  ·  ·  ·  ·  ·  ·  <Braces>
 ·  ·  ·  ·  ·  ·  ·  ·  ♢|{|♢¶♢|••••••••••••|♢
 ·  ·  ·  ·  ·  ·  ·  ·  <ObjCMethodCall>
@@ -3247,7 +3245,6 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 ·  ·  ·  ·  ·  ·  ·  ♢|[|♢|self|♢•♢setFileType♢|:|♢
 ·  ·  ·  ·  ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ·  ·  ·  ·  ♢|(|♢NSString♢•♢|*|♢|)|♢
-·  ·  ·  ·  ·  ·  ·  ♢
 ·  ·  ·  ·  ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ·  ·  ·  ·  ♢|(|♢
 ·  ·  ·  ·  ·  ·  ·  ·  <CConditionalOperator>
@@ -3865,7 +3862,6 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 ·  ·  ·  ·  ♢|{|♢¶♢|••••|♢NSSavePanel♢•♢|*|♢panel♢•♢=♢•♢
 ·  ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ·  ♢|(|♢NSSavePanel♢•♢|*|♢|)|♢
-·  ·  ·  ·  ♢
 ·  ·  ·  ·  <ObjCMethodCall>
 ·  ·  ·  ·  ·  ♢|[|♢|sender|♢•♢window♢|]|♢
 ·  ·  ·  ·  ♢|;|♢¶♢|••••|♢
@@ -4810,7 +4806,6 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ♢|[|♢|self|♢•♢setFileType♢|:|♢
 ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ♢|(|♢NSString♢•♢|*|♢|)|♢
-·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ♢
 ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ♢|(|♢
 ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  <ObjCMethodCall>
@@ -4921,7 +4916,6 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ♢|{|♢¶♢|→→→|♢|//•The•RTFD•is•saved;•we•ignore•error•from•trying•to•delete•the•RTF•file|♢¶♢|→→→|♢
 ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ♢|(|♢|void|♢|)|♢
-·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ♢
 ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  <ObjCMethodCall>
 ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ♢|[|♢
 ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  <ObjCMethodCall>
@@ -5413,7 +5407,6 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ♢|{|♢→♢|//•No•reason•go•backwards•except•to•use•one•variable•instead•of•two|♢¶♢|••••••••••••••••|♢NSStringEncoding♢•♢encoding♢•♢=♢•♢
 ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ♢|(|♢NSStringEncoding♢|)|♢
-·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ♢
 ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  <ObjCMethodCall>
 ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ♢|[|♢
 ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  <ObjCMethodCall>

@@ -52,7 +52,6 @@ int main() { return 2; }
 ·  ·  ·  ·  ·  ♢|return|♢•♢0♢|;|♢
 ·  ·  ·  ·  ♢•♢|}|♢
 ·  ·  ♢¶♢¶♢
-·  ♢
 ·  <CPreprocessorConditionElseif>
 ·  ·  ♢|#elseif•2|♢¶♢¶♢
 ·  ·  <CFunctionDefinition>
@@ -66,7 +65,6 @@ int main() { return 2; }
 ·  ·  ·  ·  ·  ♢|return|♢•♢1♢|;|♢
 ·  ·  ·  ·  ♢•♢|}|♢
 ·  ·  ♢¶♢¶♢
-·  ♢
 ·  <CPreprocessorConditionElse>
 ·  ·  ♢|#else|♢¶♢¶♢
 ·  ·  <CFunctionDefinition>

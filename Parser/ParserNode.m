@@ -387,7 +387,7 @@ static void _AppendChildrenCompactDescription(ParserNode* node, NSMutableString*
             else
             	[string appendFormat:@"\n%@", prefix];
             _AppendChildrenCompactDescription(node, string, prefix);
-            if(node != lastNode)
+            if((node != lastNode) && (node.nextSibling.children == nil))
             	[string appendFormat:@"\n%@%@", prefix, separator];
         } else {
         	if(node == firstNode)

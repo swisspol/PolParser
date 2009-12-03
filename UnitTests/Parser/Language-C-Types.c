@@ -30,7 +30,6 @@ static int foo = sizeof(long);
 ·  ·  ♢|typedef|♢•♢|void|♢•♢
 ·  ·  <Parenthesis>
 ·  ·  ·  ♢|(|♢|*|♢SourceNodeApplierFunction♢|)|♢
-·  ·  ♢
 ·  ·  <Parenthesis>
 ·  ·  ·  ♢|(|♢SourceNode♢|*|♢•♢node,♢•♢|void|♢|*|♢•♢context♢|)|♢
 ·  ·  ♢|;|♢

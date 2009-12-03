@@ -53,7 +53,6 @@ NSDictionary* dictionary = [(NSProcessInfo*)[NSProcessInfo processInfo] environm
 ·  ·  ♢|[|♢
 ·  ·  <Parenthesis>
 ·  ·  ·  ♢|(|♢NSProcessInfo♢|*|♢|)|♢
-·  ·  ♢
 ·  ·  <ObjCMethodCall>
 ·  ·  ·  ♢|[|♢|NSProcessInfo|♢•♢processInfo♢|]|♢
 ·  ·  ♢•♢environment♢|]|♢

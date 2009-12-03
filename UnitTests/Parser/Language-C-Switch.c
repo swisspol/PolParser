@@ -35,7 +35,6 @@ switch (arg) {
 ·  ·  ·  ♢¶♢|••••|♢
 ·  ·  ·  <CFlowCase>
 ·  ·  ·  ·  ♢|case|♢•♢2♢|:|♢¶♢|••••|♢
-·  ·  ·  ♢
 ·  ·  ·  <CFlowCase>
 ·  ·  ·  ·  ♢|case|♢•♢3♢|:|♢¶♢|••••••••|♢
 ·  ·  ·  ·  <CFunctionCall>
@@ -59,7 +58,6 @@ switch (arg) {
 ·  ·  ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ·  ·  ♢|(|♢|"5"|♢|)|♢
 ·  ·  ·  ·  ♢|;|♢¶♢|••••|♢
-·  ·  ·  ♢
 ·  ·  ·  <CFlowDefault>
 ·  ·  ·  ·  ♢|default|♢|:|♢¶♢|••••••••|♢
 ·  ·  ·  ·  <CFunctionCall>

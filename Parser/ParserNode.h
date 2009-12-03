@@ -62,7 +62,8 @@ typedef ParserNode* (*ParserNodeApplierFunction)(ParserNode* node, void* context
 - (void) removeChildAtIndex:(NSUInteger)index;
 - (void) insertPreviousSibling:(ParserNode*)sibling;
 - (void) insertNextSibling:(ParserNode*)sibling;
-- (void) replaceWithNode:(ParserNode*)node; //Replaces self by "node" (passing nil just removes the node from the tree)
+- (void) replaceWithNode:(ParserNode*)node;
+- (void) replaceWithNode:(ParserNode*)node preserveChildren:(BOOL)preserveChildren; //Replaces self by "node" (passing nil just removes the node from the tree)
 
 - (ParserNode*) findPreviousSiblingOfClass:(Class)class;
 - (ParserNode*) findNextSiblingOfClass:(Class)class;

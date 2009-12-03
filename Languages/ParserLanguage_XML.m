@@ -35,6 +35,7 @@
     [classes addObject:[ParserNodeXMLCDATA class]]; //Must be before ParserNodeXMLTag
     [classes addObject:[ParserNodeXMLTag class]];
     [classes addObject:[ParserNodeXMLEntity class]];
+    
     [classes addObject:[ParserNodeXMLElement class]];
     
     return classes;
@@ -66,7 +67,7 @@
 }
 
 - (NSSet*) fileExtensions {
-    return [NSSet setWithObjects:@"xml", @"rss", @"plist", nil];
+    return [NSSet setWithObject:@"xml"];
 }
 
 @end

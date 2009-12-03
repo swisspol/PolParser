@@ -114,7 +114,8 @@ void _RearrangeNodesAsChildren(ParserNode* startNode, ParserNode* endNode) {
 }
 
 - (void) dealloc {
-	[_keywords release];
+	[_languageDependencies release];
+    [_keywords release];
     [_nodeClasses release];
     
 	[super dealloc];
@@ -135,11 +136,18 @@ void _RearrangeNodesAsChildren(ParserNode* startNode, ParserNode* endNode) {
 }
 
 - (NSArray*) allLanguageDependencies {
-	NSMutableArray* array = [NSMutableArray array];
-    for(NSString* name in [[self class] languageDependencies])
-        [array addObject:[ParserLanguage languageWithName:name]];
-    [array addObject:self];
-    return array;
+	if(_languageDependencies == nil) {
+        _languageDependencies = [[NSMutableArray alloc] init];
+        for(NSString* name in [[self class] languageDependencies]) {
+            ParserLanguage* language = [ParserLanguage languageWithName:name];
+            for(language in language.allLanguageDependencies) {
+            	if(![_languageDependencies containsObject:language])
+                	[_languageDependencies addObject:language];
+            }
+        }
+        [_languageDependencies addObject:self];
+    }
+    return _languageDependencies;
 }
 
 - (NSSet*) reservedKeywords {

@@ -75,21 +75,21 @@
 <Root>
 ·  <XMLElement>
 ·  ·  ♢|<rss•version="2.0">|♢¶♢|••|♢
-·  ·  <XMLElement>
+·  ·  <RSSChannel>
 ·  ·  ·  ♢|<channel>|♢¶♢|••••|♢
-·  ·  ·  <XMLElement>
+·  ·  ·  <RSSDescription>
 ·  ·  ·  ·  ♢|<description>|♢Current♢•♢headlines♢•♢from♢•♢the♢•♢Dallas♢•♢Times-Herald♢•♢newspaper♢|</description>|♢
 ·  ·  ·  ♢¶♢|••••|♢
-·  ·  ·  <XMLElement>
+·  ·  ·  <RSSLink>
 ·  ·  ·  ·  ♢|<link>|♢http://dallas.example.com♢|</link>|♢
 ·  ·  ·  ♢¶♢|••••|♢
-·  ·  ·  <XMLElement>
+·  ·  ·  <RSSTitle>
 ·  ·  ·  ·  ♢|<title>|♢Dallas♢•♢Times-Herald♢|</title>|♢
 ·  ·  ·  ♢¶♢|••••|♢
-·  ·  ·  <XMLElement>
+·  ·  ·  <RSSCategory>
 ·  ·  ·  ·  ♢|<category>|♢Media♢|</category>|♢
 ·  ·  ·  ♢¶♢|••••|♢
-·  ·  ·  <XMLElement>
+·  ·  ·  <RSSCategory>
 ·  ·  ·  ·  ♢|<category•domain="Newspapers/Regional/United_States">|♢Texas♢|</category>|♢
 ·  ·  ·  ♢¶♢|••••|♢
 ·  ·  ·  <XMLElement>
@@ -106,16 +106,16 @@
 ·  ·  ·  ♢¶♢|••••|♢
 ·  ·  ·  <XMLElement>
 ·  ·  ·  ·  ♢|<image>|♢¶♢|••••••|♢
-·  ·  ·  ·  <XMLElement>
+·  ·  ·  ·  <RSSLink>
 ·  ·  ·  ·  ·  ♢|<link>|♢http://dallas.example.com♢|</link>|♢
 ·  ·  ·  ·  ♢¶♢|••••••|♢
-·  ·  ·  ·  <XMLElement>
+·  ·  ·  ·  <RSSTitle>
 ·  ·  ·  ·  ·  ♢|<title>|♢Dallas♢•♢Times-Herald♢|</title>|♢
 ·  ·  ·  ·  ♢¶♢|••••••|♢
 ·  ·  ·  ·  <XMLElement>
 ·  ·  ·  ·  ·  ♢|<url>|♢http://dallas.example.com/masthead.gif♢|</url>|♢
 ·  ·  ·  ·  ♢¶♢|••••••|♢
-·  ·  ·  ·  <XMLElement>
+·  ·  ·  ·  <RSSDescription>
 ·  ·  ·  ·  ·  ♢|<description>|♢Read♢•♢the♢•♢Dallas♢•♢Times-Herald♢|</description>|♢
 ·  ·  ·  ·  ♢¶♢|••••••|♢
 ·  ·  ·  ·  <XMLElement>
@@ -125,7 +125,7 @@
 ·  ·  ·  ·  ·  ♢|<width>|♢96♢|</width>|♢
 ·  ·  ·  ·  ♢¶♢|••••|♢|</image>|♢
 ·  ·  ·  ♢¶♢|••••|♢
-·  ·  ·  <XMLElement>
+·  ·  ·  <RSSLanguage>
 ·  ·  ·  ·  ♢|<language>|♢epo♢|</language>|♢
 ·  ·  ·  ♢¶♢|••••|♢
 ·  ·  ·  <XMLElement>
@@ -178,16 +178,16 @@
 ·  ·  ·  ♢¶♢|••••|♢
 ·  ·  ·  <XMLElement>
 ·  ·  ·  ·  ♢|<textInput>|♢¶♢|••••••|♢
-·  ·  ·  ·  <XMLElement>
+·  ·  ·  ·  <RSSDescription>
 ·  ·  ·  ·  ·  ♢|<description>|♢Your♢•♢aggregator♢•♢supports♢•♢the♢•♢textInput♢•♢element.♢•♢What♢•♢software♢•♢are♢•♢you♢•♢using?♢|</description>|♢
 ·  ·  ·  ·  ♢¶♢|••••••|♢
-·  ·  ·  ·  <XMLElement>
+·  ·  ·  ·  <RSSLink>
 ·  ·  ·  ·  ·  ♢|<link>|♢http://www.cadenhead.org/textinput.php♢|</link>|♢
 ·  ·  ·  ·  ♢¶♢|••••••|♢
-·  ·  ·  ·  <XMLElement>
+·  ·  ·  ·  <AtomName>
 ·  ·  ·  ·  ·  ♢|<name>|♢query♢|</name>|♢
 ·  ·  ·  ·  ♢¶♢|••••••|♢
-·  ·  ·  ·  <XMLElement>
+·  ·  ·  ·  <RSSTitle>
 ·  ·  ·  ·  ·  ♢|<title>|♢TextInput♢•♢Inquiry♢|</title>|♢
 ·  ·  ·  ·  ♢¶♢|••••|♢|</textInput>|♢
 ·  ·  ·  ♢¶♢|••••|♢
@@ -197,45 +197,45 @@
 ·  ·  ·  <XMLElement>
 ·  ·  ·  ·  ♢|<webMaster>|♢helpdesk@dallas.example.com♢|</webMaster>|♢
 ·  ·  ·  ♢¶♢|••••|♢
-·  ·  ·  <XMLElement>
+·  ·  ·  <RSSItem>
 ·  ·  ·  ·  ♢|<item>|♢¶♢|••••••|♢
-·  ·  ·  ·  <XMLElement>
+·  ·  ·  ·  <RSSTitle>
 ·  ·  ·  ·  ·  ♢|<title>|♢Seventh♢•♢Heaven!♢•♢Ryan♢•♢Hurls♢•♢Another♢•♢No♢•♢Hitter♢|</title>|♢
 ·  ·  ·  ·  ♢¶♢|••••••|♢
-·  ·  ·  ·  <XMLElement>
+·  ·  ·  ·  <RSSLink>
 ·  ·  ·  ·  ·  ♢|<link>|♢http://dallas.example.com/1991/05/02/nolan.htm♢|</link>|♢
 ·  ·  ·  ·  ♢¶♢|••••••|♢
-·  ·  ·  ·  <XMLElement>
+·  ·  ·  ·  <RSSDescription>
 ·  ·  ·  ·  ·  ♢|<description>|♢Texas♢•♢Rangers♢•♢pitcher♢•♢Nolan♢•♢Ryan♢•♢hurled♢•♢the♢•♢seventh♢•♢no-hitter♢•♢of♢•♢his♢•♢legendary♢•♢career♢•♢on♢•♢Arlington♢•♢Appreciation♢•♢Night,♢•♢defeating♢•♢the♢•♢Toronto♢•♢Blue♢•♢Jays♢•♢3-0.♢•♢The♢•♢44-year-old♢•♢struck♢•♢out♢•♢16♢•♢batters♢•♢before♢•♢a♢•♢crowd♢•♢of♢•♢33,439.♢|</description>|♢
 ·  ·  ·  ·  ♢¶♢|••••••|♢
-·  ·  ·  ·  <XMLElement>
+·  ·  ·  ·  <RSSGuid>
 ·  ·  ·  ·  ·  ♢|<guid>|♢http://dallas.example.com/1991/05/02/nolan.htm♢|</guid>|♢
 ·  ·  ·  ·  ♢••••••♢¶♢|••••|♢|</item>|♢
 ·  ·  ·  ♢¶♢|••••|♢
-·  ·  ·  <XMLElement>
+·  ·  ·  <RSSItem>
 ·  ·  ·  ·  ♢|<item>|♢¶♢|••••••|♢
-·  ·  ·  ·  <XMLElement>
+·  ·  ·  ·  <RSSAuthor>
 ·  ·  ·  ·  ·  ♢|<author>|♢jbb@dallas.example.com♢•♢
 ·  ·  ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ·  ·  ♢|(|♢Joe♢•♢Bob♢•♢Briggs♢|)|♢
 ·  ·  ·  ·  ·  ♢|</author>|♢
 ·  ·  ·  ·  ♢¶♢|••••••|♢
-·  ·  ·  ·  <XMLElement>
+·  ·  ·  ·  <RSSCategory>
 ·  ·  ·  ·  ·  ♢|<category>|♢rec.arts.movies.reviews♢|</category>|♢
 ·  ·  ·  ·  ♢¶♢|••••••|♢
 ·  ·  ·  ·  <XMLElement>
 ·  ·  ·  ·  ·  ♢|<comments>|♢http://dallas.example.com/feedback/1983/06/joebob.htm♢|</comments>|♢
 ·  ·  ·  ·  ♢¶♢|••••••|♢
-·  ·  ·  ·  <XMLElement>
+·  ·  ·  ·  <RSSDescription>
 ·  ·  ·  ·  ·  ♢|<description>|♢I'm♢•♢headed♢•♢for♢•♢France.♢•♢I♢•♢wasn't♢•♢gonna♢•♢go♢•♢this♢•♢year,♢•♢but♢•♢then♢•♢last♢•♢week♢•♢"Valley♢•♢Girl"♢•♢came♢•♢out♢•♢and♢•♢I♢•♢said♢•♢to♢•♢myself,♢•♢Joe♢•♢Bob,♢•♢you♢•♢gotta♢•♢get♢•♢out♢•♢of♢•♢the♢•♢country♢•♢for♢•♢a♢•♢while.♢|</description>|♢
 ·  ·  ·  ·  ♢¶♢|••••••|♢
-·  ·  ·  ·  <XMLElement>
+·  ·  ·  ·  <RSSEnclosure>
 ·  ·  ·  ·  ·  ♢|<enclosure•length="24986239"•type="audio/mpeg"•url="http://dallas.example.com/joebob_050689.mp3"•/>|♢
 ·  ·  ·  ·  ♢¶♢|••••••|♢
-·  ·  ·  ·  <XMLElement>
+·  ·  ·  ·  <RSSGuid>
 ·  ·  ·  ·  ·  ♢|<guid>|♢http://dallas.example.com/1983/05/06/joebob.htm♢|</guid>|♢
 ·  ·  ·  ·  ♢¶♢|••••••|♢
-·  ·  ·  ·  <XMLElement>
+·  ·  ·  ·  <RSSLink>
 ·  ·  ·  ·  ·  ♢|<link>|♢http://dallas.example.com/1983/05/06/joebob.htm♢|</link>|♢
 ·  ·  ·  ·  ♢¶♢|••••••|♢
 ·  ·  ·  ·  <XMLElement>
@@ -244,25 +244,25 @@
 ·  ·  ·  ·  <XMLElement>
 ·  ·  ·  ·  ·  ♢|<source•url="http://la.example.com/rss.xml">|♢Los♢•♢Angeles♢•♢Herald-Examiner♢|</source>|♢
 ·  ·  ·  ·  ♢¶♢|••••••|♢
-·  ·  ·  ·  <XMLElement>
+·  ·  ·  ·  <RSSTitle>
 ·  ·  ·  ·  ·  ♢|<title>|♢Joe♢•♢Bob♢•♢Goes♢•♢to♢•♢the♢•♢Drive-In♢|</title>|♢
 ·  ·  ·  ·  ♢¶♢|••••|♢|</item>|♢
 ·  ·  ·  ♢¶♢|••••|♢
-·  ·  ·  <XMLElement>
+·  ·  ·  <RSSItem>
 ·  ·  ·  ·  ♢|<item>|♢¶♢|••••••|♢
-·  ·  ·  ·  <XMLElement>
+·  ·  ·  ·  <RSSDescription>
 ·  ·  ·  ·  ·  ♢|<description>|♢I'm♢•♢headed♢•♢for♢•♢France.♢•♢I♢•♢wasn't♢•♢gonna♢•♢go♢•♢this♢•♢year,♢•♢but♢•♢then♢•♢last♢•♢week♢•♢|&lt;|♢a♢•♢href="http://www.imdb.com/title/tt0086525/"♢|&gt;|♢Valley♢•♢Girl♢|&lt;|♢/a♢|&gt;|♢•♢came♢•♢out♢•♢and♢•♢I♢•♢said♢•♢to♢•♢myself,♢•♢Joe♢•♢Bob,♢•♢you♢•♢gotta♢•♢get♢•♢out♢•♢of♢•♢the♢•♢country♢•♢for♢•♢a♢•♢while.♢|</description>|♢
 ·  ·  ·  ·  ♢¶♢|••••••|♢
-·  ·  ·  ·  <XMLElement>
+·  ·  ·  ·  <RSSGuid>
 ·  ·  ·  ·  ·  ♢|<guid•isPermaLink="false">|♢tag:dallas.example.com,4131:news♢|</guid>|♢
 ·  ·  ·  ·  ♢¶♢|••••|♢|</item>|♢
 ·  ·  ·  ♢¶♢|••••|♢
-·  ·  ·  <XMLElement>
+·  ·  ·  <RSSItem>
 ·  ·  ·  ·  ♢|<item>|♢¶♢|••••••|♢
-·  ·  ·  ·  <XMLElement>
+·  ·  ·  ·  <RSSDescription>
 ·  ·  ·  ·  ·  ♢|<description>|♢|<![CDATA[I'm•headed•for•France.•I•wasn't•gonna•go•this•year,•but•then•last•week•<a•href="http://www.imdb.com/title/tt0086525/">Valley•Girl</a>•came•out•and•I•said•to•myself,•Joe•Bob,•you•gotta•get•out•of•the•country•for•a•while.]]>|♢|</description>|♢
 ·  ·  ·  ·  ♢••••••♢¶♢|••••••|♢
-·  ·  ·  ·  <XMLElement>
+·  ·  ·  ·  <RSSGuid>
 ·  ·  ·  ·  ·  ♢|<guid•isPermaLink="false">|♢1983-05-06+lifestyle+joebob+2♢|</guid>|♢
 ·  ·  ·  ·  ♢¶♢|••••|♢|</item>|♢
 ·  ·  ·  ♢••••♢¶♢|••|♢|</channel>|♢
@@ -281,14 +281,14 @@
 |    |    + ♢version♢ = ♢2.0♢
 |    |    [1:2] <Newline> = ♢¶♢
 |    |    [2:2] <Indenting> = ♢••♢
-|    |    [2:70] <XMLElement>
+|    |    [2:70] <RSSChannel>
 |    |    + <name> = ♢channel♢
 |    |    + <cleaned> = ♢¶••••¶••••¶••••¶••••¶••••¶••••¶••••¶••••¶••••¶••••¶••••¶••••¶••••¶••••¶••••¶••••¶••••¶••••¶••••¶••••¶••••¶••••¶••••¶••••••••¶••♢
 |    |    |    [2:2] <XMLTag> = ♢<channel>♢
 |    |    |    + <name> = ♢channel♢
 |    |    |    [2:3] <Newline> = ♢¶♢
 |    |    |    [3:3] <Indenting> = ♢••••♢
-|    |    |    [3:3] <XMLElement>
+|    |    |    [3:3] <RSSDescription>
 |    |    |    + <name> = ♢description♢
 |    |    |    + <cleaned> = ♢Current•headlines•from•the•Dallas•Times-Herald•newspaper♢
 |    |    |    |    [3:3] <XMLTag> = ♢<description>♢
@@ -310,7 +310,7 @@
 |    |    |    |    + <name> = ♢description♢
 |    |    |    [3:4] <Newline> = ♢¶♢
 |    |    |    [4:4] <Indenting> = ♢••••♢
-|    |    |    [4:4] <XMLElement>
+|    |    |    [4:4] <RSSLink>
 |    |    |    + <name> = ♢link♢
 |    |    |    + <cleaned> = ♢http://dallas.example.com♢
 |    |    |    |    [4:4] <XMLTag> = ♢<link>♢
@@ -320,7 +320,7 @@
 |    |    |    |    + <name> = ♢link♢
 |    |    |    [4:5] <Newline> = ♢¶♢
 |    |    |    [5:5] <Indenting> = ♢••••♢
-|    |    |    [5:5] <XMLElement>
+|    |    |    [5:5] <RSSTitle>
 |    |    |    + <name> = ♢title♢
 |    |    |    + <cleaned> = ♢Dallas•Times-Herald♢
 |    |    |    |    [5:5] <XMLTag> = ♢<title>♢
@@ -332,7 +332,7 @@
 |    |    |    |    + <name> = ♢title♢
 |    |    |    [5:6] <Newline> = ♢¶♢
 |    |    |    [6:6] <Indenting> = ♢••••♢
-|    |    |    [6:6] <XMLElement>
+|    |    |    [6:6] <RSSCategory>
 |    |    |    + <name> = ♢category♢
 |    |    |    + <cleaned> = ♢Media♢
 |    |    |    |    [6:6] <XMLTag> = ♢<category>♢
@@ -342,7 +342,7 @@
 |    |    |    |    + <name> = ♢category♢
 |    |    |    [6:7] <Newline> = ♢¶♢
 |    |    |    [7:7] <Indenting> = ♢••••♢
-|    |    |    [7:7] <XMLElement>
+|    |    |    [7:7] <RSSCategory>
 |    |    |    + <name> = ♢category♢
 |    |    |    + <cleaned> = ♢Texas♢
 |    |    |    + ♢domain♢ = ♢Newspapers/Regional/United_States♢
@@ -418,7 +418,7 @@
 |    |    |    |    + <name> = ♢image♢
 |    |    |    |    [12:13] <Newline> = ♢¶♢
 |    |    |    |    [13:13] <Indenting> = ♢••••••♢
-|    |    |    |    [13:13] <XMLElement>
+|    |    |    |    [13:13] <RSSLink>
 |    |    |    |    + <name> = ♢link♢
 |    |    |    |    + <cleaned> = ♢http://dallas.example.com♢
 |    |    |    |    |    [13:13] <XMLTag> = ♢<link>♢
@@ -428,7 +428,7 @@
 |    |    |    |    |    + <name> = ♢link♢
 |    |    |    |    [13:14] <Newline> = ♢¶♢
 |    |    |    |    [14:14] <Indenting> = ♢••••••♢
-|    |    |    |    [14:14] <XMLElement>
+|    |    |    |    [14:14] <RSSTitle>
 |    |    |    |    + <name> = ♢title♢
 |    |    |    |    + <cleaned> = ♢Dallas•Times-Herald♢
 |    |    |    |    |    [14:14] <XMLTag> = ♢<title>♢
@@ -450,7 +450,7 @@
 |    |    |    |    |    + <name> = ♢url♢
 |    |    |    |    [15:16] <Newline> = ♢¶♢
 |    |    |    |    [16:16] <Indenting> = ♢••••••♢
-|    |    |    |    [16:16] <XMLElement>
+|    |    |    |    [16:16] <RSSDescription>
 |    |    |    |    + <name> = ♢description♢
 |    |    |    |    + <cleaned> = ♢Read•the•Dallas•Times-Herald♢
 |    |    |    |    |    [16:16] <XMLTag> = ♢<description>♢
@@ -490,7 +490,7 @@
 |    |    |    |    + <name> = ♢image♢
 |    |    |    [19:20] <Newline> = ♢¶♢
 |    |    |    [20:20] <Indenting> = ♢••••♢
-|    |    |    [20:20] <XMLElement>
+|    |    |    [20:20] <RSSLanguage>
 |    |    |    + <name> = ♢language♢
 |    |    |    + <cleaned> = ♢epo♢
 |    |    |    |    [20:20] <XMLTag> = ♢<language>♢
@@ -702,7 +702,7 @@
 |    |    |    |    + <name> = ♢textInput♢
 |    |    |    |    [36:37] <Newline> = ♢¶♢
 |    |    |    |    [37:37] <Indenting> = ♢••••••♢
-|    |    |    |    [37:37] <XMLElement>
+|    |    |    |    [37:37] <RSSDescription>
 |    |    |    |    + <name> = ♢description♢
 |    |    |    |    + <cleaned> = ♢Your•aggregator•supports•the•textInput•element.•What•software•are•you•using?♢
 |    |    |    |    |    [37:37] <XMLTag> = ♢<description>♢
@@ -732,7 +732,7 @@
 |    |    |    |    |    + <name> = ♢description♢
 |    |    |    |    [37:38] <Newline> = ♢¶♢
 |    |    |    |    [38:38] <Indenting> = ♢••••••♢
-|    |    |    |    [38:38] <XMLElement>
+|    |    |    |    [38:38] <RSSLink>
 |    |    |    |    + <name> = ♢link♢
 |    |    |    |    + <cleaned> = ♢http://www.cadenhead.org/textinput.php♢
 |    |    |    |    |    [38:38] <XMLTag> = ♢<link>♢
@@ -742,7 +742,7 @@
 |    |    |    |    |    + <name> = ♢link♢
 |    |    |    |    [38:39] <Newline> = ♢¶♢
 |    |    |    |    [39:39] <Indenting> = ♢••••••♢
-|    |    |    |    [39:39] <XMLElement>
+|    |    |    |    [39:39] <AtomName>
 |    |    |    |    + <name> = ♢name♢
 |    |    |    |    + <cleaned> = ♢query♢
 |    |    |    |    |    [39:39] <XMLTag> = ♢<name>♢
@@ -752,7 +752,7 @@
 |    |    |    |    |    + <name> = ♢name♢
 |    |    |    |    [39:40] <Newline> = ♢¶♢
 |    |    |    |    [40:40] <Indenting> = ♢••••••♢
-|    |    |    |    [40:40] <XMLElement>
+|    |    |    |    [40:40] <RSSTitle>
 |    |    |    |    + <name> = ♢title♢
 |    |    |    |    + <cleaned> = ♢TextInput•Inquiry♢
 |    |    |    |    |    [40:40] <XMLTag> = ♢<title>♢
@@ -788,14 +788,14 @@
 |    |    |    |    + <name> = ♢webMaster♢
 |    |    |    [43:44] <Newline> = ♢¶♢
 |    |    |    [44:44] <Indenting> = ♢••••♢
-|    |    |    [44:49] <XMLElement>
+|    |    |    [44:49] <RSSItem>
 |    |    |    + <name> = ♢item♢
 |    |    |    + <cleaned> = ♢¶••••••¶••••••¶••••••¶••••••••••••¶••••♢
 |    |    |    |    [44:44] <XMLTag> = ♢<item>♢
 |    |    |    |    + <name> = ♢item♢
 |    |    |    |    [44:45] <Newline> = ♢¶♢
 |    |    |    |    [45:45] <Indenting> = ♢••••••♢
-|    |    |    |    [45:45] <XMLElement>
+|    |    |    |    [45:45] <RSSTitle>
 |    |    |    |    + <name> = ♢title♢
 |    |    |    |    + <cleaned> = ♢Seventh•Heaven!•Ryan•Hurls•Another•No•Hitter♢
 |    |    |    |    |    [45:45] <XMLTag> = ♢<title>♢
@@ -817,7 +817,7 @@
 |    |    |    |    |    + <name> = ♢title♢
 |    |    |    |    [45:46] <Newline> = ♢¶♢
 |    |    |    |    [46:46] <Indenting> = ♢••••••♢
-|    |    |    |    [46:46] <XMLElement>
+|    |    |    |    [46:46] <RSSLink>
 |    |    |    |    + <name> = ♢link♢
 |    |    |    |    + <cleaned> = ♢http://dallas.example.com/1991/05/02/nolan.htm♢
 |    |    |    |    |    [46:46] <XMLTag> = ♢<link>♢
@@ -827,7 +827,7 @@
 |    |    |    |    |    + <name> = ♢link♢
 |    |    |    |    [46:47] <Newline> = ♢¶♢
 |    |    |    |    [47:47] <Indenting> = ♢••••••♢
-|    |    |    |    [47:47] <XMLElement>
+|    |    |    |    [47:47] <RSSDescription>
 |    |    |    |    + <name> = ♢description♢
 |    |    |    |    + <cleaned> = ♢Texas•Rangers•pitcher•Nolan•Ryan•hurled•the•seventh•no-hitter•of•his•legendary•career•on•Arlington•Appreciation•Night,•defeating•the•Toronto•Blue•Jays•3-0.•The•44-year-old•struck•out•16•batters•before•a•crowd•of•33,439.♢
 |    |    |    |    |    [47:47] <XMLTag> = ♢<description>♢
@@ -903,7 +903,7 @@
 |    |    |    |    |    + <name> = ♢description♢
 |    |    |    |    [47:48] <Newline> = ♢¶♢
 |    |    |    |    [48:48] <Indenting> = ♢••••••♢
-|    |    |    |    [48:48] <XMLElement>
+|    |    |    |    [48:48] <RSSGuid>
 |    |    |    |    + <name> = ♢guid♢
 |    |    |    |    + <cleaned> = ♢http://dallas.example.com/1991/05/02/nolan.htm♢
 |    |    |    |    |    [48:48] <XMLTag> = ♢<guid>♢
@@ -918,14 +918,14 @@
 |    |    |    |    + <name> = ♢item♢
 |    |    |    [49:50] <Newline> = ♢¶♢
 |    |    |    [50:50] <Indenting> = ♢••••♢
-|    |    |    [50:61] <XMLElement>
+|    |    |    [50:61] <RSSItem>
 |    |    |    + <name> = ♢item♢
 |    |    |    + <cleaned> = ♢¶••••••¶••••••¶••••••¶••••••¶••••••¶••••••¶••••••¶••••••¶••••••¶••••••¶••••♢
 |    |    |    |    [50:50] <XMLTag> = ♢<item>♢
 |    |    |    |    + <name> = ♢item♢
 |    |    |    |    [50:51] <Newline> = ♢¶♢
 |    |    |    |    [51:51] <Indenting> = ♢••••••♢
-|    |    |    |    [51:51] <XMLElement>
+|    |    |    |    [51:51] <RSSAuthor>
 |    |    |    |    + <name> = ♢author♢
 |    |    |    |    + <cleaned> = ♢jbb@dallas.example.com•(Joe•Bob•Briggs)♢
 |    |    |    |    |    [51:51] <XMLTag> = ♢<author>♢
@@ -944,7 +944,7 @@
 |    |    |    |    |    + <name> = ♢author♢
 |    |    |    |    [51:52] <Newline> = ♢¶♢
 |    |    |    |    [52:52] <Indenting> = ♢••••••♢
-|    |    |    |    [52:52] <XMLElement>
+|    |    |    |    [52:52] <RSSCategory>
 |    |    |    |    + <name> = ♢category♢
 |    |    |    |    + <cleaned> = ♢rec.arts.movies.reviews♢
 |    |    |    |    |    [52:52] <XMLTag> = ♢<category>♢
@@ -964,7 +964,7 @@
 |    |    |    |    |    + <name> = ♢comments♢
 |    |    |    |    [53:54] <Newline> = ♢¶♢
 |    |    |    |    [54:54] <Indenting> = ♢••••••♢
-|    |    |    |    [54:54] <XMLElement>
+|    |    |    |    [54:54] <RSSDescription>
 |    |    |    |    + <name> = ♢description♢
 |    |    |    |    + <cleaned> = ♢I'm•headed•for•France.•I•wasn't•gonna•go•this•year,•but•then•last•week•"Valley•Girl"•came•out•and•I•said•to•myself,•Joe•Bob,•you•gotta•get•out•of•the•country•for•a•while.♢
 |    |    |    |    |    [54:54] <XMLTag> = ♢<description>♢
@@ -1042,7 +1042,7 @@
 |    |    |    |    |    + <name> = ♢description♢
 |    |    |    |    [54:55] <Newline> = ♢¶♢
 |    |    |    |    [55:55] <Indenting> = ♢••••••♢
-|    |    |    |    [55:55] <XMLElement>
+|    |    |    |    [55:55] <RSSEnclosure>
 |    |    |    |    + <name> = ♢enclosure♢
 |    |    |    |    + <cleaned> = ♢♢
 |    |    |    |    + ♢type♢ = ♢audio/mpeg♢
@@ -1055,7 +1055,7 @@
 |    |    |    |    |    + ♢length♢ = ♢24986239♢
 |    |    |    |    [55:56] <Newline> = ♢¶♢
 |    |    |    |    [56:56] <Indenting> = ♢••••••♢
-|    |    |    |    [56:56] <XMLElement>
+|    |    |    |    [56:56] <RSSGuid>
 |    |    |    |    + <name> = ♢guid♢
 |    |    |    |    + <cleaned> = ♢http://dallas.example.com/1983/05/06/joebob.htm♢
 |    |    |    |    |    [56:56] <XMLTag> = ♢<guid>♢
@@ -1065,7 +1065,7 @@
 |    |    |    |    |    + <name> = ♢guid♢
 |    |    |    |    [56:57] <Newline> = ♢¶♢
 |    |    |    |    [57:57] <Indenting> = ♢••••••♢
-|    |    |    |    [57:57] <XMLElement>
+|    |    |    |    [57:57] <RSSLink>
 |    |    |    |    + <name> = ♢link♢
 |    |    |    |    + <cleaned> = ♢http://dallas.example.com/1983/05/06/joebob.htm♢
 |    |    |    |    |    [57:57] <XMLTag> = ♢<link>♢
@@ -1111,7 +1111,7 @@
 |    |    |    |    |    + <name> = ♢source♢
 |    |    |    |    [59:60] <Newline> = ♢¶♢
 |    |    |    |    [60:60] <Indenting> = ♢••••••♢
-|    |    |    |    [60:60] <XMLElement>
+|    |    |    |    [60:60] <RSSTitle>
 |    |    |    |    + <name> = ♢title♢
 |    |    |    |    + <cleaned> = ♢Joe•Bob•Goes•to•the•Drive-In♢
 |    |    |    |    |    [60:60] <XMLTag> = ♢<title>♢
@@ -1135,14 +1135,14 @@
 |    |    |    |    + <name> = ♢item♢
 |    |    |    [61:62] <Newline> = ♢¶♢
 |    |    |    [62:62] <Indenting> = ♢••••♢
-|    |    |    [62:65] <XMLElement>
+|    |    |    [62:65] <RSSItem>
 |    |    |    + <name> = ♢item♢
 |    |    |    + <cleaned> = ♢¶••••••¶••••••¶••••♢
 |    |    |    |    [62:62] <XMLTag> = ♢<item>♢
 |    |    |    |    + <name> = ♢item♢
 |    |    |    |    [62:63] <Newline> = ♢¶♢
 |    |    |    |    [63:63] <Indenting> = ♢••••••♢
-|    |    |    |    [63:63] <XMLElement>
+|    |    |    |    [63:63] <RSSDescription>
 |    |    |    |    + <name> = ♢description♢
 |    |    |    |    + <cleaned> = ♢I'm•headed•for•France.•I•wasn't•gonna•go•this•year,•but•then•last•week•<a•href="http://www.imdb.com/title/tt0086525/">Valley•Girl</a>•came•out•and•I•said•to•myself,•Joe•Bob,•you•gotta•get•out•of•the•country•for•a•while.♢
 |    |    |    |    |    [63:63] <XMLTag> = ♢<description>♢
@@ -1232,7 +1232,7 @@
 |    |    |    |    |    + <name> = ♢description♢
 |    |    |    |    [63:64] <Newline> = ♢¶♢
 |    |    |    |    [64:64] <Indenting> = ♢••••••♢
-|    |    |    |    [64:64] <XMLElement>
+|    |    |    |    [64:64] <RSSGuid>
 |    |    |    |    + <name> = ♢guid♢
 |    |    |    |    + <cleaned> = ♢tag:dallas.example.com,4131:news♢
 |    |    |    |    + ♢isPermaLink♢ = ♢false♢
@@ -1248,14 +1248,14 @@
 |    |    |    |    + <name> = ♢item♢
 |    |    |    [65:66] <Newline> = ♢¶♢
 |    |    |    [66:66] <Indenting> = ♢••••♢
-|    |    |    [66:69] <XMLElement>
+|    |    |    [66:69] <RSSItem>
 |    |    |    + <name> = ♢item♢
 |    |    |    + <cleaned> = ♢¶••••••••••••¶••••••¶••••♢
 |    |    |    |    [66:66] <XMLTag> = ♢<item>♢
 |    |    |    |    + <name> = ♢item♢
 |    |    |    |    [66:67] <Newline> = ♢¶♢
 |    |    |    |    [67:67] <Indenting> = ♢••••••♢
-|    |    |    |    [67:67] <XMLElement>
+|    |    |    |    [67:67] <RSSDescription>
 |    |    |    |    + <name> = ♢description♢
 |    |    |    |    + <cleaned> = ♢♢
 |    |    |    |    |    [67:67] <XMLTag> = ♢<description>♢
@@ -1267,7 +1267,7 @@
 |    |    |    |    [67:67] <Whitespace> = ♢••••••♢
 |    |    |    |    [67:68] <Newline> = ♢¶♢
 |    |    |    |    [68:68] <Indenting> = ♢••••••♢
-|    |    |    |    [68:68] <XMLElement>
+|    |    |    |    [68:68] <RSSGuid>
 |    |    |    |    + <name> = ♢guid♢
 |    |    |    |    + <cleaned> = ♢1983-05-06+lifestyle+joebob+2♢
 |    |    |    |    + ♢isPermaLink♢ = ♢false♢

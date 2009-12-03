@@ -27,49 +27,49 @@
 
 <Root>
 ·  ♢|<?xml•version="1.0"•encoding="UTF-8"?>|♢¶♢|<!DOCTYPE•plist•PUBLIC•"-//Apple•Computer//DTD•PLIST•1.0//EN"¶→"http://www.apple.com/DTDs/PropertyList-1.0.dtd">|♢¶♢
-·  <XMLElement>
+·  <PropertyList>
 ·  ·  ♢|<plist•version="1.0">|♢¶♢
-·  ·  <XMLElement>
+·  ·  <PropertyListDictionary>
 ·  ·  ·  ♢|<dict>|♢¶♢
-·  ·  ·  <XMLElement>
+·  ·  ·  <PropertyListKey>
 ·  ·  ·  ·  ♢|<key>|♢Year♢•♢Of♢•♢Birth♢|</key>|♢
 ·  ·  ·  ♢¶♢
-·  ·  ·  <XMLElement>
+·  ·  ·  <PropertyListInteger>
 ·  ·  ·  ·  ♢|<integer>|♢1965♢|</integer>|♢
 ·  ·  ·  ♢¶♢
-·  ·  ·  <XMLElement>
+·  ·  ·  <PropertyListKey>
 ·  ·  ·  ·  ♢|<key>|♢Pets♢•♢Names♢|</key>|♢
 ·  ·  ·  ♢¶♢
-·  ·  ·  <XMLElement>
+·  ·  ·  <PropertyListArray>
 ·  ·  ·  ·  ♢|<array/>|♢
 ·  ·  ·  ♢¶♢
-·  ·  ·  <XMLElement>
+·  ·  ·  <PropertyListKey>
 ·  ·  ·  ·  ♢|<key>|♢Picture♢|</key>|♢
 ·  ·  ·  ♢¶♢
-·  ·  ·  <XMLElement>
+·  ·  ·  <PropertyListData>
 ·  ·  ·  ·  ♢|<data>|♢¶♢|→|♢PEKBpYGlmYFCPA==♢¶♢|</data>|♢
 ·  ·  ·  ♢¶♢
-·  ·  ·  <XMLElement>
+·  ·  ·  <PropertyListKey>
 ·  ·  ·  ·  ♢|<key>|♢City♢•♢of♢•♢Birth♢|</key>|♢
 ·  ·  ·  ♢¶♢
-·  ·  ·  <XMLElement>
+·  ·  ·  <PropertyListString>
 ·  ·  ·  ·  ♢|<string>|♢Springfield♢|</string>|♢
 ·  ·  ·  ♢¶♢
-·  ·  ·  <XMLElement>
+·  ·  ·  <PropertyListKey>
 ·  ·  ·  ·  ♢|<key>|♢Name♢|</key>|♢
 ·  ·  ·  ♢¶♢
-·  ·  ·  <XMLElement>
+·  ·  ·  <PropertyListString>
 ·  ·  ·  ·  ♢|<string>|♢John♢•♢Doe♢|</string>|♢
 ·  ·  ·  ♢¶♢
-·  ·  ·  <XMLElement>
+·  ·  ·  <PropertyListKey>
 ·  ·  ·  ·  ♢|<key>|♢Kids♢•♢Names♢|</key>|♢
 ·  ·  ·  ♢¶♢
-·  ·  ·  <XMLElement>
+·  ·  ·  <PropertyListArray>
 ·  ·  ·  ·  ♢|<array>|♢¶♢|→|♢
-·  ·  ·  ·  <XMLElement>
+·  ·  ·  ·  <PropertyListString>
 ·  ·  ·  ·  ·  ♢|<string>|♢John♢|</string>|♢
 ·  ·  ·  ·  ♢¶♢|→|♢
-·  ·  ·  ·  <XMLElement>
+·  ·  ·  ·  <PropertyListString>
 ·  ·  ·  ·  ·  ♢|<string>|♢Kyra♢|</string>|♢
 ·  ·  ·  ·  ♢¶♢|</array>|♢
 ·  ·  ·  ♢¶♢|</dict>|♢
@@ -86,7 +86,7 @@
 |    [1:2] <Newline> = ♢¶♢
 |    [2:3] <XMLDOCTYPE> = ♢<!DOCTYPE•plist•PUBLIC•"-//Apple•Computer//DTD•PLIST•1.0//EN"¶→"http://www.apple.com/DTDs/PropertyList-1.0.dtd">♢
 |    [3:4] <Newline> = ♢¶♢
-|    [4:24] <XMLElement>
+|    [4:24] <PropertyList>
 |    + <name> = ♢plist♢
 |    + <cleaned> = ♢¶¶♢
 |    + ♢version♢ = ♢1.0♢
@@ -94,13 +94,13 @@
 |    |    + <name> = ♢plist♢
 |    |    + ♢version♢ = ♢1.0♢
 |    |    [4:5] <Newline> = ♢¶♢
-|    |    [5:23] <XMLElement>
+|    |    [5:23] <PropertyListDictionary>
 |    |    + <name> = ♢dict♢
 |    |    + <cleaned> = ♢¶¶¶¶¶¶¶¶¶¶¶¶¶♢
 |    |    |    [5:5] <XMLTag> = ♢<dict>♢
 |    |    |    + <name> = ♢dict♢
 |    |    |    [5:6] <Newline> = ♢¶♢
-|    |    |    [6:6] <XMLElement>
+|    |    |    [6:6] <PropertyListKey>
 |    |    |    + <name> = ♢key♢
 |    |    |    + <cleaned> = ♢Year•Of•Birth♢
 |    |    |    |    [6:6] <XMLTag> = ♢<key>♢
@@ -113,7 +113,7 @@
 |    |    |    |    [6:6] <XMLTag> = ♢</key>♢
 |    |    |    |    + <name> = ♢key♢
 |    |    |    [6:7] <Newline> = ♢¶♢
-|    |    |    [7:7] <XMLElement>
+|    |    |    [7:7] <PropertyListInteger>
 |    |    |    + <name> = ♢integer♢
 |    |    |    + <cleaned> = ♢1965♢
 |    |    |    |    [7:7] <XMLTag> = ♢<integer>♢
@@ -122,7 +122,7 @@
 |    |    |    |    [7:7] <XMLTag> = ♢</integer>♢
 |    |    |    |    + <name> = ♢integer♢
 |    |    |    [7:8] <Newline> = ♢¶♢
-|    |    |    [8:8] <XMLElement>
+|    |    |    [8:8] <PropertyListKey>
 |    |    |    + <name> = ♢key♢
 |    |    |    + <cleaned> = ♢Pets•Names♢
 |    |    |    |    [8:8] <XMLTag> = ♢<key>♢
@@ -133,13 +133,13 @@
 |    |    |    |    [8:8] <XMLTag> = ♢</key>♢
 |    |    |    |    + <name> = ♢key♢
 |    |    |    [8:9] <Newline> = ♢¶♢
-|    |    |    [9:9] <XMLElement>
+|    |    |    [9:9] <PropertyListArray>
 |    |    |    + <name> = ♢array♢
 |    |    |    + <cleaned> = ♢♢
 |    |    |    |    [9:9] <XMLTag> = ♢<array/>♢
 |    |    |    |    + <name> = ♢array♢
 |    |    |    [9:10] <Newline> = ♢¶♢
-|    |    |    [10:10] <XMLElement>
+|    |    |    [10:10] <PropertyListKey>
 |    |    |    + <name> = ♢key♢
 |    |    |    + <cleaned> = ♢Picture♢
 |    |    |    |    [10:10] <XMLTag> = ♢<key>♢
@@ -148,7 +148,7 @@
 |    |    |    |    [10:10] <XMLTag> = ♢</key>♢
 |    |    |    |    + <name> = ♢key♢
 |    |    |    [10:11] <Newline> = ♢¶♢
-|    |    |    [11:13] <XMLElement>
+|    |    |    [11:13] <PropertyListData>
 |    |    |    + <name> = ♢data♢
 |    |    |    + <cleaned> = ♢¶→PEKBpYGlmYFCPA==¶♢
 |    |    |    |    [11:11] <XMLTag> = ♢<data>♢
@@ -160,7 +160,7 @@
 |    |    |    |    [13:13] <XMLTag> = ♢</data>♢
 |    |    |    |    + <name> = ♢data♢
 |    |    |    [13:14] <Newline> = ♢¶♢
-|    |    |    [14:14] <XMLElement>
+|    |    |    [14:14] <PropertyListKey>
 |    |    |    + <name> = ♢key♢
 |    |    |    + <cleaned> = ♢City•of•Birth♢
 |    |    |    |    [14:14] <XMLTag> = ♢<key>♢
@@ -173,7 +173,7 @@
 |    |    |    |    [14:14] <XMLTag> = ♢</key>♢
 |    |    |    |    + <name> = ♢key♢
 |    |    |    [14:15] <Newline> = ♢¶♢
-|    |    |    [15:15] <XMLElement>
+|    |    |    [15:15] <PropertyListString>
 |    |    |    + <name> = ♢string♢
 |    |    |    + <cleaned> = ♢Springfield♢
 |    |    |    |    [15:15] <XMLTag> = ♢<string>♢
@@ -182,7 +182,7 @@
 |    |    |    |    [15:15] <XMLTag> = ♢</string>♢
 |    |    |    |    + <name> = ♢string♢
 |    |    |    [15:16] <Newline> = ♢¶♢
-|    |    |    [16:16] <XMLElement>
+|    |    |    [16:16] <PropertyListKey>
 |    |    |    + <name> = ♢key♢
 |    |    |    + <cleaned> = ♢Name♢
 |    |    |    |    [16:16] <XMLTag> = ♢<key>♢
@@ -191,7 +191,7 @@
 |    |    |    |    [16:16] <XMLTag> = ♢</key>♢
 |    |    |    |    + <name> = ♢key♢
 |    |    |    [16:17] <Newline> = ♢¶♢
-|    |    |    [17:17] <XMLElement>
+|    |    |    [17:17] <PropertyListString>
 |    |    |    + <name> = ♢string♢
 |    |    |    + <cleaned> = ♢John•Doe♢
 |    |    |    |    [17:17] <XMLTag> = ♢<string>♢
@@ -202,7 +202,7 @@
 |    |    |    |    [17:17] <XMLTag> = ♢</string>♢
 |    |    |    |    + <name> = ♢string♢
 |    |    |    [17:18] <Newline> = ♢¶♢
-|    |    |    [18:18] <XMLElement>
+|    |    |    [18:18] <PropertyListKey>
 |    |    |    + <name> = ♢key♢
 |    |    |    + <cleaned> = ♢Kids•Names♢
 |    |    |    |    [18:18] <XMLTag> = ♢<key>♢
@@ -213,14 +213,14 @@
 |    |    |    |    [18:18] <XMLTag> = ♢</key>♢
 |    |    |    |    + <name> = ♢key♢
 |    |    |    [18:19] <Newline> = ♢¶♢
-|    |    |    [19:22] <XMLElement>
+|    |    |    [19:22] <PropertyListArray>
 |    |    |    + <name> = ♢array♢
 |    |    |    + <cleaned> = ♢¶→¶→¶♢
 |    |    |    |    [19:19] <XMLTag> = ♢<array>♢
 |    |    |    |    + <name> = ♢array♢
 |    |    |    |    [19:20] <Newline> = ♢¶♢
 |    |    |    |    [20:20] <Indenting> = ♢→♢
-|    |    |    |    [20:20] <XMLElement>
+|    |    |    |    [20:20] <PropertyListString>
 |    |    |    |    + <name> = ♢string♢
 |    |    |    |    + <cleaned> = ♢John♢
 |    |    |    |    |    [20:20] <XMLTag> = ♢<string>♢
@@ -230,7 +230,7 @@
 |    |    |    |    |    + <name> = ♢string♢
 |    |    |    |    [20:21] <Newline> = ♢¶♢
 |    |    |    |    [21:21] <Indenting> = ♢→♢
-|    |    |    |    [21:21] <XMLElement>
+|    |    |    |    [21:21] <PropertyListString>
 |    |    |    |    + <name> = ♢string♢
 |    |    |    |    + <cleaned> = ♢Kyra♢
 |    |    |    |    |    [21:21] <XMLTag> = ♢<string>♢

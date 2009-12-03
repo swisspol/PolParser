@@ -30,8 +30,8 @@
 		E21AAB9310C0D46C00471B14 /* JavaScriptBindings in CopyFiles */ = {isa = PBXBuildFile; fileRef = E21AAB7810C0D45000471B14 /* JavaScriptBindings */; };
 		E236880210C426FC00F5F923 /* JavaScriptBindings.m in Sources */ = {isa = PBXBuildFile; fileRef = E236880110C426FC00F5F923 /* JavaScriptBindings.m */; };
 		E236880310C426FC00F5F923 /* JavaScriptBindings.m in Sources */ = {isa = PBXBuildFile; fileRef = E236880110C426FC00F5F923 /* JavaScriptBindings.m */; };
-		E236881F10C427E100F5F923 /* SourceNodeBindings.m in Sources */ = {isa = PBXBuildFile; fileRef = E236881E10C427E100F5F923 /* SourceNodeBindings.m */; };
-		E236882010C427E100F5F923 /* SourceNodeBindings.m in Sources */ = {isa = PBXBuildFile; fileRef = E236881E10C427E100F5F923 /* SourceNodeBindings.m */; };
+		E236881F10C427E100F5F923 /* ParserNodeBindings.m in Sources */ = {isa = PBXBuildFile; fileRef = E236881E10C427E100F5F923 /* ParserNodeBindings.m */; };
+		E236882010C427E100F5F923 /* ParserNodeBindings.m in Sources */ = {isa = PBXBuildFile; fileRef = E236881E10C427E100F5F923 /* ParserNodeBindings.m */; };
 		E236882B10C42A9F00F5F923 /* DictionaryBindings.m in Sources */ = {isa = PBXBuildFile; fileRef = E236882A10C42A9F00F5F923 /* DictionaryBindings.m */; };
 		E236882C10C42A9F00F5F923 /* DictionaryBindings.m in Sources */ = {isa = PBXBuildFile; fileRef = E236882A10C42A9F00F5F923 /* DictionaryBindings.m */; };
 		E25057DE10C655E6007D0B9F /* ParserLanguage_SGML.m in Sources */ = {isa = PBXBuildFile; fileRef = E25057DD10C655E6007D0B9F /* ParserLanguage_SGML.m */; };
@@ -43,6 +43,12 @@
 		E250597510C79429007D0B9F /* ParserLanguage_Common.m in Sources */ = {isa = PBXBuildFile; fileRef = E250597410C79429007D0B9F /* ParserLanguage_Common.m */; };
 		E250597610C79429007D0B9F /* ParserLanguage_Common.m in Sources */ = {isa = PBXBuildFile; fileRef = E250597410C79429007D0B9F /* ParserLanguage_Common.m */; };
 		E250597710C79429007D0B9F /* ParserLanguage_Common.m in Sources */ = {isa = PBXBuildFile; fileRef = E250597410C79429007D0B9F /* ParserLanguage_Common.m */; };
+		E2505BE810C7B3F3007D0B9F /* ParserLanguage_RSS.m in Sources */ = {isa = PBXBuildFile; fileRef = E2505BE710C7B3F3007D0B9F /* ParserLanguage_RSS.m */; };
+		E2505BE910C7B3F3007D0B9F /* ParserLanguage_RSS.m in Sources */ = {isa = PBXBuildFile; fileRef = E2505BE710C7B3F3007D0B9F /* ParserLanguage_RSS.m */; };
+		E2505BEA10C7B3F3007D0B9F /* ParserLanguage_RSS.m in Sources */ = {isa = PBXBuildFile; fileRef = E2505BE710C7B3F3007D0B9F /* ParserLanguage_RSS.m */; };
+		E2505BF910C7B4A3007D0B9F /* ParserLanguage_PropertyList.m in Sources */ = {isa = PBXBuildFile; fileRef = E2505BF810C7B4A3007D0B9F /* ParserLanguage_PropertyList.m */; };
+		E2505BFA10C7B4A3007D0B9F /* ParserLanguage_PropertyList.m in Sources */ = {isa = PBXBuildFile; fileRef = E2505BF810C7B4A3007D0B9F /* ParserLanguage_PropertyList.m */; };
+		E2505BFB10C7B4A3007D0B9F /* ParserLanguage_PropertyList.m in Sources */ = {isa = PBXBuildFile; fileRef = E2505BF810C7B4A3007D0B9F /* ParserLanguage_PropertyList.m */; };
 		E2903E3D10C53F5100CE0DD9 /* ParserLanguage_C.m in Sources */ = {isa = PBXBuildFile; fileRef = E2903E2A10C53F5100CE0DD9 /* ParserLanguage_C.m */; };
 		E2903E3E10C53F5100CE0DD9 /* ParserLanguage_CPP.m in Sources */ = {isa = PBXBuildFile; fileRef = E2903E2C10C53F5100CE0DD9 /* ParserLanguage_CPP.m */; };
 		E2903E3F10C53F5100CE0DD9 /* ParserLanguage_HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = E2903E2E10C53F5100CE0DD9 /* ParserLanguage_HTML.m */; };
@@ -124,7 +130,7 @@
 		E21AAB7810C0D45000471B14 /* JavaScriptBindings */ = {isa = PBXFileReference; lastKnownFileType = folder; path = JavaScriptBindings; sourceTree = "<group>"; };
 		E236880110C426FC00F5F923 /* JavaScriptBindings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JavaScriptBindings.m; sourceTree = "<group>"; };
 		E236880C10C4270B00F5F923 /* JavaScriptBindings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JavaScriptBindings.h; sourceTree = "<group>"; };
-		E236881E10C427E100F5F923 /* SourceNodeBindings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SourceNodeBindings.m; sourceTree = "<group>"; };
+		E236881E10C427E100F5F923 /* ParserNodeBindings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParserNodeBindings.m; sourceTree = "<group>"; };
 		E236882A10C42A9F00F5F923 /* DictionaryBindings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DictionaryBindings.m; sourceTree = "<group>"; };
 		E236883710C42BD900F5F923 /* JavaScriptBindings_Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JavaScriptBindings_Internal.h; sourceTree = "<group>"; };
 		E25057DC10C655E6007D0B9F /* ParserLanguage_SGML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParserLanguage_SGML.h; sourceTree = "<group>"; };
@@ -133,6 +139,10 @@
 		E250593810C79162007D0B9F /* ParserLanguage_CSV.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParserLanguage_CSV.m; sourceTree = "<group>"; };
 		E250597310C79429007D0B9F /* ParserLanguage_Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParserLanguage_Common.h; sourceTree = "<group>"; };
 		E250597410C79429007D0B9F /* ParserLanguage_Common.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParserLanguage_Common.m; sourceTree = "<group>"; };
+		E2505BE610C7B3F3007D0B9F /* ParserLanguage_RSS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParserLanguage_RSS.h; sourceTree = "<group>"; };
+		E2505BE710C7B3F3007D0B9F /* ParserLanguage_RSS.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParserLanguage_RSS.m; sourceTree = "<group>"; };
+		E2505BF710C7B4A3007D0B9F /* ParserLanguage_PropertyList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParserLanguage_PropertyList.h; sourceTree = "<group>"; };
+		E2505BF810C7B4A3007D0B9F /* ParserLanguage_PropertyList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParserLanguage_PropertyList.m; sourceTree = "<group>"; };
 		E2903E2910C53F5100CE0DD9 /* ParserLanguage_C.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParserLanguage_C.h; sourceTree = "<group>"; };
 		E2903E2A10C53F5100CE0DD9 /* ParserLanguage_C.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParserLanguage_C.m; sourceTree = "<group>"; };
 		E2903E2B10C53F5100CE0DD9 /* ParserLanguage_CPP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParserLanguage_CPP.h; sourceTree = "<group>"; };
@@ -245,7 +255,7 @@
 				E236883710C42BD900F5F923 /* JavaScriptBindings_Internal.h */,
 				E236880C10C4270B00F5F923 /* JavaScriptBindings.h */,
 				E236880110C426FC00F5F923 /* JavaScriptBindings.m */,
-				E236881E10C427E100F5F923 /* SourceNodeBindings.m */,
+				E236881E10C427E100F5F923 /* ParserNodeBindings.m */,
 				E236882A10C42A9F00F5F923 /* DictionaryBindings.m */,
 			);
 			path = JavaScriptBindings;
@@ -266,6 +276,10 @@
 				E2903E3010C53F5100CE0DD9 /* ParserLanguage_ObjC.m */,
 				E2903E3110C53F5100CE0DD9 /* ParserLanguage_ObjCPP.h */,
 				E2903E3210C53F5100CE0DD9 /* ParserLanguage_ObjCPP.m */,
+				E2505BF710C7B4A3007D0B9F /* ParserLanguage_PropertyList.h */,
+				E2505BF810C7B4A3007D0B9F /* ParserLanguage_PropertyList.m */,
+				E2505BE610C7B3F3007D0B9F /* ParserLanguage_RSS.h */,
+				E2505BE710C7B3F3007D0B9F /* ParserLanguage_RSS.m */,
 				E25057DC10C655E6007D0B9F /* ParserLanguage_SGML.h */,
 				E25057DD10C655E6007D0B9F /* ParserLanguage_SGML.m */,
 				E2903E3310C53F5100CE0DD9 /* ParserLanguage_XML.h */,
@@ -403,7 +417,7 @@
 			files = (
 				E2B637FC10BA540800BF43E7 /* main.m in Sources */,
 				E236880310C426FC00F5F923 /* JavaScriptBindings.m in Sources */,
-				E236881F10C427E100F5F923 /* SourceNodeBindings.m in Sources */,
+				E236881F10C427E100F5F923 /* ParserNodeBindings.m in Sources */,
 				E236882B10C42A9F00F5F923 /* DictionaryBindings.m in Sources */,
 				E2903E4610C53F5100CE0DD9 /* ParserLanguage_C.m in Sources */,
 				E2903E4710C53F5100CE0DD9 /* ParserLanguage_CPP.m in Sources */,
@@ -416,6 +430,8 @@
 				E25057DF10C655E6007D0B9F /* ParserLanguage_SGML.m in Sources */,
 				E250593A10C79162007D0B9F /* ParserLanguage_CSV.m in Sources */,
 				E250597610C79429007D0B9F /* ParserLanguage_Common.m in Sources */,
+				E2505BE910C7B3F3007D0B9F /* ParserLanguage_RSS.m in Sources */,
+				E2505BFA10C7B4A3007D0B9F /* ParserLanguage_PropertyList.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -425,7 +441,7 @@
 			files = (
 				E213427110BD056000023F41 /* main.m in Sources */,
 				E236880210C426FC00F5F923 /* JavaScriptBindings.m in Sources */,
-				E236882010C427E100F5F923 /* SourceNodeBindings.m in Sources */,
+				E236882010C427E100F5F923 /* ParserNodeBindings.m in Sources */,
 				E236882C10C42A9F00F5F923 /* DictionaryBindings.m in Sources */,
 				E2903E3D10C53F5100CE0DD9 /* ParserLanguage_C.m in Sources */,
 				E2903E3E10C53F5100CE0DD9 /* ParserLanguage_CPP.m in Sources */,
@@ -438,6 +454,8 @@
 				E25057DE10C655E6007D0B9F /* ParserLanguage_SGML.m in Sources */,
 				E250593910C79162007D0B9F /* ParserLanguage_CSV.m in Sources */,
 				E250597510C79429007D0B9F /* ParserLanguage_Common.m in Sources */,
+				E2505BE810C7B3F3007D0B9F /* ParserLanguage_RSS.m in Sources */,
+				E2505BF910C7B4A3007D0B9F /* ParserLanguage_PropertyList.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -458,6 +476,8 @@
 				E25057E010C655E6007D0B9F /* ParserLanguage_SGML.m in Sources */,
 				E250593B10C79162007D0B9F /* ParserLanguage_CSV.m in Sources */,
 				E250597710C79429007D0B9F /* ParserLanguage_Common.m in Sources */,
+				E2505BEA10C7B3F3007D0B9F /* ParserLanguage_RSS.m in Sources */,
+				E2505BFB10C7B4A3007D0B9F /* ParserLanguage_PropertyList.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

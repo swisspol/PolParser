@@ -197,11 +197,12 @@ static JSValueRef _CallFunctionInsertNextSibling(JSContextRef ctx, JSObjectRef f
 }
 
 static JSValueRef _CallFunctionReplaceWithNode(JSContextRef ctx, JSObjectRef function, JSObjectRef thisObject, size_t argumentCount, const JSValueRef arguments[], JSValueRef* exception) {
-	if((argumentCount == 1) && JSValueIsObjectOfClass(ctx, arguments[0], _GetParserNodeJavaScriptClass())) {
+	if(((argumentCount == 1) || (argumentCount == 2)) && JSValueIsObjectOfClass(ctx, arguments[0], _GetParserNodeJavaScriptClass()) && ((argumentCount == 1) || (JSValueIsBoolean(ctx, arguments[1])))) {
     	ParserNode* node = JSObjectGetPrivate(thisObject);
         if(node.parent) {
         	ParserNode* child = JSObjectGetPrivate(JSValueToObject(ctx, arguments[0], NULL));
-        	[node replaceWithNode:child];
+        	BOOL preserveChildren = (argumentCount == 2 ? JSValueToBoolean(ctx, arguments[1]) : NO);
+            [node replaceWithNode:child preserveChildren:preserveChildren];
             return JSValueMakeUndefined(ctx);
         }
     }

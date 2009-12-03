@@ -30,7 +30,7 @@
 @implementation ParserLanguageObjC
 
 + (NSArray*) languageDependencies {
-	return [NSArray arrayWithObjects:@"Common", @"C", nil];
+	return [NSArray arrayWithObject:@"C"];
 }
 
 + (NSSet*) languageReservedKeywords {
@@ -98,12 +98,6 @@ static BOOL _HasImplementationParent(ParserNode* node) {
         return YES;
     
     return [node.parent isKindOfClass:[ParserNodeCPreprocessorCondition class]] ? _HasImplementationParent(node.parent) : NO;
-}
-
-static ParserNode* _ApplierFunction(ParserNode* node, void* context) {
-	[node removeFromParent];
-	[(ParserNode*)context addChild:node];
-    return nil;
 }
 
 - (ParserNode*) performSyntaxAnalysisForNode:(ParserNode*)node textBuffer:(const unichar*)textBuffer topLevelLanguage:(ParserLanguage*)topLevelLanguage {
@@ -249,13 +243,7 @@ static ParserNode* _ApplierFunction(ParserNode* node, void* context) {
                         [newNode release];
 					}
                     
-                    ParserNode* newNode = [[ParserNodeObjCMethodCall alloc] initWithText:node.text range:node.range];
-                    [node applyFunctionOnChildren:_ApplierFunction context:newNode];
-                    newNode.lines = node.lines;
-                    [node replaceWithNode:newNode];
-                    [newNode release];
-                    
-                    return newNode;
+                    return [node replaceWithNodeOfClass:[ParserNodeObjCMethodCall class] preserveChildren:YES];
                 }
             }
         }

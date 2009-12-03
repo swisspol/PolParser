@@ -32,6 +32,7 @@
     [classes addObject:[ParserNodeHTMLCDATA class]]; //Must be before ParserNodeHTMLTag
     [classes addObject:[ParserNodeHTMLTag class]];
     [classes addObject:[ParserNodeHTMLEntity class]];
+    
     [classes addObject:[ParserNodeHTMLElement class]];
     
     return classes;

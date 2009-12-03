@@ -47,6 +47,7 @@
     [classes addObject:[ParserNodeSGMLCDATA class]]; //Must be before ParserNodeSGMLTag
     [classes addObject:[ParserNodeSGMLTag class]];
     [classes addObject:[ParserNodeSGMLEntity class]];
+    
     [classes addObject:[ParserNodeSGMLElement class]];
     
     return classes;

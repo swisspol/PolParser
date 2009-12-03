@@ -23,6 +23,7 @@
 /* Abstract class: do not instantiate */
 @interface ParserLanguage : NSObject <NSCopying> {
 @private
+	NSMutableArray* _languageDependencies;
 	NSMutableSet* _keywords;
 	NSMutableArray* _nodeClasses;
 }

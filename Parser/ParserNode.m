@@ -236,14 +236,35 @@ static void _MergeChildrenCleanContent(ParserNode* node, NSMutableString* string
 }
 
 - (void) replaceWithNode:(ParserNode*)node {
+    [self replaceWithNode:node preserveChildren:NO];
+}
+
+static ParserNode* _ApplierFunction(ParserNode* node, void* context) {
+	[node removeFromParent];
+	[(ParserNode*)context addChild:node];
+    return nil;
+}
+
+- (void) replaceWithNode:(ParserNode*)node preserveChildren:(BOOL)preserveChildren {
     if(_parent == nil)
         [NSException raise:NSInternalInconsistencyException format:@"%@ has no parent", self];
     
     ParserNode* parent = _parent;
     NSUInteger index = [parent indexOfChild:self];
     [parent removeChildAtIndex:index];
-    if(node)
+    if(node) {
         [parent insertChild:node atIndex:index];
+        if(preserveChildren)
+        	[self applyFunctionOnChildren:_ApplierFunction context:node];
+    }
+}
+
+- (ParserNode*) replaceWithNodeOfClass:(Class)class preserveChildren:(BOOL)preserveChildren {
+    ParserNode* node = [[class alloc] initWithText:self.text range:self.range];
+    node.lines = self.lines;
+    [self replaceWithNode:node preserveChildren:preserveChildren];
+    [node release];
+    return node;
 }
 
 - (ParserNode*) findPreviousSiblingOfClass:(Class)class {

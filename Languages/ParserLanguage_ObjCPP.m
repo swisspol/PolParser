@@ -25,7 +25,7 @@
 @implementation ParserLanguageObjCPP
 
 + (NSArray*) languageDependencies {
-	return [NSArray arrayWithObjects:@"Common", @"C", @"C++", @"Obj-C", nil];
+	return [NSArray arrayWithObjects:@"C++", @"Obj-C", nil];
 }
 
 - (NSString*) name {

@@ -126,6 +126,7 @@ void _RearrangeNodesAsChildren(ParserNode* startNode, ParserNode* endNode);
 @property(nonatomic) NSUInteger revision;
 @property(nonatomic) void* jsObject;
 - (id) initWithText:(NSString*)text range:(NSRange)range;
+- (ParserNode*) replaceWithNodeOfClass:(Class)class preserveChildren:(BOOL)preserveChildren;
 @end
 
 @interface ParserNodeRoot ()

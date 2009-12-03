@@ -25,7 +25,7 @@
 @implementation ParserLanguageCPP
 
 + (NSArray*) languageDependencies {
-	return [NSArray arrayWithObjects:@"Common", @"C", nil];
+	return [NSArray arrayWithObject:@"C"];
 }
 
 + (NSSet*) languageReservedKeywords {

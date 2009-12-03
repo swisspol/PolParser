@@ -24,8 +24,11 @@
 
 @implementation ParserLanguageHTML
 
+/* WARNING: Keep in sync with ParserLanguage_SGML */
 + (NSArray*) languageNodeClasses {
 	NSMutableArray* classes = [NSMutableArray array];
+    
+    [classes addObject:[ParserNodeIndenting class]]; //From Common language
     
     [classes addObject:[ParserNodeHTMLDOCTYPE class]]; //Must be before ParserNodeHTMLTag
     [classes addObject:[ParserNodeHTMLComment class]]; //Must be before ParserNodeHTMLTag

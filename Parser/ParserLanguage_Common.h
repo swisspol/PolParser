@@ -23,13 +23,16 @@
 - (ParserNode*) findNextSiblingIgnoringWhitespaceAndNewline;
 @end
 
-@interface ParserNodeWhitespace : ParserNode //Leaf
+/* This class cannot have children */
+@interface ParserNodeWhitespace : ParserNode
 @end
 
-@interface ParserNodeIndenting : ParserNodeWhitespace //Leaf
+/* This class cannot have children */
+@interface ParserNodeIndenting : ParserNodeWhitespace
 @end
 
-@interface ParserNodeNewline : ParserNode //Leaf
+/* This class cannot have children */
+@interface ParserNodeNewline : ParserNode
 @end
 
 @interface ParserNodeBraces : ParserNode

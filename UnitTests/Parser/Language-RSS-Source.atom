@@ -32,10 +32,10 @@
 ·  <AtomFeed>
 ·  ·  ♢|<feed•xmlns="http://www.w3.org/2005/Atom">|♢¶♢|•|♢¶♢|→|♢
 ·  ·  <RSSTitle>
-·  ·  ·  ♢|<title>|♢Example♢•♢Feed♢|</title>|♢
+·  ·  ·  ♢|<title>|♢Example•Feed♢|</title>|♢
 ·  ·  ♢¶♢|→|♢
 ·  ·  <AtomSubtitle>
-·  ·  ·  ♢|<subtitle>|♢A♢•♢subtitle.♢|</subtitle>|♢
+·  ·  ·  ♢|<subtitle>|♢A•subtitle.♢|</subtitle>|♢
 ·  ·  ♢¶♢|→|♢
 ·  ·  <RSSLink>
 ·  ·  ·  ♢|<link•href="http://example.org/feed/"•rel="self"•/>|♢
@@ -52,7 +52,7 @@
 ·  ·  <RSSAuthor>
 ·  ·  ·  ♢|<author>|♢¶♢|→→|♢
 ·  ·  ·  <AtomName>
-·  ·  ·  ·  ♢|<name>|♢John♢•♢Doe♢|</name>|♢
+·  ·  ·  ·  ♢|<name>|♢John•Doe♢|</name>|♢
 ·  ·  ·  ♢¶♢|→→|♢
 ·  ·  ·  <AtomEmail>
 ·  ·  ·  ·  ♢|<email>|♢johndoe@example.com♢|</email>|♢
@@ -61,7 +61,7 @@
 ·  ·  <AtomEntry>
 ·  ·  ·  ♢|<entry>|♢¶♢|→→|♢
 ·  ·  ·  <RSSTitle>
-·  ·  ·  ·  ♢|<title>|♢Atom-Powered♢•♢Robots♢•♢Run♢•♢Amok♢|</title>|♢
+·  ·  ·  ·  ♢|<title>|♢Atom-Powered•Robots•Run•Amok♢|</title>|♢
 ·  ·  ·  ♢¶♢|→→|♢
 ·  ·  ·  <RSSLink>
 ·  ·  ·  ·  ♢|<link•href="http://example.org/2003/12/13/atom03"•/>|♢
@@ -79,10 +79,10 @@
 ·  ·  ·  ·  ♢|<updated>|♢2003-12-13T18:30:02Z♢|</updated>|♢
 ·  ·  ·  ♢¶♢|→→|♢
 ·  ·  ·  <AtomSummary>
-·  ·  ·  ·  ♢|<summary>|♢Some♢•♢text.♢|</summary>|♢
+·  ·  ·  ·  ♢|<summary>|♢Some•text.♢|</summary>|♢
 ·  ·  ·  ♢¶♢|→|♢|</entry>|♢
 ·  ·  ♢¶♢|•|♢¶♢|</feed>|♢
-·  ♢¶♢¶♢
+·  ♢¶¶♢
 
 <----->
 
@@ -91,9 +91,9 @@
 |    + <name> = ♢?xml♢
 |    + ♢version♢ = ♢1.0♢
 |    + ♢encoding♢ = ♢utf-8♢
-|    [1:2] <Newline> = ♢¶♢
+|    [1:2] <Text> = ♢¶♢
 |    [2:2] <Indenting> = ♢•♢
-|    [2:3] <Newline> = ♢¶♢
+|    [2:3] <Text> = ♢¶♢
 |    [3:26] <AtomFeed>
 |    + <name> = ♢feed♢
 |    + <cleaned> = ♢¶•¶→¶→¶→¶→¶→¶→¶→¶•¶→¶•¶♢
@@ -101,33 +101,29 @@
 |    |    [3:3] <XMLTag> = ♢<feed•xmlns="http://www.w3.org/2005/Atom">♢
 |    |    + <name> = ♢feed♢
 |    |    + ♢xmlns♢ = ♢http://www.w3.org/2005/Atom♢
-|    |    [3:4] <Newline> = ♢¶♢
+|    |    [3:4] <Text> = ♢¶♢
 |    |    [4:4] <Indenting> = ♢•♢
-|    |    [4:5] <Newline> = ♢¶♢
+|    |    [4:5] <Text> = ♢¶♢
 |    |    [5:5] <Indenting> = ♢→♢
 |    |    [5:5] <RSSTitle>
 |    |    + <name> = ♢title♢
 |    |    + <cleaned> = ♢Example•Feed♢
 |    |    |    [5:5] <XMLTag> = ♢<title>♢
 |    |    |    + <name> = ♢title♢
-|    |    |    [5:5] <Text> = ♢Example♢
-|    |    |    [5:5] <Whitespace> = ♢•♢
-|    |    |    [5:5] <Text> = ♢Feed♢
+|    |    |    [5:5] <Text> = ♢Example•Feed♢
 |    |    |    [5:5] <XMLTag> = ♢</title>♢
 |    |    |    + <name> = ♢title♢
-|    |    [5:6] <Newline> = ♢¶♢
+|    |    [5:6] <Text> = ♢¶♢
 |    |    [6:6] <Indenting> = ♢→♢
 |    |    [6:6] <AtomSubtitle>
 |    |    + <name> = ♢subtitle♢
 |    |    + <cleaned> = ♢A•subtitle.♢
 |    |    |    [6:6] <XMLTag> = ♢<subtitle>♢
 |    |    |    + <name> = ♢subtitle♢
-|    |    |    [6:6] <Text> = ♢A♢
-|    |    |    [6:6] <Whitespace> = ♢•♢
-|    |    |    [6:6] <Text> = ♢subtitle.♢
+|    |    |    [6:6] <Text> = ♢A•subtitle.♢
 |    |    |    [6:6] <XMLTag> = ♢</subtitle>♢
 |    |    |    + <name> = ♢subtitle♢
-|    |    [6:7] <Newline> = ♢¶♢
+|    |    [6:7] <Text> = ♢¶♢
 |    |    [7:7] <Indenting> = ♢→♢
 |    |    [7:7] <RSSLink>
 |    |    + <name> = ♢link♢
@@ -138,7 +134,7 @@
 |    |    |    + <name> = ♢link♢
 |    |    |    + ♢rel♢ = ♢self♢
 |    |    |    + ♢href♢ = ♢http://example.org/feed/♢
-|    |    [7:8] <Newline> = ♢¶♢
+|    |    [7:8] <Text> = ♢¶♢
 |    |    [8:8] <Indenting> = ♢→♢
 |    |    [8:8] <RSSLink>
 |    |    + <name> = ♢link♢
@@ -147,7 +143,7 @@
 |    |    |    [8:8] <XMLTag> = ♢<link•href="http://example.org/"•/>♢
 |    |    |    + <name> = ♢link♢
 |    |    |    + ♢href♢ = ♢http://example.org/♢
-|    |    [8:9] <Newline> = ♢¶♢
+|    |    [8:9] <Text> = ♢¶♢
 |    |    [9:9] <Indenting> = ♢→♢
 |    |    [9:9] <AtomID>
 |    |    + <name> = ♢id♢
@@ -157,7 +153,7 @@
 |    |    |    [9:9] <Text> = ♢urn:uuid:60a76c80-d399-11d9-b91C-0003939e0af6♢
 |    |    |    [9:9] <XMLTag> = ♢</id>♢
 |    |    |    + <name> = ♢id♢
-|    |    [9:10] <Newline> = ♢¶♢
+|    |    [9:10] <Text> = ♢¶♢
 |    |    [10:10] <Indenting> = ♢→♢
 |    |    [10:10] <XMLElement>
 |    |    + <name> = ♢updated♢
@@ -167,26 +163,24 @@
 |    |    |    [10:10] <Text> = ♢2003-12-13T18:30:02Z♢
 |    |    |    [10:10] <XMLTag> = ♢</updated>♢
 |    |    |    + <name> = ♢updated♢
-|    |    [10:11] <Newline> = ♢¶♢
+|    |    [10:11] <Text> = ♢¶♢
 |    |    [11:11] <Indenting> = ♢→♢
 |    |    [11:14] <RSSAuthor>
 |    |    + <name> = ♢author♢
 |    |    + <cleaned> = ♢¶→→¶→→¶→♢
 |    |    |    [11:11] <XMLTag> = ♢<author>♢
 |    |    |    + <name> = ♢author♢
-|    |    |    [11:12] <Newline> = ♢¶♢
+|    |    |    [11:12] <Text> = ♢¶♢
 |    |    |    [12:12] <Indenting> = ♢→→♢
 |    |    |    [12:12] <AtomName>
 |    |    |    + <name> = ♢name♢
 |    |    |    + <cleaned> = ♢John•Doe♢
 |    |    |    |    [12:12] <XMLTag> = ♢<name>♢
 |    |    |    |    + <name> = ♢name♢
-|    |    |    |    [12:12] <Text> = ♢John♢
-|    |    |    |    [12:12] <Whitespace> = ♢•♢
-|    |    |    |    [12:12] <Text> = ♢Doe♢
+|    |    |    |    [12:12] <Text> = ♢John•Doe♢
 |    |    |    |    [12:12] <XMLTag> = ♢</name>♢
 |    |    |    |    + <name> = ♢name♢
-|    |    |    [12:13] <Newline> = ♢¶♢
+|    |    |    [12:13] <Text> = ♢¶♢
 |    |    |    [13:13] <Indenting> = ♢→→♢
 |    |    |    [13:13] <AtomEmail>
 |    |    |    + <name> = ♢email♢
@@ -196,36 +190,30 @@
 |    |    |    |    [13:13] <Text> = ♢johndoe@example.com♢
 |    |    |    |    [13:13] <XMLTag> = ♢</email>♢
 |    |    |    |    + <name> = ♢email♢
-|    |    |    [13:14] <Newline> = ♢¶♢
+|    |    |    [13:14] <Text> = ♢¶♢
 |    |    |    [14:14] <Indenting> = ♢→♢
 |    |    |    [14:14] <XMLTag> = ♢</author>♢
 |    |    |    + <name> = ♢author♢
-|    |    [14:15] <Newline> = ♢¶♢
+|    |    [14:15] <Text> = ♢¶♢
 |    |    [15:15] <Indenting> = ♢•♢
-|    |    [15:16] <Newline> = ♢¶♢
+|    |    [15:16] <Text> = ♢¶♢
 |    |    [16:16] <Indenting> = ♢→♢
 |    |    [16:24] <AtomEntry>
 |    |    + <name> = ♢entry♢
 |    |    + <cleaned> = ♢¶→→¶→→¶→→¶→→¶→→¶→→¶→→¶→♢
 |    |    |    [16:16] <XMLTag> = ♢<entry>♢
 |    |    |    + <name> = ♢entry♢
-|    |    |    [16:17] <Newline> = ♢¶♢
+|    |    |    [16:17] <Text> = ♢¶♢
 |    |    |    [17:17] <Indenting> = ♢→→♢
 |    |    |    [17:17] <RSSTitle>
 |    |    |    + <name> = ♢title♢
 |    |    |    + <cleaned> = ♢Atom-Powered•Robots•Run•Amok♢
 |    |    |    |    [17:17] <XMLTag> = ♢<title>♢
 |    |    |    |    + <name> = ♢title♢
-|    |    |    |    [17:17] <Text> = ♢Atom-Powered♢
-|    |    |    |    [17:17] <Whitespace> = ♢•♢
-|    |    |    |    [17:17] <Text> = ♢Robots♢
-|    |    |    |    [17:17] <Whitespace> = ♢•♢
-|    |    |    |    [17:17] <Text> = ♢Run♢
-|    |    |    |    [17:17] <Whitespace> = ♢•♢
-|    |    |    |    [17:17] <Text> = ♢Amok♢
+|    |    |    |    [17:17] <Text> = ♢Atom-Powered•Robots•Run•Amok♢
 |    |    |    |    [17:17] <XMLTag> = ♢</title>♢
 |    |    |    |    + <name> = ♢title♢
-|    |    |    [17:18] <Newline> = ♢¶♢
+|    |    |    [17:18] <Text> = ♢¶♢
 |    |    |    [18:18] <Indenting> = ♢→→♢
 |    |    |    [18:18] <RSSLink>
 |    |    |    + <name> = ♢link♢
@@ -234,7 +222,7 @@
 |    |    |    |    [18:18] <XMLTag> = ♢<link•href="http://example.org/2003/12/13/atom03"•/>♢
 |    |    |    |    + <name> = ♢link♢
 |    |    |    |    + ♢href♢ = ♢http://example.org/2003/12/13/atom03♢
-|    |    |    [18:19] <Newline> = ♢¶♢
+|    |    |    [18:19] <Text> = ♢¶♢
 |    |    |    [19:19] <Indenting> = ♢→→♢
 |    |    |    [19:19] <RSSLink>
 |    |    |    + <name> = ♢link♢
@@ -247,7 +235,7 @@
 |    |    |    |    + ♢rel♢ = ♢alternate♢
 |    |    |    |    + ♢type♢ = ♢text/html♢
 |    |    |    |    + ♢href♢ = ♢http://example.org/2003/12/13/atom03.html♢
-|    |    |    [19:20] <Newline> = ♢¶♢
+|    |    |    [19:20] <Text> = ♢¶♢
 |    |    |    [20:20] <Indenting> = ♢→→♢
 |    |    |    [20:20] <RSSLink>
 |    |    |    + <name> = ♢link♢
@@ -258,7 +246,7 @@
 |    |    |    |    + <name> = ♢link♢
 |    |    |    |    + ♢rel♢ = ♢edit♢
 |    |    |    |    + ♢href♢ = ♢http://example.org/2003/12/13/atom03/edit♢
-|    |    |    [20:21] <Newline> = ♢¶♢
+|    |    |    [20:21] <Text> = ♢¶♢
 |    |    |    [21:21] <Indenting> = ♢→→♢
 |    |    |    [21:21] <AtomID>
 |    |    |    + <name> = ♢id♢
@@ -268,7 +256,7 @@
 |    |    |    |    [21:21] <Text> = ♢urn:uuid:1225c695-cfb8-4ebb-aaaa-80da344efa6a♢
 |    |    |    |    [21:21] <XMLTag> = ♢</id>♢
 |    |    |    |    + <name> = ♢id♢
-|    |    |    [21:22] <Newline> = ♢¶♢
+|    |    |    [21:22] <Text> = ♢¶♢
 |    |    |    [22:22] <Indenting> = ♢→→♢
 |    |    |    [22:22] <XMLElement>
 |    |    |    + <name> = ♢updated♢
@@ -278,26 +266,23 @@
 |    |    |    |    [22:22] <Text> = ♢2003-12-13T18:30:02Z♢
 |    |    |    |    [22:22] <XMLTag> = ♢</updated>♢
 |    |    |    |    + <name> = ♢updated♢
-|    |    |    [22:23] <Newline> = ♢¶♢
+|    |    |    [22:23] <Text> = ♢¶♢
 |    |    |    [23:23] <Indenting> = ♢→→♢
 |    |    |    [23:23] <AtomSummary>
 |    |    |    + <name> = ♢summary♢
 |    |    |    + <cleaned> = ♢Some•text.♢
 |    |    |    |    [23:23] <XMLTag> = ♢<summary>♢
 |    |    |    |    + <name> = ♢summary♢
-|    |    |    |    [23:23] <Text> = ♢Some♢
-|    |    |    |    [23:23] <Whitespace> = ♢•♢
-|    |    |    |    [23:23] <Text> = ♢text.♢
+|    |    |    |    [23:23] <Text> = ♢Some•text.♢
 |    |    |    |    [23:23] <XMLTag> = ♢</summary>♢
 |    |    |    |    + <name> = ♢summary♢
-|    |    |    [23:24] <Newline> = ♢¶♢
+|    |    |    [23:24] <Text> = ♢¶♢
 |    |    |    [24:24] <Indenting> = ♢→♢
 |    |    |    [24:24] <XMLTag> = ♢</entry>♢
 |    |    |    + <name> = ♢entry♢
-|    |    [24:25] <Newline> = ♢¶♢
+|    |    [24:25] <Text> = ♢¶♢
 |    |    [25:25] <Indenting> = ♢•♢
-|    |    [25:26] <Newline> = ♢¶♢
+|    |    [25:26] <Text> = ♢¶♢
 |    |    [26:26] <XMLTag> = ♢</feed>♢
 |    |    + <name> = ♢feed♢
-|    [26:27] <Newline> = ♢¶♢
-|    [27:28] <Newline> = ♢¶♢
+|    [26:28] <Text> = ♢¶¶♢

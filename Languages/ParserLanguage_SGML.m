@@ -35,12 +35,10 @@
 
 @implementation ParserLanguageSGML
 
-+ (NSArray*) languageDependencies {
-	return [NSArray arrayWithObject:@"Common"];
-}
-
 + (NSArray*) languageNodeClasses {
 	NSMutableArray* classes = [NSMutableArray array];
+    
+	[classes addObject:[ParserNodeIndenting class]]; //From Common language
     
     [classes addObject:[ParserNodeSGMLDOCTYPE class]]; //Must be before ParserNodeSGMLTag
     [classes addObject:[ParserNodeSGMLComment class]]; //Must be before ParserNodeSGMLTag

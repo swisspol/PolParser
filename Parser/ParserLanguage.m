@@ -336,6 +336,11 @@ static ParserNode* _ApplierFunction(ParserNode* node, void* context) {
         
         ++rawLength;
         if(rawLength == range.length) {
+            for(NSUInteger i = 0; i < rawLength; ++i) {
+                if((*(textBuffer + range.location + i) == '\n') || ((*(textBuffer + range.location + i) == '\r') && (*(textBuffer + range.location + i + 1) != '\n')))
+                    ++currentLine;
+            }
+            
             ParserNode* node = [[ParserNodeText alloc] initWithText:text range:range];
             node.lines = NSMakeRange(lastLine, currentLine - lastLine + 1);
             [(ParserNode*)[stack lastObject] addChild:node];

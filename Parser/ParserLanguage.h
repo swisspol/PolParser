@@ -50,7 +50,7 @@
 @end
 
 /* This class cannot have children */
-@interface ParserNodeText : ParserNode //Leaf
+@interface ParserNodeText : ParserNode
 + (ParserNodeText*) parserNodeWithText:(NSString*)text;
 - (id) initWithText:(NSString*)text;
 @end

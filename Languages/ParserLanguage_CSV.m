@@ -24,12 +24,10 @@
 
 @implementation ParserLanguageCSV
 
-+ (NSArray*) languageDependencies {
-	return [NSArray arrayWithObject:@"Common"];
-}
-
 + (NSArray*) languageNodeClasses {
 	NSMutableArray* classes = [NSMutableArray array];
+    
+    [classes addObject:[ParserNodeNewline class]]; //From Common language
     
     [classes addObject:[ParserNodeComma class]]; //Must be before ParserNodeCSVField
     [classes addObject:[ParserNodeCSVField class]];

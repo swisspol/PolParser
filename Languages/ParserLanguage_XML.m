@@ -24,8 +24,11 @@
 
 @implementation ParserLanguageXML
 
+/* WARNING: Keep in sync with ParserLanguage_SGML */
 + (NSArray*) languageNodeClasses {
 	NSMutableArray* classes = [NSMutableArray array];
+    
+    [classes addObject:[ParserNodeIndenting class]]; //From Common language
     
     [classes addObject:[ParserNodeXMLDeclaration class]]; //Must be before ParserNodeXMLProcessingInstructions
     [classes addObject:[ParserNodeXMLProcessingInstructions class]]; //Must be before ParserNodeXMLTag

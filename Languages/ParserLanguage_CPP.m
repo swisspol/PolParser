@@ -17,14 +17,15 @@
 */
 
 #import "Parser_Internal.h"
+#import "ParserLanguage_CPP.h"
 
-@interface ParserLanguageCPP : ParserLanguage
+@interface ParserLanguageCPP : ParserLanguage <ParserLanguageCTopLevelNodeClasses>
 @end
 
 @implementation ParserLanguageCPP
 
 + (NSArray*) languageDependencies {
-	return [NSArray arrayWithObjects:@"Base", @"C", nil];
+	return [NSArray arrayWithObjects:@"Common", @"C", nil];
 }
 
 + (NSSet*) languageReservedKeywords {
@@ -32,13 +33,17 @@
 }
 
 + (NSArray*) languageNodeClasses {
-	NSMutableArray* classes = [NSMutableArray arrayWithArray:[super languageNodeClasses]];
+	NSMutableArray* classes = [NSMutableArray array];
     
     [classes addObject:[ParserNodeDoubleSemicolon class]];
     
     [classes addObject:[ParserNodeCPPComment class]];
     
     return classes;
+}
+
++ (NSSet*) languageTopLevelNodeClasses {
+	return nil; //FIXME
 }
 
 - (NSString*) name {
@@ -79,6 +84,13 @@
     }
     
     return NSNotFound;
+}
+
+- (NSString*) cleanContent {
+	NSMutableString* string = [NSMutableString stringWithString:self.content];
+    NSRange range = [string rangeOfCharacterFromSet:[[NSCharacterSet whitespaceAndNewlineCharacterSet] invertedSet] options:0 range:NSMakeRange(2, string.length - 2)];
+    [string deleteCharactersInRange:NSMakeRange(0, range.location != NSNotFound ? range.location : string.length)];
+    return string;
 }
 
 @end

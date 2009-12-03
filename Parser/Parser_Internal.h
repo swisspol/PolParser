@@ -16,7 +16,9 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#import "Parser.h"
+#import "ParserNode.h"
+#import "ParserLanguage.h"
+#import "ParserLanguage_Common.h"
 
 #define IsNewline(C) ((C == '\r') || (C == '\n'))
 #define IsWhitespace(C) ((C == ' ') || (C == '\t'))
@@ -134,12 +136,15 @@ void _RearrangeNodesAsChildren(ParserNode* startNode, ParserNode* endNode);
 + (NSArray*) languageDependencies;
 + (NSSet*) languageReservedKeywords;
 + (NSArray*) languageNodeClasses;
-+ (NSSet*) languageTopLevelNodeClasses;
 + (ParserNodeRoot*) newNodeTreeFromText:(NSString*)text withNodeClasses:(NSArray*)nodeClasses;
 + (ParserNodeRoot*) newNodeTreeFromText:(NSString*)text range:(NSRange)range textBuffer:(const unichar*)textBuffer withNodeClasses:(NSArray*)nodeClasses;
-@property(nonatomic, readonly) NSSet* topLevelNodeClasses;
+@property(nonatomic, readonly) NSArray* allLanguageDependencies;
 - (ParserNodeRoot*) parseText:(NSString*)text range:(NSRange)range textBuffer:(const unichar*)textBuffer syntaxAnalysis:(BOOL)syntaxAnalysis;
-- (ParserNode*) performSyntaxAnalysisForNode:(ParserNode*)node textBuffer:(const unichar*)textBuffer topLevelNodeClasses:(NSSet*)nodeClasses; //Override point to perform language dependent string tree refactoring after parsing
+- (ParserNode*) performSyntaxAnalysisForNode:(ParserNode*)node textBuffer:(const unichar*)textBuffer topLevelLanguage:(ParserLanguage*)topLevelLanguage; //Override point to perform language dependent string tree refactoring after parsing
+@end
+
+@protocol ParserLanguageCTopLevelNodeClasses
++ (NSSet*) languageTopLevelNodeClasses;
 @end
 
 @interface ParserLanguageSGML : ParserLanguage

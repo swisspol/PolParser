@@ -37,7 +37,12 @@
 		E25057DE10C655E6007D0B9F /* ParserLanguage_SGML.m in Sources */ = {isa = PBXBuildFile; fileRef = E25057DD10C655E6007D0B9F /* ParserLanguage_SGML.m */; };
 		E25057DF10C655E6007D0B9F /* ParserLanguage_SGML.m in Sources */ = {isa = PBXBuildFile; fileRef = E25057DD10C655E6007D0B9F /* ParserLanguage_SGML.m */; };
 		E25057E010C655E6007D0B9F /* ParserLanguage_SGML.m in Sources */ = {isa = PBXBuildFile; fileRef = E25057DD10C655E6007D0B9F /* ParserLanguage_SGML.m */; };
-		E2903E3C10C53F5100CE0DD9 /* ParserLanguage_Base.m in Sources */ = {isa = PBXBuildFile; fileRef = E2903E2810C53F5100CE0DD9 /* ParserLanguage_Base.m */; };
+		E250593910C79162007D0B9F /* ParserLanguage_CSV.m in Sources */ = {isa = PBXBuildFile; fileRef = E250593810C79162007D0B9F /* ParserLanguage_CSV.m */; };
+		E250593A10C79162007D0B9F /* ParserLanguage_CSV.m in Sources */ = {isa = PBXBuildFile; fileRef = E250593810C79162007D0B9F /* ParserLanguage_CSV.m */; };
+		E250593B10C79162007D0B9F /* ParserLanguage_CSV.m in Sources */ = {isa = PBXBuildFile; fileRef = E250593810C79162007D0B9F /* ParserLanguage_CSV.m */; };
+		E250597510C79429007D0B9F /* ParserLanguage_Common.m in Sources */ = {isa = PBXBuildFile; fileRef = E250597410C79429007D0B9F /* ParserLanguage_Common.m */; };
+		E250597610C79429007D0B9F /* ParserLanguage_Common.m in Sources */ = {isa = PBXBuildFile; fileRef = E250597410C79429007D0B9F /* ParserLanguage_Common.m */; };
+		E250597710C79429007D0B9F /* ParserLanguage_Common.m in Sources */ = {isa = PBXBuildFile; fileRef = E250597410C79429007D0B9F /* ParserLanguage_Common.m */; };
 		E2903E3D10C53F5100CE0DD9 /* ParserLanguage_C.m in Sources */ = {isa = PBXBuildFile; fileRef = E2903E2A10C53F5100CE0DD9 /* ParserLanguage_C.m */; };
 		E2903E3E10C53F5100CE0DD9 /* ParserLanguage_CPP.m in Sources */ = {isa = PBXBuildFile; fileRef = E2903E2C10C53F5100CE0DD9 /* ParserLanguage_CPP.m */; };
 		E2903E3F10C53F5100CE0DD9 /* ParserLanguage_HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = E2903E2E10C53F5100CE0DD9 /* ParserLanguage_HTML.m */; };
@@ -46,7 +51,6 @@
 		E2903E4210C53F5100CE0DD9 /* ParserLanguage_XML.m in Sources */ = {isa = PBXBuildFile; fileRef = E2903E3410C53F5100CE0DD9 /* ParserLanguage_XML.m */; };
 		E2903E4310C53F5100CE0DD9 /* ParserLanguage.m in Sources */ = {isa = PBXBuildFile; fileRef = E2903E3910C53F5100CE0DD9 /* ParserLanguage.m */; };
 		E2903E4410C53F5100CE0DD9 /* ParserNode.m in Sources */ = {isa = PBXBuildFile; fileRef = E2903E3B10C53F5100CE0DD9 /* ParserNode.m */; };
-		E2903E4510C53F5100CE0DD9 /* ParserLanguage_Base.m in Sources */ = {isa = PBXBuildFile; fileRef = E2903E2810C53F5100CE0DD9 /* ParserLanguage_Base.m */; };
 		E2903E4610C53F5100CE0DD9 /* ParserLanguage_C.m in Sources */ = {isa = PBXBuildFile; fileRef = E2903E2A10C53F5100CE0DD9 /* ParserLanguage_C.m */; };
 		E2903E4710C53F5100CE0DD9 /* ParserLanguage_CPP.m in Sources */ = {isa = PBXBuildFile; fileRef = E2903E2C10C53F5100CE0DD9 /* ParserLanguage_CPP.m */; };
 		E2903E4810C53F5100CE0DD9 /* ParserLanguage_HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = E2903E2E10C53F5100CE0DD9 /* ParserLanguage_HTML.m */; };
@@ -55,7 +59,6 @@
 		E2903E4B10C53F5100CE0DD9 /* ParserLanguage_XML.m in Sources */ = {isa = PBXBuildFile; fileRef = E2903E3410C53F5100CE0DD9 /* ParserLanguage_XML.m */; };
 		E2903E4C10C53F5100CE0DD9 /* ParserLanguage.m in Sources */ = {isa = PBXBuildFile; fileRef = E2903E3910C53F5100CE0DD9 /* ParserLanguage.m */; };
 		E2903E4D10C53F5100CE0DD9 /* ParserNode.m in Sources */ = {isa = PBXBuildFile; fileRef = E2903E3B10C53F5100CE0DD9 /* ParserNode.m */; };
-		E2903E4E10C53F5100CE0DD9 /* ParserLanguage_Base.m in Sources */ = {isa = PBXBuildFile; fileRef = E2903E2810C53F5100CE0DD9 /* ParserLanguage_Base.m */; };
 		E2903E4F10C53F5100CE0DD9 /* ParserLanguage_C.m in Sources */ = {isa = PBXBuildFile; fileRef = E2903E2A10C53F5100CE0DD9 /* ParserLanguage_C.m */; };
 		E2903E5010C53F5100CE0DD9 /* ParserLanguage_CPP.m in Sources */ = {isa = PBXBuildFile; fileRef = E2903E2C10C53F5100CE0DD9 /* ParserLanguage_CPP.m */; };
 		E2903E5110C53F5100CE0DD9 /* ParserLanguage_HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = E2903E2E10C53F5100CE0DD9 /* ParserLanguage_HTML.m */; };
@@ -126,8 +129,10 @@
 		E236883710C42BD900F5F923 /* JavaScriptBindings_Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JavaScriptBindings_Internal.h; sourceTree = "<group>"; };
 		E25057DC10C655E6007D0B9F /* ParserLanguage_SGML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParserLanguage_SGML.h; sourceTree = "<group>"; };
 		E25057DD10C655E6007D0B9F /* ParserLanguage_SGML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParserLanguage_SGML.m; sourceTree = "<group>"; };
-		E2903E2710C53F5100CE0DD9 /* ParserLanguage_Base.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParserLanguage_Base.h; sourceTree = "<group>"; };
-		E2903E2810C53F5100CE0DD9 /* ParserLanguage_Base.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParserLanguage_Base.m; sourceTree = "<group>"; };
+		E250593710C79162007D0B9F /* ParserLanguage_CSV.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParserLanguage_CSV.h; sourceTree = "<group>"; };
+		E250593810C79162007D0B9F /* ParserLanguage_CSV.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParserLanguage_CSV.m; sourceTree = "<group>"; };
+		E250597310C79429007D0B9F /* ParserLanguage_Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParserLanguage_Common.h; sourceTree = "<group>"; };
+		E250597410C79429007D0B9F /* ParserLanguage_Common.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParserLanguage_Common.m; sourceTree = "<group>"; };
 		E2903E2910C53F5100CE0DD9 /* ParserLanguage_C.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParserLanguage_C.h; sourceTree = "<group>"; };
 		E2903E2A10C53F5100CE0DD9 /* ParserLanguage_C.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParserLanguage_C.m; sourceTree = "<group>"; };
 		E2903E2B10C53F5100CE0DD9 /* ParserLanguage_CPP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParserLanguage_CPP.h; sourceTree = "<group>"; };
@@ -140,7 +145,6 @@
 		E2903E3210C53F5100CE0DD9 /* ParserLanguage_ObjCPP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParserLanguage_ObjCPP.m; sourceTree = "<group>"; };
 		E2903E3310C53F5100CE0DD9 /* ParserLanguage_XML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParserLanguage_XML.h; sourceTree = "<group>"; };
 		E2903E3410C53F5100CE0DD9 /* ParserLanguage_XML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParserLanguage_XML.m; sourceTree = "<group>"; };
-		E2903E3610C53F5100CE0DD9 /* Parser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Parser.h; sourceTree = "<group>"; };
 		E2903E3710C53F5100CE0DD9 /* Parser_Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Parser_Internal.h; sourceTree = "<group>"; };
 		E2903E3810C53F5100CE0DD9 /* ParserLanguage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParserLanguage.h; sourceTree = "<group>"; };
 		E2903E3910C53F5100CE0DD9 /* ParserLanguage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParserLanguage.m; sourceTree = "<group>"; };
@@ -250,12 +254,14 @@
 		E2903E2610C53F5100CE0DD9 /* Languages */ = {
 			isa = PBXGroup;
 			children = (
-				E2903E2710C53F5100CE0DD9 /* ParserLanguage_Base.h */,
-				E2903E2810C53F5100CE0DD9 /* ParserLanguage_Base.m */,
 				E2903E2910C53F5100CE0DD9 /* ParserLanguage_C.h */,
 				E2903E2A10C53F5100CE0DD9 /* ParserLanguage_C.m */,
 				E2903E2B10C53F5100CE0DD9 /* ParserLanguage_CPP.h */,
 				E2903E2C10C53F5100CE0DD9 /* ParserLanguage_CPP.m */,
+				E250593710C79162007D0B9F /* ParserLanguage_CSV.h */,
+				E250593810C79162007D0B9F /* ParserLanguage_CSV.m */,
+				E2903E2D10C53F5100CE0DD9 /* ParserLanguage_HTML.h */,
+				E2903E2E10C53F5100CE0DD9 /* ParserLanguage_HTML.m */,
 				E2903E2F10C53F5100CE0DD9 /* ParserLanguage_ObjC.h */,
 				E2903E3010C53F5100CE0DD9 /* ParserLanguage_ObjC.m */,
 				E2903E3110C53F5100CE0DD9 /* ParserLanguage_ObjCPP.h */,
@@ -264,8 +270,6 @@
 				E25057DD10C655E6007D0B9F /* ParserLanguage_SGML.m */,
 				E2903E3310C53F5100CE0DD9 /* ParserLanguage_XML.h */,
 				E2903E3410C53F5100CE0DD9 /* ParserLanguage_XML.m */,
-				E2903E2D10C53F5100CE0DD9 /* ParserLanguage_HTML.h */,
-				E2903E2E10C53F5100CE0DD9 /* ParserLanguage_HTML.m */,
 			);
 			path = Languages;
 			sourceTree = "<group>";
@@ -273,12 +277,13 @@
 		E2903E3510C53F5100CE0DD9 /* Parser */ = {
 			isa = PBXGroup;
 			children = (
-				E2903E3610C53F5100CE0DD9 /* Parser.h */,
 				E2903E3710C53F5100CE0DD9 /* Parser_Internal.h */,
-				E2903E3810C53F5100CE0DD9 /* ParserLanguage.h */,
-				E2903E3910C53F5100CE0DD9 /* ParserLanguage.m */,
 				E2903E3A10C53F5100CE0DD9 /* ParserNode.h */,
 				E2903E3B10C53F5100CE0DD9 /* ParserNode.m */,
+				E2903E3810C53F5100CE0DD9 /* ParserLanguage.h */,
+				E2903E3910C53F5100CE0DD9 /* ParserLanguage.m */,
+				E250597310C79429007D0B9F /* ParserLanguage_Common.h */,
+				E250597410C79429007D0B9F /* ParserLanguage_Common.m */,
 			);
 			path = Parser;
 			sourceTree = "<group>";
@@ -400,7 +405,6 @@
 				E236880310C426FC00F5F923 /* JavaScriptBindings.m in Sources */,
 				E236881F10C427E100F5F923 /* SourceNodeBindings.m in Sources */,
 				E236882B10C42A9F00F5F923 /* DictionaryBindings.m in Sources */,
-				E2903E4510C53F5100CE0DD9 /* ParserLanguage_Base.m in Sources */,
 				E2903E4610C53F5100CE0DD9 /* ParserLanguage_C.m in Sources */,
 				E2903E4710C53F5100CE0DD9 /* ParserLanguage_CPP.m in Sources */,
 				E2903E4810C53F5100CE0DD9 /* ParserLanguage_HTML.m in Sources */,
@@ -410,6 +414,8 @@
 				E2903E4C10C53F5100CE0DD9 /* ParserLanguage.m in Sources */,
 				E2903E4D10C53F5100CE0DD9 /* ParserNode.m in Sources */,
 				E25057DF10C655E6007D0B9F /* ParserLanguage_SGML.m in Sources */,
+				E250593A10C79162007D0B9F /* ParserLanguage_CSV.m in Sources */,
+				E250597610C79429007D0B9F /* ParserLanguage_Common.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -421,7 +427,6 @@
 				E236880210C426FC00F5F923 /* JavaScriptBindings.m in Sources */,
 				E236882010C427E100F5F923 /* SourceNodeBindings.m in Sources */,
 				E236882C10C42A9F00F5F923 /* DictionaryBindings.m in Sources */,
-				E2903E3C10C53F5100CE0DD9 /* ParserLanguage_Base.m in Sources */,
 				E2903E3D10C53F5100CE0DD9 /* ParserLanguage_C.m in Sources */,
 				E2903E3E10C53F5100CE0DD9 /* ParserLanguage_CPP.m in Sources */,
 				E2903E3F10C53F5100CE0DD9 /* ParserLanguage_HTML.m in Sources */,
@@ -431,6 +436,8 @@
 				E2903E4310C53F5100CE0DD9 /* ParserLanguage.m in Sources */,
 				E2903E4410C53F5100CE0DD9 /* ParserNode.m in Sources */,
 				E25057DE10C655E6007D0B9F /* ParserLanguage_SGML.m in Sources */,
+				E250593910C79162007D0B9F /* ParserLanguage_CSV.m in Sources */,
+				E250597510C79429007D0B9F /* ParserLanguage_Common.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -440,7 +447,6 @@
 			files = (
 				E2B6380C10BA547D00BF43E7 /* main.m in Sources */,
 				E2B6383910BA55AB00BF43E7 /* MyDocument.m in Sources */,
-				E2903E4E10C53F5100CE0DD9 /* ParserLanguage_Base.m in Sources */,
 				E2903E4F10C53F5100CE0DD9 /* ParserLanguage_C.m in Sources */,
 				E2903E5010C53F5100CE0DD9 /* ParserLanguage_CPP.m in Sources */,
 				E2903E5110C53F5100CE0DD9 /* ParserLanguage_HTML.m in Sources */,
@@ -450,6 +456,8 @@
 				E2903E5510C53F5100CE0DD9 /* ParserLanguage.m in Sources */,
 				E2903E5610C53F5100CE0DD9 /* ParserNode.m in Sources */,
 				E25057E010C655E6007D0B9F /* ParserLanguage_SGML.m in Sources */,
+				E250593B10C79162007D0B9F /* ParserLanguage_CSV.m in Sources */,
+				E250597710C79429007D0B9F /* ParserLanguage_Common.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

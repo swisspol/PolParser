@@ -89,11 +89,7 @@ void _RearrangeNodesAsChildren(ParserNode* startNode, ParserNode* endNode) {
         if([[language fileExtensions] containsObject:extension])
             return language;
     }
-    for(ParserLanguage* language in [ParserLanguage allLanguages]) { //FIXME: We pick a random one since this is a set
-        if(![language fileExtensions])
-            return language;
-    }
-    return nil;
+    return [ParserLanguage languageWithName:@"Common"];
 }
 
 + (ParserNodeRoot*) parseTextFile:(NSString*)path encoding:(NSStringEncoding)encoding syntaxAnalysis:(BOOL)syntaxAnalysis {
@@ -114,27 +110,18 @@ void _RearrangeNodesAsChildren(ParserNode* startNode, ParserNode* endNode) {
 }
 
 + (NSArray*) languageNodeClasses {
-    NSMutableArray* classes = [NSMutableArray arrayWithObjects:[ParserNodeText class], [ParserNodeMatch class], nil]; //Special-cased by parser
-    
-    NSString* prefix = [NSStringFromClass(self) substringFromIndex:[@ParserLanguagePrefix length]];
-    for(NSString* keyword in [self languageReservedKeywords]) {
-    	Class class = NSClassFromString([NSString stringWithFormat:@"ParserNode%@%@%@", prefix, [[keyword substringToIndex:1]uppercaseString], [keyword substringFromIndex:1]]);
-        if(class)
-        	[classes addObject:class];
-    }
-    return classes;
-}
-
-+ (NSSet*) languageTopLevelNodeClasses {
-	return [NSSet setWithObject:[ParserNodeRoot class]]; //Special case
+    return nil;
 }
 
 - (void) dealloc {
 	[_keywords release];
     [_nodeClasses release];
-    [_topLevelClasses release];
     
 	[super dealloc];
+}
+
+- (id) copyWithZone:(NSZone*)zone {
+	return [self retain];
 }
 
 - (NSString*) name {
@@ -147,7 +134,7 @@ void _RearrangeNodesAsChildren(ParserNode* startNode, ParserNode* endNode) {
     return nil;
 }
 
-- (NSArray*) _allLanguageDependencies {
+- (NSArray*) allLanguageDependencies {
 	NSMutableArray* array = [NSMutableArray array];
     for(NSString* name in [[self class] languageDependencies])
         [array addObject:[ParserLanguage languageWithName:name]];
@@ -158,7 +145,7 @@ void _RearrangeNodesAsChildren(ParserNode* startNode, ParserNode* endNode) {
 - (NSSet*) reservedKeywords {
 	if(_keywords == nil) {
     	_keywords = [[NSMutableSet alloc] init];
-        for(ParserLanguage* language in [self _allLanguageDependencies]) {
+        for(ParserLanguage* language in self.allLanguageDependencies) {
             [_keywords unionSet:[[language class] languageReservedKeywords]];
         }
     }
@@ -168,7 +155,16 @@ void _RearrangeNodesAsChildren(ParserNode* startNode, ParserNode* endNode) {
 - (NSArray*) nodeClasses {
     if(_nodeClasses == nil) {
         _nodeClasses = [[NSMutableArray alloc] init];
-        for(ParserLanguage* language in [self _allLanguageDependencies]) {
+        [_nodeClasses addObject:[ParserNodeText class]]; //Special-cased by parser
+        [_nodeClasses addObject:[ParserNodeMatch class]]; //Special-cased by parser
+        for(ParserLanguage* language in self.allLanguageDependencies) {
+            NSString* prefix = [NSStringFromClass([language class]) substringFromIndex:[@ParserLanguagePrefix length]];
+            for(NSString* keyword in [[language class] languageReservedKeywords]) {
+                Class class = NSClassFromString([NSString stringWithFormat:@"ParserNode%@%@%@", prefix, [[keyword substringToIndex:1]uppercaseString], [keyword substringFromIndex:1]]);
+                if(class)
+                    [_nodeClasses addObject:class];
+            }
+            
             for(Class class in [[language class] languageNodeClasses]) {
             	if(![_nodeClasses containsObject:class]) {
                 	NSUInteger index = _nodeClasses.count;
@@ -185,22 +181,12 @@ void _RearrangeNodesAsChildren(ParserNode* startNode, ParserNode* endNode) {
     return _nodeClasses;
 }
 
-- (NSSet*) topLevelNodeClasses {
-	if(_topLevelClasses == nil) {
-    	_topLevelClasses = [[NSMutableSet alloc] init];
-        for(ParserLanguage* language in [self _allLanguageDependencies]) {
-            [_topLevelClasses unionSet:[[language class] languageTopLevelNodeClasses]];
-        }
-    }
-    return _topLevelClasses;
-}
-
 static ParserNode* _ApplierFunction(ParserNode* node, void* context) {
     void** params = (void**)context;
     ParserLanguage* language = params[0];
     const unichar* buffer = params[1];
-    NSSet* nodeClasses = params[2];
-    return [language performSyntaxAnalysisForNode:node textBuffer:buffer topLevelNodeClasses:nodeClasses];
+    ParserLanguage* topLevelLanguage = params[2];
+    return [language performSyntaxAnalysisForNode:node textBuffer:buffer topLevelLanguage:topLevelLanguage];
 }
 
 + (ParserNodeRoot*) newNodeTreeFromText:(NSString*)text range:(NSRange)range textBuffer:(const unichar*)textBuffer withNodeClasses:(NSArray*)nodeClasses {
@@ -423,17 +409,13 @@ static BOOL _CheckTreeConsistency(ParserNode* node, NSMutableArray* stack) {
     rootNode.language = self;
     
     if(syntaxAnalysis) {
-    	NSMutableArray* array = [NSMutableArray array];
-        for(NSString* name in [[self class] languageDependencies])
-            [array addObject:[ParserLanguage languageWithName:name]];
-        [array addObject:self];
-        for(ParserLanguage* language in array) {
-        	ParserNode* node = [language performSyntaxAnalysisForNode:rootNode textBuffer:textBuffer topLevelNodeClasses:self.topLevelNodeClasses];
+    	for(ParserLanguage* language in self.allLanguageDependencies) {
+        	ParserNode* node = [language performSyntaxAnalysisForNode:rootNode textBuffer:textBuffer topLevelLanguage:self];
         	if(node) {
                 void* params[3];
                 params[0] = language;
                 params[1] = (void*)textBuffer;
-                params[2] = self.topLevelNodeClasses;
+                params[2] = self;
                 [node applyFunctionOnChildren:_ApplierFunction context:params];
             }
         }
@@ -452,7 +434,7 @@ static BOOL _CheckTreeConsistency(ParserNode* node, NSMutableArray* stack) {
     return [_NewNodeTreeFromText(self, text, nil, syntaxAnalysis) autorelease];
 }
 
-- (ParserNode*) performSyntaxAnalysisForNode:(ParserNode*)node textBuffer:(const unichar*)textBuffer topLevelNodeClasses:(NSSet*)nodeClasses {
+- (ParserNode*) performSyntaxAnalysisForNode:(ParserNode*)node textBuffer:(const unichar*)textBuffer topLevelLanguage:(ParserLanguage*)topLevelLanguage {
     return nil;
 }
 

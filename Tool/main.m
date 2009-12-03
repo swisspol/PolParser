@@ -18,7 +18,7 @@
 
 #import <libgen.h>
 
-#import "Parser.h"
+#import "ParserLanguage.h"
 
 extern BOOL RunJavaScriptOnRootNode(NSString* script, ParserNode* root);
 

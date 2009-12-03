@@ -17,6 +17,7 @@
 */
 
 #import "Parser_Internal.h"
+#import "ParserLanguage_XML.h"
 
 @interface ParserLanguageXML : ParserLanguageSGML
 @end
@@ -24,7 +25,7 @@
 @implementation ParserLanguageXML
 
 + (NSArray*) languageNodeClasses {
-	NSMutableArray* classes = [NSMutableArray arrayWithArray:[super languageNodeClasses]];
+	NSMutableArray* classes = [NSMutableArray array];
     
     [classes addObject:[ParserNodeXMLDeclaration class]]; //Must be before ParserNodeXMLProcessingInstructions
     [classes addObject:[ParserNodeXMLProcessingInstructions class]]; //Must be before ParserNodeXMLTag

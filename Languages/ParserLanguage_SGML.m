@@ -17,6 +17,7 @@
 */
 
 #import "Parser_Internal.h"
+#import "ParserLanguage_SGML.h"
 
 @interface ParserNodeSGMLTag ()
 @property(nonatomic, readonly) NSInteger sgmlType;
@@ -35,7 +36,20 @@
 @implementation ParserLanguageSGML
 
 + (NSArray*) languageDependencies {
-	return [NSArray arrayWithObject:@"Base"];
+	return [NSArray arrayWithObject:@"Common"];
+}
+
++ (NSArray*) languageNodeClasses {
+	NSMutableArray* classes = [NSMutableArray array];
+    
+    [classes addObject:[ParserNodeSGMLDOCTYPE class]]; //Must be before ParserNodeSGMLTag
+    [classes addObject:[ParserNodeSGMLComment class]]; //Must be before ParserNodeSGMLTag
+    [classes addObject:[ParserNodeSGMLCDATA class]]; //Must be before ParserNodeSGMLTag
+    [classes addObject:[ParserNodeSGMLTag class]];
+    [classes addObject:[ParserNodeSGMLEntity class]];
+    [classes addObject:[ParserNodeSGMLElement class]];
+    
+    return classes;
 }
 
 + (NSString*) stringWithReplacedEntities:(NSString*)string {
@@ -54,7 +68,7 @@
     return [NSSet setWithObject:@"sgml"];
 }
 
-- (ParserNode*) performSyntaxAnalysisForNode:(ParserNode*)node textBuffer:(const unichar*)textBuffer topLevelNodeClasses:(NSSet*)nodeClasses {
+- (ParserNode*) performSyntaxAnalysisForNode:(ParserNode*)node textBuffer:(const unichar*)textBuffer topLevelLanguage:(ParserLanguage*)topLevelLanguage {
 	
     if([node isKindOfClass:[ParserNodeSGMLTag class]]) {
     	ParserNodeSGMLTag* sgmlNode = (ParserNodeSGMLTag*)node;

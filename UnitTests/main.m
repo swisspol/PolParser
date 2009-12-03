@@ -16,7 +16,7 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#import "Parser.h"
+#import "ParserLanguage.h"
 #import "JavaScriptBindings.h"
 
 static BOOL _ValidateResult(NSString* name, NSString* actualResult, NSString* expectedResult) {

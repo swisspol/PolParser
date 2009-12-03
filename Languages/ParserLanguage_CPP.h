@@ -16,7 +16,7 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#import "ParserLanguage.h"
+#import "ParserLanguage_C.h"
 
 @interface ParserNodeCPPComment : ParserNode //Leaf
 @end

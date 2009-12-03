@@ -17,8 +17,9 @@
 */
 
 #import "Parser_Internal.h"
+#import "ParserLanguage_ObjC.h"
 
-@interface ParserLanguageObjC : ParserLanguage
+@interface ParserLanguageObjC : ParserLanguage <ParserLanguageCTopLevelNodeClasses>
 @end
 
 /* WARNING: Keep in sync with C #include */
@@ -29,7 +30,7 @@
 @implementation ParserLanguageObjC
 
 + (NSArray*) languageDependencies {
-	return [NSArray arrayWithObjects:@"Base", @"C", nil];
+	return [NSArray arrayWithObjects:@"Common", @"C", nil];
 }
 
 + (NSSet*) languageReservedKeywords {
@@ -40,7 +41,7 @@
 }
 
 + (NSArray*) languageNodeClasses {
-	NSMutableArray* classes = [NSMutableArray arrayWithArray:[super languageNodeClasses]];
+	NSMutableArray* classes = [NSMutableArray array];
     
     [classes addObject:[ParserNodeCPPComment class]]; //From C++ language
     
@@ -105,7 +106,7 @@ static ParserNode* _ApplierFunction(ParserNode* node, void* context) {
     return nil;
 }
 
-- (ParserNode*) performSyntaxAnalysisForNode:(ParserNode*)node textBuffer:(const unichar*)textBuffer topLevelNodeClasses:(NSSet*)nodeClasses {
+- (ParserNode*) performSyntaxAnalysisForNode:(ParserNode*)node textBuffer:(const unichar*)textBuffer topLevelLanguage:(ParserLanguage*)topLevelLanguage {
     
     if([node isKindOfClass:[ParserNodeObjCPreprocessorImport class]]) {
     	[node setName:[[node.firstChild findNextSiblingIgnoringWhitespaceAndNewline] content]];

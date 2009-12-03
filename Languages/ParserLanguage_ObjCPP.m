@@ -17,6 +17,7 @@
 */
 
 #import "Parser_Internal.h"
+#import "ParserLanguage_ObjCPP.h"
 
 @interface ParserLanguageObjCPP : ParserLanguage
 @end
@@ -24,7 +25,7 @@
 @implementation ParserLanguageObjCPP
 
 + (NSArray*) languageDependencies {
-	return [NSArray arrayWithObjects:@"Base", @"C", @"C++", @"Obj-C", nil];
+	return [NSArray arrayWithObjects:@"Common", @"C", @"C++", @"Obj-C", nil];
 }
 
 - (NSString*) name {

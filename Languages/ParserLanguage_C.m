@@ -17,8 +17,12 @@
 */
 
 #import "Parser_Internal.h"
+#import "ParserLanguage_C.h"
 
-@interface ParserLanguageC : ParserLanguage
+@interface ParserLanguageC : ParserLanguage <ParserLanguageCTopLevelNodeClasses> {
+@private
+	NSMutableDictionary* _topLevelNodeClasses;
+}
 @end
 
 @interface ParserNodeCEscapedCharacter : ParserNode
@@ -30,7 +34,7 @@
 @implementation ParserLanguageC
 
 + (NSArray*) languageDependencies {
-	return [NSArray arrayWithObject:@"Base"];
+	return [NSArray arrayWithObject:@"Common"];
 }
 
 + (NSSet*) languageReservedKeywords {
@@ -41,7 +45,7 @@
 }
 
 + (NSArray*) languageNodeClasses {
-	NSMutableArray* classes = [NSMutableArray arrayWithArray:[super languageNodeClasses]];
+	NSMutableArray* classes = [NSMutableArray array];
     
     [classes addObject:[ParserNodeColon class]];
     [classes addObject:[ParserNodeSemicolon class]];
@@ -96,8 +100,20 @@
 }
 
 + (NSSet*) languageTopLevelNodeClasses {
-	return [NSSet setWithObjects:[ParserNodeCPreprocessorConditionIf class], [ParserNodeCPreprocessorConditionIfdef class],
+	return [NSSet setWithObjects:[ParserNodeRoot class], [ParserNodeCPreprocessorConditionIf class], [ParserNodeCPreprocessorConditionIfdef class],
     	[ParserNodeCPreprocessorConditionIfndef class], [ParserNodeCPreprocessorConditionElse class], [ParserNodeCPreprocessorConditionElseif class], nil];
+}
+
+- (id) init {
+	if((self = [super init]))
+    	_topLevelNodeClasses = [[NSMutableDictionary alloc] init];
+    return self;
+}
+
+- (void) dealloc {
+	[_topLevelNodeClasses release];
+    
+	[super dealloc];
 }
 
 - (NSString*) name {
@@ -139,7 +155,21 @@ static inline BOOL _IsNodeAtTopLevel(ParserNode* node, NSSet* topLevelClasses) {
     return YES;
 }
 
-- (ParserNode*) performSyntaxAnalysisForNode:(ParserNode*)node textBuffer:(const unichar*)textBuffer topLevelNodeClasses:(NSSet*)nodeClasses {
+- (NSSet*) _topLevelNodeClassesForLanguage:(ParserLanguage*)language {
+	NSMutableSet* set = [_topLevelNodeClasses objectForKey:language];
+    if(set == nil) {
+    	set = [[NSMutableSet alloc] init];
+        for(ParserLanguage* sublanguage in language.allLanguageDependencies) {
+            if([sublanguage conformsToProtocol:@protocol(ParserLanguageCTopLevelNodeClasses)])
+            	[set unionSet:[[sublanguage class] languageTopLevelNodeClasses]];
+        }
+        [_topLevelNodeClasses setObject:set forKey:language];
+        [set release];
+    }
+    return set;
+}
+
+- (ParserNode*) performSyntaxAnalysisForNode:(ParserNode*)node textBuffer:(const unichar*)textBuffer topLevelLanguage:(ParserLanguage*)topLevelLanguage {
     
     if([node isKindOfClass:[ParserNodeCPreprocessorDefine class]] || [node isKindOfClass:[ParserNodeCPreprocessorUndefine class]] || [node isKindOfClass:[ParserNodeCPreprocessorWarning class]]
     	|| [node isKindOfClass:[ParserNodeCPreprocessorError class]] || [node isKindOfClass:[ParserNodeCPreprocessorInclude class]] || [node isKindOfClass:[ParserNodeCPreprocessorPragma class]]) {
@@ -304,7 +334,7 @@ static inline BOOL _IsNodeAtTopLevel(ParserNode* node, NSSet* topLevelClasses) {
     } else if([node isKindOfClass:[ParserNodeParenthesis class]]) {
         
         // "foo bar()" "foo bar() {}"
-        if(_IsNodeAtTopLevel(node, nodeClasses)) {
+        if(_IsNodeAtTopLevel(node, [self _topLevelNodeClassesForLanguage:topLevelLanguage])) {
             ParserNode* nextNode = [node findNextSiblingIgnoringWhitespaceAndNewline];
             if([nextNode isKindOfClass:[ParserNodeSemicolon class]] || [nextNode isKindOfClass:[ParserNodeBraces class]]) {
                 ParserNode* previousNode = [node findPreviousSiblingIgnoringWhitespaceAndNewline];

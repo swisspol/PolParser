@@ -24,7 +24,7 @@
 @implementation ParserLanguageBase
 
 + (NSArray*) languageNodeClasses {
-	NSMutableArray* classes = [NSMutableArray arrayWithArray:[super languageNodeClasses]];
+	NSMutableArray* classes = [NSMutableArray array];
     
     [classes addObject:[ParserNodeNewline class]];
     [classes addObject:[ParserNodeIndenting class]]; //Must be before ParserNodeWhitespace
@@ -37,7 +37,7 @@
 }
 
 - (NSString*) name {
-    return @"Base";
+    return @"Common";
 }
 
 - (NSSet*) fileExtensions {

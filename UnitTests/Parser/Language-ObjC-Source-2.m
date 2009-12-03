@@ -5839,6 +5839,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [74:75] <Newline> = ♢¶♢
 |    |    |    |    |    |    [75:75] <Indenting> = ♢→•♢
 |    |    |    |    |    |    [75:75] <CPPComment> = ♢//•Assume•the•default•file•type•for•now,•since•-initWithType:error:•does•not•currently•get•called•when•creating•documents•using•AppleScript.•(4165700)♢
+|    |    |    |    |    |    + <cleaned> = ♢Assume•the•default•file•type•for•now,•since•-initWithType:error:•does•not•currently•get•called•when•creating•documents•using•AppleScript.•(4165700)♢
 |    |    |    |    |    |    [75:76] <Newline> = ♢¶♢
 |    |    |    |    |    |    [76:76] <Indenting> = ♢→♢
 |    |    |    |    |    |    [76:76] <ObjCMethodCall>
@@ -6442,6 +6443,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    [128:129] <Newline> = ♢¶♢
 |    |    |    |    [129:129] <Indenting> = ♢••••♢
 |    |    |    |    [129:129] <CPPComment> = ♢//•Check•type•to•see•if•we•should•load•the•document•as•plain.•Note•that•this•check•isn't•always•conclusive,•which•is•why•we•do•another•check•below,•after•the•document•has•been•loaded•(and•correctly•categorized).♢
+|    |    |    |    + <cleaned> = ♢Check•type•to•see•if•we•should•load•the•document•as•plain.•Note•that•this•check•isn't•always•conclusive,•which•is•why•we•do•another•check•below,•after•the•document•has•been•loaded•(and•correctly•categorized).♢
 |    |    |    |    [129:130] <Newline> = ♢¶♢
 |    |    |    |    [130:130] <Indenting> = ♢••••♢
 |    |    |    |    [130:130] <Text> = ♢NSWorkspace♢
@@ -6574,6 +6576,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [132:132] <Semicolon> = ♢;♢
 |    |    |    |    |    |    [132:132] <Whitespace> = ♢•♢
 |    |    |    |    |    |    [132:132] <CPPComment> = ♢//•Force•plain♢
+|    |    |    |    |    |    + <cleaned> = ♢Force•plain♢
 |    |    |    |    |    |    [132:133] <Newline> = ♢¶♢
 |    |    |    |    |    |    [133:133] <Indenting> = ♢→♢
 |    |    |    |    |    |    [133:133] <ObjCMethodCall>
@@ -6631,6 +6634,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    [137:138] <Newline> = ♢¶♢
 |    |    |    |    [138:138] <Indenting> = ♢••••♢
 |    |    |    |    [138:138] <CPPComment> = ♢//•Remove•the•layout•managers•while•loading•the•text;•mutableCopy•retains•the•array•so•the•layout•managers•aren't•released♢
+|    |    |    |    + <cleaned> = ♢Remove•the•layout•managers•while•loading•the•text;•mutableCopy•retains•the•array•so•the•layout•managers•aren't•released♢
 |    |    |    |    [138:139] <Newline> = ♢¶♢
 |    |    |    |    [139:139] <Indenting> = ♢••••♢
 |    |    |    |    [139:139] <Text> = ♢NSMutableArray♢
@@ -6716,6 +6720,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    [143:144] <Newline> = ♢¶♢
 |    |    |    |    [144:144] <Indenting> = ♢••••♢
 |    |    |    |    [144:144] <CPPComment> = ♢//•We•can•do•this•loop•twice,•if•the•document•is•loaded•as•rich•text•although•the•user•requested•plain♢
+|    |    |    |    + <cleaned> = ♢We•can•do•this•loop•twice,•if•the•document•is•loaded•as•rich•text•although•the•user•requested•plain♢
 |    |    |    |    [144:145] <Newline> = ♢¶♢
 |    |    |    |    [145:145] <Indenting> = ♢••••♢
 |    |    |    |    [145:145] <Text> = ♢BOOL♢
@@ -6832,6 +6837,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    [157:157] <Semicolon> = ♢;♢
 |    |    |    |    |    |    |    |    [157:157] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    |    [157:157] <CPPComment> = ♢//•rewind♢
+|    |    |    |    |    |    |    |    + <cleaned> = ♢rewind♢
 |    |    |    |    |    |    |    |    [157:158] <Newline> = ♢¶♢
 |    |    |    |    |    |    |    |    [158:158] <Indenting> = ♢→••••♢
 |    |    |    |    |    |    |    |    [158:158] <CFlowWhile> = ♢while♢
@@ -6863,6 +6869,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    [158:158] <Semicolon> = ♢;♢
 |    |    |    |    |    |    |    |    [158:158] <Whitespace> = ♢•••♢
 |    |    |    |    |    |    |    |    [158:158] <CPPComment> = ♢//•Add•the•layout•managers•back♢
+|    |    |    |    |    |    |    |    + <cleaned> = ♢Add•the•layout•managers•back♢
 |    |    |    |    |    |    |    |    [158:159] <Newline> = ♢¶♢
 |    |    |    |    |    |    |    |    [159:159] <Indenting> = ♢→••••♢
 |    |    |    |    |    |    |    |    [159:159] <ObjCMethodCall>
@@ -6882,6 +6889,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    |    [160:160] <Semicolon> = ♢;♢
 |    |    |    |    |    |    |    |    [160:160] <Whitespace> = ♢→♢
 |    |    |    |    |    |    |    |    [160:160] <CPPComment> = ♢//•return•NO•on•error;•outError•has•already•been•set♢
+|    |    |    |    |    |    |    |    + <cleaned> = ♢return•NO•on•error;•outError•has•already•been•set♢
 |    |    |    |    |    |    |    |    [160:161] <Newline> = ♢¶♢
 |    |    |    |    |    |    |    |    [161:161] <Indenting> = ♢→♢
 |    |    |    |    |    |    |    |    [161:161] <Match> = ♢}♢
@@ -6907,6 +6915,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [164:165] <Newline> = ♢¶♢
 |    |    |    |    |    |    [165:165] <Indenting> = ♢→♢
 |    |    |    |    |    |    [165:165] <CPPComment> = ♢//•First•check•to•see•if•the•document•was•rich•and•should•have•been•loaded•as•plain♢
+|    |    |    |    |    |    + <cleaned> = ♢First•check•to•see•if•the•document•was•rich•and•should•have•been•loaded•as•plain♢
 |    |    |    |    |    |    [165:166] <Newline> = ♢¶♢
 |    |    |    |    |    |    [166:166] <Indenting> = ♢→♢
 |    |    |    |    |    |    [166:173] <CConditionIf>
@@ -7165,6 +7174,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    |    |    [178:178] <Semicolon> = ♢;♢
 |    |    |    |    |    |    |    |    |    |    [178:178] <Whitespace> = ♢→♢
 |    |    |    |    |    |    |    |    |    |    [178:178] <CPPComment> = ♢//•Hmm,•a•new•type•in•the•Cocoa•text•system.•Treat•it•as•rich.•???•Should•set•the•converted•flag•too?♢
+|    |    |    |    |    |    |    |    |    |    + <cleaned> = ♢Hmm,•a•new•type•in•the•Cocoa•text•system.•Treat•it•as•rich.•???•Should•set•the•converted•flag•too?♢
 |    |    |    |    |    |    |    |    |    |    [178:179] <Newline> = ♢¶♢
 |    |    |    |    |    |    |    |    |    |    [179:179] <Indenting> = ♢→••••♢
 |    |    |    |    |    |    |    |    |    |    [179:179] <Match> = ♢}♢
@@ -7252,6 +7262,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    [185:185] <Semicolon> = ♢;♢
 |    |    |    |    [185:185] <Whitespace> = ♢•♢
 |    |    |    |    [185:185] <CPPComment> = ♢//•rewind♢
+|    |    |    |    + <cleaned> = ♢rewind♢
 |    |    |    |    [185:186] <Newline> = ♢¶♢
 |    |    |    |    [186:186] <Indenting> = ♢••••♢
 |    |    |    |    [186:186] <CFlowWhile> = ♢while♢
@@ -7283,6 +7294,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    [186:186] <Semicolon> = ♢;♢
 |    |    |    |    [186:186] <Whitespace> = ♢•••♢
 |    |    |    |    [186:186] <CPPComment> = ♢//•Add•the•layout•managers•back♢
+|    |    |    |    + <cleaned> = ♢Add•the•layout•managers•back♢
 |    |    |    |    [186:187] <Newline> = ♢¶♢
 |    |    |    |    [187:187] <Indenting> = ♢••••♢
 |    |    |    |    [187:187] <ObjCMethodCall>
@@ -7393,6 +7405,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [193:193] <Semicolon> = ♢;♢
 |    |    |    |    |    |    [193:193] <Whitespace> = ♢→♢
 |    |    |    |    |    |    [193:193] <CPPComment> = ♢//•Indicates•filtered♢
+|    |    |    |    |    |    + <cleaned> = ♢Indicates•filtered♢
 |    |    |    |    |    |    [193:194] <Newline> = ♢¶♢
 |    |    |    |    |    |    [194:194] <Indenting> = ♢••••••••♢
 |    |    |    |    |    |    [194:194] <ObjCMethodCall>
@@ -7420,6 +7433,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [194:194] <Semicolon> = ♢;♢
 |    |    |    |    |    |    [194:194] <Whitespace> = ♢→♢
 |    |    |    |    |    |    [194:194] <CPPComment> = ♢//•Indicates•lossily•loaded♢
+|    |    |    |    |    |    + <cleaned> = ♢Indicates•lossily•loaded♢
 |    |    |    |    |    |    [194:195] <Newline> = ♢¶♢
 |    |    |    |    |    |    [195:195] <Indenting> = ♢••••♢
 |    |    |    |    |    |    [195:195] <Match> = ♢}♢
@@ -7845,6 +7859,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    [216:216] <Semicolon> = ♢;♢
 |    |    |    |    [216:216] <Whitespace> = ♢→♢
 |    |    |    |    [216:216] <CPPComment> = ♢//•Protect•against•some•old•documents•with•0•paper•size♢
+|    |    |    |    + <cleaned> = ♢Protect•against•some•old•documents•with•0•paper•size♢
 |    |    |    |    [216:217] <Newline> = ♢¶♢
 |    |    |    |    [217:217] <Indenting> = ♢••••♢
 |    |    |    |    [217:218] <Newline> = ♢¶♢
@@ -7914,6 +7929,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [221:221] <Match> = ♢{♢
 |    |    |    |    |    |    [221:221] <Whitespace> = ♢→♢
 |    |    |    |    |    |    [221:221] <CPPComment> = ♢//•No•ViewSize...♢
+|    |    |    |    |    |    + <cleaned> = ♢No•ViewSize...♢
 |    |    |    |    |    |    [221:222] <Newline> = ♢¶♢
 |    |    |    |    |    |    [222:222] <Indenting> = ♢••••••••♢
 |    |    |    |    |    |    [222:233] <CConditionIf>
@@ -7928,6 +7944,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    [222:222] <Match> = ♢{♢
 |    |    |    |    |    |    |    |    [222:222] <Whitespace> = ♢→♢
 |    |    |    |    |    |    |    |    [222:222] <CPPComment> = ♢//•See•if•PaperSize•should•be•used•as•ViewSize;•if•so,•we•also•have•some•tweaking•to•do•on•it♢
+|    |    |    |    |    |    |    |    + <cleaned> = ♢See•if•PaperSize•should•be•used•as•ViewSize;•if•so,•we•also•have•some•tweaking•to•do•on•it♢
 |    |    |    |    |    |    |    |    [222:223] <Newline> = ♢¶♢
 |    |    |    |    |    |    |    |    [223:223] <Indenting> = ♢••••••••••••♢
 |    |    |    |    |    |    |    |    [223:223] <Text> = ♢val♢
@@ -7976,6 +7993,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    |    |    [224:224] <Match> = ♢{♢
 |    |    |    |    |    |    |    |    |    |    [224:224] <Whitespace> = ♢→♢
 |    |    |    |    |    |    |    |    |    |    [224:224] <CPPComment> = ♢//•Indicates•old•RTF•file;•value•described•in•AppKit/NSAttributedString.h♢
+|    |    |    |    |    |    |    |    |    |    + <cleaned> = ♢Indicates•old•RTF•file;•value•described•in•AppKit/NSAttributedString.h♢
 |    |    |    |    |    |    |    |    |    |    [224:225] <Newline> = ♢¶♢
 |    |    |    |    |    |    |    |    |    |    [225:225] <Indenting> = ♢••••••••••••••••♢
 |    |    |    |    |    |    |    |    |    |    [225:225] <Text> = ♢NSSize♢
@@ -8181,6 +8199,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    [238:239] <Newline> = ♢¶♢
 |    |    |    |    [239:239] <Indenting> = ♢••••♢
 |    |    |    |    [239:239] <CPPComment> = ♢//•Set•the•document•properties,•generically,•going•through•key•value•coding♢
+|    |    |    |    + <cleaned> = ♢Set•the•document•properties,•generically,•going•through•key•value•coding♢
 |    |    |    |    [239:240] <Newline> = ♢¶♢
 |    |    |    |    [240:240] <Indenting> = ♢••••♢
 |    |    |    |    [240:240] <Text> = ♢NSDictionary♢
@@ -8253,6 +8272,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    [241:241] <Semicolon> = ♢;♢
 |    |    |    |    [241:241] <Whitespace> = ♢→♢
 |    |    |    |    [241:241] <CPPComment> = ♢//•OK•to•set•nil•to•clear♢
+|    |    |    |    + <cleaned> = ♢OK•to•set•nil•to•clear♢
 |    |    |    |    [241:242] <Newline> = ♢¶♢
 |    |    |    |    [242:242] <Indenting> = ♢••••♢
 |    |    |    |    [242:243] <Newline> = ♢¶♢
@@ -8452,6 +8472,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    [255:255] <Match> = ♢{♢
 |    |    |    |    |    |    |    |    [255:255] <Whitespace> = ♢→♢
 |    |    |    |    |    |    |    |    [255:255] <CPPComment> = ♢//•We•do•this•once...♢
+|    |    |    |    |    |    |    |    + <cleaned> = ♢We•do•this•once...♢
 |    |    |    |    |    |    |    |    [255:256] <Newline> = ♢¶♢
 |    |    |    |    |    |    |    |    [256:256] <Indenting> = ♢→••••♢
 |    |    |    |    |    |    |    |    [256:256] <Text> = ♢NSInteger♢
@@ -8531,6 +8552,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    [258:258] <Semicolon> = ♢;♢
 |    |    |    |    |    |    |    |    [258:258] <Whitespace> = ♢••♢
 |    |    |    |    |    |    |    |    [258:258] <CPPComment> = ♢//•Every•cm•or•half•inch♢
+|    |    |    |    |    |    |    |    + <cleaned> = ♢Every•cm•or•half•inch♢
 |    |    |    |    |    |    |    |    [258:259] <Newline> = ♢¶♢
 |    |    |    |    |    |    |    |    [259:259] <Indenting> = ♢→••••♢
 |    |    |    |    |    |    |    |    [259:259] <Text> = ♢NSMutableParagraphStyle♢
@@ -8580,6 +8602,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    [260:260] <Semicolon> = ♢;♢
 |    |    |    |    |    |    |    |    [260:260] <Whitespace> = ♢→♢
 |    |    |    |    |    |    |    |    [260:260] <CPPComment> = ♢//•This•first•clears•all•tab•stops♢
+|    |    |    |    |    |    |    |    + <cleaned> = ♢This•first•clears•all•tab•stops♢
 |    |    |    |    |    |    |    |    [260:261] <Newline> = ♢¶♢
 |    |    |    |    |    |    |    |    [261:261] <Indenting> = ♢→••••♢
 |    |    |    |    |    |    |    |    [261:265] <CFlowFor>
@@ -8608,6 +8631,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    |    |    [261:261] <Match> = ♢{♢
 |    |    |    |    |    |    |    |    |    |    [261:261] <Whitespace> = ♢→♢
 |    |    |    |    |    |    |    |    |    |    [261:261] <CPPComment> = ♢//•Add•12•tab•stops,•at•desired•intervals...♢
+|    |    |    |    |    |    |    |    |    |    + <cleaned> = ♢Add•12•tab•stops,•at•desired•intervals...♢
 |    |    |    |    |    |    |    |    |    |    [261:262] <Newline> = ♢¶♢
 |    |    |    |    |    |    |    |    |    |    [262:262] <Indenting> = ♢••••••••••••••••♢
 |    |    |    |    |    |    |    |    |    |    [262:262] <Text> = ♢NSTextTab♢
@@ -8830,6 +8854,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [274:275] <Newline> = ♢¶♢
 |    |    |    |    |    |    [275:275] <Indenting> = ♢→♢
 |    |    |    |    |    |    [275:275] <CPPComment> = ♢//•Now•use•a•default•paragraph•style,•but•with•the•tab•width•adjusted♢
+|    |    |    |    |    |    + <cleaned> = ♢Now•use•a•default•paragraph•style,•but•with•the•tab•width•adjusted♢
 |    |    |    |    |    |    [275:276] <Newline> = ♢¶♢
 |    |    |    |    |    |    [276:276] <Indenting> = ♢→♢
 |    |    |    |    |    |    [276:276] <Text> = ♢NSMutableParagraphStyle♢
@@ -8929,6 +8954,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [280:281] <Newline> = ♢¶♢
 |    |    |    |    |    |    [281:281] <Indenting> = ♢→♢
 |    |    |    |    |    |    [281:281] <CPPComment> = ♢//•Also•set•the•font♢
+|    |    |    |    |    |    + <cleaned> = ♢Also•set•the•font♢
 |    |    |    |    |    |    [281:282] <Newline> = ♢¶♢
 |    |    |    |    |    |    [282:282] <Indenting> = ♢→♢
 |    |    |    |    |    |    [282:282] <ObjCMethodCall>
@@ -9016,6 +9042,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    [289:290] <Newline> = ♢¶♢
 |    |    |    |    [290:290] <Indenting> = ♢••••♢
 |    |    |    |    [290:290] <CPPComment> = ♢//•We•now•preserve•base•writing•direction•even•for•plain•text,•using•the•10.6-introduced•attribute•enumeration•API♢
+|    |    |    |    + <cleaned> = ♢We•now•preserve•base•writing•direction•even•for•plain•text,•using•the•10.6-introduced•attribute•enumeration•API♢
 |    |    |    |    [290:291] <Newline> = ♢¶♢
 |    |    |    |    [291:291] <Indenting> = ♢••••♢
 |    |    |    |    [291:301] <ObjCMethodCall>
@@ -9102,6 +9129,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [292:293] <Newline> = ♢¶♢
 |    |    |    |    |    |    [293:293] <Indenting> = ♢••••••••♢
 |    |    |    |    |    |    [293:293] <CPPComment> = ♢//•We•also•preserve•NSWritingDirectionAttributeName•(new•in•10.6)♢
+|    |    |    |    |    |    + <cleaned> = ♢We•also•preserve•NSWritingDirectionAttributeName•(new•in•10.6)♢
 |    |    |    |    |    |    [293:294] <Newline> = ♢¶♢
 |    |    |    |    |    |    [294:294] <Indenting> = ♢••••••••♢
 |    |    |    |    |    |    [294:299] <ObjCMethodCall>
@@ -9437,6 +9465,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    [316:316] <Semicolon> = ♢;♢
 |    |    |    |    [316:316] <Whitespace> = ♢→♢
 |    |    |    |    [316:316] <CPPComment> = ♢//•Default•to•UTF-8♢
+|    |    |    |    + <cleaned> = ♢Default•to•UTF-8♢
 |    |    |    |    [316:317] <Newline> = ♢¶♢
 |    |    |    |    [317:317] <Indenting> = ♢••••♢
 |    |    |    |    [317:317] <CFlowReturn>
@@ -9775,6 +9804,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    [337:337] <Semicolon> = ♢;♢
 |    |    |    |    [337:337] <Whitespace> = ♢•♢
 |    |    |    |    [337:337] <CPPComment> = ♢//•temporary•values♢
+|    |    |    |    + <cleaned> = ♢temporary•values♢
 |    |    |    |    [337:338] <Newline> = ♢¶♢
 |    |    |    |    [338:338] <Indenting> = ♢••••♢
 |    |    |    |    [338:339] <Newline> = ♢¶♢
@@ -9846,6 +9876,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    [343:344] <Newline> = ♢¶♢
 |    |    |    |    [344:344] <Indenting> = ♢••••♢
 |    |    |    |    [344:344] <CPPComment> = ♢//•TextEdit•knows•how•to•save•all•these•types,•including•their•super-types.•It•does•not•know•how•to•save•any•of•their•potential•subtypes.•Hence,•the•conformance•check•is•the•reverse•of•the•usual•pattern.♢
+|    |    |    |    + <cleaned> = ♢TextEdit•knows•how•to•save•all•these•types,•including•their•super-types.•It•does•not•know•how•to•save•any•of•their•potential•subtypes.•Hence,•the•conformance•check•is•the•reverse•of•the•usual•pattern.♢
 |    |    |    |    [344:345] <Newline> = ♢¶♢
 |    |    |    |    [345:345] <Indenting> = ♢••••♢
 |    |    |    |    [345:345] <Text> = ♢NSWorkspace♢
@@ -10361,6 +10392,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [364:365] <Newline> = ♢¶♢
 |    |    |    |    |    |    [365:365] <Indenting> = ♢→♢
 |    |    |    |    |    |    [365:365] <CPPComment> = ♢//•check•here•in•case•this•didn't•go•through•save•panel•(i.e.•scripting)♢
+|    |    |    |    |    |    + <cleaned> = ♢check•here•in•case•this•didn't•go•through•save•panel•(i.e.•scripting)♢
 |    |    |    |    |    |    [365:366] <Newline> = ♢¶♢
 |    |    |    |    |    |    [366:366] <Indenting> = ♢••••••••♢
 |    |    |    |    |    |    [366:369] <CConditionIf>
@@ -10815,6 +10847,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    [390:391] <Newline> = ♢¶♢
 |    |    |    |    [391:391] <Indenting> = ♢••••♢
 |    |    |    |    [391:391] <CPPComment> = ♢//•Set•the•document•properties,•generically,•going•through•key•value•coding♢
+|    |    |    |    + <cleaned> = ♢Set•the•document•properties,•generically,•going•through•key•value•coding♢
 |    |    |    |    [391:392] <Newline> = ♢¶♢
 |    |    |    |    [392:392] <Indenting> = ♢••••♢
 |    |    |    |    [392:395] <CFlowFor>
@@ -10988,6 +11021,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [398:398] <Match> = ♢{♢
 |    |    |    |    |    |    [398:398] <Whitespace> = ♢→♢
 |    |    |    |    |    |    [398:398] <CPPComment> = ♢//•We•obtain•a•file•wrapper•from•the•text•storage•for•RTFD•(to•produce•a•directory),•or•for•true•plain-text•documents•(to•write•out•encoding•in•extended•attributes)♢
+|    |    |    |    |    |    + <cleaned> = ♢We•obtain•a•file•wrapper•from•the•text•storage•for•RTFD•(to•produce•a•directory),•or•for•true•plain-text•documents•(to•write•out•encoding•in•extended•attributes)♢
 |    |    |    |    |    |    [398:399] <Newline> = ♢¶♢
 |    |    |    |    |    |    [399:399] <Indenting> = ♢••••••••♢
 |    |    |    |    |    |    [399:399] <Text> = ♢result♢
@@ -11014,6 +11048,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [399:399] <Semicolon> = ♢;♢
 |    |    |    |    |    |    [399:399] <Whitespace> = ♢•♢
 |    |    |    |    |    |    [399:399] <CPPComment> = ♢//•returns•NSFileWrapper♢
+|    |    |    |    |    |    + <cleaned> = ♢returns•NSFileWrapper♢
 |    |    |    |    |    |    [399:400] <Newline> = ♢¶♢
 |    |    |    |    |    |    [400:400] <Indenting> = ♢••••♢
 |    |    |    |    |    |    [400:400] <Match> = ♢}♢
@@ -11052,6 +11087,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [401:401] <Semicolon> = ♢;♢
 |    |    |    |    |    |    [401:401] <Whitespace> = ♢•♢
 |    |    |    |    |    |    [401:401] <CPPComment> = ♢//•returns•NSData♢
+|    |    |    |    |    |    + <cleaned> = ♢returns•NSData♢
 |    |    |    |    |    |    [401:402] <Newline> = ♢¶♢
 |    |    |    |    |    |    [402:402] <Indenting> = ♢→♢
 |    |    |    |    |    |    [402:405] <CConditionIf>
@@ -11133,6 +11169,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    |    [404:404] <Semicolon> = ♢;♢
 |    |    |    |    |    |    |    |    [404:404] <Whitespace> = ♢••••♢
 |    |    |    |    |    |    |    |    [404:404] <CPPComment> = ♢//•Unlikely,•but•just•in•case•we•should•generate•an•NSError•for•this•case♢
+|    |    |    |    |    |    |    |    + <cleaned> = ♢Unlikely,•but•just•in•case•we•should•generate•an•NSError•for•this•case♢
 |    |    |    |    |    |    |    |    [404:405] <Newline> = ♢¶♢
 |    |    |    |    |    |    |    |    [405:405] <Indenting> = ♢••••••••♢
 |    |    |    |    |    |    |    |    [405:405] <Match> = ♢}♢
@@ -12902,10 +12939,12 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    [623:623] <Semicolon> = ♢;♢
 |    |    |    |    [623:623] <Whitespace> = ♢→♢
 |    |    |    |    [623:623] <CPPComment> = ♢//•Potential•strings•for•action•names•are•listed•below•(for•genstrings•to•pick•up)♢
+|    |    |    |    + <cleaned> = ♢Potential•strings•for•action•names•are•listed•below•(for•genstrings•to•pick•up)♢
 |    |    |    |    [623:624] <Newline> = ♢¶♢
 |    |    |    |    [624:625] <Newline> = ♢¶♢
 |    |    |    |    [625:625] <Indenting> = ♢••••♢
 |    |    |    |    [625:625] <CPPComment> = ♢//•Call•the•regular•KVC•mechanism•to•get•the•value•to•be•properly•set♢
+|    |    |    |    + <cleaned> = ♢Call•the•regular•KVC•mechanism•to•get•the•value•to•be•properly•set♢
 |    |    |    |    [625:626] <Newline> = ♢¶♢
 |    |    |    |    [626:626] <Indenting> = ♢••••♢
 |    |    |    |    [626:626] <ObjCMethodCall>
@@ -12999,6 +13038,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [631:631] <Semicolon> = ♢;♢
 |    |    |    |    |    |    [631:631] <Whitespace> = ♢→♢
 |    |    |    |    |    |    [631:631] <CPPComment> = ♢//•We•take•a•side-trip•to•this•method•to•register•for•undo♢
+|    |    |    |    |    |    + <cleaned> = ♢We•take•a•side-trip•to•this•method•to•register•for•undo♢
 |    |    |    |    |    |    [631:632] <Newline> = ♢¶♢
 |    |    |    |    |    |    [632:632] <Indenting> = ♢••••♢
 |    |    |    |    |    |    [632:632] <Match> = ♢}♢
@@ -13026,6 +13066,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [633:633] <Semicolon> = ♢;♢
 |    |    |    |    |    |    [633:633] <Whitespace> = ♢••♢
 |    |    |    |    |    |    [633:633] <CPPComment> = ♢//•In•case•some•other•KVC•call•is•sent•to•Document,•we•treat•it•normally♢
+|    |    |    |    |    |    + <cleaned> = ♢In•case•some•other•KVC•call•is•sent•to•Document,•we•treat•it•normally♢
 |    |    |    |    |    |    [633:634] <Newline> = ♢¶♢
 |    |    |    |    |    |    [634:634] <Indenting> = ♢••••♢
 |    |    |    |    |    |    [634:634] <Match> = ♢}♢
@@ -13361,6 +13402,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    [667:667] <Semicolon> = ♢;♢
 |    |    |    |    [667:667] <Whitespace> = ♢→♢
 |    |    |    |    [667:667] <CPPComment> = ♢//•Make•sure•the•whole•document•is•laid•out•before•printing♢
+|    |    |    |    + <cleaned> = ♢Make•sure•the•whole•document•is•laid•out•before•printing♢
 |    |    |    |    [667:668] <Newline> = ♢¶♢
 |    |    |    |    [668:668] <Indenting> = ♢••••♢
 |    |    |    |    [668:669] <Newline> = ♢¶♢
@@ -13413,6 +13455,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    [670:671] <Newline> = ♢¶♢
 |    |    |    |    [671:671] <Indenting> = ♢••••♢
 |    |    |    |    [671:671] <CPPComment> = ♢//•We•allow•changing•print•parameters•if•not•in•"Wrap•to•Page"•mode,•where•the•page•setup•settings•are•used♢
+|    |    |    |    + <cleaned> = ♢We•allow•changing•print•parameters•if•not•in•"Wrap•to•Page"•mode,•where•the•page•setup•settings•are•used♢
 |    |    |    |    [671:672] <Newline> = ♢¶♢
 |    |    |    |    [672:672] <Indenting> = ♢••••♢
 |    |    |    |    [672:672] <CConditionIf>
@@ -13807,6 +13850,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    [706:706] <Match> = ♢]♢
 |    |    |    |    |    |    [706:706] <Whitespace> = ♢•♢
 |    |    |    |    |    |    [706:706] <CPPComment> = ♢//•Only•rich•->•plain•can•lose•information.♢
+|    |    |    |    |    |    + <cleaned> = ♢Only•rich•->•plain•can•lose•information.♢
 |    |    |    |    |    |    [706:707] <Newline> = ♢¶♢
 |    |    |    |    |    |    [707:707] <Indenting> = ♢→•••••♢
 |    |    |    |    |    |    [707:707] <Ampersand> = ♢&♢
@@ -13824,6 +13868,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    [707:707] <Match> = ♢)♢
 |    |    |    |    |    |    |    [707:707] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    [707:707] <CPPComment> = ♢//•If•the•document•contains•characters•and...♢
+|    |    |    |    |    |    |    + <cleaned> = ♢If•the•document•contains•characters•and...♢
 |    |    |    |    |    |    |    [707:708] <Newline> = ♢¶♢
 |    |    |    |    |    |    |    [708:708] <Indenting> = ♢→→•♢
 |    |    |    |    |    |    |    [708:708] <Ampersand> = ♢&♢
@@ -13852,6 +13897,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    [708:708] <Match> = ♢)♢
 |    |    |    |    |    |    |    [708:708] <Whitespace> = ♢••♢
 |    |    |    |    |    |    |    [708:708] <CPPComment> = ♢//•...they•have•attributes...♢
+|    |    |    |    |    |    |    + <cleaned> = ♢...they•have•attributes...♢
 |    |    |    |    |    |    |    [708:709] <Newline> = ♢¶♢
 |    |    |    |    |    |    |    [709:709] <Indenting> = ♢→→•♢
 |    |    |    |    |    |    |    [709:709] <Ampersand> = ♢&♢
@@ -13869,6 +13915,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    |    [709:709] <Match> = ♢)♢
 |    |    |    |    |    |    |    |    [709:709] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    |    [709:709] <CPPComment> = ♢//•...which•either•are•not•the•same•for•the•whole•document...♢
+|    |    |    |    |    |    |    |    + <cleaned> = ♢...which•either•are•not•the•same•for•the•whole•document...♢
 |    |    |    |    |    |    |    |    [709:710] <Newline> = ♢¶♢
 |    |    |    |    |    |    |    |    [710:710] <Indenting> = ♢→→•••••♢
 |    |    |    |    |    |    |    |    [710:710] <Text> = ♢||♢
@@ -13894,11 +13941,13 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    [710:710] <Match> = ♢)♢
 |    |    |    |    |    |    |    [710:710] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    [710:710] <CPPComment> = ♢//•...or•differ•from•the•default,•then...♢
+|    |    |    |    |    |    |    + <cleaned> = ♢...or•differ•from•the•default,•then...♢
 |    |    |    |    |    |    |    [710:711] <Newline> = ♢¶♢
 |    |    |    |    |    |    |    [711:711] <Indenting> = ♢→→•♢
 |    |    |    |    |    |    |    [711:711] <Match> = ♢)♢
 |    |    |    |    |    |    [711:711] <Whitespace> = ♢•♢
 |    |    |    |    |    |    [711:711] <CPPComment> = ♢//•...we•will•lose•styling•information.♢
+|    |    |    |    |    |    + <cleaned> = ♢...we•will•lose•styling•information.♢
 |    |    |    |    |    |    [711:712] <Newline> = ♢¶♢
 |    |    |    |    |    |    [712:712] <Indenting> = ♢→•••••♢
 |    |    |    |    |    |    [712:712] <Text> = ♢||♢
@@ -13914,6 +13963,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    [712:712] <Semicolon> = ♢;♢
 |    |    |    |    [712:712] <Whitespace> = ♢•♢
 |    |    |    |    [712:712] <CPPComment> = ♢//•We•will•also•lose•information•if•the•document•has•properties.♢
+|    |    |    |    + <cleaned> = ♢We•will•also•lose•information•if•the•document•has•properties.♢
 |    |    |    |    [712:713] <Newline> = ♢¶♢
 |    |    |    |    [713:713] <Match> = ♢}♢
 |    |    [713:714] <Newline> = ♢¶♢
@@ -14739,6 +14789,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    [778:779] <Newline> = ♢¶♢
 |    |    [779:780] <Newline> = ♢¶♢
 |    |    [780:780] <CPPComment> = ♢//•For•scripting.•We•already•have•a•-textStorage•method•implemented•above.♢
+|    |    + <cleaned> = ♢For•scripting.•We•already•have•a•-textStorage•method•implemented•above.♢
 |    |    [780:781] <Newline> = ♢¶♢
 |    |    [781:793] <ObjCMethodImplementation>
 |    |    + <name> = ♢setTextStorage:♢
@@ -14761,6 +14812,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    [781:782] <Newline> = ♢¶♢
 |    |    |    |    [782:782] <Indenting> = ♢••••♢
 |    |    |    |    [782:782] <CPPComment> = ♢//•Warning,•undo•support•can•eat•a•lot•of•memory•if•a•long•text•is•changed•frequently♢
+|    |    |    |    + <cleaned> = ♢Warning,•undo•support•can•eat•a•lot•of•memory•if•a•long•text•is•changed•frequently♢
 |    |    |    |    [782:783] <Newline> = ♢¶♢
 |    |    |    |    [783:783] <Indenting> = ♢••••♢
 |    |    |    |    [783:783] <Text> = ♢NSAttributedString♢
@@ -14830,6 +14882,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    [786:787] <Newline> = ♢¶♢
 |    |    |    |    [787:787] <Indenting> = ♢••••♢
 |    |    |    |    [787:787] <CPPComment> = ♢//•ts•can•actually•be•a•string•or•an•attributed•string.♢
+|    |    |    |    + <cleaned> = ♢ts•can•actually•be•a•string•or•an•attributed•string.♢
 |    |    |    |    [787:788] <Newline> = ♢¶♢
 |    |    |    |    [788:788] <Indenting> = ♢••••♢
 |    |    |    |    [788:790] <CConditionIf>
@@ -14977,9 +15030,11 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    [795:796] <Newline> = ♢¶♢
 |    |    |    |    [796:796] <Indenting> = ♢••••♢
 |    |    |    |    [796:796] <CPPComment> = ♢//•This•is•necessary,•because•document•reverting•doesn't•happen•within•NSDocument•if•the•fileURL•is•nil.♢
+|    |    |    |    + <cleaned> = ♢This•is•necessary,•because•document•reverting•doesn't•happen•within•NSDocument•if•the•fileURL•is•nil.♢
 |    |    |    |    [796:797] <Newline> = ♢¶♢
 |    |    |    |    [797:797] <Indenting> = ♢••••♢
 |    |    |    |    [797:797] <CPPComment> = ♢//•However,•this•is•only•a•temporary•workaround•because•it•would•be•better•if•fileURL•was•never•set•to•nil.♢
+|    |    |    |    + <cleaned> = ♢However,•this•is•only•a•temporary•workaround•because•it•would•be•better•if•fileURL•was•never•set•to•nil.♢
 |    |    |    |    [797:798] <Newline> = ♢¶♢
 |    |    |    |    [798:798] <Indenting> = ♢••••♢
 |    |    |    |    [798:800] <CConditionIf>
@@ -15089,6 +15144,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    [804:805] <Newline> = ♢¶♢
 |    |    |    |    [805:805] <Indenting> = ♢••••♢
 |    |    |    |    [805:805] <CPPComment> = ♢//•See•the•comment•in•the•above•override•of•-revertDocumentToSaved:.♢
+|    |    |    |    + <cleaned> = ♢See•the•comment•in•the•above•override•of•-revertDocumentToSaved:.♢
 |    |    |    |    [805:806] <Newline> = ♢¶♢
 |    |    |    |    [806:806] <Indenting> = ♢••••♢
 |    |    |    |    [806:806] <Text> = ♢BOOL♢
@@ -15208,9 +15264,11 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [813:814] <Newline> = ♢¶♢
 |    |    |    |    |    |    [814:814] <Indenting> = ♢••••••••♢
 |    |    |    |    |    |    [814:814] <CPPComment> = ♢//•The•document•failed•to•revert•correctly,•or•the•user•decided•to•cancel•the•revert.♢
+|    |    |    |    |    |    + <cleaned> = ♢The•document•failed•to•revert•correctly,•or•the•user•decided•to•cancel•the•revert.♢
 |    |    |    |    |    |    [814:815] <Newline> = ♢¶♢
 |    |    |    |    |    |    [815:815] <Indenting> = ♢••••••••♢
 |    |    |    |    |    |    [815:815] <CPPComment> = ♢//•This•just•restores•the•file•URL•to•how•it•was•before•the•sheet•was•displayed.♢
+|    |    |    |    |    |    + <cleaned> = ♢This•just•restores•the•file•URL•to•how•it•was•before•the•sheet•was•displayed.♢
 |    |    |    |    |    |    [815:816] <Newline> = ♢¶♢
 |    |    |    |    |    |    [816:816] <Indenting> = ♢••••••••♢
 |    |    |    |    |    |    [816:816] <ObjCMethodCall>
@@ -15560,6 +15618,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    [849:850] <Newline> = ♢¶♢
 |    |    |    |    [850:850] <Indenting> = ♢••••♢
 |    |    |    |    [850:850] <CPPComment> = ♢//•This•is•the•method•that•NSDocumentController•invokes•during•reopening•of•an•autosaved•document•after•a•crash.•The•passed-in•type•name•might•be•NSRTFDPboardType,•but•absoluteDocumentURL•might•point•to•an•RTF•document,•and•if•we•did•nothing•this•document's•fileURL•and•fileType•might•not•agree,•which•would•cause•trouble•the•next•time•the•user•saved•this•document.•absoluteDocumentURL•might•also•be•nil,•if•the•document•being•reopened•has•never•been•saved•before.•It's•an•oddity•of•NSDocument•that•if•you•override•-autosavingFileType•you•probably•have•to•override•this•method•too.♢
+|    |    |    |    + <cleaned> = ♢This•is•the•method•that•NSDocumentController•invokes•during•reopening•of•an•autosaved•document•after•a•crash.•The•passed-in•type•name•might•be•NSRTFDPboardType,•but•absoluteDocumentURL•might•point•to•an•RTF•document,•and•if•we•did•nothing•this•document's•fileURL•and•fileType•might•not•agree,•which•would•cause•trouble•the•next•time•the•user•saved•this•document.•absoluteDocumentURL•might•also•be•nil,•if•the•document•being•reopened•has•never•been•saved•before.•It's•an•oddity•of•NSDocument•that•if•you•override•-autosavingFileType•you•probably•have•to•override•this•method•too.♢
 |    |    |    |    [850:851] <Newline> = ♢¶♢
 |    |    |    |    [851:851] <Indenting> = ♢••••♢
 |    |    |    |    [851:860] <CConditionIf>
@@ -16172,6 +16231,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    [910:911] <Newline> = ♢¶♢
 |    |    |    |    [911:911] <Indenting> = ♢••••♢
 |    |    |    |    [911:911] <CPPComment> = ♢//•Note•that•we•do•the•breakUndoCoalescing•call•even•during•autosave,•which•means•the•user's•undo•of•long•typing•will•take•them•back•to•the•last•spot•an•autosave•occured.•This•might•seem•confusing,•and•a•more•elaborate•solution•may•be•possible•(cause•an•autosave•without•having•to•breakUndoCoalescing),•but•since•this•change•is•coming•late•in•Leopard,•we•decided•to•go•with•the•lower•risk•fix.♢
+|    |    |    |    + <cleaned> = ♢Note•that•we•do•the•breakUndoCoalescing•call•even•during•autosave,•which•means•the•user's•undo•of•long•typing•will•take•them•back•to•the•last•spot•an•autosave•occured.•This•might•seem•confusing,•and•a•more•elaborate•solution•may•be•possible•(cause•an•autosave•without•having•to•breakUndoCoalescing),•but•since•this•change•is•coming•late•in•Leopard,•we•decided•to•go•with•the•lower•risk•fix.♢
 |    |    |    |    [911:912] <Newline> = ♢¶♢
 |    |    |    |    [912:912] <Indenting> = ♢••••♢
 |    |    |    |    [912:912] <ObjCMethodCall>
@@ -16263,6 +16323,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [915:915] <Match> = ♢{♢
 |    |    |    |    |    |    [915:915] <Whitespace> = ♢••••♢
 |    |    |    |    |    |    [915:915] <CPPComment> = ♢//•If•successful,•set•document•parameters•changed•during•the•save•operation♢
+|    |    |    |    |    |    + <cleaned> = ♢If•successful,•set•document•parameters•changed•during•the•save•operation♢
 |    |    |    |    |    |    [915:916] <Newline> = ♢¶♢
 |    |    |    |    |    |    [916:916] <Indenting> = ♢→♢
 |    |    |    |    |    |    [916:916] <CConditionIf>
@@ -16317,6 +16378,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    [918:918] <Semicolon> = ♢;♢
 |    |    |    |    [918:918] <Whitespace> = ♢•••♢
 |    |    |    |    [918:918] <CPPComment> = ♢//•This•is•set•during•prepareSavePanel:,•but•should•be•cleared•for•future•save•operation•without•save•panel♢
+|    |    |    |    + <cleaned> = ♢This•is•set•during•prepareSavePanel:,•but•should•be•cleared•for•future•save•operation•without•save•panel♢
 |    |    |    |    [918:919] <Newline> = ♢¶♢
 |    |    |    |    [919:919] <Indenting> = ♢••••♢
 |    |    |    |    [919:919] <CFlowReturn>
@@ -16803,6 +16865,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    |    |    |    [955:955] <Match> = ♢{♢
 |    |    |    |    |    |    |    |    |    |    |    [955:955] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    |    |    |    |    [955:955] <CPPComment> = ♢//•Save•with•new•name♢
+|    |    |    |    |    |    |    |    |    |    |    + <cleaned> = ♢Save•with•new•name♢
 |    |    |    |    |    |    |    |    |    |    |    [955:956] <Newline> = ♢¶♢
 |    |    |    |    |    |    |    |    |    |    |    [956:956] <Indenting> = ♢→→••••♢
 |    |    |    |    |    |    |    |    |    |    |    [956:956] <ObjCMethodCall>
@@ -16903,6 +16966,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    |    |    |    [963:963] <Match> = ♢{♢
 |    |    |    |    |    |    |    |    |    |    |    [963:963] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    |    |    |    |    [963:963] <CPPComment> = ♢//•Save•with•new•name♢
+|    |    |    |    |    |    |    |    |    |    |    + <cleaned> = ♢Save•with•new•name♢
 |    |    |    |    |    |    |    |    |    |    |    [963:964] <Newline> = ♢¶♢
 |    |    |    |    |    |    |    |    |    |    |    [964:964] <Indenting> = ♢→→••••♢
 |    |    |    |    |    |    |    |    |    |    |    [964:964] <ObjCMethodCall>
@@ -16955,6 +17019,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    |    |    |    [967:967] <Match> = ♢{♢
 |    |    |    |    |    |    |    |    |    |    |    [967:967] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    |    |    |    |    [967:967] <CPPComment> = ♢//•Overwrite♢
+|    |    |    |    |    |    |    |    |    |    |    + <cleaned> = ♢Overwrite♢
 |    |    |    |    |    |    |    |    |    |    |    [967:968] <Newline> = ♢¶♢
 |    |    |    |    |    |    |    |    |    |    |    [968:968] <Indenting> = ♢→→••••♢
 |    |    |    |    |    |    |    |    |    |    |    [968:968] <ObjCMethodCall>
@@ -17008,6 +17073,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    |    |    |    [973:973] <Match> = ♢{♢
 |    |    |    |    |    |    |    |    |    |    |    [973:973] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    |    |    |    |    [973:973] <CPPComment> = ♢//•Save•with•new•name;•enable•the•user•to•choose•a•new•name•to•save•with♢
+|    |    |    |    |    |    |    |    |    |    |    + <cleaned> = ♢Save•with•new•name;•enable•the•user•to•choose•a•new•name•to•save•with♢
 |    |    |    |    |    |    |    |    |    |    |    [973:974] <Newline> = ♢¶♢
 |    |    |    |    |    |    |    |    |    |    |    [974:974] <Indenting> = ♢→→••••♢
 |    |    |    |    |    |    |    |    |    |    |    [974:974] <ObjCMethodCall>
@@ -17066,6 +17132,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    |    |    |    [977:977] <Match> = ♢{♢
 |    |    |    |    |    |    |    |    |    |    |    [977:977] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    |    |    |    |    [977:977] <CPPComment> = ♢//•Save•as•RTFD•with•the•same•name♢
+|    |    |    |    |    |    |    |    |    |    |    + <cleaned> = ♢Save•as•RTFD•with•the•same•name♢
 |    |    |    |    |    |    |    |    |    |    |    [977:978] <Newline> = ♢¶♢
 |    |    |    |    |    |    |    |    |    |    |    [978:978] <Indenting> = ♢→→••••♢
 |    |    |    |    |    |    |    |    |    |    |    [978:978] <Text> = ♢NSString♢
@@ -17162,6 +17229,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    |    |    |    |    |    [980:981] <Newline> = ♢¶♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    [981:981] <Indenting> = ♢→→→♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    [981:981] <CPPComment> = ♢//•If•attempt•to•save•as•RTFD•fails,•let•the•user•know♢
+|    |    |    |    |    |    |    |    |    |    |    |    |    + <cleaned> = ♢If•attempt•to•save•as•RTFD•fails,•let•the•user•know♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    [981:982] <Newline> = ♢¶♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    [982:982] <Indenting> = ♢→→→♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    [982:982] <ObjCMethodCall>
@@ -17208,6 +17276,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    |    |    |    |    |    [983:984] <Newline> = ♢¶♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    [984:984] <Indenting> = ♢→→→♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    [984:984] <CPPComment> = ♢//•The•RTFD•is•saved;•we•ignore•error•from•trying•to•delete•the•RTF•file♢
+|    |    |    |    |    |    |    |    |    |    |    |    |    + <cleaned> = ♢The•RTFD•is•saved;•we•ignore•error•from•trying•to•delete•the•RTF•file♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    [984:985] <Newline> = ♢¶♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    [985:985] <Indenting> = ♢→→→♢
 |    |    |    |    |    |    |    |    |    |    |    |    |    [985:985] <Parenthesis>
@@ -18435,6 +18504,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [1073:1074] <Newline> = ♢¶♢
 |    |    |    |    |    |    [1074:1074] <Indenting> = ♢→♢
 |    |    |    |    |    |    [1074:1074] <CPPComment> = ♢//•If•no•encoding,•figure•out•which•encoding•should•be•default•in•encoding•popup,•set•as•document•encoding.♢
+|    |    |    |    |    |    + <cleaned> = ♢If•no•encoding,•figure•out•which•encoding•should•be•default•in•encoding•popup,•set•as•document•encoding.♢
 |    |    |    |    |    |    [1074:1075] <Newline> = ♢¶♢
 |    |    |    |    |    |    [1075:1075] <Indenting> = ♢→♢
 |    |    |    |    |    |    [1075:1075] <Text> = ♢NSStringEncoding♢
@@ -18541,6 +18611,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [1078:1079] <Newline> = ♢¶♢
 |    |    |    |    |    |    [1079:1079] <Indenting> = ♢→♢
 |    |    |    |    |    |    [1079:1079] <CPPComment> = ♢//•Set•up•the•checkbox♢
+|    |    |    |    |    |    + <cleaned> = ♢Set•up•the•checkbox♢
 |    |    |    |    |    |    [1079:1080] <Newline> = ♢¶♢
 |    |    |    |    |    |    [1080:1080] <Indenting> = ♢→♢
 |    |    |    |    |    |    [1080:1080] <ObjCMethodCall>
@@ -18691,9 +18762,11 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    [1088:1089] <Newline> = ♢¶♢
 |    |    |    |    |    |    |    |    [1089:1089] <Indenting> = ♢••••••••••••♢
 |    |    |    |    |    |    |    |    [1089:1089] <CPPComment> = ♢//•NSDocument•defaults•to•setting•the•allowedFileType•to•kUTTypePlainText,•which•gives•the•fileName•a•".txt"•extension.•We•want•don't•want•to•append•the•extension•for•Untitled•documents.♢
+|    |    |    |    |    |    |    |    + <cleaned> = ♢NSDocument•defaults•to•setting•the•allowedFileType•to•kUTTypePlainText,•which•gives•the•fileName•a•".txt"•extension.•We•want•don't•want•to•append•the•extension•for•Untitled•documents.♢
 |    |    |    |    |    |    |    |    [1089:1090] <Newline> = ♢¶♢
 |    |    |    |    |    |    |    |    [1090:1090] <Indenting> = ♢••••••••••••♢
 |    |    |    |    |    |    |    |    [1090:1090] <CPPComment> = ♢//•First•we•clear•out•the•allowedFileType•that•NSDocument•set.•We•want•to•allow•anything,•so•we•pass•'nil'.•This•will•prevent•NSSavePanel•from•appending•an•extension.♢
+|    |    |    |    |    |    |    |    + <cleaned> = ♢First•we•clear•out•the•allowedFileType•that•NSDocument•set.•We•want•to•allow•anything,•so•we•pass•'nil'.•This•will•prevent•NSSavePanel•from•appending•an•extension.♢
 |    |    |    |    |    |    |    |    [1090:1091] <Newline> = ♢¶♢
 |    |    |    |    |    |    |    |    [1091:1091] <Indenting> = ♢••••••••••••♢
 |    |    |    |    |    |    |    |    [1091:1091] <ObjCMethodCall>
@@ -18709,6 +18782,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    [1091:1092] <Newline> = ♢¶♢
 |    |    |    |    |    |    |    |    [1092:1092] <Indenting> = ♢••••••••••••♢
 |    |    |    |    |    |    |    |    [1092:1092] <CPPComment> = ♢//•If•this•document•was•previously•saved,•use•the•URL's•name.♢
+|    |    |    |    |    |    |    |    + <cleaned> = ♢If•this•document•was•previously•saved,•use•the•URL's•name.♢
 |    |    |    |    |    |    |    |    [1092:1093] <Newline> = ♢¶♢
 |    |    |    |    |    |    |    |    [1093:1093] <Indenting> = ♢••••••••••••♢
 |    |    |    |    |    |    |    |    [1093:1093] <Text> = ♢NSString♢
@@ -18752,6 +18826,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    [1094:1095] <Newline> = ♢¶♢
 |    |    |    |    |    |    |    |    [1095:1095] <Indenting> = ♢••••••••••••♢
 |    |    |    |    |    |    |    |    [1095:1095] <CPPComment> = ♢//•If•the•document•has•not•yet•been•seaved,•or•we•couldn't•find•the•fileName,•then•use•the•displayName.♢
+|    |    |    |    |    |    |    |    + <cleaned> = ♢If•the•document•has•not•yet•been•seaved,•or•we•couldn't•find•the•fileName,•then•use•the•displayName.♢
 |    |    |    |    |    |    |    |    [1095:1095] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    |    [1095:1096] <Newline> = ♢¶♢
 |    |    |    |    |    |    |    |    [1096:1096] <Indenting> = ♢••••••••••••♢
@@ -18811,6 +18886,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    [1101:1102] <Newline> = ♢¶♢
 |    |    |    |    |    |    [1102:1102] <Indenting> = ♢→♢
 |    |    |    |    |    |    [1102:1102] <CPPComment> = ♢//•Further•set•up•the•encoding•popup♢
+|    |    |    |    |    |    + <cleaned> = ♢Further•set•up•the•encoding•popup♢
 |    |    |    |    |    |    [1102:1103] <Newline> = ♢¶♢
 |    |    |    |    |    |    [1103:1103] <Indenting> = ♢→♢
 |    |    |    |    |    |    [1103:1103] <Text> = ♢cnt♢
@@ -18867,6 +18943,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    [1105:1105] <Match> = ♢{♢
 |    |    |    |    |    |    |    |    [1105:1105] <Whitespace> = ♢→♢
 |    |    |    |    |    |    |    |    [1105:1105] <CPPComment> = ♢//•Otherwise•it's•just•too•slow;•would•be•nice•to•make•this•more•dynamic.•With•large•docs•and•many•encodings,•the•items•just•won't•be•validated.♢
+|    |    |    |    |    |    |    |    + <cleaned> = ♢Otherwise•it's•just•too•slow;•would•be•nice•to•make•this•more•dynamic.•With•large•docs•and•many•encodings,•the•items•just•won't•be•validated.♢
 |    |    |    |    |    |    |    |    [1105:1106] <Newline> = ♢¶♢
 |    |    |    |    |    |    |    |    [1106:1106] <Indenting> = ♢→••••♢
 |    |    |    |    |    |    |    |    [1106:1112] <CFlowWhile>
@@ -18881,6 +18958,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    |    |    [1106:1106] <Match> = ♢{♢
 |    |    |    |    |    |    |    |    |    |    [1106:1106] <Whitespace> = ♢→♢
 |    |    |    |    |    |    |    |    |    |    [1106:1106] <CPPComment> = ♢//•No•reason•go•backwards•except•to•use•one•variable•instead•of•two♢
+|    |    |    |    |    |    |    |    |    |    + <cleaned> = ♢No•reason•go•backwards•except•to•use•one•variable•instead•of•two♢
 |    |    |    |    |    |    |    |    |    |    [1106:1107] <Newline> = ♢¶♢
 |    |    |    |    |    |    |    |    |    |    [1107:1107] <Indenting> = ♢••••••••••••••••♢
 |    |    |    |    |    |    |    |    |    |    [1107:1107] <Text> = ♢NSStringEncoding♢
@@ -18918,6 +18996,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    |    |    [1107:1108] <Newline> = ♢¶♢
 |    |    |    |    |    |    |    |    |    |    [1108:1108] <Indenting> = ♢→→♢
 |    |    |    |    |    |    |    |    |    |    [1108:1108] <CPPComment> = ♢//•Hardwire•some•encodings•known•to•allow•any•content♢
+|    |    |    |    |    |    |    |    |    |    + <cleaned> = ♢Hardwire•some•encodings•known•to•allow•any•content♢
 |    |    |    |    |    |    |    |    |    |    [1108:1109] <Newline> = ♢¶♢
 |    |    |    |    |    |    |    |    |    |    [1109:1109] <Indenting> = ♢→→♢
 |    |    |    |    |    |    |    |    |    |    [1109:1111] <CConditionIf>
@@ -19261,6 +19340,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    [1139:1139] <Semicolon> = ♢;♢
 |    |    |    [1139:1139] <Whitespace> = ♢→♢
 |    |    |    [1139:1139] <CPPComment> = ♢//•Unicode•character•2026•is•ellipsis♢
+|    |    |    + <cleaned> = ♢Unicode•character•2026•is•ellipsis♢
 |    |    |    [1139:1140] <Newline> = ♢¶♢
 |    |    |    [1140:1140] <Match> = ♢}♢
 |    [1140:1141] <Newline> = ♢¶♢

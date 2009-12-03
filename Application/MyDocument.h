@@ -18,7 +18,7 @@
 
 #import <Cocoa/Cocoa.h>
 
-#import "Parser.h"
+#import "ParserLanguage.h"
 
 @interface MyDocument : NSDocument
 {

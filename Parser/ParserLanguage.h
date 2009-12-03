@@ -21,11 +21,10 @@
 @class ParserNodeRoot;
 
 /* Abstract class: do not instantiate */
-@interface ParserLanguage : NSObject {
+@interface ParserLanguage : NSObject <NSCopying> {
 @private
 	NSMutableSet* _keywords;
 	NSMutableArray* _nodeClasses;
-    NSMutableSet* _topLevelClasses;
 }
 + (NSSet*) allLanguages;
 + (ParserLanguage*) languageWithName:(NSString*)name;

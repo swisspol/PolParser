@@ -17,6 +17,7 @@
 */
 
 #import "Parser_Internal.h"
+#import "ParserLanguage_HTML.h"
 
 @interface ParserLanguageHTML : ParserLanguageSGML
 @end
@@ -24,7 +25,7 @@
 @implementation ParserLanguageHTML
 
 + (NSArray*) languageNodeClasses {
-	NSMutableArray* classes = [NSMutableArray arrayWithArray:[super languageNodeClasses]];
+	NSMutableArray* classes = [NSMutableArray array];
     
     [classes addObject:[ParserNodeHTMLDOCTYPE class]]; //Must be before ParserNodeHTMLTag
     [classes addObject:[ParserNodeHTMLComment class]]; //Must be before ParserNodeHTMLTag

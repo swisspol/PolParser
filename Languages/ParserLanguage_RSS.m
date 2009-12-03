@@ -57,7 +57,7 @@
 }
 
 - (NSSet*) fileExtensions {
-    return [NSSet setWithObject:@"rss"];
+    return [NSSet setWithObjects:@"rss", @"atom", nil];
 }
 
 - (ParserNode*) performSyntaxAnalysisForNode:(ParserNode*)node textBuffer:(const unichar*)textBuffer topLevelLanguage:(ParserLanguage*)topLevelLanguage {

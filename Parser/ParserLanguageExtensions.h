@@ -44,7 +44,9 @@
 @interface ParserNodeBrackets : ParserNode
 @end
 
-/* Special Tokens */
+/* Abstract class: do not instantiate */
+@interface ParserNodeToken : ParserNodeText //Leaf
+@end
 
 @interface ParserNodeColon : ParserNodeToken //Leaf
 @end

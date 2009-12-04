@@ -489,22 +489,6 @@ static BOOL _CheckTreeConsistency(ParserNode* node, NSMutableArray* stack) {
 
 @end
 
-@implementation ParserNodeToken
-
-+ (id) allocWithZone:(NSZone*)zone
-{
-    if(self == [ParserNodeKeyword class])
-        [NSException raise:NSInternalInconsistencyException format:@"ParserNodeToken is an abstract class"];
-    
-    return [super allocWithZone:zone];
-}
-
-+ (NSUInteger) isMatchingSuffix:(const unichar*)string maxLength:(NSUInteger)maxLength {
-    return 0;
-}
-
-@end
-
 @implementation ParserNode (ParserNodeTextExtensions)
 
 - (void) replaceWithText:(NSString*)text {

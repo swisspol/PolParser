@@ -59,10 +59,6 @@
 @interface ParserNodeKeyword : ParserNodeText //Leaf
 @end
 
-/* Abstract class: do not instantiate */
-@interface ParserNodeToken : ParserNodeText //Leaf
-@end
-
 @interface ParserNodeMatch : ParserNodeText //Leaf
 @end
 

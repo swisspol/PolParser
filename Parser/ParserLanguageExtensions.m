@@ -166,6 +166,22 @@ IMPLEMENTATION(Brackets, '[', ']')
 
 #undef IMPLEMENTATION
 
+@implementation ParserNodeToken
+
++ (id) allocWithZone:(NSZone*)zone
+{
+    if(self == [ParserNodeKeyword class])
+        [NSException raise:NSInternalInconsistencyException format:@"ParserNodeToken is an abstract class"];
+    
+    return [super allocWithZone:zone];
+}
+
++ (NSUInteger) isMatchingSuffix:(const unichar*)string maxLength:(NSUInteger)maxLength {
+    return 0;
+}
+
+@end
+
 #define IMPLEMENTATION(__NAME__, __CHARACTERS__) \
 @implementation ParserNode##__NAME__ \
 \

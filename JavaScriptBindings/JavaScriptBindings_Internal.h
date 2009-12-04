@@ -20,10 +20,11 @@
 
 #import "Parser_Internal.h"
 
-extern JSValueRef _JSValueMakeException(JSContextRef context, NSString* format, ...);
+JSValueRef _JSValueMakeString(NSString* string, JSContextRef context);
+JSValueRef _JSValueMakeException(JSContextRef context, NSString* format, ...);
 
-extern JSClassRef _GetDictionaryJavaScriptClass();
-extern JSValueRef _JSValueMakeParserNode(ParserNode* node, JSContextRef context);
+JSClassRef _GetDictionaryJavaScriptClass();
+JSValueRef _JSValueMakeParserNode(ParserNode* node, JSContextRef context);
 
-extern JSClassRef _GetParserNodeJavaScriptClass();
-extern JSValueRef _JSValueMakeDictionary(NSDictionary* dictionary, JSContextRef context);
+JSClassRef _GetParserNodeJavaScriptClass();
+JSValueRef _JSValueMakeDictionary(NSDictionary* dictionary, JSContextRef context);

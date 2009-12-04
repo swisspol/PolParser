@@ -36,14 +36,19 @@ function __wrapper() {\
     return __success;\
 }";
 
+JSValueRef _JSValueMakeString(NSString* string, JSContextRef context) {
+	JSStringRef jsString = JSStringCreateWithCFString((CFStringRef)string);
+    JSValueRef value = JSValueMakeString(context, jsString);
+    JSStringRelease(jsString);
+    return value;
+}
+
 JSValueRef _JSValueMakeException(JSContextRef context, NSString* format, ...) {
 	va_list args;
     va_start(args, format);
     NSString* string = [[NSString alloc] initWithFormat:format arguments:args];
     va_end(args);
-    JSStringRef jsString = JSStringCreateWithCFString((CFStringRef)string);
-    JSValueRef value = JSValueMakeString(context, jsString);
-    JSStringRelease(jsString);
+    JSValueRef value = _JSValueMakeString(string, context);
     [string release];
     return value;
 }

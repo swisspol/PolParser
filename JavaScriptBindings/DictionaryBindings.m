@@ -24,12 +24,8 @@ static JSValueRef _DictionaryGetPropertyCallback(JSContextRef ctx, JSObjectRef o
     	NSDictionary* dictionary = JSObjectGetPrivate(object);
         id value = [dictionary objectForKey:(id)cfString];
         CFRelease(cfString);
-        if(value) {
-        	JSStringRef jsString = JSStringCreateWithCFString((CFStringRef)[value description]); //FIXME: We should handle non-string values properly
-            JSValueRef jsValue = JSValueMakeString(ctx, jsString);
-            JSStringRelease(jsString);
-            return jsValue;
-        }
+        if(value)
+        	return _JSValueMakeString([value description], ctx); //FIXME: We should handle non-string values properly
     }
     return NULL;
 }
@@ -37,10 +33,7 @@ static JSValueRef _DictionaryGetPropertyCallback(JSContextRef ctx, JSObjectRef o
 static JSValueRef _DictionaryConvertToTypeCallback(JSContextRef ctx, JSObjectRef object, JSType type, JSValueRef* exception) {
 	if(type == kJSTypeString) {
     	NSDictionary* dictionary = JSObjectGetPrivate(object);
-        JSStringRef string = JSStringCreateWithCFString((CFStringRef)[dictionary description]);
-        JSValueRef value = JSValueMakeString(ctx, string);
-        JSStringRelease(string);
-        return value;
+        return _JSValueMakeString([dictionary description], ctx);
     }
     return JSValueMakeUndefined(ctx);
 }

@@ -25,10 +25,7 @@ static JSValueRef _GetPropertyType(JSContextRef ctx, JSObjectRef object, JSStrin
 
 static JSValueRef _GetPropertyName(JSContextRef ctx, JSObjectRef object, JSStringRef propertyName, JSValueRef* exception) {
 	ParserNode* node = JSObjectGetPrivate(object);
-    JSStringRef string = JSStringCreateWithCFString((CFStringRef)node.name);
-    JSValueRef value = JSValueMakeString(ctx, string);
-    JSStringRelease(string);
-    return value;
+    return _JSValueMakeString(node.name, ctx);
 }
 
 static JSValueRef _GetPropertyAttributes(JSContextRef ctx, JSObjectRef object, JSStringRef propertyName, JSValueRef* exception) {
@@ -39,18 +36,12 @@ static JSValueRef _GetPropertyAttributes(JSContextRef ctx, JSObjectRef object, J
 
 static JSValueRef _GetPropertyContent(JSContextRef ctx, JSObjectRef object, JSStringRef propertyName, JSValueRef* exception) {
 	ParserNode* node = JSObjectGetPrivate(object);
-    JSStringRef string = JSStringCreateWithCFString((CFStringRef)node.content);
-    JSValueRef value = JSValueMakeString(ctx, string);
-    JSStringRelease(string);
-    return value;
+    return _JSValueMakeString(node.content, ctx);
 }
 
 static JSValueRef _GetPropertyCleanContent(JSContextRef ctx, JSObjectRef object, JSStringRef propertyName, JSValueRef* exception) {
 	ParserNode* node = JSObjectGetPrivate(object);
-    JSStringRef string = JSStringCreateWithCFString((CFStringRef)node.cleanContent);
-    JSValueRef value = JSValueMakeString(ctx, string);
-    JSStringRelease(string);
-    return value;
+    return _JSValueMakeString(node.cleanContent, ctx);
 }
 
 static JSValueRef _GetPropertyParent(JSContextRef ctx, JSObjectRef object, JSStringRef propertyName, JSValueRef* exception) {
@@ -85,10 +76,7 @@ static JSValueRef _GetPropertyNextSibling(JSContextRef ctx, JSObjectRef object, 
 
 static JSValueRef _GetPropertyDescription(JSContextRef ctx, JSObjectRef object, JSStringRef propertyName, JSValueRef* exception) {
 	ParserNode* node = JSObjectGetPrivate(object);
-    JSStringRef string = JSStringCreateWithCFString((CFStringRef)node.description);
-    JSValueRef value = JSValueMakeString(ctx, string);
-    JSStringRelease(string);
-    return value;
+    return _JSValueMakeString(node.description, ctx);
 }
 
 static JSStaticValue _staticValues[] = {
@@ -411,10 +399,7 @@ static JSValueRef _GetPropertyCallback(JSContextRef ctx, JSObjectRef object, JSS
 static JSValueRef _ConvertToTypeCallback(JSContextRef ctx, JSObjectRef object, JSType type, JSValueRef* exception) {
 	if(type == kJSTypeString) {
     	ParserNode* node = JSObjectGetPrivate(object);
-        JSStringRef string = JSStringCreateWithCFString((CFStringRef)node.compactDescription);
-        JSValueRef value = JSValueMakeString(ctx, string);
-        JSStringRelease(string);
-        return value;
+        return _JSValueMakeString(node.compactDescription, ctx);
     }
     return JSValueMakeUndefined(ctx);
 }

@@ -16,15 +16,10 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#import "ParserLanguage_Common.h"
+#import "ParserLanguage.h"
 
 @interface ParserNodeCSVField : ParserNode //Leaf
 @end
 
 @interface ParserNodeCSVRecord : ParserNode
-@end
-
-/* Special Tokens */
-
-@interface ParserNodeComma : ParserNodeToken //Leaf
 @end

@@ -40,15 +40,21 @@
 		E250593910C79162007D0B9F /* ParserLanguage_CSV.m in Sources */ = {isa = PBXBuildFile; fileRef = E250593810C79162007D0B9F /* ParserLanguage_CSV.m */; };
 		E250593A10C79162007D0B9F /* ParserLanguage_CSV.m in Sources */ = {isa = PBXBuildFile; fileRef = E250593810C79162007D0B9F /* ParserLanguage_CSV.m */; };
 		E250593B10C79162007D0B9F /* ParserLanguage_CSV.m in Sources */ = {isa = PBXBuildFile; fileRef = E250593810C79162007D0B9F /* ParserLanguage_CSV.m */; };
-		E250597510C79429007D0B9F /* ParserLanguage_Common.m in Sources */ = {isa = PBXBuildFile; fileRef = E250597410C79429007D0B9F /* ParserLanguage_Common.m */; };
-		E250597610C79429007D0B9F /* ParserLanguage_Common.m in Sources */ = {isa = PBXBuildFile; fileRef = E250597410C79429007D0B9F /* ParserLanguage_Common.m */; };
-		E250597710C79429007D0B9F /* ParserLanguage_Common.m in Sources */ = {isa = PBXBuildFile; fileRef = E250597410C79429007D0B9F /* ParserLanguage_Common.m */; };
 		E2505BE810C7B3F3007D0B9F /* ParserLanguage_RSS.m in Sources */ = {isa = PBXBuildFile; fileRef = E2505BE710C7B3F3007D0B9F /* ParserLanguage_RSS.m */; };
 		E2505BE910C7B3F3007D0B9F /* ParserLanguage_RSS.m in Sources */ = {isa = PBXBuildFile; fileRef = E2505BE710C7B3F3007D0B9F /* ParserLanguage_RSS.m */; };
 		E2505BEA10C7B3F3007D0B9F /* ParserLanguage_RSS.m in Sources */ = {isa = PBXBuildFile; fileRef = E2505BE710C7B3F3007D0B9F /* ParserLanguage_RSS.m */; };
 		E2505BF910C7B4A3007D0B9F /* ParserLanguage_PropertyList.m in Sources */ = {isa = PBXBuildFile; fileRef = E2505BF810C7B4A3007D0B9F /* ParserLanguage_PropertyList.m */; };
 		E2505BFA10C7B4A3007D0B9F /* ParserLanguage_PropertyList.m in Sources */ = {isa = PBXBuildFile; fileRef = E2505BF810C7B4A3007D0B9F /* ParserLanguage_PropertyList.m */; };
 		E2505BFB10C7B4A3007D0B9F /* ParserLanguage_PropertyList.m in Sources */ = {isa = PBXBuildFile; fileRef = E2505BF810C7B4A3007D0B9F /* ParserLanguage_PropertyList.m */; };
+		E28906CB10C950ED0044693C /* ParserLanguage_JSON.m in Sources */ = {isa = PBXBuildFile; fileRef = E28906CA10C950ED0044693C /* ParserLanguage_JSON.m */; };
+		E28906CC10C950ED0044693C /* ParserLanguage_JSON.m in Sources */ = {isa = PBXBuildFile; fileRef = E28906CA10C950ED0044693C /* ParserLanguage_JSON.m */; };
+		E28906CD10C950ED0044693C /* ParserLanguage_JSON.m in Sources */ = {isa = PBXBuildFile; fileRef = E28906CA10C950ED0044693C /* ParserLanguage_JSON.m */; };
+		E28906F410C956060044693C /* ParserLanguageExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = E28906F310C956060044693C /* ParserLanguageExtensions.m */; };
+		E28906F510C956060044693C /* ParserLanguageExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = E28906F310C956060044693C /* ParserLanguageExtensions.m */; };
+		E28906F610C956060044693C /* ParserLanguageExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = E28906F310C956060044693C /* ParserLanguageExtensions.m */; };
+		E289076810C958230044693C /* ParserLanguage_Text.m in Sources */ = {isa = PBXBuildFile; fileRef = E289076710C958230044693C /* ParserLanguage_Text.m */; };
+		E289076910C958230044693C /* ParserLanguage_Text.m in Sources */ = {isa = PBXBuildFile; fileRef = E289076710C958230044693C /* ParserLanguage_Text.m */; };
+		E289076A10C958230044693C /* ParserLanguage_Text.m in Sources */ = {isa = PBXBuildFile; fileRef = E289076710C958230044693C /* ParserLanguage_Text.m */; };
 		E2903E3D10C53F5100CE0DD9 /* ParserLanguage_C.m in Sources */ = {isa = PBXBuildFile; fileRef = E2903E2A10C53F5100CE0DD9 /* ParserLanguage_C.m */; };
 		E2903E3E10C53F5100CE0DD9 /* ParserLanguage_CPP.m in Sources */ = {isa = PBXBuildFile; fileRef = E2903E2C10C53F5100CE0DD9 /* ParserLanguage_CPP.m */; };
 		E2903E3F10C53F5100CE0DD9 /* ParserLanguage_HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = E2903E2E10C53F5100CE0DD9 /* ParserLanguage_HTML.m */; };
@@ -137,12 +143,16 @@
 		E25057DD10C655E6007D0B9F /* ParserLanguage_SGML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParserLanguage_SGML.m; sourceTree = "<group>"; };
 		E250593710C79162007D0B9F /* ParserLanguage_CSV.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParserLanguage_CSV.h; sourceTree = "<group>"; };
 		E250593810C79162007D0B9F /* ParserLanguage_CSV.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParserLanguage_CSV.m; sourceTree = "<group>"; };
-		E250597310C79429007D0B9F /* ParserLanguage_Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParserLanguage_Common.h; sourceTree = "<group>"; };
-		E250597410C79429007D0B9F /* ParserLanguage_Common.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParserLanguage_Common.m; sourceTree = "<group>"; };
 		E2505BE610C7B3F3007D0B9F /* ParserLanguage_RSS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParserLanguage_RSS.h; sourceTree = "<group>"; };
 		E2505BE710C7B3F3007D0B9F /* ParserLanguage_RSS.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParserLanguage_RSS.m; sourceTree = "<group>"; };
 		E2505BF710C7B4A3007D0B9F /* ParserLanguage_PropertyList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParserLanguage_PropertyList.h; sourceTree = "<group>"; };
 		E2505BF810C7B4A3007D0B9F /* ParserLanguage_PropertyList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParserLanguage_PropertyList.m; sourceTree = "<group>"; };
+		E28906C910C950ED0044693C /* ParserLanguage_JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParserLanguage_JSON.h; sourceTree = "<group>"; };
+		E28906CA10C950ED0044693C /* ParserLanguage_JSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParserLanguage_JSON.m; sourceTree = "<group>"; };
+		E28906F210C956060044693C /* ParserLanguageExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParserLanguageExtensions.h; sourceTree = "<group>"; };
+		E28906F310C956060044693C /* ParserLanguageExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParserLanguageExtensions.m; sourceTree = "<group>"; };
+		E289076610C958230044693C /* ParserLanguage_Text.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParserLanguage_Text.h; sourceTree = "<group>"; };
+		E289076710C958230044693C /* ParserLanguage_Text.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParserLanguage_Text.m; sourceTree = "<group>"; };
 		E2903E2910C53F5100CE0DD9 /* ParserLanguage_C.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParserLanguage_C.h; sourceTree = "<group>"; };
 		E2903E2A10C53F5100CE0DD9 /* ParserLanguage_C.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParserLanguage_C.m; sourceTree = "<group>"; };
 		E2903E2B10C53F5100CE0DD9 /* ParserLanguage_CPP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParserLanguage_CPP.h; sourceTree = "<group>"; };
@@ -272,6 +282,8 @@
 				E250593810C79162007D0B9F /* ParserLanguage_CSV.m */,
 				E2903E2D10C53F5100CE0DD9 /* ParserLanguage_HTML.h */,
 				E2903E2E10C53F5100CE0DD9 /* ParserLanguage_HTML.m */,
+				E28906C910C950ED0044693C /* ParserLanguage_JSON.h */,
+				E28906CA10C950ED0044693C /* ParserLanguage_JSON.m */,
 				E2903E2F10C53F5100CE0DD9 /* ParserLanguage_ObjC.h */,
 				E2903E3010C53F5100CE0DD9 /* ParserLanguage_ObjC.m */,
 				E2903E3110C53F5100CE0DD9 /* ParserLanguage_ObjCPP.h */,
@@ -282,6 +294,8 @@
 				E2505BE710C7B3F3007D0B9F /* ParserLanguage_RSS.m */,
 				E25057DC10C655E6007D0B9F /* ParserLanguage_SGML.h */,
 				E25057DD10C655E6007D0B9F /* ParserLanguage_SGML.m */,
+				E289076610C958230044693C /* ParserLanguage_Text.h */,
+				E289076710C958230044693C /* ParserLanguage_Text.m */,
 				E2903E3310C53F5100CE0DD9 /* ParserLanguage_XML.h */,
 				E2903E3410C53F5100CE0DD9 /* ParserLanguage_XML.m */,
 			);
@@ -296,8 +310,8 @@
 				E2903E3B10C53F5100CE0DD9 /* ParserNode.m */,
 				E2903E3810C53F5100CE0DD9 /* ParserLanguage.h */,
 				E2903E3910C53F5100CE0DD9 /* ParserLanguage.m */,
-				E250597310C79429007D0B9F /* ParserLanguage_Common.h */,
-				E250597410C79429007D0B9F /* ParserLanguage_Common.m */,
+				E28906F210C956060044693C /* ParserLanguageExtensions.h */,
+				E28906F310C956060044693C /* ParserLanguageExtensions.m */,
 			);
 			path = Parser;
 			sourceTree = "<group>";
@@ -429,9 +443,11 @@
 				E2903E4D10C53F5100CE0DD9 /* ParserNode.m in Sources */,
 				E25057DF10C655E6007D0B9F /* ParserLanguage_SGML.m in Sources */,
 				E250593A10C79162007D0B9F /* ParserLanguage_CSV.m in Sources */,
-				E250597610C79429007D0B9F /* ParserLanguage_Common.m in Sources */,
 				E2505BE910C7B3F3007D0B9F /* ParserLanguage_RSS.m in Sources */,
 				E2505BFA10C7B4A3007D0B9F /* ParserLanguage_PropertyList.m in Sources */,
+				E28906CC10C950ED0044693C /* ParserLanguage_JSON.m in Sources */,
+				E28906F510C956060044693C /* ParserLanguageExtensions.m in Sources */,
+				E289076910C958230044693C /* ParserLanguage_Text.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -453,9 +469,11 @@
 				E2903E4410C53F5100CE0DD9 /* ParserNode.m in Sources */,
 				E25057DE10C655E6007D0B9F /* ParserLanguage_SGML.m in Sources */,
 				E250593910C79162007D0B9F /* ParserLanguage_CSV.m in Sources */,
-				E250597510C79429007D0B9F /* ParserLanguage_Common.m in Sources */,
 				E2505BE810C7B3F3007D0B9F /* ParserLanguage_RSS.m in Sources */,
 				E2505BF910C7B4A3007D0B9F /* ParserLanguage_PropertyList.m in Sources */,
+				E28906CB10C950ED0044693C /* ParserLanguage_JSON.m in Sources */,
+				E28906F410C956060044693C /* ParserLanguageExtensions.m in Sources */,
+				E289076810C958230044693C /* ParserLanguage_Text.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -475,9 +493,11 @@
 				E2903E5610C53F5100CE0DD9 /* ParserNode.m in Sources */,
 				E25057E010C655E6007D0B9F /* ParserLanguage_SGML.m in Sources */,
 				E250593B10C79162007D0B9F /* ParserLanguage_CSV.m in Sources */,
-				E250597710C79429007D0B9F /* ParserLanguage_Common.m in Sources */,
 				E2505BEA10C7B3F3007D0B9F /* ParserLanguage_RSS.m in Sources */,
 				E2505BFB10C7B4A3007D0B9F /* ParserLanguage_PropertyList.m in Sources */,
+				E28906CD10C950ED0044693C /* ParserLanguage_JSON.m in Sources */,
+				E28906F610C956060044693C /* ParserLanguageExtensions.m in Sources */,
+				E289076A10C958230044693C /* ParserLanguage_Text.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

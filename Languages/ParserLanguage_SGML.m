@@ -24,9 +24,6 @@
 @property(nonatomic, retain) NSDictionary* attributes;
 @end
 
-@interface ParserNodeSGMLEqual : ParserNodeToken
-@end
-
 @interface ParserNodeSGMLValueSingleQuote : ParserNode
 @end
 
@@ -38,7 +35,7 @@
 + (NSArray*) languageNodeClasses {
 	NSMutableArray* classes = [NSMutableArray array];
     
-	[classes addObject:[ParserNodeIndenting class]]; //From Common language
+	[classes addObject:[ParserNodeIndenting class]];
     
     [classes addObject:[ParserNodeSGMLDOCTYPE class]]; //Must be before ParserNodeSGMLTag
     [classes addObject:[ParserNodeSGMLComment class]]; //Must be before ParserNodeSGMLTag
@@ -99,11 +96,11 @@
             	static NSMutableArray* classes = nil;
                 if(classes == nil) {
                     classes = [[NSMutableArray alloc] init];
-                    [classes addObject:NSClassFromString(@"ParserNodeWhitespace")];
-                    [classes addObject:NSClassFromString(@"ParserNodeNewline")];
+                    [classes addObject:[ParserNodeWhitespace class]];
+                    [classes addObject:[ParserNodeNewline class]];
+                    [classes addObject:[ParserNodeEqual class]];
                     [classes addObject:[ParserNodeSGMLValueSingleQuote class]];
                     [classes addObject:[ParserNodeSGMLValueDoubleQuote class]];
-                    [classes addObject:[ParserNodeSGMLEqual class]];
                 }
                 ParserNodeRoot* root = [ParserLanguage newNodeTreeFromText:sgmlNode.text range:range textBuffer:textBuffer withNodeClasses:classes];
                 if(root) {
@@ -115,7 +112,7 @@
                         if(attributeNode == nil)
                         	break;
                         NSString* value;
-                        if([attributeNode isKindOfClass:[ParserNodeSGMLEqual class]]) {
+                        if([attributeNode isKindOfClass:[ParserNodeEqual class]]) {
                         	attributeNode = [attributeNode findNextSiblingIgnoringWhitespaceAndNewline];
                             value = attributeNode.cleanContent;
                             attributeNode = [attributeNode findNextSiblingIgnoringWhitespaceAndNewline];
@@ -264,8 +261,6 @@ PREFIX_SUFFIX_CLASS_IMPLEMENTATION(SGMLCDATA, "<![CDATA[", "]]>")
 }
 
 @end
-
-TOKEN_CLASS_IMPLEMENTATION(SGMLEqual, "=")
 
 @implementation ParserNodeSGMLValueSingleQuote
 

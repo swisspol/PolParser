@@ -5021,7 +5021,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ♢|(|♢|@"Cancel"|♢,♢•♢|@"Button•choice•allowing•user•to•cancel."|♢|)|♢
 ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ♢,♢•♢|nil|♢|]|♢
-·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ♢,♢•♢NSLocalizedRecoveryOptionsErrorKey,♢¶♢|→→|♢self,♢•♢NSRecoveryAttempterErrorKey,♢¶♢|→→|♢|nil|♢|]|♢
+·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ♢,♢•♢NSLocalizedRecoveryOptionsErrorKey,♢¶♢|→→|♢|self|♢,♢•♢NSRecoveryAttempterErrorKey,♢¶♢|→→|♢|nil|♢|]|♢
 ·  ·  ·  ·  ·  ·  ·  ·  ·  ♢|]|♢
 ·  ·  ·  ·  ·  ·  ·  ·  ♢|;|♢¶♢|→|♢|}|♢
 ·  ·  ·  ·  ·  ·  ♢•♢
@@ -5066,7 +5066,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ♢|(|♢|@"Cancel"|♢,♢•♢|@"Button•choice•allowing•user•to•cancel."|♢|)|♢
 ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ♢,♢•♢|nil|♢|]|♢
-·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ♢,♢•♢NSLocalizedRecoveryOptionsErrorKey,♢¶♢|→→|♢self,♢•♢NSRecoveryAttempterErrorKey,♢¶♢|→→|♢|nil|♢|]|♢
+·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ♢,♢•♢NSLocalizedRecoveryOptionsErrorKey,♢¶♢|→→|♢|self|♢,♢•♢NSRecoveryAttempterErrorKey,♢¶♢|→→|♢|nil|♢|]|♢
 ·  ·  ·  ·  ·  ·  ·  ·  ·  ♢|]|♢
 ·  ·  ·  ·  ·  ·  ·  ·  ♢|;|♢¶♢|→|♢|}|♢
 ·  ·  ·  ·  ·  ·  ♢•♢
@@ -5114,7 +5114,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ♢|(|♢|@"Cancel"|♢,♢•♢|@"Button•choice•allowing•user•to•cancel."|♢|)|♢
 ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ♢,♢•♢|nil|♢|]|♢
-·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ♢,♢•♢NSLocalizedRecoveryOptionsErrorKey,♢¶♢|→→|♢self,♢•♢NSRecoveryAttempterErrorKey,♢¶♢|→→|♢|nil|♢|]|♢
+·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ♢,♢•♢NSLocalizedRecoveryOptionsErrorKey,♢¶♢|→→|♢|self|♢,♢•♢NSRecoveryAttempterErrorKey,♢¶♢|→→|♢|nil|♢|]|♢
 ·  ·  ·  ·  ·  ·  ·  ·  ·  ♢|]|♢
 ·  ·  ·  ·  ·  ·  ·  ·  ♢|;|♢¶♢|→|♢|}|♢
 ·  ·  ·  ·  ·  ·  ♢•♢
@@ -5172,7 +5172,7 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ♢|NSLocalizedString|♢
 ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  <Parenthesis>
 ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ♢|(|♢|@"Please•choose•another•encoding•(such•as•UTF-8)."|♢,♢•♢|@"Subtitle•of•alert•panel•informing•user•that•the•file's•string•encoding•needs•to•be•changed"|♢|)|♢
-·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ♢,♢•♢NSLocalizedRecoverySuggestionErrorKey,♢¶♢|→→••••|♢self,♢•♢NSRecoveryAttempterErrorKey,♢¶♢|→→••••|♢|nil|♢|]|♢
+·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ♢,♢•♢NSLocalizedRecoverySuggestionErrorKey,♢¶♢|→→••••|♢|self|♢,♢•♢NSRecoveryAttempterErrorKey,♢¶♢|→→••••|♢|nil|♢|]|♢
 ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ♢|]|♢
 ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ♢|;|♢¶♢|→••••|♢|}|♢
 ·  ·  ·  ·  ·  ·  ·  ·  ♢¶♢|→|♢|}|♢
@@ -17664,7 +17664,8 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    |    |    [1013:1013] <Text> = ♢NSLocalizedRecoveryOptionsErrorKey,♢
 |    |    |    |    |    |    |    |    |    |    [1013:1014] <Newline> = ♢¶♢
 |    |    |    |    |    |    |    |    |    |    [1014:1014] <Indenting> = ♢→→♢
-|    |    |    |    |    |    |    |    |    |    [1014:1014] <Text> = ♢self,♢
+|    |    |    |    |    |    |    |    |    |    [1014:1014] <ObjCSelf> = ♢self♢
+|    |    |    |    |    |    |    |    |    |    [1014:1014] <Text> = ♢,♢
 |    |    |    |    |    |    |    |    |    |    [1014:1014] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    |    |    |    [1014:1014] <Text> = ♢NSRecoveryAttempterErrorKey,♢
 |    |    |    |    |    |    |    |    |    |    [1014:1015] <Newline> = ♢¶♢
@@ -17813,7 +17814,8 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    |    |    [1020:1020] <Text> = ♢NSLocalizedRecoveryOptionsErrorKey,♢
 |    |    |    |    |    |    |    |    |    |    [1020:1021] <Newline> = ♢¶♢
 |    |    |    |    |    |    |    |    |    |    [1021:1021] <Indenting> = ♢→→♢
-|    |    |    |    |    |    |    |    |    |    [1021:1021] <Text> = ♢self,♢
+|    |    |    |    |    |    |    |    |    |    [1021:1021] <ObjCSelf> = ♢self♢
+|    |    |    |    |    |    |    |    |    |    [1021:1021] <Text> = ♢,♢
 |    |    |    |    |    |    |    |    |    |    [1021:1021] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    |    |    |    [1021:1021] <Text> = ♢NSRecoveryAttempterErrorKey,♢
 |    |    |    |    |    |    |    |    |    |    [1021:1022] <Newline> = ♢¶♢
@@ -17978,7 +17980,8 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    |    |    [1027:1027] <Text> = ♢NSLocalizedRecoveryOptionsErrorKey,♢
 |    |    |    |    |    |    |    |    |    |    [1027:1028] <Newline> = ♢¶♢
 |    |    |    |    |    |    |    |    |    |    [1028:1028] <Indenting> = ♢→→♢
-|    |    |    |    |    |    |    |    |    |    [1028:1028] <Text> = ♢self,♢
+|    |    |    |    |    |    |    |    |    |    [1028:1028] <ObjCSelf> = ♢self♢
+|    |    |    |    |    |    |    |    |    |    [1028:1028] <Text> = ♢,♢
 |    |    |    |    |    |    |    |    |    |    [1028:1028] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    |    |    |    [1028:1028] <Text> = ♢NSRecoveryAttempterErrorKey,♢
 |    |    |    |    |    |    |    |    |    |    [1028:1029] <Newline> = ♢¶♢
@@ -18160,7 +18163,8 @@ NSString *truncatedString(NSString *str, NSUInteger truncationLength) {
 |    |    |    |    |    |    |    |    |    |    |    |    [1036:1036] <Text> = ♢NSLocalizedRecoverySuggestionErrorKey,♢
 |    |    |    |    |    |    |    |    |    |    |    |    [1036:1037] <Newline> = ♢¶♢
 |    |    |    |    |    |    |    |    |    |    |    |    [1037:1037] <Indenting> = ♢→→••••♢
-|    |    |    |    |    |    |    |    |    |    |    |    [1037:1037] <Text> = ♢self,♢
+|    |    |    |    |    |    |    |    |    |    |    |    [1037:1037] <ObjCSelf> = ♢self♢
+|    |    |    |    |    |    |    |    |    |    |    |    [1037:1037] <Text> = ♢,♢
 |    |    |    |    |    |    |    |    |    |    |    |    [1037:1037] <Whitespace> = ♢•♢
 |    |    |    |    |    |    |    |    |    |    |    |    [1037:1037] <Text> = ♢NSRecoveryAttempterErrorKey,♢
 |    |    |    |    |    |    |    |    |    |    |    |    [1037:1038] <Newline> = ♢¶♢

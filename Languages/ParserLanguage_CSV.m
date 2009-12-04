@@ -27,7 +27,7 @@
 + (NSArray*) languageNodeClasses {
 	NSMutableArray* classes = [NSMutableArray array];
     
-    [classes addObject:[ParserNodeNewline class]]; //From Common language
+    [classes addObject:[ParserNodeNewline class]];
     
     [classes addObject:[ParserNodeComma class]]; //Must be before ParserNodeCSVField
     [classes addObject:[ParserNodeCSVField class]];
@@ -68,8 +68,6 @@
 }
 
 @end
-
-TOKEN_CLASS_IMPLEMENTATION(Comma, ",")
 
 @implementation ParserNodeCSVField
 

@@ -28,7 +28,7 @@
 + (NSArray*) languageNodeClasses {
 	NSMutableArray* classes = [NSMutableArray array];
     
-    [classes addObject:[ParserNodeIndenting class]]; //From Common language
+    [classes addObject:[ParserNodeIndenting class]];
     
     [classes addObject:[ParserNodeXMLDeclaration class]]; //Must be before ParserNodeXMLProcessingInstructions
     [classes addObject:[ParserNodeXMLProcessingInstructions class]]; //Must be before ParserNodeXMLTag

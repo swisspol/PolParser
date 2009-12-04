@@ -18,28 +18,3 @@
 
 #import "ParserLanguage.h"
 
-@interface ParserNode (ParserLanguageExtensions)
-- (ParserNode*) findPreviousSiblingIgnoringWhitespaceAndNewline;
-- (ParserNode*) findNextSiblingIgnoringWhitespaceAndNewline;
-@end
-
-/* This class cannot have children */
-@interface ParserNodeWhitespace : ParserNode
-@end
-
-/* This class cannot have children */
-@interface ParserNodeIndenting : ParserNodeWhitespace
-@end
-
-/* This class cannot have children */
-@interface ParserNodeNewline : ParserNode
-@end
-
-@interface ParserNodeBraces : ParserNode
-@end
-
-@interface ParserNodeParenthesis : ParserNode
-@end
-
-@interface ParserNodeBrackets : ParserNode
-@end

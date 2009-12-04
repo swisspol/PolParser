@@ -18,25 +18,28 @@
 
 #import "ParserLanguage.h"
 
-@interface ParserNodeSGMLTag : ParserNode { //Leaf
-@private
-	NSInteger _type;
-    NSString* _name;
-    NSDictionary* _attributes;
-}
+@interface ParserNodeJSONString : ParserNode //Leaf
 @end
 
-@interface ParserNodeSGMLDOCTYPE : ParserNode //Leaf
+@interface ParserNodeJSONNumber : ParserNode //Leaf
 @end
 
-@interface ParserNodeSGMLComment : ParserNode //Leaf
+@interface ParserNodeJSONArray : ParserNode
 @end
 
-@interface ParserNodeSGMLCDATA : ParserNode //Leaf
+@interface ParserNodeJSONObject : ParserNode
 @end
 
-@interface ParserNodeSGMLEntity : ParserNode //Leaf
+@interface ParserNodeJSONPair : ParserNode
 @end
 
-@interface ParserNodeSGMLElement : ParserNode
+/* Special Keywords */
+
+@interface ParserNodeJSONTrue : ParserNodeKeyword
+@end
+
+@interface ParserNodeJSONFalse : ParserNodeKeyword
+@end
+
+@interface ParserNodeJSONNull : ParserNodeKeyword
 @end

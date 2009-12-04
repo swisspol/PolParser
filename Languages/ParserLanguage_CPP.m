@@ -95,8 +95,6 @@
 
 @end
 
-TOKEN_CLASS_IMPLEMENTATION(DoubleSemicolon, "::")
-
 @implementation ParserNodeDoubleSemicolon (Patch)
 
 + (NSArray*) patchedClasses {

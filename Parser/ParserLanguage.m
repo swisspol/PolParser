@@ -22,29 +22,6 @@
 
 #define ParserLanguagePrefix "ParserLanguage"
 
-void _RearrangeNodesAsChildren(ParserNode* startNode, ParserNode* endNode) {
-    if(startNode == endNode)
-    	[NSException raise:NSInternalInconsistencyException format:@""];
-    
-    ParserNode* node;
-    if(startNode.range.length) {
-        node = [[ParserNodeMatch alloc] initWithText:startNode.text range:startNode.range];
-        node.lines = startNode.lines;
-        [startNode addChild:node];
-        [node release];
-    }
-    ParserNode* sibling = startNode.nextSibling;
-    node = sibling;
-    do {
-        ParserNode* sibling = node.nextSibling; //This will not be available afterwards
-        [node removeFromParent];
-        [startNode addChild:node];
-        node = (node == endNode ? nil : sibling);
-    } while(node);
-    startNode.range = NSMakeRange(startNode.range.location, endNode.range.location + endNode.range.length - startNode.range.location);
-    startNode.lines = NSMakeRange(sibling.lines.location, endNode.lines.location + endNode.lines.length - sibling.lines.location);
-}
-
 @implementation ParserLanguage
 
 + (id) allocWithZone:(NSZone*)zone
@@ -89,7 +66,7 @@ void _RearrangeNodesAsChildren(ParserNode* startNode, ParserNode* endNode) {
         if([[language fileExtensions] containsObject:extension])
             return language;
     }
-    return [ParserLanguage languageWithName:@"Common"];
+    return nil;
 }
 
 + (ParserNodeRoot*) parseTextFile:(NSString*)path encoding:(NSStringEncoding)encoding syntaxAnalysis:(BOOL)syntaxAnalysis {

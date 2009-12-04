@@ -16,27 +16,29 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#import "ParserLanguage.h"
+#import "Parser_Internal.h"
+#import "ParserLanguage_Text.h"
 
-@interface ParserNodeSGMLTag : ParserNode { //Leaf
-@private
-	NSInteger _type;
-    NSString* _name;
-    NSDictionary* _attributes;
+@interface ParserLanguageText : ParserLanguage
+@end
+
+@implementation ParserLanguageText
+
++ (NSArray*) languageNodeClasses {
+	NSMutableArray* classes = [NSMutableArray array];
+    
+    [classes addObject:[ParserNodeNewline class]];
+    [classes addObject:[ParserNodeIndenting class]];
+    
+    return classes;
 }
-@end
 
-@interface ParserNodeSGMLDOCTYPE : ParserNode //Leaf
-@end
+- (NSString*) name {
+    return @"Text";
+}
 
-@interface ParserNodeSGMLComment : ParserNode //Leaf
-@end
+- (NSSet*) fileExtensions {
+    return [NSSet setWithObject:@"txt"];
+}
 
-@interface ParserNodeSGMLCDATA : ParserNode //Leaf
-@end
-
-@interface ParserNodeSGMLEntity : ParserNode //Leaf
-@end
-
-@interface ParserNodeSGMLElement : ParserNode
 @end

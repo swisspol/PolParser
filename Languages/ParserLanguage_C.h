@@ -210,29 +210,3 @@
 
 @interface ParserNodeCDouble : ParserNodeKeyword //Leaf
 @end
-
-/* Special Tokens */
-
-@interface ParserNodeColon : ParserNodeToken //Leaf
-@end
-
-@interface ParserNodeSemicolon : ParserNodeToken //Leaf
-@end
-
-@interface ParserNodeQuestionMark : ParserNodeToken //Leaf
-@end
-
-@interface ParserNodeExclamationMark : ParserNodeToken //Leaf
-@end
-
-@interface ParserNodeTilda : ParserNodeToken //Leaf
-@end
-
-@interface ParserNodeCaret : ParserNodeToken //Leaf
-@end
-
-@interface ParserNodeAmpersand : ParserNodeToken //Leaf
-@end
-
-@interface ParserNodeAsterisk : ParserNodeToken //Leaf
-@end

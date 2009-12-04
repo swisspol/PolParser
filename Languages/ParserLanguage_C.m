@@ -25,17 +25,7 @@
 }
 @end
 
-@interface ParserNodeCEscapedCharacter : ParserNode
-@end
-
-@interface ParserNodeCUnicodeCharacter : ParserNode
-@end
-
 @implementation ParserLanguageC
-
-+ (NSArray*) languageDependencies {
-	return [NSArray arrayWithObject:@"Common"];
-}
 
 + (NSSet*) languageReservedKeywords {
 	return [NSSet setWithObjects:@"auto", @"break", @"case", @"char", @"const", @"continue", @"default", @"do", @"double",
@@ -47,6 +37,12 @@
 + (NSArray*) languageNodeClasses {
 	NSMutableArray* classes = [NSMutableArray array];
     
+    [classes addObject:[ParserNodeNewline class]];
+    [classes addObject:[ParserNodeIndenting class]]; //Must be before ParserNodeWhitespace
+    [classes addObject:[ParserNodeWhitespace class]];
+    [classes addObject:[ParserNodeBraces class]];
+    [classes addObject:[ParserNodeParenthesis class]];
+    [classes addObject:[ParserNodeBrackets class]];
     [classes addObject:[ParserNodeColon class]];
     [classes addObject:[ParserNodeSemicolon class]];
     [classes addObject:[ParserNodeQuestionMark class]];
@@ -385,15 +381,6 @@ static inline BOOL _IsNodeAtTopLevel(ParserNode* node, NSSet* topLevelClasses) {
 
 @end
 
-TOKEN_CLASS_IMPLEMENTATION(Colon, ":")
-TOKEN_CLASS_IMPLEMENTATION(Semicolon, ";")
-TOKEN_CLASS_IMPLEMENTATION(QuestionMark, "?")
-TOKEN_CLASS_IMPLEMENTATION(ExclamationMark, "!")
-TOKEN_CLASS_IMPLEMENTATION(Tilda, "~")
-TOKEN_CLASS_IMPLEMENTATION(Caret, "^")
-TOKEN_CLASS_IMPLEMENTATION(Ampersand, "&")
-TOKEN_CLASS_IMPLEMENTATION(Asterisk, "*")
-
 @implementation ParserNodeCComment
 
 + (NSUInteger) isMatchingPrefix:(const unichar*)string maxLength:(NSUInteger)maxLength {
@@ -532,30 +519,6 @@ IMPLEMENTATION(Include, "#include", true, NULL)
 
 #undef IMPLEMENTATION
 
-static NSString* _CleanString(NSString* string) {
-    static NSMutableArray* classes = nil;
-    if(classes == nil) {
-        classes = [[NSMutableArray alloc] init];
-        [classes addObject:NSClassFromString(@"ParserNodeWhitespace")];
-        [classes addObject:NSClassFromString(@"ParserNodeNewline")];
-        [classes addObject:[ParserNodeCUnicodeCharacter class]]; //Must be before ParserNodeCEscapedCharacter
-        [classes addObject:[ParserNodeCEscapedCharacter class]];
-    }
-    ParserNodeRoot* root = [ParserLanguage newNodeTreeFromText:string withNodeClasses:classes];
-    if(root.children) {
-        ParserNode* node = root.firstChild;
-        do {
-        	ParserNode* nextNode = node.nextSibling;
-            if([node isKindOfClass:[ParserNodeNewline class]])
-            	[node removeFromParent];
-            node = nextNode;
-        } while(node);
-        string = root.cleanContent;
-        [root release];
-    }
-    return string;
-}
-
 @implementation ParserNodeCStringSingleQuote
 
 + (NSUInteger) isMatchingPrefix:(const unichar*)string maxLength:(NSUInteger)maxLength {
@@ -568,11 +531,12 @@ static NSString* _CleanString(NSString* string) {
 
 - (NSString*) cleanContent {
 	NSRange range = self.range;
-    return _CleanString([self.text substringWithRange:NSMakeRange(range.location + 1, range.length - 2)]);
+    return _CleanEscapedString([self.text substringWithRange:NSMakeRange(range.location + 1, range.length - 2)]);
 }
 
 @end
 
+/* WARNING: Keep in sync with ParserNodeJSONString */
 @implementation ParserNodeCStringDoubleQuote
 
 + (NSUInteger) isMatchingPrefix:(const unichar*)string maxLength:(NSUInteger)maxLength {
@@ -585,7 +549,7 @@ static NSString* _CleanString(NSString* string) {
 
 - (NSString*) cleanContent {
 	NSRange range = self.range;
-    return _CleanString([self.text substringWithRange:NSMakeRange(range.location + 1, range.length - 2)]);
+    return _CleanEscapedString([self.text substringWithRange:NSMakeRange(range.location + 1, range.length - 2)]);
 }
 
 @end
@@ -694,81 +658,6 @@ IMPLEMENTATION(TypeOf, "typeof", true, "(")
 
 - (NSString*) name {
 	return [self findFirstChildOfClass:[ParserNodeMatch class]].content;
-}
-
-@end
-
-@implementation ParserNodeCEscapedCharacter
-
-+ (NSUInteger) isMatchingPrefix:(const unichar*)string maxLength:(NSUInteger)maxLength {
-	return (maxLength >= 2) && (*string == '\\') ? 2 : NSNotFound;
-}
-
-+ (NSUInteger) isMatchingSuffix:(const unichar*)string maxLength:(NSUInteger)maxLength {
-	return 0;
-}
-
-- (NSString*) cleanContent {
-	unichar character = [self.content characterAtIndex:1];
-    switch(character) {
-        //case '?': character = '?'; break;
-        case 'f': character = '\f'; break;
-        case 'a': character = '\a'; break;
-        case 'v': character = '\v'; break;
-        case 'b': character = '\b'; break;
-        case 't': character = '\t'; break;
-        case 'n': character = '\n'; break;
-        case 'r': character = '\r'; break;
-        //case '\'': character = '\''; break;
-        //case '"': character = '"'; break;
-        //case '\\': character = '\\'; break;
-    }
-    return [NSString stringWithCharacters:&character length:1];
-}
-
-@end
-
-//FIXME: We don't handle "\nnn = character with octal value nnn"
-@implementation ParserNodeCUnicodeCharacter
-
-+ (NSUInteger) isMatchingPrefix:(const unichar*)string maxLength:(NSUInteger)maxLength {
-	if((maxLength >= 2) && (*string == '\\') && (*(string + 1) != '\\')) {
-    	if((*(string + 1) == 'x') && (maxLength >= 4))
-        	return 4;
-        if((*(string + 1) == 'u') && (maxLength >= 6))
-        	return 6;
-        if((*(string + 1) == 'U') && (maxLength >= 10))
-        	return 10;
-    }
-    return NSNotFound;
-}
-
-+ (NSUInteger) isMatchingSuffix:(const unichar*)string maxLength:(NSUInteger)maxLength {
-	return 0;
-}
-
-static NSString* _StringFromHexUnicodeCharacter(NSString* string) {
-    unichar character = 0;
-	NSUInteger length = string.length;
-    unichar buffer[length];
-    [string getCharacters:buffer];
-    for(NSUInteger i = 0; i < length; ++i) {
-    	NSUInteger num = 0;
-        if((buffer[i] >= 'A') && (buffer[i] <= 'F'))
-		num = buffer[i] - 'A' + 10;
-		else if((buffer[i] >= 'a') && (buffer[i] <= 'f'))
-		num = buffer[i] - 'a' + 10;
-		else if((buffer[i] >= '0') && (buffer[i] <= '9'))
-		num = buffer[i] - '0';
-        if(i > 0)
-        	character <<= 4;
-        character |= num;
-    }
-	return [NSString stringWithCharacters:&character length:1];
-}
-
-- (NSString*) cleanContent {
-    return _StringFromHexUnicodeCharacter([self.content substringFromIndex:2]);
 }
 
 @end

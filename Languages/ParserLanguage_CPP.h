@@ -25,8 +25,3 @@
 
 @interface ParserNodeCPPThis : ParserNodeKeyword //Leaf
 @end
-
-/* Special Tokens */
-
-@interface ParserNodeDoubleSemicolon : ParserNodeToken //Leaf
-@end

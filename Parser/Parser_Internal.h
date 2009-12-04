@@ -18,7 +18,7 @@
 
 #import "ParserNode.h"
 #import "ParserLanguage.h"
-#import "ParserLanguage_Common.h"
+#import "ParserLanguageExtensions.h"
 
 #define IsNewline(C) ((C == '\r') || (C == '\n'))
 #define IsWhitespace(C) ((C == ' ') || (C == '\t'))
@@ -64,17 +64,7 @@
 @implementation ParserNode##__LANGUAGE__##__NAME__ \
 \
 + (NSUInteger) isMatchingPrefix:(const unichar*)string maxLength:(NSUInteger)maxLength { \
-    IS_MATCHING_CHARACTERS_EXTENDED(__MATCH__, true, ";)]}*", string, maxLength) \
-    return _matching; \
-} \
-\
-@end
-
-#define TOKEN_CLASS_IMPLEMENTATION(__NAME__, __CHARACTERS__) \
-@implementation ParserNode##__NAME__ \
-\
-+ (NSUInteger) isMatchingPrefix:(const unichar*)string maxLength:(NSUInteger)maxLength { \
-    IS_MATCHING_CHARACTERS(__CHARACTERS__, string, maxLength); \
+    IS_MATCHING_CHARACTERS_EXTENDED(__MATCH__, true, ",;)]}*", string, maxLength) \
     return _matching; \
 } \
 \
@@ -113,6 +103,7 @@ static inline BOOL _EqualsCharacters(const unichar* string, const char* array, N
 }
 
 void _RearrangeNodesAsChildren(ParserNode* startNode, ParserNode* endNode);
+NSString* _CleanEscapedString(NSString* string);
 
 @interface ParserNode ()
 + (BOOL) isAtomic;

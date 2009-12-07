@@ -38,7 +38,7 @@
 	NSMutableArray* classes = [NSMutableArray array];
     
     [classes addObject:[ParserNodeNewline class]];
-    [classes addObject:[ParserNodeIndenting class]]; //Must be before ParserNodeWhitespace
+    [classes addObject:[ParserNodeIndenting class]];
     [classes addObject:[ParserNodeWhitespace class]];
     [classes addObject:[ParserNodeBraces class]];
     [classes addObject:[ParserNodeParenthesis class]];
@@ -68,7 +68,7 @@
     [classes addObject:[ParserNodeCString class]];
     [classes addObject:[ParserNodeCConditionalOperator class]];
     [classes addObject:[ParserNodeCConditionIf class]];
-    [classes addObject:[ParserNodeCConditionElseIf class]]; //Must be before ParserNodeCConditionElse
+    [classes addObject:[ParserNodeCConditionElseIf class]];
     [classes addObject:[ParserNodeCConditionElse class]];
     [classes addObject:[ParserNodeCFlowBreak class]];
     [classes addObject:[ParserNodeCFlowContinue class]];
@@ -590,6 +590,10 @@ IMPLEMENTATION(TypeOf, "typeof", true, "(")
 #undef IMPLEMENTATION
 
 @implementation ParserNodeCConditionElseIf
+
++ (NSSet*) patchedClasses {
+	return [NSSet setWithObject:[ParserNodeCConditionElse class]];
+}
 
 + (NSUInteger) isMatchingPrefix:(const unichar*)string maxLength:(NSUInteger)maxLength { \
     NSUInteger length = [ParserNodeCConditionElse isMatchingPrefix:string maxLength:maxLength];

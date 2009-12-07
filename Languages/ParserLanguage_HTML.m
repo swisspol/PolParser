@@ -30,9 +30,9 @@
     
     [classes addObject:[ParserNodeIndenting class]];
     
-    [classes addObject:[ParserNodeHTMLDOCTYPE class]]; //Must be before ParserNodeHTMLTag
-    [classes addObject:[ParserNodeHTMLComment class]]; //Must be before ParserNodeHTMLTag
-    [classes addObject:[ParserNodeHTMLCDATA class]]; //Must be before ParserNodeHTMLTag
+    [classes addObject:[ParserNodeHTMLDOCTYPE class]];
+    [classes addObject:[ParserNodeHTMLComment class]];
+    [classes addObject:[ParserNodeHTMLCDATA class]];
     [classes addObject:[ParserNodeHTMLTag class]];
     [classes addObject:[ParserNodeHTMLEntity class]];
     

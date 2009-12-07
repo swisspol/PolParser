@@ -69,7 +69,7 @@ NSString* _CleanEscapedString(NSString* string) {
         classes = [[NSMutableArray alloc] init];
         [classes addObject:[ParserNodeWhitespace class]];
         [classes addObject:[ParserNodeNewline class]];
-        [classes addObject:[ParserNodeUnicodeCharacter class]]; //Must be before ParserNodeEscapedCharacter
+        [classes addObject:[ParserNodeUnicodeCharacter class]];
         [classes addObject:[ParserNodeEscapedCharacter class]];
     }
     return _CleanString(string, classes);
@@ -136,6 +136,10 @@ NSString* _StringFromHexUnicodeCharacter(NSString* string) {
 @end
 
 @implementation ParserNodeIndenting
+
++ (NSSet*) patchedClasses {
+	return [NSSet setWithObject:[ParserNodeWhitespace class]];
+}
 
 + (NSUInteger) isMatchingPrefix:(const unichar*)string maxLength:(NSUInteger)maxLength {
     return IsWhitespace(*string) && ((*(string - 1) == 0) || IsNewline(*(string - 1))) ? 1 : NSNotFound; //The string buffer starts with a padding zero (see ParserLanguage.m)
@@ -254,6 +258,10 @@ IMPLEMENTATION(Dot, ".")
 
 //FIXME: We don't handle "\nnn = character with octal value nnn"
 @implementation ParserNodeUnicodeCharacter
+
++ (NSSet*) patchedClasses {
+	return [NSSet setWithObject:[ParserNodeEscapedCharacter class]];
+}
 
 + (NSUInteger) isMatchingPrefix:(const unichar*)string maxLength:(NSUInteger)maxLength {
 	if((maxLength >= 2) && (*string == '\\') && (*(string + 1) != '\\')) {

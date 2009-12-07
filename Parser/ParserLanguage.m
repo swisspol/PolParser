@@ -152,9 +152,16 @@
             
             for(Class class in [[language class] languageNodeClasses]) {
             	if(![_nodeClasses containsObject:class]) {
-                	NSUInteger index = _nodeClasses.count;
+                	NSUInteger count = _nodeClasses.count;
+                    NSUInteger index = count;
                     for(Class patchedClass in [class patchedClasses]) {
-                    	NSUInteger patchedIndex = [_nodeClasses indexOfObject:patchedClass];
+                    	NSUInteger patchedIndex = NSNotFound;
+						for(NSUInteger i = 0; i < count; ++i) {
+                        	if([[_nodeClasses objectAtIndex:i] isSubclassOfClass:patchedClass]) {
+                            	patchedIndex = i;
+                                break;
+                            }
+                        }
                         if((patchedIndex != NSNotFound) && (patchedIndex < index))
                         	index = patchedIndex;
                     }

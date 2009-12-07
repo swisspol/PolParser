@@ -30,12 +30,12 @@
     
     [classes addObject:[ParserNodeIndenting class]];
     
-    [classes addObject:[ParserNodeXMLDeclaration class]]; //Must be before ParserNodeXMLProcessingInstructions
-    [classes addObject:[ParserNodeXMLProcessingInstructions class]]; //Must be before ParserNodeXMLTag
+    [classes addObject:[ParserNodeXMLDeclaration class]];
+    [classes addObject:[ParserNodeXMLProcessingInstructions class]];
     
-    [classes addObject:[ParserNodeXMLDOCTYPE class]]; //Must be before ParserNodeXMLTag
-    [classes addObject:[ParserNodeXMLComment class]]; //Must be before ParserNodeXMLTag
-    [classes addObject:[ParserNodeXMLCDATA class]]; //Must be before ParserNodeXMLTag
+    [classes addObject:[ParserNodeXMLDOCTYPE class]];
+    [classes addObject:[ParserNodeXMLComment class]];
+    [classes addObject:[ParserNodeXMLCDATA class]];
     [classes addObject:[ParserNodeXMLTag class]];
     [classes addObject:[ParserNodeXMLEntity class]];
     
@@ -107,7 +107,19 @@
 PREFIX_SUFFIX_CLASS_IMPLEMENTATION(XMLDeclaration, "<?xml ", "?>")
 PREFIX_SUFFIX_CLASS_IMPLEMENTATION(XMLProcessingInstructions, "<?", "?>")
 
+@implementation ParserNodeXMLDeclaration (Internal)
+
++ (NSSet*) patchedClasses {
+	return [NSSet setWithObject:[ParserNodeXMLProcessingInstructions class]];
+}
+
+@end
+
 @implementation ParserNodeXMLProcessingInstructions (Internal)
+
++ (NSSet*) patchedClasses {
+	return [NSSet setWithObject:[ParserNodeXMLTag class]];
+}
 
 - (NSString*) cleanContent {
 	NSRange range = self.range;

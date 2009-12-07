@@ -37,9 +37,9 @@
     
 	[classes addObject:[ParserNodeIndenting class]];
     
-    [classes addObject:[ParserNodeSGMLDOCTYPE class]]; //Must be before ParserNodeSGMLTag
-    [classes addObject:[ParserNodeSGMLComment class]]; //Must be before ParserNodeSGMLTag
-    [classes addObject:[ParserNodeSGMLCDATA class]]; //Must be before ParserNodeSGMLTag
+    [classes addObject:[ParserNodeSGMLDOCTYPE class]];
+    [classes addObject:[ParserNodeSGMLComment class]];
+    [classes addObject:[ParserNodeSGMLCDATA class]];
     [classes addObject:[ParserNodeSGMLTag class]];
     [classes addObject:[ParserNodeSGMLEntity class]];
     
@@ -140,7 +140,19 @@ PREFIX_SUFFIX_CLASS_IMPLEMENTATION(SGMLDOCTYPE, "<!DOCTYPE", ">")
 PREFIX_SUFFIX_CLASS_IMPLEMENTATION(SGMLComment, "<!--", "-->")
 PREFIX_SUFFIX_CLASS_IMPLEMENTATION(SGMLCDATA, "<![CDATA[", "]]>")
 
+@implementation ParserNodeSGMLDOCTYPE (Internal)
+
++ (NSSet*) patchedClasses {
+	return [NSSet setWithObject:[ParserNodeSGMLTag class]];
+}
+
+@end
+
 @implementation ParserNodeSGMLComment (Internal)
+
++ (NSSet*) patchedClasses {
+	return [NSSet setWithObject:[ParserNodeSGMLTag class]];
+}
 
 - (NSString*) cleanContent {
 	NSRange range = self.range;
@@ -150,6 +162,10 @@ PREFIX_SUFFIX_CLASS_IMPLEMENTATION(SGMLCDATA, "<![CDATA[", "]]>")
 @end
 
 @implementation ParserNodeSGMLCDATA (Internal)
+
++ (NSSet*) patchedClasses {
+	return [NSSet setWithObject:[ParserNodeSGMLTag class]];
+}
 
 - (NSString*) cleanContent {
 	NSRange range = self.range;

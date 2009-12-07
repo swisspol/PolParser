@@ -32,7 +32,7 @@
 	NSMutableArray* classes = [NSMutableArray array];
     
     [classes addObject:[ParserNodeNewline class]];
-    [classes addObject:[ParserNodeIndenting class]]; //Must be before ParserNodeWhitespace
+    [classes addObject:[ParserNodeIndenting class]];
     [classes addObject:[ParserNodeWhitespace class]];
     [classes addObject:[ParserNodeBraces class]];
     [classes addObject:[ParserNodeParenthesis class]];

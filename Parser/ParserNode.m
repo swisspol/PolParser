@@ -40,7 +40,7 @@ static IMP _cleanContentMethod = NULL;
     return [super allocWithZone:zone];
 }
 
-+ (NSArray*) patchedClasses {
++ (NSSet*) patchedClasses {
 	return nil;
 }
 

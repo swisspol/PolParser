@@ -97,8 +97,8 @@
 
 @implementation ParserNodeDoubleSemicolon (Patch)
 
-+ (NSArray*) patchedClasses {
-	return [NSArray arrayWithObject:[ParserNodeColon class]];
++ (NSSet*) patchedClasses {
+	return [NSSet setWithObject:[ParserNodeColon class]];
 }
 
 @end

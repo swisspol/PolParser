@@ -109,7 +109,7 @@ NSString* _StringFromHexUnicodeCharacter(NSString* string);
 
 @interface ParserNode ()
 + (BOOL) isAtomic;
-+ (NSArray*) patchedClasses;
++ (NSSet*) patchedClasses; //Node classes this node class must always be matched before
 + (NSUInteger) isMatchingPrefix:(const unichar*)string maxLength:(NSUInteger)maxLength; //"maxLength" is guaranteed to be at least 1
 + (NSUInteger) isMatchingSuffix:(const unichar*)string maxLength:(NSUInteger)maxLength; //"maxLength" may be 0 for atomic classes
 @property(nonatomic) NSRange range;

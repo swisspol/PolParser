@@ -257,8 +257,8 @@ IS_MATCHING_PREFIX_METHOD_WITH_TRAILING_CHARACTERS("#import", true, NULL)
 
 @implementation ParserNodeObjCString
 
-+ (NSArray*) patchedClasses {
-	return [NSArray arrayWithObject:[ParserNodeCString class]];
++ (NSSet*) patchedClasses {
+	return [NSSet setWithObject:[ParserNodeCString class]];
 }
 
 + (NSUInteger) isMatchingPrefix:(const unichar*)string maxLength:(NSUInteger)maxLength {

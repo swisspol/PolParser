@@ -69,6 +69,10 @@ typedef ParserNode* (*ParserNodeApplierFunction)(ParserNode* node, void* context
 - (ParserNode*) findNextSiblingOfClass:(Class)class;
 - (ParserNode*) findFirstChildOfClass:(Class)class;
 - (ParserNode*) findLastChildOfClass:(Class)class;
+- (ParserNode*) findPreviousSiblingOfAnyClass:(NSSet*)classes;
+- (ParserNode*) findNextSiblingOfAnyClass:(NSSet*)classes;
+- (ParserNode*) findFirstChildOfAnyClass:(NSSet*)classes;
+- (ParserNode*) findLastChildOfAnyClass:(NSSet*)classes;
 - (NSUInteger) getDepthInParentsOfClass:(Class)class; //Passing nil returns the absolute depth
 
 - (void) applyFunctionOnChildren:(ParserNodeApplierFunction)function context:(void*)context;

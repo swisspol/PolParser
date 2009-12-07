@@ -53,7 +53,7 @@ static IMP _cleanContentMethod = NULL;
 }
 
 + (NSUInteger) isMatchingSuffix:(const unichar*)string maxLength:(NSUInteger)maxLength {
-    return NSNotFound;
+    return 0;
 }
 
 + (NSString*) name {
@@ -302,6 +302,54 @@ static ParserNode* _ApplierFunction(ParserNode* node, void* context) {
     while(node) {
         if([node isKindOfClass:class])
             return node;
+        node = node.previousSibling;
+    }
+    return nil;
+}
+
+- (ParserNode*) findPreviousSiblingOfAnyClass:(NSSet*)classes {
+	ParserNode* node = self.previousSibling;
+    while(node) {
+        for(Class class in classes) {
+        	if([node isKindOfClass:class])
+            	return node;
+        }
+        node = node.previousSibling;
+    }
+    return nil;
+}
+
+- (ParserNode*) findNextSiblingOfAnyClass:(NSSet*)classes {
+	ParserNode* node = self.nextSibling;
+    while(node) {
+        for(Class class in classes) {
+        	if([node isKindOfClass:class])
+        	    return node;
+        }
+        node = node.nextSibling;
+    }
+    return nil;
+}
+
+- (ParserNode*) findFirstChildOfAnyClass:(NSSet*)classes {
+	ParserNode* node = self.firstChild;
+    while(node) {
+        for(Class class in classes) {
+        	if([node isKindOfClass:class])
+            	return node;
+        }
+        node = node.nextSibling;
+    }
+    return nil;
+}
+
+- (ParserNode*) findLastChildOfAnyClass:(NSSet*)classes {
+	ParserNode* node = self.lastChild;
+    while(node) {
+        for(Class class in classes) {
+        	if([node isKindOfClass:class])
+            	return node;
+        }
         node = node.previousSibling;
     }
     return nil;

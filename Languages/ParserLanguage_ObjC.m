@@ -22,11 +22,6 @@
 @interface ParserLanguageObjC : ParserLanguage <ParserLanguageCTopLevelNodeClasses>
 @end
 
-/* WARNING: Keep in sync with C #include */
-@interface ParserNodeObjCPreprocessorImport ()
-@property(nonatomic, retain) NSString* name;
-@end
-
 @implementation ParserLanguageObjC
 
 + (NSArray*) languageDependencies {
@@ -102,9 +97,7 @@ static BOOL _HasImplementationParent(ParserNode* node) {
 
 - (ParserNode*) performSyntaxAnalysisForNode:(ParserNode*)node textBuffer:(const unichar*)textBuffer topLevelLanguage:(ParserLanguage*)topLevelLanguage {
     
-    if([node isKindOfClass:[ParserNodeObjCPreprocessorImport class]]) {
-    	[node setName:[[node.firstChild findNextSiblingIgnoringWhitespaceAndNewline] content]];
-    } else if([node isKindOfClass:[ParserNodeBraces class]]) {
+    if([node isKindOfClass:[ParserNodeBraces class]]) {
         ParserNode* previousNode = [node findPreviousSiblingIgnoringWhitespaceAndNewline];
         
         // "@catch() {}" "@synchronized() {}"
@@ -191,13 +184,9 @@ static BOOL _HasImplementationParent(ParserNode* node) {
         if([content isEqualToString:@"-"] || [content isEqualToString:@"+"]) {
             ParserNode* semicolonNode = [node findNextSiblingOfClass:[ParserNodeSemicolon class]];
             if(semicolonNode) {
-                ParserNode* newNode = [[ParserNodeMatch alloc] initWithText:node.text range:node.range];
-                newNode.lines = node.lines;
-                [node replaceWithNode:newNode];
-                [newNode release];
-                node = newNode;
+                node = [node replaceWithNodeOfClass:[ParserNodeMatch class] preserveChildren:NO];
                 
-                newNode = [[ParserNodeObjCMethodDeclaration alloc] initWithText:node.text range:NSMakeRange(node.range.location, 0)];
+                ParserNode* newNode = [[ParserNodeObjCMethodDeclaration alloc] initWithText:node.text range:NSMakeRange(node.range.location, 0)];
                 [node insertPreviousSibling:newNode];
                 [newNode release];
                 _RearrangeNodesAsChildren(newNode, semicolonNode);
@@ -211,13 +200,9 @@ static BOOL _HasImplementationParent(ParserNode* node) {
         if([content isEqualToString:@"-"] || [content isEqualToString:@"+"]) {
             ParserNode* nextNode = [node findNextSiblingOfClass:[ParserNodeBraces class]];
             if(nextNode) {
-                ParserNode* newNode = [[ParserNodeMatch alloc] initWithText:node.text range:node.range];
-                newNode.lines = node.lines;
-                [node replaceWithNode:newNode];
-                [newNode release];
-                node = newNode;
+                node = [node replaceWithNodeOfClass:[ParserNodeMatch class] preserveChildren:NO];
                 
-                newNode = [[ParserNodeObjCMethodImplementation alloc] initWithText:node.text range:NSMakeRange(node.range.location, 0)];
+                ParserNode* newNode = [[ParserNodeObjCMethodImplementation alloc] initWithText:node.text range:NSMakeRange(node.range.location, 0)];
                 [node insertPreviousSibling:newNode];
                 [newNode release];
                 _RearrangeNodesAsChildren(newNode, nextNode);
@@ -236,12 +221,8 @@ static BOOL _HasImplementationParent(ParserNode* node) {
         	if([target.nextSibling isKindOfClass:[ParserNodeWhitespace class]] || [target.nextSibling isKindOfClass:[ParserNodeNewline class]]) {
                 ParserNode* nextNode = [target findNextSiblingIgnoringWhitespaceAndNewline];
                 if([nextNode isMemberOfClass:[ParserNodeText class]]) {
-                	if([target isMemberOfClass:[ParserNodeText class]]) {
-						ParserNode* newNode = [[ParserNodeMatch alloc] initWithText:target.text range:target.range];
-                        newNode.lines = target.lines;
-                        [target replaceWithNode:newNode];
-                        [newNode release];
-					}
+                	if([target isMemberOfClass:[ParserNodeText class]])
+                    	[target replaceWithNodeOfClass:[ParserNodeMatch class] preserveChildren:NO];
                     
                     return [node replaceWithNodeOfClass:[ParserNodeObjCMethodCall class] preserveChildren:YES];
                 }
@@ -258,8 +239,6 @@ static BOOL _HasImplementationParent(ParserNode* node) {
 /* WARNING: Keep in sync with C #include */
 @implementation ParserNodeObjCPreprocessorImport
 
-@synthesize name=_name;
-
 IS_MATCHING_PREFIX_METHOD_WITH_TRAILING_CHARACTERS("#import", true, NULL)
 
 - (void) dealloc {
@@ -268,12 +247,18 @@ IS_MATCHING_PREFIX_METHOD_WITH_TRAILING_CHARACTERS("#import", true, NULL)
     [super dealloc];
 }
 
+- (NSString*) name {
+	if(_name == nil)
+    	_name = [[[self.firstChild findNextSiblingIgnoringWhitespaceAndNewline] content] copy];
+    return _name;
+}
+
 @end
 
 @implementation ParserNodeObjCString
 
 + (NSArray*) patchedClasses {
-	return [NSArray arrayWithObject:[ParserNodeCStringDoubleQuote class]];
+	return [NSArray arrayWithObject:[ParserNodeCString class]];
 }
 
 + (NSUInteger) isMatchingPrefix:(const unichar*)string maxLength:(NSUInteger)maxLength {
@@ -331,10 +316,6 @@ IMPLEMENTATION(Protocol, "@protocol")
 @implementation ParserNodeObjC##__NAME__ \
 \
 IS_MATCHING_PREFIX_METHOD_WITH_TRAILING_CHARACTERS(__VA_ARGS__) \
-\
-+ (NSUInteger) isMatchingSuffix:(const unichar*)string maxLength:(NSUInteger)maxLength { \
-    return 0; \
-} \
 \
 @end
 

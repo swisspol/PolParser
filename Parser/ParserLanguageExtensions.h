@@ -80,3 +80,9 @@
 
 @interface ParserNodeEqual : ParserNodeToken //Leaf
 @end
+
+@interface ParserNodePound : ParserNodeToken //Leaf
+@end
+
+@interface ParserNodeDot : ParserNodeToken //Leaf
+@end

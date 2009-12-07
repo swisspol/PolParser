@@ -103,7 +103,9 @@ static inline BOOL _EqualsCharacters(const unichar* string, const char* array, N
 }
 
 void _RearrangeNodesAsChildren(ParserNode* startNode, ParserNode* endNode);
+NSString* _CleanString(NSString* string, NSArray* nodeClasses);
 NSString* _CleanEscapedString(NSString* string);
+NSString* _StringFromHexUnicodeCharacter(NSString* string);
 
 @interface ParserNode ()
 + (BOOL) isAtomic;
@@ -142,9 +144,4 @@ NSString* _CleanEscapedString(NSString* string);
 @interface ParserLanguageSGML : ParserLanguage
 + (NSString*) stringWithReplacedEntities:(NSString*)string;
 + (Class) SGMLElementClass;
-@end
-
-/* Workaround some compiler warnings */
-@interface NSObject (ParserNode)
-- (void) setName:(NSString*)name;
 @end

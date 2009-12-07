@@ -87,8 +87,7 @@
 
 @end
 
-/* WARNING: Keep in sync with ParserNodeCStringDoubleQuote */
-@implementation ParserNodeJSONString : ParserNode
+@implementation ParserNodeJSONString
 
 + (NSUInteger) isMatchingPrefix:(const unichar*)string maxLength:(NSUInteger)maxLength {
     return (*string == '"') ? 1 : NSNotFound;

@@ -25,7 +25,7 @@
 }
 @end
 
-@interface ParserNodeObjCString : ParserNodeCStringDoubleQuote //Leaf
+@interface ParserNodeObjCString : ParserNodeCString //Leaf
 @end
 
 @interface ParserNodeObjCInterface : ParserNode

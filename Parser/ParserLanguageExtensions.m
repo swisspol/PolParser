@@ -47,16 +47,8 @@ void _RearrangeNodesAsChildren(ParserNode* startNode, ParserNode* endNode) {
     startNode.lines = NSMakeRange(sibling.lines.location, endNode.lines.location + endNode.lines.length - sibling.lines.location);
 }
 
-NSString* _CleanEscapedString(NSString* string) {
-    static NSMutableArray* classes = nil;
-    if(classes == nil) {
-        classes = [[NSMutableArray alloc] init];
-        [classes addObject:[ParserNodeWhitespace class]];
-        [classes addObject:[ParserNodeNewline class]];
-        [classes addObject:[ParserNodeUnicodeCharacter class]]; //Must be before ParserNodeEscapedCharacter
-        [classes addObject:[ParserNodeEscapedCharacter class]];
-    }
-    ParserNodeRoot* root = [ParserLanguage newNodeTreeFromText:string withNodeClasses:classes];
+NSString* _CleanString(NSString* string, NSArray* nodeClasses) {
+    ParserNodeRoot* root = [ParserLanguage newNodeTreeFromText:string withNodeClasses:nodeClasses];
     if(root.children) {
         ParserNode* node = root.firstChild;
         do {
@@ -69,6 +61,38 @@ NSString* _CleanEscapedString(NSString* string) {
         [root release];
     }
     return string;
+}
+
+NSString* _CleanEscapedString(NSString* string) {
+    static NSMutableArray* classes = nil;
+    if(classes == nil) {
+        classes = [[NSMutableArray alloc] init];
+        [classes addObject:[ParserNodeWhitespace class]];
+        [classes addObject:[ParserNodeNewline class]];
+        [classes addObject:[ParserNodeUnicodeCharacter class]]; //Must be before ParserNodeEscapedCharacter
+        [classes addObject:[ParserNodeEscapedCharacter class]];
+    }
+    return _CleanString(string, classes);
+}
+
+NSString* _StringFromHexUnicodeCharacter(NSString* string) {
+    unichar character = 0;
+	NSUInteger length = string.length;
+    unichar buffer[length];
+    [string getCharacters:buffer];
+    for(NSUInteger i = 0; i < length; ++i) {
+    	NSUInteger num = 0;
+        if((buffer[i] >= 'A') && (buffer[i] <= 'F'))
+		num = buffer[i] - 'A' + 10;
+		else if((buffer[i] >= 'a') && (buffer[i] <= 'f'))
+		num = buffer[i] - 'a' + 10;
+		else if((buffer[i] >= '0') && (buffer[i] <= '9'))
+		num = buffer[i] - '0';
+        if(i > 0)
+        	character <<= 4;
+        character |= num;
+    }
+	return [NSString stringWithCharacters:&character length:1];
 }
 
 @implementation ParserNode (ParserLanguageExtensions)
@@ -133,10 +157,6 @@ NSString* _CleanEscapedString(NSString* string) {
     return (*string == '\r') && (*(string + 1) == '\n') ? 2 : ((*string == '\r') || (*string == '\n') ? 1 : NSNotFound);
 }
 
-+ (NSUInteger) isMatchingSuffix:(const unichar*)string maxLength:(NSUInteger)maxLength {
-    return 0;
-}
-
 - (void) insertChild:(ParserNode*)child atIndex:(NSUInteger)index {
     [self doesNotRecognizeSelector:_cmd];
 }
@@ -176,10 +196,6 @@ IMPLEMENTATION(Brackets, '[', ']')
     return [super allocWithZone:zone];
 }
 
-+ (NSUInteger) isMatchingSuffix:(const unichar*)string maxLength:(NSUInteger)maxLength {
-    return 0;
-}
-
 @end
 
 #define IMPLEMENTATION(__NAME__, __CHARACTERS__) \
@@ -203,6 +219,8 @@ IMPLEMENTATION(Asterisk, "*")
 IMPLEMENTATION(DoubleSemicolon, "::")
 IMPLEMENTATION(Comma, ",")
 IMPLEMENTATION(Equal, "=")
+IMPLEMENTATION(Pound, "#")
+IMPLEMENTATION(Dot, ".")
 
 #undef IMPLEMENTATION
 
@@ -212,13 +230,11 @@ IMPLEMENTATION(Equal, "=")
 	return (maxLength >= 2) && (*string == '\\') ? 2 : NSNotFound;
 }
 
-+ (NSUInteger) isMatchingSuffix:(const unichar*)string maxLength:(NSUInteger)maxLength {
-	return 0;
-}
-
 - (NSString*) cleanContent {
 	unichar character = [self.content characterAtIndex:1];
     switch(character) {
+        case '\n': case '\r': return @"";
+        
         //case '?': character = '?'; break;
         case 'f': character = '\f'; break;
         case 'a': character = '\a'; break;
@@ -249,30 +265,6 @@ IMPLEMENTATION(Equal, "=")
         	return 10;
     }
     return NSNotFound;
-}
-
-+ (NSUInteger) isMatchingSuffix:(const unichar*)string maxLength:(NSUInteger)maxLength {
-	return 0;
-}
-
-static NSString* _StringFromHexUnicodeCharacter(NSString* string) {
-    unichar character = 0;
-	NSUInteger length = string.length;
-    unichar buffer[length];
-    [string getCharacters:buffer];
-    for(NSUInteger i = 0; i < length; ++i) {
-    	NSUInteger num = 0;
-        if((buffer[i] >= 'A') && (buffer[i] <= 'F'))
-		num = buffer[i] - 'A' + 10;
-		else if((buffer[i] >= 'a') && (buffer[i] <= 'f'))
-		num = buffer[i] - 'a' + 10;
-		else if((buffer[i] >= '0') && (buffer[i] <= '9'))
-		num = buffer[i] - '0';
-        if(i > 0)
-        	character <<= 4;
-        character |= num;
-    }
-	return [NSString stringWithCharacters:&character length:1];
 }
 
 - (NSString*) cleanContent {

@@ -80,6 +80,9 @@
 		E2903E5510C53F5100CE0DD9 /* ParserLanguage.m in Sources */ = {isa = PBXBuildFile; fileRef = E2903E3910C53F5100CE0DD9 /* ParserLanguage.m */; };
 		E2903E5610C53F5100CE0DD9 /* ParserNode.m in Sources */ = {isa = PBXBuildFile; fileRef = E2903E3B10C53F5100CE0DD9 /* ParserNode.m */; };
 		E2903EA410C5400900CE0DD9 /* Parser in CopyFiles */ = {isa = PBXBuildFile; fileRef = E2903E8E10C53FFE00CE0DD9 /* Parser */; };
+		E2ACFB5710CCED4200771A28 /* ParserLanguage_CSS.m in Sources */ = {isa = PBXBuildFile; fileRef = E2ACFB5610CCED4200771A28 /* ParserLanguage_CSS.m */; };
+		E2ACFB5810CCED4200771A28 /* ParserLanguage_CSS.m in Sources */ = {isa = PBXBuildFile; fileRef = E2ACFB5610CCED4200771A28 /* ParserLanguage_CSS.m */; };
+		E2ACFB5910CCED4200771A28 /* ParserLanguage_CSS.m in Sources */ = {isa = PBXBuildFile; fileRef = E2ACFB5610CCED4200771A28 /* ParserLanguage_CSS.m */; };
 		E2B6372410BA539100BF43E7 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2B6372310BA539100BF43E7 /* Cocoa.framework */; };
 		E2B637FC10BA540800BF43E7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B637FB10BA540800BF43E7 /* main.m */; };
 		E2B6380C10BA547D00BF43E7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B6380B10BA547D00BF43E7 /* main.m */; };
@@ -171,6 +174,8 @@
 		E2903E3A10C53F5100CE0DD9 /* ParserNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParserNode.h; sourceTree = "<group>"; };
 		E2903E3B10C53F5100CE0DD9 /* ParserNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParserNode.m; sourceTree = "<group>"; };
 		E2903E8E10C53FFE00CE0DD9 /* Parser */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Parser; sourceTree = "<group>"; };
+		E2ACFB5510CCED4200771A28 /* ParserLanguage_CSS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParserLanguage_CSS.h; sourceTree = "<group>"; };
+		E2ACFB5610CCED4200771A28 /* ParserLanguage_CSS.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParserLanguage_CSS.m; sourceTree = "<group>"; };
 		E2B6371910BA536D00BF43E7 /* PolParser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PolParser.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2B6372310BA539100BF43E7 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		E2B637F510BA53CB00BF43E7 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -278,6 +283,8 @@
 				E2903E2A10C53F5100CE0DD9 /* ParserLanguage_C.m */,
 				E2903E2B10C53F5100CE0DD9 /* ParserLanguage_CPP.h */,
 				E2903E2C10C53F5100CE0DD9 /* ParserLanguage_CPP.m */,
+				E2ACFB5510CCED4200771A28 /* ParserLanguage_CSS.h */,
+				E2ACFB5610CCED4200771A28 /* ParserLanguage_CSS.m */,
 				E250593710C79162007D0B9F /* ParserLanguage_CSV.h */,
 				E250593810C79162007D0B9F /* ParserLanguage_CSV.m */,
 				E2903E2D10C53F5100CE0DD9 /* ParserLanguage_HTML.h */,
@@ -448,6 +455,7 @@
 				E28906CC10C950ED0044693C /* ParserLanguage_JSON.m in Sources */,
 				E28906F510C956060044693C /* ParserLanguageExtensions.m in Sources */,
 				E289076910C958230044693C /* ParserLanguage_Text.m in Sources */,
+				E2ACFB5810CCED4200771A28 /* ParserLanguage_CSS.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -474,6 +482,7 @@
 				E28906CB10C950ED0044693C /* ParserLanguage_JSON.m in Sources */,
 				E28906F410C956060044693C /* ParserLanguageExtensions.m in Sources */,
 				E289076810C958230044693C /* ParserLanguage_Text.m in Sources */,
+				E2ACFB5710CCED4200771A28 /* ParserLanguage_CSS.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -498,6 +507,7 @@
 				E28906CD10C950ED0044693C /* ParserLanguage_JSON.m in Sources */,
 				E28906F610C956060044693C /* ParserLanguageExtensions.m in Sources */,
 				E289076A10C958230044693C /* ParserLanguage_Text.m in Sources */,
+				E2ACFB5910CCED4200771A28 /* ParserLanguage_CSS.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

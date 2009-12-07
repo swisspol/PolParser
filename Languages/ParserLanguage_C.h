@@ -80,10 +80,10 @@
 }
 @end
 
-@interface ParserNodeCStringSingleQuote : ParserNode //Leaf
+@interface ParserNodeCCharacterLiteral : ParserNode //Leaf
 @end
 
-@interface ParserNodeCStringDoubleQuote : ParserNode //Leaf
+@interface ParserNodeCString : ParserNode //Leaf
 @end
 
 @interface ParserNodeCConditionalOperator : ParserNode

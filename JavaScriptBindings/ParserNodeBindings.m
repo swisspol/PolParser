@@ -235,49 +235,101 @@ static JSValueRef _CallFunctionFindNextSiblingIgnoringWhitespaceAndNewline(JSCon
 }
 
 static JSValueRef _CallFunctionFindPreviousSiblingOfType(JSContextRef ctx, JSObjectRef function, JSObjectRef thisObject, size_t argumentCount, const JSValueRef arguments[], JSValueRef* exception) {
-	if((argumentCount == 1) && JSValueIsNumber(ctx, arguments[0])) {
-    	ParserNode* node = JSObjectGetPrivate(thisObject);
+	if((argumentCount >= 1) && JSValueIsNumber(ctx, arguments[0])) {
+    	for(size_t i = 1; i < argumentCount; ++i) {
+        	if(!JSValueIsNumber(ctx, arguments[i]))
+            	goto Fail;
+        }
+        ParserNode* node = JSObjectGetPrivate(thisObject);
         if(node.parent) {
-        	Class class = (Class)(long)JSValueToNumber(ctx, arguments[0], NULL);
-        	return _JSValueMakeParserNode([node findPreviousSiblingOfClass:class], ctx);
+        	if(argumentCount == 1) {
+            	Class class = (Class)(long)JSValueToNumber(ctx, arguments[0], NULL);
+        		return _JSValueMakeParserNode([node findPreviousSiblingOfClass:class], ctx);
+            } else {
+                NSMutableSet* set = [NSMutableSet set];
+                for(size_t i = 0; i < argumentCount; ++i) {
+                	[set addObject:(Class)(long)JSValueToNumber(ctx, arguments[i], NULL)];
+                }
+                return _JSValueMakeParserNode([node findPreviousSiblingOfAnyClass:set], ctx);
+            }
         }
     }
+Fail:
     *exception = _JSValueMakeException(ctx, @"Invalid argument(s)");
     return NULL;
 }
 
 static JSValueRef _CallFunctionFindNextSiblingOfType(JSContextRef ctx, JSObjectRef function, JSObjectRef thisObject, size_t argumentCount, const JSValueRef arguments[], JSValueRef* exception) {
-	if((argumentCount == 1) && JSValueIsNumber(ctx, arguments[0])) {
-    	ParserNode* node = JSObjectGetPrivate(thisObject);
+	if((argumentCount >= 1) && JSValueIsNumber(ctx, arguments[0])) {
+    	for(size_t i = 1; i < argumentCount; ++i) {
+        	if(!JSValueIsNumber(ctx, arguments[i]))
+            	goto Fail;
+        }
+        ParserNode* node = JSObjectGetPrivate(thisObject);
         if(node.parent) {
-        	Class class = (Class)(long)JSValueToNumber(ctx, arguments[0], NULL);
-        	return _JSValueMakeParserNode([node findNextSiblingOfClass:class], ctx);
+        	if(argumentCount == 1) {
+            	Class class = (Class)(long)JSValueToNumber(ctx, arguments[0], NULL);
+                return _JSValueMakeParserNode([node findNextSiblingOfClass:class], ctx);
+            } else {
+                NSMutableSet* set = [NSMutableSet set];
+                for(size_t i = 0; i < argumentCount; ++i) {
+                	[set addObject:(Class)(long)JSValueToNumber(ctx, arguments[i], NULL)];
+                }
+                return _JSValueMakeParserNode([node findNextSiblingOfAnyClass:set], ctx);
+            }
         }
     }
+Fail:
     *exception = _JSValueMakeException(ctx, @"Invalid argument(s)");
     return NULL;
 }
 
 static JSValueRef _CallFunctionFindFirstChildOfType(JSContextRef ctx, JSObjectRef function, JSObjectRef thisObject, size_t argumentCount, const JSValueRef arguments[], JSValueRef* exception) {
-	if((argumentCount == 1) && JSValueIsNumber(ctx, arguments[0])) {
-    	ParserNode* node = JSObjectGetPrivate(thisObject);
+	if((argumentCount >= 1) && JSValueIsNumber(ctx, arguments[0])) {
+    	for(size_t i = 1; i < argumentCount; ++i) {
+        	if(!JSValueIsNumber(ctx, arguments[i]))
+            	goto Fail;
+        }
+        ParserNode* node = JSObjectGetPrivate(thisObject);
         if(node.parent) {
-        	Class class = (Class)(long)JSValueToNumber(ctx, arguments[0], NULL);
-        	return _JSValueMakeParserNode([node findFirstChildOfClass:class], ctx);
+        	if(argumentCount == 1) {
+            	Class class = (Class)(long)JSValueToNumber(ctx, arguments[0], NULL);
+        		return _JSValueMakeParserNode([node findFirstChildOfClass:class], ctx);
+            } else {
+                NSMutableSet* set = [NSMutableSet set];
+                for(size_t i = 0; i < argumentCount; ++i) {
+                	[set addObject:(Class)(long)JSValueToNumber(ctx, arguments[i], NULL)];
+                }
+                return _JSValueMakeParserNode([node findFirstChildOfAnyClass:set], ctx);
+            }
         }
     }
+Fail:
     *exception = _JSValueMakeException(ctx, @"Invalid argument(s)");
     return NULL;
 }
 
 static JSValueRef _CallFunctionFindLastChildOfType(JSContextRef ctx, JSObjectRef function, JSObjectRef thisObject, size_t argumentCount, const JSValueRef arguments[], JSValueRef* exception) {
-	if((argumentCount == 1) && JSValueIsNumber(ctx, arguments[0])) {
-    	ParserNode* node = JSObjectGetPrivate(thisObject);
+	if((argumentCount >= 1) && JSValueIsNumber(ctx, arguments[0])) {
+    	for(size_t i = 1; i < argumentCount; ++i) {
+        	if(!JSValueIsNumber(ctx, arguments[i]))
+            	goto Fail;
+        }
+        ParserNode* node = JSObjectGetPrivate(thisObject);
         if(node.parent) {
-        	Class class = (Class)(long)JSValueToNumber(ctx, arguments[0], NULL);
-        	return _JSValueMakeParserNode([node findLastChildOfClass:class], ctx);
+        	if(argumentCount == 1) {
+            	Class class = (Class)(long)JSValueToNumber(ctx, arguments[0], NULL);
+        		return _JSValueMakeParserNode([node findLastChildOfClass:class], ctx);
+            } else {
+                NSMutableSet* set = [NSMutableSet set];
+                for(size_t i = 0; i < argumentCount; ++i) {
+                	[set addObject:(Class)(long)JSValueToNumber(ctx, arguments[i], NULL)];
+                }
+                return _JSValueMakeParserNode([node findLastChildOfAnyClass:set], ctx);
+            }
         }
     }
+Fail:
     *exception = _JSValueMakeException(ctx, @"Invalid argument(s)");
     return NULL;
 }

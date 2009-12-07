@@ -366,6 +366,7 @@ static ParserNodeRoot* _NewNodeTreeFromText(id self, NSString* text, NSArray* no
 	return _NewNodeTreeFromText(self, text, nodeClasses, NO);
 }
 
+//FIXME: Also check lines
 static BOOL _CheckTreeConsistency(ParserNode* node, NSMutableArray* stack) {
     NSRange range = node.range;
     for(ParserNode* subnode in node.children) {
@@ -481,10 +482,6 @@ static BOOL _CheckTreeConsistency(ParserNode* node, NSMutableArray* stack) {
         [NSException raise:NSInternalInconsistencyException format:@"ParserNodeKeyword is an abstract class"];
     
     return [super allocWithZone:zone];
-}
-
-+ (NSUInteger) isMatchingSuffix:(const unichar*)string maxLength:(NSUInteger)maxLength {
-    return 0;
 }
 
 @end

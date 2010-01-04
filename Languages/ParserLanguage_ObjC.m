@@ -218,7 +218,7 @@ static BOOL _HasImplementationParent(ParserNode* node) {
     }
     
     if(passIndex == 1) {
-    	if([node isKindOfClass:[ParserNodeBrackets class]] && node.children) {
+        if([node isKindOfClass:[ParserNodeBrackets class]] && node.children) {
             
             // "[foo bar:baz]"
             ParserNode* target = [node.firstChild findNextSiblingIgnoringWhitespaceAndNewline];

@@ -343,7 +343,7 @@ static inline BOOL _IsNodeAtTopLevel(ParserNode* node, NSSet* topLevelClasses) {
                     
                     // "foo bar()"
                     if(_IsNodeAtTopLevel(node, [self _topLevelNodeClassesForLanguage:topLevelLanguage]) && semicolonNode) {
-                    	previousNode = [previousNode replaceWithNodeOfClass:[ParserNodeMatch class] preserveChildren:NO];
+                        previousNode = [previousNode replaceWithNodeOfClass:[ParserNodeMatch class] preserveChildren:NO];
                         while(1) {
                             ParserNode* siblingNode = [previousNode findPreviousSiblingIgnoringWhitespaceAndNewline];
                             if(![siblingNode isMemberOfClass:[ParserNodeText class]] && ![siblingNode isKindOfClass:[ParserNodeKeyword class]] && ![siblingNode isKindOfClass:[ParserNodeAsterisk class]])
@@ -357,9 +357,9 @@ static inline BOOL _IsNodeAtTopLevel(ParserNode* node, NSSet* topLevelClasses) {
                     }
                     
                     // "foo(bar)"
-            		else {
-                    	previousNode = [previousNode replaceWithNodeOfClass:[ParserNodeMatch class] preserveChildren:NO];
-                    	ParserNode* newNode = [[ParserNodeCFunctionCall alloc] initWithText:previousNode.text range:NSMakeRange(previousNode.range.location, 0)];
+                    else {
+                        previousNode = [previousNode replaceWithNodeOfClass:[ParserNodeMatch class] preserveChildren:NO];
+                        ParserNode* newNode = [[ParserNodeCFunctionCall alloc] initWithText:previousNode.text range:NSMakeRange(previousNode.range.location, 0)];
                         [previousNode insertPreviousSibling:newNode];
                         [newNode release];
                         _RearrangeNodesAsParentAndChildren(newNode, node);

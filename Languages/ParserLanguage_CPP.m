@@ -197,11 +197,11 @@
             
             // "constructor() : foo_(bar) {}"
             if([node.parent isKindOfClass:[ParserNodeCFunctionDefinition class]]) {
-            	[node replaceWithNode:nil preserveChildren:YES];
+                [node replaceWithNode:nil preserveChildren:YES];
             }
             
             // "~destructor()" "foo::bar()"
-        	else {
+            else {
                 ParserNode* previousNode1 = node.previousSibling;
                 if([previousNode1 isKindOfClass:[ParserNodeTilde class]]) {
                     _AdoptNodesAsChildren(previousNode1, node);

@@ -33,9 +33,9 @@
 @implementation ParserLanguageSGML
 
 + (NSArray*) languageNodeClasses {
-	NSMutableArray* classes = [NSMutableArray array];
+    NSMutableArray* classes = [NSMutableArray array];
     
-	[classes addObject:[ParserNodeIndenting class]];
+    [classes addObject:[ParserNodeIndenting class]];
     
     [classes addObject:[ParserNodeSGMLDOCTYPE class]];
     [classes addObject:[ParserNodeSGMLComment class]];
@@ -49,11 +49,11 @@
 }
 
 + (NSString*) stringWithReplacedEntities:(NSString*)string {
-	return string;
+    return string;
 }
 
 + (Class) SGMLElementClass {
-	return [ParserNodeSGMLElement class];
+    return [ParserNodeSGMLElement class];
 }
 
 - (NSString*) name {
@@ -65,24 +65,24 @@
 }
 
 - (ParserNode*) performSyntaxAnalysisForNode:(ParserNode*)node textBuffer:(const unichar*)textBuffer topLevelLanguage:(ParserLanguage*)topLevelLanguage {
-	
+    
     if([node isKindOfClass:[ParserNodeSGMLTag class]]) {
-    	ParserNodeSGMLTag* sgmlNode = (ParserNodeSGMLTag*)node;
+        ParserNodeSGMLTag* sgmlNode = (ParserNodeSGMLTag*)node;
         if(sgmlNode.sgmlType == 0) {
-        	ParserNode* newNode = [[[[self class] SGMLElementClass] alloc] initWithText:node.text range:NSMakeRange(node.range.location, 0)];
+            ParserNode* newNode = [[[[self class] SGMLElementClass] alloc] initWithText:node.text range:NSMakeRange(node.range.location, 0)];
             [node insertPreviousSibling:newNode];
             [newNode release];
             
             _RearrangeNodesAsChildren(newNode, node);
         } else if(sgmlNode.sgmlType < 0) {
-        	ParserNode* endNode = node;
+            ParserNode* endNode = node;
             while(endNode) {
                 endNode = [endNode findNextSiblingOfClass:[ParserNodeSGMLTag class]];
                 if([endNode.name isEqualToString:sgmlNode.name])
-                	break;
+                    break;
             }
             if(endNode) {
-            	ParserNode* newNode = [[[[self class] SGMLElementClass] alloc] initWithText:node.text range:NSMakeRange(node.range.location, 0)];
+                ParserNode* newNode = [[[[self class] SGMLElementClass] alloc] initWithText:node.text range:NSMakeRange(node.range.location, 0)];
                 [node insertPreviousSibling:newNode];
                 [newNode release];
                 
@@ -91,9 +91,9 @@
         }
         
         if(sgmlNode.sgmlType <= 0) {
-        	NSRange range = NSMakeRange(sgmlNode.range.location + 1 + sgmlNode.name.length, sgmlNode.range.length - sgmlNode.name.length - (sgmlNode.sgmlType ? 2 : 3));
+            NSRange range = NSMakeRange(sgmlNode.range.location + 1 + sgmlNode.name.length, sgmlNode.range.length - sgmlNode.name.length - (sgmlNode.sgmlType ? 2 : 3));
             if(range.length > 0) {
-            	static NSMutableArray* classes = nil;
+                static NSMutableArray* classes = nil;
                 if(classes == nil) {
                     classes = [[NSMutableArray alloc] init];
                     [classes addObject:[ParserNodeWhitespace class]];
@@ -110,17 +110,17 @@
                         NSString* name = attributeNode.content;
                         attributeNode = [attributeNode findNextSiblingIgnoringWhitespaceAndNewline];
                         if(attributeNode == nil)
-                        	break;
+                            break;
                         NSString* value;
                         if([attributeNode isKindOfClass:[ParserNodeEqual class]]) {
-                        	attributeNode = [attributeNode findNextSiblingIgnoringWhitespaceAndNewline];
+                            attributeNode = [attributeNode findNextSiblingIgnoringWhitespaceAndNewline];
                             value = attributeNode.cleanContent;
                             attributeNode = [attributeNode findNextSiblingIgnoringWhitespaceAndNewline];
                         } else {
                             value = @""; //FIXME: Is this the best placeholder?
                         }
-						if(dictionary == nil)
-                        	dictionary = [[NSMutableDictionary alloc] init];
+                        if(dictionary == nil)
+                            dictionary = [[NSMutableDictionary alloc] init];
                         [dictionary setObject:[[self class] stringWithReplacedEntities:value] forKey:[[self class] stringWithReplacedEntities:name]];
                     }
                     sgmlNode.attributes = dictionary;
@@ -143,7 +143,7 @@ PREFIX_SUFFIX_CLASS_IMPLEMENTATION(SGMLCDATA, "<![CDATA[", "]]>")
 @implementation ParserNodeSGMLDOCTYPE (Internal)
 
 + (NSSet*) patchedClasses {
-	return [NSSet setWithObject:[ParserNodeSGMLTag class]];
+    return [NSSet setWithObject:[ParserNodeSGMLTag class]];
 }
 
 @end
@@ -151,11 +151,11 @@ PREFIX_SUFFIX_CLASS_IMPLEMENTATION(SGMLCDATA, "<![CDATA[", "]]>")
 @implementation ParserNodeSGMLComment (Internal)
 
 + (NSSet*) patchedClasses {
-	return [NSSet setWithObject:[ParserNodeSGMLTag class]];
+    return [NSSet setWithObject:[ParserNodeSGMLTag class]];
 }
 
 - (NSString*) cleanContent {
-	NSRange range = self.range;
+    NSRange range = self.range;
     return [ParserLanguageSGML stringWithReplacedEntities:[self.text substringWithRange:NSMakeRange(range.location + 4, range.length - 7)]];
 }
 
@@ -164,11 +164,11 @@ PREFIX_SUFFIX_CLASS_IMPLEMENTATION(SGMLCDATA, "<![CDATA[", "]]>")
 @implementation ParserNodeSGMLCDATA (Internal)
 
 + (NSSet*) patchedClasses {
-	return [NSSet setWithObject:[ParserNodeSGMLTag class]];
+    return [NSSet setWithObject:[ParserNodeSGMLTag class]];
 }
 
 - (NSString*) cleanContent {
-	NSRange range = self.range;
+    NSRange range = self.range;
     return [self.text substringWithRange:NSMakeRange(range.location + 9, range.length - 12)];
 }
 
@@ -180,11 +180,11 @@ PREFIX_SUFFIX_CLASS_IMPLEMENTATION(SGMLCDATA, "<![CDATA[", "]]>")
 
 + (NSUInteger) isMatchingPrefix:(const unichar*)string maxLength:(NSUInteger)maxLength {
     if(*string != '<')
-    	return NSNotFound;
+        return NSNotFound;
     
     NSUInteger length = 0;
     do {
-    	++string;
+        ++string;
         --maxLength;
         ++length;
     } while(maxLength && !IsWhitespaceOrNewline(*string) && (*string != '>') && !((maxLength > 1) && (*string == '/') && (*(string + 1) == '>')));
@@ -196,25 +196,25 @@ PREFIX_SUFFIX_CLASS_IMPLEMENTATION(SGMLCDATA, "<![CDATA[", "]]>")
 }
 
 - (void) dealloc {
-	[_name release];
+    [_name release];
     [_attributes release];
     
     [super dealloc];
 }
 
 - (void) _analyze {
-	NSString* content = self.content;
+    NSString* content = self.content;
     
     if([content hasSuffix:@"/>"]) {
         _type = 0;
         content = [content substringWithRange:NSMakeRange(1, content.length - 3)];
     }
     else if([content hasPrefix:@"</"]) {
-    	_type = 1;
+        _type = 1;
         content = [content substringWithRange:NSMakeRange(2, content.length - 3)];
     }
     else {
-    	_type = -1;
+        _type = -1;
         content = [content substringWithRange:NSMakeRange(1, content.length - 2)];
     }
     
@@ -226,14 +226,14 @@ PREFIX_SUFFIX_CLASS_IMPLEMENTATION(SGMLCDATA, "<![CDATA[", "]]>")
 }
 
 - (NSInteger) sgmlType {
-	if(_name == nil)
-    	[self _analyze];
+    if(_name == nil)
+        [self _analyze];
     return _type;
 }
 
 - (NSString*) name {
-	if(_name == nil)
-    	[self _analyze];
+    if(_name == nil)
+        [self _analyze];
     return _name;
 }
 
@@ -260,20 +260,20 @@ PREFIX_SUFFIX_CLASS_IMPLEMENTATION(SGMLCDATA, "<![CDATA[", "]]>")
 - (NSString*) cleanContent {
     NSMutableString* string = [NSMutableString string];
     for(ParserNode* node in self.children) {
-    	if([node isKindOfClass:[ParserNodeSGMLTag class]] || [node isKindOfClass:[ParserNodeSGMLElement class]]
-        	|| [node isKindOfClass:[ParserNodeSGMLComment class]]|| [node isKindOfClass:[ParserNodeSGMLCDATA class]])
-        	continue;
+        if([node isKindOfClass:[ParserNodeSGMLTag class]] || [node isKindOfClass:[ParserNodeSGMLElement class]]
+            || [node isKindOfClass:[ParserNodeSGMLComment class]]|| [node isKindOfClass:[ParserNodeSGMLCDATA class]])
+            continue;
         [string appendString:node.cleanContent];
     }
     return string;
 }
 
 - (NSString*) name {
-	return [(ParserNodeSGMLTag*)self.firstChild name];
+    return [(ParserNodeSGMLTag*)self.firstChild name];
 }
 
 - (NSDictionary*) attributes {
-	return [(ParserNodeSGMLTag*)self.firstChild attributes];
+    return [(ParserNodeSGMLTag*)self.firstChild attributes];
 }
 
 @end
@@ -289,7 +289,7 @@ PREFIX_SUFFIX_CLASS_IMPLEMENTATION(SGMLCDATA, "<![CDATA[", "]]>")
 }
 
 - (NSString*) cleanContent {
-	NSRange range = self.range;
+    NSRange range = self.range;
     return [self.text substringWithRange:NSMakeRange(range.location + 1, range.length - 2)];
 }
 
@@ -306,7 +306,7 @@ PREFIX_SUFFIX_CLASS_IMPLEMENTATION(SGMLCDATA, "<![CDATA[", "]]>")
 }
 
 - (NSString*) cleanContent {
-	NSRange range = self.range;
+    NSRange range = self.range;
     return [self.text substringWithRange:NSMakeRange(range.location + 1, range.length - 2)];
 }
 

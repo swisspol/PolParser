@@ -20,7 +20,7 @@
 
 @interface ParserNodeSGMLTag : ParserNode { //Leaf
 @private
-	NSInteger _type;
+    NSInteger _type;
     NSString* _name;
     NSDictionary* _attributes;
 }

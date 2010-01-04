@@ -54,20 +54,20 @@ int main(int argc, const char* argv[]) {
             }
             ++offset;
             if(offset >= argc)
-            	break;
+                break;
         }
         if(offset < argc)
             inFile = [[NSString stringWithUTF8String:argv[offset]] stringByStandardizingPath];
     }
     if(inFile == nil) {
-    	printf("%s [--nodes] [--compact | --detailed] [-script JavaScriptFilePath] inFile\n", basename((char*)argv[0]));
+        printf("%s [--nodes] [--compact | --detailed] [-script JavaScriptFilePath] inFile\n", basename((char*)argv[0]));
         goto Exit;
     }
     
     ParserNodeRoot* root = [ParserLanguage parseTextFile:inFile encoding:NSUTF8StringEncoding syntaxAnalysis:YES];
     if(root) {
         if(nodesOption)
-        	printf("%s\n", [[root.language.nodeClasses description] UTF8String]);
+            printf("%s\n", [[root.language.nodeClasses description] UTF8String]);
         
         if(optionScript) {
             if(RunJavaScriptOnRootNode(optionScript, root))

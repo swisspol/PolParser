@@ -25,11 +25,11 @@
 @implementation ParserLanguagePropertyList
 
 + (NSArray*) languageDependencies {
-	return [NSArray arrayWithObject:@"XML"];
+    return [NSArray arrayWithObject:@"XML"];
 }
 
 + (NSArray*) languageNodeClasses {
-	NSMutableArray* classes = [NSMutableArray array];
+    NSMutableArray* classes = [NSMutableArray array];
     
     [classes addObject:[ParserNodePropertyList class]];
     [classes addObject:[ParserNodePropertyListDictionary class]];
@@ -55,34 +55,34 @@
 }
 
 - (ParserNode*) performSyntaxAnalysisForNode:(ParserNode*)node textBuffer:(const unichar*)textBuffer topLevelLanguage:(ParserLanguage*)topLevelLanguage {
-	
+    
     if([node isKindOfClass:[ParserNodeXMLElement class]]) {
-    	NSString* name = node.name;
+        NSString* name = node.name;
         if([name isEqualToString:@"plist"])
-        	return [node replaceWithNodeOfClass:[ParserNodePropertyList class] preserveChildren:YES];
+            return [node replaceWithNodeOfClass:[ParserNodePropertyList class] preserveChildren:YES];
         if([name isEqualToString:@"dict"])
-        	return [node replaceWithNodeOfClass:[ParserNodePropertyListDictionary class] preserveChildren:YES];
+            return [node replaceWithNodeOfClass:[ParserNodePropertyListDictionary class] preserveChildren:YES];
         if([name isEqualToString:@"array"])
-        	return [node replaceWithNodeOfClass:[ParserNodePropertyListArray class] preserveChildren:YES];
+            return [node replaceWithNodeOfClass:[ParserNodePropertyListArray class] preserveChildren:YES];
         if([name isEqualToString:@"key"])
-        	return [node replaceWithNodeOfClass:[ParserNodePropertyListKey class] preserveChildren:YES];
+            return [node replaceWithNodeOfClass:[ParserNodePropertyListKey class] preserveChildren:YES];
         if([name isEqualToString:@"string"])
-        	return [node replaceWithNodeOfClass:[ParserNodePropertyListString class] preserveChildren:YES];
+            return [node replaceWithNodeOfClass:[ParserNodePropertyListString class] preserveChildren:YES];
         if([name isEqualToString:@"data"])
-        	return [node replaceWithNodeOfClass:[ParserNodePropertyListData class] preserveChildren:YES];
+            return [node replaceWithNodeOfClass:[ParserNodePropertyListData class] preserveChildren:YES];
         if([name isEqualToString:@"date"])
-        	return [node replaceWithNodeOfClass:[ParserNodePropertyListDate class] preserveChildren:YES];
+            return [node replaceWithNodeOfClass:[ParserNodePropertyListDate class] preserveChildren:YES];
         if([name isEqualToString:@"true"])
-        	return [node replaceWithNodeOfClass:[ParserNodePropertyListTrue class] preserveChildren:YES];
+            return [node replaceWithNodeOfClass:[ParserNodePropertyListTrue class] preserveChildren:YES];
         if([name isEqualToString:@"false"])
-        	return [node replaceWithNodeOfClass:[ParserNodePropertyListFalse class] preserveChildren:YES];
+            return [node replaceWithNodeOfClass:[ParserNodePropertyListFalse class] preserveChildren:YES];
         if([name isEqualToString:@"real"])
-        	return [node replaceWithNodeOfClass:[ParserNodePropertyListReal class] preserveChildren:YES];
+            return [node replaceWithNodeOfClass:[ParserNodePropertyListReal class] preserveChildren:YES];
         if([name isEqualToString:@"integer"])
-        	return [node replaceWithNodeOfClass:[ParserNodePropertyListInteger class] preserveChildren:YES];
+            return [node replaceWithNodeOfClass:[ParserNodePropertyListInteger class] preserveChildren:YES];
     }
     
-	return node;
+    return node;
 }
 
 @end

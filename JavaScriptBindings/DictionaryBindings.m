@@ -19,28 +19,28 @@
 #import "JavaScriptBindings_Internal.h"
 
 static JSValueRef _DictionaryGetPropertyCallback(JSContextRef ctx, JSObjectRef object, JSStringRef propertyName, JSValueRef* exception) {
-	CFStringRef cfString = JSStringCopyCFString(kCFAllocatorDefault, propertyName);
+    CFStringRef cfString = JSStringCopyCFString(kCFAllocatorDefault, propertyName);
     if(cfString) {
-    	NSDictionary* dictionary = JSObjectGetPrivate(object);
+        NSDictionary* dictionary = JSObjectGetPrivate(object);
         id value = [dictionary objectForKey:(id)cfString];
         CFRelease(cfString);
         if(value)
-        	return _JSValueMakeString([value description], ctx); //FIXME: We should handle non-string values properly
+            return _JSValueMakeString([value description], ctx); //FIXME: We should handle non-string values properly
     }
     return NULL;
 }
 
 static JSValueRef _DictionaryConvertToTypeCallback(JSContextRef ctx, JSObjectRef object, JSType type, JSValueRef* exception) {
-	if(type == kJSTypeString) {
-    	NSDictionary* dictionary = JSObjectGetPrivate(object);
+    if(type == kJSTypeString) {
+        NSDictionary* dictionary = JSObjectGetPrivate(object);
         return _JSValueMakeString([dictionary description], ctx);
     }
     return JSValueMakeUndefined(ctx);
 }
 
 JSClassRef _GetDictionaryJavaScriptClass() {
-	static JSClassRef class = NULL;
-	if(class == NULL) {
+    static JSClassRef class = NULL;
+    if(class == NULL) {
         JSClassDefinition definition = kJSClassDefinitionEmpty;
         definition.className = "Dictionary";
         definition.getProperty = _DictionaryGetPropertyCallback;
@@ -53,7 +53,7 @@ JSClassRef _GetDictionaryJavaScriptClass() {
 }
 
 JSValueRef _JSValueMakeDictionary(NSDictionary* dictionary, JSContextRef context) {
-	if(dictionary == nil)
-    	return JSValueMakeUndefined(context);
+    if(dictionary == nil)
+        return JSValueMakeUndefined(context);
     return JSObjectMake(context, _GetDictionaryJavaScriptClass(), dictionary);
 }

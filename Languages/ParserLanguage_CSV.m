@@ -25,7 +25,7 @@
 @implementation ParserLanguageCSV
 
 + (NSArray*) languageNodeClasses {
-	NSMutableArray* classes = [NSMutableArray array];
+    NSMutableArray* classes = [NSMutableArray array];
     
     [classes addObject:[ParserNodeNewline class]];
     
@@ -46,12 +46,12 @@
 }
 
 - (ParserNode*) performSyntaxAnalysisForNode:(ParserNode*)node textBuffer:(const unichar*)textBuffer topLevelLanguage:(ParserLanguage*)topLevelLanguage {
-	
+    
     if(![node isKindOfClass:[ParserNodeRoot class]] && ![node.parent isKindOfClass:[ParserNodeCSVRecord class]]) {
-    	ParserNode* endNode = node;
+        ParserNode* endNode = node;
         while(endNode.nextSibling) {
-        	if([endNode isKindOfClass:[ParserNodeNewline class]])
-            	break;
+            if([endNode isKindOfClass:[ParserNodeNewline class]])
+                break;
             endNode = endNode.nextSibling;
         }
         
@@ -79,10 +79,10 @@
     BOOL inQuotes = NO;
     NSUInteger length = 0;
     while(maxLength) {
-    	if(((*string == ',') || IsNewline(*string)) && !inQuotes)
-        	break;
+        if(((*string == ',') || IsNewline(*string)) && !inQuotes)
+            break;
         if(*string == '\"')
-        	inQuotes = !inQuotes;
+            inQuotes = !inQuotes;
         ++length;
         ++string;
         --maxLength;
@@ -91,12 +91,12 @@
 }
 
 - (NSString*) cleanContent {
-	NSMutableString* content = [NSMutableString stringWithString:self.content];
+    NSMutableString* content = [NSMutableString stringWithString:self.content];
     [content replaceOccurrencesOfString:@"\"\"" withString:@"\"" options:0 range:NSMakeRange(0, content.length)];
     if([content hasPrefix:@"\""])
-    	[content deleteCharactersInRange:NSMakeRange(0, 1)];
+        [content deleteCharactersInRange:NSMakeRange(0, 1)];
     if([content hasSuffix:@"\""])
-    	[content deleteCharactersInRange:NSMakeRange(content.length - 1, 1)];
+        [content deleteCharactersInRange:NSMakeRange(content.length - 1, 1)];
     return content;
 }
 

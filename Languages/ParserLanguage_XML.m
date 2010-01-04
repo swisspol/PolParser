@@ -26,7 +26,7 @@
 
 /* WARNING: Keep in sync with ParserLanguage_SGML */
 + (NSArray*) languageNodeClasses {
-	NSMutableArray* classes = [NSMutableArray array];
+    NSMutableArray* classes = [NSMutableArray array];
     
     [classes addObject:[ParserNodeIndenting class]];
     
@@ -45,10 +45,10 @@
 }
 
 + (NSString*) stringWithReplacedEntities:(NSString*)string {
-	static NSDictionary* entities = nil;
+    static NSDictionary* entities = nil;
     if(entities == nil) {
-    	entities = [[NSDictionary alloc] initWithObjectsAndKeys:
-        	@"&quot;", @"\x22",
+        entities = [[NSDictionary alloc] initWithObjectsAndKeys:
+            @"&quot;", @"\x22",
             @"&amp;", @"\x26",
             @"&apos;", @"\x27",
             @"&lt;", @"\x3C",
@@ -57,12 +57,12 @@
     }
     NSMutableString* newString = [NSMutableString stringWithString:string];
     for(NSString* key in entities)
-    	[newString replaceOccurrencesOfString:[entities objectForKey:key] withString:key options:0 range:NSMakeRange(0, newString.length)];
+        [newString replaceOccurrencesOfString:[entities objectForKey:key] withString:key options:0 range:NSMakeRange(0, newString.length)];
     return newString;
 }
 
 + (Class) SGMLElementClass {
-	return [ParserNodeXMLElement class];
+    return [ParserNodeXMLElement class];
 }
 
 - (NSString*) name {
@@ -81,7 +81,7 @@
 @implementation ParserNodeXMLComment
 
 - (NSString*) cleanContent {
-	NSRange range = self.range;
+    NSRange range = self.range;
     return [ParserLanguageXML stringWithReplacedEntities:[self.text substringWithRange:NSMakeRange(range.location + 4, range.length - 7)]];
 }
 
@@ -110,7 +110,7 @@ PREFIX_SUFFIX_CLASS_IMPLEMENTATION(XMLProcessingInstructions, "<?", "?>")
 @implementation ParserNodeXMLDeclaration (Internal)
 
 + (NSSet*) patchedClasses {
-	return [NSSet setWithObject:[ParserNodeXMLProcessingInstructions class]];
+    return [NSSet setWithObject:[ParserNodeXMLProcessingInstructions class]];
 }
 
 @end
@@ -118,11 +118,11 @@ PREFIX_SUFFIX_CLASS_IMPLEMENTATION(XMLProcessingInstructions, "<?", "?>")
 @implementation ParserNodeXMLProcessingInstructions (Internal)
 
 + (NSSet*) patchedClasses {
-	return [NSSet setWithObject:[ParserNodeXMLTag class]];
+    return [NSSet setWithObject:[ParserNodeXMLTag class]];
 }
 
 - (NSString*) cleanContent {
-	NSRange range = self.range;
+    NSRange range = self.range;
     return [ParserLanguageXML stringWithReplacedEntities:[self.text substringWithRange:NSMakeRange(range.location + 2, range.length - 4)]];
 }
 

@@ -25,15 +25,15 @@
 @implementation ParserLanguageCPP
 
 + (NSArray*) languageDependencies {
-	return [NSArray arrayWithObject:@"C"];
+    return [NSArray arrayWithObject:@"C"];
 }
 
 + (NSSet*) languageReservedKeywords {
-	return [NSSet setWithObjects:@"this", nil]; //Not "true" keywords
+    return [NSSet setWithObjects:@"this", nil]; //Not "true" keywords
 }
 
 + (NSArray*) languageNodeClasses {
-	NSMutableArray* classes = [NSMutableArray array];
+    NSMutableArray* classes = [NSMutableArray array];
     
     [classes addObject:[ParserNodeDoubleSemicolon class]];
     
@@ -43,7 +43,7 @@
 }
 
 + (NSSet*) languageTopLevelNodeClasses {
-	return nil; //FIXME
+    return nil; //FIXME
 }
 
 - (NSString*) name {
@@ -87,7 +87,7 @@
 }
 
 - (NSString*) cleanContent {
-	NSMutableString* string = [NSMutableString stringWithString:self.content];
+    NSMutableString* string = [NSMutableString stringWithString:self.content];
     NSRange range = [string rangeOfCharacterFromSet:[[NSCharacterSet whitespaceAndNewlineCharacterSet] invertedSet] options:0 range:NSMakeRange(2, string.length - 2)];
     [string deleteCharactersInRange:NSMakeRange(0, range.location != NSNotFound ? range.location : string.length)];
     return string;
@@ -98,7 +98,7 @@
 @implementation ParserNodeDoubleSemicolon (Patch)
 
 + (NSSet*) patchedClasses {
-	return [NSSet setWithObject:[ParserNodeColon class]];
+    return [NSSet setWithObject:[ParserNodeColon class]];
 }
 
 @end

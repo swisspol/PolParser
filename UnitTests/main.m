@@ -20,10 +20,10 @@
 #import "JavaScriptBindings.h"
 
 static BOOL _ValidateResult(NSString* name, NSString* actualResult, NSString* expectedResult) {
-	if(!actualResult)
-    	actualResult = @"";
+    if(!actualResult)
+        actualResult = @"";
     if(!expectedResult)
-    	expectedResult = @"";
+        expectedResult = @"";
     if(![actualResult isEqualToString:expectedResult]) {
         NSString* expectedPath = [NSTemporaryDirectory() stringByAppendingPathComponent:[NSString stringWithFormat:@"%@ [Expected].txt", name]];
         [expectedResult writeToFile:expectedPath atomically:YES encoding:NSUTF8StringEncoding error:NULL];
@@ -57,9 +57,9 @@ int main(int argc, const char* argv[]) {
     for(int i = 1; i < argc; ++i) {
         if(argv[i][0] == '-') {
             if(strcmp(argv[i], "--skipParser") == 0)
-            	skipParser = YES;
+                skipParser = YES;
             else if(strcmp(argv[i], "--skipBindings") == 0)
-            	skipBindings = YES;
+                skipBindings = YES;
         } else {
             [filteredFiles addObject:[NSString stringWithUTF8String:argv[i]]];
         }
@@ -138,11 +138,11 @@ int main(int argc, const char* argv[]) {
             path = [basePath stringByAppendingPathComponent:path];
             
             for(NSString* subpath in files) {
-            	if(![[[subpath stringByDeletingPathExtension] pathExtension] isEqualToString:@"in"] || ![subpath hasPrefix:prefix])
+                if(![[[subpath stringByDeletingPathExtension] pathExtension] isEqualToString:@"in"] || ![subpath hasPrefix:prefix])
                     continue;
                 subpath = [basePath stringByAppendingPathComponent:subpath];
                 
-            	NSAutoreleasePool* localPool = [[NSAutoreleasePool alloc] init];
+                NSAutoreleasePool* localPool = [[NSAutoreleasePool alloc] init];
                 ParserNodeRoot* root = [ParserLanguage parseTextFile:subpath encoding:NSUTF8StringEncoding syntaxAnalysis:YES];
                 if(root == nil) {
                     NSLog(@"<FAILED PARSING SOURCE \"%@\">", path);

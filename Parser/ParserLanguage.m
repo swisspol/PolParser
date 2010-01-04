@@ -24,8 +24,7 @@
 
 @implementation ParserLanguage
 
-+ (id) allocWithZone:(NSZone*)zone
-{
++ (id) allocWithZone:(NSZone*)zone {
     if(self == [ParserLanguage class])
         [NSException raise:NSInternalInconsistencyException format:@"ParserLanguage is an abstract class"];
     
@@ -34,22 +33,22 @@
 
 + (NSSet*) allLanguages {
     static NSMutableSet* set = nil;
-	if(set == nil) {
-    	set = [[NSMutableSet alloc] init];
+    if(set == nil) {
+        set = [[NSMutableSet alloc] init];
         int count = objc_getClassList(NULL, 0);
         if(count > 0) {
             Class* list = malloc(count * sizeof(Class));
             count = objc_getClassList(list, count);
             for(int i = 0; i < count; ++i) {
                 if(strncmp(class_getName(list[i]), ParserLanguagePrefix, sizeof(ParserLanguagePrefix) - 1) == 0) {
-                	if(list[i] != [ParserLanguage class])
-                    	[set addObject:[[[list[i] alloc] init] autorelease]];
+                    if(list[i] != [ParserLanguage class])
+                        [set addObject:[[[list[i] alloc] init] autorelease]];
                 }
             }
             free(list);
         }
     }
-	return set;
+    return set;
 }
 
 + (ParserLanguage*) languageWithName:(NSString*)name {
@@ -61,7 +60,7 @@
 }
 
 + (ParserLanguage*) defaultLanguageForFileExtension:(NSString*)extension {
-	extension = [extension lowercaseString];
+    extension = [extension lowercaseString];
     for(ParserLanguage* language in [ParserLanguage allLanguages]) {
         if([[language fileExtensions] containsObject:extension])
             return language;
@@ -79,11 +78,11 @@
 }
 
 + (NSArray*) languageDependencies {
-	return nil;
+    return nil;
 }
 
 + (NSSet*) languageReservedKeywords {
-	return nil;
+    return nil;
 }
 
 + (NSArray*) languageNodeClasses {
@@ -91,15 +90,15 @@
 }
 
 - (void) dealloc {
-	[_languageDependencies release];
+    [_languageDependencies release];
     [_keywords release];
     [_nodeClasses release];
     
-	[super dealloc];
+    [super dealloc];
 }
 
 - (id) copyWithZone:(NSZone*)zone {
-	return [self retain];
+    return [self retain];
 }
 
 - (NSString*) name {
@@ -113,13 +112,13 @@
 }
 
 - (NSArray*) allLanguageDependencies {
-	if(_languageDependencies == nil) {
+    if(_languageDependencies == nil) {
         _languageDependencies = [[NSMutableArray alloc] init];
         for(NSString* name in [[self class] languageDependencies]) {
             ParserLanguage* language = [ParserLanguage languageWithName:name];
             for(language in language.allLanguageDependencies) {
-            	if(![_languageDependencies containsObject:language])
-                	[_languageDependencies addObject:language];
+                if(![_languageDependencies containsObject:language])
+                    [_languageDependencies addObject:language];
             }
         }
         [_languageDependencies addObject:self];
@@ -128,8 +127,8 @@
 }
 
 - (NSSet*) reservedKeywords {
-	if(_keywords == nil) {
-    	_keywords = [[NSMutableSet alloc] init];
+    if(_keywords == nil) {
+        _keywords = [[NSMutableSet alloc] init];
         for(ParserLanguage* language in self.allLanguageDependencies) {
             [_keywords unionSet:[[language class] languageReservedKeywords]];
         }
@@ -151,19 +150,19 @@
             }
             
             for(Class class in [[language class] languageNodeClasses]) {
-            	if(![_nodeClasses containsObject:class]) {
-                	NSUInteger count = _nodeClasses.count;
+                if(![_nodeClasses containsObject:class]) {
+                    NSUInteger count = _nodeClasses.count;
                     NSUInteger index = count;
                     for(Class patchedClass in [class patchedClasses]) {
-                    	NSUInteger patchedIndex = NSNotFound;
-						for(NSUInteger i = 0; i < count; ++i) {
-                        	if([[_nodeClasses objectAtIndex:i] isSubclassOfClass:patchedClass]) {
-                            	patchedIndex = i;
+                        NSUInteger patchedIndex = NSNotFound;
+                        for(NSUInteger i = 0; i < count; ++i) {
+                            if([[_nodeClasses objectAtIndex:i] isSubclassOfClass:patchedClass]) {
+                                patchedIndex = i;
                                 break;
                             }
                         }
                         if((patchedIndex != NSNotFound) && (patchedIndex < index))
-                        	index = patchedIndex;
+                            index = patchedIndex;
                     }
                     [_nodeClasses insertObject:class atIndex:index];
                 }
@@ -184,7 +183,7 @@ static ParserNode* _ApplierFunction(ParserNode* node, void* context) {
 + (ParserNodeRoot*) newNodeTreeFromText:(NSString*)text range:(NSRange)range textBuffer:(const unichar*)textBuffer withNodeClasses:(NSArray*)nodeClasses {
     ParserNodeRoot* rootNode = [[ParserNodeRoot alloc] initWithText:text range:range];
     if(rootNode == nil)
-    	return nil;
+        return nil;
     
     NSMutableArray* stack = [NSMutableArray array];
     [stack addObject:rootNode];
@@ -199,7 +198,7 @@ static ParserNode* _ApplierFunction(ParserNode* node, void* context) {
             if(suffixLength != NSNotFound) {
                 if(rawLength > 0) {
                     for(NSUInteger i = 0; i < rawLength; ++i) {
-                    	if((*(textBuffer + range.location + i) == '\n') || ((*(textBuffer + range.location + i) == '\r') && (*(textBuffer + range.location + i + 1) != '\n')))
+                        if((*(textBuffer + range.location + i) == '\n') || ((*(textBuffer + range.location + i) == '\r') && (*(textBuffer + range.location + i + 1) != '\n')))
                             ++currentLine;
                     }
                     
@@ -218,7 +217,7 @@ static ParserNode* _ApplierFunction(ParserNode* node, void* context) {
                 
                 if(suffixLength > 0) {
                     for(NSUInteger i = 0; i < suffixLength; ++i) {
-                    	if((*(textBuffer + range.location + i) == '\n') || ((*(textBuffer + range.location + i) == '\r') && (*(textBuffer + range.location + i + 1) != '\n')))
+                        if((*(textBuffer + range.location + i) == '\n') || ((*(textBuffer + range.location + i) == '\r') && (*(textBuffer + range.location + i + 1) != '\n')))
                             ++currentLine;
                     }
                     
@@ -348,7 +347,7 @@ static ParserNode* _ApplierFunction(ParserNode* node, void* context) {
 }
 
 static ParserNodeRoot* _NewNodeTreeFromText(id self, NSString* text, NSArray* nodeClasses, BOOL syntaxAnalysis) {
-	NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+    NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
     text = [text copy];
     NSRange range = NSMakeRange(0, text.length);
     unichar* buffer = malloc((range.length + 2) * sizeof(unichar));
@@ -360,7 +359,7 @@ static ParserNodeRoot* _NewNodeTreeFromText(id self, NSString* text, NSArray* no
     if([self isKindOfClass:[ParserLanguage class]])
         root = [[self parseText:text range:range textBuffer:(buffer + 1) syntaxAnalysis:syntaxAnalysis] retain];
     else
-    	root = [self newNodeTreeFromText:text range:range textBuffer:(buffer + 1) withNodeClasses:nodeClasses];
+        root = [self newNodeTreeFromText:text range:range textBuffer:(buffer + 1) withNodeClasses:nodeClasses];
     
     free(buffer);
     [text release];
@@ -370,7 +369,7 @@ static ParserNodeRoot* _NewNodeTreeFromText(id self, NSString* text, NSArray* no
 }
 
 + (ParserNodeRoot*) newNodeTreeFromText:(NSString*)text withNodeClasses:(NSArray*)nodeClasses {
-	return _NewNodeTreeFromText(self, text, nodeClasses, NO);
+    return _NewNodeTreeFromText(self, text, nodeClasses, NO);
 }
 
 //FIXME: Also check lines
@@ -401,15 +400,15 @@ static BOOL _CheckTreeConsistency(ParserNode* node, NSMutableArray* stack) {
 }
 
 - (ParserNodeRoot*) parseText:(NSString*)text range:(NSRange)range textBuffer:(const unichar*)textBuffer syntaxAnalysis:(BOOL)syntaxAnalysis {
-	ParserNodeRoot* rootNode = [[[self class] newNodeTreeFromText:text range:range textBuffer:textBuffer withNodeClasses:self.nodeClasses] autorelease];
+    ParserNodeRoot* rootNode = [[[self class] newNodeTreeFromText:text range:range textBuffer:textBuffer withNodeClasses:self.nodeClasses] autorelease];
     if(rootNode == nil)
-    	return nil;
+        return nil;
     rootNode.language = self;
     
     if(syntaxAnalysis) {
-    	for(ParserLanguage* language in self.allLanguageDependencies) {
-        	ParserNode* node = [language performSyntaxAnalysisForNode:rootNode textBuffer:textBuffer topLevelLanguage:self];
-        	if(node) {
+        for(ParserLanguage* language in self.allLanguageDependencies) {
+            ParserNode* node = [language performSyntaxAnalysisForNode:rootNode textBuffer:textBuffer topLevelLanguage:self];
+            if(node) {
                 void* params[3];
                 params[0] = language;
                 params[1] = (void*)textBuffer;
@@ -447,9 +446,9 @@ static BOOL _CheckTreeConsistency(ParserNode* node, NSMutableArray* stack) {
 }
 
 - (id) copyWithZone:(NSZone*)zone {
-	ParserNodeRoot* copy = [super copyWithZone:zone];
+    ParserNodeRoot* copy = [super copyWithZone:zone];
     if(copy)
-    	copy->_language = _language;
+        copy->_language = _language;
     return copy;
 }
 
@@ -483,8 +482,7 @@ static BOOL _CheckTreeConsistency(ParserNode* node, NSMutableArray* stack) {
 
 @implementation ParserNodeKeyword
 
-+ (id) allocWithZone:(NSZone*)zone
-{
++ (id) allocWithZone:(NSZone*)zone {
     if(self == [ParserNodeKeyword class])
         [NSException raise:NSInternalInconsistencyException format:@"ParserNodeKeyword is an abstract class"];
     

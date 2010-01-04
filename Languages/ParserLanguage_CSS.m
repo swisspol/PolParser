@@ -28,7 +28,7 @@
 @implementation ParserLanguageCSS
 
 + (NSArray*) languageNodeClasses {
-	NSMutableArray* classes = [NSMutableArray array];
+    NSMutableArray* classes = [NSMutableArray array];
     
     [classes addObject:[ParserNodeNewline class]];
     [classes addObject:[ParserNodeIndenting class]];
@@ -48,7 +48,7 @@
     [classes addObject:[ParserNodeCSSSelector class]];
     [classes addObject:[ParserNodeCSSPropertyName class]];
     [classes addObject:[ParserNodeCSSPropertyValue class]];
-	
+    
     return classes;
 }
 
@@ -61,10 +61,10 @@
 }
 
 - (ParserNode*) performSyntaxAnalysisForNode:(ParserNode*)node textBuffer:(const unichar*)textBuffer topLevelLanguage:(ParserLanguage*)topLevelLanguage {
-	
+    
     if([node isMemberOfClass:[ParserNodeText class]] && ![node.parent isKindOfClass:[ParserNodeCSSAtRule class]] && ![node.parent isKindOfClass:[ParserNodeCSSPropertyValue class]]) {
-    	if(![node.parent isKindOfClass:[ParserNodeCSSRule class]]) {
-        	ParserNode* endNode = [node findNextSiblingOfClass:[ParserNodeBraces class]];
+        if(![node.parent isKindOfClass:[ParserNodeCSSRule class]]) {
+            ParserNode* endNode = [node findNextSiblingOfClass:[ParserNodeBraces class]];
             if(endNode) {
                 ParserNode* newNode = [[ParserNodeCSSRule alloc] initWithText:node.text range:NSMakeRange(node.range.location, 0)];
                 [node insertPreviousSibling:newNode];
@@ -85,10 +85,10 @@
                 [node insertPreviousSibling:newNode];
                 [newNode release];
                 while(1) {
-                	ParserNode* siblingNode = node.nextSibling;
+                    ParserNode* siblingNode = node.nextSibling;
                     [node removeFromParent];
                     if(node == nextNode)
-                    	break;
+                        break;
                     node = siblingNode;
                 }
             }
@@ -118,14 +118,14 @@
 
 + (NSUInteger) isMatchingPrefix:(const unichar*)string maxLength:(NSUInteger)maxLength {
     if((*string == '"') || (*string == '\'')) {
-    	unichar character = *string;
+        unichar character = *string;
         NSUInteger length = 1;
         ++string;
         --maxLength;
         while(maxLength) {
-        	++length;
+            ++length;
             if((*string == character) && !((*(string - 1) == '\\') && (*(string - 2) != '\\')))
-            	return length;
+                return length;
             ++string;
             --maxLength;
         }
@@ -134,7 +134,7 @@
 }
 
 - (NSString*) cleanContent {
-	static NSMutableArray* classes = nil;
+    static NSMutableArray* classes = nil;
     if(classes == nil) {
         classes = [[NSMutableArray alloc] init];
         [classes addObject:[ParserNodeCSSEscapedCharacter class]];
@@ -156,7 +156,7 @@
 }
 
 - (NSString*) cleanContent {
-	NSRange range = self.range;
+    NSRange range = self.range;
     return [self.text substringWithRange:NSMakeRange(range.location + 2, range.length - 4)];
 }
 
@@ -170,12 +170,12 @@
 
 + (NSUInteger) isMatchingPrefix:(const unichar*)string maxLength:(NSUInteger)maxLength {
     if(*string == '@') {
-    	NSUInteger length = 1;
+        NSUInteger length = 1;
         ++string;
         --maxLength;
         while(maxLength) {
-        	if(IsWhitespaceOrNewline(*string))
-            	return length;
+            if(IsWhitespaceOrNewline(*string))
+                return length;
             ++length;
             ++string;
             --maxLength;
@@ -185,18 +185,18 @@
 }
 
 + (NSUInteger) isMatchingSuffix:(const unichar*)string maxLength:(NSUInteger)maxLength {
-	return (*(string - 1) == '}') || (*string == ';') ? 0 : NSNotFound;
+    return (*(string - 1) == '}') || (*string == ';') ? 0 : NSNotFound;
 }
 
 - (void) dealloc {
-	[_name release];
+    [_name release];
     
-	[super dealloc];
+    [super dealloc];
 }
 
 - (NSString*) name {
-	if(_name == nil)
-    	_name = [[self.firstChild.content substringFromIndex:1] copy];
+    if(_name == nil)
+        _name = [[self.firstChild.content substringFromIndex:1] copy];
     return _name;
 }
 
@@ -217,7 +217,7 @@
 @implementation ParserNodeCSSEscapedCharacter
 
 + (NSUInteger) isMatchingPrefix:(const unichar*)string maxLength:(NSUInteger)maxLength {
-	if((maxLength >= 2) && (*string == '\\')) {
+    if((maxLength >= 2) && (*string == '\\')) {
         ++string;
         --maxLength;
         switch(*string) {
@@ -227,10 +227,10 @@
             
             case '\n':
             case '\\':
-        	case '\'':
-        	case '"':
-        	case ';':
-        	return 2;
+            case '\'':
+            case '"':
+            case ';':
+            return 2;
             
             default: {
                 NSUInteger length = 1;
@@ -252,7 +252,7 @@
     NSString* content = self.content;
     switch([content characterAtIndex:1]) {
         case '\n': case '\r': content = @""; break;
-    	case '\\': content = @"\\"; break;
+        case '\\': content = @"\\"; break;
         case '\'': content = @"'"; break;
         case '"': content = @"\""; break;
         case ';': content = @";"; break;

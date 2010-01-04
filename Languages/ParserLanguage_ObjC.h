@@ -21,7 +21,7 @@
 
 @interface ParserNodeObjCPreprocessorImport : ParserNodeCPreprocessor {
 @private
-	NSString* _name;
+    NSString* _name;
 }
 @end
 
@@ -84,19 +84,19 @@
 
 @interface ParserNodeObjCMethodDeclaration : ParserNode {
 @private
-	NSString* _name;
+    NSString* _name;
 }
 @end
 
 @interface ParserNodeObjCMethodImplementation : ParserNode {
 @private
-	NSString* _name;
+    NSString* _name;
 }
 @end
 
 @interface ParserNodeObjCMethodCall : ParserNode {
 @private
-	NSString* _name;
+    NSString* _name;
 }
 @end
 

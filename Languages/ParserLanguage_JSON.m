@@ -25,11 +25,11 @@
 @implementation ParserLanguageJSON
 
 + (NSSet*) languageReservedKeywords {
-	return [NSSet setWithObjects:@"true", @"false", @"null", nil];
+    return [NSSet setWithObjects:@"true", @"false", @"null", nil];
 }
 
 + (NSArray*) languageNodeClasses {
-	NSMutableArray* classes = [NSMutableArray array];
+    NSMutableArray* classes = [NSMutableArray array];
     
     [classes addObject:[ParserNodeNewline class]];
     [classes addObject:[ParserNodeIndenting class]];
@@ -59,19 +59,19 @@
 }
 
 - (ParserNode*) performSyntaxAnalysisForNode:(ParserNode*)node textBuffer:(const unichar*)textBuffer topLevelLanguage:(ParserLanguage*)topLevelLanguage {
-	
+    
     if([node isMemberOfClass:[ParserNodeText class]])
-    	return [node replaceWithNodeOfClass:[ParserNodeJSONNumber class] preserveChildren:NO];
+        return [node replaceWithNodeOfClass:[ParserNodeJSONNumber class] preserveChildren:NO];
     if([node isKindOfClass:[ParserNodeBraces class]])
-    	return [node replaceWithNodeOfClass:[ParserNodeJSONObject class] preserveChildren:YES];
+        return [node replaceWithNodeOfClass:[ParserNodeJSONObject class] preserveChildren:YES];
     if([node isKindOfClass:[ParserNodeBrackets class]])
-    	return [node replaceWithNodeOfClass:[ParserNodeJSONArray class] preserveChildren:YES];
+        return [node replaceWithNodeOfClass:[ParserNodeJSONArray class] preserveChildren:YES];
     
     if([node.parent isKindOfClass:[ParserNodeJSONObject class]]) {
-    	if([node isKindOfClass:[ParserNodeJSONString class]]) {
-        	ParserNode* nextNode = [node findNextSiblingIgnoringWhitespaceAndNewline];
+        if([node isKindOfClass:[ParserNodeJSONString class]]) {
+            ParserNode* nextNode = [node findNextSiblingIgnoringWhitespaceAndNewline];
             if([nextNode isKindOfClass:[ParserNodeColon class]]) {
-            	nextNode = [nextNode findNextSiblingIgnoringWhitespaceAndNewline];
+                nextNode = [nextNode findNextSiblingIgnoringWhitespaceAndNewline];
                 if(nextNode) {
                     ParserNode* newNode = [[ParserNodeJSONPair alloc] initWithText:node.text range:NSMakeRange(node.range.location, 0)];
                     [node insertPreviousSibling:newNode];
@@ -98,7 +98,7 @@
 }
 
 - (NSString*) cleanContent {
-	NSRange range = self.range;
+    NSRange range = self.range;
     return _CleanEscapedString([self.text substringWithRange:NSMakeRange(range.location + 1, range.length - 2)]);
 }
 
@@ -116,7 +116,7 @@
 @implementation ParserNodeJSONPair
 
 - (NSString*) name {
-	return self.firstChild.cleanContent;
+    return self.firstChild.cleanContent;
 }
 
 @end

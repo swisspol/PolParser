@@ -20,7 +20,7 @@
 
 @interface ParserNodeCSSAtRule : ParserNode {
 @private
-	NSString* _name;
+    NSString* _name;
 }
 @end
 

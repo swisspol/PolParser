@@ -25,14 +25,14 @@
 #define IsWhitespaceOrNewline(C) (IsWhitespace(C) || IsNewline(C))
 
 #define IS_MATCHING_CHARACTERS(__CHARACTERS__, __STRING__, __MAXLENGTH__) \
-	const char* __characters = __CHARACTERS__; \
-	NSUInteger __count = sizeof(__CHARACTERS__) - 1; \
-	NSUInteger _matching = (__MAXLENGTH__ >= __count) && _EqualsCharacters(__STRING__, __characters, __count) ? __count : NSNotFound;
+    const char* __characters = __CHARACTERS__; \
+    NSUInteger __count = sizeof(__CHARACTERS__) - 1; \
+    NSUInteger _matching = (__MAXLENGTH__ >= __count) && _EqualsCharacters(__STRING__, __characters, __count) ? __count : NSNotFound;
 
 #define IS_MATCHING_CHARACTERS_EXTENDED(__CHARACTERS__, __WHITESPACE_OR_NEWLINE__, __OTHER_CHARACTERS__, __STRING__, __MAXLENGTH__) \
     NSUInteger _matching; \
     const char* __characters = __CHARACTERS__; \
-	NSUInteger __count = sizeof(__CHARACTERS__) - 1; \
+    NSUInteger __count = sizeof(__CHARACTERS__) - 1; \
     if(__WHITESPACE_OR_NEWLINE__ && __OTHER_CHARACTERS__) { \
         NSUInteger count = sizeof(__OTHER_CHARACTERS__) - 1; \
         _matching = (__MAXLENGTH__ > __count) && _EqualsCharacters(string, __characters, __count) && (IsWhitespaceOrNewline(string[__count]) || _IsCharacterInSet(string[__count], __OTHER_CHARACTERS__, count)) ? __count : NSNotFound; \
@@ -79,16 +79,16 @@
 } \
 \
 + (NSUInteger) isMatchingSuffix:(const unichar*)string maxLength:(NSUInteger)maxLength { \
-	IS_MATCHING_CHARACTERS(__END__, string, maxLength); \
+    IS_MATCHING_CHARACTERS(__END__, string, maxLength); \
     return _matching; \
 } \
 \
 @end
 
 static inline BOOL _IsCharacterInSet(const unichar character, const char* set, NSUInteger count) {
-	for(NSUInteger i = 0; i < count; ++i) {
-    	if(character == set[i])
-       		return YES;
+    for(NSUInteger i = 0; i < count; ++i) {
+        if(character == set[i])
+               return YES;
     }
     return NO;
 }

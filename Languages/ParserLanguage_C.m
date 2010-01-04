@@ -21,21 +21,21 @@
 
 @interface ParserLanguageC : ParserLanguage <ParserLanguageCTopLevelNodeClasses> {
 @private
-	NSMutableDictionary* _topLevelNodeClasses;
+    NSMutableDictionary* _topLevelNodeClasses;
 }
 @end
 
 @implementation ParserLanguageC
 
 + (NSSet*) languageReservedKeywords {
-	return [NSSet setWithObjects:@"auto", @"break", @"case", @"char", @"const", @"continue", @"default", @"do", @"double",
-    	@"else", @"enum", @"inline", @"extern", @"float", @"for", @"goto", @"if", @"int", @"long", @"register", @"return", @"short",
+    return [NSSet setWithObjects:@"auto", @"break", @"case", @"char", @"const", @"continue", @"default", @"do", @"double",
+        @"else", @"enum", @"inline", @"extern", @"float", @"for", @"goto", @"if", @"int", @"long", @"register", @"return", @"short",
         @"signed", @"sizeof", @"static", @"struct", @"switch", @"typedef", @"union", @"unsigned", @"void", @"volatile", @"while",
         @"NULL", nil]; //Not "true" keywords
 }
 
 + (NSArray*) languageNodeClasses {
-	NSMutableArray* classes = [NSMutableArray array];
+    NSMutableArray* classes = [NSMutableArray array];
     
     [classes addObject:[ParserNodeNewline class]];
     [classes addObject:[ParserNodeIndenting class]];
@@ -84,7 +84,7 @@
     [classes addObject:[ParserNodeCTypedef class]];
     [classes addObject:[ParserNodeCTypeStruct class]];
     [classes addObject:[ParserNodeCTypeUnion class]];
-	[classes addObject:[ParserNodeCTypeEnum class]];
+    [classes addObject:[ParserNodeCTypeEnum class]];
     [classes addObject:[ParserNodeCSizeOf class]];
     [classes addObject:[ParserNodeCTypeOf class]];
     
@@ -96,20 +96,20 @@
 }
 
 + (NSSet*) languageTopLevelNodeClasses {
-	return [NSSet setWithObjects:[ParserNodeRoot class], [ParserNodeCPreprocessorConditionIf class], [ParserNodeCPreprocessorConditionIfdef class],
-    	[ParserNodeCPreprocessorConditionIfndef class], [ParserNodeCPreprocessorConditionElse class], [ParserNodeCPreprocessorConditionElseif class], nil];
+    return [NSSet setWithObjects:[ParserNodeRoot class], [ParserNodeCPreprocessorConditionIf class], [ParserNodeCPreprocessorConditionIfdef class],
+        [ParserNodeCPreprocessorConditionIfndef class], [ParserNodeCPreprocessorConditionElse class], [ParserNodeCPreprocessorConditionElseif class], nil];
 }
 
 - (id) init {
-	if((self = [super init]))
-    	_topLevelNodeClasses = [[NSMutableDictionary alloc] init];
+    if((self = [super init]))
+        _topLevelNodeClasses = [[NSMutableDictionary alloc] init];
     return self;
 }
 
 - (void) dealloc {
-	[_topLevelNodeClasses release];
+    [_topLevelNodeClasses release];
     
-	[super dealloc];
+    [super dealloc];
 }
 
 - (NSString*) name {
@@ -122,42 +122,42 @@
 
 static inline BOOL _IsNodeInBlock(ParserNode* node) {
     while(node.parent) {
-    	if([node isKindOfClass:[ParserNodeParenthesis class]] || [node isKindOfClass:[ParserNodeBrackets class]] || [node isKindOfClass:[ParserNodeBraces class]])
-        	return YES;
-    	node = node.parent;
+        if([node isKindOfClass:[ParserNodeParenthesis class]] || [node isKindOfClass:[ParserNodeBrackets class]] || [node isKindOfClass:[ParserNodeBraces class]])
+            return YES;
+        node = node.parent;
     }
     
     return NO;
 }
 
 static inline BOOL _IsIdentifier(const unichar* buffer, NSUInteger length) {
-	for(NSUInteger i = 0; i < length; ++i) {
-    	if(!((buffer[i] >= 'a') && (buffer[i] <= 'z'))
-        	&& !((buffer[i] >= 'A') && (buffer[i] <= 'Z'))
+    for(NSUInteger i = 0; i < length; ++i) {
+        if(!((buffer[i] >= 'a') && (buffer[i] <= 'z'))
+            && !((buffer[i] >= 'A') && (buffer[i] <= 'Z'))
             && !(i && (buffer[i] >= '0') && (buffer[i] <= '9'))
-        	&& (buffer[i] != '_'))
-        	return NO;
+            && (buffer[i] != '_'))
+            return NO;
     }
     return YES;
 }
 
 static inline BOOL _IsNodeAtTopLevel(ParserNode* node, NSSet* topLevelClasses) {
-	while(node.parent) {
-    	if(![topLevelClasses containsObject:[node.parent class]])
-        	return NO;
-    	node = node.parent;
+    while(node.parent) {
+        if(![topLevelClasses containsObject:[node.parent class]])
+            return NO;
+        node = node.parent;
     }
     
     return YES;
 }
 
 - (NSSet*) _topLevelNodeClassesForLanguage:(ParserLanguage*)language {
-	NSMutableSet* set = [_topLevelNodeClasses objectForKey:language];
+    NSMutableSet* set = [_topLevelNodeClasses objectForKey:language];
     if(set == nil) {
-    	set = [[NSMutableSet alloc] init];
+        set = [[NSMutableSet alloc] init];
         for(ParserLanguage* sublanguage in language.allLanguageDependencies) {
             if([sublanguage conformsToProtocol:@protocol(ParserLanguageCTopLevelNodeClasses)])
-            	[set unionSet:[[sublanguage class] languageTopLevelNodeClasses]];
+                [set unionSet:[[sublanguage class] languageTopLevelNodeClasses]];
         }
         [_topLevelNodeClasses setObject:set forKey:language];
         [set release];
@@ -174,8 +174,8 @@ static inline BOOL _IsNodeAtTopLevel(ParserNode* node, NSSet* topLevelClasses) {
         if([previousNode isKindOfClass:[ParserNodeParenthesis class]]) {
             previousNode = [previousNode findPreviousSiblingIgnoringWhitespaceAndNewline];
             if([previousNode isKindOfClass:[ParserNodeCConditionIf class]] || [previousNode isKindOfClass:[ParserNodeCConditionElseIf class]] || [previousNode isKindOfClass:[ParserNodeCFlowFor class]]
-            	|| [previousNode isKindOfClass:[ParserNodeCFlowSwitch class]] || [previousNode isKindOfClass:[ParserNodeCFlowWhile class]]) {
-               	_RearrangeNodesAsChildren(previousNode, node);
+                || [previousNode isKindOfClass:[ParserNodeCFlowSwitch class]] || [previousNode isKindOfClass:[ParserNodeCFlowWhile class]]) {
+                   _RearrangeNodesAsChildren(previousNode, node);
             }
         }
         
@@ -221,16 +221,16 @@ static inline BOOL _IsNodeAtTopLevel(ParserNode* node, NSSet* topLevelClasses) {
         // "case:" "case: break" "default:" "default: break"
         ParserNode* endNode = [node.parent lastChild];
         if([endNode isKindOfClass:[ParserNodeWhitespace class]] || [endNode isKindOfClass:[ParserNodeNewline class]])
-        	endNode = [endNode findPreviousSiblingIgnoringWhitespaceAndNewline];
+            endNode = [endNode findPreviousSiblingIgnoringWhitespaceAndNewline];
         ParserNode* breakNode = [node findNextSiblingOfClass:[ParserNodeCFlowBreak class]];
         if(breakNode && (breakNode.range.location < endNode.range.location))
-        	endNode = [breakNode findNextSiblingOfClass:[ParserNodeSemicolon class]];
+            endNode = [breakNode findNextSiblingOfClass:[ParserNodeSemicolon class]];
         ParserNode* caseNode = [node findNextSiblingOfClass:[ParserNodeCFlowCase class]];
         if(caseNode && (caseNode.range.location < endNode.range.location))
-        	endNode = caseNode.previousSibling;
+            endNode = caseNode.previousSibling;
         ParserNode* defaultNode = [node findNextSiblingOfClass:[ParserNodeCFlowDefault class]];
         if(defaultNode && (defaultNode.range.location < endNode.range.location))
-        	endNode = defaultNode.previousSibling;
+            endNode = defaultNode.previousSibling;
         
         _RearrangeNodesAsChildren(node, endNode);
         
@@ -239,12 +239,12 @@ static inline BOOL _IsNodeAtTopLevel(ParserNode* node, NSSet* topLevelClasses) {
         // "return" "return foo"
         ParserNode* semicolonNode = [node findNextSiblingOfClass:[ParserNodeSemicolon class]];
         if(semicolonNode) {
-        	if(semicolonNode.previousSibling != node)
+            if(semicolonNode.previousSibling != node)
                 _RearrangeNodesAsChildren(node, semicolonNode);
         } else {
             if([node.parent isKindOfClass:[ParserNodeCConditionIf class]] || [node.parent isKindOfClass:[ParserNodeCConditionElse class]] || [node.parent isKindOfClass:[ParserNodeCConditionElseIf class]]
-            	|| [node.parent isKindOfClass:[ParserNodeCFlowFor class]] || [node.parent isKindOfClass:[ParserNodeCFlowWhile class]])
-            	_RearrangeNodesAsChildren(node, node.parent.lastChild);
+                || [node.parent isKindOfClass:[ParserNodeCFlowFor class]] || [node.parent isKindOfClass:[ParserNodeCFlowWhile class]])
+                _RearrangeNodesAsChildren(node, node.parent.lastChild);
         }
         
     } else if([node isKindOfClass:[ParserNodeCFlowGoto class]]) {
@@ -255,8 +255,8 @@ static inline BOOL _IsNodeAtTopLevel(ParserNode* node, NSSet* topLevelClasses) {
             _RearrangeNodesAsChildren(node, semicolonNode);
         } else {
             if([node.parent isKindOfClass:[ParserNodeCConditionIf class]] || [node.parent isKindOfClass:[ParserNodeCConditionElse class]] || [node.parent isKindOfClass:[ParserNodeCConditionElseIf class]]
-            	|| [node.parent isKindOfClass:[ParserNodeCFlowFor class]] || [node.parent isKindOfClass:[ParserNodeCFlowWhile class]])
-            	_RearrangeNodesAsChildren(node, node.parent.lastChild);
+                || [node.parent isKindOfClass:[ParserNodeCFlowFor class]] || [node.parent isKindOfClass:[ParserNodeCFlowWhile class]])
+                _RearrangeNodesAsChildren(node, node.parent.lastChild);
         }
         
     } else if([node isKindOfClass:[ParserNodeColon class]] && [node.parent isKindOfClass:[ParserNodeBraces class]]) {
@@ -264,9 +264,9 @@ static inline BOOL _IsNodeAtTopLevel(ParserNode* node, NSSet* topLevelClasses) {
         // "foo:"
         ParserNode* labelNode = [node findPreviousSiblingIgnoringWhitespaceAndNewline];
         if([labelNode isMemberOfClass:[ParserNodeText class]]) {
-        	ParserNode* previousNode = [labelNode findPreviousSiblingIgnoringWhitespaceAndNewline];
+            ParserNode* previousNode = [labelNode findPreviousSiblingIgnoringWhitespaceAndNewline];
             if(![previousNode isKindOfClass:[ParserNodeQuestionMark class]]) {
-            	ParserNode* newNode = [[ParserNodeCFlowLabel alloc] initWithText:labelNode.text range:NSMakeRange(labelNode.range.location, 0)];
+                ParserNode* newNode = [[ParserNodeCFlowLabel alloc] initWithText:labelNode.text range:NSMakeRange(labelNode.range.location, 0)];
                 [labelNode insertPreviousSibling:newNode];
                 [newNode release];
                 
@@ -279,7 +279,7 @@ static inline BOOL _IsNodeAtTopLevel(ParserNode* node, NSSet* topLevelClasses) {
         // "foo ? bar : baz" "(foo) ? (bar) : (baz)"
         ParserNode* startNode = [node findPreviousSiblingIgnoringWhitespaceAndNewline];
         if([startNode isMemberOfClass:[ParserNodeText class]] || [startNode isKindOfClass:[ParserNodeParenthesis class]]) {
-        	ParserNode* middleNode = [node findNextSiblingIgnoringWhitespaceAndNewline];
+            ParserNode* middleNode = [node findNextSiblingIgnoringWhitespaceAndNewline];
             if([middleNode isMemberOfClass:[ParserNodeText class]] || [middleNode isKindOfClass:[ParserNodeParenthesis class]]) {
                 ParserNode* colonNode = [middleNode findNextSiblingIgnoringWhitespaceAndNewline];
                 if([colonNode isKindOfClass:[ParserNodeColon class]]) {
@@ -298,7 +298,7 @@ static inline BOOL _IsNodeAtTopLevel(ParserNode* node, NSSet* topLevelClasses) {
     } else if([node isKindOfClass:[ParserNodeCTypeEnum class]] || [node isKindOfClass:[ParserNodeCTypeStruct class]] || [node isKindOfClass:[ParserNodeCTypeUnion class]]) {
         
         // "enum {}" "struct {}" "union {}"
-		ParserNode* bracesNode = [node findNextSiblingOfClass:[ParserNodeBraces class]];
+        ParserNode* bracesNode = [node findNextSiblingOfClass:[ParserNodeBraces class]];
         ParserNode* semicolonNode = [node findNextSiblingOfClass:[ParserNodeSemicolon class]];
         if(bracesNode && (!semicolonNode || ([node.parent indexOfChild:semicolonNode] > [node.parent indexOfChild:bracesNode]))) {
             if(!semicolonNode)
@@ -331,9 +331,9 @@ static inline BOOL _IsNodeAtTopLevel(ParserNode* node, NSSet* topLevelClasses) {
                 if([previousNode isMemberOfClass:[ParserNodeText class]] && _IsIdentifier(textBuffer + previousNode.range.location, previousNode.range.length)) {
                     previousNode = [previousNode replaceWithNodeOfClass:[ParserNodeMatch class] preserveChildren:NO];
                     while(1) {
-                    	ParserNode* siblingNode = [previousNode findPreviousSiblingIgnoringWhitespaceAndNewline];
+                        ParserNode* siblingNode = [previousNode findPreviousSiblingIgnoringWhitespaceAndNewline];
                         if(![siblingNode isMemberOfClass:[ParserNodeText class]] && ![siblingNode isKindOfClass:[ParserNodeKeyword class]] && ![siblingNode isKindOfClass:[ParserNodeAsterisk class]])
-                        	break;
+                            break;
                         previousNode = siblingNode;
                     }
                     ParserNode* newNode = [([nextNode isKindOfClass:[ParserNodeBraces class]] ? [ParserNodeCFunctionDefinition alloc] : [ParserNodeCFunctionPrototype alloc]) initWithText:previousNode.text range:NSMakeRange(previousNode.range.location, 0)];
@@ -348,7 +348,7 @@ static inline BOOL _IsNodeAtTopLevel(ParserNode* node, NSSet* topLevelClasses) {
         else if(![node.parent isKindOfClass:[ParserNodeCFunctionDefinition class]] && ![node.parent isKindOfClass:[ParserNodeCFunctionCall class]] && ![node.parent isKindOfClass:[ParserNodeCPreprocessorDefine class]] && _IsNodeInBlock(node)) {
             ParserNode* previousNode = [node findPreviousSiblingIgnoringWhitespaceAndNewline];
             if([previousNode isMemberOfClass:[ParserNodeText class]] && _IsIdentifier(textBuffer + previousNode.range.location, previousNode.range.length)) {
-            	previousNode = [previousNode replaceWithNodeOfClass:[ParserNodeMatch class] preserveChildren:NO];
+                previousNode = [previousNode replaceWithNodeOfClass:[ParserNodeMatch class] preserveChildren:NO];
                 
                 ParserNode* newNode = [[ParserNodeCFunctionCall alloc] initWithText:previousNode.text range:NSMakeRange(previousNode.range.location, 0)];
                 [previousNode insertPreviousSibling:newNode];
@@ -378,7 +378,7 @@ static inline BOOL _IsNodeAtTopLevel(ParserNode* node, NSSet* topLevelClasses) {
 }
 
 - (NSString*) cleanContent {
-	NSRange range = self.range;
+    NSRange range = self.range;
     return [self.text substringWithRange:NSMakeRange(range.location + 2, range.length - 4)];
 }
 
@@ -386,8 +386,7 @@ static inline BOOL _IsNodeAtTopLevel(ParserNode* node, NSSet* topLevelClasses) {
 
 @implementation ParserNodeCPreprocessor
 
-+ (id) allocWithZone:(NSZone*)zone
-{
++ (id) allocWithZone:(NSZone*)zone {
     if(self == [ParserNodeCPreprocessor class])
         [NSException raise:NSInternalInconsistencyException format:@"ParserNodeCPreprocessor is an abstract class"];
     
@@ -483,14 +482,14 @@ IMPLEMENTATION(Elseif, "#elseif", "(")
 IS_MATCHING_PREFIX_METHOD_WITH_TRAILING_CHARACTERS(__CHARACTERS__, __VA_ARGS__) \
 \
 - (void) dealloc { \
-	[_name release]; \
+    [_name release]; \
     \
     [super dealloc]; \
 } \
 \
 - (NSString*) name { \
-	if(_name == nil) \
-    	_name = [[[self.firstChild findNextSiblingIgnoringWhitespaceAndNewline] content] copy]; \
+    if(_name == nil) \
+        _name = [[[self.firstChild findNextSiblingIgnoringWhitespaceAndNewline] content] copy]; \
     return _name; \
 } \
 \
@@ -516,7 +515,7 @@ IMPLEMENTATION(Include, "#include", true, NULL)
 }
 
 - (NSString*) cleanContent {
-	NSRange range = self.range;
+    NSRange range = self.range;
     return _CleanEscapedString([self.text substringWithRange:NSMakeRange(range.location + 1, range.length - 2)]);
 }
 
@@ -533,7 +532,7 @@ IMPLEMENTATION(Include, "#include", true, NULL)
 }
 
 - (NSString*) cleanContent {
-	NSRange range = self.range;
+    NSRange range = self.range;
     return _CleanEscapedString([self.text substringWithRange:NSMakeRange(range.location + 1, range.length - 2)]);
 }
 
@@ -592,7 +591,7 @@ IMPLEMENTATION(TypeOf, "typeof", true, "(")
 @implementation ParserNodeCConditionElseIf
 
 + (NSSet*) patchedClasses {
-	return [NSSet setWithObject:[ParserNodeCConditionElse class]];
+    return [NSSet setWithObject:[ParserNodeCConditionElse class]];
 }
 
 + (NSUInteger) isMatchingPrefix:(const unichar*)string maxLength:(NSUInteger)maxLength { \
@@ -608,7 +607,7 @@ IMPLEMENTATION(TypeOf, "typeof", true, "(")
         if(maxLength) {
             NSUInteger nextLength = [ParserNodeCConditionIf isMatchingPrefix:string maxLength:maxLength];
             if(nextLength != NSNotFound)
-            	return length + nextLength;
+                return length + nextLength;
         }
     }
     return NSNotFound;
@@ -626,7 +625,7 @@ IMPLEMENTATION(TypeOf, "typeof", true, "(")
 @implementation ParserNodeCFunctionPrototype
 
 - (NSString*) name {
-	return [self findFirstChildOfClass:[ParserNodeMatch class]].content;
+    return [self findFirstChildOfClass:[ParserNodeMatch class]].content;
 }
 
 @end
@@ -634,7 +633,7 @@ IMPLEMENTATION(TypeOf, "typeof", true, "(")
 @implementation ParserNodeCFunctionDefinition
 
 - (NSString*) name {
-	return [self findFirstChildOfClass:[ParserNodeMatch class]].content;
+    return [self findFirstChildOfClass:[ParserNodeMatch class]].content;
 }
 
 @end
@@ -642,7 +641,7 @@ IMPLEMENTATION(TypeOf, "typeof", true, "(")
 @implementation ParserNodeCFunctionCall
 
 - (NSString*) name {
-	return [self findFirstChildOfClass:[ParserNodeMatch class]].content;
+    return [self findFirstChildOfClass:[ParserNodeMatch class]].content;
 }
 
 @end

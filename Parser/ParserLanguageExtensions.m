@@ -26,7 +26,7 @@
 
 void _RearrangeNodesAsChildren(ParserNode* startNode, ParserNode* endNode) {
     if(startNode == endNode)
-    	[NSException raise:NSInternalInconsistencyException format:@""];
+        [NSException raise:NSInternalInconsistencyException format:@""];
     
     ParserNode* node;
     if(startNode.range.length) {
@@ -52,9 +52,9 @@ NSString* _CleanString(NSString* string, NSArray* nodeClasses) {
     if(root.children) {
         ParserNode* node = root.firstChild;
         do {
-        	ParserNode* nextNode = node.nextSibling;
+            ParserNode* nextNode = node.nextSibling;
             if([node isKindOfClass:[ParserNodeNewline class]])
-            	[node removeFromParent];
+                [node removeFromParent];
             node = nextNode;
         } while(node);
         string = root.cleanContent;
@@ -77,22 +77,22 @@ NSString* _CleanEscapedString(NSString* string) {
 
 NSString* _StringFromHexUnicodeCharacter(NSString* string) {
     unichar character = 0;
-	NSUInteger length = string.length;
+    NSUInteger length = string.length;
     unichar buffer[length];
     [string getCharacters:buffer];
     for(NSUInteger i = 0; i < length; ++i) {
-    	NSUInteger num = 0;
+        NSUInteger num = 0;
         if((buffer[i] >= 'A') && (buffer[i] <= 'F'))
-		num = buffer[i] - 'A' + 10;
-		else if((buffer[i] >= 'a') && (buffer[i] <= 'f'))
-		num = buffer[i] - 'a' + 10;
-		else if((buffer[i] >= '0') && (buffer[i] <= '9'))
-		num = buffer[i] - '0';
+        num = buffer[i] - 'A' + 10;
+        else if((buffer[i] >= 'a') && (buffer[i] <= 'f'))
+        num = buffer[i] - 'a' + 10;
+        else if((buffer[i] >= '0') && (buffer[i] <= '9'))
+        num = buffer[i] - '0';
         if(i > 0)
-        	character <<= 4;
+            character <<= 4;
         character |= num;
     }
-	return [NSString stringWithCharacters:&character length:1];
+    return [NSString stringWithCharacters:&character length:1];
 }
 
 @implementation ParserNode (ParserLanguageExtensions)
@@ -138,7 +138,7 @@ NSString* _StringFromHexUnicodeCharacter(NSString* string) {
 @implementation ParserNodeIndenting
 
 + (NSSet*) patchedClasses {
-	return [NSSet setWithObject:[ParserNodeWhitespace class]];
+    return [NSSet setWithObject:[ParserNodeWhitespace class]];
 }
 
 + (NSUInteger) isMatchingPrefix:(const unichar*)string maxLength:(NSUInteger)maxLength {
@@ -192,8 +192,7 @@ IMPLEMENTATION(Brackets, '[', ']')
 
 @implementation ParserNodeToken
 
-+ (id) allocWithZone:(NSZone*)zone
-{
++ (id) allocWithZone:(NSZone*)zone {
     if(self == [ParserNodeKeyword class])
         [NSException raise:NSInternalInconsistencyException format:@"ParserNodeToken is an abstract class"];
     
@@ -231,11 +230,11 @@ IMPLEMENTATION(Dot, ".")
 @implementation ParserNodeEscapedCharacter
 
 + (NSUInteger) isMatchingPrefix:(const unichar*)string maxLength:(NSUInteger)maxLength {
-	return (maxLength >= 2) && (*string == '\\') ? 2 : NSNotFound;
+    return (maxLength >= 2) && (*string == '\\') ? 2 : NSNotFound;
 }
 
 - (NSString*) cleanContent {
-	unichar character = [self.content characterAtIndex:1];
+    unichar character = [self.content characterAtIndex:1];
     switch(character) {
         case '\n': case '\r': return @"";
         
@@ -260,17 +259,17 @@ IMPLEMENTATION(Dot, ".")
 @implementation ParserNodeUnicodeCharacter
 
 + (NSSet*) patchedClasses {
-	return [NSSet setWithObject:[ParserNodeEscapedCharacter class]];
+    return [NSSet setWithObject:[ParserNodeEscapedCharacter class]];
 }
 
 + (NSUInteger) isMatchingPrefix:(const unichar*)string maxLength:(NSUInteger)maxLength {
-	if((maxLength >= 2) && (*string == '\\') && (*(string + 1) != '\\')) {
-    	if((*(string + 1) == 'x') && (maxLength >= 4))
-        	return 4;
+    if((maxLength >= 2) && (*string == '\\') && (*(string + 1) != '\\')) {
+        if((*(string + 1) == 'x') && (maxLength >= 4))
+            return 4;
         if((*(string + 1) == 'u') && (maxLength >= 6))
-        	return 6;
+            return 6;
         if((*(string + 1) == 'U') && (maxLength >= 10))
-        	return 10;
+            return 10;
     }
     return NSNotFound;
 }

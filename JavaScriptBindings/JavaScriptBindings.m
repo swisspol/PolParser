@@ -23,28 +23,28 @@
 
 static NSString* _wrapperScript = @"\
 function __wrapper() {\
-	var __success = false; \
+    var __success = false; \
     try {\
-		%@\
+        %@\
         \
         __success = true;\
     }\
     catch(__exception) {\
-    	Log(\"JavaScript Exception: '\" + __exception + \"' occured while processing node:\");\
+        Log(\"JavaScript Exception: '\" + __exception + \"' occured while processing node:\");\
         Log(\"\t\" + this.description);\
     }\
     return __success;\
 }";
 
 JSValueRef _JSValueMakeString(NSString* string, JSContextRef context) {
-	JSStringRef jsString = JSStringCreateWithCFString((CFStringRef)string);
+    JSStringRef jsString = JSStringCreateWithCFString((CFStringRef)string);
     JSValueRef value = JSValueMakeString(context, jsString);
     JSStringRelease(jsString);
     return value;
 }
 
 JSValueRef _JSValueMakeException(JSContextRef context, NSString* format, ...) {
-	va_list args;
+    va_list args;
     va_start(args, format);
     NSString* string = [[NSString alloc] initWithFormat:format arguments:args];
     va_end(args);
@@ -54,7 +54,7 @@ JSValueRef _JSValueMakeException(JSContextRef context, NSString* format, ...) {
 }
 
 static NSString* _ExceptionToString(JSContextRef context, JSValueRef exception) {
-	JSStringRef jsString = JSValueToStringCopy(context, exception, NULL);
+    JSStringRef jsString = JSValueToStringCopy(context, exception, NULL);
     NSString* string = nil;
     if(jsString) {
         string = [NSMakeCollectable(JSStringCopyCFString(kCFAllocatorDefault, jsString)) autorelease];
@@ -64,12 +64,12 @@ static NSString* _ExceptionToString(JSContextRef context, JSValueRef exception) 
 }
 
 static JSValueRef _LogFunction(JSContextRef ctx, JSObjectRef function, JSObjectRef thisObject, size_t argumentCount, const JSValueRef arguments[], JSValueRef* exception) {
-	if(argumentCount == 1) {
-    	JSStringRef jsString = JSValueToStringCopy(ctx, arguments[0], NULL);
+    if(argumentCount == 1) {
+        JSStringRef jsString = JSValueToStringCopy(ctx, arguments[0], NULL);
         CFStringRef cfString = JSStringCopyCFString(kCFAllocatorDefault, jsString);
         if(cfString) {
-        	printf("%s\n", [(NSString*)cfString UTF8String]);
-        	CFRelease(cfString);
+            printf("%s\n", [(NSString*)cfString UTF8String]);
+            CFRelease(cfString);
         }
         JSStringRelease(jsString);
     }
@@ -82,13 +82,13 @@ static JSObjectRef _CallAsConstructorCallback(JSContextRef ctx, JSObjectRef cons
         CFStringRef cfString = JSStringCopyCFString(kCFAllocatorDefault, jsString);
         JSStringRelease(jsString);
         if(cfString) {
-        	ParserNode* node = [[ParserNodeText alloc] initWithText:(NSString*)cfString];
+            ParserNode* node = [[ParserNodeText alloc] initWithText:(NSString*)cfString];
             if(node == nil)
                 goto Fail;
             JSObjectRef object = (JSObjectRef)_JSValueMakeParserNode(node, ctx);
-        	[node autorelease];
-        	CFRelease(cfString);
-        	return object;
+            [node autorelease];
+            CFRelease(cfString);
+            return object;
         }
     }
 Fail:
@@ -97,18 +97,18 @@ Fail:
 }
 
 static ParserNode* _NodeFunctionApplier(ParserNode* node, void* context) {
-	void** params = (void**)context;
+    void** params = (void**)context;
     JSContextRef ctx = params[0];
     JSObjectRef object = params[1];
-	BOOL* successPtr = params[2];
+    BOOL* successPtr = params[2];
     JSValueRef value = JSObjectCallAsFunction(ctx, object, (JSObjectRef)_JSValueMakeParserNode(node, ctx), 0, NULL, NULL);
     if(!value || !JSValueIsBoolean(ctx, value) || !JSValueToBoolean(ctx, value))
-    	*successPtr = NO;
+        *successPtr = NO;
     return node;
 }
 
 BOOL RunJavaScriptOnRootNode(NSString* script, ParserNode* root) {
-	BOOL success = NO;
+    BOOL success = NO;
     NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
     if(script.length && root) {
         JSGlobalContextRef context = JSGlobalContextCreate(NULL);

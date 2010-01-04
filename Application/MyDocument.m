@@ -44,11 +44,11 @@
     float offset;
     
     if(backColor == nil)
-    	backColor = [[NSColor colorWithDeviceRed:0.90 green:0.90 blue:0.90 alpha:1.0] retain];
+        backColor = [[NSColor colorWithDeviceRed:0.90 green:0.90 blue:0.90 alpha:1.0] retain];
     if(lineColor == nil)
-    	lineColor = [[NSColor grayColor] retain];
+        lineColor = [[NSColor grayColor] retain];
     if(attributes == nil)
-    	attributes = [[NSDictionary alloc] initWithObjectsAndKeys:[NSColor darkGrayColor], NSForegroundColorAttributeName, [NSFont systemFontOfSize:10], NSFontAttributeName, nil];
+        attributes = [[NSDictionary alloc] initWithObjectsAndKeys:[NSColor darkGrayColor], NSForegroundColorAttributeName, [NSFont systemFontOfSize:10], NSFontAttributeName, nil];
     
     [backColor set];
     NSRectFill(aRect);

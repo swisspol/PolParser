@@ -26,7 +26,7 @@
 
 /* WARNING: Keep in sync with ParserLanguage_SGML */
 + (NSArray*) languageNodeClasses {
-	NSMutableArray* classes = [NSMutableArray array];
+    NSMutableArray* classes = [NSMutableArray array];
     
     [classes addObject:[ParserNodeIndenting class]];
     
@@ -42,10 +42,10 @@
 }
 
 + (NSString*) stringWithReplacedEntities:(NSString*)string {
-	static NSDictionary* entities = nil;
+    static NSDictionary* entities = nil;
     if(entities == nil) {
-    	entities = [[NSDictionary alloc] initWithObjectsAndKeys:
-        	@"&quot;", @"\x22",
+        entities = [[NSDictionary alloc] initWithObjectsAndKeys:
+            @"&quot;", @"\x22",
             @"&amp;", @"\x26",
             @"&apos;", @"\x27",
             @"&lt;", @"\x3C",
@@ -303,12 +303,12 @@
     }
     NSMutableString* newString = [NSMutableString stringWithString:string];
     for(NSString* key in entities)
-    	[newString replaceOccurrencesOfString:[entities objectForKey:key] withString:key options:0 range:NSMakeRange(0, newString.length)];
+        [newString replaceOccurrencesOfString:[entities objectForKey:key] withString:key options:0 range:NSMakeRange(0, newString.length)];
     return newString;
 }
 
 + (Class) SGMLElementClass {
-	return [ParserNodeHTMLElement class];
+    return [ParserNodeHTMLElement class];
 }
 
 - (NSString*) name {
@@ -327,7 +327,7 @@
 @implementation ParserNodeHTMLComment
 
 - (NSString*) cleanContent {
-	NSRange range = self.range;
+    NSRange range = self.range;
     return [ParserLanguageHTML stringWithReplacedEntities:[self.text substringWithRange:NSMakeRange(range.location + 4, range.length - 7)]];
 }
 

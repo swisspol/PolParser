@@ -25,7 +25,7 @@
 @implementation ParserLanguageText
 
 + (NSArray*) languageNodeClasses {
-	NSMutableArray* classes = [NSMutableArray array];
+    NSMutableArray* classes = [NSMutableArray array];
     
     [classes addObject:[ParserNodeNewline class]];
     [classes addObject:[ParserNodeIndenting class]];

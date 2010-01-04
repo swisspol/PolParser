@@ -25,11 +25,11 @@
 @implementation ParserLanguageRSS
 
 + (NSArray*) languageDependencies {
-	return [NSArray arrayWithObject:@"XML"];
+    return [NSArray arrayWithObject:@"XML"];
 }
 
 + (NSArray*) languageNodeClasses {
-	NSMutableArray* classes = [NSMutableArray array];
+    NSMutableArray* classes = [NSMutableArray array];
     
     [classes addObject:[ParserNodeRSSChannel class]];
     [classes addObject:[ParserNodeRSSItem class]];
@@ -61,43 +61,43 @@
 }
 
 - (ParserNode*) performSyntaxAnalysisForNode:(ParserNode*)node textBuffer:(const unichar*)textBuffer topLevelLanguage:(ParserLanguage*)topLevelLanguage {
-	
+    
     if([node isKindOfClass:[ParserNodeXMLElement class]]) {
-    	NSString* name = [node.name lowercaseString];
+        NSString* name = [node.name lowercaseString];
         if([name isEqualToString:@"channel"])
-        	return [node replaceWithNodeOfClass:[ParserNodeRSSChannel class] preserveChildren:YES];
+            return [node replaceWithNodeOfClass:[ParserNodeRSSChannel class] preserveChildren:YES];
         if([name isEqualToString:@"item"])
-        	return [node replaceWithNodeOfClass:[ParserNodeRSSItem class] preserveChildren:YES];
+            return [node replaceWithNodeOfClass:[ParserNodeRSSItem class] preserveChildren:YES];
         if([name isEqualToString:@"category"])
-        	return [node replaceWithNodeOfClass:[ParserNodeRSSCategory class] preserveChildren:YES];
+            return [node replaceWithNodeOfClass:[ParserNodeRSSCategory class] preserveChildren:YES];
         if([name isEqualToString:@"title"])
-        	return [node replaceWithNodeOfClass:[ParserNodeRSSTitle class] preserveChildren:YES];
+            return [node replaceWithNodeOfClass:[ParserNodeRSSTitle class] preserveChildren:YES];
         if([name isEqualToString:@"link"])
-        	return [node replaceWithNodeOfClass:[ParserNodeRSSLink class] preserveChildren:YES];
+            return [node replaceWithNodeOfClass:[ParserNodeRSSLink class] preserveChildren:YES];
         if([name isEqualToString:@"description"])
-        	return [node replaceWithNodeOfClass:[ParserNodeRSSDescription class] preserveChildren:YES];
+            return [node replaceWithNodeOfClass:[ParserNodeRSSDescription class] preserveChildren:YES];
         if([name isEqualToString:@"language"])
-        	return [node replaceWithNodeOfClass:[ParserNodeRSSLanguage class] preserveChildren:YES];
+            return [node replaceWithNodeOfClass:[ParserNodeRSSLanguage class] preserveChildren:YES];
         if([name isEqualToString:@"author"])
-        	return [node replaceWithNodeOfClass:[ParserNodeRSSAuthor class] preserveChildren:YES];
+            return [node replaceWithNodeOfClass:[ParserNodeRSSAuthor class] preserveChildren:YES];
         if([name isEqualToString:@"enclosure"])
-        	return [node replaceWithNodeOfClass:[ParserNodeRSSEnclosure class] preserveChildren:YES];
+            return [node replaceWithNodeOfClass:[ParserNodeRSSEnclosure class] preserveChildren:YES];
         if([name isEqualToString:@"guid"])
-        	return [node replaceWithNodeOfClass:[ParserNodeRSSGuid class] preserveChildren:YES];
+            return [node replaceWithNodeOfClass:[ParserNodeRSSGuid class] preserveChildren:YES];
         if([name isEqualToString:@"feed"])
-        	return [node replaceWithNodeOfClass:[ParserNodeAtomFeed class] preserveChildren:YES];
+            return [node replaceWithNodeOfClass:[ParserNodeAtomFeed class] preserveChildren:YES];
         if([name isEqualToString:@"entry"])
-        	return [node replaceWithNodeOfClass:[ParserNodeAtomEntry class] preserveChildren:YES];
+            return [node replaceWithNodeOfClass:[ParserNodeAtomEntry class] preserveChildren:YES];
         if([name isEqualToString:@"subtitle"])
-        	return [node replaceWithNodeOfClass:[ParserNodeAtomSubtitle class] preserveChildren:YES];
+            return [node replaceWithNodeOfClass:[ParserNodeAtomSubtitle class] preserveChildren:YES];
         if([name isEqualToString:@"id"])
-        	return [node replaceWithNodeOfClass:[ParserNodeAtomID class] preserveChildren:YES];
+            return [node replaceWithNodeOfClass:[ParserNodeAtomID class] preserveChildren:YES];
         if([name isEqualToString:@"summary"])
-        	return [node replaceWithNodeOfClass:[ParserNodeAtomSummary class] preserveChildren:YES];
+            return [node replaceWithNodeOfClass:[ParserNodeAtomSummary class] preserveChildren:YES];
         if([name isEqualToString:@"name"])
-        	return [node replaceWithNodeOfClass:[ParserNodeAtomName class] preserveChildren:YES];
+            return [node replaceWithNodeOfClass:[ParserNodeAtomName class] preserveChildren:YES];
         if([name isEqualToString:@"email"])
-        	return [node replaceWithNodeOfClass:[ParserNodeAtomEmail class] preserveChildren:YES];
+            return [node replaceWithNodeOfClass:[ParserNodeAtomEmail class] preserveChildren:YES];
     }
     
     return node;

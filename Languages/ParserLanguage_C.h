@@ -46,37 +46,37 @@
 
 @interface ParserNodeCPreprocessorDefine : ParserNodeCPreprocessor {
 @private
-	NSString* _name;
+    NSString* _name;
 }
 @end
 
 @interface ParserNodeCPreprocessorUndefine : ParserNodeCPreprocessor {
 @private
-	NSString* _name;
+    NSString* _name;
 }
 @end
 
 @interface ParserNodeCPreprocessorPragma : ParserNodeCPreprocessor {
 @private
-	NSString* _name;
+    NSString* _name;
 }
 @end
 
 @interface ParserNodeCPreprocessorWarning : ParserNodeCPreprocessor {
 @private
-	NSString* _name;
+    NSString* _name;
 }
 @end
 
 @interface ParserNodeCPreprocessorError : ParserNodeCPreprocessor {
 @private
-	NSString* _name;
+    NSString* _name;
 }
 @end
 
 @interface ParserNodeCPreprocessorInclude : ParserNodeCPreprocessor {
 @private
-	NSString* _name;
+    NSString* _name;
 }
 @end
 

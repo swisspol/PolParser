@@ -26,14 +26,13 @@ static IMP _cleanContentMethod = NULL;
 @synthesize text=_text, range=_range, lines=_lines, parent=_parent, children=_children, revision=_revision, jsObject=_jsObject;
 
 + (void) initialize {
-	if(self == [ParserNode class]) {
-    	_nameMethod = [ParserNode instanceMethodForSelector:@selector(name)];
+    if(self == [ParserNode class]) {
+        _nameMethod = [ParserNode instanceMethodForSelector:@selector(name)];
         _cleanContentMethod = [ParserNode instanceMethodForSelector:@selector(cleanContent)];
     }
 }
 
-+ (id) allocWithZone:(NSZone*)zone
-{
++ (id) allocWithZone:(NSZone*)zone {
     if(self == [ParserNode class])
         [NSException raise:NSInternalInconsistencyException format:@"ParserNode is an abstract class"];
     
@@ -41,7 +40,7 @@ static IMP _cleanContentMethod = NULL;
 }
 
 + (NSSet*) patchedClasses {
-	return nil;
+    return nil;
 }
 
 + (BOOL) isAtomic {
@@ -80,9 +79,9 @@ static IMP _cleanContentMethod = NULL;
 }
 
 - (id) copyWithZone:(NSZone*)zone {
-	ParserNode* copy = [[[self class] alloc] init];
+    ParserNode* copy = [[[self class] alloc] init];
     if(copy) {
-    	copy->_text = [_text retain];
+        copy->_text = [_text retain];
         copy->_range = _range;
         copy->_lines = _lines;
         //node->_parent = nil;
@@ -90,9 +89,9 @@ static IMP _cleanContentMethod = NULL;
         //node->_revision = 0;
         //node->_jsObject = NULL;
         for(ParserNode* node in _children) {
-        	ParserNode* child = [node copyWithZone:zone];
+            ParserNode* child = [node copyWithZone:zone];
             if(child) {
-            	[copy addChild:child];
+                [copy addChild:child];
                 [child release];
             } else {
                 [copy release];
@@ -172,7 +171,7 @@ static void _MergeChildrenCleanContent(ParserNode* node, NSMutableString* string
 }
 
 - (NSString*) name {
-	return [[self class] name];
+    return [[self class] name];
 }
 
 - (NSDictionary*) attributes {
@@ -240,8 +239,8 @@ static void _MergeChildrenCleanContent(ParserNode* node, NSMutableString* string
 }
 
 static ParserNode* _ApplierFunction(ParserNode* node, void* context) {
-	[node removeFromParent];
-	[(ParserNode*)context addChild:node];
+    [node removeFromParent];
+    [(ParserNode*)context addChild:node];
     return nil;
 }
 
@@ -255,7 +254,7 @@ static ParserNode* _ApplierFunction(ParserNode* node, void* context) {
     if(node) {
         [parent insertChild:node atIndex:index];
         if(preserveChildren)
-        	[self applyFunctionOnChildren:_ApplierFunction context:node];
+            [self applyFunctionOnChildren:_ApplierFunction context:node];
     }
 }
 
@@ -288,7 +287,7 @@ static ParserNode* _ApplierFunction(ParserNode* node, void* context) {
 }
 
 - (ParserNode*) findFirstChildOfClass:(Class)class {
-	ParserNode* node = self.firstChild;
+    ParserNode* node = self.firstChild;
     while(node) {
         if([node isKindOfClass:class])
             return node;
@@ -298,7 +297,7 @@ static ParserNode* _ApplierFunction(ParserNode* node, void* context) {
 }
 
 - (ParserNode*) findLastChildOfClass:(Class)class {
-	ParserNode* node = self.lastChild;
+    ParserNode* node = self.lastChild;
     while(node) {
         if([node isKindOfClass:class])
             return node;
@@ -308,11 +307,11 @@ static ParserNode* _ApplierFunction(ParserNode* node, void* context) {
 }
 
 - (ParserNode*) findPreviousSiblingOfAnyClass:(NSSet*)classes {
-	ParserNode* node = self.previousSibling;
+    ParserNode* node = self.previousSibling;
     while(node) {
         for(Class class in classes) {
-        	if([node isKindOfClass:class])
-            	return node;
+            if([node isKindOfClass:class])
+                return node;
         }
         node = node.previousSibling;
     }
@@ -320,11 +319,11 @@ static ParserNode* _ApplierFunction(ParserNode* node, void* context) {
 }
 
 - (ParserNode*) findNextSiblingOfAnyClass:(NSSet*)classes {
-	ParserNode* node = self.nextSibling;
+    ParserNode* node = self.nextSibling;
     while(node) {
         for(Class class in classes) {
-        	if([node isKindOfClass:class])
-        	    return node;
+            if([node isKindOfClass:class])
+                return node;
         }
         node = node.nextSibling;
     }
@@ -332,11 +331,11 @@ static ParserNode* _ApplierFunction(ParserNode* node, void* context) {
 }
 
 - (ParserNode*) findFirstChildOfAnyClass:(NSSet*)classes {
-	ParserNode* node = self.firstChild;
+    ParserNode* node = self.firstChild;
     while(node) {
         for(Class class in classes) {
-        	if([node isKindOfClass:class])
-            	return node;
+            if([node isKindOfClass:class])
+                return node;
         }
         node = node.nextSibling;
     }
@@ -344,11 +343,11 @@ static ParserNode* _ApplierFunction(ParserNode* node, void* context) {
 }
 
 - (ParserNode*) findLastChildOfAnyClass:(NSSet*)classes {
-	ParserNode* node = self.lastChild;
+    ParserNode* node = self.lastChild;
     while(node) {
         for(Class class in classes) {
-        	if([node isKindOfClass:class])
-            	return node;
+            if([node isKindOfClass:class])
+                return node;
         }
         node = node.previousSibling;
     }
@@ -356,11 +355,11 @@ static ParserNode* _ApplierFunction(ParserNode* node, void* context) {
 }
 
 - (NSUInteger) getDepthInParentsOfClass:(Class)class {
-	NSUInteger depth = 0;
+    NSUInteger depth = 0;
     ParserNode* node = self;
     while(node.parent) {
-    	if(!class || [node.parent isKindOfClass:class])
-        	++depth;
+        if(!class || [node.parent isKindOfClass:class])
+            ++depth;
         node = node.parent;
     }
     return depth;
@@ -374,11 +373,11 @@ static void _ApplyFunction(ParserNode* node, NSUInteger revision, ParserNodeAppl
     
     for(NSUInteger i = 0; i < count; ++i) {
         if(nodes[i].parent) {
-        	if(nodes[i].revision != revision) {
+            if(nodes[i].revision != revision) {
                 nodes[i].revision = revision;
                 nodes[i] = (*function)(nodes[i], context);
-				if(nodes[i] == nil)
-                	continue;
+                if(nodes[i] == nil)
+                    continue;
             }
             if(nodes[i].parent && nodes[i].children)
                 _ApplyFunction(nodes[i], revision, function, context);
@@ -391,7 +390,7 @@ static NSUInteger _globalRevision = 0;
 - (void) applyFunctionOnChildren:(ParserNodeApplierFunction)function context:(void*)context {
     NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
     if(_children)
-    	_ApplyFunction(self, ++_globalRevision, function, context);
+        _ApplyFunction(self, ++_globalRevision, function, context);
     [pool drain];
 }
 
@@ -405,14 +404,14 @@ static void _ApplyBlock(ParserNode* node, NSUInteger revision, void (^block)(Par
     
     for(NSUInteger i = 0; i < count; ++i) {
         if(nodes[i].parent) {
-        	if(nodes[i].revision != revision) {
+            if(nodes[i].revision != revision) {
                 nodes[i].revision = revision;
                 nodes[i] = block(nodes[i]);
-				if(nodes[i] == nil)
-                	continue;
+                if(nodes[i] == nil)
+                    continue;
             }
             if(nodes[i].parent && nodes[i].children)
-				_ApplyBlock(nodes[i], revision, block);
+                _ApplyBlock(nodes[i], revision, block);
         }
     }
 }
@@ -420,7 +419,7 @@ static void _ApplyBlock(ParserNode* node, NSUInteger revision, void (^block)(Par
 - (void) enumerateChildrenUsingBlock:(BOOL (^)(ParserNode* node))block {
     NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
     if(_children)
-    	_ApplyBlock(self, ++_globalRevision, block);
+        _ApplyBlock(self, ++_globalRevision, block);
     [pool drain];
 }
 
@@ -450,28 +449,28 @@ static void _AppendChildrenCompactDescription(ParserNode* node, NSMutableString*
     ParserNode* firstNode = node.firstChild;
     ParserNode* lastNode = node.lastChild;
     for(node in node.children) {
-    	if(node.children) {
-        	if(node == firstNode)
-            	[string appendString:prefix];
+        if(node.children) {
+            if(node == firstNode)
+                [string appendString:prefix];
             else
-            	[string appendFormat:@"\n%@", prefix];
+                [string appendFormat:@"\n%@", prefix];
             _AppendChildrenCompactDescription(node, string, prefix);
             if((node != lastNode) && (node.nextSibling.children == nil))
-            	[string appendFormat:@"\n%@%@", prefix, separator];
+                [string appendFormat:@"\n%@%@", prefix, separator];
         } else {
-        	if(node == firstNode)
-            	[string appendFormat:@"%@%@", prefix, separator];
+            if(node == firstNode)
+                [string appendFormat:@"%@%@", prefix, separator];
             if([node isMemberOfClass:[ParserNodeWhitespace class]] || [node isMemberOfClass:[ParserNodeNewline class]] || [node isMemberOfClass:[ParserNodeText class]])
                 [string appendFormat:@"%@%@", _FormatString(node.content), separator];
             else
-            	[string appendFormat:@"|%@|%@", _FormatString(node.content), separator];
+                [string appendFormat:@"|%@|%@", _FormatString(node.content), separator];
         }
     }
 }
 
 - (NSString*) compactDescription {
-	if(_children == nil)
-    	return [self contentDescription];
+    if(_children == nil)
+        return [self contentDescription];
     
     NSMutableString* string = [NSMutableString string];
     _AppendChildrenCompactDescription(self, string, @"");
@@ -487,15 +486,15 @@ static void _AppendNodeFullDescription(ParserNode* node, NSMutableString* string
         [string appendFormat:@"%@[%i:%i] <%@>\n", prefix, node.lines.location + 1, node.lines.location + node.lines.length, [[node class] name]];
     
     if([node methodForSelector:@selector(name)] != _nameMethod)
-    	[string appendFormat:@"%@+ <name> = ♢%@♢\n", prefix, _FormatString(node.name)]; //0x2662
+        [string appendFormat:@"%@+ <name> = ♢%@♢\n", prefix, _FormatString(node.name)]; //0x2662
     
     if([node methodForSelector:@selector(cleanContent)] != _cleanContentMethod)
-    	[string appendFormat:@"%@+ <cleaned> = ♢%@♢\n", prefix, _FormatString(node.cleanContent)]; //0x2662
+        [string appendFormat:@"%@+ <cleaned> = ♢%@♢\n", prefix, _FormatString(node.cleanContent)]; //0x2662
     
     NSDictionary* attributes = node.attributes;
     if(attributes) {
-    	for(NSString* name in attributes)
-    		[string appendFormat:@"%@+ ♢%@♢ = ♢%@♢\n", prefix, name, _FormatString([attributes objectForKey:name])]; //0x2662
+        for(NSString* name in attributes)
+            [string appendFormat:@"%@+ ♢%@♢ = ♢%@♢\n", prefix, name, _FormatString([attributes objectForKey:name])]; //0x2662
     }
     
     if(node.children) {

@@ -40,19 +40,19 @@
 @interface ParserNodeObjCClass : ParserNode //Leaf
 @end
 
-@interface ParserNodeObjCPublic : ParserNode //Leaf
+@interface ParserNodeObjCPublic : ParserNode
 @end
 
-@interface ParserNodeObjCProtected : ParserNode //Leaf
+@interface ParserNodeObjCProtected : ParserNode
 @end
 
-@interface ParserNodeObjCPrivate : ParserNode //Leaf
+@interface ParserNodeObjCPrivate : ParserNode
 @end
 
-@interface ParserNodeObjCRequired : ParserNode //Leaf
+@interface ParserNodeObjCRequired : ParserNode
 @end
 
-@interface ParserNodeObjCOptional : ParserNode //Leaf
+@interface ParserNodeObjCOptional : ParserNode
 @end
 
 @interface ParserNodeObjCProperty : ParserNode

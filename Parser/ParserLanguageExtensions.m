@@ -24,7 +24,7 @@
 @interface ParserNodeUnicodeCharacter : ParserNode
 @end
 
-void _RearrangeNodesAsChildren(ParserNode* startNode, ParserNode* endNode) {
+void _RearrangeNodesAsParentAndChildren(ParserNode* startNode, ParserNode* endNode) {
     if(startNode == endNode)
         [NSException raise:NSInternalInconsistencyException format:@""];
     
@@ -45,6 +45,22 @@ void _RearrangeNodesAsChildren(ParserNode* startNode, ParserNode* endNode) {
     } while(node);
     startNode.range = NSMakeRange(startNode.range.location, endNode.range.location + endNode.range.length - startNode.range.location);
     startNode.lines = NSMakeRange(sibling.lines.location, endNode.lines.location + endNode.lines.length - sibling.lines.location);
+}
+
+void _AdoptNodesAsChildren(ParserNode* startNode, ParserNode* endNode) {
+    if(startNode == endNode)
+        [NSException raise:NSInternalInconsistencyException format:@""];
+    
+    ParserNode* sibling = endNode.previousSibling;
+    ParserNode* node = sibling;
+    do {
+        ParserNode* sibling = node.previousSibling; //This will not be available afterwards
+        [node removeFromParent];
+        [endNode insertChild:node atIndex:0];
+        node = (node == startNode ? nil : sibling);
+    } while(node);
+    endNode.range = NSMakeRange(startNode.range.location, endNode.range.location + endNode.range.length - startNode.range.location);
+    endNode.lines = NSMakeRange(sibling.lines.location, endNode.lines.location + endNode.lines.length - sibling.lines.location);
 }
 
 NSString* _CleanString(NSString* string, NSArray* nodeClasses) {
@@ -215,7 +231,7 @@ IMPLEMENTATION(Colon, ":")
 IMPLEMENTATION(Semicolon, ";")
 IMPLEMENTATION(QuestionMark, "?")
 IMPLEMENTATION(ExclamationMark, "!")
-IMPLEMENTATION(Tilda, "~")
+IMPLEMENTATION(Tilde, "~")
 IMPLEMENTATION(Caret, "^")
 IMPLEMENTATION(Ampersand, "&")
 IMPLEMENTATION(Asterisk, "*")
@@ -224,6 +240,7 @@ IMPLEMENTATION(Comma, ",")
 IMPLEMENTATION(Equal, "=")
 IMPLEMENTATION(Pound, "#")
 IMPLEMENTATION(Dot, ".")
+IMPLEMENTATION(Arrow, "->")
 
 #undef IMPLEMENTATION
 

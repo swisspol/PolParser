@@ -58,7 +58,7 @@
     return [NSSet setWithObject:@"json"];
 }
 
-- (ParserNode*) performSyntaxAnalysisForNode:(ParserNode*)node textBuffer:(const unichar*)textBuffer topLevelLanguage:(ParserLanguage*)topLevelLanguage {
+- (ParserNode*) performSyntaxAnalysis:(NSUInteger)passIndex forNode:(ParserNode*)node textBuffer:(const unichar*)textBuffer topLevelLanguage:(ParserLanguage*)topLevelLanguage {
     
     if([node isMemberOfClass:[ParserNodeText class]])
         return [node replaceWithNodeOfClass:[ParserNodeJSONNumber class] preserveChildren:NO];
@@ -76,7 +76,7 @@
                     ParserNode* newNode = [[ParserNodeJSONPair alloc] initWithText:node.text range:NSMakeRange(node.range.location, 0)];
                     [node insertPreviousSibling:newNode];
                     [newNode release];
-                    _RearrangeNodesAsChildren(newNode, nextNode);
+                    _RearrangeNodesAsParentAndChildren(newNode, nextNode);
                 }
             }
         }

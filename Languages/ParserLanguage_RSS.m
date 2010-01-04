@@ -60,7 +60,7 @@
     return [NSSet setWithObjects:@"rss", @"atom", nil];
 }
 
-- (ParserNode*) performSyntaxAnalysisForNode:(ParserNode*)node textBuffer:(const unichar*)textBuffer topLevelLanguage:(ParserLanguage*)topLevelLanguage {
+- (ParserNode*) performSyntaxAnalysis:(NSUInteger)passIndex forNode:(ParserNode*)node textBuffer:(const unichar*)textBuffer topLevelLanguage:(ParserLanguage*)topLevelLanguage {
     
     if([node isKindOfClass:[ParserNodeXMLElement class]]) {
         NSString* name = [node.name lowercaseString];

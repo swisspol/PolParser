@@ -1,5 +1,7 @@
 #import <Foundation/Foundation.h>
 
+@class Demo;
+
 @protocol Cocoa
 @optional
 - (BOOL) test:(int)foo bar:(int)bar;
@@ -25,7 +27,7 @@ static void LocalFunction(int arg);
 <Root>
 ·  <ObjCPreprocessorImport>
 ·  ·  ♢|#import|♢•♢<Foundation/Foundation.h>♢
-·  ♢¶♢¶♢
+·  ♢¶♢¶♢|@class|♢•♢Demo♢|;|♢¶♢¶♢
 ·  <ObjCProtocol>
 ·  ·  ♢|@protocol•Cocoa|♢¶♢
 ·  ·  <ObjCOptional>

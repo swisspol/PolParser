@@ -64,7 +64,7 @@
     return [NSSet setWithObject:@"sgml"];
 }
 
-- (ParserNode*) performSyntaxAnalysisForNode:(ParserNode*)node textBuffer:(const unichar*)textBuffer topLevelLanguage:(ParserLanguage*)topLevelLanguage {
+- (ParserNode*) performSyntaxAnalysis:(NSUInteger)passIndex forNode:(ParserNode*)node textBuffer:(const unichar*)textBuffer topLevelLanguage:(ParserLanguage*)topLevelLanguage {
     
     if([node isKindOfClass:[ParserNodeSGMLTag class]]) {
         ParserNodeSGMLTag* sgmlNode = (ParserNodeSGMLTag*)node;
@@ -73,7 +73,7 @@
             [node insertPreviousSibling:newNode];
             [newNode release];
             
-            _RearrangeNodesAsChildren(newNode, node);
+            _RearrangeNodesAsParentAndChildren(newNode, node);
         } else if(sgmlNode.sgmlType < 0) {
             ParserNode* endNode = node;
             while(endNode) {
@@ -86,7 +86,7 @@
                 [node insertPreviousSibling:newNode];
                 [newNode release];
                 
-                _RearrangeNodesAsChildren(newNode, endNode);
+                _RearrangeNodesAsParentAndChildren(newNode, endNode);
             }
         }
         

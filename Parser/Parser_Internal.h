@@ -23,6 +23,7 @@
 #define IsNewline(C) ((C == '\r') || (C == '\n'))
 #define IsWhitespace(C) ((C == ' ') || (C == '\t'))
 #define IsWhitespaceOrNewline(C) (IsWhitespace(C) || IsNewline(C))
+#define IsAlphaNumerical(C) (((C >= 'a') && (C <= 'z')) || ((C >= 'A') && (C <= 'Z')) || ((C >= '0') && (C <= '9')))
 
 #define IS_MATCHING_CHARACTERS(__CHARACTERS__, __STRING__, __MAXLENGTH__) \
     const char* __characters = __CHARACTERS__; \
@@ -64,7 +65,13 @@
 @implementation ParserNode##__LANGUAGE__##__NAME__ \
 \
 + (NSUInteger) isMatchingPrefix:(const unichar*)string maxLength:(NSUInteger)maxLength { \
-    IS_MATCHING_CHARACTERS_EXTENDED(__MATCH__, true, ",;)]}*", string, maxLength) \
+    if(IsAlphaNumerical(*(string - 1))) \
+        return NSNotFound; \
+    IS_MATCHING_CHARACTERS(__MATCH__, string, maxLength) \
+    if(_matching != NSNotFound) { \
+        if(IsAlphaNumerical(string[_matching])) \
+            _matching = NSNotFound; \
+    } \
     return _matching; \
 } \
 \
@@ -102,7 +109,8 @@ static inline BOOL _EqualsCharacters(const unichar* string, const char* array, N
     return YES;
 }
 
-void _RearrangeNodesAsChildren(ParserNode* startNode, ParserNode* endNode);
+void _RearrangeNodesAsParentAndChildren(ParserNode* startNode, ParserNode* endNode);
+void _AdoptNodesAsChildren(ParserNode* startNode, ParserNode* endNode);
 NSString* _CleanString(NSString* string, NSArray* nodeClasses);
 NSString* _CleanEscapedString(NSString* string);
 NSString* _StringFromHexUnicodeCharacter(NSString* string);
@@ -130,11 +138,12 @@ NSString* _StringFromHexUnicodeCharacter(NSString* string);
 + (NSArray*) languageDependencies;
 + (NSSet*) languageReservedKeywords;
 + (NSArray*) languageNodeClasses;
++ (NSUInteger) languageSyntaxAnalysisPasses;
 + (ParserNodeRoot*) newNodeTreeFromText:(NSString*)text withNodeClasses:(NSArray*)nodeClasses;
 + (ParserNodeRoot*) newNodeTreeFromText:(NSString*)text range:(NSRange)range textBuffer:(const unichar*)textBuffer withNodeClasses:(NSArray*)nodeClasses;
 @property(nonatomic, readonly) NSArray* allLanguageDependencies;
 - (ParserNodeRoot*) parseText:(NSString*)text range:(NSRange)range textBuffer:(const unichar*)textBuffer syntaxAnalysis:(BOOL)syntaxAnalysis;
-- (ParserNode*) performSyntaxAnalysisForNode:(ParserNode*)node textBuffer:(const unichar*)textBuffer topLevelLanguage:(ParserLanguage*)topLevelLanguage; //Override point to perform language dependent string tree refactoring after parsing
+- (ParserNode*) performSyntaxAnalysis:(NSUInteger)passIndex forNode:(ParserNode*)node textBuffer:(const unichar*)textBuffer topLevelLanguage:(ParserLanguage*)topLevelLanguage; //Override point to perform language dependent string tree refactoring after parsing
 @end
 
 @protocol ParserLanguageCTopLevelNodeClasses

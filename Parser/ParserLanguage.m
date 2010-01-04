@@ -89,6 +89,10 @@
     return nil;
 }
 
++ (NSUInteger) languageSyntaxAnalysisPasses {
+    return 1;
+}
+
 - (void) dealloc {
     [_languageDependencies release];
     [_keywords release];
@@ -170,14 +174,6 @@
         }
     }
     return _nodeClasses;
-}
-
-static ParserNode* _ApplierFunction(ParserNode* node, void* context) {
-    void** params = (void**)context;
-    ParserLanguage* language = params[0];
-    const unichar* buffer = params[1];
-    ParserLanguage* topLevelLanguage = params[2];
-    return [language performSyntaxAnalysisForNode:node textBuffer:buffer topLevelLanguage:topLevelLanguage];
 }
 
 + (ParserNodeRoot*) newNodeTreeFromText:(NSString*)text range:(NSRange)range textBuffer:(const unichar*)textBuffer withNodeClasses:(NSArray*)nodeClasses {
@@ -399,6 +395,15 @@ static BOOL _CheckTreeConsistency(ParserNode* node, NSMutableArray* stack) {
     return YES;
 }
 
+static ParserNode* _SyntaxAnalysisApplierFunction(ParserNode* node, void* context) {
+    void** params = (void**)context;
+    ParserLanguage* language = params[0];
+    NSUInteger passIndex = (NSUInteger)params[1];
+    const unichar* buffer = params[2];
+    ParserLanguage* topLevelLanguage = params[3];
+    return [language performSyntaxAnalysis:passIndex forNode:node textBuffer:buffer topLevelLanguage:topLevelLanguage];
+}
+
 - (ParserNodeRoot*) parseText:(NSString*)text range:(NSRange)range textBuffer:(const unichar*)textBuffer syntaxAnalysis:(BOOL)syntaxAnalysis {
     ParserNodeRoot* rootNode = [[[self class] newNodeTreeFromText:text range:range textBuffer:textBuffer withNodeClasses:self.nodeClasses] autorelease];
     if(rootNode == nil)
@@ -406,15 +411,29 @@ static BOOL _CheckTreeConsistency(ParserNode* node, NSMutableArray* stack) {
     rootNode.language = self;
     
     if(syntaxAnalysis) {
-        for(ParserLanguage* language in self.allLanguageDependencies) {
-            ParserNode* node = [language performSyntaxAnalysisForNode:rootNode textBuffer:textBuffer topLevelLanguage:self];
-            if(node) {
-                void* params[3];
-                params[0] = language;
-                params[1] = (void*)textBuffer;
-                params[2] = self;
-                [node applyFunctionOnChildren:_ApplierFunction context:params];
+        NSUInteger passIndex = 0;
+        while(1) {
+            NSMutableArray* languages = [NSMutableArray arrayWithArray:self.allLanguageDependencies];
+            for(NSUInteger i = 0; i < languages.count; ++i) {
+                if(passIndex >= [[[languages objectAtIndex:i] class] languageSyntaxAnalysisPasses]) {
+                    [languages removeObjectAtIndex:i];
+                    --i;
+                }
             }
+            if(!languages.count)
+                break;
+            for(ParserLanguage* language in languages) {
+                ParserNode* node = [language performSyntaxAnalysis:passIndex forNode:rootNode textBuffer:textBuffer topLevelLanguage:self];
+                if(node) {
+                    void* params[4];
+                    params[0] = language;
+                    params[1] = (void*)passIndex;
+                    params[2] = (void*)textBuffer;
+                    params[3] = self;
+                    [node applyFunctionOnChildren:_SyntaxAnalysisApplierFunction context:params];
+                }
+            }
+            ++passIndex;
         }
     }
     
@@ -431,7 +450,7 @@ static BOOL _CheckTreeConsistency(ParserNode* node, NSMutableArray* stack) {
     return [_NewNodeTreeFromText(self, text, nil, syntaxAnalysis) autorelease];
 }
 
-- (ParserNode*) performSyntaxAnalysisForNode:(ParserNode*)node textBuffer:(const unichar*)textBuffer topLevelLanguage:(ParserLanguage*)topLevelLanguage {
+- (ParserNode*) performSyntaxAnalysis:(NSUInteger)passIndex forNode:(ParserNode*)node textBuffer:(const unichar*)textBuffer topLevelLanguage:(ParserLanguage*)topLevelLanguage {
     return nil;
 }
 

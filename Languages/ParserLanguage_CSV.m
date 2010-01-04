@@ -45,7 +45,7 @@
     return [NSSet setWithObject:@"csv"];
 }
 
-- (ParserNode*) performSyntaxAnalysisForNode:(ParserNode*)node textBuffer:(const unichar*)textBuffer topLevelLanguage:(ParserLanguage*)topLevelLanguage {
+- (ParserNode*) performSyntaxAnalysis:(NSUInteger)passIndex forNode:(ParserNode*)node textBuffer:(const unichar*)textBuffer topLevelLanguage:(ParserLanguage*)topLevelLanguage {
     
     if(![node isKindOfClass:[ParserNodeRoot class]] && ![node.parent isKindOfClass:[ParserNodeCSVRecord class]]) {
         ParserNode* endNode = node;
@@ -60,7 +60,7 @@
             [node insertPreviousSibling:newNode];
             [newNode release];
             
-            _RearrangeNodesAsChildren(newNode, endNode);
+            _RearrangeNodesAsParentAndChildren(newNode, endNode);
         }
     }
     

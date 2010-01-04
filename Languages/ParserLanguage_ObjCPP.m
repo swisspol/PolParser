@@ -36,10 +36,4 @@
     return [NSSet setWithObjects:@"h", @"mm", nil]; //FIXME: We assume .h to be in the "superset" language
 }
 
-- (ParserNodeRoot*) parseText:(NSString*)text range:(NSRange)range textBuffer:(const unichar*)textBuffer syntaxAnalysis:(BOOL)syntaxAnalysis {
-    NSLog(@"%@ parsing is not fully implemented", self.name);
-    
-    return [super parseText:text range:range textBuffer:textBuffer syntaxAnalysis:syntaxAnalysis];
-}
-
 @end

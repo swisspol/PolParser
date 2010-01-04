@@ -60,7 +60,7 @@
     return [NSSet setWithObject:@"css"];
 }
 
-- (ParserNode*) performSyntaxAnalysisForNode:(ParserNode*)node textBuffer:(const unichar*)textBuffer topLevelLanguage:(ParserLanguage*)topLevelLanguage {
+- (ParserNode*) performSyntaxAnalysis:(NSUInteger)passIndex forNode:(ParserNode*)node textBuffer:(const unichar*)textBuffer topLevelLanguage:(ParserLanguage*)topLevelLanguage {
     
     if([node isMemberOfClass:[ParserNodeText class]] && ![node.parent isKindOfClass:[ParserNodeCSSAtRule class]] && ![node.parent isKindOfClass:[ParserNodeCSSPropertyValue class]]) {
         if(![node.parent isKindOfClass:[ParserNodeCSSRule class]]) {
@@ -70,7 +70,7 @@
                 [node insertPreviousSibling:newNode];
                 [newNode release];
                 
-                _RearrangeNodesAsChildren(newNode, endNode);
+                _RearrangeNodesAsParentAndChildren(newNode, endNode);
             }
         }
         
@@ -105,7 +105,7 @@
             [startNode insertPreviousSibling:newNode];
             [newNode release];
             
-            _RearrangeNodesAsChildren(newNode, endNode);
+            _RearrangeNodesAsParentAndChildren(newNode, endNode);
         }
     }
     

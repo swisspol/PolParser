@@ -255,6 +255,11 @@ static ParserNode* _ApplierFunction(ParserNode* node, void* context) {
         [parent insertChild:node atIndex:index];
         if(preserveChildren)
             [self applyFunctionOnChildren:_ApplierFunction context:node];
+    } else if(preserveChildren) {
+        for(node in [_children reverseObjectEnumerator]) {
+        	[node removeFromParent];
+            [parent insertChild:node atIndex:index];
+        }
     }
 }
 

@@ -21,7 +21,130 @@
 @interface ParserNodeCPPComment : ParserNode //Leaf
 @end
 
+@interface ParserNodeCPPNamespace : ParserNode
+@end
+
+@interface ParserNodeCPPClass : ParserNode
+@end
+
+@interface ParserNodeCPPPublic : ParserNode
+@end
+
+@interface ParserNodeCPPProtected : ParserNode
+@end
+
+@interface ParserNodeCPPPrivate : ParserNode
+@end
+
+@interface ParserNodeCPPUsing : ParserNode //Leaf
+@end
+
+@interface ParserNodeCPPVirtual : ParserNode //Leaf
+@end
+
+@interface ParserNodeCPPTry : ParserNode
+@end
+
+@interface ParserNodeCPPCatch : ParserNode
+@end
+
+@interface ParserNodeCPPThrow : ParserNode
+@end
+
+@interface ParserNodeCPPNew : ParserNode
+@end
+
+@interface ParserNodeCPPDelete : ParserNode
+@end
+
+@interface ParserNodeCPPFunctionCall : ParserNode
+@end
+
+@interface ParserNodeCPPTypeId : ParserNode
+@end
+
 /* Special Keywords */
 
+@interface ParserNodeCPPAnd : ParserNodeKeyword //Leaf
+@end
+
+@interface ParserNodeCPPAndEq : ParserNodeKeyword //Leaf
+@end
+
+@interface ParserNodeCPPAsm : ParserNodeKeyword //Leaf
+@end
+
+@interface ParserNodeCPPBitAnd : ParserNodeKeyword //Leaf
+@end
+
+@interface ParserNodeCPPBitOr : ParserNodeKeyword //Leaf
+@end
+
+@interface ParserNodeCPPBool : ParserNodeKeyword //Leaf
+@end
+
+@interface ParserNodeCPPCompl : ParserNodeKeyword //Leaf
+@end
+
+@interface ParserNodeCPPConstCast : ParserNodeKeyword //Leaf
+@end
+
+@interface ParserNodeCPPDynamicCast : ParserNodeKeyword //Leaf
+@end
+
+@interface ParserNodeCPPExplicit : ParserNodeKeyword //Leaf
+@end
+
+@interface ParserNodeCPPExport : ParserNodeKeyword //Leaf
+@end
+
+@interface ParserNodeCPPFalse : ParserNodeKeyword //Leaf
+@end
+
+@interface ParserNodeCPPFriend : ParserNodeKeyword //Leaf
+@end
+
+@interface ParserNodeCPPMutable : ParserNodeKeyword //Leaf
+@end
+
+@interface ParserNodeCPPNot : ParserNodeKeyword //Leaf
+@end
+
+@interface ParserNodeCPPNotEq : ParserNodeKeyword //Leaf
+@end
+
+@interface ParserNodeCPPOperator : ParserNodeKeyword //Leaf
+@end
+
+@interface ParserNodeCPPOr : ParserNodeKeyword //Leaf
+@end
+
+@interface ParserNodeCPPOrEq : ParserNodeKeyword //Leaf
+@end
+
+@interface ParserNodeCPPReinterpretCast : ParserNodeKeyword //Leaf
+@end
+
+@interface ParserNodeCPPStaticCast : ParserNodeKeyword //Leaf
+@end
+
+@interface ParserNodeCPPTemplate : ParserNodeKeyword //Leaf
+@end
+
 @interface ParserNodeCPPThis : ParserNodeKeyword //Leaf
+@end
+
+@interface ParserNodeCPPTrue : ParserNodeKeyword //Leaf
+@end
+
+@interface ParserNodeCPPTypename : ParserNodeKeyword //Leaf
+@end
+
+@interface ParserNodeCPPWCharT : ParserNodeKeyword //Leaf
+@end
+
+@interface ParserNodeCPPXor : ParserNodeKeyword //Leaf
+@end
+
+@interface ParserNodeCPPXorEq : ParserNodeKeyword //Leaf
 @end

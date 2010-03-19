@@ -25,8 +25,9 @@
 @implementation ParserLanguage
 
 + (id) allocWithZone:(NSZone*)zone {
-    if(self == [ParserLanguage class])
+    if(self == [ParserLanguage class]) {
         [NSException raise:NSInternalInconsistencyException format:@"ParserLanguage is an abstract class"];
+    }
     
     return [super allocWithZone:zone];
 }
@@ -41,8 +42,9 @@
             count = objc_getClassList(list, count);
             for(int i = 0; i < count; ++i) {
                 if(strncmp(class_getName(list[i]), ParserLanguagePrefix, sizeof(ParserLanguagePrefix) - 1) == 0) {
-                    if(list[i] != [ParserLanguage class])
+                    if(list[i] != [ParserLanguage class]) {
                         [set addObject:[[[list[i] alloc] init] autorelease]];
+                    }
                 }
             }
             free(list);
@@ -53,8 +55,9 @@
 
 + (ParserLanguage*) languageWithName:(NSString*)name {
     for(ParserLanguage* language in [ParserLanguage allLanguages]) {
-        if([[language name] caseInsensitiveCompare:name] == NSOrderedSame)
+        if([[language name] caseInsensitiveCompare:name] == NSOrderedSame) {
             return language;
+        }
     }
     return nil;
 }
@@ -62,16 +65,18 @@
 + (ParserLanguage*) defaultLanguageForFileExtension:(NSString*)extension {
     extension = [extension lowercaseString];
     for(ParserLanguage* language in [ParserLanguage allLanguages]) {
-        if([[language fileExtensions] containsObject:extension])
+        if([[language fileExtensions] containsObject:extension]) {
             return language;
+        }
     }
     return nil;
 }
 
 + (ParserNodeRoot*) parseTextFile:(NSString*)path encoding:(NSStringEncoding)encoding syntaxAnalysis:(BOOL)syntaxAnalysis {
     NSString* string = [[NSString alloc] initWithContentsOfFile:path encoding:encoding error:NULL];
-    if(string == nil)
+    if(string == nil) {
         return nil;
+    }
     ParserNodeRoot* root = [[self defaultLanguageForFileExtension:[path pathExtension]] parseText:string syntaxAnalysis:syntaxAnalysis];
     [string release];
     return root;
@@ -121,8 +126,9 @@
         for(NSString* name in [[self class] languageDependencies]) {
             ParserLanguage* language = [ParserLanguage languageWithName:name];
             for(language in language.allLanguageDependencies) {
-                if(![_languageDependencies containsObject:language])
+                if(![_languageDependencies containsObject:language]) {
                     [_languageDependencies addObject:language];
+                }
             }
         }
         [_languageDependencies addObject:self];
@@ -149,8 +155,9 @@
             NSString* prefix = [NSStringFromClass([language class]) substringFromIndex:[@ParserLanguagePrefix length]];
             for(NSString* keyword in [[language class] languageReservedKeywords]) {
                 Class class = NSClassFromString([NSString stringWithFormat:@"ParserNode%@%@%@", prefix, [[keyword substringToIndex:1]uppercaseString], [keyword substringFromIndex:1]]);
-                if(class)
+                if(class) {
                     [_nodeClasses addObject:class];
+                }
             }
             
             for(Class class in [[language class] languageNodeClasses]) {
@@ -165,8 +172,9 @@
                                 break;
                             }
                         }
-                        if((patchedIndex != NSNotFound) && (patchedIndex < index))
+                        if((patchedIndex != NSNotFound) && (patchedIndex < index)) {
                             index = patchedIndex;
+                        }
                     }
                     [_nodeClasses insertObject:class atIndex:index];
                 }
@@ -178,8 +186,9 @@
 
 + (ParserNodeRoot*) newNodeTreeFromText:(NSString*)text range:(NSRange)range textBuffer:(const unichar*)textBuffer withNodeClasses:(NSArray*)nodeClasses {
     ParserNodeRoot* rootNode = [[ParserNodeRoot alloc] initWithText:text range:range];
-    if(rootNode == nil)
+    if(rootNode == nil) {
         return nil;
+    }
     
     NSMutableArray* stack = [NSMutableArray array];
     [stack addObject:rootNode];
@@ -194,8 +203,9 @@
             if(suffixLength != NSNotFound) {
                 if(rawLength > 0) {
                     for(NSUInteger i = 0; i < rawLength; ++i) {
-                        if((*(textBuffer + range.location + i) == '\n') || ((*(textBuffer + range.location + i) == '\r') && (*(textBuffer + range.location + i + 1) != '\n')))
+                        if((*(textBuffer + range.location + i) == '\n') || ((*(textBuffer + range.location + i) == '\r') && (*(textBuffer + range.location + i + 1) != '\n'))) {
                             ++currentLine;
+                        }
                     }
                     
                     ParserNode* node = [[ParserNodeText alloc] initWithText:text range:NSMakeRange(range.location, rawLength)];
@@ -213,8 +223,9 @@
                 
                 if(suffixLength > 0) {
                     for(NSUInteger i = 0; i < suffixLength; ++i) {
-                        if((*(textBuffer + range.location + i) == '\n') || ((*(textBuffer + range.location + i) == '\r') && (*(textBuffer + range.location + i + 1) != '\n')))
+                        if((*(textBuffer + range.location + i) == '\n') || ((*(textBuffer + range.location + i) == '\r') && (*(textBuffer + range.location + i + 1) != '\n'))) {
                             ++currentLine;
+                        }
                     }
                     
                     ParserNode* node = [[ParserNodeMatch alloc] initWithText:text range:NSMakeRange(parentNode.range.location + parentNode.range.length - suffixLength, suffixLength)];
@@ -236,17 +247,20 @@
         Class prefixClass;
         NSUInteger prefixLength;
         for(prefixClass in nodeClasses) {
-            if((prefixClass == [ParserNodeText class]) || (prefixClass == [ParserNodeMatch class]))
+            if((prefixClass == [ParserNodeText class]) || (prefixClass == [ParserNodeMatch class])) {
                 continue;
+            }
             prefixLength = [prefixClass isMatchingPrefix:(textBuffer + range.location + rawLength) maxLength:(range.length - rawLength)];
-            if(prefixLength != NSNotFound)
+            if(prefixLength != NSNotFound) {
                 break;
+            }
         }
         if(prefixClass) {
             if(rawLength > 0) {
                 for(NSUInteger i = 0; i < rawLength; ++i) {
-                    if((*(textBuffer + range.location + i) == '\n') || ((*(textBuffer + range.location + i) == '\r') && (*(textBuffer + range.location + i + 1) != '\n')))
+                    if((*(textBuffer + range.location + i) == '\n') || ((*(textBuffer + range.location + i) == '\r') && (*(textBuffer + range.location + i + 1) != '\n'))) {
                         ++currentLine;
+                    }
                 }
                 
                 ParserNode* node = [[ParserNodeText alloc] initWithText:text range:NSMakeRange(range.location, rawLength)];
@@ -264,10 +278,12 @@
                 NSUInteger suffixLength = NSNotFound;
                 while(1) {
                     suffixLength = [prefixClass isMatchingSuffix:(textBuffer + range.location + length) maxLength:(range.length - length)];
-                    if(suffixLength != NSNotFound)
+                    if(suffixLength != NSNotFound) {
                         break;
-                    if(length == range.length)
+                    }
+                    if(length == range.length) {
                         break;
+                    }
                     ++length;
                 }
                 if(suffixLength == NSNotFound) {
@@ -277,8 +293,9 @@
                 length = length + suffixLength;
                 
                 for(NSUInteger i = 0; i < length; ++i) {
-                    if((*(textBuffer + range.location + i) == '\n') || ((*(textBuffer + range.location + i) == '\r') && (*(textBuffer + range.location + i + 1) != '\n')))
+                    if((*(textBuffer + range.location + i) == '\n') || ((*(textBuffer + range.location + i) == '\r') && (*(textBuffer + range.location + i + 1) != '\n'))) {
                         ++currentLine;
+                    }
                 }
                 
                 ParserNode* node = [[prefixClass alloc] initWithText:text range:NSMakeRange(range.location, length)];
@@ -297,8 +314,9 @@
                 [node release];
                 
                 for(NSUInteger i = 0; i < prefixLength; ++i) {
-                    if((*(textBuffer + range.location + i) == '\n') || ((*(textBuffer + range.location + i) == '\r') && (*(textBuffer + range.location + i + 1) != '\n')))
+                    if((*(textBuffer + range.location + i) == '\n') || ((*(textBuffer + range.location + i) == '\r') && (*(textBuffer + range.location + i + 1) != '\n'))) {
                         ++currentLine;
+                    }
                 }
                 
                 node = [[ParserNodeMatch alloc] initWithText:text range:NSMakeRange(range.location, prefixLength)];
@@ -316,8 +334,9 @@
         ++rawLength;
         if(rawLength == range.length) {
             for(NSUInteger i = 0; i < rawLength; ++i) {
-                if((*(textBuffer + range.location + i) == '\n') || ((*(textBuffer + range.location + i) == '\r') && (*(textBuffer + range.location + i + 1) != '\n')))
+                if((*(textBuffer + range.location + i) == '\n') || ((*(textBuffer + range.location + i) == '\r') && (*(textBuffer + range.location + i + 1) != '\n'))) {
                     ++currentLine;
+                }
             }
             
             ParserNode* node = [[ParserNodeText alloc] initWithText:text range:range];
@@ -331,8 +350,9 @@
     [stack removeObjectAtIndex:0];
     if(stack.count > 0) {
         NSLog(@"Parser failed because some branch nodes are still opened at the end of the text:");
-        for(ParserNode* node in stack)
+        for(ParserNode* node in stack) {
             NSLog(@"\t%@", node);
+        }
         [rootNode release];
         return nil;
     }
@@ -352,10 +372,11 @@ static ParserNodeRoot* _NewNodeTreeFromText(id self, NSString* text, NSArray* no
     [text getCharacters:(buffer + 1)];
     
     ParserNodeRoot* root;
-    if([self isKindOfClass:[ParserLanguage class]])
+    if([self isKindOfClass:[ParserLanguage class]]) {
         root = [[self parseText:text range:range textBuffer:(buffer + 1) syntaxAnalysis:syntaxAnalysis] retain];
-    else
+    } else {
         root = [self newNodeTreeFromText:text range:range textBuffer:(buffer + 1) withNodeClasses:nodeClasses];
+    }
     
     free(buffer);
     [text release];
@@ -406,8 +427,9 @@ static ParserNode* _SyntaxAnalysisApplierFunction(ParserNode* node, void* contex
 
 - (ParserNodeRoot*) parseText:(NSString*)text range:(NSRange)range textBuffer:(const unichar*)textBuffer syntaxAnalysis:(BOOL)syntaxAnalysis {
     ParserNodeRoot* rootNode = [[[self class] newNodeTreeFromText:text range:range textBuffer:textBuffer withNodeClasses:self.nodeClasses] autorelease];
-    if(rootNode == nil)
+    if(rootNode == nil) {
         return nil;
+    }
     rootNode.language = self;
     
     if(syntaxAnalysis) {
@@ -420,8 +442,9 @@ static ParserNode* _SyntaxAnalysisApplierFunction(ParserNode* node, void* contex
                     --i;
                 }
             }
-            if(!languages.count)
+            if(!languages.count) {
                 break;
+            }
             for(ParserLanguage* language in languages) {
                 ParserNode* node = [language performSyntaxAnalysis:passIndex forNode:rootNode textBuffer:textBuffer topLevelLanguage:self];
                 if(node) {
@@ -466,8 +489,9 @@ static ParserNode* _SyntaxAnalysisApplierFunction(ParserNode* node, void* contex
 
 - (id) copyWithZone:(NSZone*)zone {
     ParserNodeRoot* copy = [super copyWithZone:zone];
-    if(copy)
+    if(copy) {
         copy->_language = _language;
+    }
     return copy;
 }
 
@@ -484,8 +508,9 @@ static ParserNode* _SyntaxAnalysisApplierFunction(ParserNode* node, void* contex
 }
 
 - (id) initWithText:(NSString*)text {
-    if(text.length == 0)
+    if(text.length == 0) {
         [NSException raise:NSInternalInconsistencyException format:@"Text cannot be empty"];
+    }
     
     return [self initWithText:text range:NSMakeRange(0, text.length)];
 }
@@ -502,8 +527,9 @@ static ParserNode* _SyntaxAnalysisApplierFunction(ParserNode* node, void* contex
 @implementation ParserNodeKeyword
 
 + (id) allocWithZone:(NSZone*)zone {
-    if(self == [ParserNodeKeyword class])
+    if(self == [ParserNodeKeyword class]) {
         [NSException raise:NSInternalInconsistencyException format:@"ParserNodeKeyword is an abstract class"];
+    }
     
     return [super allocWithZone:zone];
 }

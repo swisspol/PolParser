@@ -83,8 +83,9 @@ static JSObjectRef _CallAsConstructorCallback(JSContextRef ctx, JSObjectRef cons
         JSStringRelease(jsString);
         if(cfString) {
             ParserNode* node = [[ParserNodeText alloc] initWithText:(NSString*)cfString];
-            if(node == nil)
+            if(node == nil) {
                 goto Fail;
+            }
             JSObjectRef object = (JSObjectRef)_JSValueMakeParserNode(node, ctx);
             [node autorelease];
             CFRelease(cfString);
@@ -102,8 +103,9 @@ static ParserNode* _NodeFunctionApplier(ParserNode* node, void* context) {
     JSObjectRef object = params[1];
     BOOL* successPtr = params[2];
     JSValueRef value = JSObjectCallAsFunction(ctx, object, (JSObjectRef)_JSValueMakeParserNode(node, ctx), 0, NULL, NULL);
-    if(!value || !JSValueIsBoolean(ctx, value) || !JSValueToBoolean(ctx, value))
+    if(!value || !JSValueIsBoolean(ctx, value) || !JSValueToBoolean(ctx, value)) {
         *successPtr = NO;
+    }
     return node;
 }
 
@@ -136,9 +138,9 @@ BOOL RunJavaScriptOnRootNode(NSString* script, ParserNode* root) {
                 
                 JSValueRef exception = NULL;
                 JSEvaluateScript(context, jsScript, NULL, NULL, 1, &exception);
-                if(exception)
+                if(exception) {
                     printf("<JavaScript Evaluation Failed: %s>\n", [_ExceptionToString(context, exception) UTF8String]);
-                else {
+                } else {
                     jsString = JSStringCreateWithCFString(CFSTR("__wrapper"));
                     JSObjectRef function = JSValueToObject(context, JSObjectGetProperty(context, JSContextGetGlobalObject(context), jsString, NULL), NULL);
                     JSStringRelease(jsString);

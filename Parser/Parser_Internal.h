@@ -37,15 +37,12 @@
     if(__WHITESPACE_OR_NEWLINE__ && __OTHER_CHARACTERS__) { \
         NSUInteger count = sizeof(__OTHER_CHARACTERS__) - 1; \
         _matching = (__MAXLENGTH__ > __count) && _EqualsCharacters(string, __characters, __count) && (IsWhitespaceOrNewline(string[__count]) || _IsCharacterInSet(string[__count], __OTHER_CHARACTERS__, count)) ? __count : NSNotFound; \
-    } \
-    else if(__OTHER_CHARACTERS__) { \
+    } else if(__OTHER_CHARACTERS__) { \
         NSUInteger count = sizeof(__OTHER_CHARACTERS__) - 1; \
         _matching = (__MAXLENGTH__ > __count) && _EqualsCharacters(string, __characters, __count) && _IsCharacterInSet(string[__count], __OTHER_CHARACTERS__, count) ? __count : NSNotFound; \
-    } \
-    else if(__WHITESPACE_OR_NEWLINE__) { \
+    } else if(__WHITESPACE_OR_NEWLINE__) { \
         _matching = (__MAXLENGTH__ > __count) && _EqualsCharacters(string, __characters, __count) && IsWhitespaceOrNewline(string[__count]) ? __count : NSNotFound; \
-    } \
-    else { \
+    } else { \
         _matching = (__MAXLENGTH__ >= __count) && _EqualsCharacters(string, __characters, __count) ? __count : NSNotFound; \
     }
 
@@ -69,8 +66,9 @@
         return NSNotFound; \
     IS_MATCHING_CHARACTERS(__MATCH__, string, maxLength) \
     if(_matching != NSNotFound) { \
-        if(IsAlphaNumerical(string[_matching])) \
+        if(IsAlphaNumerical(string[_matching])) { \
             _matching = NSNotFound; \
+        } \
     } \
     return _matching; \
 } \
@@ -94,16 +92,18 @@
 
 static inline BOOL _IsCharacterInSet(const unichar character, const char* set, NSUInteger count) {
     for(NSUInteger i = 0; i < count; ++i) {
-        if(character == set[i])
-               return YES;
+        if(character == set[i]) {
+            return YES;
+        }
     }
     return NO;
 }
 
 static inline BOOL _EqualsCharacters(const unichar* string, const char* array, NSUInteger length) {
     while(length) {
-        if(*string++ != *array++)
-        return NO;
+        if(*string++ != *array++) {
+            return NO;
+        }
         --length;
     }
     return YES;

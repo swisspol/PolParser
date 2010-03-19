@@ -60,12 +60,15 @@
 
 - (ParserNode*) performSyntaxAnalysis:(NSUInteger)passIndex forNode:(ParserNode*)node textBuffer:(const unichar*)textBuffer topLevelLanguage:(ParserLanguage*)topLevelLanguage {
     
-    if([node isMemberOfClass:[ParserNodeText class]])
+    if([node isMemberOfClass:[ParserNodeText class]]) {
         return [node replaceWithNodeOfClass:[ParserNodeJSONNumber class] preserveChildren:NO];
-    if([node isKindOfClass:[ParserNodeBraces class]])
+    }
+    if([node isKindOfClass:[ParserNodeBraces class]]) {
         return [node replaceWithNodeOfClass:[ParserNodeJSONObject class] preserveChildren:YES];
-    if([node isKindOfClass:[ParserNodeBrackets class]])
+    }
+    if([node isKindOfClass:[ParserNodeBrackets class]]) {
         return [node replaceWithNodeOfClass:[ParserNodeJSONArray class] preserveChildren:YES];
+    }
     
     if([node.parent isKindOfClass:[ParserNodeJSONObject class]]) {
         if([node isKindOfClass:[ParserNodeJSONString class]]) {

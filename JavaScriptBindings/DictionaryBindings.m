@@ -24,8 +24,9 @@ static JSValueRef _DictionaryGetPropertyCallback(JSContextRef ctx, JSObjectRef o
         NSDictionary* dictionary = JSObjectGetPrivate(object);
         id value = [dictionary objectForKey:(id)cfString];
         CFRelease(cfString);
-        if(value)
+        if(value) {
             return _JSValueMakeString([value description], ctx); //FIXME: We should handle non-string values properly
+        }
     }
     return NULL;
 }
@@ -46,14 +47,16 @@ JSClassRef _GetDictionaryJavaScriptClass() {
         definition.getProperty = _DictionaryGetPropertyCallback;
         definition.convertToType = _DictionaryConvertToTypeCallback;
         class = JSClassCreate(&definition);
-        if(class == NULL)
+        if(class == NULL) {
             [NSException raise:NSInternalInconsistencyException format:@""];
+        }
     }
     return class;
 }
 
 JSValueRef _JSValueMakeDictionary(NSDictionary* dictionary, JSContextRef context) {
-    if(dictionary == nil)
+    if(dictionary == nil) {
         return JSValueMakeUndefined(context);
+    }
     return JSObjectMake(context, _GetDictionaryJavaScriptClass(), dictionary);
 }

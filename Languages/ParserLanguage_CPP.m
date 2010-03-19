@@ -87,8 +87,9 @@
             // "catch() {}"
             if([previousNode isKindOfClass:[ParserNodeParenthesis class]]) {
                 previousNode = [previousNode findPreviousSiblingIgnoringWhitespaceAndNewline];
-                if([previousNode isKindOfClass:[ParserNodeCPPCatch class]])
+                if([previousNode isKindOfClass:[ParserNodeCPPCatch class]]) {
                     _RearrangeNodesAsParentAndChildren(previousNode, node);
+                }
             }
             
             // "try {}"
@@ -111,16 +112,20 @@
             if([nextNode isKindOfClass:[ParserNodeColon class]]) {
                 ParserNode* endNode = [node.parent.lastChild findPreviousSiblingIgnoringWhitespaceAndNewline]; //Last child is guaranted to be "}"
                 ParserNode* otherNode = [node findNextSiblingOfClass:[ParserNodeCPPPrivate class]];
-                if(otherNode && (otherNode.range.location < endNode.range.location))
+                if(otherNode && (otherNode.range.location < endNode.range.location)) {
                     endNode = otherNode.previousSibling;
+                }
                 otherNode = [node findNextSiblingOfClass:[ParserNodeCPPProtected class]];
-                if(otherNode && (otherNode.range.location < endNode.range.location))
+                if(otherNode && (otherNode.range.location < endNode.range.location)) {
                     endNode = otherNode.previousSibling;
+                }
                 otherNode = [node findNextSiblingOfClass:[ParserNodeCPPPublic class]];
-                if(otherNode && (otherNode.range.location < endNode.range.location))
+                if(otherNode && (otherNode.range.location < endNode.range.location)) {
                     endNode = otherNode.previousSibling;
-                if([endNode isKindOfClass:[ParserNodeWhitespace class]] || [endNode isKindOfClass:[ParserNodeNewline class]])
+                }
+                if([endNode isKindOfClass:[ParserNodeWhitespace class]] || [endNode isKindOfClass:[ParserNodeNewline class]]) {
                     endNode = [endNode findPreviousSiblingIgnoringWhitespaceAndNewline];
+                }
                 _RearrangeNodesAsParentAndChildren(node, endNode);
             }
             
@@ -130,8 +135,9 @@
             ParserNode* nextNode = [node findNextSiblingIgnoringWhitespaceAndNewline];
             if([nextNode isMemberOfClass:[ParserNodeText class]]) {
                 nextNode = [nextNode findNextSiblingIgnoringWhitespaceAndNewline];
-                if([nextNode isKindOfClass:[ParserNodeBraces class]])
+                if([nextNode isKindOfClass:[ParserNodeBraces class]]) {
                     _RearrangeNodesAsParentAndChildren(node, nextNode);
+                }
             }
             
         } else if([node isKindOfClass:[ParserNodeCPPClass class]]) {
@@ -140,32 +146,36 @@
             ParserNode* bracesNode = [node findNextSiblingOfClass:[ParserNodeBraces class]];
             ParserNode* semicolonNode = [node findNextSiblingOfClass:[ParserNodeSemicolon class]];
             if(bracesNode && (!semicolonNode || ([node.parent indexOfChild:semicolonNode] > [node.parent indexOfChild:bracesNode]))) {
-                if(!semicolonNode)
+                if(!semicolonNode) {
                     _RearrangeNodesAsParentAndChildren(node, node.parent.lastChild);
-                else
+                } else {
                     _RearrangeNodesAsParentAndChildren(node, semicolonNode);
+                }
             }
             
         } else if([node isKindOfClass:[ParserNodeCPPNew class]] || [node isKindOfClass:[ParserNodeCPPDelete class]]) {
             
             // "new foo" "delete foo"
             ParserNode* semicolonNode = [node findNextSiblingOfClass:[ParserNodeSemicolon class]];
-            if(semicolonNode)
+            if(semicolonNode) {
                 _RearrangeNodesAsParentAndChildren(node, semicolonNode);
+            }
             
         } else if([node isKindOfClass:[ParserNodeCPPTypeId class]]) {
             
             // "typeid()"
             ParserNode* nextNode = [node findNextSiblingIgnoringWhitespaceAndNewline];
-            if([nextNode isKindOfClass:[ParserNodeParenthesis class]])
+            if([nextNode isKindOfClass:[ParserNodeParenthesis class]]) {
                 _RearrangeNodesAsParentAndChildren(node, nextNode);
+            }
             
         } else if([node isKindOfClass:[ParserNodeCPPVirtual class]]) {
             
             // "virtual foo bar()"
             ParserNode* semicolonNode = [node findNextSiblingOfClass:[ParserNodeSemicolon class]];
-            if(semicolonNode)
+            if(semicolonNode) {
                 _RearrangeNodesAsParentAndChildren(node, semicolonNode);
+            }
             
         }
     }
@@ -238,11 +248,13 @@
             do {
                 --string;
             } while(IsWhitespace(*string));
-            if(*string != '\\')
+            if(*string != '\\') {
                 return 0;
+            }
         }
-        if(!IsWhitespace(*string))
+        if(!IsWhitespace(*string)) {
             break;
+        }
         ++string;
         --maxLength;
     }

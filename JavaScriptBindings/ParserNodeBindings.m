@@ -124,8 +124,9 @@ static JSValueRef _CallFunctionIndexOfChild(JSContextRef ctx, JSObjectRef functi
     if((argumentCount == 1) && JSValueIsObjectOfClass(ctx, arguments[0], _GetParserNodeJavaScriptClass())) {
         ParserNode* node = JSObjectGetPrivate(thisObject);
         ParserNode* child = JSObjectGetPrivate(JSValueToObject(ctx, arguments[0], NULL));
-        if(child.parent == node)
+        if(child.parent == node) {
             return JSValueMakeNumber(ctx, [node indexOfChild:child]);
+        }
     }
     *exception = _JSValueMakeException(ctx, @"Invalid argument(s)");
     return NULL;
@@ -217,8 +218,9 @@ static JSValueRef _CallFunctionReplaceWithText(JSContextRef ctx, JSObjectRef fun
 static JSValueRef _CallFunctionFindPreviousSiblingIgnoringWhitespaceAndNewline(JSContextRef ctx, JSObjectRef function, JSObjectRef thisObject, size_t argumentCount, const JSValueRef arguments[], JSValueRef* exception) {
     if(argumentCount == 0) {
         ParserNode* node = JSObjectGetPrivate(thisObject);
-        if(node.parent)
+        if(node.parent) {
             return _JSValueMakeParserNode([node findPreviousSiblingIgnoringWhitespaceAndNewline], ctx);
+        }
     }
     *exception = _JSValueMakeException(ctx, @"Invalid argument(s)");
     return NULL;
@@ -227,8 +229,9 @@ static JSValueRef _CallFunctionFindPreviousSiblingIgnoringWhitespaceAndNewline(J
 static JSValueRef _CallFunctionFindNextSiblingIgnoringWhitespaceAndNewline(JSContextRef ctx, JSObjectRef function, JSObjectRef thisObject, size_t argumentCount, const JSValueRef arguments[], JSValueRef* exception) {
     if(argumentCount == 0) {
         ParserNode* node = JSObjectGetPrivate(thisObject);
-        if(node.parent)
+        if(node.parent) {
             return _JSValueMakeParserNode([node findNextSiblingIgnoringWhitespaceAndNewline], ctx);
+        }
     }
     *exception = _JSValueMakeException(ctx, @"Invalid argument(s)");
     return NULL;
@@ -237,8 +240,9 @@ static JSValueRef _CallFunctionFindNextSiblingIgnoringWhitespaceAndNewline(JSCon
 static JSValueRef _CallFunctionFindPreviousSiblingOfType(JSContextRef ctx, JSObjectRef function, JSObjectRef thisObject, size_t argumentCount, const JSValueRef arguments[], JSValueRef* exception) {
     if((argumentCount >= 1) && JSValueIsNumber(ctx, arguments[0])) {
         for(size_t i = 1; i < argumentCount; ++i) {
-            if(!JSValueIsNumber(ctx, arguments[i]))
+            if(!JSValueIsNumber(ctx, arguments[i])) {
                 goto Fail;
+            }
         }
         ParserNode* node = JSObjectGetPrivate(thisObject);
         if(node.parent) {
@@ -262,8 +266,9 @@ Fail:
 static JSValueRef _CallFunctionFindNextSiblingOfType(JSContextRef ctx, JSObjectRef function, JSObjectRef thisObject, size_t argumentCount, const JSValueRef arguments[], JSValueRef* exception) {
     if((argumentCount >= 1) && JSValueIsNumber(ctx, arguments[0])) {
         for(size_t i = 1; i < argumentCount; ++i) {
-            if(!JSValueIsNumber(ctx, arguments[i]))
+            if(!JSValueIsNumber(ctx, arguments[i])) {
                 goto Fail;
+            }
         }
         ParserNode* node = JSObjectGetPrivate(thisObject);
         if(node.parent) {
@@ -287,8 +292,9 @@ Fail:
 static JSValueRef _CallFunctionFindFirstChildOfType(JSContextRef ctx, JSObjectRef function, JSObjectRef thisObject, size_t argumentCount, const JSValueRef arguments[], JSValueRef* exception) {
     if((argumentCount >= 1) && JSValueIsNumber(ctx, arguments[0])) {
         for(size_t i = 1; i < argumentCount; ++i) {
-            if(!JSValueIsNumber(ctx, arguments[i]))
+            if(!JSValueIsNumber(ctx, arguments[i])) {
                 goto Fail;
+            }
         }
         ParserNode* node = JSObjectGetPrivate(thisObject);
         if(node.parent) {
@@ -312,8 +318,9 @@ Fail:
 static JSValueRef _CallFunctionFindLastChildOfType(JSContextRef ctx, JSObjectRef function, JSObjectRef thisObject, size_t argumentCount, const JSValueRef arguments[], JSValueRef* exception) {
     if((argumentCount >= 1) && JSValueIsNumber(ctx, arguments[0])) {
         for(size_t i = 1; i < argumentCount; ++i) {
-            if(!JSValueIsNumber(ctx, arguments[i]))
+            if(!JSValueIsNumber(ctx, arguments[i])) {
                 goto Fail;
+            }
         }
         ParserNode* node = JSObjectGetPrivate(thisObject);
         if(node.parent) {
@@ -416,8 +423,9 @@ static JSStaticFunction _staticFunctions[] = {
 
 static void _GetPropertyNamesCallback(JSContextRef ctx, JSObjectRef object, JSPropertyNameAccumulatorRef propertyNames) {
     static CFMutableArrayRef cache = NULL;
-    if(cache == NULL)
+    if(cache == NULL) {
         cache = CFArrayCreateMutable(kCFAllocatorDefault, 0, &kCFTypeArrayCallBacks);
+    }
     
     ParserNode* node = JSObjectGetPrivate(object);
     CFIndex count = node.children.count + 1;
@@ -467,15 +475,17 @@ JSClassRef _GetParserNodeJavaScriptClass() {
         definition.getProperty = _GetPropertyCallback;
         definition.convertToType = _ConvertToTypeCallback;
         class = JSClassCreate(&definition);
-        if(class == NULL)
+        if(class == NULL) {
             [NSException raise:NSInternalInconsistencyException format:@""];
+        }
     }
     return class;
 }
 
 JSValueRef _JSValueMakeParserNode(ParserNode* node, JSContextRef context) {
-    if(node == nil)
+    if(node == nil) {
         return JSValueMakeUndefined(context);
+    }
     if(node.jsObject == NULL) {
         node.jsObject = JSObjectMake(context, _GetParserNodeJavaScriptClass(), node);
         JSValueProtect(context, node.jsObject);

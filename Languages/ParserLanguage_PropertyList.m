@@ -58,28 +58,39 @@
     
     if([node isKindOfClass:[ParserNodeXMLElement class]]) {
         NSString* name = node.name;
-        if([name isEqualToString:@"plist"])
+        if([name isEqualToString:@"plist"]) {
             return [node replaceWithNodeOfClass:[ParserNodePropertyList class] preserveChildren:YES];
-        if([name isEqualToString:@"dict"])
+        }
+        if([name isEqualToString:@"dict"]) {
             return [node replaceWithNodeOfClass:[ParserNodePropertyListDictionary class] preserveChildren:YES];
-        if([name isEqualToString:@"array"])
+        }
+        if([name isEqualToString:@"array"]) {
             return [node replaceWithNodeOfClass:[ParserNodePropertyListArray class] preserveChildren:YES];
-        if([name isEqualToString:@"key"])
+        }
+        if([name isEqualToString:@"key"]) {
             return [node replaceWithNodeOfClass:[ParserNodePropertyListKey class] preserveChildren:YES];
-        if([name isEqualToString:@"string"])
+        }
+        if([name isEqualToString:@"string"]) {
             return [node replaceWithNodeOfClass:[ParserNodePropertyListString class] preserveChildren:YES];
-        if([name isEqualToString:@"data"])
+        }
+        if([name isEqualToString:@"data"]) {
             return [node replaceWithNodeOfClass:[ParserNodePropertyListData class] preserveChildren:YES];
-        if([name isEqualToString:@"date"])
+        }
+        if([name isEqualToString:@"date"]) {
             return [node replaceWithNodeOfClass:[ParserNodePropertyListDate class] preserveChildren:YES];
-        if([name isEqualToString:@"true"])
+        }
+        if([name isEqualToString:@"true"]) {
             return [node replaceWithNodeOfClass:[ParserNodePropertyListTrue class] preserveChildren:YES];
-        if([name isEqualToString:@"false"])
+        }
+        if([name isEqualToString:@"false"]) {
             return [node replaceWithNodeOfClass:[ParserNodePropertyListFalse class] preserveChildren:YES];
-        if([name isEqualToString:@"real"])
+        }
+        if([name isEqualToString:@"real"]) {
             return [node replaceWithNodeOfClass:[ParserNodePropertyListReal class] preserveChildren:YES];
-        if([name isEqualToString:@"integer"])
+        }
+        if([name isEqualToString:@"integer"]) {
             return [node replaceWithNodeOfClass:[ParserNodePropertyListInteger class] preserveChildren:YES];
+        }
     }
     
     return node;

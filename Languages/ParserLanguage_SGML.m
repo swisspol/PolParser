@@ -78,8 +78,9 @@
             ParserNode* endNode = node;
             while(endNode) {
                 endNode = [endNode findNextSiblingOfClass:[ParserNodeSGMLTag class]];
-                if([endNode.name isEqualToString:sgmlNode.name])
+                if([endNode.name isEqualToString:sgmlNode.name]) {
                     break;
+                }
             }
             if(endNode) {
                 ParserNode* newNode = [[[[self class] SGMLElementClass] alloc] initWithText:node.text range:NSMakeRange(node.range.location, 0)];
@@ -109,8 +110,9 @@
                     while([attributeNode isKindOfClass:[ParserNodeText class]]) {
                         NSString* name = attributeNode.content;
                         attributeNode = [attributeNode findNextSiblingIgnoringWhitespaceAndNewline];
-                        if(attributeNode == nil)
+                        if(attributeNode == nil) {
                             break;
+                        }
                         NSString* value;
                         if([attributeNode isKindOfClass:[ParserNodeEqual class]]) {
                             attributeNode = [attributeNode findNextSiblingIgnoringWhitespaceAndNewline];
@@ -119,8 +121,9 @@
                         } else {
                             value = @""; //FIXME: Is this the best placeholder?
                         }
-                        if(dictionary == nil)
+                        if(dictionary == nil) {
                             dictionary = [[NSMutableDictionary alloc] init];
+                        }
                         [dictionary setObject:[[self class] stringWithReplacedEntities:value] forKey:[[self class] stringWithReplacedEntities:name]];
                     }
                     sgmlNode.attributes = dictionary;
@@ -179,8 +182,9 @@ PREFIX_SUFFIX_CLASS_IMPLEMENTATION(SGMLCDATA, "<![CDATA[", "]]>")
 @synthesize attributes=_attributes;
 
 + (NSUInteger) isMatchingPrefix:(const unichar*)string maxLength:(NSUInteger)maxLength {
-    if(*string != '<')
+    if(*string != '<') {
         return NSNotFound;
+    }
     
     NSUInteger length = 0;
     do {
@@ -208,32 +212,33 @@ PREFIX_SUFFIX_CLASS_IMPLEMENTATION(SGMLCDATA, "<![CDATA[", "]]>")
     if([content hasSuffix:@"/>"]) {
         _type = 0;
         content = [content substringWithRange:NSMakeRange(1, content.length - 3)];
-    }
-    else if([content hasPrefix:@"</"]) {
+    } else if([content hasPrefix:@"</"]) {
         _type = 1;
         content = [content substringWithRange:NSMakeRange(2, content.length - 3)];
-    }
-    else {
+    } else {
         _type = -1;
         content = [content substringWithRange:NSMakeRange(1, content.length - 2)];
     }
     
     NSRange range = [content rangeOfCharacterFromSet:[NSCharacterSet whitespaceAndNewlineCharacterSet] options:0 range:NSMakeRange(0, content.length)];
-    if(range.location != NSNotFound)
+    if(range.location != NSNotFound) {
         _name = [[content substringWithRange:NSMakeRange(0, range.location)] retain];
-    else
+    } else {
         _name = [content retain];
+    }
 }
 
 - (NSInteger) sgmlType {
-    if(_name == nil)
+    if(_name == nil) {
         [self _analyze];
+    }
     return _type;
 }
 
 - (NSString*) name {
-    if(_name == nil)
+    if(_name == nil) {
         [self _analyze];
+    }
     return _name;
 }
 
@@ -261,8 +266,9 @@ PREFIX_SUFFIX_CLASS_IMPLEMENTATION(SGMLCDATA, "<![CDATA[", "]]>")
     NSMutableString* string = [NSMutableString string];
     for(ParserNode* node in self.children) {
         if([node isKindOfClass:[ParserNodeSGMLTag class]] || [node isKindOfClass:[ParserNodeSGMLElement class]]
-            || [node isKindOfClass:[ParserNodeSGMLComment class]]|| [node isKindOfClass:[ParserNodeSGMLCDATA class]])
+            || [node isKindOfClass:[ParserNodeSGMLComment class]]|| [node isKindOfClass:[ParserNodeSGMLCDATA class]]) {
             continue;
+        }
         [string appendString:node.cleanContent];
     }
     return string;

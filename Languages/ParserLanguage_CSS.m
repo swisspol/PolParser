@@ -87,8 +87,9 @@
                 while(1) {
                     ParserNode* siblingNode = node.nextSibling;
                     [node removeFromParent];
-                    if(node == nextNode)
+                    if(node == nextNode) {
                         break;
+                    }
                     node = siblingNode;
                 }
             }
@@ -124,8 +125,9 @@
         --maxLength;
         while(maxLength) {
             ++length;
-            if((*string == character) && !((*(string - 1) == '\\') && (*(string - 2) != '\\')))
+            if((*string == character) && !((*(string - 1) == '\\') && (*(string - 2) != '\\'))) {
                 return length;
+            }
             ++string;
             --maxLength;
         }
@@ -174,8 +176,9 @@
         ++string;
         --maxLength;
         while(maxLength) {
-            if(IsWhitespaceOrNewline(*string))
+            if(IsWhitespaceOrNewline(*string)) {
                 return length;
+            }
             ++length;
             ++string;
             --maxLength;
@@ -195,8 +198,9 @@
 }
 
 - (NSString*) name {
-    if(_name == nil)
+    if(_name == nil) {
         _name = [[self.firstChild.content substringFromIndex:1] copy];
+    }
     return _name;
 }
 
@@ -235,8 +239,9 @@
             default: {
                 NSUInteger length = 1;
                 while(maxLength) {
-                    if(IsWhitespaceOrNewline(*string) || (length == 7))
+                    if(IsWhitespaceOrNewline(*string) || (length == 7)) {
                         return length;
+                    }
                     ++length;
                     ++string;
                     --maxLength;

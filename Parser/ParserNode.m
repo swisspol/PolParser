@@ -33,8 +33,9 @@ static IMP _cleanContentMethod = NULL;
 }
 
 + (id) allocWithZone:(NSZone*)zone {
-    if(self == [ParserNode class])
+    if(self == [ParserNode class]) {
         [NSException raise:NSInternalInconsistencyException format:@"ParserNode is an abstract class"];
+    }
     
     return [super allocWithZone:zone];
 }
@@ -69,8 +70,9 @@ static IMP _cleanContentMethod = NULL;
 }
 
 - (void) dealloc {
-    for(ParserNode* node in _children)
+    for(ParserNode* node in _children) {
         node.parent = nil;
+    }
     [_children release];
     
     [_text release];
@@ -115,8 +117,9 @@ static IMP _cleanContentMethod = NULL;
 }
 
 - (ParserNode*) previousSibling {
-    if(_parent == nil)
+    if(_parent == nil) {
         [NSException raise:NSInternalInconsistencyException format:@"%@ has no parent", self];
+    }
     
     NSArray* children = _parent.children;
     NSUInteger index = [children indexOfObject:self];
@@ -124,8 +127,9 @@ static IMP _cleanContentMethod = NULL;
 }
 
 - (ParserNode*) nextSibling {
-    if(_parent == nil)
+    if(_parent == nil) {
         [NSException raise:NSInternalInconsistencyException format:@"%@ has no parent", self];
+    }
     
     NSArray* children = _parent.children;
     NSUInteger index = [children indexOfObject:self];
@@ -134,10 +138,11 @@ static IMP _cleanContentMethod = NULL;
 
 static void _MergeChildrenContent(ParserNode* node, NSMutableString* string) {
     for(node in node.children) {
-        if(node.children)
+        if(node.children) {
             _MergeChildrenContent(node, string);
-        else
+        } else {
             [string appendString:node.content];
+        }
     }
 }
 
@@ -153,10 +158,11 @@ static void _MergeChildrenContent(ParserNode* node, NSMutableString* string) {
 
 static void _MergeChildrenCleanContent(ParserNode* node, NSMutableString* string) {
     for(node in node.children) {
-        if(node.children)
+        if(node.children) {
             _MergeChildrenCleanContent(node, string);
-        else
+        } else {
             [string appendString:node.cleanContent];
+        }
     }
 }
 
@@ -183,25 +189,29 @@ static void _MergeChildrenCleanContent(ParserNode* node, NSMutableString* string
 }
 
 - (void) removeFromParent {
-    if(_parent == nil)
+    if(_parent == nil) {
         [NSException raise:NSInternalInconsistencyException format:@"%@ has no parent", self];
+    }
     
     [_parent removeChildAtIndex:[_parent indexOfChild:self]];
 }
 
 - (NSUInteger) indexOfChild:(ParserNode*)child {
-    if(child.parent != self)
+    if(child.parent != self) {
         [NSException raise:NSInternalInconsistencyException format:@"%@ is not a child of %@", child, self];
+    }
     
     return [_children indexOfObject:child];
 }
 
 - (void) insertChild:(ParserNode*)child atIndex:(NSUInteger)index {
-    if(child.parent)
+    if(child.parent) {
         [NSException raise:NSInternalInconsistencyException format:@"%@ already has a parent", child];
+    }
     
-    if(_children == nil)
+    if(_children == nil) {
         _children = [[NSMutableArray alloc] init];
+    }
     
     [_children insertObject:child atIndex:index];
     child.parent = self;
@@ -221,15 +231,17 @@ static void _MergeChildrenCleanContent(ParserNode* node, NSMutableString* string
 }
 
 - (void) insertPreviousSibling:(ParserNode*)sibling {
-    if(_parent == nil)
+    if(_parent == nil) {
         [NSException raise:NSInternalInconsistencyException format:@"%@ has no parent", self];
+    }
     
     [_parent insertChild:sibling atIndex:[_parent indexOfChild:self]];
 }
 
 - (void) insertNextSibling:(ParserNode*)sibling {
-    if(_parent == nil)
+    if(_parent == nil) {
         [NSException raise:NSInternalInconsistencyException format:@"%@ has no parent", self];
+    }
     
     [_parent insertChild:sibling atIndex:([_parent indexOfChild:self] + 1)];
 }
@@ -245,16 +257,18 @@ static ParserNode* _ApplierFunction(ParserNode* node, void* context) {
 }
 
 - (void) replaceWithNode:(ParserNode*)node preserveChildren:(BOOL)preserveChildren {
-    if(_parent == nil)
+    if(_parent == nil) {
         [NSException raise:NSInternalInconsistencyException format:@"%@ has no parent", self];
+    }
     
     ParserNode* parent = _parent;
     NSUInteger index = [parent indexOfChild:self];
     [parent removeChildAtIndex:index];
     if(node) {
         [parent insertChild:node atIndex:index];
-        if(preserveChildren)
+        if(preserveChildren) {
             [self applyFunctionOnChildren:_ApplierFunction context:node];
+        }
     } else if(preserveChildren) {
         for(node in [_children reverseObjectEnumerator]) {
             [node removeFromParent];
@@ -274,8 +288,9 @@ static ParserNode* _ApplierFunction(ParserNode* node, void* context) {
 - (ParserNode*) findPreviousSiblingOfClass:(Class)class {
     ParserNode* node = self.previousSibling;
     while(node) {
-        if([node isKindOfClass:class])
+        if([node isKindOfClass:class]) {
             return node;
+        }
         node = node.previousSibling;
     }
     return nil;
@@ -284,8 +299,9 @@ static ParserNode* _ApplierFunction(ParserNode* node, void* context) {
 - (ParserNode*) findNextSiblingOfClass:(Class)class {
     ParserNode* node = self.nextSibling;
     while(node) {
-        if([node isKindOfClass:class])
+        if([node isKindOfClass:class]) {
             return node;
+        }
         node = node.nextSibling;
     }
     return nil;
@@ -294,8 +310,9 @@ static ParserNode* _ApplierFunction(ParserNode* node, void* context) {
 - (ParserNode*) findFirstChildOfClass:(Class)class {
     ParserNode* node = self.firstChild;
     while(node) {
-        if([node isKindOfClass:class])
+        if([node isKindOfClass:class]) {
             return node;
+        }
         node = node.nextSibling;
     }
     return nil;
@@ -304,8 +321,9 @@ static ParserNode* _ApplierFunction(ParserNode* node, void* context) {
 - (ParserNode*) findLastChildOfClass:(Class)class {
     ParserNode* node = self.lastChild;
     while(node) {
-        if([node isKindOfClass:class])
+        if([node isKindOfClass:class]) {
             return node;
+        }
         node = node.previousSibling;
     }
     return nil;
@@ -315,8 +333,9 @@ static ParserNode* _ApplierFunction(ParserNode* node, void* context) {
     ParserNode* node = self.previousSibling;
     while(node) {
         for(Class class in classes) {
-            if([node isKindOfClass:class])
+            if([node isKindOfClass:class]) {
                 return node;
+            }
         }
         node = node.previousSibling;
     }
@@ -327,8 +346,9 @@ static ParserNode* _ApplierFunction(ParserNode* node, void* context) {
     ParserNode* node = self.nextSibling;
     while(node) {
         for(Class class in classes) {
-            if([node isKindOfClass:class])
+            if([node isKindOfClass:class]) {
                 return node;
+            }
         }
         node = node.nextSibling;
     }
@@ -339,8 +359,9 @@ static ParserNode* _ApplierFunction(ParserNode* node, void* context) {
     ParserNode* node = self.firstChild;
     while(node) {
         for(Class class in classes) {
-            if([node isKindOfClass:class])
+            if([node isKindOfClass:class]) {
                 return node;
+            }
         }
         node = node.nextSibling;
     }
@@ -351,8 +372,9 @@ static ParserNode* _ApplierFunction(ParserNode* node, void* context) {
     ParserNode* node = self.lastChild;
     while(node) {
         for(Class class in classes) {
-            if([node isKindOfClass:class])
+            if([node isKindOfClass:class]) {
                 return node;
+            }
         }
         node = node.previousSibling;
     }
@@ -363,8 +385,9 @@ static ParserNode* _ApplierFunction(ParserNode* node, void* context) {
     NSUInteger depth = 0;
     ParserNode* node = self;
     while(node.parent) {
-        if(!class || [node.parent isKindOfClass:class])
+        if(!class || [node.parent isKindOfClass:class]) {
             ++depth;
+        }
         node = node.parent;
     }
     return depth;
@@ -381,11 +404,13 @@ static void _ApplyFunction(ParserNode* node, NSUInteger revision, ParserNodeAppl
             if(nodes[i].revision != revision) {
                 nodes[i].revision = revision;
                 nodes[i] = (*function)(nodes[i], context);
-                if(nodes[i] == nil)
+                if(nodes[i] == nil) {
                     continue;
+                }
             }
-            if(nodes[i].parent && nodes[i].children)
+            if(nodes[i].parent && nodes[i].children) {
                 _ApplyFunction(nodes[i], revision, function, context);
+            }
         }
     }
 }
@@ -394,8 +419,9 @@ static NSUInteger _globalRevision = 0;
 
 - (void) applyFunctionOnChildren:(ParserNodeApplierFunction)function context:(void*)context {
     NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
-    if(_children)
+    if(_children) {
         _ApplyFunction(self, ++_globalRevision, function, context);
+    }
     [pool drain];
 }
 
@@ -412,19 +438,22 @@ static void _ApplyBlock(ParserNode* node, NSUInteger revision, void (^block)(Par
             if(nodes[i].revision != revision) {
                 nodes[i].revision = revision;
                 nodes[i] = block(nodes[i]);
-                if(nodes[i] == nil)
+                if(nodes[i] == nil) {
                     continue;
+                }
             }
-            if(nodes[i].parent && nodes[i].children)
+            if(nodes[i].parent && nodes[i].children) {
                 _ApplyBlock(nodes[i], revision, block);
+            }
         }
     }
 }
 
 - (void) enumerateChildrenUsingBlock:(BOOL (^)(ParserNode* node))block {
     NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
-    if(_children)
+    if(_children) {
         _ApplyBlock(self, ++_globalRevision, block);
+    }
     [pool drain];
 }
 
@@ -455,27 +484,32 @@ static void _AppendChildrenCompactDescription(ParserNode* node, NSMutableString*
     ParserNode* lastNode = node.lastChild;
     for(node in node.children) {
         if(node.children) {
-            if(node == firstNode)
+            if(node == firstNode) {
                 [string appendString:prefix];
-            else
+            } else {
                 [string appendFormat:@"\n%@", prefix];
+            }
             _AppendChildrenCompactDescription(node, string, prefix);
-            if((node != lastNode) && (node.nextSibling.children == nil))
+            if((node != lastNode) && (node.nextSibling.children == nil)) {
                 [string appendFormat:@"\n%@%@", prefix, separator];
+            }
         } else {
-            if(node == firstNode)
+            if(node == firstNode) {
                 [string appendFormat:@"%@%@", prefix, separator];
-            if([node isMemberOfClass:[ParserNodeWhitespace class]] || [node isMemberOfClass:[ParserNodeNewline class]] || [node isMemberOfClass:[ParserNodeText class]])
+            }
+            if([node isMemberOfClass:[ParserNodeWhitespace class]] || [node isMemberOfClass:[ParserNodeNewline class]] || [node isMemberOfClass:[ParserNodeText class]]) {
                 [string appendFormat:@"%@%@", _FormatString(node.content), separator];
-            else
+            } else {
                 [string appendFormat:@"|%@|%@", _FormatString(node.content), separator];
+            }
         }
     }
 }
 
 - (NSString*) compactDescription {
-    if(_children == nil)
+    if(_children == nil) {
         return [self contentDescription];
+    }
     
     NSMutableString* string = [NSMutableString string];
     _AppendChildrenCompactDescription(self, string, @"");
@@ -485,27 +519,32 @@ static void _AppendChildrenCompactDescription(ParserNode* node, NSMutableString*
 static void _AppendNodeFullDescription(ParserNode* node, NSMutableString* string, NSString* prefix) {
     static NSString* separator = @"♢"; //0x2662
     NSString* content = (node.children ? nil : _FormatString(node.content));
-    if(content.length)
+    if(content.length) {
         [string appendFormat:@"%@[%i:%i] <%@> = %@%@%@\n", prefix, node.lines.location + 1, node.lines.location + node.lines.length, [[node class] name], separator, content, separator];
-    else
+    } else {
         [string appendFormat:@"%@[%i:%i] <%@>\n", prefix, node.lines.location + 1, node.lines.location + node.lines.length, [[node class] name]];
+    }
     
-    if([node methodForSelector:@selector(name)] != _nameMethod)
+    if([node methodForSelector:@selector(name)] != _nameMethod) {
         [string appendFormat:@"%@+ <name> = ♢%@♢\n", prefix, _FormatString(node.name)]; //0x2662
+    }
     
-    if([node methodForSelector:@selector(cleanContent)] != _cleanContentMethod)
+    if([node methodForSelector:@selector(cleanContent)] != _cleanContentMethod) {
         [string appendFormat:@"%@+ <cleaned> = ♢%@♢\n", prefix, _FormatString(node.cleanContent)]; //0x2662
+    }
     
     NSDictionary* attributes = node.attributes;
     if(attributes) {
-        for(NSString* name in attributes)
+        for(NSString* name in attributes) {
             [string appendFormat:@"%@+ ♢%@♢ = ♢%@♢\n", prefix, name, _FormatString([attributes objectForKey:name])]; //0x2662
+        }
     }
     
     if(node.children) {
         prefix = [prefix stringByAppendingString:@"|    "];
-        for(node in node.children)
+        for(node in node.children) {
             _AppendNodeFullDescription(node, string, prefix);
+        }
     }
 }
 

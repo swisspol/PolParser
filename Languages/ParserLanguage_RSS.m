@@ -64,40 +64,57 @@
     
     if([node isKindOfClass:[ParserNodeXMLElement class]]) {
         NSString* name = [node.name lowercaseString];
-        if([name isEqualToString:@"channel"])
+        if([name isEqualToString:@"channel"]) {
             return [node replaceWithNodeOfClass:[ParserNodeRSSChannel class] preserveChildren:YES];
-        if([name isEqualToString:@"item"])
+        }
+        if([name isEqualToString:@"item"]) {
             return [node replaceWithNodeOfClass:[ParserNodeRSSItem class] preserveChildren:YES];
-        if([name isEqualToString:@"category"])
+        }
+        if([name isEqualToString:@"category"]) {
             return [node replaceWithNodeOfClass:[ParserNodeRSSCategory class] preserveChildren:YES];
-        if([name isEqualToString:@"title"])
+        }
+        if([name isEqualToString:@"title"]) {
             return [node replaceWithNodeOfClass:[ParserNodeRSSTitle class] preserveChildren:YES];
-        if([name isEqualToString:@"link"])
+        }
+        if([name isEqualToString:@"link"]) {
             return [node replaceWithNodeOfClass:[ParserNodeRSSLink class] preserveChildren:YES];
-        if([name isEqualToString:@"description"])
+        }
+        if([name isEqualToString:@"description"]) {
             return [node replaceWithNodeOfClass:[ParserNodeRSSDescription class] preserveChildren:YES];
-        if([name isEqualToString:@"language"])
+        }
+        if([name isEqualToString:@"language"]) {
             return [node replaceWithNodeOfClass:[ParserNodeRSSLanguage class] preserveChildren:YES];
-        if([name isEqualToString:@"author"])
+        }
+        if([name isEqualToString:@"author"]) {
             return [node replaceWithNodeOfClass:[ParserNodeRSSAuthor class] preserveChildren:YES];
-        if([name isEqualToString:@"enclosure"])
+        }
+        if([name isEqualToString:@"enclosure"]) {
             return [node replaceWithNodeOfClass:[ParserNodeRSSEnclosure class] preserveChildren:YES];
-        if([name isEqualToString:@"guid"])
+        }
+        if([name isEqualToString:@"guid"]) {
             return [node replaceWithNodeOfClass:[ParserNodeRSSGuid class] preserveChildren:YES];
-        if([name isEqualToString:@"feed"])
+        }
+        if([name isEqualToString:@"feed"]) {
             return [node replaceWithNodeOfClass:[ParserNodeAtomFeed class] preserveChildren:YES];
-        if([name isEqualToString:@"entry"])
+        }
+        if([name isEqualToString:@"entry"]) {
             return [node replaceWithNodeOfClass:[ParserNodeAtomEntry class] preserveChildren:YES];
-        if([name isEqualToString:@"subtitle"])
+        }
+        if([name isEqualToString:@"subtitle"]) {
             return [node replaceWithNodeOfClass:[ParserNodeAtomSubtitle class] preserveChildren:YES];
-        if([name isEqualToString:@"id"])
+        }
+        if([name isEqualToString:@"id"]) {
             return [node replaceWithNodeOfClass:[ParserNodeAtomID class] preserveChildren:YES];
-        if([name isEqualToString:@"summary"])
+        }
+        if([name isEqualToString:@"summary"]) {
             return [node replaceWithNodeOfClass:[ParserNodeAtomSummary class] preserveChildren:YES];
-        if([name isEqualToString:@"name"])
+        }
+        if([name isEqualToString:@"name"]) {
             return [node replaceWithNodeOfClass:[ParserNodeAtomName class] preserveChildren:YES];
-        if([name isEqualToString:@"email"])
+        }
+        if([name isEqualToString:@"email"]) {
             return [node replaceWithNodeOfClass:[ParserNodeAtomEmail class] preserveChildren:YES];
+        }
     }
     
     return node;

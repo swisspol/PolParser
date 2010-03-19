@@ -20,10 +20,12 @@
 #import "JavaScriptBindings.h"
 
 static BOOL _ValidateResult(NSString* name, NSString* actualResult, NSString* expectedResult) {
-    if(!actualResult)
+    if(!actualResult) {
         actualResult = @"";
-    if(!expectedResult)
+    }
+    if(!expectedResult) {
         expectedResult = @"";
+    }
     if(![actualResult isEqualToString:expectedResult]) {
         NSString* expectedPath = [NSTemporaryDirectory() stringByAppendingPathComponent:[NSString stringWithFormat:@"%@ [Expected].txt", name]];
         [expectedResult writeToFile:expectedPath atomically:YES encoding:NSUTF8StringEncoding error:NULL];
@@ -56,10 +58,11 @@ int main(int argc, const char* argv[]) {
     NSMutableSet* filteredFiles = [NSMutableSet set];
     for(int i = 1; i < argc; ++i) {
         if(argv[i][0] == '-') {
-            if(strcmp(argv[i], "--skipParser") == 0)
+            if(strcmp(argv[i], "--skipParser") == 0) {
                 skipParser = YES;
-            else if(strcmp(argv[i], "--skipBindings") == 0)
+            } else if(strcmp(argv[i], "--skipBindings") == 0) {
                 skipBindings = YES;
+            }
         } else {
             [filteredFiles addObject:[NSString stringWithUTF8String:argv[i]]];
         }
@@ -68,10 +71,12 @@ int main(int argc, const char* argv[]) {
     if(!skipParser) {
         basePath = @"Parser";
         for(NSString* path in [[NSFileManager defaultManager] contentsOfDirectoryAtPath:basePath error:NULL]) {
-            if([path hasPrefix:@"."])
+            if([path hasPrefix:@"."]) {
                 continue;
-            if(filteredFiles.count && ![filteredFiles containsObject:path])
+            }
+            if(filteredFiles.count && ![filteredFiles containsObject:path]) {
                 continue;
+            }
             path = [basePath stringByAppendingPathComponent:path];
             
             NSAutoreleasePool* localPool = [[NSAutoreleasePool alloc] init];
@@ -97,8 +102,9 @@ int main(int argc, const char* argv[]) {
                                 [expected replaceOccurrencesOfString:@"\r" withString:@"\n" options:0 range:NSMakeRange(0, expected.length)];
                                 [expected replaceOccurrencesOfString:@"\n" withString:@"" options:NSAnchoredSearch range:NSMakeRange(0, expected.length)];
                                 [expected replaceOccurrencesOfString:@"\n" withString:@"" options:(NSBackwardsSearch | NSAnchoredSearch) range:NSMakeRange(0, expected.length)];
-                                if(!_ValidateResult([NSString stringWithFormat:@"%@-Compact", [path lastPathComponent]], root.compactDescription, expected))
+                                if(!_ValidateResult([NSString stringWithFormat:@"%@-Compact", [path lastPathComponent]], root.compactDescription, expected)) {
                                     success = NO;
+                                }
                             }
                             if((parts.count > 2) && [[parts objectAtIndex:2] length]) {
                                 NSMutableString* expected = [NSMutableString stringWithString:[parts objectAtIndex:2]];
@@ -168,17 +174,19 @@ int main(int argc, const char* argv[]) {
                                 if(success) {
                                     NSString* newPath = [[[[subpath stringByDeletingPathExtension] stringByDeletingPathExtension] stringByAppendingPathExtension:@"out"] stringByAppendingPathExtension:[subpath pathExtension]];
                                     NSString* expected = [NSString stringWithContentsOfFile:newPath encoding:NSUTF8StringEncoding error:NULL];
-                                    if(!_ValidateResult([newPath lastPathComponent], root.content, expected))
+                                    if(!_ValidateResult([newPath lastPathComponent], root.content, expected)) {
                                         success = NO;
+                                    }
                                 }
                             }
                             @catch(NSException* exception) {
                                 NSLog(@"<EXCEPTION \"%@\">", [exception reason]);
                             }
-                            if(success)
+                            if(success) {
                                 printf("%s | %s: ok\n", [path UTF8String], [subpath UTF8String]);
-                            else
+                            } else {
                                 printf("%s | %s: FAILED\n", [path UTF8String], [subpath UTF8String]);
+                            }
                         }
                     }
                 }

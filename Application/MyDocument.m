@@ -43,12 +43,15 @@
     NSPoint point;
     float offset;
     
-    if(backColor == nil)
+    if(backColor == nil) {
         backColor = [[NSColor colorWithDeviceRed:0.90 green:0.90 blue:0.90 alpha:1.0] retain];
-    if(lineColor == nil)
+    }
+    if(lineColor == nil) {
         lineColor = [[NSColor grayColor] retain];
-    if(attributes == nil)
+    }
+    if(attributes == nil) {
         attributes = [[NSDictionary alloc] initWithObjectsAndKeys:[NSColor darkGrayColor], NSForegroundColorAttributeName, [NSFont systemFontOfSize:10], NSFontAttributeName, nil];
+    }
     
     [backColor set];
     NSRectFill(aRect);
@@ -90,8 +93,9 @@ static NSComparisonResult _SortFunction(Class class1, Class class2, void* contex
 
 static void _FindUsedClasses(ParserNode* node, NSMutableSet* set) {
     [set addObject:[node class]];
-    for(node in node.children)
+    for(node in node.children) {
         _FindUsedClasses(node, set);
+    }
 }
 
 - (void) windowControllerDidLoadNib:(NSWindowController*)controller {
@@ -169,13 +173,15 @@ static void _FindUsedClasses(ParserNode* node, NSMutableSet* set) {
 }
 
 - (BOOL) readFromURL:(NSURL*)absoluteURL ofType:(NSString*)typeName error:(NSError**)outError {
-    if(![absoluteURL isFileURL])
+    if(![absoluteURL isFileURL]) {
         return NO;
+    }
     
     _parserRoot = [[ParserLanguage parseTextFile:[absoluteURL path] encoding:NSUTF8StringEncoding syntaxAnalysis:YES] retain];
     if(_parserRoot == nil) {
-        if(outError)
+        if(outError) {
             *outError = nil;
+        }
         return NO;
     }
     
@@ -233,8 +239,9 @@ static ParserNode* _NodeApplierFunction(ParserNode* node, void* context) {
         }
     }
     
-    for(node in node.children)
+    for(node in node.children) {
         [self _colorizeText:node attributes:attributes];
+    }
 }
 
 - (IBAction) updateColoring:(id)sender {

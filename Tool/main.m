@@ -53,11 +53,13 @@ int main(int argc, const char* argv[]) {
                 }
             }
             ++offset;
-            if(offset >= argc)
+            if(offset >= argc) {
                 break;
+            }
         }
-        if(offset < argc)
+        if(offset < argc) {
             inFile = [[NSString stringWithUTF8String:argv[offset]] stringByStandardizingPath];
+        }
     }
     if(inFile == nil) {
         printf("%s [--nodes] [--compact | --detailed] [-script JavaScriptFilePath] inFile\n", basename((char*)argv[0]));
@@ -66,25 +68,28 @@ int main(int argc, const char* argv[]) {
     
     ParserNodeRoot* root = [ParserLanguage parseTextFile:inFile encoding:NSUTF8StringEncoding syntaxAnalysis:YES];
     if(root) {
-        if(nodesOption)
+        if(nodesOption) {
             printf("%s\n", [[root.language.nodeClasses description] UTF8String]);
+        }
         
         if(optionScript) {
-            if(RunJavaScriptOnRootNode(optionScript, root))
+            if(RunJavaScriptOnRootNode(optionScript, root)) {
                 result = 0;
-            else
+            } else {
                 printf("Failed executing JavaScript\n");
+            }
         } else {
             result = 0;
         }
         
         if(result == 0) {
-            if(compactOption)
+            if(compactOption) {
                 printf("%s\n", [root.compactDescription UTF8String]);
-            else if(detailedOption)
+            } else if(detailedOption) {
                 printf("%s\n", [root.detailedDescription UTF8String]);
-            else
+            } else {
                 printf("%s\n", [root.content UTF8String]);
+            }
         }
     } else {
         printf("Failed parsing string file from \"%s\"\n", [inFile UTF8String]);

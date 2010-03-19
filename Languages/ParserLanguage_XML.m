@@ -56,8 +56,9 @@
         nil];
     }
     NSMutableString* newString = [NSMutableString stringWithString:string];
-    for(NSString* key in entities)
+    for(NSString* key in entities) {
         [newString replaceOccurrencesOfString:[entities objectForKey:key] withString:key options:0 range:NSMakeRange(0, newString.length)];
+    }
     return newString;
 }
 

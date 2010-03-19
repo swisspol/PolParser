@@ -50,8 +50,9 @@
     if(![node isKindOfClass:[ParserNodeRoot class]] && ![node.parent isKindOfClass:[ParserNodeCSVRecord class]]) {
         ParserNode* endNode = node;
         while(endNode.nextSibling) {
-            if([endNode isKindOfClass:[ParserNodeNewline class]])
+            if([endNode isKindOfClass:[ParserNodeNewline class]]) {
                 break;
+            }
             endNode = endNode.nextSibling;
         }
         
@@ -79,10 +80,12 @@
     BOOL inQuotes = NO;
     NSUInteger length = 0;
     while(maxLength) {
-        if(((*string == ',') || IsNewline(*string)) && !inQuotes)
+        if(((*string == ',') || IsNewline(*string)) && !inQuotes) {
             break;
-        if(*string == '\"')
+        }
+        if(*string == '\"') {
             inQuotes = !inQuotes;
+        }
         ++length;
         ++string;
         --maxLength;
@@ -93,10 +96,12 @@
 - (NSString*) cleanContent {
     NSMutableString* content = [NSMutableString stringWithString:self.content];
     [content replaceOccurrencesOfString:@"\"\"" withString:@"\"" options:0 range:NSMakeRange(0, content.length)];
-    if([content hasPrefix:@"\""])
+    if([content hasPrefix:@"\""]) {
         [content deleteCharactersInRange:NSMakeRange(0, 1)];
-    if([content hasSuffix:@"\""])
+    }
+    if([content hasSuffix:@"\""]) {
         [content deleteCharactersInRange:NSMakeRange(content.length - 1, 1)];
+    }
     return content;
 }
 

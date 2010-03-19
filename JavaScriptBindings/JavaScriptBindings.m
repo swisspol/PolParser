@@ -97,7 +97,7 @@ Fail:
     return JSContextGetGlobalObject(ctx); //FIXME: Returning anything but a JSObjectRef makes JavaScriptCore crash
 }
 
-static ParserNode* _NodeFunctionApplier(ParserNode* node, void* context) {
+static ParserNode* _JavaScriptNodeFunctionApplier(ParserNode* node, void* context) {
     void** params = (void**)context;
     JSContextRef ctx = params[0];
     JSObjectRef object = params[1];
@@ -105,6 +105,14 @@ static ParserNode* _NodeFunctionApplier(ParserNode* node, void* context) {
     JSValueRef value = JSObjectCallAsFunction(ctx, object, (JSObjectRef)_JSValueMakeParserNode(node, ctx), 0, NULL, NULL);
     if(!value || !JSValueIsBoolean(ctx, value) || !JSValueToBoolean(ctx, value)) {
         *successPtr = NO;
+    }
+    return node;
+}
+
+static ParserNode* _ResetNodeFunctionApplier(ParserNode* node, void* context) {
+    if(node.jsObject) {
+        JSValueUnprotect(context, node.jsObject);
+        node.jsObject = NULL;
     }
     return node;
 }
@@ -150,8 +158,10 @@ BOOL RunJavaScriptOnRootNode(NSString* script, ParserNode* root) {
                         params[0] = context;
                         params[1] = function;
                         params[2] = &success;
-                        _NodeFunctionApplier(root, params);
-                        [root applyFunctionOnChildren:_NodeFunctionApplier context:params];
+                        _JavaScriptNodeFunctionApplier(root, params);
+                        [root applyFunctionOnChildren:_JavaScriptNodeFunctionApplier context:params];
+                        _ResetNodeFunctionApplier(root, context);
+                        [root applyFunctionOnChildren:_ResetNodeFunctionApplier context:context];
                     }
                 }
                 
@@ -159,7 +169,6 @@ BOOL RunJavaScriptOnRootNode(NSString* script, ParserNode* root) {
             }
             JSGarbageCollect(context);
             JSGlobalContextRelease(context);
-            JSGarbageCollect(context);
         }
     }
     [pool release];

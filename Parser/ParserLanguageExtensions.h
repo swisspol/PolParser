@@ -60,6 +60,9 @@
 @interface ParserNodeExclamationMark : ParserNodeToken //Leaf
 @end
 
+@interface ParserNodeVerticalBar : ParserNodeToken //Leaf
+@end
+
 @interface ParserNodeTilde : ParserNodeToken //Leaf
 @end
 

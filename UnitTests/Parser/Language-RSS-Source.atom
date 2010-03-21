@@ -96,7 +96,7 @@
 |    [2:3] <Text> = ♢¶♢
 |    [3:26] <AtomFeed>
 |    + <name> = ♢feed♢
-|    + <cleaned> = ♢¶•¶→¶→¶→¶→¶→¶→¶→¶•¶→¶•¶♢
+|    + <cleaned> = ♢¶•¶→Example•Feed¶→A•subtitle.¶→¶→¶→urn:uuid:60a76c80-d399-11d9-b91C-0003939e0af6¶→2003-12-13T18:30:02Z¶→¶→→John•Doe¶→→johndoe@example.com¶→¶•¶→¶→→Atom-Powered•Robots•Run•Amok¶→→¶→→¶→→¶→→urn:uuid:1225c695-cfb8-4ebb-aaaa-80da344efa6a¶→→2003-12-13T18:30:02Z¶→→Some•text.¶→¶•¶♢
 |    + ♢xmlns♢ = ♢http://www.w3.org/2005/Atom♢
 |    |    [3:3] <XMLTag> = ♢<feed•xmlns="http://www.w3.org/2005/Atom">♢
 |    |    + <name> = ♢feed♢
@@ -167,7 +167,7 @@
 |    |    [11:11] <Indenting> = ♢→♢
 |    |    [11:14] <RSSAuthor>
 |    |    + <name> = ♢author♢
-|    |    + <cleaned> = ♢¶→→¶→→¶→♢
+|    |    + <cleaned> = ♢¶→→John•Doe¶→→johndoe@example.com¶→♢
 |    |    |    [11:11] <XMLTag> = ♢<author>♢
 |    |    |    + <name> = ♢author♢
 |    |    |    [11:12] <Text> = ♢¶♢
@@ -200,7 +200,7 @@
 |    |    [16:16] <Indenting> = ♢→♢
 |    |    [16:24] <AtomEntry>
 |    |    + <name> = ♢entry♢
-|    |    + <cleaned> = ♢¶→→¶→→¶→→¶→→¶→→¶→→¶→→¶→♢
+|    |    + <cleaned> = ♢¶→→Atom-Powered•Robots•Run•Amok¶→→¶→→¶→→¶→→urn:uuid:1225c695-cfb8-4ebb-aaaa-80da344efa6a¶→→2003-12-13T18:30:02Z¶→→Some•text.¶→♢
 |    |    |    [16:16] <XMLTag> = ♢<entry>♢
 |    |    |    + <name> = ♢entry♢
 |    |    |    [16:17] <Text> = ♢¶♢

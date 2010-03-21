@@ -323,6 +323,16 @@
 @end
 
 @implementation ParserNodeHTMLTag
+
+/* http://www.w3.org/TR/REC-html40/index/elements.html */
++ (NSSet*) emptyTags {
+    static NSSet* set = nil;
+    if(set == nil) {
+        set = [[NSSet alloc] initWithObjects:@"area", @"base", @"basefont", @"br", @"col", @"frame", @"hr", @"img", @"input", @"isindex", @"link", @"meta", @"param", nil];
+    }
+    return set;
+}
+
 @end
 
 @implementation ParserNodeHTMLComment

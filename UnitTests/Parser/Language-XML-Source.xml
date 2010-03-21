@@ -48,7 +48,7 @@
 |    [2:3] <Text> = ♢¶♢
 |    [3:10] <XMLElement>
 |    + <name> = ♢painting♢
-|    + <cleaned> = ♢¶••¶••¶••¶••¶♢
+|    + <cleaned> = ♢¶••¶••¶••This•is•Raphael's•"Foligno"•<Madonna>,•painted•in¶••¶••1511-1512.¶••¶♢
 |    |    [3:3] <XMLTag> = ♢<painting>♢
 |    |    + <name> = ♢painting♢
 |    |    [3:4] <Text> = ♢¶♢
@@ -70,7 +70,7 @@
 |    |    [6:6] <Indenting> = ♢••♢
 |    |    [6:8] <XMLElement>
 |    |    + <name> = ♢caption♢
-|    |    + <cleaned> = ♢This•is•Raphael's•"Foligno"•<Madonna>,•painted•in¶••¶••-.♢
+|    |    + <cleaned> = ♢This•is•Raphael's•"Foligno"•<Madonna>,•painted•in¶••¶••1511-1512.♢
 |    |    |    [6:6] <XMLTag> = ♢<caption>♢
 |    |    |    + <name> = ♢caption♢
 |    |    |    [6:6] <Text> = ♢This•is•Raphael's•"Foligno"•♢

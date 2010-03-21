@@ -3,7 +3,7 @@
 
 <head>
   <title>Example Web Page</title>
-  <meta http-equiv = "Content-Type" content = "text/html; charset=utf-8" />
+  <meta http-equiv = "Content-Type" content = "text/html; charset=utf-8">
 </head>
 
 <body>  
@@ -14,7 +14,7 @@
   or &quot;example.org&quot; into your web browser.</p>
 </h1>
 <p>These domain names are reserved for use in documentation and are not available 
-  for registration. See <a href="http://www.rfc-editor.org/rfc/rfc2606.txt">RFC 
+  for registration.<br>See <a href="http://www.rfc-editor.org/rfc/rfc2606.txt">RFC 
   2606</a>, Section 3.</p>
 </body>
 
@@ -32,16 +32,25 @@
 ·  ·  ·  ·  ♢|<title>|♢Example•Web•Page♢|</title>|♢
 ·  ·  ·  ♢¶♢|••|♢
 ·  ·  ·  <HTMLElement>
-·  ·  ·  ·  ♢|<meta•http-equiv•=•"Content-Type"•content•=•"text/html;•charset=utf-8"•/>|♢
+·  ·  ·  ·  ♢|<meta•http-equiv•=•"Content-Type"•content•=•"text/html;•charset=utf-8">|♢
 ·  ·  ·  ♢¶♢|</head>|♢
 ·  ·  ♢¶¶♢
 ·  ·  <HTMLElement>
-·  ·  ·  ♢|<body>|♢••¶♢|<IMG•src="image"•ismap•alt="target">|♢|</A>|♢¶♢|<H1•id=section1>|♢¶♢
+·  ·  ·  ♢|<body>|♢••¶♢
 ·  ·  ·  <HTMLElement>
-·  ·  ·  ·  ♢|<p>|♢You•have•reached•this•web•page•by•typing•♢|&quot;|♢example.com♢|&quot;|♢,¶♢|&quot;|♢example.net♢|&quot;|♢,¶♢|••|♢or•♢|&quot;|♢example.org♢|&quot;|♢•into•your•web•browser.♢|</p>|♢
-·  ·  ·  ♢¶♢|</h1>|♢¶♢
+·  ·  ·  ·  ♢|<IMG•src="image"•ismap•alt="target">|♢
+·  ·  ·  ♢|</A>|♢¶♢
 ·  ·  ·  <HTMLElement>
-·  ·  ·  ·  ♢|<p>|♢These•domain•names•are•reserved•for•use•in•documentation•and•are•not•available•¶♢|••|♢for•registration.•See•♢
+·  ·  ·  ·  ♢|<H1•id=section1>|♢¶♢
+·  ·  ·  ·  <HTMLElement>
+·  ·  ·  ·  ·  ♢|<p>|♢You•have•reached•this•web•page•by•typing•♢|&quot;|♢example.com♢|&quot;|♢,¶♢|&quot;|♢example.net♢|&quot;|♢,¶♢|••|♢or•♢|&quot;|♢example.org♢|&quot;|♢•into•your•web•browser.♢|</p>|♢
+·  ·  ·  ·  ♢¶♢|</h1>|♢
+·  ·  ·  ♢¶♢
+·  ·  ·  <HTMLElement>
+·  ·  ·  ·  ♢|<p>|♢These•domain•names•are•reserved•for•use•in•documentation•and•are•not•available•¶♢|••|♢for•registration.♢
+·  ·  ·  ·  <HTMLElement>
+·  ·  ·  ·  ·  ♢|<br>|♢
+·  ·  ·  ·  ♢See•♢
 ·  ·  ·  ·  <HTMLElement>
 ·  ·  ·  ·  ·  ♢|<a•href="http://www.rfc-editor.org/rfc/rfc2606.txt">|♢RFC•¶♢|••|♢2606♢|</a>|♢
 ·  ·  ·  ·  ♢,•Section•3.♢|</p>|♢
@@ -56,13 +65,13 @@
 |    [1:2] <Text> = ♢¶♢
 |    [2:21] <HTMLElement>
 |    + <name> = ♢HTML♢
-|    + <cleaned> = ♢¶¶¶¶¶¶♢
+|    + <cleaned> = ♢¶¶¶••Example•Web•Page¶••¶¶¶••¶¶¶You•have•reached•this•web•page•by•typing•"example.com",¶"example.net",¶••or•"example.org"•into•your•web•browser.¶¶These•domain•names•are•reserved•for•use•in•documentation•and•are•not•available•¶••for•registration.See•RFC•¶••2606,•Section•3.¶¶¶♢
 |    |    [2:2] <HTMLTag> = ♢<HTML>♢
 |    |    + <name> = ♢HTML♢
 |    |    [2:4] <Text> = ♢¶¶♢
 |    |    [4:7] <HTMLElement>
 |    |    + <name> = ♢head♢
-|    |    + <cleaned> = ♢¶••¶••¶♢
+|    |    + <cleaned> = ♢¶••Example•Web•Page¶••¶♢
 |    |    |    [4:4] <HTMLTag> = ♢<head>♢
 |    |    |    + <name> = ♢head♢
 |    |    |    [4:5] <Text> = ♢¶♢
@@ -82,7 +91,7 @@
 |    |    |    + <cleaned> = ♢♢
 |    |    |    + ♢content♢ = ♢text/html;•charset=utf-8♢
 |    |    |    + ♢http-equiv♢ = ♢Content-Type♢
-|    |    |    |    [6:6] <HTMLTag> = ♢<meta•http-equiv•=•"Content-Type"•content•=•"text/html;•charset=utf-8"•/>♢
+|    |    |    |    [6:6] <HTMLTag> = ♢<meta•http-equiv•=•"Content-Type"•content•=•"text/html;•charset=utf-8">♢
 |    |    |    |    + <name> = ♢meta♢
 |    |    |    |    + ♢content♢ = ♢text/html;•charset=utf-8♢
 |    |    |    |    + ♢http-equiv♢ = ♢Content-Type♢
@@ -92,62 +101,78 @@
 |    |    [7:9] <Text> = ♢¶¶♢
 |    |    [9:19] <HTMLElement>
 |    |    + <name> = ♢body♢
-|    |    + <cleaned> = ♢••¶¶¶¶¶¶♢
+|    |    + <cleaned> = ♢••¶¶¶You•have•reached•this•web•page•by•typing•"example.com",¶"example.net",¶••or•"example.org"•into•your•web•browser.¶¶These•domain•names•are•reserved•for•use•in•documentation•and•are•not•available•¶••for•registration.See•RFC•¶••2606,•Section•3.¶♢
 |    |    |    [9:9] <HTMLTag> = ♢<body>♢
 |    |    |    + <name> = ♢body♢
 |    |    |    [9:10] <Text> = ♢••¶♢
-|    |    |    [10:10] <HTMLTag> = ♢<IMG•src="image"•ismap•alt="target">♢
+|    |    |    [10:10] <HTMLElement>
 |    |    |    + <name> = ♢IMG♢
+|    |    |    + <cleaned> = ♢♢
 |    |    |    + ♢src♢ = ♢image♢
 |    |    |    + ♢ismap♢ = ♢♢
 |    |    |    + ♢alt♢ = ♢target♢
+|    |    |    |    [10:10] <HTMLTag> = ♢<IMG•src="image"•ismap•alt="target">♢
+|    |    |    |    + <name> = ♢IMG♢
+|    |    |    |    + ♢src♢ = ♢image♢
+|    |    |    |    + ♢ismap♢ = ♢♢
+|    |    |    |    + ♢alt♢ = ♢target♢
 |    |    |    [10:10] <HTMLTag> = ♢</A>♢
 |    |    |    + <name> = ♢A♢
 |    |    |    [10:11] <Text> = ♢¶♢
-|    |    |    [11:11] <HTMLTag> = ♢<H1•id=section1>♢
+|    |    |    [11:15] <HTMLElement>
 |    |    |    + <name> = ♢H1♢
+|    |    |    + <cleaned> = ♢¶You•have•reached•this•web•page•by•typing•"example.com",¶"example.net",¶••or•"example.org"•into•your•web•browser.¶♢
 |    |    |    + ♢id♢ = ♢section1♢
-|    |    |    [11:12] <Text> = ♢¶♢
-|    |    |    [12:14] <HTMLElement>
-|    |    |    + <name> = ♢p♢
-|    |    |    + <cleaned> = ♢You•have•reached•this•web•page•by•typing•"example.com",¶"example.net",¶••or•"example.org"•into•your•web•browser.♢
-|    |    |    |    [12:12] <HTMLTag> = ♢<p>♢
+|    |    |    |    [11:11] <HTMLTag> = ♢<H1•id=section1>♢
+|    |    |    |    + <name> = ♢H1♢
+|    |    |    |    + ♢id♢ = ♢section1♢
+|    |    |    |    [11:12] <Text> = ♢¶♢
+|    |    |    |    [12:14] <HTMLElement>
 |    |    |    |    + <name> = ♢p♢
-|    |    |    |    [12:12] <Text> = ♢You•have•reached•this•web•page•by•typing•♢
-|    |    |    |    [12:12] <HTMLEntity> = ♢&quot;♢
-|    |    |    |    + <cleaned> = ♢"♢
-|    |    |    |    [12:12] <Text> = ♢example.com♢
-|    |    |    |    [12:12] <HTMLEntity> = ♢&quot;♢
-|    |    |    |    + <cleaned> = ♢"♢
-|    |    |    |    [12:13] <Text> = ♢,¶♢
-|    |    |    |    [13:13] <HTMLEntity> = ♢&quot;♢
-|    |    |    |    + <cleaned> = ♢"♢
-|    |    |    |    [13:13] <Text> = ♢example.net♢
-|    |    |    |    [13:13] <HTMLEntity> = ♢&quot;♢
-|    |    |    |    + <cleaned> = ♢"♢
-|    |    |    |    [13:14] <Text> = ♢,¶♢
-|    |    |    |    [14:14] <Indenting> = ♢••♢
-|    |    |    |    [14:14] <Text> = ♢or•♢
-|    |    |    |    [14:14] <HTMLEntity> = ♢&quot;♢
-|    |    |    |    + <cleaned> = ♢"♢
-|    |    |    |    [14:14] <Text> = ♢example.org♢
-|    |    |    |    [14:14] <HTMLEntity> = ♢&quot;♢
-|    |    |    |    + <cleaned> = ♢"♢
-|    |    |    |    [14:14] <Text> = ♢•into•your•web•browser.♢
-|    |    |    |    [14:14] <HTMLTag> = ♢</p>♢
-|    |    |    |    + <name> = ♢p♢
-|    |    |    [14:15] <Text> = ♢¶♢
-|    |    |    [15:15] <HTMLTag> = ♢</h1>♢
-|    |    |    + <name> = ♢h1♢
+|    |    |    |    + <cleaned> = ♢You•have•reached•this•web•page•by•typing•"example.com",¶"example.net",¶••or•"example.org"•into•your•web•browser.♢
+|    |    |    |    |    [12:12] <HTMLTag> = ♢<p>♢
+|    |    |    |    |    + <name> = ♢p♢
+|    |    |    |    |    [12:12] <Text> = ♢You•have•reached•this•web•page•by•typing•♢
+|    |    |    |    |    [12:12] <HTMLEntity> = ♢&quot;♢
+|    |    |    |    |    + <cleaned> = ♢"♢
+|    |    |    |    |    [12:12] <Text> = ♢example.com♢
+|    |    |    |    |    [12:12] <HTMLEntity> = ♢&quot;♢
+|    |    |    |    |    + <cleaned> = ♢"♢
+|    |    |    |    |    [12:13] <Text> = ♢,¶♢
+|    |    |    |    |    [13:13] <HTMLEntity> = ♢&quot;♢
+|    |    |    |    |    + <cleaned> = ♢"♢
+|    |    |    |    |    [13:13] <Text> = ♢example.net♢
+|    |    |    |    |    [13:13] <HTMLEntity> = ♢&quot;♢
+|    |    |    |    |    + <cleaned> = ♢"♢
+|    |    |    |    |    [13:14] <Text> = ♢,¶♢
+|    |    |    |    |    [14:14] <Indenting> = ♢••♢
+|    |    |    |    |    [14:14] <Text> = ♢or•♢
+|    |    |    |    |    [14:14] <HTMLEntity> = ♢&quot;♢
+|    |    |    |    |    + <cleaned> = ♢"♢
+|    |    |    |    |    [14:14] <Text> = ♢example.org♢
+|    |    |    |    |    [14:14] <HTMLEntity> = ♢&quot;♢
+|    |    |    |    |    + <cleaned> = ♢"♢
+|    |    |    |    |    [14:14] <Text> = ♢•into•your•web•browser.♢
+|    |    |    |    |    [14:14] <HTMLTag> = ♢</p>♢
+|    |    |    |    |    + <name> = ♢p♢
+|    |    |    |    [14:15] <Text> = ♢¶♢
+|    |    |    |    [15:15] <HTMLTag> = ♢</h1>♢
+|    |    |    |    + <name> = ♢h1♢
 |    |    |    [15:16] <Text> = ♢¶♢
 |    |    |    [16:18] <HTMLElement>
 |    |    |    + <name> = ♢p♢
-|    |    |    + <cleaned> = ♢These•domain•names•are•reserved•for•use•in•documentation•and•are•not•available•¶••for•registration.•See•,•Section•3.♢
+|    |    |    + <cleaned> = ♢These•domain•names•are•reserved•for•use•in•documentation•and•are•not•available•¶••for•registration.See•RFC•¶••2606,•Section•3.♢
 |    |    |    |    [16:16] <HTMLTag> = ♢<p>♢
 |    |    |    |    + <name> = ♢p♢
 |    |    |    |    [16:17] <Text> = ♢These•domain•names•are•reserved•for•use•in•documentation•and•are•not•available•¶♢
 |    |    |    |    [17:17] <Indenting> = ♢••♢
-|    |    |    |    [17:17] <Text> = ♢for•registration.•See•♢
+|    |    |    |    [17:17] <Text> = ♢for•registration.♢
+|    |    |    |    [17:17] <HTMLElement>
+|    |    |    |    + <name> = ♢br♢
+|    |    |    |    + <cleaned> = ♢♢
+|    |    |    |    |    [17:17] <HTMLTag> = ♢<br>♢
+|    |    |    |    |    + <name> = ♢br♢
+|    |    |    |    [17:17] <Text> = ♢See•♢
 |    |    |    |    [17:18] <HTMLElement>
 |    |    |    |    + <name> = ♢a♢
 |    |    |    |    + <cleaned> = ♢RFC•¶••2606♢

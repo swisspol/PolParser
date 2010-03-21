@@ -19,6 +19,13 @@
 #import "Parser_Internal.h"
 #import "ParserLanguage_SGML.h"
 
+enum {
+    kSGMLType_Endless = -2,
+    kSGMLType_Empty = -1,
+    kSGMLType_Start = 0,
+    kSGMLType_End = 1
+};
+
 @interface ParserNodeSGMLTag ()
 @property(nonatomic, readonly) NSInteger sgmlType;
 @property(nonatomic, retain) NSDictionary* attributes;
@@ -68,17 +75,17 @@
     
     if([node isKindOfClass:[ParserNodeSGMLTag class]]) {
         ParserNodeSGMLTag* sgmlNode = (ParserNodeSGMLTag*)node;
-        if(sgmlNode.sgmlType == 0) {
+        if(sgmlNode.sgmlType < 0) {
             ParserNode* newNode = [[[[self class] SGMLElementClass] alloc] initWithText:node.text range:NSMakeRange(node.range.location, 0)];
             [node insertPreviousSibling:newNode];
             [newNode release];
             
             _RearrangeNodesAsParentAndChildren(newNode, node);
-        } else if(sgmlNode.sgmlType < 0) {
-            ParserNode* endNode = node;
+        } else if(sgmlNode.sgmlType == kSGMLType_Start) {
+            ParserNodeSGMLTag* endNode = sgmlNode;
             while(endNode) {
-                endNode = [endNode findNextSiblingOfClass:[ParserNodeSGMLTag class]];
-                if([endNode.name isEqualToString:sgmlNode.name]) {
+                endNode = (ParserNodeSGMLTag*)[endNode findNextSiblingOfClass:[ParserNodeSGMLTag class]];
+                if((endNode.sgmlType == kSGMLType_End) && ([endNode.name caseInsensitiveCompare:sgmlNode.name] == NSOrderedSame)) {
                     break;
                 }
             }
@@ -91,8 +98,8 @@
             }
         }
         
-        if(sgmlNode.sgmlType <= 0) {
-            NSRange range = NSMakeRange(sgmlNode.range.location + 1 + sgmlNode.name.length, sgmlNode.range.length - sgmlNode.name.length - (sgmlNode.sgmlType ? 2 : 3));
+        if(sgmlNode.sgmlType != kSGMLType_End) {
+            NSRange range = NSMakeRange(sgmlNode.range.location + 1 + sgmlNode.name.length, sgmlNode.range.length - 1 - sgmlNode.name.length - (sgmlNode.sgmlType == kSGMLType_Empty ? 2 : 1));
             if(range.length > 0) {
                 static NSMutableArray* classes = nil;
                 if(classes == nil) {
@@ -181,6 +188,10 @@ PREFIX_SUFFIX_CLASS_IMPLEMENTATION(SGMLCDATA, "<![CDATA[", "]]>")
 
 @synthesize attributes=_attributes;
 
++ (NSSet*) emptyTags {
+  return nil;
+}
+
 + (NSUInteger) isMatchingPrefix:(const unichar*)string maxLength:(NSUInteger)maxLength {
     if(*string != '<') {
         return NSNotFound;
@@ -209,22 +220,28 @@ PREFIX_SUFFIX_CLASS_IMPLEMENTATION(SGMLCDATA, "<![CDATA[", "]]>")
 - (void) _analyze {
     NSString* content = self.content;
     
+    NSRange range;
     if([content hasSuffix:@"/>"]) {
-        _type = 0;
-        content = [content substringWithRange:NSMakeRange(1, content.length - 3)];
+        _type = kSGMLType_Empty;
+        range = NSMakeRange(1, content.length - 3);
     } else if([content hasPrefix:@"</"]) {
-        _type = 1;
-        content = [content substringWithRange:NSMakeRange(2, content.length - 3)];
+        _type = kSGMLType_End;
+        range = NSMakeRange(2, content.length - 3);
     } else {
-        _type = -1;
-        content = [content substringWithRange:NSMakeRange(1, content.length - 2)];
+        _type = kSGMLType_Start;
+        range = NSMakeRange(1, content.length - 2);
     }
     
-    NSRange range = [content rangeOfCharacterFromSet:[NSCharacterSet whitespaceAndNewlineCharacterSet] options:0 range:NSMakeRange(0, content.length)];
-    if(range.location != NSNotFound) {
-        _name = [[content substringWithRange:NSMakeRange(0, range.location)] retain];
+    NSRange subrange = [content rangeOfCharacterFromSet:[NSCharacterSet whitespaceAndNewlineCharacterSet] options:0 range:range];
+    if(subrange.location != NSNotFound) {
+        _name = [[content substringWithRange:NSMakeRange(range.location, subrange.location - range.location)] retain];
     } else {
-        _name = [content retain];
+        _name = [[content substringWithRange:range] retain];
+    }
+    
+    NSSet* set = [[self class] emptyTags];
+    if(set && [set containsObject:[_name lowercaseString]]) {
+        _type = kSGMLType_Endless;
     }
 }
 
@@ -265,8 +282,7 @@ PREFIX_SUFFIX_CLASS_IMPLEMENTATION(SGMLCDATA, "<![CDATA[", "]]>")
 - (NSString*) cleanContent {
     NSMutableString* string = [NSMutableString string];
     for(ParserNode* node in self.children) {
-        if([node isKindOfClass:[ParserNodeSGMLTag class]] || [node isKindOfClass:[ParserNodeSGMLElement class]]
-            || [node isKindOfClass:[ParserNodeSGMLComment class]]|| [node isKindOfClass:[ParserNodeSGMLCDATA class]]) {
+        if([node isKindOfClass:[ParserNodeSGMLTag class]] || [node isKindOfClass:[ParserNodeSGMLComment class]]|| [node isKindOfClass:[ParserNodeSGMLCDATA class]]) {
             continue;
         }
         [string appendString:node.cleanContent];

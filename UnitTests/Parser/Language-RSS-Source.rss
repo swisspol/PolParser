@@ -262,7 +262,7 @@
 [1:73] <Root>
 |    [1:71] <XMLElement>
 |    + <name> = ♢rss♢
-|    + <cleaned> = ♢¶••¶♢
+|    + <cleaned> = ♢¶••¶••••Current•headlines•from•the•Dallas•Times-Herald•newspaper¶••••http://dallas.example.com¶••••Dallas•Times-Herald¶••••Media¶••••Texas¶••••¶••••Copyright•2006•Dallas•Times-Herald¶••••http://www.rssboard.org/rss-specification¶••••Radio•UserLand•v8.2.1¶••••¶••••••http://dallas.example.com¶••••••Dallas•Times-Herald¶••••••http://dallas.example.com/masthead.gif¶••••••Read•the•Dallas•Times-Herald¶••••••32¶••••••96¶••••¶••••epo¶••••Sun,•29•Jan•2006•17:17:44•GMT¶••••jlehrer@dallas.example.com•(Jim•Lehrer)¶••••Sun,•29•Jan•2006•05:00:00•GMT¶••••(PICS-1.1•"http://www.rsac.org/ratingsv01.html"•l•by•"webmaster@example.com"•on•"2006.01.29T10:09-0800"•r•(n•0•s•0•v•0•l•0))¶••••¶••••••Saturday¶••••••Sunday¶••••¶••••¶••••••0¶••••••1¶••••••2¶••••••22¶••••••23¶••••¶••••¶••••••Your•aggregator•supports•the•textInput•element.•What•software•are•you•using?¶••••••http://www.cadenhead.org/textinput.php¶••••••query¶••••••TextInput•Inquiry¶••••¶••••60¶••••helpdesk@dallas.example.com¶••••¶••••••Seventh•Heaven!•Ryan•Hurls•Another•No•Hitter¶••••••http://dallas.example.com/1991/05/02/nolan.htm¶••••••Texas•Rangers•pitcher•Nolan•Ryan•hurled•the•seventh•no-hitter•of•his•legendary•career•on•Arlington•Appreciation•Night,•defeating•the•Toronto•Blue•Jays•3-0.•The•44-year-old•struck•out•16•batters•before•a•crowd•of•33,439.¶••••••http://dallas.example.com/1991/05/02/nolan.htm••••••¶••••¶••••¶••••••jbb@dallas.example.com•(Joe•Bob•Briggs)¶••••••rec.arts.movies.reviews¶••••••http://dallas.example.com/feedback/1983/06/joebob.htm¶••••••I'm•headed•for•France.•I•wasn't•gonna•go•this•year,•but•then•last•week•"Valley•Girl"•came•out•and•I•said•to•myself,•Joe•Bob,•you•gotta•get•out•of•the•country•for•a•while.¶••••••¶••••••http://dallas.example.com/1983/05/06/joebob.htm¶••••••http://dallas.example.com/1983/05/06/joebob.htm¶••••••Fri,•06•May•1983•09:00:00•CST¶••••••Los•Angeles•Herald-Examiner¶••••••Joe•Bob•Goes•to•the•Drive-In¶••••¶••••¶••••••I'm•headed•for•France.•I•wasn't•gonna•go•this•year,•but•then•last•week•<a•href="http://www.imdb.com/title/tt0086525/">Valley•Girl</a>•came•out•and•I•said•to•myself,•Joe•Bob,•you•gotta•get•out•of•the•country•for•a•while.¶••••••tag:dallas.example.com,4131:news¶••••¶••••¶••••••••••••¶••••••1983-05-06+lifestyle+joebob+2¶••••••••¶••¶♢
 |    + ♢version♢ = ♢2.0♢
 |    |    [1:1] <XMLTag> = ♢<rss•version="2.0">♢
 |    |    + <name> = ♢rss♢
@@ -271,7 +271,7 @@
 |    |    [2:2] <Indenting> = ♢••♢
 |    |    [2:70] <RSSChannel>
 |    |    + <name> = ♢channel♢
-|    |    + <cleaned> = ♢¶••••¶••••¶••••¶••••¶••••¶••••¶••••¶••••¶••••¶••••¶••••¶••••¶••••¶••••¶••••¶••••¶••••¶••••¶••••¶••••¶••••¶••••¶••••¶••••••••¶••♢
+|    |    + <cleaned> = ♢¶••••Current•headlines•from•the•Dallas•Times-Herald•newspaper¶••••http://dallas.example.com¶••••Dallas•Times-Herald¶••••Media¶••••Texas¶••••¶••••Copyright•2006•Dallas•Times-Herald¶••••http://www.rssboard.org/rss-specification¶••••Radio•UserLand•v8.2.1¶••••¶••••••http://dallas.example.com¶••••••Dallas•Times-Herald¶••••••http://dallas.example.com/masthead.gif¶••••••Read•the•Dallas•Times-Herald¶••••••32¶••••••96¶••••¶••••epo¶••••Sun,•29•Jan•2006•17:17:44•GMT¶••••jlehrer@dallas.example.com•(Jim•Lehrer)¶••••Sun,•29•Jan•2006•05:00:00•GMT¶••••(PICS-1.1•"http://www.rsac.org/ratingsv01.html"•l•by•"webmaster@example.com"•on•"2006.01.29T10:09-0800"•r•(n•0•s•0•v•0•l•0))¶••••¶••••••Saturday¶••••••Sunday¶••••¶••••¶••••••0¶••••••1¶••••••2¶••••••22¶••••••23¶••••¶••••¶••••••Your•aggregator•supports•the•textInput•element.•What•software•are•you•using?¶••••••http://www.cadenhead.org/textinput.php¶••••••query¶••••••TextInput•Inquiry¶••••¶••••60¶••••helpdesk@dallas.example.com¶••••¶••••••Seventh•Heaven!•Ryan•Hurls•Another•No•Hitter¶••••••http://dallas.example.com/1991/05/02/nolan.htm¶••••••Texas•Rangers•pitcher•Nolan•Ryan•hurled•the•seventh•no-hitter•of•his•legendary•career•on•Arlington•Appreciation•Night,•defeating•the•Toronto•Blue•Jays•3-0.•The•44-year-old•struck•out•16•batters•before•a•crowd•of•33,439.¶••••••http://dallas.example.com/1991/05/02/nolan.htm••••••¶••••¶••••¶••••••jbb@dallas.example.com•(Joe•Bob•Briggs)¶••••••rec.arts.movies.reviews¶••••••http://dallas.example.com/feedback/1983/06/joebob.htm¶••••••I'm•headed•for•France.•I•wasn't•gonna•go•this•year,•but•then•last•week•"Valley•Girl"•came•out•and•I•said•to•myself,•Joe•Bob,•you•gotta•get•out•of•the•country•for•a•while.¶••••••¶••••••http://dallas.example.com/1983/05/06/joebob.htm¶••••••http://dallas.example.com/1983/05/06/joebob.htm¶••••••Fri,•06•May•1983•09:00:00•CST¶••••••Los•Angeles•Herald-Examiner¶••••••Joe•Bob•Goes•to•the•Drive-In¶••••¶••••¶••••••I'm•headed•for•France.•I•wasn't•gonna•go•this•year,•but•then•last•week•<a•href="http://www.imdb.com/title/tt0086525/">Valley•Girl</a>•came•out•and•I•said•to•myself,•Joe•Bob,•you•gotta•get•out•of•the•country•for•a•while.¶••••••tag:dallas.example.com,4131:news¶••••¶••••¶••••••••••••¶••••••1983-05-06+lifestyle+joebob+2¶••••••••¶••♢
 |    |    |    [2:2] <XMLTag> = ♢<channel>♢
 |    |    |    + <name> = ♢channel♢
 |    |    |    [2:3] <Text> = ♢¶♢
@@ -377,7 +377,7 @@
 |    |    |    [12:12] <Indenting> = ♢••••♢
 |    |    |    [12:19] <XMLElement>
 |    |    |    + <name> = ♢image♢
-|    |    |    + <cleaned> = ♢¶••••••¶••••••¶••••••¶••••••¶••••••¶••••••¶••••♢
+|    |    |    + <cleaned> = ♢¶••••••http://dallas.example.com¶••••••Dallas•Times-Herald¶••••••http://dallas.example.com/masthead.gif¶••••••Read•the•Dallas•Times-Herald¶••••••32¶••••••96¶••••♢
 |    |    |    |    [12:12] <XMLTag> = ♢<image>♢
 |    |    |    |    + <name> = ♢image♢
 |    |    |    |    [12:13] <Text> = ♢¶♢
@@ -498,7 +498,7 @@
 |    |    |    [25:25] <Indenting> = ♢••••♢
 |    |    |    [25:28] <XMLElement>
 |    |    |    + <name> = ♢skipDays♢
-|    |    |    + <cleaned> = ♢¶••••••¶••••••¶••••♢
+|    |    |    + <cleaned> = ♢¶••••••Saturday¶••••••Sunday¶••••♢
 |    |    |    |    [25:25] <XMLTag> = ♢<skipDays>♢
 |    |    |    |    + <name> = ♢skipDays♢
 |    |    |    |    [25:26] <Text> = ♢¶♢
@@ -529,7 +529,7 @@
 |    |    |    [29:29] <Indenting> = ♢••••♢
 |    |    |    [29:35] <XMLElement>
 |    |    |    + <name> = ♢skipHours♢
-|    |    |    + <cleaned> = ♢¶••••••¶••••••¶••••••¶••••••¶••••••¶••••♢
+|    |    |    + <cleaned> = ♢¶••••••0¶••••••1¶••••••2¶••••••22¶••••••23¶••••♢
 |    |    |    |    [29:29] <XMLTag> = ♢<skipHours>♢
 |    |    |    |    + <name> = ♢skipHours♢
 |    |    |    |    [29:30] <Text> = ♢¶♢
@@ -590,7 +590,7 @@
 |    |    |    [36:36] <Indenting> = ♢••••♢
 |    |    |    [36:41] <XMLElement>
 |    |    |    + <name> = ♢textInput♢
-|    |    |    + <cleaned> = ♢¶••••••¶••••••¶••••••¶••••••¶••••♢
+|    |    |    + <cleaned> = ♢¶••••••Your•aggregator•supports•the•textInput•element.•What•software•are•you•using?¶••••••http://www.cadenhead.org/textinput.php¶••••••query¶••••••TextInput•Inquiry¶••••♢
 |    |    |    |    [36:36] <XMLTag> = ♢<textInput>♢
 |    |    |    |    + <name> = ♢textInput♢
 |    |    |    |    [36:37] <Text> = ♢¶♢
@@ -661,7 +661,7 @@
 |    |    |    [44:44] <Indenting> = ♢••••♢
 |    |    |    [44:49] <RSSItem>
 |    |    |    + <name> = ♢item♢
-|    |    |    + <cleaned> = ♢¶••••••¶••••••¶••••••¶••••••••••••¶••••♢
+|    |    |    + <cleaned> = ♢¶••••••Seventh•Heaven!•Ryan•Hurls•Another•No•Hitter¶••••••http://dallas.example.com/1991/05/02/nolan.htm¶••••••Texas•Rangers•pitcher•Nolan•Ryan•hurled•the•seventh•no-hitter•of•his•legendary•career•on•Arlington•Appreciation•Night,•defeating•the•Toronto•Blue•Jays•3-0.•The•44-year-old•struck•out•16•batters•before•a•crowd•of•33,439.¶••••••http://dallas.example.com/1991/05/02/nolan.htm••••••¶••••♢
 |    |    |    |    [44:44] <XMLTag> = ♢<item>♢
 |    |    |    |    + <name> = ♢item♢
 |    |    |    |    [44:45] <Text> = ♢¶♢
@@ -712,7 +712,7 @@
 |    |    |    [50:50] <Indenting> = ♢••••♢
 |    |    |    [50:61] <RSSItem>
 |    |    |    + <name> = ♢item♢
-|    |    |    + <cleaned> = ♢¶••••••¶••••••¶••••••¶••••••¶••••••¶••••••¶••••••¶••••••¶••••••¶••••••¶••••♢
+|    |    |    + <cleaned> = ♢¶••••••jbb@dallas.example.com•(Joe•Bob•Briggs)¶••••••rec.arts.movies.reviews¶••••••http://dallas.example.com/feedback/1983/06/joebob.htm¶••••••I'm•headed•for•France.•I•wasn't•gonna•go•this•year,•but•then•last•week•"Valley•Girl"•came•out•and•I•said•to•myself,•Joe•Bob,•you•gotta•get•out•of•the•country•for•a•while.¶••••••¶••••••http://dallas.example.com/1983/05/06/joebob.htm¶••••••http://dallas.example.com/1983/05/06/joebob.htm¶••••••Fri,•06•May•1983•09:00:00•CST¶••••••Los•Angeles•Herald-Examiner¶••••••Joe•Bob•Goes•to•the•Drive-In¶••••♢
 |    |    |    |    [50:50] <XMLTag> = ♢<item>♢
 |    |    |    |    + <name> = ♢item♢
 |    |    |    |    [50:51] <Text> = ♢¶♢
@@ -828,7 +828,7 @@
 |    |    |    [62:62] <Indenting> = ♢••••♢
 |    |    |    [62:65] <RSSItem>
 |    |    |    + <name> = ♢item♢
-|    |    |    + <cleaned> = ♢¶••••••¶••••••¶••••♢
+|    |    |    + <cleaned> = ♢¶••••••I'm•headed•for•France.•I•wasn't•gonna•go•this•year,•but•then•last•week•<a•href="http://www.imdb.com/title/tt0086525/">Valley•Girl</a>•came•out•and•I•said•to•myself,•Joe•Bob,•you•gotta•get•out•of•the•country•for•a•while.¶••••••tag:dallas.example.com,4131:news¶••••♢
 |    |    |    |    [62:62] <XMLTag> = ♢<item>♢
 |    |    |    |    + <name> = ♢item♢
 |    |    |    |    [62:63] <Text> = ♢¶♢
@@ -873,7 +873,7 @@
 |    |    |    [66:66] <Indenting> = ♢••••♢
 |    |    |    [66:69] <RSSItem>
 |    |    |    + <name> = ♢item♢
-|    |    |    + <cleaned> = ♢¶••••••••••••¶••••••¶••••♢
+|    |    |    + <cleaned> = ♢¶••••••••••••¶••••••1983-05-06+lifestyle+joebob+2¶••••♢
 |    |    |    |    [66:66] <XMLTag> = ♢<item>♢
 |    |    |    |    + <name> = ♢item♢
 |    |    |    |    [66:67] <Text> = ♢¶♢

@@ -431,7 +431,7 @@ static void _GetPropertyNamesCallback(JSContextRef ctx, JSObjectRef object, JSPr
     CFIndex count = node.children.count + 1;
     if(count > CFArrayGetCount(cache)) {
         for(CFIndex index = CFArrayGetCount(cache); index < count; ++index) {
-            CFStringRef string = CFStringCreateWithFormat(kCFAllocatorDefault, NULL, CFSTR("%i"), index);
+            CFStringRef string = CFStringCreateWithFormat(kCFAllocatorDefault, NULL, CFSTR("%lii"), index);
             CFArrayAppendValue(cache, string);
             CFRelease(string);
         }

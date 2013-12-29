@@ -428,7 +428,7 @@ static NSUInteger _globalRevision = 0;
 #if NS_BLOCKS_AVAILABLE
 
 /* WARNING: Keep in sync with _ApplyFunction() */
-static void _ApplyBlock(ParserNode* node, NSUInteger revision, void (^block)(ParserNode* node)) {
+static void _ApplyBlock(ParserNode* node, NSUInteger revision, ParserNode* (^block)(ParserNode* node)) {
     NSUInteger count = node.children.count;
     ParserNode* nodes[count];
     [node.children getObjects:nodes];
@@ -449,7 +449,7 @@ static void _ApplyBlock(ParserNode* node, NSUInteger revision, void (^block)(Par
     }
 }
 
-- (void) enumerateChildrenUsingBlock:(BOOL (^)(ParserNode* node))block {
+- (void) enumerateChildrenUsingBlock:(ParserNode* (^)(ParserNode* node))block {
     NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
     if(_children) {
         _ApplyBlock(self, ++_globalRevision, block);
@@ -520,9 +520,9 @@ static void _AppendNodeFullDescription(ParserNode* node, NSMutableString* string
     static NSString* separator = @"♢"; //0x2662
     NSString* content = (node.children ? nil : _FormatString(node.content));
     if(content.length) {
-        [string appendFormat:@"%@[%i:%i] <%@> = %@%@%@\n", prefix, node.lines.location + 1, node.lines.location + node.lines.length, [[node class] name], separator, content, separator];
+        [string appendFormat:@"%@[%lu:%lu] <%@> = %@%@%@\n", prefix, node.lines.location + 1, node.lines.location + node.lines.length, [[node class] name], separator, content, separator];
     } else {
-        [string appendFormat:@"%@[%i:%i] <%@>\n", prefix, node.lines.location + 1, node.lines.location + node.lines.length, [[node class] name]];
+        [string appendFormat:@"%@[%lu:%lu] <%@>\n", prefix, node.lines.location + 1, node.lines.location + node.lines.length, [[node class] name]];
     }
     
     if([node methodForSelector:@selector(name)] != _nameMethod) {
@@ -556,7 +556,7 @@ static void _AppendNodeFullDescription(ParserNode* node, NSMutableString* string
 }
 
 - (NSString*) description {
-    return [NSString stringWithFormat:@"<%@ = %p | characters = [%i, %i] | lines = [%i:%i]>", [self class], self, self.range.location, self.range.length, self.lines.location + 1, self.lines.location + self.lines.length];
+    return [NSString stringWithFormat:@"<%@ = %p | characters = [%lu, %lu] | lines = [%lu:%lu]>", [self class], self, (unsigned long)self.range.location, self.range.length, self.lines.location + 1, self.lines.location + self.lines.length];
 }
 
 @end

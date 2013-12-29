@@ -151,7 +151,7 @@ static void _FindUsedClasses(ParserNode* node, NSMutableSet* set) {
         [_buttons addObject:button];
         offset += button.frame.size.width + 10;
         
-        [_colors setObject:[NSColor colorWithDeviceHue:hue saturation:0.2 brightness:0.9 alpha:1.0] forKey:nodeClass];
+        [_colors setObject:[NSColor colorWithDeviceHue:hue saturation:0.2 brightness:0.9 alpha:1.0] forKey:(id)nodeClass];
         hue += 1.0 / (CGFloat)nodeClasses.count;
     }
     [[scrollView documentView] setFrameSize:NSMakeSize(offset, [scrollView contentView].frame.size.height)];
@@ -249,7 +249,7 @@ static ParserNode* _NodeApplierFunction(ParserNode* node, void* context) {
     for(NSButton* button in _buttons) {
         if([button state] == NSOnState) {
             Class nodeClass = (Class)[button tag];
-            [attributes setObject:[_colors objectForKey:nodeClass] forKey:nodeClass];
+            [attributes setObject:[_colors objectForKey:nodeClass] forKey:(id)nodeClass];
         }
     }
     

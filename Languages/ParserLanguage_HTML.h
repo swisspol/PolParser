@@ -16,23 +16,22 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#import <Cocoa/Cocoa.h>
+#import "ParserLanguage_SGML.h"
 
-#import "ParserLanguage.h"
+@interface ParserNodeHTMLTag : ParserNodeSGMLTag
+@end
 
-@interface MyDocument : NSDocument
-{
-    NSTextView* _textView;
-    NSPathControl* _pathControl;
-    NSButton* _coloringButton;
-    
-    ParserNodeRoot* _parserRoot;
-    NSMutableArray* _buttons;
-    NSMutableDictionary* _colors;
-    //NSRange _lastRange;
-}
-@property(nonatomic, assign) IBOutlet NSTextView* textView;
-@property(nonatomic, assign) IBOutlet NSPathControl* pathControl;
-@property(nonatomic, assign) IBOutlet NSButton* coloringButton;
-- (IBAction) updateColoring:(id)sender;
+@interface ParserNodeHTMLComment : ParserNodeSGMLComment
+@end
+
+@interface ParserNodeHTMLCDATA : ParserNodeSGMLCDATA
+@end
+
+@interface ParserNodeHTMLDOCTYPE : ParserNodeSGMLDOCTYPE
+@end
+
+@interface ParserNodeHTMLEntity : ParserNodeSGMLEntity
+@end
+
+@interface ParserNodeHTMLElement : ParserNodeSGMLElement
 @end

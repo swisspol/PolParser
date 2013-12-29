@@ -43,12 +43,15 @@
     NSPoint point;
     float offset;
     
-    if(backColor == nil)
-    	backColor = [[NSColor colorWithDeviceRed:0.90 green:0.90 blue:0.90 alpha:1.0] retain];
-    if(lineColor == nil)
-    	lineColor = [[NSColor grayColor] retain];
-    if(attributes == nil)
-    	attributes = [[NSDictionary alloc] initWithObjectsAndKeys:[NSColor darkGrayColor], NSForegroundColorAttributeName, [NSFont systemFontOfSize:10], NSFontAttributeName, nil];
+    if(backColor == nil) {
+        backColor = [[NSColor colorWithDeviceRed:0.90 green:0.90 blue:0.90 alpha:1.0] retain];
+    }
+    if(lineColor == nil) {
+        lineColor = [[NSColor grayColor] retain];
+    }
+    if(attributes == nil) {
+        attributes = [[NSDictionary alloc] initWithObjectsAndKeys:[NSColor darkGrayColor], NSForegroundColorAttributeName, [NSFont systemFontOfSize:10], NSFontAttributeName, nil];
+    }
     
     [backColor set];
     NSRectFill(aRect);
@@ -71,7 +74,7 @@
 @synthesize textView=_textView, pathControl=_pathControl, coloringButton=_coloringButton;
 
 - (void) dealloc {
-    [_sourceRoot release];
+    [_parserRoot release];
     [_buttons release];
     [_colors release];
     
@@ -88,10 +91,11 @@ static NSComparisonResult _SortFunction(Class class1, Class class2, void* contex
     return [name1 caseInsensitiveCompare:name2];
 }
 
-static void _FindUsedClasses(SourceNode* node, NSMutableSet* set) {
+static void _FindUsedClasses(ParserNode* node, NSMutableSet* set) {
     [set addObject:[node class]];
-    for(node in node.children)
+    for(node in node.children) {
         _FindUsedClasses(node, set);
+    }
 }
 
 - (void) windowControllerDidLoadNib:(NSWindowController*)controller {
@@ -136,7 +140,7 @@ static void _FindUsedClasses(SourceNode* node, NSMutableSet* set) {
     _colors = [[NSMutableDictionary alloc] init];
     CGFloat offset = 10;
     CGFloat hue = 0.0;
-    NSArray* nodeClasses = [[[_sourceRoot language] nodeClasses] sortedArrayUsingFunction:_SortFunction context:NULL];
+    NSArray* nodeClasses = [_parserRoot.language.nodeClasses sortedArrayUsingFunction:_SortFunction context:NULL];
     for(Class nodeClass in nodeClasses) {
         NSButton* button = [NSKeyedUnarchiver unarchiveObjectWithData:data];
         [button setTag:(NSInteger)nodeClass];
@@ -147,19 +151,19 @@ static void _FindUsedClasses(SourceNode* node, NSMutableSet* set) {
         [_buttons addObject:button];
         offset += button.frame.size.width + 10;
         
-        [_colors setObject:[NSColor colorWithDeviceHue:hue saturation:0.2 brightness:0.9 alpha:1.0] forKey:nodeClass];
+        [_colors setObject:[NSColor colorWithDeviceHue:hue saturation:0.2 brightness:0.9 alpha:1.0] forKey:(id)nodeClass];
         hue += 1.0 / (CGFloat)nodeClasses.count;
     }
     [[scrollView documentView] setFrameSize:NSMakeSize(offset, [scrollView contentView].frame.size.height)];
     
     NSMutableSet* usedClasses = [NSMutableSet set];
-    _FindUsedClasses(_sourceRoot, usedClasses);
+    _FindUsedClasses(_parserRoot, usedClasses);
     for(NSButton* button in _buttons) {
         Class nodeClass = (Class)[button tag];
         [button setEnabled:[usedClasses containsObject:nodeClass]];
     }
     
-    _textView.string = [_sourceRoot source];
+    _textView.string = _parserRoot.text;
     [self updateColoring:nil];
     
     NSTrackingArea* area = [[NSTrackingArea alloc] initWithRect:NSZeroRect options:(NSTrackingMouseEnteredAndExited | NSTrackingMouseMoved | NSTrackingActiveAlways | NSTrackingInVisibleRect) owner:self userInfo:nil];
@@ -169,13 +173,15 @@ static void _FindUsedClasses(SourceNode* node, NSMutableSet* set) {
 }
 
 - (BOOL) readFromURL:(NSURL*)absoluteURL ofType:(NSString*)typeName error:(NSError**)outError {
-    if(![absoluteURL isFileURL])
+    if(![absoluteURL isFileURL]) {
         return NO;
+    }
     
-    _sourceRoot = [[SourceLanguage parseSourceFile:[absoluteURL path] encoding:NSUTF8StringEncoding syntaxAnalysis:YES] retain];
-    if(_sourceRoot == nil) {
-        if(outError)
+    _parserRoot = [[ParserLanguage parseTextFile:[absoluteURL path] encoding:NSUTF8StringEncoding syntaxAnalysis:YES] retain];
+    if(_parserRoot == nil) {
+        if(outError) {
             *outError = nil;
+        }
         return NO;
     }
     
@@ -186,11 +192,11 @@ static void _FindUsedClasses(SourceNode* node, NSMutableSet* set) {
     [_pathControl setObjectValue:@"/"];
 }
 
-static SourceNode* _NodeApplierFunction(SourceNode* node, void* context) {
+static ParserNode* _NodeApplierFunction(ParserNode* node, void* context) {
     void** params = (void**)context;
     NSUInteger index = (NSUInteger)params[0];
     if((index >= node.range.location) && (index < node.range.location + node.range.length)) {
-        SourceNode** nodePtr = params[1];
+        ParserNode** nodePtr = params[1];
         *nodePtr = node;
     }
     return node;
@@ -204,10 +210,10 @@ static SourceNode* _NodeApplierFunction(SourceNode* node, void* context) {
     
     void* params[2];
     NSUInteger index = [_textView characterIndexForInsertionAtPoint:[_textView convertPoint:theEvent.locationInWindow fromView:nil]];
-    SourceNode* node = _sourceRoot;
+    ParserNode* node = _parserRoot;
     params[0] = (void*)index;
     params[1] = &node;
-    [_sourceRoot applyFunctionOnChildren:_NodeApplierFunction context:params];
+    [_parserRoot applyFunctionOnChildren:_NodeApplierFunction context:params];
     //_lastRange = node.range;
     NSMutableString* path = [NSMutableString string];
     while(node) {
@@ -225,7 +231,7 @@ static SourceNode* _NodeApplierFunction(SourceNode* node, void* context) {
     [_pathControl setObjectValue:@"/"];
 }
 
-- (void) _colorizeSource:(SourceNode*)node attributes:(NSDictionary*)attributes {
+- (void) _colorizeText:(ParserNode*)node attributes:(NSDictionary*)attributes {
     for(Class class in attributes) {
         if([node isMemberOfClass:class]) {
             [[[_textView layoutManager] textStorage] addAttribute:NSBackgroundColorAttributeName value:[attributes objectForKey:class] range:node.range];
@@ -233,8 +239,9 @@ static SourceNode* _NodeApplierFunction(SourceNode* node, void* context) {
         }
     }
     
-    for(node in node.children)
-        [self _colorizeSource:node attributes:attributes];
+    for(node in node.children) {
+        [self _colorizeText:node attributes:attributes];
+    }
 }
 
 - (IBAction) updateColoring:(id)sender {
@@ -242,14 +249,14 @@ static SourceNode* _NodeApplierFunction(SourceNode* node, void* context) {
     for(NSButton* button in _buttons) {
         if([button state] == NSOnState) {
             Class nodeClass = (Class)[button tag];
-            [attributes setObject:[_colors objectForKey:nodeClass] forKey:nodeClass];
+            [attributes setObject:[_colors objectForKey:nodeClass] forKey:(id)nodeClass];
         }
     }
     
     NSMutableAttributedString* storage = [[_textView layoutManager] textStorage];
     [storage beginEditing];
-    [storage removeAttribute:NSBackgroundColorAttributeName range:_sourceRoot.range];
-    [self _colorizeSource:_sourceRoot attributes:attributes];
+    [storage removeAttribute:NSBackgroundColorAttributeName range:_parserRoot.range];
+    [self _colorizeText:_parserRoot attributes:attributes];
     [storage endEditing];
 }
 

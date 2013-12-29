@@ -1,0 +1,28 @@
+        This file is part of the PolParser library.
+Copyright (C) 2009 Pierre-Olivier Latour <info@pol-online.net>
+    
+		You should have received a copy of the GNU General Public License
+		along with this program.  If not, see [http://www.gnu.org/licenses/].
+
+<----->
+
+<Root>
+·  ♢|••••••••|♢This•file•is•part•of•the•PolParser•library.♢¶♢Copyright•(C)•2009•Pierre-Olivier•Latour•<info@pol-online.net>♢¶♢|••••|♢¶♢|→→|♢You•should•have•received•a•copy•of•the•GNU•General•Public•License♢¶♢|→→|♢along•with•this•program.••If•not,•see•[http://www.gnu.org/licenses/].♢¶♢¶♢
+
+<----->
+
+[1:7] <Root>
+|    [1:1] <Indenting> = ♢••••••••♢
+|    [1:1] <Text> = ♢This•file•is•part•of•the•PolParser•library.♢
+|    [1:2] <Newline> = ♢¶♢
+|    [2:2] <Text> = ♢Copyright•(C)•2009•Pierre-Olivier•Latour•<info@pol-online.net>♢
+|    [2:3] <Newline> = ♢¶♢
+|    [3:3] <Indenting> = ♢••••♢
+|    [3:4] <Newline> = ♢¶♢
+|    [4:4] <Indenting> = ♢→→♢
+|    [4:4] <Text> = ♢You•should•have•received•a•copy•of•the•GNU•General•Public•License♢
+|    [4:5] <Newline> = ♢¶♢
+|    [5:5] <Indenting> = ♢→→♢
+|    [5:5] <Text> = ♢along•with•this•program.••If•not,•see•[http://www.gnu.org/licenses/].♢
+|    [5:6] <Newline> = ♢¶♢
+|    [6:7] <Newline> = ♢¶♢

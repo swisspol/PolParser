@@ -1,0 +1,220 @@
+@import "print.css" print;
+@media print {
+  body { font-size: 10pt }
+}
+
+body
+{
+	padding: 4px 20px 7px 0; /* Some comment */
+    background: #fff url('../images/"background.png"') no-repeat center;
+}
+
+h1.foo, h2:First-child , h3 { color:orange }
+
+/* Some other comment */
+p#bar {
+	font-family : "Times \"New\" Roman \26 bold\000026italic";
+	font-size: 20px;
+    margin-top :0.7%;
+}
+
+<----->
+
+<Root>
+·  <CSSAtRule>
+·  ·  ♢|@import|♢•♢|"print.css"|♢•♢print♢
+·  ♢|;|♢¶♢
+·  <CSSAtRule>
+·  ·  ♢|@media|♢•♢print♢•♢
+·  ·  <Braces>
+·  ·  ·  ♢|{|♢¶♢|••|♢
+·  ·  ·  <CSSRule>
+·  ·  ·  ·  ♢|body|♢•♢
+·  ·  ·  ·  <Braces>
+·  ·  ·  ·  ·  ♢|{|♢•♢|font-size|♢|:|♢•♢
+·  ·  ·  ·  ·  <CSSPropertyValue>
+·  ·  ·  ·  ·  ·  ♢10pt♢
+·  ·  ·  ·  ·  ♢•♢|}|♢
+·  ·  ·  ♢¶♢|}|♢
+·  ♢¶♢¶♢
+·  <CSSRule>
+·  ·  ♢|body|♢¶♢
+·  ·  <Braces>
+·  ·  ·  ♢|{|♢¶♢|→|♢|padding|♢|:|♢•♢
+·  ·  ·  <CSSPropertyValue>
+·  ·  ·  ·  ♢4px♢•♢20px♢•♢7px♢•♢0♢
+·  ·  ·  ♢|;|♢•♢|/*•Some•comment•*/|♢¶♢|••••|♢|background|♢|:|♢•♢
+·  ·  ·  <CSSPropertyValue>
+·  ·  ·  ·  ♢#fff♢•♢url♢
+·  ·  ·  ·  <Parenthesis>
+·  ·  ·  ·  ·  ♢|(|♢|'../images/"background.png"'|♢|)|♢
+·  ·  ·  ·  ♢•♢no-repeat♢•♢center♢
+·  ·  ·  ♢|;|♢¶♢|}|♢
+·  ♢¶♢¶♢
+·  <CSSRule>
+·  ·  ♢|h1.foo|♢|,|♢•♢|h2:First-child|♢•♢|,|♢•♢|h3|♢•♢
+·  ·  <Braces>
+·  ·  ·  ♢|{|♢•♢|color|♢|:|♢
+·  ·  ·  <CSSPropertyValue>
+·  ·  ·  ·  ♢orange♢
+·  ·  ·  ♢•♢|}|♢
+·  ♢¶♢¶♢|/*•Some•other•comment•*/|♢¶♢
+·  <CSSRule>
+·  ·  ♢|p#bar|♢•♢
+·  ·  <Braces>
+·  ·  ·  ♢|{|♢¶♢|→|♢|font-family|♢•♢|:|♢•♢
+·  ·  ·  <CSSPropertyValue>
+·  ·  ·  ·  ♢|"Times•\"New\"•Roman•\26•bold\000026italic"|♢
+·  ·  ·  ♢|;|♢¶♢|→|♢|font-size|♢|:|♢•♢
+·  ·  ·  <CSSPropertyValue>
+·  ·  ·  ·  ♢20px♢
+·  ·  ·  ♢|;|♢¶♢|••••|♢|margin-top|♢•♢|:|♢
+·  ·  ·  <CSSPropertyValue>
+·  ·  ·  ·  ♢0.7%♢
+·  ·  ·  ♢|;|♢¶♢|}|♢
+·  ♢¶♢¶♢
+
+<----->
+
+[1:21] <Root>
+|    [1:1] <CSSAtRule>
+|    + <name> = ♢import♢
+|    |    [1:1] <Match> = ♢@import♢
+|    |    [1:1] <Whitespace> = ♢•♢
+|    |    [1:1] <CSSString> = ♢"print.css"♢
+|    |    + <cleaned> = ♢print.css♢
+|    |    [1:1] <Whitespace> = ♢•♢
+|    |    [1:1] <Text> = ♢print♢
+|    [1:1] <Semicolon> = ♢;♢
+|    [1:2] <Newline> = ♢¶♢
+|    [2:4] <CSSAtRule>
+|    + <name> = ♢media♢
+|    |    [2:2] <Match> = ♢@media♢
+|    |    [2:2] <Whitespace> = ♢•♢
+|    |    [2:2] <Text> = ♢print♢
+|    |    [2:2] <Whitespace> = ♢•♢
+|    |    [2:4] <Braces>
+|    |    |    [2:2] <Match> = ♢{♢
+|    |    |    [2:3] <Newline> = ♢¶♢
+|    |    |    [3:3] <Indenting> = ♢••♢
+|    |    |    [3:3] <CSSRule>
+|    |    |    |    [3:3] <CSSSelector> = ♢body♢
+|    |    |    |    [3:3] <Whitespace> = ♢•♢
+|    |    |    |    [3:3] <Braces>
+|    |    |    |    |    [3:3] <Match> = ♢{♢
+|    |    |    |    |    [3:3] <Whitespace> = ♢•♢
+|    |    |    |    |    [3:3] <CSSPropertyName> = ♢font-size♢
+|    |    |    |    |    [3:3] <Colon> = ♢:♢
+|    |    |    |    |    [3:3] <Whitespace> = ♢•♢
+|    |    |    |    |    [3:3] <CSSPropertyValue>
+|    |    |    |    |    |    [3:3] <Text> = ♢10pt♢
+|    |    |    |    |    [3:3] <Whitespace> = ♢•♢
+|    |    |    |    |    [3:3] <Match> = ♢}♢
+|    |    |    [3:4] <Newline> = ♢¶♢
+|    |    |    [4:4] <Match> = ♢}♢
+|    [4:5] <Newline> = ♢¶♢
+|    [5:6] <Newline> = ♢¶♢
+|    [6:10] <CSSRule>
+|    |    [6:6] <CSSSelector> = ♢body♢
+|    |    [6:7] <Newline> = ♢¶♢
+|    |    [7:10] <Braces>
+|    |    |    [7:7] <Match> = ♢{♢
+|    |    |    [7:8] <Newline> = ♢¶♢
+|    |    |    [8:8] <Indenting> = ♢→♢
+|    |    |    [8:8] <CSSPropertyName> = ♢padding♢
+|    |    |    [8:8] <Colon> = ♢:♢
+|    |    |    [8:8] <Whitespace> = ♢•♢
+|    |    |    [8:8] <CSSPropertyValue>
+|    |    |    |    [8:8] <Text> = ♢4px♢
+|    |    |    |    [8:8] <Whitespace> = ♢•♢
+|    |    |    |    [8:8] <Text> = ♢20px♢
+|    |    |    |    [8:8] <Whitespace> = ♢•♢
+|    |    |    |    [8:8] <Text> = ♢7px♢
+|    |    |    |    [8:8] <Whitespace> = ♢•♢
+|    |    |    |    [8:8] <Text> = ♢0♢
+|    |    |    [8:8] <Semicolon> = ♢;♢
+|    |    |    [8:8] <Whitespace> = ♢•♢
+|    |    |    [8:8] <CSSComment> = ♢/*•Some•comment•*/♢
+|    |    |    + <cleaned> = ♢•Some•comment•♢
+|    |    |    [8:9] <Newline> = ♢¶♢
+|    |    |    [9:9] <Indenting> = ♢••••♢
+|    |    |    [9:9] <CSSPropertyName> = ♢background♢
+|    |    |    [9:9] <Colon> = ♢:♢
+|    |    |    [9:9] <Whitespace> = ♢•♢
+|    |    |    [9:9] <CSSPropertyValue>
+|    |    |    |    [9:9] <Text> = ♢#fff♢
+|    |    |    |    [9:9] <Whitespace> = ♢•♢
+|    |    |    |    [9:9] <Text> = ♢url♢
+|    |    |    |    [9:9] <Parenthesis>
+|    |    |    |    |    [9:9] <Match> = ♢(♢
+|    |    |    |    |    [9:9] <CSSString> = ♢'../images/"background.png"'♢
+|    |    |    |    |    + <cleaned> = ♢../images/"background.png"♢
+|    |    |    |    |    [9:9] <Match> = ♢)♢
+|    |    |    |    [9:9] <Whitespace> = ♢•♢
+|    |    |    |    [9:9] <Text> = ♢no-repeat♢
+|    |    |    |    [9:9] <Whitespace> = ♢•♢
+|    |    |    |    [9:9] <Text> = ♢center♢
+|    |    |    [9:9] <Semicolon> = ♢;♢
+|    |    |    [9:10] <Newline> = ♢¶♢
+|    |    |    [10:10] <Match> = ♢}♢
+|    [10:11] <Newline> = ♢¶♢
+|    [11:12] <Newline> = ♢¶♢
+|    [12:12] <CSSRule>
+|    |    [12:12] <CSSSelector> = ♢h1.foo♢
+|    |    [12:12] <Comma> = ♢,♢
+|    |    [12:12] <Whitespace> = ♢•♢
+|    |    [12:12] <CSSSelector> = ♢h2:First-child♢
+|    |    [12:12] <Whitespace> = ♢•♢
+|    |    [12:12] <Comma> = ♢,♢
+|    |    [12:12] <Whitespace> = ♢•♢
+|    |    [12:12] <CSSSelector> = ♢h3♢
+|    |    [12:12] <Whitespace> = ♢•♢
+|    |    [12:12] <Braces>
+|    |    |    [12:12] <Match> = ♢{♢
+|    |    |    [12:12] <Whitespace> = ♢•♢
+|    |    |    [12:12] <CSSPropertyName> = ♢color♢
+|    |    |    [12:12] <Colon> = ♢:♢
+|    |    |    [12:12] <CSSPropertyValue>
+|    |    |    |    [12:12] <Text> = ♢orange♢
+|    |    |    [12:12] <Whitespace> = ♢•♢
+|    |    |    [12:12] <Match> = ♢}♢
+|    [12:13] <Newline> = ♢¶♢
+|    [13:14] <Newline> = ♢¶♢
+|    [14:14] <CSSComment> = ♢/*•Some•other•comment•*/♢
+|    + <cleaned> = ♢•Some•other•comment•♢
+|    [14:15] <Newline> = ♢¶♢
+|    [15:19] <CSSRule>
+|    |    [15:15] <CSSSelector> = ♢p#bar♢
+|    |    [15:15] <Whitespace> = ♢•♢
+|    |    [15:19] <Braces>
+|    |    |    [15:15] <Match> = ♢{♢
+|    |    |    [15:16] <Newline> = ♢¶♢
+|    |    |    [16:16] <Indenting> = ♢→♢
+|    |    |    [16:16] <CSSPropertyName> = ♢font-family♢
+|    |    |    [16:16] <Whitespace> = ♢•♢
+|    |    |    [16:16] <Colon> = ♢:♢
+|    |    |    [16:16] <Whitespace> = ♢•♢
+|    |    |    [16:16] <CSSPropertyValue>
+|    |    |    |    [16:16] <CSSString> = ♢"Times•\"New\"•Roman•\26•bold\000026italic"♢
+|    |    |    |    + <cleaned> = ♢Times•"New"•Roman•&•bold&italic♢
+|    |    |    [16:16] <Semicolon> = ♢;♢
+|    |    |    [16:17] <Newline> = ♢¶♢
+|    |    |    [17:17] <Indenting> = ♢→♢
+|    |    |    [17:17] <CSSPropertyName> = ♢font-size♢
+|    |    |    [17:17] <Colon> = ♢:♢
+|    |    |    [17:17] <Whitespace> = ♢•♢
+|    |    |    [17:17] <CSSPropertyValue>
+|    |    |    |    [17:17] <Text> = ♢20px♢
+|    |    |    [17:17] <Semicolon> = ♢;♢
+|    |    |    [17:18] <Newline> = ♢¶♢
+|    |    |    [18:18] <Indenting> = ♢••••♢
+|    |    |    [18:18] <CSSPropertyName> = ♢margin-top♢
+|    |    |    [18:18] <Whitespace> = ♢•♢
+|    |    |    [18:18] <Colon> = ♢:♢
+|    |    |    [18:18] <CSSPropertyValue>
+|    |    |    |    [18:18] <Text> = ♢0.7%♢
+|    |    |    [18:18] <Semicolon> = ♢;♢
+|    |    |    [18:19] <Newline> = ♢¶♢
+|    |    |    [19:19] <Match> = ♢}♢
+|    [19:20] <Newline> = ♢¶♢
+|    [20:21] <Newline> = ♢¶♢

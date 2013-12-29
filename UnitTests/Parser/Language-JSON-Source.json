@@ -1,0 +1,404 @@
+{"widget": {
+    "debug": "on",
+    "window": {
+        "title": "Sample \"Konfabulator\" Widget",
+        "name": "main_window",
+        "width": 500,
+        "height": 500,
+        "visible": true,
+        "popup": {
+            "menuitem": [
+              {"value": "New", "onclick": "CreateNewDoc()"},
+              {"value": "Open", "onclick": "OpenDoc()"},
+              {"value": "Close", "onclick": "CloseDoc()"}
+            ]
+        }
+    },
+    "image": { 
+        "src": "Images/Sun.png",
+        "name": "sun1",
+        "hOffset": 250,
+        "vOffset": 250,
+        "alignment": "center",
+        "onMouseUp": "sun1.opacity = (sun1.opacity / 100) * 90;",
+        "visible": false
+    }
+}}
+
+<----->
+
+<Root>
+·  <JSONObject>
+·  ·  ♢|{|♢
+·  ·  <JSONPair>
+·  ·  ·  ♢|"widget"|♢|:|♢•♢
+·  ·  ·  <JSONObject>
+·  ·  ·  ·  ♢|{|♢¶♢|••••|♢
+·  ·  ·  ·  <JSONPair>
+·  ·  ·  ·  ·  ♢|"debug"|♢|:|♢•♢|"on"|♢
+·  ·  ·  ·  ♢|,|♢¶♢|••••|♢
+·  ·  ·  ·  <JSONPair>
+·  ·  ·  ·  ·  ♢|"window"|♢|:|♢•♢
+·  ·  ·  ·  ·  <JSONObject>
+·  ·  ·  ·  ·  ·  ♢|{|♢¶♢|••••••••|♢
+·  ·  ·  ·  ·  ·  <JSONPair>
+·  ·  ·  ·  ·  ·  ·  ♢|"title"|♢|:|♢•♢|"Sample•\"Konfabulator\"•Widget"|♢
+·  ·  ·  ·  ·  ·  ♢|,|♢¶♢|••••••••|♢
+·  ·  ·  ·  ·  ·  <JSONPair>
+·  ·  ·  ·  ·  ·  ·  ♢|"name"|♢|:|♢•♢|"main_window"|♢
+·  ·  ·  ·  ·  ·  ♢|,|♢¶♢|••••••••|♢
+·  ·  ·  ·  ·  ·  <JSONPair>
+·  ·  ·  ·  ·  ·  ·  ♢|"width"|♢|:|♢•♢|500|♢
+·  ·  ·  ·  ·  ·  ♢|,|♢¶♢|••••••••|♢
+·  ·  ·  ·  ·  ·  <JSONPair>
+·  ·  ·  ·  ·  ·  ·  ♢|"height"|♢|:|♢•♢|500|♢
+·  ·  ·  ·  ·  ·  ♢|,|♢¶♢|••••••••|♢
+·  ·  ·  ·  ·  ·  <JSONPair>
+·  ·  ·  ·  ·  ·  ·  ♢|"visible"|♢|:|♢•♢|true|♢
+·  ·  ·  ·  ·  ·  ♢|,|♢¶♢|••••••••|♢
+·  ·  ·  ·  ·  ·  <JSONPair>
+·  ·  ·  ·  ·  ·  ·  ♢|"popup"|♢|:|♢•♢
+·  ·  ·  ·  ·  ·  ·  <JSONObject>
+·  ·  ·  ·  ·  ·  ·  ·  ♢|{|♢¶♢|••••••••••••|♢
+·  ·  ·  ·  ·  ·  ·  ·  <JSONPair>
+·  ·  ·  ·  ·  ·  ·  ·  ·  ♢|"menuitem"|♢|:|♢•♢
+·  ·  ·  ·  ·  ·  ·  ·  ·  <JSONArray>
+·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ♢|[|♢¶♢|••••••••••••••|♢
+·  ·  ·  ·  ·  ·  ·  ·  ·  ·  <JSONObject>
+·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ♢|{|♢
+·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  <JSONPair>
+·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ♢|"value"|♢|:|♢•♢|"New"|♢
+·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ♢|,|♢•♢
+·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  <JSONPair>
+·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ♢|"onclick"|♢|:|♢•♢|"CreateNewDoc()"|♢
+·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ♢|}|♢
+·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ♢|,|♢¶♢|••••••••••••••|♢
+·  ·  ·  ·  ·  ·  ·  ·  ·  ·  <JSONObject>
+·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ♢|{|♢
+·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  <JSONPair>
+·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ♢|"value"|♢|:|♢•♢|"Open"|♢
+·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ♢|,|♢•♢
+·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  <JSONPair>
+·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ♢|"onclick"|♢|:|♢•♢|"OpenDoc()"|♢
+·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ♢|}|♢
+·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ♢|,|♢¶♢|••••••••••••••|♢
+·  ·  ·  ·  ·  ·  ·  ·  ·  ·  <JSONObject>
+·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ♢|{|♢
+·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  <JSONPair>
+·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ♢|"value"|♢|:|♢•♢|"Close"|♢
+·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ♢|,|♢•♢
+·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  <JSONPair>
+·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ♢|"onclick"|♢|:|♢•♢|"CloseDoc()"|♢
+·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ♢|}|♢
+·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ♢¶♢|••••••••••••|♢|]|♢
+·  ·  ·  ·  ·  ·  ·  ·  ♢¶♢|••••••••|♢|}|♢
+·  ·  ·  ·  ·  ·  ♢¶♢|••••|♢|}|♢
+·  ·  ·  ·  ♢|,|♢¶♢|••••|♢
+·  ·  ·  ·  <JSONPair>
+·  ·  ·  ·  ·  ♢|"image"|♢|:|♢•♢
+·  ·  ·  ·  ·  <JSONObject>
+·  ·  ·  ·  ·  ·  ♢|{|♢•♢¶♢|••••••••|♢
+·  ·  ·  ·  ·  ·  <JSONPair>
+·  ·  ·  ·  ·  ·  ·  ♢|"src"|♢|:|♢•♢|"Images/Sun.png"|♢
+·  ·  ·  ·  ·  ·  ♢|,|♢¶♢|••••••••|♢
+·  ·  ·  ·  ·  ·  <JSONPair>
+·  ·  ·  ·  ·  ·  ·  ♢|"name"|♢|:|♢•♢|"sun1"|♢
+·  ·  ·  ·  ·  ·  ♢|,|♢¶♢|••••••••|♢
+·  ·  ·  ·  ·  ·  <JSONPair>
+·  ·  ·  ·  ·  ·  ·  ♢|"hOffset"|♢|:|♢•♢|250|♢
+·  ·  ·  ·  ·  ·  ♢|,|♢¶♢|••••••••|♢
+·  ·  ·  ·  ·  ·  <JSONPair>
+·  ·  ·  ·  ·  ·  ·  ♢|"vOffset"|♢|:|♢•♢|250|♢
+·  ·  ·  ·  ·  ·  ♢|,|♢¶♢|••••••••|♢
+·  ·  ·  ·  ·  ·  <JSONPair>
+·  ·  ·  ·  ·  ·  ·  ♢|"alignment"|♢|:|♢•♢|"center"|♢
+·  ·  ·  ·  ·  ·  ♢|,|♢¶♢|••••••••|♢
+·  ·  ·  ·  ·  ·  <JSONPair>
+·  ·  ·  ·  ·  ·  ·  ♢|"onMouseUp"|♢|:|♢•♢|"sun1.opacity•=•(sun1.opacity•/•100)•*•90;"|♢
+·  ·  ·  ·  ·  ·  ♢|,|♢¶♢|••••••••|♢
+·  ·  ·  ·  ·  ·  <JSONPair>
+·  ·  ·  ·  ·  ·  ·  ♢|"visible"|♢|:|♢•♢|false|♢
+·  ·  ·  ·  ·  ·  ♢¶♢|••••|♢|}|♢
+·  ·  ·  ·  ♢¶♢|}|♢
+·  ·  ♢|}|♢
+·  ♢¶♢¶♢
+
+<----->
+
+[1:28] <Root>
+|    [1:26] <JSONObject>
+|    |    [1:1] <Match> = ♢{♢
+|    |    [1:26] <JSONPair>
+|    |    + <name> = ♢widget♢
+|    |    |    [1:1] <JSONString> = ♢"widget"♢
+|    |    |    + <cleaned> = ♢widget♢
+|    |    |    [1:1] <Colon> = ♢:♢
+|    |    |    [1:1] <Whitespace> = ♢•♢
+|    |    |    [1:26] <JSONObject>
+|    |    |    |    [1:1] <Match> = ♢{♢
+|    |    |    |    [1:2] <Newline> = ♢¶♢
+|    |    |    |    [2:2] <Indenting> = ♢••••♢
+|    |    |    |    [2:2] <JSONPair>
+|    |    |    |    + <name> = ♢debug♢
+|    |    |    |    |    [2:2] <JSONString> = ♢"debug"♢
+|    |    |    |    |    + <cleaned> = ♢debug♢
+|    |    |    |    |    [2:2] <Colon> = ♢:♢
+|    |    |    |    |    [2:2] <Whitespace> = ♢•♢
+|    |    |    |    |    [2:2] <JSONString> = ♢"on"♢
+|    |    |    |    |    + <cleaned> = ♢on♢
+|    |    |    |    [2:2] <Comma> = ♢,♢
+|    |    |    |    [2:3] <Newline> = ♢¶♢
+|    |    |    |    [3:3] <Indenting> = ♢••••♢
+|    |    |    |    [3:16] <JSONPair>
+|    |    |    |    + <name> = ♢window♢
+|    |    |    |    |    [3:3] <JSONString> = ♢"window"♢
+|    |    |    |    |    + <cleaned> = ♢window♢
+|    |    |    |    |    [3:3] <Colon> = ♢:♢
+|    |    |    |    |    [3:3] <Whitespace> = ♢•♢
+|    |    |    |    |    [3:16] <JSONObject>
+|    |    |    |    |    |    [3:3] <Match> = ♢{♢
+|    |    |    |    |    |    [3:4] <Newline> = ♢¶♢
+|    |    |    |    |    |    [4:4] <Indenting> = ♢••••••••♢
+|    |    |    |    |    |    [4:4] <JSONPair>
+|    |    |    |    |    |    + <name> = ♢title♢
+|    |    |    |    |    |    |    [4:4] <JSONString> = ♢"title"♢
+|    |    |    |    |    |    |    + <cleaned> = ♢title♢
+|    |    |    |    |    |    |    [4:4] <Colon> = ♢:♢
+|    |    |    |    |    |    |    [4:4] <Whitespace> = ♢•♢
+|    |    |    |    |    |    |    [4:4] <JSONString> = ♢"Sample•\"Konfabulator\"•Widget"♢
+|    |    |    |    |    |    |    + <cleaned> = ♢Sample•"Konfabulator"•Widget♢
+|    |    |    |    |    |    [4:4] <Comma> = ♢,♢
+|    |    |    |    |    |    [4:5] <Newline> = ♢¶♢
+|    |    |    |    |    |    [5:5] <Indenting> = ♢••••••••♢
+|    |    |    |    |    |    [5:5] <JSONPair>
+|    |    |    |    |    |    + <name> = ♢name♢
+|    |    |    |    |    |    |    [5:5] <JSONString> = ♢"name"♢
+|    |    |    |    |    |    |    + <cleaned> = ♢name♢
+|    |    |    |    |    |    |    [5:5] <Colon> = ♢:♢
+|    |    |    |    |    |    |    [5:5] <Whitespace> = ♢•♢
+|    |    |    |    |    |    |    [5:5] <JSONString> = ♢"main_window"♢
+|    |    |    |    |    |    |    + <cleaned> = ♢main_window♢
+|    |    |    |    |    |    [5:5] <Comma> = ♢,♢
+|    |    |    |    |    |    [5:6] <Newline> = ♢¶♢
+|    |    |    |    |    |    [6:6] <Indenting> = ♢••••••••♢
+|    |    |    |    |    |    [6:6] <JSONPair>
+|    |    |    |    |    |    + <name> = ♢width♢
+|    |    |    |    |    |    |    [6:6] <JSONString> = ♢"width"♢
+|    |    |    |    |    |    |    + <cleaned> = ♢width♢
+|    |    |    |    |    |    |    [6:6] <Colon> = ♢:♢
+|    |    |    |    |    |    |    [6:6] <Whitespace> = ♢•♢
+|    |    |    |    |    |    |    [6:6] <JSONNumber> = ♢500♢
+|    |    |    |    |    |    [6:6] <Comma> = ♢,♢
+|    |    |    |    |    |    [6:7] <Newline> = ♢¶♢
+|    |    |    |    |    |    [7:7] <Indenting> = ♢••••••••♢
+|    |    |    |    |    |    [7:7] <JSONPair>
+|    |    |    |    |    |    + <name> = ♢height♢
+|    |    |    |    |    |    |    [7:7] <JSONString> = ♢"height"♢
+|    |    |    |    |    |    |    + <cleaned> = ♢height♢
+|    |    |    |    |    |    |    [7:7] <Colon> = ♢:♢
+|    |    |    |    |    |    |    [7:7] <Whitespace> = ♢•♢
+|    |    |    |    |    |    |    [7:7] <JSONNumber> = ♢500♢
+|    |    |    |    |    |    [7:7] <Comma> = ♢,♢
+|    |    |    |    |    |    [7:8] <Newline> = ♢¶♢
+|    |    |    |    |    |    [8:8] <Indenting> = ♢••••••••♢
+|    |    |    |    |    |    [8:8] <JSONPair>
+|    |    |    |    |    |    + <name> = ♢visible♢
+|    |    |    |    |    |    |    [8:8] <JSONString> = ♢"visible"♢
+|    |    |    |    |    |    |    + <cleaned> = ♢visible♢
+|    |    |    |    |    |    |    [8:8] <Colon> = ♢:♢
+|    |    |    |    |    |    |    [8:8] <Whitespace> = ♢•♢
+|    |    |    |    |    |    |    [8:8] <JSONTrue> = ♢true♢
+|    |    |    |    |    |    [8:8] <Comma> = ♢,♢
+|    |    |    |    |    |    [8:9] <Newline> = ♢¶♢
+|    |    |    |    |    |    [9:9] <Indenting> = ♢••••••••♢
+|    |    |    |    |    |    [9:15] <JSONPair>
+|    |    |    |    |    |    + <name> = ♢popup♢
+|    |    |    |    |    |    |    [9:9] <JSONString> = ♢"popup"♢
+|    |    |    |    |    |    |    + <cleaned> = ♢popup♢
+|    |    |    |    |    |    |    [9:9] <Colon> = ♢:♢
+|    |    |    |    |    |    |    [9:9] <Whitespace> = ♢•♢
+|    |    |    |    |    |    |    [9:15] <JSONObject>
+|    |    |    |    |    |    |    |    [9:9] <Match> = ♢{♢
+|    |    |    |    |    |    |    |    [9:10] <Newline> = ♢¶♢
+|    |    |    |    |    |    |    |    [10:10] <Indenting> = ♢••••••••••••♢
+|    |    |    |    |    |    |    |    [10:14] <JSONPair>
+|    |    |    |    |    |    |    |    + <name> = ♢menuitem♢
+|    |    |    |    |    |    |    |    |    [10:10] <JSONString> = ♢"menuitem"♢
+|    |    |    |    |    |    |    |    |    + <cleaned> = ♢menuitem♢
+|    |    |    |    |    |    |    |    |    [10:10] <Colon> = ♢:♢
+|    |    |    |    |    |    |    |    |    [10:10] <Whitespace> = ♢•♢
+|    |    |    |    |    |    |    |    |    [10:14] <JSONArray>
+|    |    |    |    |    |    |    |    |    |    [10:10] <Match> = ♢[♢
+|    |    |    |    |    |    |    |    |    |    [10:11] <Newline> = ♢¶♢
+|    |    |    |    |    |    |    |    |    |    [11:11] <Indenting> = ♢••••••••••••••♢
+|    |    |    |    |    |    |    |    |    |    [11:11] <JSONObject>
+|    |    |    |    |    |    |    |    |    |    |    [11:11] <Match> = ♢{♢
+|    |    |    |    |    |    |    |    |    |    |    [11:11] <JSONPair>
+|    |    |    |    |    |    |    |    |    |    |    + <name> = ♢value♢
+|    |    |    |    |    |    |    |    |    |    |    |    [11:11] <JSONString> = ♢"value"♢
+|    |    |    |    |    |    |    |    |    |    |    |    + <cleaned> = ♢value♢
+|    |    |    |    |    |    |    |    |    |    |    |    [11:11] <Colon> = ♢:♢
+|    |    |    |    |    |    |    |    |    |    |    |    [11:11] <Whitespace> = ♢•♢
+|    |    |    |    |    |    |    |    |    |    |    |    [11:11] <JSONString> = ♢"New"♢
+|    |    |    |    |    |    |    |    |    |    |    |    + <cleaned> = ♢New♢
+|    |    |    |    |    |    |    |    |    |    |    [11:11] <Comma> = ♢,♢
+|    |    |    |    |    |    |    |    |    |    |    [11:11] <Whitespace> = ♢•♢
+|    |    |    |    |    |    |    |    |    |    |    [11:11] <JSONPair>
+|    |    |    |    |    |    |    |    |    |    |    + <name> = ♢onclick♢
+|    |    |    |    |    |    |    |    |    |    |    |    [11:11] <JSONString> = ♢"onclick"♢
+|    |    |    |    |    |    |    |    |    |    |    |    + <cleaned> = ♢onclick♢
+|    |    |    |    |    |    |    |    |    |    |    |    [11:11] <Colon> = ♢:♢
+|    |    |    |    |    |    |    |    |    |    |    |    [11:11] <Whitespace> = ♢•♢
+|    |    |    |    |    |    |    |    |    |    |    |    [11:11] <JSONString> = ♢"CreateNewDoc()"♢
+|    |    |    |    |    |    |    |    |    |    |    |    + <cleaned> = ♢CreateNewDoc()♢
+|    |    |    |    |    |    |    |    |    |    |    [11:11] <Match> = ♢}♢
+|    |    |    |    |    |    |    |    |    |    [11:11] <Comma> = ♢,♢
+|    |    |    |    |    |    |    |    |    |    [11:12] <Newline> = ♢¶♢
+|    |    |    |    |    |    |    |    |    |    [12:12] <Indenting> = ♢••••••••••••••♢
+|    |    |    |    |    |    |    |    |    |    [12:12] <JSONObject>
+|    |    |    |    |    |    |    |    |    |    |    [12:12] <Match> = ♢{♢
+|    |    |    |    |    |    |    |    |    |    |    [12:12] <JSONPair>
+|    |    |    |    |    |    |    |    |    |    |    + <name> = ♢value♢
+|    |    |    |    |    |    |    |    |    |    |    |    [12:12] <JSONString> = ♢"value"♢
+|    |    |    |    |    |    |    |    |    |    |    |    + <cleaned> = ♢value♢
+|    |    |    |    |    |    |    |    |    |    |    |    [12:12] <Colon> = ♢:♢
+|    |    |    |    |    |    |    |    |    |    |    |    [12:12] <Whitespace> = ♢•♢
+|    |    |    |    |    |    |    |    |    |    |    |    [12:12] <JSONString> = ♢"Open"♢
+|    |    |    |    |    |    |    |    |    |    |    |    + <cleaned> = ♢Open♢
+|    |    |    |    |    |    |    |    |    |    |    [12:12] <Comma> = ♢,♢
+|    |    |    |    |    |    |    |    |    |    |    [12:12] <Whitespace> = ♢•♢
+|    |    |    |    |    |    |    |    |    |    |    [12:12] <JSONPair>
+|    |    |    |    |    |    |    |    |    |    |    + <name> = ♢onclick♢
+|    |    |    |    |    |    |    |    |    |    |    |    [12:12] <JSONString> = ♢"onclick"♢
+|    |    |    |    |    |    |    |    |    |    |    |    + <cleaned> = ♢onclick♢
+|    |    |    |    |    |    |    |    |    |    |    |    [12:12] <Colon> = ♢:♢
+|    |    |    |    |    |    |    |    |    |    |    |    [12:12] <Whitespace> = ♢•♢
+|    |    |    |    |    |    |    |    |    |    |    |    [12:12] <JSONString> = ♢"OpenDoc()"♢
+|    |    |    |    |    |    |    |    |    |    |    |    + <cleaned> = ♢OpenDoc()♢
+|    |    |    |    |    |    |    |    |    |    |    [12:12] <Match> = ♢}♢
+|    |    |    |    |    |    |    |    |    |    [12:12] <Comma> = ♢,♢
+|    |    |    |    |    |    |    |    |    |    [12:13] <Newline> = ♢¶♢
+|    |    |    |    |    |    |    |    |    |    [13:13] <Indenting> = ♢••••••••••••••♢
+|    |    |    |    |    |    |    |    |    |    [13:13] <JSONObject>
+|    |    |    |    |    |    |    |    |    |    |    [13:13] <Match> = ♢{♢
+|    |    |    |    |    |    |    |    |    |    |    [13:13] <JSONPair>
+|    |    |    |    |    |    |    |    |    |    |    + <name> = ♢value♢
+|    |    |    |    |    |    |    |    |    |    |    |    [13:13] <JSONString> = ♢"value"♢
+|    |    |    |    |    |    |    |    |    |    |    |    + <cleaned> = ♢value♢
+|    |    |    |    |    |    |    |    |    |    |    |    [13:13] <Colon> = ♢:♢
+|    |    |    |    |    |    |    |    |    |    |    |    [13:13] <Whitespace> = ♢•♢
+|    |    |    |    |    |    |    |    |    |    |    |    [13:13] <JSONString> = ♢"Close"♢
+|    |    |    |    |    |    |    |    |    |    |    |    + <cleaned> = ♢Close♢
+|    |    |    |    |    |    |    |    |    |    |    [13:13] <Comma> = ♢,♢
+|    |    |    |    |    |    |    |    |    |    |    [13:13] <Whitespace> = ♢•♢
+|    |    |    |    |    |    |    |    |    |    |    [13:13] <JSONPair>
+|    |    |    |    |    |    |    |    |    |    |    + <name> = ♢onclick♢
+|    |    |    |    |    |    |    |    |    |    |    |    [13:13] <JSONString> = ♢"onclick"♢
+|    |    |    |    |    |    |    |    |    |    |    |    + <cleaned> = ♢onclick♢
+|    |    |    |    |    |    |    |    |    |    |    |    [13:13] <Colon> = ♢:♢
+|    |    |    |    |    |    |    |    |    |    |    |    [13:13] <Whitespace> = ♢•♢
+|    |    |    |    |    |    |    |    |    |    |    |    [13:13] <JSONString> = ♢"CloseDoc()"♢
+|    |    |    |    |    |    |    |    |    |    |    |    + <cleaned> = ♢CloseDoc()♢
+|    |    |    |    |    |    |    |    |    |    |    [13:13] <Match> = ♢}♢
+|    |    |    |    |    |    |    |    |    |    [13:14] <Newline> = ♢¶♢
+|    |    |    |    |    |    |    |    |    |    [14:14] <Indenting> = ♢••••••••••••♢
+|    |    |    |    |    |    |    |    |    |    [14:14] <Match> = ♢]♢
+|    |    |    |    |    |    |    |    [14:15] <Newline> = ♢¶♢
+|    |    |    |    |    |    |    |    [15:15] <Indenting> = ♢••••••••♢
+|    |    |    |    |    |    |    |    [15:15] <Match> = ♢}♢
+|    |    |    |    |    |    [15:16] <Newline> = ♢¶♢
+|    |    |    |    |    |    [16:16] <Indenting> = ♢••••♢
+|    |    |    |    |    |    [16:16] <Match> = ♢}♢
+|    |    |    |    [16:16] <Comma> = ♢,♢
+|    |    |    |    [16:17] <Newline> = ♢¶♢
+|    |    |    |    [17:17] <Indenting> = ♢••••♢
+|    |    |    |    [17:25] <JSONPair>
+|    |    |    |    + <name> = ♢image♢
+|    |    |    |    |    [17:17] <JSONString> = ♢"image"♢
+|    |    |    |    |    + <cleaned> = ♢image♢
+|    |    |    |    |    [17:17] <Colon> = ♢:♢
+|    |    |    |    |    [17:17] <Whitespace> = ♢•♢
+|    |    |    |    |    [17:25] <JSONObject>
+|    |    |    |    |    |    [17:17] <Match> = ♢{♢
+|    |    |    |    |    |    [17:17] <Whitespace> = ♢•♢
+|    |    |    |    |    |    [17:18] <Newline> = ♢¶♢
+|    |    |    |    |    |    [18:18] <Indenting> = ♢••••••••♢
+|    |    |    |    |    |    [18:18] <JSONPair>
+|    |    |    |    |    |    + <name> = ♢src♢
+|    |    |    |    |    |    |    [18:18] <JSONString> = ♢"src"♢
+|    |    |    |    |    |    |    + <cleaned> = ♢src♢
+|    |    |    |    |    |    |    [18:18] <Colon> = ♢:♢
+|    |    |    |    |    |    |    [18:18] <Whitespace> = ♢•♢
+|    |    |    |    |    |    |    [18:18] <JSONString> = ♢"Images/Sun.png"♢
+|    |    |    |    |    |    |    + <cleaned> = ♢Images/Sun.png♢
+|    |    |    |    |    |    [18:18] <Comma> = ♢,♢
+|    |    |    |    |    |    [18:19] <Newline> = ♢¶♢
+|    |    |    |    |    |    [19:19] <Indenting> = ♢••••••••♢
+|    |    |    |    |    |    [19:19] <JSONPair>
+|    |    |    |    |    |    + <name> = ♢name♢
+|    |    |    |    |    |    |    [19:19] <JSONString> = ♢"name"♢
+|    |    |    |    |    |    |    + <cleaned> = ♢name♢
+|    |    |    |    |    |    |    [19:19] <Colon> = ♢:♢
+|    |    |    |    |    |    |    [19:19] <Whitespace> = ♢•♢
+|    |    |    |    |    |    |    [19:19] <JSONString> = ♢"sun1"♢
+|    |    |    |    |    |    |    + <cleaned> = ♢sun1♢
+|    |    |    |    |    |    [19:19] <Comma> = ♢,♢
+|    |    |    |    |    |    [19:20] <Newline> = ♢¶♢
+|    |    |    |    |    |    [20:20] <Indenting> = ♢••••••••♢
+|    |    |    |    |    |    [20:20] <JSONPair>
+|    |    |    |    |    |    + <name> = ♢hOffset♢
+|    |    |    |    |    |    |    [20:20] <JSONString> = ♢"hOffset"♢
+|    |    |    |    |    |    |    + <cleaned> = ♢hOffset♢
+|    |    |    |    |    |    |    [20:20] <Colon> = ♢:♢
+|    |    |    |    |    |    |    [20:20] <Whitespace> = ♢•♢
+|    |    |    |    |    |    |    [20:20] <JSONNumber> = ♢250♢
+|    |    |    |    |    |    [20:20] <Comma> = ♢,♢
+|    |    |    |    |    |    [20:21] <Newline> = ♢¶♢
+|    |    |    |    |    |    [21:21] <Indenting> = ♢••••••••♢
+|    |    |    |    |    |    [21:21] <JSONPair>
+|    |    |    |    |    |    + <name> = ♢vOffset♢
+|    |    |    |    |    |    |    [21:21] <JSONString> = ♢"vOffset"♢
+|    |    |    |    |    |    |    + <cleaned> = ♢vOffset♢
+|    |    |    |    |    |    |    [21:21] <Colon> = ♢:♢
+|    |    |    |    |    |    |    [21:21] <Whitespace> = ♢•♢
+|    |    |    |    |    |    |    [21:21] <JSONNumber> = ♢250♢
+|    |    |    |    |    |    [21:21] <Comma> = ♢,♢
+|    |    |    |    |    |    [21:22] <Newline> = ♢¶♢
+|    |    |    |    |    |    [22:22] <Indenting> = ♢••••••••♢
+|    |    |    |    |    |    [22:22] <JSONPair>
+|    |    |    |    |    |    + <name> = ♢alignment♢
+|    |    |    |    |    |    |    [22:22] <JSONString> = ♢"alignment"♢
+|    |    |    |    |    |    |    + <cleaned> = ♢alignment♢
+|    |    |    |    |    |    |    [22:22] <Colon> = ♢:♢
+|    |    |    |    |    |    |    [22:22] <Whitespace> = ♢•♢
+|    |    |    |    |    |    |    [22:22] <JSONString> = ♢"center"♢
+|    |    |    |    |    |    |    + <cleaned> = ♢center♢
+|    |    |    |    |    |    [22:22] <Comma> = ♢,♢
+|    |    |    |    |    |    [22:23] <Newline> = ♢¶♢
+|    |    |    |    |    |    [23:23] <Indenting> = ♢••••••••♢
+|    |    |    |    |    |    [23:23] <JSONPair>
+|    |    |    |    |    |    + <name> = ♢onMouseUp♢
+|    |    |    |    |    |    |    [23:23] <JSONString> = ♢"onMouseUp"♢
+|    |    |    |    |    |    |    + <cleaned> = ♢onMouseUp♢
+|    |    |    |    |    |    |    [23:23] <Colon> = ♢:♢
+|    |    |    |    |    |    |    [23:23] <Whitespace> = ♢•♢
+|    |    |    |    |    |    |    [23:23] <JSONString> = ♢"sun1.opacity•=•(sun1.opacity•/•100)•*•90;"♢
+|    |    |    |    |    |    |    + <cleaned> = ♢sun1.opacity•=•(sun1.opacity•/•100)•*•90;♢
+|    |    |    |    |    |    [23:23] <Comma> = ♢,♢
+|    |    |    |    |    |    [23:24] <Newline> = ♢¶♢
+|    |    |    |    |    |    [24:24] <Indenting> = ♢••••••••♢
+|    |    |    |    |    |    [24:24] <JSONPair>
+|    |    |    |    |    |    + <name> = ♢visible♢
+|    |    |    |    |    |    |    [24:24] <JSONString> = ♢"visible"♢
+|    |    |    |    |    |    |    + <cleaned> = ♢visible♢
+|    |    |    |    |    |    |    [24:24] <Colon> = ♢:♢
+|    |    |    |    |    |    |    [24:24] <Whitespace> = ♢•♢
+|    |    |    |    |    |    |    [24:24] <JSONFalse> = ♢false♢
+|    |    |    |    |    |    [24:25] <Newline> = ♢¶♢
+|    |    |    |    |    |    [25:25] <Indenting> = ♢••••♢
+|    |    |    |    |    |    [25:25] <Match> = ♢}♢
+|    |    |    |    [25:26] <Newline> = ♢¶♢
+|    |    |    |    [26:26] <Match> = ♢}♢
+|    |    [26:26] <Match> = ♢}♢
+|    [26:27] <Newline> = ♢¶♢
+|    [27:28] <Newline> = ♢¶♢

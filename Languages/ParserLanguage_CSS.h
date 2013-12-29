@@ -16,23 +16,28 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#import <Cocoa/Cocoa.h>
-
 #import "ParserLanguage.h"
 
-@interface MyDocument : NSDocument
-{
-    NSTextView* _textView;
-    NSPathControl* _pathControl;
-    NSButton* _coloringButton;
-    
-    ParserNodeRoot* _parserRoot;
-    NSMutableArray* _buttons;
-    NSMutableDictionary* _colors;
-    //NSRange _lastRange;
+@interface ParserNodeCSSAtRule : ParserNode {
+@private
+    NSString* _name;
 }
-@property(nonatomic, assign) IBOutlet NSTextView* textView;
-@property(nonatomic, assign) IBOutlet NSPathControl* pathControl;
-@property(nonatomic, assign) IBOutlet NSButton* coloringButton;
-- (IBAction) updateColoring:(id)sender;
+@end
+
+@interface ParserNodeCSSRule : ParserNode
+@end
+
+@interface ParserNodeCSSSelector : ParserNode //Leaf
+@end
+
+@interface ParserNodeCSSPropertyName : ParserNode //Leaf
+@end
+
+@interface ParserNodeCSSPropertyValue : ParserNode
+@end
+
+@interface ParserNodeCSSString : ParserNode //Leaf
+@end
+
+@interface ParserNodeCSSComment : ParserNode //Leaf
 @end

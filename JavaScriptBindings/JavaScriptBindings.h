@@ -16,23 +16,14 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#import <Cocoa/Cocoa.h>
+#import <Foundation/Foundation.h>
 
-#import "ParserLanguage.h"
+#ifdef __cplusplus
+extern "C" {
+#endif
 
-@interface MyDocument : NSDocument
-{
-    NSTextView* _textView;
-    NSPathControl* _pathControl;
-    NSButton* _coloringButton;
-    
-    ParserNodeRoot* _parserRoot;
-    NSMutableArray* _buttons;
-    NSMutableDictionary* _colors;
-    //NSRange _lastRange;
+BOOL RunJavaScriptOnRootNode(NSString* script, ParserNode* root);
+
+#ifdef __cplusplus
 }
-@property(nonatomic, assign) IBOutlet NSTextView* textView;
-@property(nonatomic, assign) IBOutlet NSPathControl* pathControl;
-@property(nonatomic, assign) IBOutlet NSButton* coloringButton;
-- (IBAction) updateColoring:(id)sender;
-@end
+#endif

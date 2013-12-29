@@ -1,0 +1,87 @@
+Year,Make,Model,Comments,Price
+1997,Ford,E350,"ac, abs, moon",3000.00
+1999,Chevy,"Venture ""Extended Edition""","",4900.00
+1996,Jeep,Grand Cherokee,"MUST SELL!
+air, moon roof, loaded",4799.00
+
+<----->
+
+<Root>
+·  <CSVRecord>
+·  ·  ♢|Year|♢|,|♢|Make|♢|,|♢|Model|♢|,|♢|Comments|♢|,|♢|Price|♢¶♢
+·  <CSVRecord>
+·  ·  ♢|1997|♢|,|♢|Ford|♢|,|♢|E350|♢|,|♢|"ac,•abs,•moon"|♢|,|♢|3000.00|♢¶♢
+·  <CSVRecord>
+·  ·  ♢|1999|♢|,|♢|Chevy|♢|,|♢|"Venture•""Extended•Edition"""|♢|,|♢|""|♢|,|♢|4900.00|♢¶♢
+·  <CSVRecord>
+·  ·  ♢|1996|♢|,|♢|Jeep|♢|,|♢|Grand•Cherokee|♢|,|♢|"MUST•SELL!¶air,•moon•roof,•loaded"|♢|,|♢|4799.00|♢¶♢
+·  ♢¶♢
+
+<----->
+
+[1:7] <Root>
+|    [1:2] <CSVRecord>
+|    |    [1:1] <CSVField> = ♢Year♢
+|    |    + <cleaned> = ♢Year♢
+|    |    [1:1] <Comma> = ♢,♢
+|    |    [1:1] <CSVField> = ♢Make♢
+|    |    + <cleaned> = ♢Make♢
+|    |    [1:1] <Comma> = ♢,♢
+|    |    [1:1] <CSVField> = ♢Model♢
+|    |    + <cleaned> = ♢Model♢
+|    |    [1:1] <Comma> = ♢,♢
+|    |    [1:1] <CSVField> = ♢Comments♢
+|    |    + <cleaned> = ♢Comments♢
+|    |    [1:1] <Comma> = ♢,♢
+|    |    [1:1] <CSVField> = ♢Price♢
+|    |    + <cleaned> = ♢Price♢
+|    |    [1:2] <Newline> = ♢¶♢
+|    [2:3] <CSVRecord>
+|    |    [2:2] <CSVField> = ♢1997♢
+|    |    + <cleaned> = ♢1997♢
+|    |    [2:2] <Comma> = ♢,♢
+|    |    [2:2] <CSVField> = ♢Ford♢
+|    |    + <cleaned> = ♢Ford♢
+|    |    [2:2] <Comma> = ♢,♢
+|    |    [2:2] <CSVField> = ♢E350♢
+|    |    + <cleaned> = ♢E350♢
+|    |    [2:2] <Comma> = ♢,♢
+|    |    [2:2] <CSVField> = ♢"ac,•abs,•moon"♢
+|    |    + <cleaned> = ♢ac,•abs,•moon♢
+|    |    [2:2] <Comma> = ♢,♢
+|    |    [2:2] <CSVField> = ♢3000.00♢
+|    |    + <cleaned> = ♢3000.00♢
+|    |    [2:3] <Newline> = ♢¶♢
+|    [3:4] <CSVRecord>
+|    |    [3:3] <CSVField> = ♢1999♢
+|    |    + <cleaned> = ♢1999♢
+|    |    [3:3] <Comma> = ♢,♢
+|    |    [3:3] <CSVField> = ♢Chevy♢
+|    |    + <cleaned> = ♢Chevy♢
+|    |    [3:3] <Comma> = ♢,♢
+|    |    [3:3] <CSVField> = ♢"Venture•""Extended•Edition"""♢
+|    |    + <cleaned> = ♢Venture•"Extended•Edition"♢
+|    |    [3:3] <Comma> = ♢,♢
+|    |    [3:3] <CSVField> = ♢""♢
+|    |    + <cleaned> = ♢♢
+|    |    [3:3] <Comma> = ♢,♢
+|    |    [3:3] <CSVField> = ♢4900.00♢
+|    |    + <cleaned> = ♢4900.00♢
+|    |    [3:4] <Newline> = ♢¶♢
+|    [4:6] <CSVRecord>
+|    |    [4:4] <CSVField> = ♢1996♢
+|    |    + <cleaned> = ♢1996♢
+|    |    [4:4] <Comma> = ♢,♢
+|    |    [4:4] <CSVField> = ♢Jeep♢
+|    |    + <cleaned> = ♢Jeep♢
+|    |    [4:4] <Comma> = ♢,♢
+|    |    [4:4] <CSVField> = ♢Grand•Cherokee♢
+|    |    + <cleaned> = ♢Grand•Cherokee♢
+|    |    [4:4] <Comma> = ♢,♢
+|    |    [4:5] <CSVField> = ♢"MUST•SELL!¶air,•moon•roof,•loaded"♢
+|    |    + <cleaned> = ♢MUST•SELL!¶air,•moon•roof,•loaded♢
+|    |    [5:5] <Comma> = ♢,♢
+|    |    [5:5] <CSVField> = ♢4799.00♢
+|    |    + <cleaned> = ♢4799.00♢
+|    |    [5:6] <Newline> = ♢¶♢
+|    [6:7] <Newline> = ♢¶♢

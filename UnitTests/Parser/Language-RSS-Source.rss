@@ -1,0 +1,913 @@
+<rss version="2.0">
+  <channel>
+    <description>Current headlines from the Dallas Times-Herald newspaper</description>
+    <link>http://dallas.example.com</link>
+    <title>Dallas Times-Herald</title>
+    <category>Media</category>
+    <category domain="Newspapers/Regional/United_States">Texas</category>
+    <cloud domain="server.example.com" path="/rpc" port="80" protocol="xml-rpc" registerProcedure="cloud.notify" />
+    <copyright>Copyright 2006 Dallas Times-Herald</copyright>
+    <docs>http://www.rssboard.org/rss-specification</docs>
+    <generator>Radio UserLand v8.2.1</generator>
+    <image>
+      <link>http://dallas.example.com</link>
+      <title>Dallas Times-Herald</title>
+      <url>http://dallas.example.com/masthead.gif</url>
+      <description>Read the Dallas Times-Herald</description>
+      <height>32</height>
+      <width>96</width>
+    </image>
+    <language>epo</language>
+    <lastBuildDate>Sun, 29 Jan 2006 17:17:44 GMT</lastBuildDate>
+    <managingEditor>jlehrer@dallas.example.com (Jim Lehrer)</managingEditor>
+    <pubDate>Sun, 29 Jan 2006 05:00:00 GMT</pubDate>
+    <rating>(PICS-1.1 "http://www.rsac.org/ratingsv01.html" l by "webmaster@example.com" on "2006.01.29T10:09-0800" r (n 0 s 0 v 0 l 0))</rating>
+    <skipDays>
+      <day>Saturday</day>
+      <day>Sunday</day>
+    </skipDays>
+    <skipHours>
+      <hour>0</hour>
+      <hour>1</hour>
+      <hour>2</hour>
+      <hour>22</hour>
+      <hour>23</hour>
+    </skipHours>
+    <textInput>
+      <description>Your aggregator supports the textInput element. What software are you using?</description>
+      <link>http://www.cadenhead.org/textinput.php</link>
+      <name>query</name>
+      <title>TextInput Inquiry</title>
+    </textInput>
+    <ttl>60</ttl>
+    <webMaster>helpdesk@dallas.example.com</webMaster>
+    <item>
+      <title>Seventh Heaven! Ryan Hurls Another No Hitter</title>
+      <link>http://dallas.example.com/1991/05/02/nolan.htm</link>
+      <description>Texas Rangers pitcher Nolan Ryan hurled the seventh no-hitter of his legendary career on Arlington Appreciation Night, defeating the Toronto Blue Jays 3-0. The 44-year-old struck out 16 batters before a crowd of 33,439.</description>
+      <guid>http://dallas.example.com/1991/05/02/nolan.htm</guid>      
+    </item>
+    <item>
+      <author>jbb@dallas.example.com (Joe Bob Briggs)</author>
+      <category>rec.arts.movies.reviews</category>
+      <comments>http://dallas.example.com/feedback/1983/06/joebob.htm</comments>
+      <description>I'm headed for France. I wasn't gonna go this year, but then last week "Valley Girl" came out and I said to myself, Joe Bob, you gotta get out of the country for a while.</description>
+      <enclosure length="24986239" type="audio/mpeg" url="http://dallas.example.com/joebob_050689.mp3" />
+      <guid>http://dallas.example.com/1983/05/06/joebob.htm</guid>
+      <link>http://dallas.example.com/1983/05/06/joebob.htm</link>
+      <pubDate>Fri, 06 May 1983 09:00:00 CST</pubDate>
+      <source url="http://la.example.com/rss.xml">Los Angeles Herald-Examiner</source>
+      <title>Joe Bob Goes to the Drive-In</title>
+    </item>
+    <item>
+      <description>I'm headed for France. I wasn't gonna go this year, but then last week &lt;a href="http://www.imdb.com/title/tt0086525/"&gt;Valley Girl&lt;/a&gt; came out and I said to myself, Joe Bob, you gotta get out of the country for a while.</description>
+      <guid isPermaLink="false">tag:dallas.example.com,4131:news</guid>
+    </item>
+    <item>
+      <description><![CDATA[I'm headed for France. I wasn't gonna go this year, but then last week <a href="http://www.imdb.com/title/tt0086525/">Valley Girl</a> came out and I said to myself, Joe Bob, you gotta get out of the country for a while.]]></description>      
+      <guid isPermaLink="false">1983-05-06+lifestyle+joebob+2</guid>
+    </item>    
+  </channel>
+</rss>
+
+<----->
+
+<Root>
+·  <XMLElement>
+·  ·  ♢|<rss•version="2.0">|♢¶♢|••|♢
+·  ·  <RSSChannel>
+·  ·  ·  ♢|<channel>|♢¶♢|••••|♢
+·  ·  ·  <RSSDescription>
+·  ·  ·  ·  ♢|<description>|♢Current•headlines•from•the•Dallas•Times-Herald•newspaper♢|</description>|♢
+·  ·  ·  ♢¶♢|••••|♢
+·  ·  ·  <RSSLink>
+·  ·  ·  ·  ♢|<link>|♢http://dallas.example.com♢|</link>|♢
+·  ·  ·  ♢¶♢|••••|♢
+·  ·  ·  <RSSTitle>
+·  ·  ·  ·  ♢|<title>|♢Dallas•Times-Herald♢|</title>|♢
+·  ·  ·  ♢¶♢|••••|♢
+·  ·  ·  <RSSCategory>
+·  ·  ·  ·  ♢|<category>|♢Media♢|</category>|♢
+·  ·  ·  ♢¶♢|••••|♢
+·  ·  ·  <RSSCategory>
+·  ·  ·  ·  ♢|<category•domain="Newspapers/Regional/United_States">|♢Texas♢|</category>|♢
+·  ·  ·  ♢¶♢|••••|♢
+·  ·  ·  <XMLElement>
+·  ·  ·  ·  ♢|<cloud•domain="server.example.com"•path="/rpc"•port="80"•protocol="xml-rpc"•registerProcedure="cloud.notify"•/>|♢
+·  ·  ·  ♢¶♢|••••|♢
+·  ·  ·  <XMLElement>
+·  ·  ·  ·  ♢|<copyright>|♢Copyright•2006•Dallas•Times-Herald♢|</copyright>|♢
+·  ·  ·  ♢¶♢|••••|♢
+·  ·  ·  <XMLElement>
+·  ·  ·  ·  ♢|<docs>|♢http://www.rssboard.org/rss-specification♢|</docs>|♢
+·  ·  ·  ♢¶♢|••••|♢
+·  ·  ·  <XMLElement>
+·  ·  ·  ·  ♢|<generator>|♢Radio•UserLand•v8.2.1♢|</generator>|♢
+·  ·  ·  ♢¶♢|••••|♢
+·  ·  ·  <XMLElement>
+·  ·  ·  ·  ♢|<image>|♢¶♢|••••••|♢
+·  ·  ·  ·  <RSSLink>
+·  ·  ·  ·  ·  ♢|<link>|♢http://dallas.example.com♢|</link>|♢
+·  ·  ·  ·  ♢¶♢|••••••|♢
+·  ·  ·  ·  <RSSTitle>
+·  ·  ·  ·  ·  ♢|<title>|♢Dallas•Times-Herald♢|</title>|♢
+·  ·  ·  ·  ♢¶♢|••••••|♢
+·  ·  ·  ·  <XMLElement>
+·  ·  ·  ·  ·  ♢|<url>|♢http://dallas.example.com/masthead.gif♢|</url>|♢
+·  ·  ·  ·  ♢¶♢|••••••|♢
+·  ·  ·  ·  <RSSDescription>
+·  ·  ·  ·  ·  ♢|<description>|♢Read•the•Dallas•Times-Herald♢|</description>|♢
+·  ·  ·  ·  ♢¶♢|••••••|♢
+·  ·  ·  ·  <XMLElement>
+·  ·  ·  ·  ·  ♢|<height>|♢32♢|</height>|♢
+·  ·  ·  ·  ♢¶♢|••••••|♢
+·  ·  ·  ·  <XMLElement>
+·  ·  ·  ·  ·  ♢|<width>|♢96♢|</width>|♢
+·  ·  ·  ·  ♢¶♢|••••|♢|</image>|♢
+·  ·  ·  ♢¶♢|••••|♢
+·  ·  ·  <RSSLanguage>
+·  ·  ·  ·  ♢|<language>|♢epo♢|</language>|♢
+·  ·  ·  ♢¶♢|••••|♢
+·  ·  ·  <XMLElement>
+·  ·  ·  ·  ♢|<lastBuildDate>|♢Sun,•29•Jan•2006•17:17:44•GMT♢|</lastBuildDate>|♢
+·  ·  ·  ♢¶♢|••••|♢
+·  ·  ·  <XMLElement>
+·  ·  ·  ·  ♢|<managingEditor>|♢jlehrer@dallas.example.com•(Jim•Lehrer)♢|</managingEditor>|♢
+·  ·  ·  ♢¶♢|••••|♢
+·  ·  ·  <XMLElement>
+·  ·  ·  ·  ♢|<pubDate>|♢Sun,•29•Jan•2006•05:00:00•GMT♢|</pubDate>|♢
+·  ·  ·  ♢¶♢|••••|♢
+·  ·  ·  <XMLElement>
+·  ·  ·  ·  ♢|<rating>|♢(PICS-1.1•"http://www.rsac.org/ratingsv01.html"•l•by•"webmaster@example.com"•on•"2006.01.29T10:09-0800"•r•(n•0•s•0•v•0•l•0))♢|</rating>|♢
+·  ·  ·  ♢¶♢|••••|♢
+·  ·  ·  <XMLElement>
+·  ·  ·  ·  ♢|<skipDays>|♢¶♢|••••••|♢
+·  ·  ·  ·  <XMLElement>
+·  ·  ·  ·  ·  ♢|<day>|♢Saturday♢|</day>|♢
+·  ·  ·  ·  ♢¶♢|••••••|♢
+·  ·  ·  ·  <XMLElement>
+·  ·  ·  ·  ·  ♢|<day>|♢Sunday♢|</day>|♢
+·  ·  ·  ·  ♢¶♢|••••|♢|</skipDays>|♢
+·  ·  ·  ♢¶♢|••••|♢
+·  ·  ·  <XMLElement>
+·  ·  ·  ·  ♢|<skipHours>|♢¶♢|••••••|♢
+·  ·  ·  ·  <XMLElement>
+·  ·  ·  ·  ·  ♢|<hour>|♢0♢|</hour>|♢
+·  ·  ·  ·  ♢¶♢|••••••|♢
+·  ·  ·  ·  <XMLElement>
+·  ·  ·  ·  ·  ♢|<hour>|♢1♢|</hour>|♢
+·  ·  ·  ·  ♢¶♢|••••••|♢
+·  ·  ·  ·  <XMLElement>
+·  ·  ·  ·  ·  ♢|<hour>|♢2♢|</hour>|♢
+·  ·  ·  ·  ♢¶♢|••••••|♢
+·  ·  ·  ·  <XMLElement>
+·  ·  ·  ·  ·  ♢|<hour>|♢22♢|</hour>|♢
+·  ·  ·  ·  ♢¶♢|••••••|♢
+·  ·  ·  ·  <XMLElement>
+·  ·  ·  ·  ·  ♢|<hour>|♢23♢|</hour>|♢
+·  ·  ·  ·  ♢¶♢|••••|♢|</skipHours>|♢
+·  ·  ·  ♢¶♢|••••|♢
+·  ·  ·  <XMLElement>
+·  ·  ·  ·  ♢|<textInput>|♢¶♢|••••••|♢
+·  ·  ·  ·  <RSSDescription>
+·  ·  ·  ·  ·  ♢|<description>|♢Your•aggregator•supports•the•textInput•element.•What•software•are•you•using?♢|</description>|♢
+·  ·  ·  ·  ♢¶♢|••••••|♢
+·  ·  ·  ·  <RSSLink>
+·  ·  ·  ·  ·  ♢|<link>|♢http://www.cadenhead.org/textinput.php♢|</link>|♢
+·  ·  ·  ·  ♢¶♢|••••••|♢
+·  ·  ·  ·  <AtomName>
+·  ·  ·  ·  ·  ♢|<name>|♢query♢|</name>|♢
+·  ·  ·  ·  ♢¶♢|••••••|♢
+·  ·  ·  ·  <RSSTitle>
+·  ·  ·  ·  ·  ♢|<title>|♢TextInput•Inquiry♢|</title>|♢
+·  ·  ·  ·  ♢¶♢|••••|♢|</textInput>|♢
+·  ·  ·  ♢¶♢|••••|♢
+·  ·  ·  <XMLElement>
+·  ·  ·  ·  ♢|<ttl>|♢60♢|</ttl>|♢
+·  ·  ·  ♢¶♢|••••|♢
+·  ·  ·  <XMLElement>
+·  ·  ·  ·  ♢|<webMaster>|♢helpdesk@dallas.example.com♢|</webMaster>|♢
+·  ·  ·  ♢¶♢|••••|♢
+·  ·  ·  <RSSItem>
+·  ·  ·  ·  ♢|<item>|♢¶♢|••••••|♢
+·  ·  ·  ·  <RSSTitle>
+·  ·  ·  ·  ·  ♢|<title>|♢Seventh•Heaven!•Ryan•Hurls•Another•No•Hitter♢|</title>|♢
+·  ·  ·  ·  ♢¶♢|••••••|♢
+·  ·  ·  ·  <RSSLink>
+·  ·  ·  ·  ·  ♢|<link>|♢http://dallas.example.com/1991/05/02/nolan.htm♢|</link>|♢
+·  ·  ·  ·  ♢¶♢|••••••|♢
+·  ·  ·  ·  <RSSDescription>
+·  ·  ·  ·  ·  ♢|<description>|♢Texas•Rangers•pitcher•Nolan•Ryan•hurled•the•seventh•no-hitter•of•his•legendary•career•on•Arlington•Appreciation•Night,•defeating•the•Toronto•Blue•Jays•3-0.•The•44-year-old•struck•out•16•batters•before•a•crowd•of•33,439.♢|</description>|♢
+·  ·  ·  ·  ♢¶♢|••••••|♢
+·  ·  ·  ·  <RSSGuid>
+·  ·  ·  ·  ·  ♢|<guid>|♢http://dallas.example.com/1991/05/02/nolan.htm♢|</guid>|♢
+·  ·  ·  ·  ♢••••••¶♢|••••|♢|</item>|♢
+·  ·  ·  ♢¶♢|••••|♢
+·  ·  ·  <RSSItem>
+·  ·  ·  ·  ♢|<item>|♢¶♢|••••••|♢
+·  ·  ·  ·  <RSSAuthor>
+·  ·  ·  ·  ·  ♢|<author>|♢jbb@dallas.example.com•(Joe•Bob•Briggs)♢|</author>|♢
+·  ·  ·  ·  ♢¶♢|••••••|♢
+·  ·  ·  ·  <RSSCategory>
+·  ·  ·  ·  ·  ♢|<category>|♢rec.arts.movies.reviews♢|</category>|♢
+·  ·  ·  ·  ♢¶♢|••••••|♢
+·  ·  ·  ·  <XMLElement>
+·  ·  ·  ·  ·  ♢|<comments>|♢http://dallas.example.com/feedback/1983/06/joebob.htm♢|</comments>|♢
+·  ·  ·  ·  ♢¶♢|••••••|♢
+·  ·  ·  ·  <RSSDescription>
+·  ·  ·  ·  ·  ♢|<description>|♢I'm•headed•for•France.•I•wasn't•gonna•go•this•year,•but•then•last•week•"Valley•Girl"•came•out•and•I•said•to•myself,•Joe•Bob,•you•gotta•get•out•of•the•country•for•a•while.♢|</description>|♢
+·  ·  ·  ·  ♢¶♢|••••••|♢
+·  ·  ·  ·  <RSSEnclosure>
+·  ·  ·  ·  ·  ♢|<enclosure•length="24986239"•type="audio/mpeg"•url="http://dallas.example.com/joebob_050689.mp3"•/>|♢
+·  ·  ·  ·  ♢¶♢|••••••|♢
+·  ·  ·  ·  <RSSGuid>
+·  ·  ·  ·  ·  ♢|<guid>|♢http://dallas.example.com/1983/05/06/joebob.htm♢|</guid>|♢
+·  ·  ·  ·  ♢¶♢|••••••|♢
+·  ·  ·  ·  <RSSLink>
+·  ·  ·  ·  ·  ♢|<link>|♢http://dallas.example.com/1983/05/06/joebob.htm♢|</link>|♢
+·  ·  ·  ·  ♢¶♢|••••••|♢
+·  ·  ·  ·  <XMLElement>
+·  ·  ·  ·  ·  ♢|<pubDate>|♢Fri,•06•May•1983•09:00:00•CST♢|</pubDate>|♢
+·  ·  ·  ·  ♢¶♢|••••••|♢
+·  ·  ·  ·  <XMLElement>
+·  ·  ·  ·  ·  ♢|<source•url="http://la.example.com/rss.xml">|♢Los•Angeles•Herald-Examiner♢|</source>|♢
+·  ·  ·  ·  ♢¶♢|••••••|♢
+·  ·  ·  ·  <RSSTitle>
+·  ·  ·  ·  ·  ♢|<title>|♢Joe•Bob•Goes•to•the•Drive-In♢|</title>|♢
+·  ·  ·  ·  ♢¶♢|••••|♢|</item>|♢
+·  ·  ·  ♢¶♢|••••|♢
+·  ·  ·  <RSSItem>
+·  ·  ·  ·  ♢|<item>|♢¶♢|••••••|♢
+·  ·  ·  ·  <RSSDescription>
+·  ·  ·  ·  ·  ♢|<description>|♢I'm•headed•for•France.•I•wasn't•gonna•go•this•year,•but•then•last•week•♢|&lt;|♢a•href="http://www.imdb.com/title/tt0086525/"♢|&gt;|♢Valley•Girl♢|&lt;|♢/a♢|&gt;|♢•came•out•and•I•said•to•myself,•Joe•Bob,•you•gotta•get•out•of•the•country•for•a•while.♢|</description>|♢
+·  ·  ·  ·  ♢¶♢|••••••|♢
+·  ·  ·  ·  <RSSGuid>
+·  ·  ·  ·  ·  ♢|<guid•isPermaLink="false">|♢tag:dallas.example.com,4131:news♢|</guid>|♢
+·  ·  ·  ·  ♢¶♢|••••|♢|</item>|♢
+·  ·  ·  ♢¶♢|••••|♢
+·  ·  ·  <RSSItem>
+·  ·  ·  ·  ♢|<item>|♢¶♢|••••••|♢
+·  ·  ·  ·  <RSSDescription>
+·  ·  ·  ·  ·  ♢|<description>|♢|<![CDATA[I'm•headed•for•France.•I•wasn't•gonna•go•this•year,•but•then•last•week•<a•href="http://www.imdb.com/title/tt0086525/">Valley•Girl</a>•came•out•and•I•said•to•myself,•Joe•Bob,•you•gotta•get•out•of•the•country•for•a•while.]]>|♢|</description>|♢
+·  ·  ·  ·  ♢••••••¶♢|••••••|♢
+·  ·  ·  ·  <RSSGuid>
+·  ·  ·  ·  ·  ♢|<guid•isPermaLink="false">|♢1983-05-06+lifestyle+joebob+2♢|</guid>|♢
+·  ·  ·  ·  ♢¶♢|••••|♢|</item>|♢
+·  ·  ·  ♢••••¶♢|••|♢|</channel>|♢
+·  ·  ♢¶♢|</rss>|♢
+·  ♢¶¶♢
+
+<----->
+
+[1:73] <Root>
+|    [1:71] <XMLElement>
+|    + <name> = ♢rss♢
+|    + <cleaned> = ♢¶••¶••••Current•headlines•from•the•Dallas•Times-Herald•newspaper¶••••http://dallas.example.com¶••••Dallas•Times-Herald¶••••Media¶••••Texas¶••••¶••••Copyright•2006•Dallas•Times-Herald¶••••http://www.rssboard.org/rss-specification¶••••Radio•UserLand•v8.2.1¶••••¶••••••http://dallas.example.com¶••••••Dallas•Times-Herald¶••••••http://dallas.example.com/masthead.gif¶••••••Read•the•Dallas•Times-Herald¶••••••32¶••••••96¶••••¶••••epo¶••••Sun,•29•Jan•2006•17:17:44•GMT¶••••jlehrer@dallas.example.com•(Jim•Lehrer)¶••••Sun,•29•Jan•2006•05:00:00•GMT¶••••(PICS-1.1•"http://www.rsac.org/ratingsv01.html"•l•by•"webmaster@example.com"•on•"2006.01.29T10:09-0800"•r•(n•0•s•0•v•0•l•0))¶••••¶••••••Saturday¶••••••Sunday¶••••¶••••¶••••••0¶••••••1¶••••••2¶••••••22¶••••••23¶••••¶••••¶••••••Your•aggregator•supports•the•textInput•element.•What•software•are•you•using?¶••••••http://www.cadenhead.org/textinput.php¶••••••query¶••••••TextInput•Inquiry¶••••¶••••60¶••••helpdesk@dallas.example.com¶••••¶••••••Seventh•Heaven!•Ryan•Hurls•Another•No•Hitter¶••••••http://dallas.example.com/1991/05/02/nolan.htm¶••••••Texas•Rangers•pitcher•Nolan•Ryan•hurled•the•seventh•no-hitter•of•his•legendary•career•on•Arlington•Appreciation•Night,•defeating•the•Toronto•Blue•Jays•3-0.•The•44-year-old•struck•out•16•batters•before•a•crowd•of•33,439.¶••••••http://dallas.example.com/1991/05/02/nolan.htm••••••¶••••¶••••¶••••••jbb@dallas.example.com•(Joe•Bob•Briggs)¶••••••rec.arts.movies.reviews¶••••••http://dallas.example.com/feedback/1983/06/joebob.htm¶••••••I'm•headed•for•France.•I•wasn't•gonna•go•this•year,•but•then•last•week•"Valley•Girl"•came•out•and•I•said•to•myself,•Joe•Bob,•you•gotta•get•out•of•the•country•for•a•while.¶••••••¶••••••http://dallas.example.com/1983/05/06/joebob.htm¶••••••http://dallas.example.com/1983/05/06/joebob.htm¶••••••Fri,•06•May•1983•09:00:00•CST¶••••••Los•Angeles•Herald-Examiner¶••••••Joe•Bob•Goes•to•the•Drive-In¶••••¶••••¶••••••I'm•headed•for•France.•I•wasn't•gonna•go•this•year,•but•then•last•week•<a•href="http://www.imdb.com/title/tt0086525/">Valley•Girl</a>•came•out•and•I•said•to•myself,•Joe•Bob,•you•gotta•get•out•of•the•country•for•a•while.¶••••••tag:dallas.example.com,4131:news¶••••¶••••¶••••••••••••¶••••••1983-05-06+lifestyle+joebob+2¶••••••••¶••¶♢
+|    + ♢version♢ = ♢2.0♢
+|    |    [1:1] <XMLTag> = ♢<rss•version="2.0">♢
+|    |    + <name> = ♢rss♢
+|    |    + ♢version♢ = ♢2.0♢
+|    |    [1:2] <Text> = ♢¶♢
+|    |    [2:2] <Indenting> = ♢••♢
+|    |    [2:70] <RSSChannel>
+|    |    + <name> = ♢channel♢
+|    |    + <cleaned> = ♢¶••••Current•headlines•from•the•Dallas•Times-Herald•newspaper¶••••http://dallas.example.com¶••••Dallas•Times-Herald¶••••Media¶••••Texas¶••••¶••••Copyright•2006•Dallas•Times-Herald¶••••http://www.rssboard.org/rss-specification¶••••Radio•UserLand•v8.2.1¶••••¶••••••http://dallas.example.com¶••••••Dallas•Times-Herald¶••••••http://dallas.example.com/masthead.gif¶••••••Read•the•Dallas•Times-Herald¶••••••32¶••••••96¶••••¶••••epo¶••••Sun,•29•Jan•2006•17:17:44•GMT¶••••jlehrer@dallas.example.com•(Jim•Lehrer)¶••••Sun,•29•Jan•2006•05:00:00•GMT¶••••(PICS-1.1•"http://www.rsac.org/ratingsv01.html"•l•by•"webmaster@example.com"•on•"2006.01.29T10:09-0800"•r•(n•0•s•0•v•0•l•0))¶••••¶••••••Saturday¶••••••Sunday¶••••¶••••¶••••••0¶••••••1¶••••••2¶••••••22¶••••••23¶••••¶••••¶••••••Your•aggregator•supports•the•textInput•element.•What•software•are•you•using?¶••••••http://www.cadenhead.org/textinput.php¶••••••query¶••••••TextInput•Inquiry¶••••¶••••60¶••••helpdesk@dallas.example.com¶••••¶••••••Seventh•Heaven!•Ryan•Hurls•Another•No•Hitter¶••••••http://dallas.example.com/1991/05/02/nolan.htm¶••••••Texas•Rangers•pitcher•Nolan•Ryan•hurled•the•seventh•no-hitter•of•his•legendary•career•on•Arlington•Appreciation•Night,•defeating•the•Toronto•Blue•Jays•3-0.•The•44-year-old•struck•out•16•batters•before•a•crowd•of•33,439.¶••••••http://dallas.example.com/1991/05/02/nolan.htm••••••¶••••¶••••¶••••••jbb@dallas.example.com•(Joe•Bob•Briggs)¶••••••rec.arts.movies.reviews¶••••••http://dallas.example.com/feedback/1983/06/joebob.htm¶••••••I'm•headed•for•France.•I•wasn't•gonna•go•this•year,•but•then•last•week•"Valley•Girl"•came•out•and•I•said•to•myself,•Joe•Bob,•you•gotta•get•out•of•the•country•for•a•while.¶••••••¶••••••http://dallas.example.com/1983/05/06/joebob.htm¶••••••http://dallas.example.com/1983/05/06/joebob.htm¶••••••Fri,•06•May•1983•09:00:00•CST¶••••••Los•Angeles•Herald-Examiner¶••••••Joe•Bob•Goes•to•the•Drive-In¶••••¶••••¶••••••I'm•headed•for•France.•I•wasn't•gonna•go•this•year,•but•then•last•week•<a•href="http://www.imdb.com/title/tt0086525/">Valley•Girl</a>•came•out•and•I•said•to•myself,•Joe•Bob,•you•gotta•get•out•of•the•country•for•a•while.¶••••••tag:dallas.example.com,4131:news¶••••¶••••¶••••••••••••¶••••••1983-05-06+lifestyle+joebob+2¶••••••••¶••♢
+|    |    |    [2:2] <XMLTag> = ♢<channel>♢
+|    |    |    + <name> = ♢channel♢
+|    |    |    [2:3] <Text> = ♢¶♢
+|    |    |    [3:3] <Indenting> = ♢••••♢
+|    |    |    [3:3] <RSSDescription>
+|    |    |    + <name> = ♢description♢
+|    |    |    + <cleaned> = ♢Current•headlines•from•the•Dallas•Times-Herald•newspaper♢
+|    |    |    |    [3:3] <XMLTag> = ♢<description>♢
+|    |    |    |    + <name> = ♢description♢
+|    |    |    |    [3:3] <Text> = ♢Current•headlines•from•the•Dallas•Times-Herald•newspaper♢
+|    |    |    |    [3:3] <XMLTag> = ♢</description>♢
+|    |    |    |    + <name> = ♢description♢
+|    |    |    [3:4] <Text> = ♢¶♢
+|    |    |    [4:4] <Indenting> = ♢••••♢
+|    |    |    [4:4] <RSSLink>
+|    |    |    + <name> = ♢link♢
+|    |    |    + <cleaned> = ♢http://dallas.example.com♢
+|    |    |    |    [4:4] <XMLTag> = ♢<link>♢
+|    |    |    |    + <name> = ♢link♢
+|    |    |    |    [4:4] <Text> = ♢http://dallas.example.com♢
+|    |    |    |    [4:4] <XMLTag> = ♢</link>♢
+|    |    |    |    + <name> = ♢link♢
+|    |    |    [4:5] <Text> = ♢¶♢
+|    |    |    [5:5] <Indenting> = ♢••••♢
+|    |    |    [5:5] <RSSTitle>
+|    |    |    + <name> = ♢title♢
+|    |    |    + <cleaned> = ♢Dallas•Times-Herald♢
+|    |    |    |    [5:5] <XMLTag> = ♢<title>♢
+|    |    |    |    + <name> = ♢title♢
+|    |    |    |    [5:5] <Text> = ♢Dallas•Times-Herald♢
+|    |    |    |    [5:5] <XMLTag> = ♢</title>♢
+|    |    |    |    + <name> = ♢title♢
+|    |    |    [5:6] <Text> = ♢¶♢
+|    |    |    [6:6] <Indenting> = ♢••••♢
+|    |    |    [6:6] <RSSCategory>
+|    |    |    + <name> = ♢category♢
+|    |    |    + <cleaned> = ♢Media♢
+|    |    |    |    [6:6] <XMLTag> = ♢<category>♢
+|    |    |    |    + <name> = ♢category♢
+|    |    |    |    [6:6] <Text> = ♢Media♢
+|    |    |    |    [6:6] <XMLTag> = ♢</category>♢
+|    |    |    |    + <name> = ♢category♢
+|    |    |    [6:7] <Text> = ♢¶♢
+|    |    |    [7:7] <Indenting> = ♢••••♢
+|    |    |    [7:7] <RSSCategory>
+|    |    |    + <name> = ♢category♢
+|    |    |    + <cleaned> = ♢Texas♢
+|    |    |    + ♢domain♢ = ♢Newspapers/Regional/United_States♢
+|    |    |    |    [7:7] <XMLTag> = ♢<category•domain="Newspapers/Regional/United_States">♢
+|    |    |    |    + <name> = ♢category♢
+|    |    |    |    + ♢domain♢ = ♢Newspapers/Regional/United_States♢
+|    |    |    |    [7:7] <Text> = ♢Texas♢
+|    |    |    |    [7:7] <XMLTag> = ♢</category>♢
+|    |    |    |    + <name> = ♢category♢
+|    |    |    [7:8] <Text> = ♢¶♢
+|    |    |    [8:8] <Indenting> = ♢••••♢
+|    |    |    [8:8] <XMLElement>
+|    |    |    + <name> = ♢cloud♢
+|    |    |    + <cleaned> = ♢♢
+|    |    |    + ♢path♢ = ♢/rpc♢
+|    |    |    + ♢registerProcedure♢ = ♢cloud.notify♢
+|    |    |    + ♢protocol♢ = ♢xml-rpc♢
+|    |    |    + ♢domain♢ = ♢server.example.com♢
+|    |    |    + ♢port♢ = ♢80♢
+|    |    |    |    [8:8] <XMLTag> = ♢<cloud•domain="server.example.com"•path="/rpc"•port="80"•protocol="xml-rpc"•registerProcedure="cloud.notify"•/>♢
+|    |    |    |    + <name> = ♢cloud♢
+|    |    |    |    + ♢path♢ = ♢/rpc♢
+|    |    |    |    + ♢registerProcedure♢ = ♢cloud.notify♢
+|    |    |    |    + ♢protocol♢ = ♢xml-rpc♢
+|    |    |    |    + ♢domain♢ = ♢server.example.com♢
+|    |    |    |    + ♢port♢ = ♢80♢
+|    |    |    [8:9] <Text> = ♢¶♢
+|    |    |    [9:9] <Indenting> = ♢••••♢
+|    |    |    [9:9] <XMLElement>
+|    |    |    + <name> = ♢copyright♢
+|    |    |    + <cleaned> = ♢Copyright•2006•Dallas•Times-Herald♢
+|    |    |    |    [9:9] <XMLTag> = ♢<copyright>♢
+|    |    |    |    + <name> = ♢copyright♢
+|    |    |    |    [9:9] <Text> = ♢Copyright•2006•Dallas•Times-Herald♢
+|    |    |    |    [9:9] <XMLTag> = ♢</copyright>♢
+|    |    |    |    + <name> = ♢copyright♢
+|    |    |    [9:10] <Text> = ♢¶♢
+|    |    |    [10:10] <Indenting> = ♢••••♢
+|    |    |    [10:10] <XMLElement>
+|    |    |    + <name> = ♢docs♢
+|    |    |    + <cleaned> = ♢http://www.rssboard.org/rss-specification♢
+|    |    |    |    [10:10] <XMLTag> = ♢<docs>♢
+|    |    |    |    + <name> = ♢docs♢
+|    |    |    |    [10:10] <Text> = ♢http://www.rssboard.org/rss-specification♢
+|    |    |    |    [10:10] <XMLTag> = ♢</docs>♢
+|    |    |    |    + <name> = ♢docs♢
+|    |    |    [10:11] <Text> = ♢¶♢
+|    |    |    [11:11] <Indenting> = ♢••••♢
+|    |    |    [11:11] <XMLElement>
+|    |    |    + <name> = ♢generator♢
+|    |    |    + <cleaned> = ♢Radio•UserLand•v8.2.1♢
+|    |    |    |    [11:11] <XMLTag> = ♢<generator>♢
+|    |    |    |    + <name> = ♢generator♢
+|    |    |    |    [11:11] <Text> = ♢Radio•UserLand•v8.2.1♢
+|    |    |    |    [11:11] <XMLTag> = ♢</generator>♢
+|    |    |    |    + <name> = ♢generator♢
+|    |    |    [11:12] <Text> = ♢¶♢
+|    |    |    [12:12] <Indenting> = ♢••••♢
+|    |    |    [12:19] <XMLElement>
+|    |    |    + <name> = ♢image♢
+|    |    |    + <cleaned> = ♢¶••••••http://dallas.example.com¶••••••Dallas•Times-Herald¶••••••http://dallas.example.com/masthead.gif¶••••••Read•the•Dallas•Times-Herald¶••••••32¶••••••96¶••••♢
+|    |    |    |    [12:12] <XMLTag> = ♢<image>♢
+|    |    |    |    + <name> = ♢image♢
+|    |    |    |    [12:13] <Text> = ♢¶♢
+|    |    |    |    [13:13] <Indenting> = ♢••••••♢
+|    |    |    |    [13:13] <RSSLink>
+|    |    |    |    + <name> = ♢link♢
+|    |    |    |    + <cleaned> = ♢http://dallas.example.com♢
+|    |    |    |    |    [13:13] <XMLTag> = ♢<link>♢
+|    |    |    |    |    + <name> = ♢link♢
+|    |    |    |    |    [13:13] <Text> = ♢http://dallas.example.com♢
+|    |    |    |    |    [13:13] <XMLTag> = ♢</link>♢
+|    |    |    |    |    + <name> = ♢link♢
+|    |    |    |    [13:14] <Text> = ♢¶♢
+|    |    |    |    [14:14] <Indenting> = ♢••••••♢
+|    |    |    |    [14:14] <RSSTitle>
+|    |    |    |    + <name> = ♢title♢
+|    |    |    |    + <cleaned> = ♢Dallas•Times-Herald♢
+|    |    |    |    |    [14:14] <XMLTag> = ♢<title>♢
+|    |    |    |    |    + <name> = ♢title♢
+|    |    |    |    |    [14:14] <Text> = ♢Dallas•Times-Herald♢
+|    |    |    |    |    [14:14] <XMLTag> = ♢</title>♢
+|    |    |    |    |    + <name> = ♢title♢
+|    |    |    |    [14:15] <Text> = ♢¶♢
+|    |    |    |    [15:15] <Indenting> = ♢••••••♢
+|    |    |    |    [15:15] <XMLElement>
+|    |    |    |    + <name> = ♢url♢
+|    |    |    |    + <cleaned> = ♢http://dallas.example.com/masthead.gif♢
+|    |    |    |    |    [15:15] <XMLTag> = ♢<url>♢
+|    |    |    |    |    + <name> = ♢url♢
+|    |    |    |    |    [15:15] <Text> = ♢http://dallas.example.com/masthead.gif♢
+|    |    |    |    |    [15:15] <XMLTag> = ♢</url>♢
+|    |    |    |    |    + <name> = ♢url♢
+|    |    |    |    [15:16] <Text> = ♢¶♢
+|    |    |    |    [16:16] <Indenting> = ♢••••••♢
+|    |    |    |    [16:16] <RSSDescription>
+|    |    |    |    + <name> = ♢description♢
+|    |    |    |    + <cleaned> = ♢Read•the•Dallas•Times-Herald♢
+|    |    |    |    |    [16:16] <XMLTag> = ♢<description>♢
+|    |    |    |    |    + <name> = ♢description♢
+|    |    |    |    |    [16:16] <Text> = ♢Read•the•Dallas•Times-Herald♢
+|    |    |    |    |    [16:16] <XMLTag> = ♢</description>♢
+|    |    |    |    |    + <name> = ♢description♢
+|    |    |    |    [16:17] <Text> = ♢¶♢
+|    |    |    |    [17:17] <Indenting> = ♢••••••♢
+|    |    |    |    [17:17] <XMLElement>
+|    |    |    |    + <name> = ♢height♢
+|    |    |    |    + <cleaned> = ♢32♢
+|    |    |    |    |    [17:17] <XMLTag> = ♢<height>♢
+|    |    |    |    |    + <name> = ♢height♢
+|    |    |    |    |    [17:17] <Text> = ♢32♢
+|    |    |    |    |    [17:17] <XMLTag> = ♢</height>♢
+|    |    |    |    |    + <name> = ♢height♢
+|    |    |    |    [17:18] <Text> = ♢¶♢
+|    |    |    |    [18:18] <Indenting> = ♢••••••♢
+|    |    |    |    [18:18] <XMLElement>
+|    |    |    |    + <name> = ♢width♢
+|    |    |    |    + <cleaned> = ♢96♢
+|    |    |    |    |    [18:18] <XMLTag> = ♢<width>♢
+|    |    |    |    |    + <name> = ♢width♢
+|    |    |    |    |    [18:18] <Text> = ♢96♢
+|    |    |    |    |    [18:18] <XMLTag> = ♢</width>♢
+|    |    |    |    |    + <name> = ♢width♢
+|    |    |    |    [18:19] <Text> = ♢¶♢
+|    |    |    |    [19:19] <Indenting> = ♢••••♢
+|    |    |    |    [19:19] <XMLTag> = ♢</image>♢
+|    |    |    |    + <name> = ♢image♢
+|    |    |    [19:20] <Text> = ♢¶♢
+|    |    |    [20:20] <Indenting> = ♢••••♢
+|    |    |    [20:20] <RSSLanguage>
+|    |    |    + <name> = ♢language♢
+|    |    |    + <cleaned> = ♢epo♢
+|    |    |    |    [20:20] <XMLTag> = ♢<language>♢
+|    |    |    |    + <name> = ♢language♢
+|    |    |    |    [20:20] <Text> = ♢epo♢
+|    |    |    |    [20:20] <XMLTag> = ♢</language>♢
+|    |    |    |    + <name> = ♢language♢
+|    |    |    [20:21] <Text> = ♢¶♢
+|    |    |    [21:21] <Indenting> = ♢••••♢
+|    |    |    [21:21] <XMLElement>
+|    |    |    + <name> = ♢lastBuildDate♢
+|    |    |    + <cleaned> = ♢Sun,•29•Jan•2006•17:17:44•GMT♢
+|    |    |    |    [21:21] <XMLTag> = ♢<lastBuildDate>♢
+|    |    |    |    + <name> = ♢lastBuildDate♢
+|    |    |    |    [21:21] <Text> = ♢Sun,•29•Jan•2006•17:17:44•GMT♢
+|    |    |    |    [21:21] <XMLTag> = ♢</lastBuildDate>♢
+|    |    |    |    + <name> = ♢lastBuildDate♢
+|    |    |    [21:22] <Text> = ♢¶♢
+|    |    |    [22:22] <Indenting> = ♢••••♢
+|    |    |    [22:22] <XMLElement>
+|    |    |    + <name> = ♢managingEditor♢
+|    |    |    + <cleaned> = ♢jlehrer@dallas.example.com•(Jim•Lehrer)♢
+|    |    |    |    [22:22] <XMLTag> = ♢<managingEditor>♢
+|    |    |    |    + <name> = ♢managingEditor♢
+|    |    |    |    [22:22] <Text> = ♢jlehrer@dallas.example.com•(Jim•Lehrer)♢
+|    |    |    |    [22:22] <XMLTag> = ♢</managingEditor>♢
+|    |    |    |    + <name> = ♢managingEditor♢
+|    |    |    [22:23] <Text> = ♢¶♢
+|    |    |    [23:23] <Indenting> = ♢••••♢
+|    |    |    [23:23] <XMLElement>
+|    |    |    + <name> = ♢pubDate♢
+|    |    |    + <cleaned> = ♢Sun,•29•Jan•2006•05:00:00•GMT♢
+|    |    |    |    [23:23] <XMLTag> = ♢<pubDate>♢
+|    |    |    |    + <name> = ♢pubDate♢
+|    |    |    |    [23:23] <Text> = ♢Sun,•29•Jan•2006•05:00:00•GMT♢
+|    |    |    |    [23:23] <XMLTag> = ♢</pubDate>♢
+|    |    |    |    + <name> = ♢pubDate♢
+|    |    |    [23:24] <Text> = ♢¶♢
+|    |    |    [24:24] <Indenting> = ♢••••♢
+|    |    |    [24:24] <XMLElement>
+|    |    |    + <name> = ♢rating♢
+|    |    |    + <cleaned> = ♢(PICS-1.1•"http://www.rsac.org/ratingsv01.html"•l•by•"webmaster@example.com"•on•"2006.01.29T10:09-0800"•r•(n•0•s•0•v•0•l•0))♢
+|    |    |    |    [24:24] <XMLTag> = ♢<rating>♢
+|    |    |    |    + <name> = ♢rating♢
+|    |    |    |    [24:24] <Text> = ♢(PICS-1.1•"http://www.rsac.org/ratingsv01.html"•l•by•"webmaster@example.com"•on•"2006.01.29T10:09-0800"•r•(n•0•s•0•v•0•l•0))♢
+|    |    |    |    [24:24] <XMLTag> = ♢</rating>♢
+|    |    |    |    + <name> = ♢rating♢
+|    |    |    [24:25] <Text> = ♢¶♢
+|    |    |    [25:25] <Indenting> = ♢••••♢
+|    |    |    [25:28] <XMLElement>
+|    |    |    + <name> = ♢skipDays♢
+|    |    |    + <cleaned> = ♢¶••••••Saturday¶••••••Sunday¶••••♢
+|    |    |    |    [25:25] <XMLTag> = ♢<skipDays>♢
+|    |    |    |    + <name> = ♢skipDays♢
+|    |    |    |    [25:26] <Text> = ♢¶♢
+|    |    |    |    [26:26] <Indenting> = ♢••••••♢
+|    |    |    |    [26:26] <XMLElement>
+|    |    |    |    + <name> = ♢day♢
+|    |    |    |    + <cleaned> = ♢Saturday♢
+|    |    |    |    |    [26:26] <XMLTag> = ♢<day>♢
+|    |    |    |    |    + <name> = ♢day♢
+|    |    |    |    |    [26:26] <Text> = ♢Saturday♢
+|    |    |    |    |    [26:26] <XMLTag> = ♢</day>♢
+|    |    |    |    |    + <name> = ♢day♢
+|    |    |    |    [26:27] <Text> = ♢¶♢
+|    |    |    |    [27:27] <Indenting> = ♢••••••♢
+|    |    |    |    [27:27] <XMLElement>
+|    |    |    |    + <name> = ♢day♢
+|    |    |    |    + <cleaned> = ♢Sunday♢
+|    |    |    |    |    [27:27] <XMLTag> = ♢<day>♢
+|    |    |    |    |    + <name> = ♢day♢
+|    |    |    |    |    [27:27] <Text> = ♢Sunday♢
+|    |    |    |    |    [27:27] <XMLTag> = ♢</day>♢
+|    |    |    |    |    + <name> = ♢day♢
+|    |    |    |    [27:28] <Text> = ♢¶♢
+|    |    |    |    [28:28] <Indenting> = ♢••••♢
+|    |    |    |    [28:28] <XMLTag> = ♢</skipDays>♢
+|    |    |    |    + <name> = ♢skipDays♢
+|    |    |    [28:29] <Text> = ♢¶♢
+|    |    |    [29:29] <Indenting> = ♢••••♢
+|    |    |    [29:35] <XMLElement>
+|    |    |    + <name> = ♢skipHours♢
+|    |    |    + <cleaned> = ♢¶••••••0¶••••••1¶••••••2¶••••••22¶••••••23¶••••♢
+|    |    |    |    [29:29] <XMLTag> = ♢<skipHours>♢
+|    |    |    |    + <name> = ♢skipHours♢
+|    |    |    |    [29:30] <Text> = ♢¶♢
+|    |    |    |    [30:30] <Indenting> = ♢••••••♢
+|    |    |    |    [30:30] <XMLElement>
+|    |    |    |    + <name> = ♢hour♢
+|    |    |    |    + <cleaned> = ♢0♢
+|    |    |    |    |    [30:30] <XMLTag> = ♢<hour>♢
+|    |    |    |    |    + <name> = ♢hour♢
+|    |    |    |    |    [30:30] <Text> = ♢0♢
+|    |    |    |    |    [30:30] <XMLTag> = ♢</hour>♢
+|    |    |    |    |    + <name> = ♢hour♢
+|    |    |    |    [30:31] <Text> = ♢¶♢
+|    |    |    |    [31:31] <Indenting> = ♢••••••♢
+|    |    |    |    [31:31] <XMLElement>
+|    |    |    |    + <name> = ♢hour♢
+|    |    |    |    + <cleaned> = ♢1♢
+|    |    |    |    |    [31:31] <XMLTag> = ♢<hour>♢
+|    |    |    |    |    + <name> = ♢hour♢
+|    |    |    |    |    [31:31] <Text> = ♢1♢
+|    |    |    |    |    [31:31] <XMLTag> = ♢</hour>♢
+|    |    |    |    |    + <name> = ♢hour♢
+|    |    |    |    [31:32] <Text> = ♢¶♢
+|    |    |    |    [32:32] <Indenting> = ♢••••••♢
+|    |    |    |    [32:32] <XMLElement>
+|    |    |    |    + <name> = ♢hour♢
+|    |    |    |    + <cleaned> = ♢2♢
+|    |    |    |    |    [32:32] <XMLTag> = ♢<hour>♢
+|    |    |    |    |    + <name> = ♢hour♢
+|    |    |    |    |    [32:32] <Text> = ♢2♢
+|    |    |    |    |    [32:32] <XMLTag> = ♢</hour>♢
+|    |    |    |    |    + <name> = ♢hour♢
+|    |    |    |    [32:33] <Text> = ♢¶♢
+|    |    |    |    [33:33] <Indenting> = ♢••••••♢
+|    |    |    |    [33:33] <XMLElement>
+|    |    |    |    + <name> = ♢hour♢
+|    |    |    |    + <cleaned> = ♢22♢
+|    |    |    |    |    [33:33] <XMLTag> = ♢<hour>♢
+|    |    |    |    |    + <name> = ♢hour♢
+|    |    |    |    |    [33:33] <Text> = ♢22♢
+|    |    |    |    |    [33:33] <XMLTag> = ♢</hour>♢
+|    |    |    |    |    + <name> = ♢hour♢
+|    |    |    |    [33:34] <Text> = ♢¶♢
+|    |    |    |    [34:34] <Indenting> = ♢••••••♢
+|    |    |    |    [34:34] <XMLElement>
+|    |    |    |    + <name> = ♢hour♢
+|    |    |    |    + <cleaned> = ♢23♢
+|    |    |    |    |    [34:34] <XMLTag> = ♢<hour>♢
+|    |    |    |    |    + <name> = ♢hour♢
+|    |    |    |    |    [34:34] <Text> = ♢23♢
+|    |    |    |    |    [34:34] <XMLTag> = ♢</hour>♢
+|    |    |    |    |    + <name> = ♢hour♢
+|    |    |    |    [34:35] <Text> = ♢¶♢
+|    |    |    |    [35:35] <Indenting> = ♢••••♢
+|    |    |    |    [35:35] <XMLTag> = ♢</skipHours>♢
+|    |    |    |    + <name> = ♢skipHours♢
+|    |    |    [35:36] <Text> = ♢¶♢
+|    |    |    [36:36] <Indenting> = ♢••••♢
+|    |    |    [36:41] <XMLElement>
+|    |    |    + <name> = ♢textInput♢
+|    |    |    + <cleaned> = ♢¶••••••Your•aggregator•supports•the•textInput•element.•What•software•are•you•using?¶••••••http://www.cadenhead.org/textinput.php¶••••••query¶••••••TextInput•Inquiry¶••••♢
+|    |    |    |    [36:36] <XMLTag> = ♢<textInput>♢
+|    |    |    |    + <name> = ♢textInput♢
+|    |    |    |    [36:37] <Text> = ♢¶♢
+|    |    |    |    [37:37] <Indenting> = ♢••••••♢
+|    |    |    |    [37:37] <RSSDescription>
+|    |    |    |    + <name> = ♢description♢
+|    |    |    |    + <cleaned> = ♢Your•aggregator•supports•the•textInput•element.•What•software•are•you•using?♢
+|    |    |    |    |    [37:37] <XMLTag> = ♢<description>♢
+|    |    |    |    |    + <name> = ♢description♢
+|    |    |    |    |    [37:37] <Text> = ♢Your•aggregator•supports•the•textInput•element.•What•software•are•you•using?♢
+|    |    |    |    |    [37:37] <XMLTag> = ♢</description>♢
+|    |    |    |    |    + <name> = ♢description♢
+|    |    |    |    [37:38] <Text> = ♢¶♢
+|    |    |    |    [38:38] <Indenting> = ♢••••••♢
+|    |    |    |    [38:38] <RSSLink>
+|    |    |    |    + <name> = ♢link♢
+|    |    |    |    + <cleaned> = ♢http://www.cadenhead.org/textinput.php♢
+|    |    |    |    |    [38:38] <XMLTag> = ♢<link>♢
+|    |    |    |    |    + <name> = ♢link♢
+|    |    |    |    |    [38:38] <Text> = ♢http://www.cadenhead.org/textinput.php♢
+|    |    |    |    |    [38:38] <XMLTag> = ♢</link>♢
+|    |    |    |    |    + <name> = ♢link♢
+|    |    |    |    [38:39] <Text> = ♢¶♢
+|    |    |    |    [39:39] <Indenting> = ♢••••••♢
+|    |    |    |    [39:39] <AtomName>
+|    |    |    |    + <name> = ♢name♢
+|    |    |    |    + <cleaned> = ♢query♢
+|    |    |    |    |    [39:39] <XMLTag> = ♢<name>♢
+|    |    |    |    |    + <name> = ♢name♢
+|    |    |    |    |    [39:39] <Text> = ♢query♢
+|    |    |    |    |    [39:39] <XMLTag> = ♢</name>♢
+|    |    |    |    |    + <name> = ♢name♢
+|    |    |    |    [39:40] <Text> = ♢¶♢
+|    |    |    |    [40:40] <Indenting> = ♢••••••♢
+|    |    |    |    [40:40] <RSSTitle>
+|    |    |    |    + <name> = ♢title♢
+|    |    |    |    + <cleaned> = ♢TextInput•Inquiry♢
+|    |    |    |    |    [40:40] <XMLTag> = ♢<title>♢
+|    |    |    |    |    + <name> = ♢title♢
+|    |    |    |    |    [40:40] <Text> = ♢TextInput•Inquiry♢
+|    |    |    |    |    [40:40] <XMLTag> = ♢</title>♢
+|    |    |    |    |    + <name> = ♢title♢
+|    |    |    |    [40:41] <Text> = ♢¶♢
+|    |    |    |    [41:41] <Indenting> = ♢••••♢
+|    |    |    |    [41:41] <XMLTag> = ♢</textInput>♢
+|    |    |    |    + <name> = ♢textInput♢
+|    |    |    [41:42] <Text> = ♢¶♢
+|    |    |    [42:42] <Indenting> = ♢••••♢
+|    |    |    [42:42] <XMLElement>
+|    |    |    + <name> = ♢ttl♢
+|    |    |    + <cleaned> = ♢60♢
+|    |    |    |    [42:42] <XMLTag> = ♢<ttl>♢
+|    |    |    |    + <name> = ♢ttl♢
+|    |    |    |    [42:42] <Text> = ♢60♢
+|    |    |    |    [42:42] <XMLTag> = ♢</ttl>♢
+|    |    |    |    + <name> = ♢ttl♢
+|    |    |    [42:43] <Text> = ♢¶♢
+|    |    |    [43:43] <Indenting> = ♢••••♢
+|    |    |    [43:43] <XMLElement>
+|    |    |    + <name> = ♢webMaster♢
+|    |    |    + <cleaned> = ♢helpdesk@dallas.example.com♢
+|    |    |    |    [43:43] <XMLTag> = ♢<webMaster>♢
+|    |    |    |    + <name> = ♢webMaster♢
+|    |    |    |    [43:43] <Text> = ♢helpdesk@dallas.example.com♢
+|    |    |    |    [43:43] <XMLTag> = ♢</webMaster>♢
+|    |    |    |    + <name> = ♢webMaster♢
+|    |    |    [43:44] <Text> = ♢¶♢
+|    |    |    [44:44] <Indenting> = ♢••••♢
+|    |    |    [44:49] <RSSItem>
+|    |    |    + <name> = ♢item♢
+|    |    |    + <cleaned> = ♢¶••••••Seventh•Heaven!•Ryan•Hurls•Another•No•Hitter¶••••••http://dallas.example.com/1991/05/02/nolan.htm¶••••••Texas•Rangers•pitcher•Nolan•Ryan•hurled•the•seventh•no-hitter•of•his•legendary•career•on•Arlington•Appreciation•Night,•defeating•the•Toronto•Blue•Jays•3-0.•The•44-year-old•struck•out•16•batters•before•a•crowd•of•33,439.¶••••••http://dallas.example.com/1991/05/02/nolan.htm••••••¶••••♢
+|    |    |    |    [44:44] <XMLTag> = ♢<item>♢
+|    |    |    |    + <name> = ♢item♢
+|    |    |    |    [44:45] <Text> = ♢¶♢
+|    |    |    |    [45:45] <Indenting> = ♢••••••♢
+|    |    |    |    [45:45] <RSSTitle>
+|    |    |    |    + <name> = ♢title♢
+|    |    |    |    + <cleaned> = ♢Seventh•Heaven!•Ryan•Hurls•Another•No•Hitter♢
+|    |    |    |    |    [45:45] <XMLTag> = ♢<title>♢
+|    |    |    |    |    + <name> = ♢title♢
+|    |    |    |    |    [45:45] <Text> = ♢Seventh•Heaven!•Ryan•Hurls•Another•No•Hitter♢
+|    |    |    |    |    [45:45] <XMLTag> = ♢</title>♢
+|    |    |    |    |    + <name> = ♢title♢
+|    |    |    |    [45:46] <Text> = ♢¶♢
+|    |    |    |    [46:46] <Indenting> = ♢••••••♢
+|    |    |    |    [46:46] <RSSLink>
+|    |    |    |    + <name> = ♢link♢
+|    |    |    |    + <cleaned> = ♢http://dallas.example.com/1991/05/02/nolan.htm♢
+|    |    |    |    |    [46:46] <XMLTag> = ♢<link>♢
+|    |    |    |    |    + <name> = ♢link♢
+|    |    |    |    |    [46:46] <Text> = ♢http://dallas.example.com/1991/05/02/nolan.htm♢
+|    |    |    |    |    [46:46] <XMLTag> = ♢</link>♢
+|    |    |    |    |    + <name> = ♢link♢
+|    |    |    |    [46:47] <Text> = ♢¶♢
+|    |    |    |    [47:47] <Indenting> = ♢••••••♢
+|    |    |    |    [47:47] <RSSDescription>
+|    |    |    |    + <name> = ♢description♢
+|    |    |    |    + <cleaned> = ♢Texas•Rangers•pitcher•Nolan•Ryan•hurled•the•seventh•no-hitter•of•his•legendary•career•on•Arlington•Appreciation•Night,•defeating•the•Toronto•Blue•Jays•3-0.•The•44-year-old•struck•out•16•batters•before•a•crowd•of•33,439.♢
+|    |    |    |    |    [47:47] <XMLTag> = ♢<description>♢
+|    |    |    |    |    + <name> = ♢description♢
+|    |    |    |    |    [47:47] <Text> = ♢Texas•Rangers•pitcher•Nolan•Ryan•hurled•the•seventh•no-hitter•of•his•legendary•career•on•Arlington•Appreciation•Night,•defeating•the•Toronto•Blue•Jays•3-0.•The•44-year-old•struck•out•16•batters•before•a•crowd•of•33,439.♢
+|    |    |    |    |    [47:47] <XMLTag> = ♢</description>♢
+|    |    |    |    |    + <name> = ♢description♢
+|    |    |    |    [47:48] <Text> = ♢¶♢
+|    |    |    |    [48:48] <Indenting> = ♢••••••♢
+|    |    |    |    [48:48] <RSSGuid>
+|    |    |    |    + <name> = ♢guid♢
+|    |    |    |    + <cleaned> = ♢http://dallas.example.com/1991/05/02/nolan.htm♢
+|    |    |    |    |    [48:48] <XMLTag> = ♢<guid>♢
+|    |    |    |    |    + <name> = ♢guid♢
+|    |    |    |    |    [48:48] <Text> = ♢http://dallas.example.com/1991/05/02/nolan.htm♢
+|    |    |    |    |    [48:48] <XMLTag> = ♢</guid>♢
+|    |    |    |    |    + <name> = ♢guid♢
+|    |    |    |    [48:49] <Text> = ♢••••••¶♢
+|    |    |    |    [49:49] <Indenting> = ♢••••♢
+|    |    |    |    [49:49] <XMLTag> = ♢</item>♢
+|    |    |    |    + <name> = ♢item♢
+|    |    |    [49:50] <Text> = ♢¶♢
+|    |    |    [50:50] <Indenting> = ♢••••♢
+|    |    |    [50:61] <RSSItem>
+|    |    |    + <name> = ♢item♢
+|    |    |    + <cleaned> = ♢¶••••••jbb@dallas.example.com•(Joe•Bob•Briggs)¶••••••rec.arts.movies.reviews¶••••••http://dallas.example.com/feedback/1983/06/joebob.htm¶••••••I'm•headed•for•France.•I•wasn't•gonna•go•this•year,•but•then•last•week•"Valley•Girl"•came•out•and•I•said•to•myself,•Joe•Bob,•you•gotta•get•out•of•the•country•for•a•while.¶••••••¶••••••http://dallas.example.com/1983/05/06/joebob.htm¶••••••http://dallas.example.com/1983/05/06/joebob.htm¶••••••Fri,•06•May•1983•09:00:00•CST¶••••••Los•Angeles•Herald-Examiner¶••••••Joe•Bob•Goes•to•the•Drive-In¶••••♢
+|    |    |    |    [50:50] <XMLTag> = ♢<item>♢
+|    |    |    |    + <name> = ♢item♢
+|    |    |    |    [50:51] <Text> = ♢¶♢
+|    |    |    |    [51:51] <Indenting> = ♢••••••♢
+|    |    |    |    [51:51] <RSSAuthor>
+|    |    |    |    + <name> = ♢author♢
+|    |    |    |    + <cleaned> = ♢jbb@dallas.example.com•(Joe•Bob•Briggs)♢
+|    |    |    |    |    [51:51] <XMLTag> = ♢<author>♢
+|    |    |    |    |    + <name> = ♢author♢
+|    |    |    |    |    [51:51] <Text> = ♢jbb@dallas.example.com•(Joe•Bob•Briggs)♢
+|    |    |    |    |    [51:51] <XMLTag> = ♢</author>♢
+|    |    |    |    |    + <name> = ♢author♢
+|    |    |    |    [51:52] <Text> = ♢¶♢
+|    |    |    |    [52:52] <Indenting> = ♢••••••♢
+|    |    |    |    [52:52] <RSSCategory>
+|    |    |    |    + <name> = ♢category♢
+|    |    |    |    + <cleaned> = ♢rec.arts.movies.reviews♢
+|    |    |    |    |    [52:52] <XMLTag> = ♢<category>♢
+|    |    |    |    |    + <name> = ♢category♢
+|    |    |    |    |    [52:52] <Text> = ♢rec.arts.movies.reviews♢
+|    |    |    |    |    [52:52] <XMLTag> = ♢</category>♢
+|    |    |    |    |    + <name> = ♢category♢
+|    |    |    |    [52:53] <Text> = ♢¶♢
+|    |    |    |    [53:53] <Indenting> = ♢••••••♢
+|    |    |    |    [53:53] <XMLElement>
+|    |    |    |    + <name> = ♢comments♢
+|    |    |    |    + <cleaned> = ♢http://dallas.example.com/feedback/1983/06/joebob.htm♢
+|    |    |    |    |    [53:53] <XMLTag> = ♢<comments>♢
+|    |    |    |    |    + <name> = ♢comments♢
+|    |    |    |    |    [53:53] <Text> = ♢http://dallas.example.com/feedback/1983/06/joebob.htm♢
+|    |    |    |    |    [53:53] <XMLTag> = ♢</comments>♢
+|    |    |    |    |    + <name> = ♢comments♢
+|    |    |    |    [53:54] <Text> = ♢¶♢
+|    |    |    |    [54:54] <Indenting> = ♢••••••♢
+|    |    |    |    [54:54] <RSSDescription>
+|    |    |    |    + <name> = ♢description♢
+|    |    |    |    + <cleaned> = ♢I'm•headed•for•France.•I•wasn't•gonna•go•this•year,•but•then•last•week•"Valley•Girl"•came•out•and•I•said•to•myself,•Joe•Bob,•you•gotta•get•out•of•the•country•for•a•while.♢
+|    |    |    |    |    [54:54] <XMLTag> = ♢<description>♢
+|    |    |    |    |    + <name> = ♢description♢
+|    |    |    |    |    [54:54] <Text> = ♢I'm•headed•for•France.•I•wasn't•gonna•go•this•year,•but•then•last•week•"Valley•Girl"•came•out•and•I•said•to•myself,•Joe•Bob,•you•gotta•get•out•of•the•country•for•a•while.♢
+|    |    |    |    |    [54:54] <XMLTag> = ♢</description>♢
+|    |    |    |    |    + <name> = ♢description♢
+|    |    |    |    [54:55] <Text> = ♢¶♢
+|    |    |    |    [55:55] <Indenting> = ♢••••••♢
+|    |    |    |    [55:55] <RSSEnclosure>
+|    |    |    |    + <name> = ♢enclosure♢
+|    |    |    |    + <cleaned> = ♢♢
+|    |    |    |    + ♢type♢ = ♢audio/mpeg♢
+|    |    |    |    + ♢url♢ = ♢http://dallas.example.com/joebob_050689.mp3♢
+|    |    |    |    + ♢length♢ = ♢24986239♢
+|    |    |    |    |    [55:55] <XMLTag> = ♢<enclosure•length="24986239"•type="audio/mpeg"•url="http://dallas.example.com/joebob_050689.mp3"•/>♢
+|    |    |    |    |    + <name> = ♢enclosure♢
+|    |    |    |    |    + ♢type♢ = ♢audio/mpeg♢
+|    |    |    |    |    + ♢url♢ = ♢http://dallas.example.com/joebob_050689.mp3♢
+|    |    |    |    |    + ♢length♢ = ♢24986239♢
+|    |    |    |    [55:56] <Text> = ♢¶♢
+|    |    |    |    [56:56] <Indenting> = ♢••••••♢
+|    |    |    |    [56:56] <RSSGuid>
+|    |    |    |    + <name> = ♢guid♢
+|    |    |    |    + <cleaned> = ♢http://dallas.example.com/1983/05/06/joebob.htm♢
+|    |    |    |    |    [56:56] <XMLTag> = ♢<guid>♢
+|    |    |    |    |    + <name> = ♢guid♢
+|    |    |    |    |    [56:56] <Text> = ♢http://dallas.example.com/1983/05/06/joebob.htm♢
+|    |    |    |    |    [56:56] <XMLTag> = ♢</guid>♢
+|    |    |    |    |    + <name> = ♢guid♢
+|    |    |    |    [56:57] <Text> = ♢¶♢
+|    |    |    |    [57:57] <Indenting> = ♢••••••♢
+|    |    |    |    [57:57] <RSSLink>
+|    |    |    |    + <name> = ♢link♢
+|    |    |    |    + <cleaned> = ♢http://dallas.example.com/1983/05/06/joebob.htm♢
+|    |    |    |    |    [57:57] <XMLTag> = ♢<link>♢
+|    |    |    |    |    + <name> = ♢link♢
+|    |    |    |    |    [57:57] <Text> = ♢http://dallas.example.com/1983/05/06/joebob.htm♢
+|    |    |    |    |    [57:57] <XMLTag> = ♢</link>♢
+|    |    |    |    |    + <name> = ♢link♢
+|    |    |    |    [57:58] <Text> = ♢¶♢
+|    |    |    |    [58:58] <Indenting> = ♢••••••♢
+|    |    |    |    [58:58] <XMLElement>
+|    |    |    |    + <name> = ♢pubDate♢
+|    |    |    |    + <cleaned> = ♢Fri,•06•May•1983•09:00:00•CST♢
+|    |    |    |    |    [58:58] <XMLTag> = ♢<pubDate>♢
+|    |    |    |    |    + <name> = ♢pubDate♢
+|    |    |    |    |    [58:58] <Text> = ♢Fri,•06•May•1983•09:00:00•CST♢
+|    |    |    |    |    [58:58] <XMLTag> = ♢</pubDate>♢
+|    |    |    |    |    + <name> = ♢pubDate♢
+|    |    |    |    [58:59] <Text> = ♢¶♢
+|    |    |    |    [59:59] <Indenting> = ♢••••••♢
+|    |    |    |    [59:59] <XMLElement>
+|    |    |    |    + <name> = ♢source♢
+|    |    |    |    + <cleaned> = ♢Los•Angeles•Herald-Examiner♢
+|    |    |    |    + ♢url♢ = ♢http://la.example.com/rss.xml♢
+|    |    |    |    |    [59:59] <XMLTag> = ♢<source•url="http://la.example.com/rss.xml">♢
+|    |    |    |    |    + <name> = ♢source♢
+|    |    |    |    |    + ♢url♢ = ♢http://la.example.com/rss.xml♢
+|    |    |    |    |    [59:59] <Text> = ♢Los•Angeles•Herald-Examiner♢
+|    |    |    |    |    [59:59] <XMLTag> = ♢</source>♢
+|    |    |    |    |    + <name> = ♢source♢
+|    |    |    |    [59:60] <Text> = ♢¶♢
+|    |    |    |    [60:60] <Indenting> = ♢••••••♢
+|    |    |    |    [60:60] <RSSTitle>
+|    |    |    |    + <name> = ♢title♢
+|    |    |    |    + <cleaned> = ♢Joe•Bob•Goes•to•the•Drive-In♢
+|    |    |    |    |    [60:60] <XMLTag> = ♢<title>♢
+|    |    |    |    |    + <name> = ♢title♢
+|    |    |    |    |    [60:60] <Text> = ♢Joe•Bob•Goes•to•the•Drive-In♢
+|    |    |    |    |    [60:60] <XMLTag> = ♢</title>♢
+|    |    |    |    |    + <name> = ♢title♢
+|    |    |    |    [60:61] <Text> = ♢¶♢
+|    |    |    |    [61:61] <Indenting> = ♢••••♢
+|    |    |    |    [61:61] <XMLTag> = ♢</item>♢
+|    |    |    |    + <name> = ♢item♢
+|    |    |    [61:62] <Text> = ♢¶♢
+|    |    |    [62:62] <Indenting> = ♢••••♢
+|    |    |    [62:65] <RSSItem>
+|    |    |    + <name> = ♢item♢
+|    |    |    + <cleaned> = ♢¶••••••I'm•headed•for•France.•I•wasn't•gonna•go•this•year,•but•then•last•week•<a•href="http://www.imdb.com/title/tt0086525/">Valley•Girl</a>•came•out•and•I•said•to•myself,•Joe•Bob,•you•gotta•get•out•of•the•country•for•a•while.¶••••••tag:dallas.example.com,4131:news¶••••♢
+|    |    |    |    [62:62] <XMLTag> = ♢<item>♢
+|    |    |    |    + <name> = ♢item♢
+|    |    |    |    [62:63] <Text> = ♢¶♢
+|    |    |    |    [63:63] <Indenting> = ♢••••••♢
+|    |    |    |    [63:63] <RSSDescription>
+|    |    |    |    + <name> = ♢description♢
+|    |    |    |    + <cleaned> = ♢I'm•headed•for•France.•I•wasn't•gonna•go•this•year,•but•then•last•week•<a•href="http://www.imdb.com/title/tt0086525/">Valley•Girl</a>•came•out•and•I•said•to•myself,•Joe•Bob,•you•gotta•get•out•of•the•country•for•a•while.♢
+|    |    |    |    |    [63:63] <XMLTag> = ♢<description>♢
+|    |    |    |    |    + <name> = ♢description♢
+|    |    |    |    |    [63:63] <Text> = ♢I'm•headed•for•France.•I•wasn't•gonna•go•this•year,•but•then•last•week•♢
+|    |    |    |    |    [63:63] <XMLEntity> = ♢&lt;♢
+|    |    |    |    |    + <cleaned> = ♢<♢
+|    |    |    |    |    [63:63] <Text> = ♢a•href="http://www.imdb.com/title/tt0086525/"♢
+|    |    |    |    |    [63:63] <XMLEntity> = ♢&gt;♢
+|    |    |    |    |    + <cleaned> = ♢>♢
+|    |    |    |    |    [63:63] <Text> = ♢Valley•Girl♢
+|    |    |    |    |    [63:63] <XMLEntity> = ♢&lt;♢
+|    |    |    |    |    + <cleaned> = ♢<♢
+|    |    |    |    |    [63:63] <Text> = ♢/a♢
+|    |    |    |    |    [63:63] <XMLEntity> = ♢&gt;♢
+|    |    |    |    |    + <cleaned> = ♢>♢
+|    |    |    |    |    [63:63] <Text> = ♢•came•out•and•I•said•to•myself,•Joe•Bob,•you•gotta•get•out•of•the•country•for•a•while.♢
+|    |    |    |    |    [63:63] <XMLTag> = ♢</description>♢
+|    |    |    |    |    + <name> = ♢description♢
+|    |    |    |    [63:64] <Text> = ♢¶♢
+|    |    |    |    [64:64] <Indenting> = ♢••••••♢
+|    |    |    |    [64:64] <RSSGuid>
+|    |    |    |    + <name> = ♢guid♢
+|    |    |    |    + <cleaned> = ♢tag:dallas.example.com,4131:news♢
+|    |    |    |    + ♢isPermaLink♢ = ♢false♢
+|    |    |    |    |    [64:64] <XMLTag> = ♢<guid•isPermaLink="false">♢
+|    |    |    |    |    + <name> = ♢guid♢
+|    |    |    |    |    + ♢isPermaLink♢ = ♢false♢
+|    |    |    |    |    [64:64] <Text> = ♢tag:dallas.example.com,4131:news♢
+|    |    |    |    |    [64:64] <XMLTag> = ♢</guid>♢
+|    |    |    |    |    + <name> = ♢guid♢
+|    |    |    |    [64:65] <Text> = ♢¶♢
+|    |    |    |    [65:65] <Indenting> = ♢••••♢
+|    |    |    |    [65:65] <XMLTag> = ♢</item>♢
+|    |    |    |    + <name> = ♢item♢
+|    |    |    [65:66] <Text> = ♢¶♢
+|    |    |    [66:66] <Indenting> = ♢••••♢
+|    |    |    [66:69] <RSSItem>
+|    |    |    + <name> = ♢item♢
+|    |    |    + <cleaned> = ♢¶••••••••••••¶••••••1983-05-06+lifestyle+joebob+2¶••••♢
+|    |    |    |    [66:66] <XMLTag> = ♢<item>♢
+|    |    |    |    + <name> = ♢item♢
+|    |    |    |    [66:67] <Text> = ♢¶♢
+|    |    |    |    [67:67] <Indenting> = ♢••••••♢
+|    |    |    |    [67:67] <RSSDescription>
+|    |    |    |    + <name> = ♢description♢
+|    |    |    |    + <cleaned> = ♢♢
+|    |    |    |    |    [67:67] <XMLTag> = ♢<description>♢
+|    |    |    |    |    + <name> = ♢description♢
+|    |    |    |    |    [67:67] <XMLCDATA> = ♢<![CDATA[I'm•headed•for•France.•I•wasn't•gonna•go•this•year,•but•then•last•week•<a•href="http://www.imdb.com/title/tt0086525/">Valley•Girl</a>•came•out•and•I•said•to•myself,•Joe•Bob,•you•gotta•get•out•of•the•country•for•a•while.]]>♢
+|    |    |    |    |    + <cleaned> = ♢I'm•headed•for•France.•I•wasn't•gonna•go•this•year,•but•then•last•week•<a•href="http://www.imdb.com/title/tt0086525/">Valley•Girl</a>•came•out•and•I•said•to•myself,•Joe•Bob,•you•gotta•get•out•of•the•country•for•a•while.♢
+|    |    |    |    |    [67:67] <XMLTag> = ♢</description>♢
+|    |    |    |    |    + <name> = ♢description♢
+|    |    |    |    [67:68] <Text> = ♢••••••¶♢
+|    |    |    |    [68:68] <Indenting> = ♢••••••♢
+|    |    |    |    [68:68] <RSSGuid>
+|    |    |    |    + <name> = ♢guid♢
+|    |    |    |    + <cleaned> = ♢1983-05-06+lifestyle+joebob+2♢
+|    |    |    |    + ♢isPermaLink♢ = ♢false♢
+|    |    |    |    |    [68:68] <XMLTag> = ♢<guid•isPermaLink="false">♢
+|    |    |    |    |    + <name> = ♢guid♢
+|    |    |    |    |    + ♢isPermaLink♢ = ♢false♢
+|    |    |    |    |    [68:68] <Text> = ♢1983-05-06+lifestyle+joebob+2♢
+|    |    |    |    |    [68:68] <XMLTag> = ♢</guid>♢
+|    |    |    |    |    + <name> = ♢guid♢
+|    |    |    |    [68:69] <Text> = ♢¶♢
+|    |    |    |    [69:69] <Indenting> = ♢••••♢
+|    |    |    |    [69:69] <XMLTag> = ♢</item>♢
+|    |    |    |    + <name> = ♢item♢
+|    |    |    [69:70] <Text> = ♢••••¶♢
+|    |    |    [70:70] <Indenting> = ♢••♢
+|    |    |    [70:70] <XMLTag> = ♢</channel>♢
+|    |    |    + <name> = ♢channel♢
+|    |    [70:71] <Text> = ♢¶♢
+|    |    [71:71] <XMLTag> = ♢</rss>♢
+|    |    + <name> = ♢rss♢
+|    [71:73] <Text> = ♢¶¶♢

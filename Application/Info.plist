@@ -14,7 +14,7 @@
 				<string>*</string>
 			</array>
 			<key>CFBundleTypeName</key>
-			<string>Source</string>
+			<string>Text</string>
 			<key>CFBundleTypeRole</key>
 			<string>Viewer</string>
 			<key>NSDocumentClass</key>

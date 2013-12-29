@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding='UTF-8'?>
+<?xml-stylesheet type="text/xsl" href="formatting.xsl"?>
+<painting>
+  <!-- This is a &quot;comment&quot; -->
+  <img src="madonna.jpg" alt = 'Foligno Madonna, by Raphael' />
+  <caption>This is Raphael's "Foligno" &lt;Madonna&gt;, painted in
+  <true/>
+  <date>1511</date>-<date>1512</date>.</caption>
+  <![CDATA[An in-depth look at creating applications with XML.]]>
+</painting>
+
+<----->
+
+<Root>
+·  ♢|<?xml•version="1.0"•encoding='UTF-8'?>|♢¶♢|<?xml-stylesheet•type="text/xsl"•href="formatting.xsl"?>|♢¶♢
+·  <XMLElement>
+·  ·  ♢|<painting>|♢¶♢|••|♢|<!--•This•is•a•&quot;comment&quot;•-->|♢¶♢|••|♢
+·  ·  <XMLElement>
+·  ·  ·  ♢|<img•src="madonna.jpg"•alt•=•'Foligno•Madonna,•by•Raphael'•/>|♢
+·  ·  ♢¶♢|••|♢
+·  ·  <XMLElement>
+·  ·  ·  ♢|<caption>|♢This•is•Raphael's•"Foligno"•♢|&lt;|♢Madonna♢|&gt;|♢,•painted•in¶♢|••|♢
+·  ·  ·  <XMLElement>
+·  ·  ·  ·  ♢|<true/>|♢
+·  ·  ·  ♢¶♢|••|♢
+·  ·  ·  <XMLElement>
+·  ·  ·  ·  ♢|<date>|♢1511♢|</date>|♢
+·  ·  ·  ♢-♢
+·  ·  ·  <XMLElement>
+·  ·  ·  ·  ♢|<date>|♢1512♢|</date>|♢
+·  ·  ·  ♢.♢|</caption>|♢
+·  ·  ♢¶♢|••|♢|<![CDATA[An•in-depth•look•at•creating•applications•with•XML.]]>|♢¶♢|</painting>|♢
+·  ♢¶¶♢
+
+<----->
+
+[1:12] <Root>
+|    [1:1] <XMLDeclaration> = ♢<?xml•version="1.0"•encoding='UTF-8'?>♢
+|    + <name> = ♢?xml♢
+|    + ♢version♢ = ♢1.0♢
+|    + ♢encoding♢ = ♢UTF-8♢
+|    [1:2] <Text> = ♢¶♢
+|    [2:2] <XMLProcessingInstructions> = ♢<?xml-stylesheet•type="text/xsl"•href="formatting.xsl"?>♢
+|    + <name> = ♢?xml-stylesheet♢
+|    + <cleaned> = ♢xml-stylesheet•type="text/xsl"•href="formatting.xsl"♢
+|    + ♢type♢ = ♢text/xsl♢
+|    + ♢href♢ = ♢formatting.xsl♢
+|    [2:3] <Text> = ♢¶♢
+|    [3:10] <XMLElement>
+|    + <name> = ♢painting♢
+|    + <cleaned> = ♢¶••¶••¶••This•is•Raphael's•"Foligno"•<Madonna>,•painted•in¶••¶••1511-1512.¶••¶♢
+|    |    [3:3] <XMLTag> = ♢<painting>♢
+|    |    + <name> = ♢painting♢
+|    |    [3:4] <Text> = ♢¶♢
+|    |    [4:4] <Indenting> = ♢••♢
+|    |    [4:4] <XMLComment> = ♢<!--•This•is•a•&quot;comment&quot;•-->♢
+|    |    + <cleaned> = ♢•This•is•a•"comment"•♢
+|    |    [4:5] <Text> = ♢¶♢
+|    |    [5:5] <Indenting> = ♢••♢
+|    |    [5:5] <XMLElement>
+|    |    + <name> = ♢img♢
+|    |    + <cleaned> = ♢♢
+|    |    + ♢src♢ = ♢madonna.jpg♢
+|    |    + ♢alt♢ = ♢Foligno•Madonna,•by•Raphael♢
+|    |    |    [5:5] <XMLTag> = ♢<img•src="madonna.jpg"•alt•=•'Foligno•Madonna,•by•Raphael'•/>♢
+|    |    |    + <name> = ♢img♢
+|    |    |    + ♢src♢ = ♢madonna.jpg♢
+|    |    |    + ♢alt♢ = ♢Foligno•Madonna,•by•Raphael♢
+|    |    [5:6] <Text> = ♢¶♢
+|    |    [6:6] <Indenting> = ♢••♢
+|    |    [6:8] <XMLElement>
+|    |    + <name> = ♢caption♢
+|    |    + <cleaned> = ♢This•is•Raphael's•"Foligno"•<Madonna>,•painted•in¶••¶••1511-1512.♢
+|    |    |    [6:6] <XMLTag> = ♢<caption>♢
+|    |    |    + <name> = ♢caption♢
+|    |    |    [6:6] <Text> = ♢This•is•Raphael's•"Foligno"•♢
+|    |    |    [6:6] <XMLEntity> = ♢&lt;♢
+|    |    |    + <cleaned> = ♢<♢
+|    |    |    [6:6] <Text> = ♢Madonna♢
+|    |    |    [6:6] <XMLEntity> = ♢&gt;♢
+|    |    |    + <cleaned> = ♢>♢
+|    |    |    [6:7] <Text> = ♢,•painted•in¶♢
+|    |    |    [7:7] <Indenting> = ♢••♢
+|    |    |    [7:7] <XMLElement>
+|    |    |    + <name> = ♢true♢
+|    |    |    + <cleaned> = ♢♢
+|    |    |    |    [7:7] <XMLTag> = ♢<true/>♢
+|    |    |    |    + <name> = ♢true♢
+|    |    |    [7:8] <Text> = ♢¶♢
+|    |    |    [8:8] <Indenting> = ♢••♢
+|    |    |    [8:8] <XMLElement>
+|    |    |    + <name> = ♢date♢
+|    |    |    + <cleaned> = ♢1511♢
+|    |    |    |    [8:8] <XMLTag> = ♢<date>♢
+|    |    |    |    + <name> = ♢date♢
+|    |    |    |    [8:8] <Text> = ♢1511♢
+|    |    |    |    [8:8] <XMLTag> = ♢</date>♢
+|    |    |    |    + <name> = ♢date♢
+|    |    |    [8:8] <Text> = ♢-♢
+|    |    |    [8:8] <XMLElement>
+|    |    |    + <name> = ♢date♢
+|    |    |    + <cleaned> = ♢1512♢
+|    |    |    |    [8:8] <XMLTag> = ♢<date>♢
+|    |    |    |    + <name> = ♢date♢
+|    |    |    |    [8:8] <Text> = ♢1512♢
+|    |    |    |    [8:8] <XMLTag> = ♢</date>♢
+|    |    |    |    + <name> = ♢date♢
+|    |    |    [8:8] <Text> = ♢.♢
+|    |    |    [8:8] <XMLTag> = ♢</caption>♢
+|    |    |    + <name> = ♢caption♢
+|    |    [8:9] <Text> = ♢¶♢
+|    |    [9:9] <Indenting> = ♢••♢
+|    |    [9:9] <XMLCDATA> = ♢<![CDATA[An•in-depth•look•at•creating•applications•with•XML.]]>♢
+|    |    + <cleaned> = ♢An•in-depth•look•at•creating•applications•with•XML.♢
+|    |    [9:10] <Text> = ♢¶♢
+|    |    [10:10] <XMLTag> = ♢</painting>♢
+|    |    + <name> = ♢painting♢
+|    [10:12] <Text> = ♢¶¶♢

@@ -22,13 +22,7 @@ Currently Known Limitations
 Example Generated Source Tree
 =============================
 
-For an example parsing result, printed in "compact" style only, see this basic test file: [UnitTests/Parser/Language-CPP-Source.cc](UnitTests/Parser/Language-CPP-Source.cc).
-
-For a more real-world example, printed in both "compact" and "detailed" styles, see this advanced test file: [UnitTests/Parser/Language-CSV-Source.csv](UnitTests/Parser/Language-CSV-Source.csv).
-
-Finally, for a pretty complex case, have a look at this test file: [UnitTests/Parser/Language-ObjC-Source-1.m](UnitTests/Parser/Language-ObjC-Source-1.m).
-
-*Both these examples are generated with high-level syntax analysis turned on.*
+For an example parsing result, printed in both "compact" and "detailed" styles, see this test file: [UnitTests/Parser/Language-CPP-Source.cc](UnitTests/Parser/Language-CPP-Source.cc).
 
 Sample Code
 ===========

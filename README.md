@@ -11,8 +11,6 @@ PolParser currently comes with a test application to browse the generated tree, 
 
 Finally, PolParser is a well factored piece of code with minimal dependencies, ready to be embedded into any kind of project requiring text parsing.
 
-*The entire project is available open-source under GPLv3 license. If you are interested in using PolParser in a non-open-source project and need a commercial license, please contact info@pol-online.net.*
-
 Currently Known Limitations
 ===========================
 
